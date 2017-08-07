@@ -26,6 +26,12 @@ Route::get('/roles', function () {
 Route::get('/roles/create', function () {
     return view('internals.roles.create');
 });
+Route::get('/users', function () {
+    return view('internals.users.index');
+});
+Route::get('/users/create', function () {
+    return view('internals.users.create');
+});
 Route::get('/login', function () {
     return view('internals.auth.login');
 });

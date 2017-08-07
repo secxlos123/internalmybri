@@ -18,12 +18,12 @@
                                     <form class="form-horizontal" action="#">
                                         <div class="form-group ">
                                             <div class="col-xs-12">
-                                                <input class="form-control" type="email" required="" placeholder="Email">
+                                                <input class="form-control" type="email" required="" placeholder="Email" name="email">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-xs-12">
-                                                <input class="form-control" type="password" required="" placeholder="Kata Sandi">
+                                                <input class="form-control" type="password" required="" placeholder="Kata Sandi" name="password">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -34,7 +34,7 @@
                                         <div class="form-group ">
                                             <div class="col-xs-12">
                                                 <div class="checkbox checkbox-primary">
-                                                    <input id="checkbox-signup" type="checkbox">
+                                                    <input id="checkbox-signup" type="checkbox" name="remember_me">
                                                     <label for="checkbox-signup">
                                                         Ingatkan saya
                                                     </label>
