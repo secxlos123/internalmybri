@@ -18,18 +18,20 @@
                                     <div class="text-center m-b-20">
                                         <p class="text-muted m-b-0 font-13">Masukkan email Anda dan kami akan mengirimkan instruksi untuk me-reset Kata Sandi melalui email Anda.  </p>
                                     </div>
-                                    <form class="form-horizontal" action="#">
+                                    <form class="form-horizontal" id="forgotForm">
+                                        {{ csrf_field() }}
+                                        <div class="divError"></div>
                                         <div class="form-group">
                                             <div class="col-xs-12">
                                                 <input class="form-control" type="email" required=""
-                                                       placeholder="Masukkan email">
+                                                       placeholder="Masukkan email" name="email">
                                             </div>
                                         </div>
                                         <div class="form-group account-btn text-center m-t-10">
                                             <div class="col-xs-12">
-                                                <a href="{{url('email-sent')}}" class="btn w-md btn-bordered btn-primary waves-effect waves-light"
-                                                        type="submit">Kirim Email
-                                                </a>
+                                                <button class="btn w-md btn-bordered btn-primary waves-effect waves-light"
+                                                        type="submit" id="forgotButton" data-loading-text="Loading...">Kirim Email
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -47,3 +49,27 @@
             </div>
         </section>
 @include('internals.layouts.foot')  
+
+<script type="text/javascript">
+    $("#forgotForm").submit(function (e) {
+            e.preventDefault();
+            var $btn = $('#forgotButton').button('loading');
+
+            $.ajax({
+                    url: "{!! route('postForgotPassword') !!}",
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                       $btn.button('reset');
+                       console.log(data);
+                       // var win = window.open(data.url);
+                       window.location = data.url;
+                    },
+                    error: function(response){
+                        $btn.button('reset');
+                        console.log(response);
+                    }
+                });
+        });
+</script>
