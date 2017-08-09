@@ -5237,3 +5237,7 @@ table .checkbox {
     font-weight: bold;
     font-size: 16px;
 }
+.error{
+    color: #c81e32;
+    font-size: 11px;
+}
