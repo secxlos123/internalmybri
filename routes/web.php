@@ -10,37 +10,58 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/* Backend */
+    // Route::group(function () {
+    Route::group(['middleware'=>'auth'], function () {
+        /* Dashboard */
+        Route::get('/', 
+            ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
-Route::get('/', function () {
-    return view('internals.home.index');
-});
-Route::get('/nasabah', function () {
-    return view('internals.customers.index');
-});
-Route::get('/nasabah/detail', function () {
-    return view('internals.customers.detail');
-});
-Route::get('/roles', function () {
-    return view('internals.roles.index');
-});
-Route::get('/roles/create', function () {
-    return view('internals.roles.create');
-});
-Route::get('/users', function () {
-    return view('internals.users.index');
-});
-Route::get('/users/create', function () {
-    return view('internals.users.create');
-});
-Route::get('/login', function () {
-    return view('internals.auth.login');
-});
-Route::get('/logout', function () {
-    return view('internals.auth.logout');
-});
-Route::get('/forgot-password', function () {
-    return view('internals.auth.forgot-password');
-});
-Route::get('/email-sent', function () {
-    return view('internals.auth.email-sent');
-});
+        /* Customers */
+        Route::get('/nasabah', function () {
+            return view('internals.customers.index');
+        });
+        Route::get('/nasabah/detail', function () {
+            return view('internals.customers.detail');
+        });
+
+        /* Roles */
+        Route::get('/roles', function () {
+            return view('internals.roles.index');
+        });
+        Route::get('/roles/create', function () {
+            return view('internals.roles.create');
+        });
+
+        /* Users */
+        Route::get('/users', function () {
+            return view('internals.users.index');
+        });
+        Route::get('/users/create', function () {
+            return view('internals.users.create');
+        });
+
+
+        // });
+    });
+
+        /* Auth */
+        Route::post('/login', 
+            ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
+
+        Route::get('/login', 
+            ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
+
+        Route::get('/forgot-password', 
+            ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
+
+        Route::post('/post-email', 
+            ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
+
+        Route::get('/email-sent', function () {
+            return view('internals.auth.email-sent');
+        });
+
+        Route::get('/logout', 
+            ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
+

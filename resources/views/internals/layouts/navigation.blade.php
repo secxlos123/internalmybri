@@ -41,7 +41,7 @@
                             </li>
                             <hr>
                             <li>
-                                <a href="{{url('/logout')}}" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Log Out </span> </a>
+                                <a href="{{route('logout')}}" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Log Out </span> </a>
                             </li>
                         </ul>
                     </div>
