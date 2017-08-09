@@ -10,12 +10,14 @@
                                 <div class="text-center account-logo-box">
                                     <h2 class="text-uppercase">
                                         <a href="#" class="text-success">
-                                            <span><img src="assets/images/logo.png" alt="" height="50"></span>
+                                            <span><img src="{{asset('assets/images/logo.png')}}" alt="" height="50"></span>
                                         </a>
                                     </h2>
                                 </div>
                                 <div class="account-content">
-                                    <form class="form-horizontal" action="#">
+                                    <form class="form-horizontal" id="loginForm">
+                                        {{ csrf_field() }}
+                                        <div class="divError"></div>
                                         <div class="form-group ">
                                             <div class="col-xs-12">
                                                 <input class="form-control" type="email" required="" placeholder="Email" name="email">
@@ -27,7 +29,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-xs-12" align="center">
+                                            <div align="center">
                                             {!! Recaptcha::render() !!}
                                             </div>
                                           </div>
@@ -48,7 +50,7 @@
                                         </div>
                                         <div class="form-group account-btn text-center m-t-10">
                                             <div class="col-xs-12">
-                                                <a href="{{url('/')}}" class="btn w-md btn-bordered btn-primary waves-effect waves-light" type="submit">Masuk</a>
+                                                <button class="btn w-md btn-bordered btn-primary waves-effect waves-light" type="submit" id="loginButton" data-loading-text="Loading...">Masuk</button>
                                             </div>
                                         </div>
                                     </form>
@@ -66,4 +68,68 @@
             </div>
         </section>
 @include('internals.layouts.foot') 
-<script src='https://www.google.com/recaptcha/api.js'></script> 
+@include('internals.layouts.footer') 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $("#loginForm").submit(function (e) {
+            e.preventDefault();
+            var $btn = $('#loginButton').button('loading');
+
+            $.ajax({
+                    url: "{!! route('postLogin') !!}",
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                       $btn.button('reset');
+                       console.log(data);
+                       // window.location = data.url;
+                    },
+                    error: function(response){
+                        $btn.button('reset');
+                        console.log(response);
+                        errorResponse = response.responseJSON;
+                        if(errorResponse.email != 'undefined'){
+                            error = errorResponse.email;
+                        }else if(errorResponse.password != 'undefined'){
+                            error = errorResponse.password;
+                        }else{
+                            console.log("error");
+                            error = 'Captcha harus diisi';
+                        }
+                        if(response.responseText = '{"g-recaptcha-response":["Captcha harus diisi dengan benar"]}'){
+                            error = 'Captcha harus diisi dengan benar';
+                        }
+                        $('.divError').html('<div class="alert alert-danger">' +error + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                    }
+                });
+        });
+
+    $('#loginForm').validate({
+    onkeyup: false,
+    rules: {
+      email: {
+        required: true,
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 8
+      }
+    },
+    messages: {
+      email: {
+        required: "Anda harus memasukkan Alamat Email",
+        email: jQuery.validator.format("Format email tidak valid")
+      },
+      password: {
+        required: "Anda harus memasukkan Password",
+        minlength: jQuery.validator.format("Password harus diisi setidaknya 8 karakter")
+      }
+    },
+    onsubmit: function( element, event ) {
+        this.element( element );
+    }
+});
+</script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
