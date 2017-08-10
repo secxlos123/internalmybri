@@ -15,7 +15,7 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        $users = session()->get('userLogin');
+        $users = session()->get('user');
         
         if(!empty($users)){
             foreach ($users as $key ) {

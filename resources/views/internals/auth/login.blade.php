@@ -83,7 +83,7 @@
                     success: function (data) {
                        $btn.button('reset');
                        console.log(data);
-                       // window.location = data.url;
+                       window.location = data.url;
                     },
                     error: function(response){
                         $btn.button('reset');

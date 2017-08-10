@@ -65,3 +65,6 @@
         Route::get('/logout', 
             ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
 
+        // Route::delete('logout', 
+        //     ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
+

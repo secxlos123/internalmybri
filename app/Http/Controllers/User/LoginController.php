@@ -30,7 +30,6 @@ class LoginController extends Controller
 
     public function postLogin(AuthLogin $request)
     {
-        return $request->all();
         $data = [
             'email' => $request->email,
             'password' => $request->password
@@ -38,8 +37,9 @@ class LoginController extends Controller
 
         $client = Client::setEndpoint('auth/login')->setBody($data)->post();
         if($client){
-            session()->put('userLogin', $client);
-            return response()->json(['url' => url('/'), 'message' => 'Login sukses']);
+            session()->put('user', $client);
+            // return $client;
+            return response()->json(['url' => route('dashboard'), 'message' => 'Login sukses']);
         }else{
             return response()->json(['message' => 'Login gagal']);
         }
@@ -51,9 +51,9 @@ class LoginController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function logout()
+    public function logout(Request $request)
     {
-        // Client::setEndpoint('auth/logout')->setHeaders()->deleted();
+        // $logout = Client::setEndpoint('auth/logout')->deleted();
         session()->flush();
         return view('internals.auth.logout');
     }
