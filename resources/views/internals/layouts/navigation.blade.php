@@ -37,7 +37,7 @@
                                 <a href="{{url('/users')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
                             </li>
                             <li>
-                                <a href="{{url('/roles')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>
+                                <a href="{{route('roles.index')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>
                             </li>
                             <hr>
                             <li>

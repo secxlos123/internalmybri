@@ -37,15 +37,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($dataRole as $role)
                                             <tr>
-                                                <td class="align-middle">1</td>
-                                                <td class="align-middle">Pinca</td>
-                                                <td class="align-middle">pinca</td>
+                                                <td class="align-middle">{{$role['id']}}</td>
+                                                <td class="align-middle">{{$role['name']}}</td>
+                                                <td class="align-middle">{{$role['slug']}}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="{{route('roles.edit', $role['id'])}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
+                                                    <a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" data-id="{{$role['id']}}" data-name="{{$role['name']}}">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
                                                     <a href="#" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
@@ -53,22 +54,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="align-middle">2</td>
-                                                <td class="align-middle">MP</td>
-                                                <td class="align-middle">mp</td>
-                                                <td>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                        <i class="mdi mdi-pencil"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
-                                                        <i class="mdi mdi-delete"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
-                                                        <i class="mdi mdi-eye"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -78,6 +64,7 @@
                 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')  
+@include('internals.layouts.delete-modal') 
 <script type="text/javascript">
     $(document).ready(function () {
         $('#datatable').dataTable();   

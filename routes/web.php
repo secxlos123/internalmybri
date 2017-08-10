@@ -34,20 +34,9 @@
         });
 
         /* Roles */
-        Route::get('/roles', function () {
-            $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-            return view('internals.roles.index', compact('data'));
-        });
-        Route::get('/roles/create', function () {
-            $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-            return view('internals.roles.create', compact('data'));
-        });
+        Route::get('role/datatables', ['as'=>'role.datatables', 'uses'=>'User\RoleController@datatables']);
+
+        Route::resource('roles', 'User\RoleController');
 
         /* Users */
         Route::get('/users', function () {
