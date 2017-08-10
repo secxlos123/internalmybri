@@ -19,26 +19,50 @@
 
         /* Customers */
         Route::get('/nasabah', function () {
-            return view('internals.customers.index');
+            $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+            return view('internals.customers.index', compact('data'));
         });
         Route::get('/nasabah/detail', function () {
-            return view('internals.customers.detail');
+            $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+            return view('internals.customers.detail', compact('data'));
         });
 
         /* Roles */
         Route::get('/roles', function () {
-            return view('internals.roles.index');
+            $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+            return view('internals.roles.index', compact('data'));
         });
         Route::get('/roles/create', function () {
-            return view('internals.roles.create');
+            $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+            return view('internals.roles.create', compact('data'));
         });
 
         /* Users */
         Route::get('/users', function () {
-            return view('internals.users.index');
+            $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+            return view('internals.users.index', compact('data'));
         });
         Route::get('/users/create', function () {
-            return view('internals.users.create');
+            $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+            return view('internals.users.create', compact('data'));
         });
 
 
