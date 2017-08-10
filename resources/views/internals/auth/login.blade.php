@@ -68,7 +68,6 @@
             </div>
         </section>
 @include('internals.layouts.foot') 
-@include('internals.layouts.footer') 
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="text/javascript">
     $("#loginForm").submit(function (e) {
@@ -83,7 +82,11 @@
                     success: function (data) {
                        $btn.button('reset');
                        console.log(data);
-                       window.location = data.url;
+                       if(data.code == 400){
+                        $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+                       }else{
+                            window.location = data.url;
+                       }
                     },
                     error: function(response){
                         $btn.button('reset');

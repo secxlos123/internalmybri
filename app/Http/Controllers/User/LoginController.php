@@ -36,12 +36,14 @@ class LoginController extends Controller
         ];
 
         $client = Client::setEndpoint('auth/login')->setBody($data)->post();
-        if($client){
+
+        $codeResponse = $client['status']['code'];
+
+        if($codeResponse == 200){
             session()->put('user', $client);
-            // return $client;
-            return response()->json(['url' => route('dashboard'), 'message' => 'Login sukses']);
+            return response()->json(['url' => route('dashboard'), 'message' => 'Login sukses', 'code' => 200]);
         }else{
-            return response()->json(['message' => 'Login gagal']);
+            return response()->json(['message' => 'Email atau Kata Sandi Salah', 'code' => 400]);
         }
 
     }
