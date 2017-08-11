@@ -8,10 +8,10 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Manajemen User</h4>
+                                    <h4 class="page-title">Daftar User</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{url('/')}}">Dashboard</a>
+                                            <a href="index.html">Dashboard</a>
                                         </li>
                                         <li class="active">
                                             Manajemen User
@@ -25,46 +25,98 @@
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
                                     <div class="add-button">
-                                        <a href="{{url('/users/create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah User</a>
+                                        <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
+                                        <a href="{{route('users.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah User</a>
+                                    </div>
+                                    <div id="filter" class="collapse m-b-15">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card-box">
+                                                    <form class="form-horizontal" role="form">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Kantor Cabang :</label>
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option>-- Pilih --</option>
+                                                                    <option>BSD</option>
+                                                                    <option>Ragunan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Kota :</label>
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option>-- Pilih --</option>
+                                                                    <option>Bandung</option>
+                                                                    <option>Jakarta</option>
+                                                                    <option>Semarang</option>
+                                                                    <option>Surabaya</option>
+                                                                    <option>Yogyakarta</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <div class="text-right">
+                                                        <a href="#" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <table id="datatable" class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama User</th>
+                                                <th>NIP</th>
+                                                <th>Nama</th>
+                                                <th>Email</th>
+                                                <th>Kantor Cabang</th>
+                                                <th>Handphone</th>
                                                 <th>Role</th>
+                                                <th>Status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle">1</td>
-                                                <td class="align-middle">Lisda</td>
-                                                <td class="align-middle">pinca</td>
+                                                <td class="align-middle">123455667</td>
+                                                <td class="align-middle">User 1</td>
+                                                <td class="align-middle">xx@xx.com</td>
+                                                <td class="align-middle">BSD</td>
+                                                <td class="align-middle">21213212</td>
+                                                <td class="align-middle">MP</td>
+                                                <td class="align-middle status">
+                                                    <input type="checkbox" id="status-user1" switch="success" checked>
+                                                    <label for="status-user1" data-on-label="Aktif" data-off-label="Inaktif"></label>
+                                                </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
-                                                        <i class="mdi mdi-delete"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                    <a href="{{route('users.show', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">2</td>
-                                                <td class="align-middle">Kania</td>
-                                                <td class="align-middle">mp</td>
+                                                <td class="align-middle">123455668</td>
+                                                <td class="align-middle">User 2</td>
+                                                <td class="align-middle">xx@xx.com</td>
+                                                <td class="align-middle">Ragunan</td>
+                                                <td class="align-middle">21213212</td>
+                                                <td class="align-middle">AO</td>
+                                                <td class="align-middle status">
+                                                    <input type="checkbox" id="status-user2" switch="success" checked data-toggle="modal" data-target="#confirm">
+                                                    <label for="status-user2" data-on-label="Aktif" data-off-label="Inaktif"></label>
+                                                </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
-                                                        <i class="mdi mdi-delete"></i>
-                                                    </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                    <a href="user-detail.html" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
@@ -76,11 +128,46 @@
                         </div>
                     </div>
                 </div>
+        <!-- Modals Status -->
+        <div id="confirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Apakah Anda yakin ingin merubah status user "<b>John</b>" ?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-success waves-effect waves-light btn-save">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')  
+@include('internals.layouts.foot') 
+
+        <script>
+            var resizefunc = [];
+        </script> 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datatable').dataTable();   
+        var lastStatusElement = null;
+        $('#datatable').dataTable();
+        $('.status input[type=checkbox]').change(function(e){
+            e.preventDefault();
+            var val = $(this).is(':checked');
+            lastStatusElement = $(this);
+            $(this).prop('checked', !val);
+            $('#confirm').modal('show');
+        });
+        $('.btn-save').click(function () {
+            var val = lastStatusElement.is(':checked');
+            lastStatusElement.prop('checked', !val);
+            $('#confirm').modal('hide');
+        });
     });
     TableManageButtons.init();
-</script>  
+</script>
