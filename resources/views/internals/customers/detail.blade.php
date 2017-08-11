@@ -11,7 +11,7 @@
                                     <h4 class="page-title">Detail Nasabah "John" </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{url('/nasabah')}}">Nasabah</a>
+                                            <a href="{{route('customers.index')}}">Nasabah</a>
                                         </li>
                                         <li class="active">
                                             Detail Nasabah
