@@ -72,20 +72,6 @@
         });   
     });
     TableManageButtons.init();
-
-    // var table = $('#role-datatables').DataTable();
-    //     table.destroy();
-    //     $('#role-datatables').DataTable({
-    //         processing: true,
-    //         serverSide: true,
-    //         ajax: '{!! URL::route("role.datatables") !!}',
-    //         columns: [
-    //             // {data: 'id', name: 'id', searchable: false, orderable: false},
-    //             {data: 'slug', name: 'slug'},
-    //             {data: 'name', name: 'name'},
-    //             {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
-    //         ]
-    //     });
 </script>  
 
 <script>
@@ -103,12 +89,35 @@
        $('.btn-view').on('click', function(e) {
            var id = $(this).attr('data-id');
            var name = $(this).attr('data-name');
-           var slug = $(this).attr('data-slug');         
-           $('#view-status').attr('action', '{{ Request::url() }}/'+id);
-           $('#view-modal').modal('show');
-           $("#view-modal #name").html(name);
-           $("#view-modal #slug").html(slug);
-           e.preventDefault();
+           var slug = $(this).attr('data-slug');   
+
+           $.ajax({
+                url: '{{ url("detailRole")}}/'+id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(response)
+                {
+                    console.log(response);
+                    $("#permission tbody").html("");
+                    $.each(response, function (index, value){
+                        var html = '<tr><td width="150">'+ index +'</td><td  width="50">'+ value +'</td></tr>';
+
+                         $("#permission tbody").append(html);
+                        
+                    });
+                    // // billing detail
+                    // var permission = response[0].permission;
+                    // var status = response[0].status;
+
+                    $('#view-modal').modal('show');
+                    $("#view-modal #name").html(name);
+                    $("#view-modal #slug").html(slug);
+
+                }, 
+                error: function(result){
+                    console.log('error');
+                }  
+            });   
        });
    });
 </script>

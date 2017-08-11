@@ -7,13 +7,13 @@
                                 <a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home </span> </a>
                             </li>
                             <li>
-                                <a href="{{url('/nasabah')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Nasabah </span> </a>
+                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Nasabah </span> </a>
                             </li>
                             <li>
                                 <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
                             </li>
                             <li>
-                                <a href="eform.html" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+                                <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
                             </li>
                             <li>
                                 <a href="developer.html" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
@@ -34,7 +34,7 @@
                                 <a href="pihak3.html" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
                             </li>
                             <li>
-                                <a href="{{url('/users')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
+                                <a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
                             </li>
                             <li>
                                 <a href="{{route('roles.index')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>

@@ -5237,6 +5237,16 @@ table .checkbox {
     font-weight: bold;
     font-size: 16px;
 }
+.status > label {
+    margin-bottom: 0;
+}
+.status > input[switch] + label {
+    width: 72px;
+}
+.status > input[switch]:checked + label:after {
+    left: 49px;
+}
+
 .error{
     color: #c81e32;
     font-size: 11px;

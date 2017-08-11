@@ -32,6 +32,9 @@
         Route::get('/logout', 
             ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
 
+        Route::get('detailRole/{id}',
+            ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
+
         // Route::delete('logout', 
         //     ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
 
@@ -41,20 +44,15 @@
             ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
         /* Customers */
-        Route::get('/nasabah', function () {
-            $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-            return view('internals.customers.index', compact('data'));
-        });
-        Route::get('/nasabah/detail', function () {
-            $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-            return view('internals.customers.detail', compact('data'));
-        });
+        // Route::get('/nasabah', function () {
+        //     $users = session()->get('user');
+        //     foreach ($users as $user) {
+        //         $data = $user;
+        //     }
+        //     return view('internals.customers.index', compact('data'));
+        // });
+        
+        Route::resource('customers', 'Customer\CustomerController');
 
         /* Roles */
         Route::get('role/datatables', ['as'=>'role.datatables', 'uses'=>'User\RoleController@datatables']);
@@ -64,20 +62,10 @@
         Route::resource('roles', 'User\RoleController');
 
         /* Users */
-        Route::get('/users', function () {
-            $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-            return view('internals.users.index', compact('data'));
-        });
-        Route::get('/users/create', function () {
-            $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-            return view('internals.users.create', compact('data'));
-        });
+        Route::resource('users', 'User\UserController');
+
+        /* E-Form */
+        Route::resource('eform', 'EForm\EFormController');
 
     });
 

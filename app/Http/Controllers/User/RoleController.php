@@ -21,6 +21,7 @@ class RoleController extends Controller
             foreach ($users as $user) {
                 $data = $user;
             }
+        dd($data['token']);
 
         /* GET Role Data */
         $roleData = Client::setEndpoint('role')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
@@ -110,7 +111,17 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+
+        /* GET Role Data */
+        $roleData = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
+
+        $dataRole = $roleData['data']['permissions'];
+
+        return $dataRole;
     }
 
     /**
@@ -125,14 +136,11 @@ class RoleController extends Controller
             foreach ($users as $user) {
                 $data = $user;
             }
-            // dd($data['token']);
+
         /* GET Role Data */
         $roleData = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
-            // foreach ($roleData as $role) {
-            //     $role = $role;
-            // }
+
         $dataRole = $roleData['data'];
-        // dd($roleData);
 
         return view('internals.roles.edit', compact('data', 'dataRole'));
     }
@@ -181,42 +189,4 @@ class RoleController extends Controller
         return redirect()->route('roles.index');
     }
 
-    // /**
-    //  * Data Table
-    //  *
-    //  */
-    // public function datatables()
-    // {
-    //     /* GET UserLogin Data */
-    //     $users = session()->get('user');
-    //         foreach ($users as $user) {
-    //             $data = $user;
-    //         }
-
-    //     /* GET Role Data */
-    //     $roleData = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
-    //         foreach ($roleData as $role) {
-    //             $role = $role;
-    //         }
-    //     $dataRole = $role['data'];
-
-    //     return \Datatables::of($dataRole)
-    //         ->addColumn('slug', function ($banners) { 
-    //             return $dataRole['slug'];
-    //         })
-    //         ->addColumn('name', function ($banners) { 
-    //             return $dataRole['name'];
-    //         })
-    //         ->addColumn('id', function ($banners) { 
-    //             return $dataRole['id'];
-    //         })
-    //         ->addColumn('action', function ($dataRole) {
-    //             $url = url('roles/'. $dataRole['id'].'/edit');
-    //             $edit = '<a href="'.$url.'" class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-pencil-square-o fa-fw"></i></a>&nbsp;';
-    //             $delete = ' <a href="#" class="btn btn-danger btn-xs btn-delete" title="Delete" data-id="'.$dataRole['id'].'" data-name="'.$dataRole['name'].'" data-button="delete"><i class="fa fa-trash-o fa-fw"></i></a>';
-
-    //             return $edit.''.$delete;
-
-    //         })->make(true);
-    // }
 }

@@ -7,13 +7,20 @@
            </div>
            <div class="modal-body">
               <div class="row">
-                <label class="col-md-4 control-label">name</label>                    
+                <label class="col-md-3 control-label">Nama Role : </label>                    
                 <div class="col-md-4"><p id="name"></p></div>
               </div>       
               <div class="row">
-                <label class="col-md-4 control-label">slug</label>                    
+                <label class="col-md-3 control-label">Nama Slug : </label>                    
                 <div class="col-md-4"><p id="slug"></p></div>
               </div>
+              <div class="row">
+                <label class="col-md-3 control-label">Permission : </label>  
+              </div>
+              <table id="permission"> 
+                  <tbody>    
+                  </tbody> 
+                </table>
            </div>
        </div>
    </div>
