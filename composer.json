@@ -15,7 +15,8 @@
         "cartalyst/sentinel": "2.0.*",
         "barryvdh/laravel-dompdf": "^0.7.0",
         "yajra/laravel-datatables-oracle": "^6.22",
-        "intervention/image": "dev-master"
+        "intervention/image": "dev-master",
+        "laravelcollective/html":"^5.4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

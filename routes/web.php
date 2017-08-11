@@ -11,7 +11,30 @@
 |
 */
 /* Backend */
-    // Route::group(function () {
+
+    /* Auth */
+        Route::post('/login', 
+            ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
+
+        Route::get('/login', 
+            ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
+
+        Route::get('/forgot-password', 
+            ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
+
+        Route::post('/post-email', 
+            ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
+
+        Route::get('/email-sent', function () {
+            return view('internals.auth.email-sent');
+        });
+
+        Route::get('/logout', 
+            ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
+
+        // Route::delete('logout', 
+        //     ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
+
     Route::group(['middleware'=>'auth'], function () {
         /* Dashboard */
         Route::get('/', 
@@ -36,6 +59,8 @@
         /* Roles */
         Route::get('role/datatables', ['as'=>'role.datatables', 'uses'=>'User\RoleController@datatables']);
 
+        Route::delete('roles/{id}/delete', ['as'=>'role.delete', 'uses'=>'User\RoleController@destroy']);
+
         Route::resource('roles', 'User\RoleController');
 
         /* Users */
@@ -54,30 +79,6 @@
             return view('internals.users.create', compact('data'));
         });
 
-
-        // });
     });
 
-        /* Auth */
-        Route::post('/login', 
-            ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
-
-        Route::get('/login', 
-            ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
-
-        Route::get('/forgot-password', 
-            ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
-
-        Route::post('/post-email', 
-            ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
-
-        Route::get('/email-sent', function () {
-            return view('internals.auth.email-sent');
-        });
-
-        Route::get('/logout', 
-            ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
-
-        // Route::delete('logout', 
-        //     ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
 

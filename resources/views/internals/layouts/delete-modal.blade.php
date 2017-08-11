@@ -9,25 +9,12 @@
                <p>Apakah yakin akan menghapus <strong id="name"></strong> ?</p>
            </div>
            <div class="modal-footer">
-               <form id="destroy" method="DELETE">
+               {!! Form::open(['id' => 'destroy', 'method' => 'DELETE']) !!}
                    <input type="hidden" name="id" id="id">
                    <a id="delete-modal-cancel" href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>&nbsp;
-                   <input type="submit" name="delete" class="btn btn-primary">
-               </form>
+                  {!! Form::submit('Continue', ['class' => 'btn btn-primary']) !!}
+               {!! Form::close() !!}
            </div>
        </div>
    </div>
 </div>
-<script>
-   $(document).ready(function() {
-       $('[data-tables=true]').on('click', '.btn-delete', function(e) {
-           var id = $(this).attr('data-id');
-           var name = $(this).attr('data-name');
-           $('#destroy').attr('action', '{{ Request::url() }}/'+id+'/delete');
-           $('#delete-modal').modal('show');
-           $("#delete-modal #name").html(name);
-           $("#delete-modal #id").val(id);
-           e.preventDefault();
-       });
-   });
-</script>

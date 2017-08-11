@@ -32,15 +32,17 @@
                                             <form class="form-horizontal" role="form" action="{{route('roles.store')}}" method="POST">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label">Nama Slug :</label>
+                                                    <label class="col-md-4 control-label">Nama Slug *:</label>
                                                     <div class="col-md-8">
                                                         <input type="text" class="form-control" name="slug" value="{{ old('slug') }}" required="">
+                                                        @if ($errors->has('slug')) <p class="error">{{ $errors->first('slug') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label">Nama Display :</label>
+                                                    <label class="col-md-4 control-label">Nama Display *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required="">
+                                                        @if ($errors->has('name')) <p class="error">{{ $errors->first('name') }}</p> @endif
                                                     </div>
                                                 </div>
                                             

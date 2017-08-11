@@ -49,7 +49,7 @@
                                                     <a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" data-id="{{$role['id']}}" data-name="{{$role['name']}}">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                    <a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info btn-view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail" data-slug="{{$role['slug']}}" data-name="{{$role['name']}}" data-id="{{$role['id']}}">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
@@ -65,9 +65,50 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')  
 @include('internals.layouts.delete-modal') 
+@include('internals.roles.detail-modal') 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datatable').dataTable();   
+        $('#datatable').dataTable({
+        });   
     });
     TableManageButtons.init();
+
+    // var table = $('#role-datatables').DataTable();
+    //     table.destroy();
+    //     $('#role-datatables').DataTable({
+    //         processing: true,
+    //         serverSide: true,
+    //         ajax: '{!! URL::route("role.datatables") !!}',
+    //         columns: [
+    //             // {data: 'id', name: 'id', searchable: false, orderable: false},
+    //             {data: 'slug', name: 'slug'},
+    //             {data: 'name', name: 'name'},
+    //             {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
+    //         ]
+    //     });
 </script>  
+
+<script>
+   $(document).ready(function() {
+       $('.btn-delete').on('click', function(e) {
+           var id = $(this).attr('data-id');
+           var name = $(this).attr('data-name');
+           $('#destroy').attr('action', '{{ Request::url() }}/'+id+'/delete');
+           $('#delete-modal').modal('show');
+           $("#delete-modal #name").html(name);
+           $("#delete-modal #id").val(id);
+           e.preventDefault();
+       });
+
+       $('.btn-view').on('click', function(e) {
+           var id = $(this).attr('data-id');
+           var name = $(this).attr('data-name');
+           var slug = $(this).attr('data-slug');         
+           $('#view-status').attr('action', '{{ Request::url() }}/'+id);
+           $('#view-modal').modal('show');
+           $("#view-modal #name").html(name);
+           $("#view-modal #slug").html(slug);
+           e.preventDefault();
+       });
+   });
+</script>

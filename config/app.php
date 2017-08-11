@@ -165,6 +165,7 @@ return [
 
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,6 +233,8 @@ return [
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Client' => App\Client\Facades\Client::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
