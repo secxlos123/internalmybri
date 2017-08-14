@@ -46,10 +46,10 @@
                                                     <a href="{{route('roles.edit', $role['id'])}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" data-id="{{$role['id']}}" data-name="{{$role['name']}}">
+                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" data-id="{{$role['id']}}" data-name="{{$role['name']}}">
                                                         <i class="mdi mdi-delete"></i>
                                                     </a>
-                                                    <a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info btn-view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail" data-slug="{{$role['slug']}}" data-name="{{$role['name']}}" data-id="{{$role['id']}}">
+                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-info btn-view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail" data-slug="{{$role['slug']}}" data-name="{{$role['name']}}" data-id="{{$role['id']}}">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
@@ -76,7 +76,7 @@
 
 <script>
    $(document).ready(function() {
-       $('.btn-delete').on('click', function(e) {
+       $('#datatable').on('click','.btn-delete', function(e) {
            var id = $(this).attr('data-id');
            var name = $(this).attr('data-name');
            $('#destroy').attr('action', '{{ Request::url() }}/'+id+'/delete');
@@ -86,7 +86,7 @@
            e.preventDefault();
        });
 
-       $('.btn-view').on('click', function(e) {
+       $('#datatable').on('click', '.btn-view', function(e) {
            var id = $(this).attr('data-id');
            var name = $(this).attr('data-name');
            var slug = $(this).attr('data-slug');   
