@@ -7,6 +7,15 @@ use App\Http\Controllers\Controller;
 
 class EFormController extends Controller
 {
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +23,8 @@ class EFormController extends Controller
      */
     public function index()
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+        
         return view('internals.eform.index', compact('data'));
     }
 
