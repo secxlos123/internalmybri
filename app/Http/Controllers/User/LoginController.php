@@ -11,6 +11,15 @@ use Client;
 class LoginController extends Controller
 {
 
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
+
     /**
     * Show the view of login
     *
@@ -55,7 +64,10 @@ class LoginController extends Controller
     */
     public function logout(Request $request)
     {
-        // $logout = Client::setEndpoint('auth/logout')->deleted();
+        /* GET UserLogin Data */
+        $data = $this->getUser();
+
+        $logout = Client::setEndpoint('auth/logout')->setHeaders(['Authorization' => $data['token']])->deleted();
         session()->flush();
         return view('internals.auth.logout');
     }

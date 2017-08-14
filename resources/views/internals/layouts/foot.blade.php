@@ -30,5 +30,26 @@
         <script src="{{asset('assets/js/jquery.app.js')}}"></script>
 
         <script src="{{asset('assets/js/jquery.date-pickers.init.js')}}"></script>
+
+        <script>
+           $(document).ready(function() {
+               $('#logout').on('click', function(e) {
+                   $('#out').attr('action', '{{url("logout")}}');
+                   $('#sign-out').modal('show');
+                   e.preventDefault();
+               });
+           });
+        </script>
+
+        <script>
+           $(document).ready(function() {
+               $('#signout').on('click', function(e) {
+                   $('#out').attr('action', '{{url("logout")}}');
+                   $('#sign-out').modal('show');
+                   e.preventDefault();
+               });
+           });
+        </script>
+@include('internals.layouts.signout')
     </body>
 </html>

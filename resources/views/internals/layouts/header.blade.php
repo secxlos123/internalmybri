@@ -84,7 +84,7 @@
                                     </li>
                                     <li><a href="#"><i class="ti-user m-r-5"></i> Profil</a></li>
                                     <li><a href="#"><i class="ti-settings m-r-5"></i> Pengaturan</a></li>
-                                    <li><a href="{{url('logout')}}"><i class="ti-power-off m-r-5"></i> Keluar</a></li>
+                                    <li><a href="#" id="logout"><i class="ti-power-off m-r-5"></i> Keluar</a></li>
                                 </ul>
                             </li>
                         </ul>
