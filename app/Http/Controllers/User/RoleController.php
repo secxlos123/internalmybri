@@ -72,7 +72,7 @@ class RoleController extends Controller
                 "tracking" => isset($request->tracking) ? true : false,
                 "pihak-ke-3" => isset($request->pihak3) ? true : false,
                 "manajemen-user" => isset($request->user) ? true : false,
-                "manajemen-role"=> isset($request->role) ? true : false
+                "manajemen-role"=> isset($request->roles) ? true : false
             ]            
         ];
 

@@ -265,7 +265,7 @@
                                                         <td class="align-middle">Manajemen Role</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="role" value="true" name="role" @if($dataRole['permissions']){{ ($dataRole['permissions']['manajemen-role'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="role" value="true" name="roles" @if($dataRole['permissions']){{ ($dataRole['permissions']['manajemen-role'] == 'true') ? 'checked' : ''}} @endif>
                                                                 <label for="role">Check</label>
                                                             </div>
                                                         </td>

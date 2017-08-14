@@ -265,7 +265,7 @@
                                                         <td class="align-middle">Manajemen Role</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="role" value="true" name="role">
+                                                                <input type="checkbox" id="role" value="true" name="roles">
                                                                 <label for="role">Check</label>
                                                             </div>
                                                         </td>
