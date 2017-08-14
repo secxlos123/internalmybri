@@ -4,11 +4,20 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FrontendController;
 use App\Http\Requests\User\RoleRequest;
 use Client;
 
 class RoleController extends Controller
 {
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,12 +25,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        /* GET UserLogin Data */
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-        dd($data['token']);
+        $data = $this->getUser();
 
         /* GET Role Data */
         $roleData = Client::setEndpoint('role')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
@@ -40,10 +44,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+
         return view('internals.roles.create', compact('data'));
     }
 
@@ -85,10 +87,7 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
 
         $newRole = $this->roleRequest($request);
 
@@ -111,10 +110,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
 
         /* GET Role Data */
         $roleData = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
@@ -132,10 +128,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
 
         /* GET Role Data */
         $roleData = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
@@ -154,10 +147,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
 
         $newRole = $this->roleRequest($request);
 
@@ -179,10 +169,7 @@ class RoleController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
 
         $client = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->deleted();
 

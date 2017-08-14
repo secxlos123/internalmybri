@@ -273,7 +273,7 @@
                                                 </tbody>
                                             </table>
                                             <div class="pull-right">
-                                                <a href="#" class="btn btn-default waves-light waves-effect w-md">Kembali</a>
+                                                <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md">Kembali</a>
                                                 <button type="submit" class="btn btn-success waves-light waves-effect w-md" data-toggle="modal" id="save"><i class="mdi mdi-content-save"></i> Simpan</button>
                                             </div>
 
