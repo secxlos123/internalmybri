@@ -335,7 +335,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                                    <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                     <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" data-target="#save"><i class="mdi mdi-content-save"></i> Ubah</a>
                                 </div>
                             </div>

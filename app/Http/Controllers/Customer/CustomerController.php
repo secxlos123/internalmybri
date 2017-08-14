@@ -8,6 +8,15 @@ use Client;
 
 class CustomerController extends Controller
 {
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +25,7 @@ class CustomerController extends Controller
     public function index()
     {
         /* GET UserLogin Data */
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
@@ -38,10 +44,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+
         return view('internals.customers.create', compact('data'));
     }
 
@@ -64,10 +68,8 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+
         return view('internals.customers.detail', compact('data'));
     }
 
@@ -79,10 +81,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+        
         return view('internals.customers.edit', compact('data'));
     }
 
