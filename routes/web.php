@@ -29,14 +29,13 @@
             return view('internals.auth.email-sent');
         });
 
-        Route::get('/logout', 
-            ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
+        // Route::get('/logout', 
+            // ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
 
         Route::get('detailRole/{id}',
             ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
 
-        // Route::delete('logout', 
-        //     ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
+        Route::delete('logout', 'User\LoginController@logout');
 
     Route::group(['middleware'=>'auth'], function () {
         /* Dashboard */

@@ -80,7 +80,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle">1</td>
                                                 <td class="align-middle">123455667</td>
                                                 <td class="align-middle">Nasabah 1</td>
@@ -96,15 +96,16 @@
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
+                                            @foreach($dataCustomer as $data)
                                             <tr>
-                                                <td class="align-middle">2</td>
+                                                <td class="align-middle">{{$data['id']}}</td>
                                                 <td class="align-middle">123455668</td>
-                                                <td class="align-middle">Nasabah 2</td>
-                                                <td class="align-middle">xx@xx.com</td>
+                                                <td class="align-middle">{{$data['email']}}</td>
+                                                <td class="align-middle">{{$data['email']}}</td>
                                                 <td class="align-middle">Kota 2</td>
                                                 <td class="align-middle">21213212</td>
-                                                <td class="align-middle">Laki-laki</td>
+                                                <td class="align-middle">{{$data['gender']}}</td>
                                                 <td>
                                                     <a href="{{route('customers.edit', 1)}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
@@ -114,6 +115,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
