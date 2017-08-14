@@ -7,6 +7,14 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+	public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
 
     /**
      * Display a listing of the resource.
