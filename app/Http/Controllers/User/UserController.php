@@ -7,6 +7,15 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+
         return view('internals.users.index', compact('data'));
     }
 
@@ -28,10 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+
         return view('internals.users.create', compact('data'));
     }
 
@@ -54,10 +59,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        $data = $this->getUser();
+        
         return view('internals.users.detail', compact('data'));
     }
 
