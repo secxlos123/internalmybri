@@ -29,28 +29,18 @@
             return view('internals.auth.email-sent');
         });
 
-        // Route::get('/logout', 
-            // ['as'=>'logout', 'uses'=>'User\LoginController@logout']);
-
         Route::get('detailRole/{id}',
             ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
 
         Route::delete('logout', 'User\LoginController@logout');
 
     Route::group(['middleware'=>'auth'], function () {
+
         /* Dashboard */
         Route::get('/', 
             ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
-        /* Customers */
-        // Route::get('/nasabah', function () {
-        //     $users = session()->get('user');
-        //     foreach ($users as $user) {
-        //         $data = $user;
-        //     }
-        //     return view('internals.customers.index', compact('data'));
-        // });
-        
+        /* Customers */        
         Route::resource('customers', 'Customer\CustomerController');
 
         /* Roles */

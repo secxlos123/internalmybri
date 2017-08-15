@@ -101,13 +101,13 @@
                                             <tr>
                                                 <td class="align-middle">{{$data['id']}}</td>
                                                 <td class="align-middle">123455668</td>
+                                                <td class="align-middle">{{$data['first_name']}} {{$data['last_name']}}</td>
                                                 <td class="align-middle">{{$data['email']}}</td>
-                                                <td class="align-middle">{{$data['email']}}</td>
-                                                <td class="align-middle">Kota 2</td>
-                                                <td class="align-middle">21213212</td>
+                                                <td class="align-middle"></td>
+                                                <td class="align-middle">{{$data['mobile_phone']}}</td>
                                                 <td class="align-middle">{{$data['gender']}}</td>
                                                 <td>
-                                                    <a href="{{route('customers.edit', 1)}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="{{route('customers.edit', $data['id'])}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
                                                     <a href="{{route('customers.show', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">

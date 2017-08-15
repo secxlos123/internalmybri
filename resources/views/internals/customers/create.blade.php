@@ -28,105 +28,107 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
                                     </div>
+                                    <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
+                                    {{ csrf_field() }}
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" >
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">NIK :</label>
+                                                        <label class="col-md-3 control-label">NIK * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="nik" id="nik">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">Nama Lengkap :</label>
+                                                        <label class="col-md-3 control-label">Nama Lengkap * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="full_name" id="full_name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">Tempat Lahir :</label>
+                                                        <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="birth_place">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">Tanggal Lahir :</label>
+                                                        <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose">
+                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="birth_date">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">Alamat :</label>
+                                                        <label class="col-md-3 control-label">Alamat * :</label>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <textarea class="form-control" rows="3" name="address"></textarea>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Jenis Kelamin :</label>
+                                                        <label class="col-md-5 control-label">Jenis Kelamin * :</label>
                                                         <div class="col-md-7">
                                                             <div class="radio radio-info radio-inline">
-                                                                <input type="radio" id="laki" value="laki" name="radioInline">
+                                                                <input type="radio" id="laki" value="L"  name="gender">
                                                                 <label for="laki"> Laki-laki </label>
                                                             </div>
                                                             <div class="radio radio-pink radio-inline">
-                                                                <input type="radio" id="perempuan" value="perempuan" name="radioInline">
+                                                                <input type="radio" id="perempuan" value="P" name="gender">
                                                                 <label for="perempuan"> Perempuan </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Kewarganegaraan :</label>
+                                                        <label class="col-md-5 control-label">Kewarganegaraan * :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control">
-                                                                <option>-- Pilih --</option>
+                                                            <select class="form-control" name="citizenship">
+                                                                <option disabled="">-- Pilih --</option>
                                                                 <option>WNI</option>
                                                                 <option>WNA</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Status Pernikahan :</label>
+                                                        <label class="col-md-5 control-label">Status Pernikahan * :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control">
-                                                                <option>-- Pilih --</option>
-                                                                <option>Tidak Menikah</option>
-                                                                <option>Menikah</option>
-                                                                <option>Janda</option>
-                                                                <option>Duda</option>
+                                                            <select class="form-control" name="status">
+                                                                <option disabled="">-- Pilih --</option>
+                                                                <option value="0">Tidak Menikah</option>
+                                                                <option value="1">Menikah</option>
+                                                                <option value="2">Janda</option>
+                                                                <option value="3">Duda</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Status Tempat Tinggal :</label>
+                                                        <label class="col-md-5 control-label">Status Tempat Tinggal * :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control">
+                                                            <select class="form-control" name="address_status">
                                                                 <option>-- Pilih --</option>
-                                                                <option>Permanen</option>
-                                                                <option>Sementara</option>
+                                                                <option value="menetap">Permanen</option>
+                                                                <option value="sementara">Sementara</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Email :</label>
+                                                        <label class="col-md-5 control-label">Email * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="email" class="form-control">
+                                                            <input type="email" class="form-control" name="email">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
+                                                        <label class="col-md-5 control-label">Nama Gadis Ibu Kandung * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="mother_name">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -143,58 +145,58 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Jenis Pekerjaan :</label>
+                                                        <label class="col-md-4 control-label">Jenis Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <select class="form-control">
-                                                                <option>-- Pilih --</option>
-                                                                <option>Pegawai Swasta</option>
-                                                                <option>Pegawai Negeri</option>
+                                                            <select class="form-control" name="work_type">
+                                                                <option disabled="">-- Pilih --</option>
+                                                                <option value="swasta">Pegawai Swasta</option>
+                                                                <option value="negeri">Pegawai Negeri</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Pekerjaan :</label>
+                                                        <label class="col-md-4 control-label">Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="work">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Nama Perusahaan :</label>
+                                                        <label class="col-md-4 control-label">Nama Perusahaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="company_name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Bidang Pekerjaan :</label>
+                                                        <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="work_field">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Jabatan :</label>
+                                                        <label class="col-md-4 control-label">Jabatan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="position">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Lama Kerja :</label>
+                                                        <label class="col-md-4 control-label">Lama Kerja * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="work_duration">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Alamat Kantor :</label>
+                                                        <label class="col-md-4 control-label">Alamat Kantor * :</label>
                                                         <div class="col-md-8">
-                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <textarea class="form-control" rows="3" name="office_address"></textarea>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -211,36 +213,36 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Gaji/Pendapatan :</label>
+                                                        <label class="col-md-4 control-label">Gaji/Pendapatan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="salary">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Pendapatan Lain :</label>
+                                                        <label class="col-md-4 control-label">Pendapatan Lain * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="other_salary">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
+                                                        <label class="col-md-5 control-label">Angsuran Pinjaman * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="loan_installment">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
+                                                        <label class="col-md-5 control-label">Jumlah Tanggungan * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="dependent_amount">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -258,36 +260,36 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">No. Telepon :</label>
+                                                        <label class="col-md-4 control-label">No. Telepon * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="phone">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">No. Handphone :</label>
+                                                        <label class="col-md-4 control-label">No. Handphone * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="mobile_phone">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Emergency Contact :</label>
+                                                        <label class="col-md-5 control-label">Emergency Contact * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="emergency_contact">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Hubungan :</label>
+                                                        <label class="col-md-5 control-label">Hubungan * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" name="emergency_relation">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -305,26 +307,26 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Foto KTP :</label>
+                                                        <label class="col-md-4 control-label">Foto KTP * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Foto NPWP :</label>
+                                                        <label class="col-md-4 control-label">Foto NPWP * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="npwp">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Foto Nasabah :</label>
+                                                        <label class="col-md-4 control-label">Foto Nasabah * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -336,12 +338,44 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" data-target="#save"><i class="mdi mdi-content-save"></i> Simpan</a>
+                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
+            </form>
+
+                 <!-- Modals Save -->
+        <div id="save" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Apakah Anda yakin ingin menambah nasabah "<b id="name"></b>" ?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
+                        <button type="button" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('#btnSave').on('click', function(e) {
+            $("#form1").submit();
+       });
+
+       $('#btn-save').on('click', function(e) {
+            var name = $('#full_name').val();
+            $('#save').modal('show');
+            $("#save #name").html(name);
+       });
+   });
+</script>
