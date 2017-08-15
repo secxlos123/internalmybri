@@ -13,6 +13,10 @@
         <link href="{{asset('assets/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('assets/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.steps.css')}}" />
+        <link href="{{asset('assets/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/css/bootstrap-timepicker.min.css')}}" rel="stylesheet">
+
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

@@ -29,7 +29,13 @@
         <script src="{{asset('assets/js/jquery.core.js')}}"></script>
         <script src="{{asset('assets/js/jquery.app.js')}}"></script>
 
+        <script src="{{asset('assets/js/jquery.steps.min.js')}}" type="text/javascript"></script>
+        <script type="text/javascript" src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap-timepicker.js')}}"></script>
+
+        <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script>
         <script src="{{asset('assets/js/jquery.date-pickers.init.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.time-pickers.init.js')}}"></script>
 
         <script>
            $(document).ready(function() {

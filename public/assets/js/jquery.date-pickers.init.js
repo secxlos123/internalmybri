@@ -7,6 +7,13 @@ jQuery(document).ready(function () {
         autoclose: true,
         todayHighlight: true
     });
+    jQuery('#datepicker-year').datepicker({
+        format: "yyyy",
+        viewMode: "years", 
+        minViewMode: "years",
+        clearBtn: true,
+        autoclose: true
+    });
     jQuery('#datepicker-inline').datepicker();
     jQuery('#datepicker-multiple-date').datepicker({
         format: "mm/dd/yyyy",

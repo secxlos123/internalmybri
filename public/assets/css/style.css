@@ -3431,82 +3431,82 @@ input[switch="teal"]:checked + label {
   color: #ffffff;
 }
 .wizard > .content {
-  background: #ffffff;
-  min-height: 240px;
+  background: #ffffff !important;
+  min-height: 240px !important;
   padding: 20px !important;
   border: 1px solid #f3f3f3;
   margin-top: 10px !important;
 }
 .wizard > .content > .body {
-  padding: 0px;
-  position: relative;
-  width: 100%;
+  padding: 0px !important;
+  position: relative !important;
+  width: 100% !important;
 }
 .wizard > .content > .body input {
-  border: 1px solid #e9e9e9;
+  border: 1px solid #e9e9e9 !important;
 }
 .wizard > .content > .body ul > li {
-  display: block;
-  line-height: 30px;
+  display: block !important;
+  line-height: 30px !important;
 }
 .wizard > .content > .body label.error {
-  color: #f5707a;
-  margin-left: 0;
-  margin-top: 5px;
-  font-size: 12px;
+  color: #f5707a !important;
+  margin-left: 0 !important;
+  margin-top: 5px !important;
+  font-size: 12px !important;
 }
 .wizard > .content > .body label {
-  display: inline-block;
-  margin-top: 10px;
+  display: inline-block !important;
+  margin-top: 10px !important;
 }
 .wizard > .steps a {
-  font-size: 16px;
-  text-align: center;
-  font-family: 'Hind Madurai', sans-serif;
+  font-size: 16px !important;
+  text-align: center !important;
+  font-family: 'Hind Madurai', sans-serif ;
 }
 .wizard > .steps .number {
-  font-size: 86px;
-  line-height: 86px;
+  font-size: 86px !important;
+  line-height: 86px !important;
   font-family: 'Hind Madurai', sans-serif;
-  position: absolute;
-  left: 10px;
-  top: -14px;
-  opacity: 0.1;
+  position: absolute !important;
+  left: 10px !important;
+  top: -14px !important;
+  opacity: 0.1 !important;
 }
 .wizard > .steps .disabled a {
-  background: #f3f3f3;
+  background: #f3f3f3 !important;
   color: #3c4655 !important;
-  cursor: default;
-  border: 1px solid #e6e6e6;
+  cursor: default !important;
+  border: 1px solid #e6e6e6 !important;
 }
 .wizard > .steps .disabled a:hover {
-  background: #e6e6e6;
-  border: 1px solid #dadada;
+  background: #e6e6e6 !important;
+  border: 1px solid #dadada !important;
 }
 .wizard > .steps .disabled a:active {
-  background: #e6e6e6;
-  border: 1px solid #dadada;
+  background: #e6e6e6 !important;
+  border: 1px solid #dadada !important;
 }
 .wizard > .steps .current a {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
 }
 .wizard > .steps .current a:hover {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
 }
 .wizard > .steps .current a:hover .number {
-  color: #ffffff;
-  opacity: 0.4;
+  color: #ffffff !important;
+  opacity: 0.4 !important;
 }
 .wizard > .steps .current a:active {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
 }
 .wizard > .steps .current a:active .number {
-  color: #ffffff;
-  opacity: 0.4;
+  color: #ffffff !important;
+  opacity: 0.4 !important;
 }
 .wizard > .steps .current a .number {
-  color: #ffffff;
-  opacity: 0.4;
+  color: #ffffff !important;
+  opacity: 0.4 !important;
 }
 .wizard > .steps .done a {
   background: #f3f3f3 !important;
@@ -3516,42 +3516,42 @@ input[switch="teal"]:checked + label {
 .wizard > .steps a:hover,
 .wizard > .steps a:active,
 .wizard > .content {
-  border-radius: 2px;
-  position: relative;
+  border-radius: 2px !important;
+  position: relative !important;
 }
 .wizard > .actions {
   margin-top: 15px !important;
 }
 .wizard > .actions a {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
   border-radius: 2px !important;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .wizard > .actions a:hover {
-  background: #349dfa;
-  color: #ffffff;
+  background: #349dfa !important;
+  color: #ffffff !important;
 }
 .wizard > .actions a:active {
-  background: #349dfa;
-  color: #ffffff;
+  background: #349dfa !important;
+  color: #ffffff !important;
 }
 .wizard > .actions .disabled a {
-  background: #ffffff;
-  color: #313a46;
-  cursor: default;
-  border: 1px solid #eaeaea;
+  background: #ffffff !important;
+  color: #313a46 !important;
+  cursor: default !important;
+  border: 1px solid #eaeaea !important;
 }
 .wizard > .actions .disabled a:hover {
-  background: #f3f3f3;
-  color: #313a46;
-  cursor: default;
-  border: 1px solid #eaeaea;
+  background: #f3f3f3 !important;
+  color: #313a46 !important;
+  cursor: default !important;
+  border: 1px solid #eaeaea !important;
 }
 .wizard > .actions .disabled a:active {
-  background: #f3f3f3;
-  color: #313a46;
-  cursor: default;
-  border: 1px solid #eaeaea;
+  background: #f3f3f3 !important;
+  color: #313a46 !important;
+  cursor: default !important;
+  border: 1px solid #eaeaea !important;
 }
 .wizard.vertical > .content {
   margin-top: 0px !important;
@@ -3559,7 +3559,7 @@ input[switch="teal"]:checked + label {
 @media (max-width: 560px) {
   .wizard.vertical > .steps,
   .wizard.vertical > .content {
-    width: 100%;
+    width: 100% !important;
   }
 }
 .note-editor {
@@ -5246,7 +5246,12 @@ table .checkbox {
 .status > input[switch]:checked + label:after {
     left: 49px;
 }
-
+.m-t-27 {
+    margin-top: 27px !important;
+}
+.wizard > .content > .body .form-group label {
+    margin-top: 0 !important;
+}
 .error{
     color: #c81e32;
     font-size: 11px;

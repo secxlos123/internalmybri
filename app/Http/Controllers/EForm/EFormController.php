@@ -35,7 +35,9 @@ class EFormController extends Controller
      */
     public function create()
     {
-        //
+        $data = $this->getUser();
+        
+        return view('internals.eform.create', compact('data'));
     }
 
     /**
