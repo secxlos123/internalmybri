@@ -1,4 +1,4 @@
-@section('title','Dashboard')
+@section('title','My BRI - Tambah Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -34,44 +34,49 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" >
-                                                    <div class="form-group">
+                                                    <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">NIK * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="nik" id="nik">
+                                                            <input type="text" class="form-control" name="nik" id="nik" value="{{ old('nik') }}">
+                                                            @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group full_name {!! $errors->has('full_name') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">Nama Lengkap * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="full_name" id="full_name">
+                                                            <input type="text" class="form-control" name="full_name" id="full_name" value="{{ old('full_name') }}">
+                                                             @if ($errors->has('full_name')) <p class="help-block">{{ $errors->first('full_name') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group birth_place {!! $errors->has('birth_place') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="birth_place">
+                                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}">
+                                                            @if ($errors->has('birth_place')) <p class="help-block">{{ $errors->first('birth_place') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="birth_date">
+                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="birth_date" value="{{ old('birth_date') }}">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
+                                                                @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group address {!! $errors->has('address') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">Alamat * :</label>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" rows="3" name="address"></textarea>
+                                                            <textarea class="form-control" rows="3" name="address">{{ old('address') }}"</textarea>
+                                                            @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group">
+                                                    <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Jenis Kelamin * :</label>
                                                         <div class="col-md-7">
                                                             <div class="radio radio-info radio-inline">
@@ -82,50 +87,56 @@
                                                                 <input type="radio" id="perempuan" value="P" name="gender">
                                                                 <label for="perempuan"> Perempuan </label>
                                                             </div>
+                                                            @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group citizenship {!! $errors->has('citizenship') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Kewarganegaraan * :</label>
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="citizenship">
-                                                                <option disabled="">-- Pilih --</option>
+                                                                <option disabled="" selected="">-- Pilih --</option>
                                                                 <option>WNI</option>
                                                                 <option>WNA</option>
                                                             </select>
+                                                            @if ($errors->has('citizenship')) <p class="help-block">{{ $errors->first('citizenship') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group status {!! $errors->has('status') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Status Pernikahan * :</label>
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="status">
-                                                                <option disabled="">-- Pilih --</option>
+                                                                <option disabled="" selected="">-- Pilih --</option>
                                                                 <option value="0">Tidak Menikah</option>
                                                                 <option value="1">Menikah</option>
                                                                 <option value="2">Janda</option>
                                                                 <option value="3">Duda</option>
                                                             </select>
+                                                            @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group address_status {!! $errors->has('address_status') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Status Tempat Tinggal * :</label>
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="address_status">
-                                                                <option>-- Pilih --</option>
+                                                                <option disabled="" selected="">-- Pilih --</option>
                                                                 <option value="menetap">Permanen</option>
                                                                 <option value="sementara">Sementara</option>
                                                             </select>
+                                                            @if ($errors->has('address_status')) <p class="help-block">{{ $errors->first('address_status') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Email * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="email" class="form-control" name="email">
+                                                            <input type="email" class="form-control" name="email" value="{{old('email')}}">
+                                                            @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group mother_name {!! $errors->has('mother_name') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Nama Gadis Ibu Kandung * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" name="mother_name">
+                                                            <input type="text" class="form-control" name="mother_name" value="{{old('mother_name')}}">
+                                                            @if ($errors->has('mother_name')) <p class="help-block">{{ $errors->first('mother_name') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -146,42 +157,47 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group">
+                                                    <div class="form-group work_type {!! $errors->has('work_type') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Jenis Pekerjaan * :</label>
                                                         <div class="col-md-8">
                                                             <select class="form-control" name="work_type">
-                                                                <option disabled="">-- Pilih --</option>
+                                                                <option disabled="" selected="">-- Pilih --</option>
                                                                 <option value="swasta">Pegawai Swasta</option>
                                                                 <option value="negeri">Pegawai Negeri</option>
                                                             </select>
+                                                            @if ($errors->has('work_type')) <p class="help-block">{{ $errors->first('work_type') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group work {!! $errors->has('work') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="work">
+                                                            <input type="text" class="form-control" name="work" value="{{old('work')}}">
+                                                            @if ($errors->has('work')) <p class="help-block">{{ $errors->first('work') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group company_name {!! $errors->has('company_name') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Nama Perusahaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="company_name">
+                                                            <input type="text" class="form-control" name="company_name" value="{{old('company_name')}}">
+                                                            @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group work_field {!! $errors->has('work_field') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="work_field">
+                                                            <input type="text" class="form-control" name="work_field" value="{{old('work_field')}}">
+                                                            @if ($errors->has('work_field')) <p class="help-block">{{ $errors->first('work_field') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" role="form">
-                                                    <div class="form-group">
+                                                    <div class="form-group position {!! $errors->has('position') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Jabatan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="position">
+                                                            <input type="text" class="form-control" name="position" value="{{old('position')}}">
+                                                            @if ($errors->has('position')) <p class="help-block">{{ $errors->first('position') }}</p> @endif
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

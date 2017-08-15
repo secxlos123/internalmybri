@@ -1,4 +1,4 @@
-@section('title','Dashboard')
+@section('title','My BRI - Edit Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Tambah Nasabah</h4>
+                                    <h4 class="page-title">Edit Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="{{route('customers.index')}}">Nasabah</a>
                                         </li>
                                         <li class="active">
-                                            Tambah Nasabah
+                                            Edit Nasabah
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -336,7 +336,7 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" data-target="#save"><i class="mdi mdi-content-save"></i> Ubah</a>
+                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" data-target="#save"><i class="mdi mdi-content-save"></i> Edit</a>
                                 </div>
                             </div>
                         </div>

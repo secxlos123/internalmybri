@@ -114,14 +114,12 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
-
+        
         $client = Client::setEndpoint('customer')->setHeaders(['Authorization' => $data['token']])->setBody($newCustomer)->post();
 
         if($client['status']['succeded'] == true){
-            dd($client);
             return redirect()->route('users.index');
         }else{
-            dd($client);
             return redirect()->back();
         }
     }
