@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="Reza">
         <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}" />
-        <title>My BRI - Dashboard</title>
+        <title>@yield("title")</title>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-icons.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">

@@ -1,4 +1,4 @@
-@section('title','Dashboard')
+@section('title','My BRI - Edit Role')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Ubah Role </h4>
+                                    <h4 class="page-title">Edit Role </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="{{url('/roles')}}">Manajemen Role</a>
                                         </li>
                                         <li class="active">
-                                            Ubah Role
+                                            Edit Role
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -274,7 +274,7 @@
                                             </table>
                                             <div class="pull-right">
                                                 <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md">Kembali</a>
-                                                <button type="submit" class="btn btn-success waves-light waves-effect w-md" data-toggle="modal" id="save"><i class="mdi mdi-content-save"></i> Ubah</button>
+                                                <button type="submit" class="btn btn-success waves-light waves-effect w-md" data-toggle="modal" id="save"><i class="mdi mdi-content-save"></i> Edit</button>
                                             </div>
 
                                             </form>
