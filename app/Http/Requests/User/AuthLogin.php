@@ -41,7 +41,7 @@ class AuthLogin extends FormRequest
             'email.required' => 'Email harus diisi',
             'email.email' => 'Alamat email tidak valid',
             'password.required'  => 'Password harus diisi',
-            'g-recaptcha-response.required'  => 'Captcha harus diisi dengan benar',
+            'g-recaptcha-response.required'  => 'Captcha harus diisi',
             'g-recaptcha-response.recaptcha'  => 'Captcha harus diisi dengan benar'
         ];
     }
