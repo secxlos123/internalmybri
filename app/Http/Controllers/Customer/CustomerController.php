@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Customer\CustomerRequest;
 use Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client as GClient;
@@ -220,7 +221,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $data = $this->getUser();
 
