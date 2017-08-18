@@ -35,26 +35,26 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">NIK :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['nik']}}" name="nik">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Lengkap :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['name']}}" name="full_name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tempat Lahir :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['birth_place']}}" name="birth_place">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tanggal Lahir :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose">
+                                                                <input type="text" class="form-control" id="datepicker-autoclose" value="{{$dataCustomer['personal']['birth_date']}}" name="birth_date">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                             </div>
                                                         </div>
@@ -62,7 +62,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Alamat :</label>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <textarea class="form-control" rows="3" name="address">{{$dataCustomer['personal']['address']}}</textarea>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -73,11 +73,11 @@
                                                         <label class="col-md-5 control-label">Jenis Kelamin :</label>
                                                         <div class="col-md-7">
                                                             <div class="radio radio-info radio-inline">
-                                                                <input type="radio" id="laki" value="laki" name="radioInline">
+                                                                <input type="radio" id="laki" value="laki"{{($dataCustomer['personal']['gender'] == "Laki-laki") ? 'checked' : '' }} name="gen">
                                                                 <label for="laki"> Laki-laki </label>
                                                             </div>
                                                             <div class="radio radio-pink radio-inline">
-                                                                <input type="radio" id="perempuan" value="perempuan" name="radioInline">
+                                                                <input type="radio" id="perempuan" value="perempuan" {{($dataCustomer['personal']['gender'] == "Perempuan") ? 'checked' : '' }} name="gender">
                                                                 <label for="perempuan"> Perempuan </label>
                                                             </div>
                                                         </div>
@@ -85,45 +85,45 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Kewarganegaraan :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control">
-                                                                <option>-- Pilih --</option>
-                                                                <option>WNI</option>
-                                                                <option>WNA</option>
+                                                            <select class="form-control" name="citizenship">
+                                                                <option disabled="">-- Pilih --</option>
+                                                                <option {{($dataCustomer['personal']['citizenship'] == "WNI") ? 'selected' : '' }}>WNI</option>
+                                                                <option {{($dataCustomer['personal']['citizenship'] == "WNA") ? 'selected' : '' }}>WNA</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Status Pernikahan :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control">
-                                                                <option>-- Pilih --</option>
-                                                                <option>Tidak Menikah</option>
-                                                                <option>Menikah</option>
-                                                                <option>Janda</option>
-                                                                <option>Duda</option>
+                                                            <select class="form-control" name="status">
+                                                                <option disabled="">-- Pilih --</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }}>Tidak Menikah</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "1") ? 'selected' : '' }}>Menikah</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "2") ? 'selected' : '' }}>Janda</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "3") ? 'selected' : '' }}>Duda</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Status Tempat Tinggal :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control">
-                                                                <option>-- Pilih --</option>
-                                                                <option>Permanen</option>
-                                                                <option>Sementara</option>
+                                                            <select class="form-control" name="address_status">
+                                                                <option disabled="">-- Pilih --</option>
+                                                                <option {{($dataCustomer['personal']['address_status'] == "menetap") ? 'selected' : '' }}>Permanen</option>
+                                                                <option {{($dataCustomer['personal']['address_status'] == "sementara") ? 'selected' : '' }}>Sementara</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Email :</label>
                                                         <div class="col-md-7">
-                                                            <input type="email" class="form-control">
+                                                            <input type="email" class="form-control" value="{{$dataCustomer['personal']['email']}}" name="email">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['mother_name']}}" name="mother_name">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -147,29 +147,29 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jenis Pekerjaan :</label>
                                                         <div class="col-md-8">
-                                                            <select class="form-control">
+                                                            <select class="form-control" name="work_type">
                                                                 <option>-- Pilih --</option>
-                                                                <option>Pegawai Swasta</option>
-                                                                <option>Pegawai Negeri</option>
+                                                                <option {{($dataCustomer['work']['type'] == "swasta") ? 'selected' : '' }}>Pegawai Swasta</option>
+                                                                <option {{($dataCustomer['work']['type'] == "negeri") ? 'selected' : '' }}>Pegawai Negeri</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Pekerjaan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work']}}" name="work">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Perusahaan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['company_name']}}" name="company_name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Bidang Pekerjaan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work_field']}}" name="work_field">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -179,19 +179,19 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jabatan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['position']}}" name="position">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Lama Kerja :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work_duration']}}" name="work_duration" >
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Alamat Kantor :</label>
                                                         <div class="col-md-8">
-                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <textarea class="form-control" rows="3" name="office_address">{{$dataCustomer['work']['office_address']}}</textarea>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -215,13 +215,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['salary']}}" name="salary" >
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Pendapatan Lain :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['other_salary']}}" name="other_salary">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -231,13 +231,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['loan_installment']}}" name="loan_installment">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['dependent_amount']}}" name="dependent_amount">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -262,13 +262,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['phone']}}" name="phone">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['mobile_phone']}}" name="mobile_phone">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -278,13 +278,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Emergency Contact :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_contact']}}" name="emergency_contact">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Hubungan :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_relation']}}" name="emergency_relation">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -309,19 +309,19 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto KTP :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['identity']}}" name="identity">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto NPWP :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['npwp']}}" name="npwp">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto Nasabah :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['image']}}" name="image">
                                                         </div>
                                                     </div>
                                                 </form>

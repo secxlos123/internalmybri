@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client as GClient;
 
 class CustomerController extends Controller
 {
@@ -67,39 +69,148 @@ class CustomerController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
-        $newCustomer = [
-              "nik" => $request->nik,
-              "email" => $request->email,
-              "first_name" => $first_name,
-              "last_name" => $last_name,
-              "birth_place" => $request->birth_place,
-              "birth_date" => date('Y-m-d', strtotime($request->birth_date)),
-              "address" => $request->address,
-              "gender" => $request->gender,
-              "city" => 'Bandung',
-              "phone" => $request->phone,
-              "citizenship" => $request->citizenship,
-              "status" => $request->status,
-              "address_status" => $request->address_status,
-              "mother_name" => $request->mother_name,
-              "mobile_phone" => $request->mobile_phone,
-              "emergency_contact" => $request->emergency_contact,
-              "emergency_relation" => $request->emergency_relation,
-              "identity" =>'123456789',
-              "npwp" => '1234567898',
-              "work_type" => $request->work_type,
-              "work" => $request->work,
-              "company_name" => $request->company_name,
-              "work_field" => $request->work_field,
-              "position" => $request->position,
-              "work_duration" => $request->work_duration,
-              "office_address" => $request->office_address,
-              "salary" => $request->salary,
-              "other_salary" => $request->other_salary,
-              "loan_installment" => $request->loan_installment,
-              "dependent_amount" => $request->dependent_amount
-        ];
-
+        $npwp_path = $request->npwp->getPathname();
+        $npwp_mime = $request->npwp->getmimeType();
+        $npwp_name = $request->npwp->getClientOriginalName();
+        $image_path = $request->images->getPathname();
+        $image_mime = $request->images->getmimeType();
+        $image_name = $request->images->getClientOriginalName();
+        $identity_path = $request->identity->getPathname();
+        $identity_mime = $request->identity->getmimeType();
+        $identity_name = $request->identity->getClientOriginalName();
+        $newCustomer = array(
+                [
+                  'name'     => 'nik',
+                  'contents' => $request->nik
+                ],
+                [
+                  'name'     => 'email',
+                  'contents' => $request->email
+                ],
+                [
+                  'name'     => 'first_name',
+                  'contents' => $first_name,
+                ],
+                [
+                  'name'     => 'last_name',
+                  'contents' => $last_name,
+                ],
+                [
+                  'name'     => 'birth_place',
+                  'contents' => $request->birth_place,
+                ],
+                [
+                  'name'     => 'birth_date',
+                  'contents' => $request->birth_date,
+                ],
+                [
+                  'name'     => 'address',
+                  'contents' => $request->address,
+                ],
+                [
+                  'name'     => 'gender',
+                  'contents' => $request->gender,
+                ],
+                [
+                  'name'     => 'city',
+                  'contents' => 'Bandung',
+                ],
+                [
+                  'name'     => 'phone',
+                  'contents' => $request->phone,
+                ],
+                [
+                  'name'     => 'citizenship',
+                  'contents' => $request->citizenship,
+                ],
+                [
+                  'name'     => 'status',
+                  'contents' => $request->status,
+                ],
+                [
+                  'name'     => 'address_status',
+                  'contents' => $request->address_status,
+                ],
+                [
+                  'name'     => 'mother_name',
+                  'contents' => $request->mother_name,
+                ],
+                [
+                  'name'     => 'mobile_phone',
+                  'contents' => $request->mobile_phone,
+                ],
+                [
+                  'name'     => 'emergency_contact',
+                  'contents' => $request->emergency_contact,
+                ],
+                [
+                  'name'     => 'emergency_relation',
+                  'contents' => $request->emergency_relation,
+                ],
+                [
+                  'name'     => 'identity',
+                  'filename' => $identity_name,
+                  'Mime-Type'=> $identity_mime,
+                  'contents' => fopen( $identity_path, 'r' ),
+                ],
+                [
+                  'name'     => 'npwp',
+                  'filename' => $npwp_name,
+                  'Mime-Type'=> $npwp_mime,
+                  'contents' => fopen( $npwp_path, 'r' ),
+                ],
+                [
+                  'name'     => 'image',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ],
+                [
+                  'name'     => 'work_type',
+                  'contents' => $request->work_type,
+                ],
+                [
+                  'name'     => 'work',
+                  'contents' => $request->work,
+                ],
+                [
+                  'name'     => 'company_name',
+                  'contents' => $request->company_name,
+                ],
+                [
+                  'name'     => 'work_field',
+                  'contents' => $request->work_field,
+                ],
+                [
+                  'name'     => 'position',
+                  'contents' => $request->position,
+                ],
+                [
+                  'name'     => 'work_duration',
+                  'contents' => $request->work_duration,
+                ],
+                [
+                  'name'     => 'office_address',
+                  'contents' => $request->office_address,
+                ],
+                [
+                  'name'     => 'salary',
+                  'contents' => $request->salary,
+                ],
+                [
+                  'name'     => 'other_salary',
+                  'contents' => $request->other_salary,
+                ],
+                [
+                  'name'     => 'loan_installment',
+                  'contents' => $request->loan_installment,
+                ],
+                [
+                  'name'     => 'dependent_amount',
+                  'contents' => $request->dependent_amount,
+                ]
+              );
+          // [
         return $newCustomer;
     }
 
@@ -114,14 +225,29 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
-        
-        $client = Client::setEndpoint('customer')->setHeaders(['Authorization' => $data['token']])->setBody($newCustomer)->post();
+        $first_name = $this->split_name($request)['0'];
+        $last_name = $this->split_name($request)['1'];
+        $npwp_path = $request->npwp->getPathname();
+        $npwp_mime = $request->npwp->getmimeType();
+        $npwp_name = $request->npwp->getClientOriginalName();
 
-        if($client['status']['succeded'] == true){
-            return redirect()->route('users.index');
-        }else{
-            return redirect()->back();
-        }
+        $client = new GClient;
+        
+        try {
+            $res = $client->request('POST', 'https://mybri-api.stagingapps.net/api/v1/int/customer', [
+                'headers' => ['Authorization' => $data['token']],
+                'multipart' => $newCustomer
+              ]);
+            if($res->getStatusCode() == 200) {
+                $data_api = $res->getBody();
+              }
+            return redirect()->route('customers.index');
+
+          } catch (GuzzleException $e) {
+            dd($e->getMessage());
+              return redirect()->back();
+              session()->flash('danger', 'User error :'.$e->getMessage());
+          }
     }
 
     /**
@@ -134,7 +260,12 @@ class CustomerController extends Controller
     {
         $data = $this->getUser();
 
-        return view('internals.customers.detail', compact('data'));
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        
+        $dataCustomer = $customerData['data'];
+
+        return view('internals.customers.detail', compact('data', 'dataCustomer'));
     }
 
     /**
@@ -146,8 +277,13 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $data = $this->getUser();
+
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
-        return view('internals.customers.edit', compact('data'));
+        $dataCustomer = $customerData['data'];
+        
+        return view('internals.customers.edit', compact('data', 'dataCustomer'));
     }
 
     /**

@@ -100,7 +100,7 @@
                                             @foreach($dataCustomer as $data)
                                             <tr>
                                                 <td class="align-middle">{{$data['id']}}</td>
-                                                <td class="align-middle">123455668</td>
+                                                <td class="align-middle">{{$data['nik']}}</td>
                                                 <td class="align-middle">{{$data['first_name']}} {{$data['last_name']}}</td>
                                                 <td class="align-middle">{{$data['email']}}</td>
                                                 <td class="align-middle"></td>
@@ -110,7 +110,7 @@
                                                     <a href="{{route('customers.edit', $data['id'])}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="{{route('customers.show', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                    <a href="{{route('customers.show', $data['id'])}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
