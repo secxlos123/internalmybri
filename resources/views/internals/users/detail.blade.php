@@ -8,10 +8,10 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Detail User "John" </h4>
+                                    <h4 class="page-title">Detail User "{{$dataUser['fullname']}}" </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="manajemen-user.html">Manajemen User</a>
+                                            <a href="{{route('users.index')}}">Manajemen User</a>
                                         </li>
                                         <li class="active">
                                             Detail User
@@ -35,13 +35,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">NIP :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static">12345678</p>
+                                                            <p class="form-control-static">{{$dataUser['nip']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Lengkap :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static">John Doe</p>
+                                                            <p class="form-control-static">{{$dataUser['fullname']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -75,31 +75,31 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jenis Kelamin :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">Laki-laki</p>
+                                                            <p class="form-control-static">{{$dataUser['gender']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Email :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">johndoe@domain.com</p>
+                                                            <p class="form-control-static">{{$dataUser['email']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">021 2345678</p>
+                                                            <p class="form-control-static">{{$dataUser['phone']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">08123456789</p>
+                                                            <p class="form-control-static">{{$dataUser['mobile_phone']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Role :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">AO</p>
+                                                            <p class="form-control-static">{{$dataUser['role_name']}}</p>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -123,13 +123,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Jabatan :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static">Account Officer</p>
+                                                            <p class="form-control-static">{{$dataUser['position']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Kantor Cabang :</label>
                                                         <div class="col-md-9">
-                                                            <p class="form-control-static">BSD</p>
+                                                            <p class="form-control-static">{{$dataUser['office_name']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

@@ -106,10 +106,10 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Role :</label>
                                                         <div class="col-md-8">
-                                                            <select class="form-control">
+                                                            <select class="form-control" name="role_id">
                                                                 <option disabled="" selected="">-- Pilih --</option>
-                                                                <option  {{($dataUser['role_id'] == "0") ? 'selected' : '' }}>AO</option>
-                                                                <option  {{($dataUser['role_id'] == "1") ? 'selected' : '' }}>MP</option>
+                                                                <option  {{($dataUser['role_id'] == "0") ? 'selected' : '' }} value="1">AO</option>
+                                                                <option  {{($dataUser['role_id'] == "1") ? 'selected' : '' }} value="2">MP</option>
                                                             </select>
                                                         </div>
                                                     </div>

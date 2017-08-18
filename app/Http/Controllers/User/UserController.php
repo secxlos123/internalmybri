@@ -78,7 +78,7 @@ class UserController extends Controller
                 'phone'         => $request->phone,
                 'mobile_phone'  => $request->mobile_phone,
                 'gender'        => $request->gender,
-                'office_id'     => $request->office_id,
+                'office_id'     => '544',
                 'nip'           => $request->nip,
                 'position'      => $request->position,
                 'role_id'       => $request->role_id,
@@ -88,6 +88,10 @@ class UserController extends Controller
                 [
                   'name'     => 'data',
                   'contents' => json_encode($req),
+                ],
+                [
+                  'name'     => '_method',
+                  'contents' => 'put',
                 ],
                 [
                   'name'     => 'image',
@@ -131,7 +135,7 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $dataUser = $userData['data'];
 

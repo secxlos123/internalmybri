@@ -96,7 +96,7 @@
                                                     <a href="{{route('users.edit', $user['id'])}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
-                                                    <a href="{{route('users.show', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                    <a href="{{route('users.show', $user['id'])}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
                                                         <i class="mdi mdi-eye"></i>
                                                     </a>
                                                 </td>
