@@ -101,33 +101,29 @@
                                 <h3>Lokasi</h3>
                                 <section>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <h4 class="m-t-0 header-title"><b>Lokasi</b></h4>
-                                            <p class="text-muted m-b-30 font-13">
-                                                Pilih lokasi pengajuan pembiayaan
-                                            </p>
-                                            <form role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label">Kota</label>
-                                                    <select class="form-control">
-                                                        <option>-- Pilih --</option>
-                                                        <option>Jakarta</option>
-                                                        <option>Bandung</option>
-                                                        <option>Semarang</option>
-                                                        <option>Surabaya</option>
-                                                    </select>
+                                                    <div class="col-md-12">
+                                                        <h4 class="m-t-0 header-title"><b>Lokasi</b></h4>
+                                                        <p class="text-muted m-b-30 font-13">
+                                                            Tentukan lokasi/tempat Pertemuan
+                                                        </p>
+                                                        <input id="searchInput" class="input-controls" type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
+                                                        <div class="map" id="map" style="width: 100%; height: 400px;"></div>
+                                                        <div class="form-group m-t-20">
+                                                            <div class="col-md-6">
+                                                                <label class="control-label">Lokasi</label>
+                                                                <textarea name="location" id="location" class="form-control" readonly="" rows="3"></textarea>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="control-label">Latitude</label>
+                                                                <input type="text" name="lat" id="lat" class="form-control" readonly="">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="control-label">Longitude</label>
+                                                                <input type="text" name="lng" id="lng" class="form-control" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label">Kantor Cabang BRI</label>
-                                                    <select class="form-control">
-                                                        <option>-- Pilih --</option>
-                                                        <option>BSD</option>
-                                                        <option>Ragunan</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </section>
                                 <h3>Produk</h3>
                                 <section>

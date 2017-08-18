@@ -2,7 +2,7 @@ jQuery(document).ready(function () {
     // Date Picker
     jQuery('#datepicker').datepicker();
     jQuery('#datepicker-autoclose').datepicker({
-        format: "dd-MM-yyyy",
+        format: "yyyy-mm-dd",
         clearBtn: true,
         autoclose: true,
         todayHighlight: true
