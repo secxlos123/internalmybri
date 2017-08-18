@@ -183,13 +183,13 @@ class Client
      *
      * @return \Illuminate\Http\Response
      */
-    public function put()
+    public function put($type = 'json')
     {
         try {
             $request  = $this->http->request('PUT', $this->uri(), [
                 'headers'  => $this->headers,
                 'query'    => $this->query,
-                'json'     => $this->body
+                $type     => $this->body
             ]);
             $response = json_decode($request->getBody(), true);
         } catch (ClientException $e) {
