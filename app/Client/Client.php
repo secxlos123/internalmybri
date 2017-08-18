@@ -186,10 +186,10 @@ class Client
     public function put($type = 'json')
     {
         try {
-            $request  = $this->http->request('PUT', $this->uri(), [
-                'headers'  => $this->headers,
+            $request  = $this->http->request('POST', $this->uri(), [
+                'headers'  => array_merge($this->headers, ['_method' => 'put']),
                 'query'    => $this->query,
-                $type     => $this->body
+                $type      => $this->body
             ]);
             $response = json_decode($request->getBody(), true);
         } catch (ClientException $e) {
