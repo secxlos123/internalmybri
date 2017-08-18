@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customer\CustomerRequest;
 use Client;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client as GClient;
 
 class CustomerController extends Controller
 {
@@ -221,7 +219,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CustomerRequest $request)
+    public function store(Request $request)
     {
         $data = $this->getUser();
 
@@ -232,23 +230,12 @@ class CustomerController extends Controller
         $npwp_mime = $request->npwp->getmimeType();
         $npwp_name = $request->npwp->getClientOriginalName();
 
-        $client = new GClient;
-        
-        try {
-            $res = $client->request('POST', 'https://mybri-api.stagingapps.net/api/v1/int/customer', [
-                'headers' => ['Authorization' => $data['token']],
-                'multipart' => $newCustomer
-              ]);
-            if($res->getStatusCode() == 200) {
-                $data_api = $res->getBody();
-              }
-            return redirect()->route('customers.index');
+        $client = Client::setEndpoint('customer')
+         ->setHeaders(['Authorization' => $data['token']])
+         ->setBody($newCustomer)
+         ->post('multipart');
 
-          } catch (GuzzleException $e) {
-            dd($e->getMessage());
-              return redirect()->back();
-              session()->flash('danger', 'User error :'.$e->getMessage());
-          }
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -283,8 +270,7 @@ class CustomerController extends Controller
         $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $dataCustomer = $customerData['data'];
-        
-        return view('internals.customers.edit', compact('data', 'dataCustomer'));
+        return view('internals.customers.edit', compact('data', 'dataCustomer', 'id'));
     }
 
     /**
@@ -296,7 +282,16 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->getUser();
+
+        $newCustomer = $this->customerRequest($request);
+        
+        $client = Client::setEndpoint('customer/'.$id)
+         ->setHeaders(['Authorization' => $data['token']])
+         ->setBody($newCustomer)
+         ->put();
+
+       dd($client);
     }
 
     /**

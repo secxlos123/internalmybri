@@ -28,10 +28,13 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
                                     </div>
+                                    <form class="form-horizontal" role="form" action="{{route('customers.update', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">NIK :</label>
                                                         <div class="col-md-9">
@@ -65,10 +68,10 @@
                                                             <textarea class="form-control" rows="3" name="address">{{$dataCustomer['personal']['address']}}</textarea>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Jenis Kelamin :</label>
                                                         <div class="col-md-7">
@@ -126,7 +129,7 @@
                                                             <input type="text" class="form-control" value="{{$dataCustomer['personal']['mother_name']}}" name="mother_name">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +146,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jenis Pekerjaan :</label>
                                                         <div class="col-md-8">
@@ -172,10 +175,10 @@
                                                             <input type="text" class="form-control" value="{{$dataCustomer['work']['work_field']}}" name="work_field">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jabatan :</label>
                                                         <div class="col-md-8">
@@ -194,7 +197,7 @@
                                                             <textarea class="form-control" rows="3" name="office_address">{{$dataCustomer['work']['office_address']}}</textarea>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -211,7 +214,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-8">
@@ -224,10 +227,10 @@
                                                             <input type="text" class="form-control" value="{{$dataCustomer['financial']['other_salary']}}" name="other_salary">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
                                                         <div class="col-md-7">
@@ -240,7 +243,7 @@
                                                             <input type="text" class="form-control" value="{{$dataCustomer['financial']['dependent_amount']}}" name="dependent_amount">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -258,7 +261,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
@@ -271,10 +274,10 @@
                                                             <input type="text" class="form-control" value="{{$dataCustomer['contact']['mobile_phone']}}" name="mobile_phone">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Emergency Contact :</label>
                                                         <div class="col-md-7">
@@ -287,7 +290,7 @@
                                                             <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_relation']}}" name="emergency_relation">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -305,7 +308,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto KTP :</label>
                                                         <div class="col-md-8">
@@ -321,10 +324,10 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto Nasabah :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['image']}}" name="image">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['image']}}" name="images">
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -336,12 +339,45 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" data-target="#save"><i class="mdi mdi-content-save"></i> Edit</a>
+                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Edit</a>
                                 </div>
                             </div>
                         </div>
-
+                    </form>
                     </div>
                 </div>
+
+
+        <div id="save" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <p>Apakah Anda yakin ingin mengubah nasabah "<b id="name"></b>" ?</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
+                        <button type="button" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')    
+@include('internals.layouts.foot') 
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('#btnSave').on('click', function(e) {
+            $("#form1").submit();
+       });
+
+       $('#btn-save').on('click', function(e) {
+            var name = $('#full_name').val();
+            $('#save').modal('show');
+            $("#save #name").html(name);
+       });
+   });
+
+</script>
