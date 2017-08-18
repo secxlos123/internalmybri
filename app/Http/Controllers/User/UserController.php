@@ -149,7 +149,7 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $dataUser = $userData['data'];
 
@@ -172,7 +172,7 @@ class UserController extends Controller
         $client = Client::setEndpoint('user/'.$id)
            ->setHeaders(['Authorization' => $data['token']])
            ->setBody($newUser)
-           ->put();
+           ->put('multipart');
 
        dd($client);
     }
