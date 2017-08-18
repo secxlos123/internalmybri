@@ -76,7 +76,7 @@
                                                         <label class="col-md-5 control-label">Jenis Kelamin :</label>
                                                         <div class="col-md-7">
                                                             <div class="radio radio-info radio-inline">
-                                                                <input type="radio" id="laki" value="laki"{{($dataCustomer['personal']['gender'] == "Laki-laki") ? 'checked' : '' }} name="gen">
+                                                                <input type="radio" id="laki" value="laki"{{($dataCustomer['personal']['gender'] == "Laki-laki") ? 'checked' : '' }} name="gender">
                                                                 <label for="laki"> Laki-laki </label>
                                                             </div>
                                                             <div class="radio radio-pink radio-inline">

@@ -224,16 +224,12 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
-        $first_name = $this->split_name($request)['0'];
-        $last_name = $this->split_name($request)['1'];
-        $npwp_path = $request->npwp->getPathname();
-        $npwp_mime = $request->npwp->getmimeType();
-        $npwp_name = $request->npwp->getClientOriginalName();
 
         $client = Client::setEndpoint('customer')
          ->setHeaders(['Authorization' => $data['token']])
          ->setBody($newCustomer)
          ->post('multipart');
+
 
         return redirect()->route('customers.index');
     }
@@ -285,11 +281,11 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
-        
+
         $client = Client::setEndpoint('customer/'.$id)
          ->setHeaders(['Authorization' => $data['token']])
          ->setBody($newCustomer)
-         ->put();
+         ->put('multipart');
 
        dd($client);
     }

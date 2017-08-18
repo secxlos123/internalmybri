@@ -30,6 +30,7 @@
                                     </div>
                                     <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
                                     {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
