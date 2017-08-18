@@ -131,6 +131,26 @@ class Client
     }
 
     /**
+     * Get for method.
+     *
+     * @param  string  $query
+     * @return App\RestMiddleware\Client
+     */
+    public function setMethod($method)
+    {
+        switch ($method) {
+            case 'multipart':
+                $methods = ['method' => 'POST', 'more_content' => [['name' => '_method', 'contents' => 'put']]];
+                break;
+            default: 
+                $methods = ['method' => 'PUT', 'more_content' => []];
+                break;
+        }
+
+        return $methods;
+    }
+
+    /**
      * Get request from middleware.
      *
      * @return \Illuminate\Http\Response
@@ -185,11 +205,13 @@ class Client
      */
     public function put($type = 'json')
     {
+        $method = $this->setMethod($type);
+
         try {
-            $request  = $this->http->request('POST', $this->uri(), [
-                'headers'  => array_merge($this->headers, ['_method' => 'put']),
+            $request  = $this->http->request($method['method'], $this->uri(), [
+                'headers'  => $this->headers,
                 'query'    => $this->query,
-                $type      => $this->body
+                $type      => array_merge($this->body, $method['more_content'])
             ]);
             $response = json_decode($request->getBody(), true);
         } catch (ClientException $e) {
