@@ -192,7 +192,13 @@ class UserController extends Controller
 
     public function actived(Request $request, $id)
     {
-        // $users = Client::setEndpoint('user')
+
+        $users = Client::setEndpoint("user/{$id}/actived")
+                ->setHeaders(['Authorization' => session('user.data.token')])
+                ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
+                ->put();
+
+        return response()->json($users['status']['message']);
     }
 
     public function datatables(Request $request)

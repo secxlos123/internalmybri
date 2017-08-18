@@ -158,8 +158,21 @@
 
         $('.btn-save').click(function () {
             var val = lastStatusElement.is(':checked');
-            lastStatusElement.prop('checked', !val);
-            $('#confirm').modal('hide');
+            var id = lastStatusElement.attr('id');
+
+            $.ajax({
+                url : `/users/${id}/actived`,
+                method : 'put',
+                dataType : 'json',
+                data : {
+                    _token : "{!! csrf_token() !!}",
+                    is_actived : !val
+                }
+            })
+            .done(function (response) {
+                table.fnDraw();
+                $('#confirm').modal('hide');
+            });
         });
         
         $('.cities').select2({

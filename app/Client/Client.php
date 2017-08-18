@@ -143,7 +143,7 @@ class Client
                 $methods = ['method' => 'POST', 'more_content' => [['name' => '_method', 'contents' => 'put']]];
                 break;
             default: 
-                $methods = ['method' => 'PUT', 'more_content' => []];
+                $methods = ['method' => 'PUT'];
                 break;
         }
 
@@ -206,12 +206,13 @@ class Client
     public function put($type = 'json')
     {
         $method = $this->setMethod($type);
-
+        $body = array_key_exists('more_content', $method) ? array_merge($this->body, $method['more_content']) : $this->body;
+        
         try {
             $request  = $this->http->request($method['method'], $this->uri(), [
                 'headers'  => $this->headers,
                 'query'    => $this->query,
-                $type      => array_merge($this->body, $method['more_content'])
+                $type      => $body
             ]);
             $response = json_decode($request->getBody(), true);
         } catch (ClientException $e) {
