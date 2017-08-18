@@ -79,14 +79,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($dataUser as $user)
                                             <tr>
-                                                <td class="align-middle">1</td>
-                                                <td class="align-middle">123455667</td>
-                                                <td class="align-middle">User 1</td>
-                                                <td class="align-middle">xx@xx.com</td>
-                                                <td class="align-middle">BSD</td>
-                                                <td class="align-middle">21213212</td>
-                                                <td class="align-middle">MP</td>
+                                                <td class="align-middle">{{$user['id']}}</td>
+                                                <td class="align-middle">{{(!empty($user['nip'])) ? $user['nip'] : ''}}</td>
+                                                <td class="align-middle">{{$user['first_name']}}</td>
+                                                <td class="align-middle">{{$user['email']}}</td>
+                                                <td class="align-middle">{{(!empty($user['office_name'])) ? $user['office_name'] : ''}}</td>
+                                                <td class="align-middle">{{$user['mobile_phone']}}</td>
+                                                <td class="align-middle">{{(!empty($user['role_name'])) ? $user['role_name'] : ''}}</td>
                                                 <td class="align-middle status">
                                                     <input type="checkbox" id="status-user1" switch="success" checked>
                                                     <label for="status-user1" data-on-label="Aktif" data-off-label="Inaktif"></label>
@@ -100,27 +101,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="align-middle">2</td>
-                                                <td class="align-middle">123455668</td>
-                                                <td class="align-middle">User 2</td>
-                                                <td class="align-middle">xx@xx.com</td>
-                                                <td class="align-middle">Ragunan</td>
-                                                <td class="align-middle">21213212</td>
-                                                <td class="align-middle">AO</td>
-                                                <td class="align-middle status">
-                                                    <input type="checkbox" id="status-user2" switch="success" checked data-toggle="modal" data-target="#confirm">
-                                                    <label for="status-user2" data-on-label="Aktif" data-off-label="Inaktif"></label>
-                                                </td>
-                                                <td>
-                                                    <a href="#" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                        <i class="mdi mdi-pencil"></i>
-                                                    </a>
-                                                    <a href="user-detail.html" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
-                                                        <i class="mdi mdi-eye"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
