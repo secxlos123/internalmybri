@@ -5,8 +5,6 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Client;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client as GClient;
 
 class UserController extends Controller
 {
@@ -114,23 +112,12 @@ class UserController extends Controller
 
         $newUser = $this->userRequest($request);
 
-        $client = new GClient;
+        $client = Client::setEndpoint('user')
+           ->setHeaders(['Authorization' => $data['token']])
+           ->setBody($newUser)
+           ->post('multipart');
         
-        try {
-            $res = $client->request('POST', 'https://mybri-api.stagingapps.net/api/v1/int/user', [
-                'headers' => ['Authorization' => $data['token']],
-                'multipart' => $newUser
-              ]);
-            if($res->getStatusCode() == 200) {
-                $data_api = $res->getBody();
-              }
-            return redirect()->route('users.index');
-
-          } catch (GuzzleException $e) {
-            dd($e->getMessage());
-              return redirect()->back();
-              session()->flash('danger', 'User error :'.$e->getMessage());
-          }
+        return redirect()->route('users.index');
     }
 
     /**
@@ -178,7 +165,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->getUser();
+
+        $newUser = $this->userRequest($request);
+
+        $client = Client::setEndpoint('user/'.$id)
+           ->setHeaders(['Authorization' => $data['token']])
+           ->setBody($newUser)
+           ->put();
+
+       dd($client);
     }
 
     /**

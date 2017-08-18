@@ -150,8 +150,8 @@
                                                         <div class="col-md-9">
                                                             <select class="form-control" name="office_id">
                                                                 <option selected="" disabled="">-- Pilih --</option>
-                                                                <option value="1">BSD</option>
-                                                                <option value="2">Ragunan</option>
+                                                                <option value="544">BSD</option>
+                                                                <option value="544">Ragunan</option>
                                                             </select>
                                                         </div>
                                                     </div>
