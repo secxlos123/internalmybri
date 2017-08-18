@@ -56,6 +56,17 @@
         /* E-Form */
         Route::resource('eform', 'EForm\EFormController');
 
+
+    });
+
+    Route::get('cities', 'CityController');
+
+    Route::get('offices', 'OfficeController');
+
+    Route::group(['prefix'=>'datatables'], function () {
+
+        /* Users */
+        Route::get('users', 'User\UserController@datatables');
     });
 
 
