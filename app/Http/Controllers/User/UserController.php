@@ -66,9 +66,16 @@ class UserController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
-        $image_path = $request->images->getPathname();
-        $image_mime = $request->images->getmimeType();
-        $image_name = $request->images->getClientOriginalName();
+        if($request->images){
+            $image_path = $request->images->getPathname();
+            $image_mime = $request->images->getmimeType();
+            $image_name = $request->images->getClientOriginalName();
+        }else{
+          $image = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
 
         //get Requests
         $req = [
@@ -89,16 +96,7 @@ class UserController extends Controller
                   'name'     => 'data',
                   'contents' => json_encode($req),
                 ],
-                [
-                  'name'     => '_method',
-                  'contents' => 'put',
-                ],
-                [
-                  'name'     => 'image',
-                  'filename' => $image_name,
-                  'Mime-Type'=> $image_mime,
-                  'contents' => fopen( $image_path, 'r' ),
-                ]
+                $image
               );
 
         return $newUser;

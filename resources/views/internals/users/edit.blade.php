@@ -44,7 +44,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Lengkap :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="full_name" value="{{$dataUser['fullname']}}">
+                                                            <input type="text" class="form-control" name="full_name" value="{{$dataUser['fullname']}}" id="full_name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
