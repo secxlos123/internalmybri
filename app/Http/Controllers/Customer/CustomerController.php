@@ -9,6 +9,16 @@ use Client;
 
 class CustomerController extends Controller
 {
+    protected $columns = [
+        'nik',
+        'fullname',
+        'email',
+        'city',
+        'mobile_phone',
+        'gender',
+        'action',
+    ];
+
     public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');
@@ -329,14 +339,33 @@ class CustomerController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function datatables(Request $request)
     {
-        //
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+
+        $customers = Client::setEndpoint('customer')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                    'office_id' => $request->input('office_id')
+                ])->get();
+
+        foreach ($customers['customers']['data'] as $key => $customer) {
+            $customer['fullname'] = $customer['first_name'].' '.$customer['last_name'];
+            $customer['action'] = view('internals.layouts.actions', [
+                'edit' => route('customers.edit', $customer['id']),
+                'show' => route('customers.show', $customer['id']),
+            ])->render();
+            $customers['customers']['data'][$key] = $customer;
+        }
+
+        $customers['customers']['draw'] = $request->input('draw');
+        $customers['customers']['recordsTotal'] = $customers['customers']['total'];
+        $customers['customers']['recordsFiltered'] = $customers['customers']['per_page'];
+
+        return response()->json($customers['customers']);
     }
 }

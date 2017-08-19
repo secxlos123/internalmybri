@@ -71,6 +71,9 @@
 
         /* Users */
         Route::get('users', 'User\UserController@datatables');
+
+        /* Customers */
+        Route::get('customers', 'Customer\CustomerController@datatables');
     });
 
 
