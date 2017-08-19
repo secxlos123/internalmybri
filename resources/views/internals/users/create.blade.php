@@ -24,13 +24,13 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                @if (\Session::has('error'))
+                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                                @endif
                                 <div class="panel panel-color panel-primary">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data User</h3>
                                     </div>
-                                @if (\Session::has('error'))
-                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                                @endif
                                 <form class="form-horizontal" role="form" action="{{route('users.store')}}" method="POST" id="form1" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="panel-body">

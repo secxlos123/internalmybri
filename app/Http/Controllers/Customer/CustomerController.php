@@ -320,7 +320,14 @@ class CustomerController extends Controller
          ->setBody($newCustomer)
          ->put('multipart');
 
-       dd($client);
+        if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah tersimpan!');
+            return redirect()->route('customers.index');
+        }else{
+         dd($client);
+            \Session::flash('error', 'Lengkapi data Anda!');
+            return redirect()->back();
+        }
     }
 
     /**

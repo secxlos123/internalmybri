@@ -72,6 +72,12 @@ class UserController extends Controller
             $image_path = $request->images->getPathname();
             $image_mime = $request->images->getmimeType();
             $image_name = $request->images->getClientOriginalName();
+            $image = [
+                  'name'     => 'image',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ];
         }else{
           $image = [
                   'name'    => "",
@@ -121,7 +127,13 @@ class UserController extends Controller
            ->setBody($newUser)
            ->post('multipart');
         
-        return redirect()->route('users.index');
+        if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah diubah.');
+            return redirect()->route('users.index');
+        }else{
+            \Session::flash('error', 'Kesalahan input.');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -181,10 +193,10 @@ class UserController extends Controller
         if($client['status']['succeded'] == true){
             \Session::flash('success', 'Data sudah diubah.');
             return redirect()->route('users.index');
-         }else{
+        }else{
             \Session::flash('error', 'Kesalahan input.');
             return redirect()->back();
-         }
+        }
     }
 
     /**
