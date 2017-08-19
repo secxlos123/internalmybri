@@ -178,7 +178,13 @@ class UserController extends Controller
            ->setBody($newUser)
            ->put('multipart');
 
-       dd($client);
+        if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah diubah.');
+            return redirect()->route('users.index');
+         }else{
+            \Session::flash('error', 'Kesalahan input.');
+            return redirect()->back();
+         }
     }
 
     /**

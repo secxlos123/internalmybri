@@ -40,7 +40,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">NIP *:</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control numericOnly" name="nip" maxlength="16">
+                                                            <input type="text" class="form-control numericOnly" name="nip" maxlength="16" minlength="16">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -96,13 +96,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="phone" maxlength="15" >
+                                                            <input type="text" class="form-control numericOnly" name="phone" maxlength="12" >
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="mobile_phone" maxlength="15">
+                                                            <input type="text" class="form-control numericOnly" name="mobile_phone" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

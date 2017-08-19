@@ -23,8 +23,8 @@
                             </div>
                         </div>
                         @if (\Session::has('success'))
-                                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
-                                @endif
+                            <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                        @endif
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">

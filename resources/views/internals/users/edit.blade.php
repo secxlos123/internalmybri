@@ -24,6 +24,9 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                @if (\Session::has('error'))
+                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                                @endif
                                 <div class="panel panel-color panel-primary">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data User</h3>
@@ -38,7 +41,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">NIP :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="nip" value="{{$dataUser['nip']}}">
+                                                            <input type="text" class="form-control" name="nip" value="{{$dataUser['nip']}}" maxlength="16" minlength="16">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -94,13 +97,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="phone" value="{{$dataUser['phone']}}">
+                                                            <input type="text" class="form-control" name="phone" value="{{$dataUser['phone']}}" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="mobile_phone" value="{{$dataUser['mobile_phone']}}">
+                                                            <input type="text" class="form-control" name="mobile_phone" value="{{$dataUser['mobile_phone']}}" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
