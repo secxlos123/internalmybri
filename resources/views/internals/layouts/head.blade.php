@@ -25,5 +25,5 @@
         <![endif]-->
 
         <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+        
     </head>
