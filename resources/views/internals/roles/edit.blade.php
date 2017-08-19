@@ -49,124 +49,19 @@
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th>List Menu</th>
-                                                        <th class="text-center">Availability</th>
+                                                        <th class="checkbox text-center">
+                                                            <input type="checkbox" id="home" value="true" name="home" class="check-all">
+                                                            <label for="home">Availability</label>
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <!-- <tr>
-                                                        <td class="align-middle">Home</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="home" value="home">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Nasabah</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="nasabah" value="nasabah">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Properti</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="properti" value="properti">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">e-Form</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="eform" value="eform">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Developer</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="developer" value="developer">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Debitur</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="debitur" value="debitur">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Penjadwalan</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="jadwal" value="jadwal">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Kalkulator</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="kalkulator" value="kalkulator">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Tracking</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="tracking" value="tracking">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Pihak ke-3</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="pihak3" value="pihak3">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Manajemen User</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="user" value="user">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="align-middle">Manajemen Role</td> 
-                                                        <td>
-                                                            <div class="checkbox checkbox-single checkbox-primary text-center">
-                                                                <input type="checkbox" id="role" value="role">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-                                                    </tr> -->
                                                     <tr>
                                                         <td class="align-middle">Home</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
                                                                 <input type="checkbox" id="home" value="true" name="home"
-                                                                @if($dataRole['permissions']){{ ($dataRole['permissions']['home'] == 'true') ? 'checked' : ''}} @endif>
+                                                                @if($dataRole['permissions']){{ ($dataRole['permissions']['home'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="home">Check</label>
                                                             </div>
                                                         </td>
@@ -175,7 +70,7 @@
                                                         <td class="align-middle">Nasabah</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="nasabah" value="true" name="nasabah" @if($dataRole['permissions']){{ ($dataRole['permissions']['nasabah'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="nasabah" value="true" name="nasabah" @if($dataRole['permissions']){{ ($dataRole['permissions']['nasabah'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="nasabah">Check</label>
                                                             </div>
                                                         </td>
@@ -184,7 +79,7 @@
                                                         <td class="align-middle">Properti</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="properti" value="true" name="properti" @if($dataRole['permissions']){{ ($dataRole['permissions']['properti'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="properti" value="true" name="properti" @if($dataRole['permissions']){{ ($dataRole['permissions']['properti'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="properti">Check</label>
                                                             </div>
                                                         </td>
@@ -193,7 +88,7 @@
                                                         <td class="align-middle">e-Form</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="eform" value="true" name="eform" @if($dataRole['permissions']){{ ($dataRole['permissions']['e-form'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="eform" value="true" name="eform" @if($dataRole['permissions']){{ ($dataRole['permissions']['e-form'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="eform">Check</label>
                                                             </div>
                                                         </td>
@@ -202,7 +97,7 @@
                                                         <td class="align-middle">Developer</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="developer" value="true" name="developer" @if($dataRole['permissions']){{ ($dataRole['permissions']['developer'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="developer" value="true" name="developer" @if($dataRole['permissions']){{ ($dataRole['permissions']['developer'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="developer">Check</label>
                                                             </div>
                                                         </td>
@@ -211,7 +106,7 @@
                                                         <td class="align-middle">Debitur</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="debitur" value="true" name="debitur" @if($dataRole['permissions']){{ ($dataRole['permissions']['debitur'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="debitur" value="true" name="debitur" @if($dataRole['permissions']){{ ($dataRole['permissions']['debitur'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="debitur">Check</label>
                                                             </div>
                                                         </td>
@@ -229,7 +124,7 @@
                                                         <td class="align-middle">Kalkulator</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="kalkulator" value="true" name="kalkulator" @if($dataRole['permissions']){{ ($dataRole['permissions']['kalkulator'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="kalkulator" value="true" name="kalkulator" @if($dataRole['permissions']){{ ($dataRole['permissions']['kalkulator'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="kalkulator">Check</label>
                                                             </div>
                                                         </td>
@@ -238,7 +133,7 @@
                                                         <td class="align-middle">Tracking</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="tracking" value="true" name="tracking" @if($dataRole['permissions']){{ ($dataRole['permissions']['tracking'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="tracking" value="true" name="tracking" @if($dataRole['permissions']){{ ($dataRole['permissions']['tracking'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="tracking">Check</label>
                                                             </div>
                                                         </td>
@@ -247,7 +142,7 @@
                                                         <td class="align-middle">Pihak ke-3</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="pihak3" value="true" name="pihak3" @if($dataRole['permissions']){{ ($dataRole['permissions']['pihak-ke-3'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="pihak3" value="true" name="pihak3" @if($dataRole['permissions']){{ ($dataRole['permissions']['pihak-ke-3'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="pihak3">Check</label>
                                                             </div>
                                                         </td>
@@ -256,7 +151,7 @@
                                                         <td class="align-middle">Manajemen User</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="user" value="true" name="user" @if($dataRole['permissions']){{ ($dataRole['permissions']['manajemen-user'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="user" value="true" name="user" @if($dataRole['permissions']){{ ($dataRole['permissions']['manajemen-user'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="user">Check</label>
                                                             </div>
                                                         </td>
@@ -265,7 +160,7 @@
                                                         <td class="align-middle">Manajemen Role</td> 
                                                         <td>
                                                             <div class="checkbox checkbox-primary text-center">
-                                                                <input type="checkbox" id="role" value="true" name="roles" @if($dataRole['permissions']){{ ($dataRole['permissions']['manajemen-role'] == 'true') ? 'checked' : ''}} @endif>
+                                                                <input type="checkbox" id="role" value="true" name="roles" @if($dataRole['permissions']){{ ($dataRole['permissions']['manajemen-role'] == 'true') ? 'checked' : ''}} @endif class="checkbox-all">
                                                                 <label for="role">Check</label>
                                                             </div>
                                                         </td>
@@ -298,5 +193,13 @@
               return false;
             }
           });
+    });
+
+    $('input[class=check-all]').click(function () {
+        if($(this).is(':checked')){
+            $('input[class=checkbox-all]').prop('checked', true);
+        }else{
+            $('input[class=checkbox-all]').prop('checked', false);
+        }
     });
 </script>
