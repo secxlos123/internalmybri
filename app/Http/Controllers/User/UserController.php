@@ -225,7 +225,7 @@ class UserController extends Controller
 
         $users['users']['draw'] = $request->input('draw');
         $users['users']['recordsTotal'] = $users['users']['total'];
-        $users['users']['recordsFiltered'] = $users['users']['per_page'];
+        $users['users']['recordsFiltered'] = $users['users']['to'];
 
         return response()->json($users['users']);
     }

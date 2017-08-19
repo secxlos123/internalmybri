@@ -10,6 +10,12 @@ use Client;
 
 class RoleController extends Controller
 {
+
+    protected $columns = [
+        'name',
+        'slug',
+    ];
+
     public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');
@@ -26,14 +32,6 @@ class RoleController extends Controller
     public function index()
     {
         $data = $this->getUser();
-
-        /* GET Role Data */
-        $roleData = Client::setEndpoint('role')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-            foreach ($roleData as $role) {
-                $role = $role;
-            }
-        $dataRole = $role['data'];
-
         return view('internals.roles.index', compact('data', 'dataRole'));
     }
 
@@ -174,6 +172,37 @@ class RoleController extends Controller
         $client = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->deleted();
 
         return redirect()->route('roles.index');
+    }
+
+    public function datatables(Request $request)
+    {
+        $sort = $request->input('order.0');
+        $user = session('user.data');
+        $roles = Client::setEndpoint('role')
+                ->setHeaders(['Authorization' => $user['token']])
+                ->setQuery([
+                    'limit' => $request->input('length'),
+                    'name'  => $request->input('search.value'),
+                    'slug'  => $request->input('search.value'),
+                    'sort'  => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                ])->get();
+
+        foreach ($roles['roles']['data'] as $key => $role) {
+            $role['slug'] = strtoupper($role['slug']);
+            $delete = ! $role['is_default'] ? route('roles.destroy', $role['id']) : null;
+            $role['action'] = view('internals.layouts.actions', [
+                'edit' => route('roles.edit', $role['id']),
+                'show' => route('roles.show', $role['id']),
+                'delete' => $delete,
+            ])->render();
+            $roles['roles']['data'][$key] = $role;
+        }
+
+        $roles['roles']['draw'] = $request->input('draw');
+        $roles['roles']['recordsTotal'] = $roles['roles']['total'];
+        $roles['roles']['recordsFiltered'] = $roles['roles']['to'];
+
+        return response()->json($roles['roles']);
     }
 
 }

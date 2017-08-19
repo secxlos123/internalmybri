@@ -44,22 +44,19 @@
         Route::resource('customers', 'Customer\CustomerController');
 
         /* Roles */
-        Route::get('role/datatables', ['as'=>'role.datatables', 'uses'=>'User\RoleController@datatables']);
+        Route::resource('roles', 'User\RoleController');
 
         Route::delete('roles/{id}/delete', ['as'=>'role.delete', 'uses'=>'User\RoleController@destroy']);
 
-        Route::resource('roles', 'User\RoleController');
-
         /* Users */
         Route::resource('users', 'User\UserController');
-
 
         /* E-Form */
         Route::resource('eform', 'EForm\EFormController');
 
 
     });
-    
+
     Route::put('users/{users}/actived', 'User\UserController@actived');
 
     Route::get('cities', 'CityController');
@@ -67,6 +64,9 @@
     Route::get('offices', 'OfficeController');
 
     Route::group(['prefix'=>'datatables'], function () {
+
+        /* Roles */
+        Route::get('roles', 'User\RoleController@datatables');
 
         /* Users */
         Route::get('users', 'User\UserController@datatables');

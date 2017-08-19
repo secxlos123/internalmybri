@@ -9,3 +9,9 @@
 		<i class="mdi mdi-eye"></i>
 	</a>
 @endif
+
+@if (isset($delete))
+	<a href="javascript:void(0)" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" data-url="{!! $delete !!}">
+		<i class="mdi mdi-delete"></i>
+	</a>
+@endif

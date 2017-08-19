@@ -112,24 +112,31 @@
         });
 
         var table = $('#datatable').dataTable({
-            "processing": true,
-            "serverSide": true,
-            "ajax" : {
+            processing : true,
+            serverSide : true,
+            lengthMenu: [
+                [ 10, 25, 50, -1 ],
+                [ '10', '25', '50', 'All' ]
+            ],
+            language : {
+                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+            },
+            ajax : {
                 url : '/datatables/users',
                 data : function (params) {
                     params.office_id = $('.offices').val()
                 }
             },
-            "aoColumns" : [
-                { data: "nip", name: 'nip' },
-                { data: "fullname", name: 'fullname' },
-                { data: "email", name: 'email' },
-                { data: "office_name", name: 'office_name' },
-                { data: "mobile_phone", name: 'mobile_phone' },
-                { data: "role_slug", name: 'role_slug' },
+            aoColumns : [
+                { data: 'nip', name: 'nip' },
+                { data: 'fullname', name: 'fullname' },
+                { data: 'email', name: 'email' },
+                { data: 'office_name', name: 'office_name' },
+                { data: 'mobile_phone', name: 'mobile_phone' },
+                { data: 'role_slug', name: 'role_slug' },
                 {
-                   data: "is_actived", 
-                   name: "is_actived", 
+                   data: 'is_actived', 
+                   name: 'is_actived', 
                    bSortable: false,
                    mRender: function (data, type, full) {
                         var checked = full.is_actived ? 'checked' : '';
@@ -139,7 +146,7 @@
                         $(td).attr('class', 'status'); 
                    }
                 },
-                { data: "action", name: 'action', bSortable: false },
+                { data: 'action', name: 'action', bSortable: false },
             ],
         });
 
