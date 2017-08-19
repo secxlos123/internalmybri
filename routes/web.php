@@ -53,9 +53,23 @@
         /* Users */
         Route::resource('users', 'User\UserController');
 
+
         /* E-Form */
         Route::resource('eform', 'EForm\EFormController');
 
+
+    });
+    
+    Route::put('users/{users}/actived', 'User\UserController@actived');
+
+    Route::get('cities', 'CityController');
+
+    Route::get('offices', 'OfficeController');
+
+    Route::group(['prefix'=>'datatables'], function () {
+
+        /* Users */
+        Route::get('users', 'User\UserController@datatables');
     });
 
 

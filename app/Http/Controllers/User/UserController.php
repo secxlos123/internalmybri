@@ -8,6 +8,17 @@ use Client;
 
 class UserController extends Controller
 {
+    protected $columns = [
+        'nip',
+        'fullname',
+        'email',
+        'office_name',
+        'mobile_phone',
+        'role_name',
+        'is_actived',
+        'action',
+    ];
+
     public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');
@@ -25,15 +36,7 @@ class UserController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        // dd($data);
-
-        $userData = Client::setEndpoint('user')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-            foreach ($userData as $user) {
-                $user = $user;
-            }
-        $dataUser = $user['data'];
-
-        return view('internals.users.index', compact('data', 'dataUser'));
+        return view('internals.users.index', compact('data'));
     }
 
     /**
@@ -61,7 +64,6 @@ class UserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-
     public function userRequest($request)
     {
         $first_name = $this->split_name($request)['0'];
@@ -188,5 +190,45 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function actived(Request $request, $id)
+    {
+
+        $users = Client::setEndpoint("user/{$id}/actived")
+                ->setHeaders(['Authorization' => session('user.data.token')])
+                ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
+                ->put();
+
+        return response()->json($users['status']['message']);
+    }
+
+    public function datatables(Request $request)
+    {
+        $sort = $request->input('order.0');
+        $user = session('user.data');
+        $users = Client::setEndpoint('user')
+                ->setHeaders(['Authorization' => $user['token']])
+                ->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                    'office_id' => $request->input('office_id')
+                ])->get();
+
+        foreach ($users['users']['data'] as $key => $user) {
+            $user['role_slug'] = strtoupper($user['role_slug']);
+            $user['action'] = view('internals.layouts.actions', [
+                'edit' => route('users.edit', $user['id']),
+                'show' => route('users.show', $user['id']),
+            ])->render();
+            $users['users']['data'][$key] = $user;
+        }
+
+        $users['users']['draw'] = $request->input('draw');
+        $users['users']['recordsTotal'] = $users['users']['total'];
+        $users['users']['recordsFiltered'] = $users['users']['per_page'];
+
+        return response()->json($users['users']);
     }
 }
