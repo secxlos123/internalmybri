@@ -111,8 +111,9 @@
                                                         <div class="col-md-8">
                                                             <select class="form-control" name="role_id">
                                                                 <option disabled="" selected="">-- Pilih --</option>
-                                                                <option  {{($dataUser['role_id'] == "0") ? 'selected' : '' }} value="1">AO</option>
-                                                                <option  {{($dataUser['role_id'] == "1") ? 'selected' : '' }} value="2">MP</option>
+                                                                @foreach($roles['roles']['data'] as $role)
+                                                                <option value="{{$role['id']}}" {{($role['id'] == $dataUser['role_id']) ? 'selected' : '' }}>{{$role['name']}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -149,10 +150,11 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Kantor Cabang :</label>
                                                         <div class="col-md-9">
-                                                            <select class="form-control">
-                                                                <option selected="" disabled="">-- Pilih --</option>
-                                                                <option>BSD</option>
-                                                                <option>Ragunan</option>
+                                                            <select class="form-control" name="office_id">
+                                                                <option selected="" disabled="" >-- Pilih --</option>
+                                                                @foreach($offices['offices']['data'] as $office)
+                                                                <option value="{{$office['id']}}" {{($office['id'] == $dataUser['office_id']) ? 'selected' : '' }}>{{$office['name']}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>

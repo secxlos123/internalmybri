@@ -27,7 +27,6 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
-        // dd($data);
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
             foreach ($customerData as $role) {

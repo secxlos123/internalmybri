@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserRequest;
 use Client;
 
 class UserController extends Controller
@@ -48,7 +49,12 @@ class UserController extends Controller
     {
         $data = $this->getUser();
 
-        return view('internals.users.create', compact('data'));
+         /* GET Role Data */
+        $roles = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
+        /* GET Office Data */
+        $offices = Client::setEndpoint('offices')->setHeaders(['Authorization' => $data['token']])->get();
+
+        return view('internals.users.create', compact('data', 'roles', 'offices'));
     }
 
     // uses regex that accepts any word character or hyphen in last name
@@ -116,7 +122,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $this->getUser();
 
@@ -169,7 +175,12 @@ class UserController extends Controller
         
         $dataUser = $userData['data'];
 
-        return view('internals.users.edit', compact('data', 'dataUser'));
+         /* GET Role Data */
+        $roles = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
+        /* GET Office Data */
+        $offices = Client::setEndpoint('offices')->setHeaders(['Authorization' => $data['token']])->get();
+
+        return view('internals.users.edit', compact('data', 'dataUser', 'roles', 'offices'));
     }
 
     /**
