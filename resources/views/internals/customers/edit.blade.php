@@ -31,6 +31,7 @@
                                     <form class="form-horizontal" role="form" action="{{route('customers.update', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
+                                    <input type="hidden" name="id" value="{{$id}}">
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -44,7 +45,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Lengkap :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['name']}}" name="full_name">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['name']}}" name="full_name" id="full_name">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -76,11 +77,11 @@
                                                         <label class="col-md-5 control-label">Jenis Kelamin :</label>
                                                         <div class="col-md-7">
                                                             <div class="radio radio-info radio-inline">
-                                                                <input type="radio" id="laki" value="laki"{{($dataCustomer['personal']['gender'] == "Laki-laki") ? 'checked' : '' }} name="gender">
+                                                                <input type="radio" id="laki" value="L"{{($dataCustomer['personal']['gender'] == "Laki-laki") ? 'checked' : '' }} name="gender">
                                                                 <label for="laki"> Laki-laki </label>
                                                             </div>
                                                             <div class="radio radio-pink radio-inline">
-                                                                <input type="radio" id="perempuan" value="perempuan" {{($dataCustomer['personal']['gender'] == "Perempuan") ? 'checked' : '' }} name="gender">
+                                                                <input type="radio" id="perempuan" value="P" {{($dataCustomer['personal']['gender'] == "Perempuan") ? 'checked' : '' }} name="gender">
                                                                 <label for="perempuan"> Perempuan </label>
                                                             </div>
                                                         </div>
@@ -100,10 +101,10 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="status">
                                                                 <option disabled="">-- Pilih --</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }}>Tidak Menikah</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "1") ? 'selected' : '' }}>Menikah</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "2") ? 'selected' : '' }}>Janda</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "3") ? 'selected' : '' }}>Duda</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }} value="0">Tidak Menikah</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "1") ? 'selected' : '' }} value="1">Menikah</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "2") ? 'selected' : '' }} value="2">Janda</option>
+                                                                <option {{($dataCustomer['personal']['status'] == "3") ? 'selected' : '' }} value="3">Duda</option>
                                                             </select>
                                                         </div>
                                                     </div>

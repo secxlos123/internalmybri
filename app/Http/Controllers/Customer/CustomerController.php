@@ -68,15 +68,55 @@ class CustomerController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
-        $npwp_path = $request->npwp->getPathname();
-        $npwp_mime = $request->npwp->getmimeType();
-        $npwp_name = $request->npwp->getClientOriginalName();
-        $image_path = $request->images->getPathname();
-        $image_mime = $request->images->getmimeType();
-        $image_name = $request->images->getClientOriginalName();
-        $identity_path = $request->identity->getPathname();
-        $identity_mime = $request->identity->getmimeType();
-        $identity_name = $request->identity->getClientOriginalName();
+
+        if($request->npwp){
+          $npwp_path = $request->npwp->getPathname();
+          $npwp_mime = $request->npwp->getmimeType();
+          $npwp_name = $request->npwp->getClientOriginalName();
+          $npwp = [
+                  'name'     => 'npwp',
+                  'filename' => $npwp_name,
+                  'Mime-Type'=> $npwp_mime,
+                  'contents' => fopen( $npwp_path, 'r' ),
+                ];
+        }else{
+          $npwp = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
+        if($request->images){
+          $image_path = $request->images->getPathname();
+          $image_mime = $request->images->getmimeType();
+          $image_name = $request->images->getClientOriginalName();
+          $image = [
+                  'name'     => 'image',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ];
+        }else{
+          $image = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
+        if($request->identity){
+          $identity_path = $request->identity->getPathname();
+          $identity_mime = $request->identity->getmimeType();
+          $identity_name = $request->identity->getClientOriginalName();
+          $identity = [
+                  'name'     => 'identity',
+                  'filename' => $identity_name,
+                  'Mime-Type'=> $identity_mime,
+                  'contents' => fopen( $identity_path, 'r' ),
+                ];
+        }else{
+          $identity = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
         $newCustomer = array(
                 [
                   'name'     => 'nik',
@@ -146,24 +186,9 @@ class CustomerController extends Controller
                   'name'     => 'emergency_relation',
                   'contents' => $request->emergency_relation,
                 ],
-                [
-                  'name'     => 'identity',
-                  'filename' => $identity_name,
-                  'Mime-Type'=> $identity_mime,
-                  'contents' => fopen( $identity_path, 'r' ),
-                ],
-                [
-                  'name'     => 'npwp',
-                  'filename' => $npwp_name,
-                  'Mime-Type'=> $npwp_mime,
-                  'contents' => fopen( $npwp_path, 'r' ),
-                ],
-                [
-                  'name'     => 'image',
-                  'filename' => $image_name,
-                  'Mime-Type'=> $image_mime,
-                  'contents' => fopen( $image_path, 'r' ),
-                ],
+                $identity,
+                $npwp,
+                $image,
                 [
                   'name'     => 'work_type',
                   'contents' => $request->work_type,
@@ -219,7 +244,7 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $data = $this->getUser();
 
@@ -230,8 +255,16 @@ class CustomerController extends Controller
          ->setBody($newCustomer)
          ->post('multipart');
 
+         if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah tersimpan!');
+            return redirect()->route('customers.index');
+         }else{
+         dd($client);
+            \Session::flash('error', 'Lengkapi data Anda!');
+            return redirect()->back();
+         }
 
-        return redirect()->route('customers.index');
+
     }
 
     /**

@@ -24,13 +24,15 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                @if (\Session::has('error'))
+                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                                @endif
                                 <div class="panel panel-color panel-primary">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
                                     </div>
                                     <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
                                     {{ csrf_field() }}
-                                    {{ method_field('PUT') }}
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -335,22 +337,25 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group">
+                                                    <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Foto KTP * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group npwp {!! $errors->has('npwp') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Foto NPWP * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="npwp" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group images {!! $errors->has('images') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Foto Nasabah * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="images" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('images')) <p class="help-block">{{ $errors->first('images') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>

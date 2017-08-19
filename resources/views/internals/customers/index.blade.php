@@ -7,6 +7,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
+                                
                                 <div class="page-title-box">
                                     <h4 class="page-title">Daftar Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
@@ -21,6 +22,9 @@
                                 </div>
                             </div>
                         </div>
+                        @if (\Session::has('success'))
+                                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                                @endif
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
