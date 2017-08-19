@@ -53,8 +53,9 @@
         /* Users */
         Route::resource('users', 'User\UserController');
 
-
         /* E-Form */
+        Route::get('eform/lkn', ['as'=>'getLKN', 'uses'=>'EForm\EFormController@getLKN']);
+
         Route::resource('eform', 'EForm\EFormController');
 
 
