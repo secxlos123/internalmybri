@@ -289,14 +289,14 @@
                                                     <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">No. Telepon * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="phone" value="{{old('phone')}}">
+                                                            <input type="text" class="form-control numericOnly" name="phone" value="{{old('phone')}}" maxlength="12">
                                                             @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                                         </div>
                                                     </div>
                                                     <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">No. Handphone * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="mobile_phone" value="{{old('mobile_phone')}}">
+                                                            <input type="text" class="form-control numericOnly" name="mobile_phone" value="{{old('mobile_phone')}}" maxlength="12">
                                                             @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -307,7 +307,7 @@
                                                     <div class="form-group emergency_contact {!! $errors->has('emergency_contact') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Emergency Contact * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control numericOnly" name="emergency_contact" value="{{old('emergency_contact')}}">
+                                                            <input type="text" class="form-control numericOnly" name="emergency_contact" value="{{old('emergency_contact')}}" maxlength="12">
                                                             @if ($errors->has('emergency_contact')) <p class="help-block">{{ $errors->first('emergency_contact') }}</p> @endif
                                                         </div>
                                                     </div>

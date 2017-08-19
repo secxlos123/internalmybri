@@ -266,13 +266,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['phone']}}" name="phone">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['phone']}}" name="phone" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['mobile_phone']}}" name="mobile_phone">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['mobile_phone']}}" name="mobile_phone" maxlength="12">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,7 +282,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Emergency Contact :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_contact']}}" name="emergency_contact">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_contact']}}" name="emergency_contact" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
