@@ -52,6 +52,8 @@
         Route::resource('users', 'User\UserController');
 
         /* E-Form */
+        Route::get('eform/lkn', ['as'=>'getLKN', 'uses'=>'EForm\EFormController@getLKN']);
+
         Route::resource('eform', 'EForm\EFormController');
 
 
@@ -70,6 +72,9 @@
 
         /* Users */
         Route::get('users', 'User\UserController@datatables');
+
+        /* Customers */
+        Route::get('customers', 'Customer\CustomerController@datatables');
     });
 
 

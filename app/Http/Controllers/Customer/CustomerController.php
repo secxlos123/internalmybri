@@ -9,6 +9,16 @@ use Client;
 
 class CustomerController extends Controller
 {
+    protected $columns = [
+        'nik',
+        'fullname',
+        'email',
+        'city',
+        'mobile_phone',
+        'gender',
+        'action',
+    ];
+
     public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');
@@ -27,7 +37,6 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
-        // dd($data);
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
             foreach ($customerData as $role) {
@@ -68,15 +77,55 @@ class CustomerController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
-        $npwp_path = $request->npwp->getPathname();
-        $npwp_mime = $request->npwp->getmimeType();
-        $npwp_name = $request->npwp->getClientOriginalName();
-        $image_path = $request->images->getPathname();
-        $image_mime = $request->images->getmimeType();
-        $image_name = $request->images->getClientOriginalName();
-        $identity_path = $request->identity->getPathname();
-        $identity_mime = $request->identity->getmimeType();
-        $identity_name = $request->identity->getClientOriginalName();
+
+        if($request->npwp){
+          $npwp_path = $request->npwp->getPathname();
+          $npwp_mime = $request->npwp->getmimeType();
+          $npwp_name = $request->npwp->getClientOriginalName();
+          $npwp = [
+                  'name'     => 'npwp',
+                  'filename' => $npwp_name,
+                  'Mime-Type'=> $npwp_mime,
+                  'contents' => fopen( $npwp_path, 'r' ),
+                ];
+        }else{
+          $npwp = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
+        if($request->images){
+          $image_path = $request->images->getPathname();
+          $image_mime = $request->images->getmimeType();
+          $image_name = $request->images->getClientOriginalName();
+          $image = [
+                  'name'     => 'image',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ];
+        }else{
+          $image = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
+        if($request->identity){
+          $identity_path = $request->identity->getPathname();
+          $identity_mime = $request->identity->getmimeType();
+          $identity_name = $request->identity->getClientOriginalName();
+          $identity = [
+                  'name'     => 'identity',
+                  'filename' => $identity_name,
+                  'Mime-Type'=> $identity_mime,
+                  'contents' => fopen( $identity_path, 'r' ),
+                ];
+        }else{
+          $identity = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
         $newCustomer = array(
                 [
                   'name'     => 'nik',
@@ -146,24 +195,9 @@ class CustomerController extends Controller
                   'name'     => 'emergency_relation',
                   'contents' => $request->emergency_relation,
                 ],
-                [
-                  'name'     => 'identity',
-                  'filename' => $identity_name,
-                  'Mime-Type'=> $identity_mime,
-                  'contents' => fopen( $identity_path, 'r' ),
-                ],
-                [
-                  'name'     => 'npwp',
-                  'filename' => $npwp_name,
-                  'Mime-Type'=> $npwp_mime,
-                  'contents' => fopen( $npwp_path, 'r' ),
-                ],
-                [
-                  'name'     => 'image',
-                  'filename' => $image_name,
-                  'Mime-Type'=> $image_mime,
-                  'contents' => fopen( $image_path, 'r' ),
-                ],
+                $identity,
+                $npwp,
+                $image,
                 [
                   'name'     => 'work_type',
                   'contents' => $request->work_type,
@@ -219,23 +253,27 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
-        $first_name = $this->split_name($request)['0'];
-        $last_name = $this->split_name($request)['1'];
-        $npwp_path = $request->npwp->getPathname();
-        $npwp_mime = $request->npwp->getmimeType();
-        $npwp_name = $request->npwp->getClientOriginalName();
 
         $client = Client::setEndpoint('customer')
          ->setHeaders(['Authorization' => $data['token']])
          ->setBody($newCustomer)
          ->post('multipart');
 
-        return redirect()->route('customers.index');
+         if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah tersimpan!');
+            return redirect()->route('customers.index');
+         }else{
+         dd($client);
+            \Session::flash('error', 'Lengkapi data Anda!');
+            return redirect()->back();
+         }
+
+
     }
 
     /**
@@ -285,23 +323,49 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
-        
+
         $client = Client::setEndpoint('customer/'.$id)
          ->setHeaders(['Authorization' => $data['token']])
          ->setBody($newCustomer)
-         ->put();
+         ->put('multipart');
 
-       dd($client);
+        if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah tersimpan!');
+            return redirect()->route('customers.index');
+        }else{
+         dd($client);
+            \Session::flash('error', 'Lengkapi data Anda!');
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function datatables(Request $request)
     {
-        //
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+
+        $customers = Client::setEndpoint('customer')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                    'office_id' => $request->input('office_id')
+                ])->get();
+
+        foreach ($customers['customers']['data'] as $key => $customer) {
+            $customer['fullname'] = $customer['first_name'].' '.$customer['last_name'];
+            $customer['action'] = view('internals.layouts.actions', [
+                'edit' => route('customers.edit', $customer['id']),
+                'show' => route('customers.show', $customer['id']),
+            ])->render();
+            $customers['customers']['data'][$key] = $customer;
+        }
+
+        $customers['customers']['draw'] = $request->input('draw');
+        $customers['customers']['recordsTotal'] = $customers['customers']['total'];
+        $customers['customers']['recordsFiltered'] = $customers['customers']['per_page'];
+
+        return response()->json($customers['customers']);
     }
 }

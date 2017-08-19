@@ -24,6 +24,9 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                @if (\Session::has('error'))
+                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                                @endif
                                 <div class="panel panel-color panel-primary">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
@@ -286,14 +289,14 @@
                                                     <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">No. Telepon * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="phone" value="{{old('phone')}}">
+                                                            <input type="text" class="form-control numericOnly" name="phone" value="{{old('phone')}}" maxlength="12">
                                                             @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                                         </div>
                                                     </div>
                                                     <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">No. Handphone * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="mobile_phone" value="{{old('mobile_phone')}}">
+                                                            <input type="text" class="form-control numericOnly" name="mobile_phone" value="{{old('mobile_phone')}}" maxlength="12">
                                                             @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -304,7 +307,7 @@
                                                     <div class="form-group emergency_contact {!! $errors->has('emergency_contact') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Emergency Contact * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control numericOnly" name="emergency_contact" value="{{old('emergency_contact')}}">
+                                                            <input type="text" class="form-control numericOnly" name="emergency_contact" value="{{old('emergency_contact')}}" maxlength="12">
                                                             @if ($errors->has('emergency_contact')) <p class="help-block">{{ $errors->first('emergency_contact') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -334,22 +337,25 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group">
+                                                    <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Foto KTP * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group npwp {!! $errors->has('npwp') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Foto NPWP * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="npwp" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group images {!! $errors->has('images') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Foto Nasabah * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="images" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('images')) <p class="help-block">{{ $errors->first('images') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>

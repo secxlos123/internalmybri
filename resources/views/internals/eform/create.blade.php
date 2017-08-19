@@ -2,6 +2,7 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 <div class="content-page">
     <div class="content">
         <div class="container">
@@ -52,7 +53,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="tambah-nasabah.html" class="btn btn-primary waves-effect waves-light m-l-10 btn-md"><i class="fa fa-plus-circle"></i> Tambah Nasabah Baru</a>
+                                                <a href="{{route('customers.create')}}" class="btn btn-primary waves-effect waves-light m-l-10 btn-md"><i class="fa fa-plus-circle"></i> Tambah Nasabah Baru</a>
                                             </form>
                                         </div>
                                     </div>
@@ -61,77 +62,112 @@
                                         <div class="col-md-12">
                                             <div class="">
                                                 <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
-                                                <table class="table table-bordered">
-                                                    <thead class="bg-primary">
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>NIK</th>
-                                                            <th>Nama Nasabah</th>
-                                                            <th>Email</th>
-                                                            <th>Kota</th>
-                                                            <th>Handphone</th>
-                                                            <th>Jenis Kelamin</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="align-middle">1</td>
-                                                            <td class="align-middle">123455667</td>
-                                                            <td class="align-middle">Nasabah 1</td>
-                                                            <td class="align-middle">xx@xx.com</td>
-                                                            <td class="align-middle">Kota 1</td>
-                                                            <td class="align-middle">21213212</td>
-                                                            <td class="align-middle">Laki-laki</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="align-middle">2</td>
-                                                            <td class="align-middle">123455668</td>
-                                                            <td class="align-middle">Nasabah 2</td>
-                                                            <td class="align-middle">xx@xx.com</td>
-                                                            <td class="align-middle">Kota 2</td>
-                                                            <td class="align-middle">21213212</td>
-                                                            <td class="align-middle">Laki-laki</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+
+                                                <!-- ============================================== -->
+                                                <!-- Space untuk Detail Nasabah -->
+                                                <p class="text-muted font-13 m-t-20">
+                                                    <code>Space ini nantinya berisi detail nasabah (seperti yang ada di dalam modul nasabah / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
+                                                </p>
+                                                <!-- End Detail Nasabah -->
+                                                <!-- ============================================== -->
+
                                             </div>
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Lokasi</h3>
+                                <h3>Penjadwalan</h3>
                                 <section>
                                     <div class="row">
-                                                    <div class="col-md-12">
-                                                        <h4 class="m-t-0 header-title"><b>Lokasi</b></h4>
-                                                        <p class="text-muted m-b-30 font-13">
-                                                            Tentukan lokasi/tempat Pertemuan
-                                                        </p>
-                                                        <input id="searchInput" class="input-controls" type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
-                                                        <div class="map" id="map" style="width: 100%; height: 400px;"></div>
-                                                        <div class="form-group m-t-20">
-                                                            <div class="col-md-6">
-                                                                <label class="control-label">Lokasi</label>
-                                                                <textarea name="location" id="location" class="form-control" readonly="" rows="3"></textarea>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label class="control-label">Latitude</label>
-                                                                <input type="text" name="lat" id="lat" class="form-control" readonly="">
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label class="control-label">Longitude</label>
-                                                                <input type="text" name="lng" id="lng" class="form-control" readonly="">
-                                                            </div>
+                                        <div class="col-md-6">
+                                            <h4 class="m-t-0 header-title"><b>Waktu</b></h4>
+                                            <p class="text-muted m-b-30 font-13">
+                                                Tentukan Waktu Pertemuan
+                                            </p>
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Tanggal :</label>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="datepicker-autoclose">
+                                                            <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-4">Pukul :</label>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="timepicker2">
+                                                            <span class="input-group-addon b-0"><i class="mdi mdi-clock"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="m-t-0 header-title"><b>Lokasi</b></h4>
+                                            <p class="text-muted m-b-30 font-13">
+                                                Tentukan lokasi/tempat Pertemuan
+                                            </p>
+                                            <input id="searchInput" class="input-controls" type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
+                                            <div class="map" id="map" style="width: 100%; height: 400px;"></div>
+                                            <div class="form-group m-t-20">
+                                                <div class="col-md-6">
+                                                    <label class="control-label">Lokasi</label>
+                                                    <textarea name="location" id="location" class="form-control" readonly="" rows="3"></textarea>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="control-label">Latitude</label>
+                                                    <input type="text" name="lat" id="lat" class="form-control" readonly="">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="control-label">Longitude</label>
+                                                    <input type="text" name="lng" id="lng" class="form-control" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <h3>Kantor Cabang</h3>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4 class="m-t-0 header-title"><b>Kantor Cabang</b></h4>
+                                            <p class="text-muted m-b-30 font-13">
+                                                Pilih kantor cabang terdekat
+                                            </p>
+                                            <form role="form">
+                                                <div class="form-group">
+                                                    <label class="control-label">Kota</label>
+                                                    <select class="form-control">
+                                                        <option>-- Pilih --</option>
+                                                        <option>Jakarta</option>
+                                                        <option>Bandung</option>
+                                                        <option>Semarang</option>
+                                                        <option>Surabaya</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label">Kantor Cabang BRI</label>
+                                                    <select class="form-control">
+                                                        <option>-- Pilih --</option>
+                                                        <option>BSD</option>
+                                                        <option>Ragunan</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </section>
                                 <h3>Produk</h3>
                                 <section>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4 class="m-t-0 header-title"><b>Produk</b></h4>
+                                            <h4 class="m-t-0 header-title"><b>Selesai</b></h4>
                                             <p class="text-muted m-b-30 font-13">
-                                                Pilih produk pembiayaan
+                                                Pilih produk pembiayaan dan selesai
                                             </p>
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -600,54 +636,11 @@
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Selesai</h3>
-                                <section>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h4 class="m-t-0 header-title"><b>Waktu</b></h4>
-                                            <p class="text-muted m-b-30 font-13">
-                                                Tentukan waktu perjanjian dan selesai
-                                            </p>
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4">Tanggal :</label>
-                                                    <div class="col-md-8">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" id="datepicker-autoclose">
-                                                            <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4">Pukul :</label>
-                                                    <div class="col-md-8">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" id="timepicker2">
-                                                            <span class="input-group-addon b-0"><i class="mdi mdi-clock"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="checkbox checkbox-primary">
-                                                <input id="terms" type="checkbox">
-                                                <label for="terms">
-                                                    Saya setuju dengan Syarat dan Ketentuan yang berlaku.
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @include('internals.layouts.footer')

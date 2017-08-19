@@ -41,6 +41,18 @@ class EFormController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getLKN()
+    {
+        $data = $this->getUser();
+        
+        return view('internals.eform.lkn', compact('data'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserRequest;
 use Client;
 
 class UserController extends Controller
@@ -48,7 +49,12 @@ class UserController extends Controller
     {
         $data = $this->getUser();
 
-        return view('internals.users.create', compact('data'));
+         /* GET Role Data */
+        $roles = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
+        /* GET Office Data */
+        $offices = Client::setEndpoint('offices')->setHeaders(['Authorization' => $data['token']])->get();
+
+        return view('internals.users.create', compact('data', 'roles', 'offices'));
     }
 
     // uses regex that accepts any word character or hyphen in last name
@@ -68,9 +74,22 @@ class UserController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
-        $image_path = $request->images->getPathname();
-        $image_mime = $request->images->getmimeType();
-        $image_name = $request->images->getClientOriginalName();
+        if($request->images){
+            $image_path = $request->images->getPathname();
+            $image_mime = $request->images->getmimeType();
+            $image_name = $request->images->getClientOriginalName();
+            $image = [
+                  'name'     => 'image',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ];
+        }else{
+          $image = [
+                  'name'    => "",
+                  'contents'=> ""
+                ];
+        }
 
         //get Requests
         $req = [
@@ -80,7 +99,7 @@ class UserController extends Controller
                 'phone'         => $request->phone,
                 'mobile_phone'  => $request->mobile_phone,
                 'gender'        => $request->gender,
-                'office_id'     => $request->office_id,
+                'office_id'     => '544',
                 'nip'           => $request->nip,
                 'position'      => $request->position,
                 'role_id'       => $request->role_id,
@@ -91,12 +110,7 @@ class UserController extends Controller
                   'name'     => 'data',
                   'contents' => json_encode($req),
                 ],
-                [
-                  'name'     => 'image',
-                  'filename' => $image_name,
-                  'Mime-Type'=> $image_mime,
-                  'contents' => fopen( $image_path, 'r' ),
-                ]
+                $image
               );
 
         return $newUser;
@@ -108,7 +122,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $this->getUser();
 
@@ -119,7 +133,13 @@ class UserController extends Controller
            ->setBody($newUser)
            ->post('multipart');
         
-        return redirect()->route('users.index');
+        if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah diubah.');
+            return redirect()->route('users.index');
+        }else{
+            \Session::flash('error', 'Kesalahan input.');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -133,7 +153,7 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $dataUser = $userData['data'];
 
@@ -151,11 +171,16 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $dataUser = $userData['data'];
 
-        return view('internals.users.edit', compact('data', 'dataUser'));
+         /* GET Role Data */
+        $roles = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
+        /* GET Office Data */
+        $offices = Client::setEndpoint('offices')->setHeaders(['Authorization' => $data['token']])->get();
+
+        return view('internals.users.edit', compact('data', 'dataUser', 'roles', 'offices'));
     }
 
     /**
@@ -174,9 +199,15 @@ class UserController extends Controller
         $client = Client::setEndpoint('user/'.$id)
            ->setHeaders(['Authorization' => $data['token']])
            ->setBody($newUser)
-           ->put();
+           ->put('multipart');
 
-       dd($client);
+        if($client['status']['succeded'] == true){
+            \Session::flash('success', 'Data sudah diubah.');
+            return redirect()->route('users.index');
+        }else{
+            \Session::flash('error', 'Kesalahan input.');
+            return redirect()->back();
+        }
     }
 
     /**

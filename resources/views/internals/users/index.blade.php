@@ -12,7 +12,7 @@
                         <h4 class="page-title">Daftar User</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="index.html">Dashboard</a>
+                                <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
                                 Manajemen User
@@ -22,6 +22,9 @@
                     </div>
                 </div>
             </div>
+            @if (\Session::has('success'))
+                <div class="alert alert-success">{{ \Session::get('success') }}</div>
+            @endif
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
@@ -57,6 +60,7 @@
                                             </div>
                                         </form>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

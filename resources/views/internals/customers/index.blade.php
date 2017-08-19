@@ -1,5 +1,6 @@
 @section('title','My BRI - Daftar Nasabah')
 @include('internals.layouts.head')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
             <div class="content-page">
@@ -7,6 +8,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
+                                
                                 <div class="page-title-box">
                                     <h4 class="page-title">Daftar Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
@@ -21,6 +23,9 @@
                                 </div>
                             </div>
                         </div>
+                        @if (\Session::has('success'))
+                            <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                        @endif
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
@@ -38,24 +43,19 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Kota :</label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control">
-                                                                    <option>-- Pilih --</option>
-                                                                    <option>Bandung</option>
-                                                                    <option>Jakarta</option>
-                                                                    <option>Semarang</option>
-                                                                    <option>Surabaya</option>
-                                                                    <option>Yogyakarta</option>
-                                                                </select>
+                                                            {!! Form::select('cities', ['' => ''], old('cities'), [
+                                                                'class' => 'select2 cities',
+                                                                'data-placeholder' => 'Pilih Kota'
+                                                            ]) !!}
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Jenis Kelamin :</label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control">
-                                                                    <option>-- Pilih --</option>
-                                                                    <option>Laki-laki</option>
-                                                                    <option>Perempuan</option>
-                                                                </select>
+                                                            {!! Form::select('office_name', ['' => ''], old('office_name'), [
+                                                                'class' => 'select2 offices',
+                                                                'data-placeholder' => 'Pilih Kantor'
+                                                            ]) !!}
                                                             </div>
                                                         </div>
                                                     </form>
@@ -69,7 +69,6 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>No</th>
                                                 <th>NIK</th>
                                                 <th>Nama Nasabah</th>
                                                 <th>Email</th>
@@ -97,25 +96,7 @@
                                                     </a>
                                                 </td>
                                             </tr> -->
-                                            @foreach($dataCustomer as $data)
-                                            <tr>
-                                                <td class="align-middle">{{$data['id']}}</td>
-                                                <td class="align-middle">{{$data['nik']}}</td>
-                                                <td class="align-middle">{{$data['first_name']}} {{$data['last_name']}}</td>
-                                                <td class="align-middle">{{$data['email']}}</td>
-                                                <td class="align-middle"></td>
-                                                <td class="align-middle">{{$data['mobile_phone']}}</td>
-                                                <td class="align-middle">{{$data['gender']}}</td>
-                                                <td>
-                                                    <a href="{{route('customers.edit', $data['id'])}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                        <i class="mdi mdi-pencil"></i>
-                                                    </a>
-                                                    <a href="{{route('customers.show', $data['id'])}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
-                                                        <i class="mdi mdi-eye"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                                           
                                         </tbody>
                                     </table>
                                 </div>
@@ -124,10 +105,138 @@
                     </div>
                 </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')    
+@include('internals.layouts.foot') 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#datatable').dataTable();   
+        var lastStatusElement = null;
+        $('.select2').select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+
+        var table = $('#datatable').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax" : {
+                url : '/datatables/customers',
+                data : function (params) {
+                    params.office_id = $('.offices').val()
+                }
+            },
+            "aoColumns" : [
+                { data: "nik", name: 'nik' },
+                { data: "fullname", name: 'fullname' },
+                { data: "email", name: 'email' },
+                { data: "city", name: 'office_name' },
+                { data: "mobile_phone", name: 'mobile_phone' },
+                { data: "gender", name: 'gender' },
+                { data: "action", name: 'action', bSortable: false },
+            ],
+        });
+
+        $('#btn-filter').on('click', function () {
+            table.fnDraw();
+        });
+
+        $(document).on('click', '.status input[type=checkbox]', function(e){
+            e.preventDefault();
+            var val = $(this).is(':checked');
+            lastStatusElement = $(this);
+            $(this).prop('checked', !val);
+            $('b.fullname').text($(this).data('customer'));
+            $('#confirm').modal('show');
+        });
+
+        $('.btn-save').click(function () {
+            var val = lastStatusElement.is(':checked');
+            var id = lastStatusElement.attr('id');
+
+            $.ajax({
+                url : `/customers/${id}/actived`,
+                method : 'put',
+                dataType : 'json',
+                data : {
+                    _token : "{!! csrf_token() !!}",
+                    is_actived : !val
+                }
+            })
+            .done(function (response) {
+                table.fnDraw();
+                $('#confirm').modal('hide');
+            });
+        });
+        
+        $('.cities').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
     });
+
+
+    $('.cities').on('select2:unselect', function (e) {
+        $('.offices').empty().select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+    });
+
+    $('.cities').on('select2:select', function (e) {
+        var citi_id = e.params.data.id;
+        get_offices(citi_id);
+    });
+
+    function get_offices(citi_id) {
+        $('.offices').empty().select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: `/offices?citi_id=${citi_id}`,
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1,
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.offices.data,
+                        pagination: {
+                            more: (params.page * data.offices.per_page) < data.offices.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+    }
+
     TableManageButtons.init();
 </script>
