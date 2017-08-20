@@ -1,5 +1,6 @@
 @section('title','My BRI - E-Form')
 @include('internals.layouts.head')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
             <div class="content-page">
@@ -37,11 +38,10 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Kantor Cabang :</label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control">
-                                                                    <option>-- Pilih --</option>
-                                                                    <option>BSD</option>
-                                                                    <option>Ragunan</option>
-                                                                </select>
+                                                                {!! Form::select('office', ['' => ''], old('office'), [
+                                                                    'class' => 'select2 office',
+                                                                    'data-placeholder' => 'Pilih Kantor Cabang'
+                                                                ]) !!}
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -66,7 +66,6 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>No</th>
                                                 <th>No. Ref Aplikasi</th>
                                                 <th>Nama Nasabah</th>
                                                 <th>Nominal</th>
@@ -77,7 +76,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle">1</td>
                                                 <td class="align-middle">123455667</td>
                                                 <td class="align-middle">Nasabah 1</td>
@@ -144,7 +143,7 @@
                                                         <i class="mdi mdi-eye"></i>
                                                     </button>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -154,13 +153,93 @@
                 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-        <script>
-            var resizefunc = [];
-        </script> 
 <script type="text/javascript">
+    var resizefunc = [];
     $(document).ready(function () {
-        $('#datatable').dataTable();   
+        var lastStatusElement = null;
+        $('.select2').select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+
+        var table = $('#datatable').dataTable({
+            processing : true,
+            serverSide : true,
+            lengthMenu: [
+                [ 10, 25, 50, -1 ],
+                [ '10', '25', '50', 'All' ]
+            ],
+            language : {
+                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+            },
+            ajax : {
+                url : '/datatables/eform',
+                data : function (params) {
+                    params.office_id = $('.office').val()
+                }
+            },
+            aoColumns : [
+                {   data: 'ref', name: 'ref' },
+                {   data: 'fullname', name: 'fullname' },
+                {   data: 'request_amount', name: 'request_amount' },
+                {   data: 'office_id', name: 'office_id' },
+                {   data: 'ao', name: 'ao' },
+                {   data: 'prescreening_status', 
+                    name: 'prescreening_status', 
+                    bSortable: false,
+                    mRender: function (data, type, full) {
+                        if(full.prescreening_status == 'green'){
+                            color = 'text-success';
+                            text = 'Diterima';
+                        }else if(full.prescreening_status == 'red'){
+                            color = 'text-warning';
+                            text = 'Proses';
+                        }else{
+                            color = 'text-danger';
+                            text = 'Ditolak';
+                        }
+                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+                    },
+                    createdCell:  function (td, cellData, rowData, row, col) {
+                        $(td).attr('class', 'status'); 
+                    }},
+                {   data: 'action', name: 'action', bSortable: false },
+            ],
+        });
+
+        $('#btn-filter').on('click', function () {
+            table.fnDraw();
+        });
+        
+        $('.offices').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/offices',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.offices.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.offices.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
     });
+
     TableManageButtons.init();
 </script>

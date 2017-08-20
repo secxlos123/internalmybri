@@ -54,6 +54,7 @@
         /* E-Form */
         Route::get('eform/lkn', ['as'=>'getLKN', 'uses'=>'EForm\EFormController@getLKN']);
 
+
         Route::resource('eform', 'EForm\EFormController');
 
 
@@ -65,6 +66,10 @@
 
     Route::get('offices', 'OfficeController');
 
+    Route::get('getCustomer', ['as'=>'getCustomer', 'uses'=>'EForm\EFormController@getCustomer']);
+
+    Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
+
     Route::group(['prefix'=>'datatables'], function () {
 
         /* Roles */
@@ -75,6 +80,9 @@
 
         /* Customers */
         Route::get('customers', 'Customer\CustomerController@datatables');
+
+        /* EForms */
+        Route::get('eform', 'EForm\EFormController@datatables');
     });
 
 

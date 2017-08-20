@@ -1,5 +1,6 @@
 @section('title','My BRI - Tambah Pengajuan')
 @include('internals.layouts.head')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
@@ -26,7 +27,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card-box">
-                        <form id="basic-form" action="#">
+                        <form id="basic-form" action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div>
                                 <h3>Nasabah</h3>
                                 <section>
@@ -36,38 +38,42 @@
                                     </p>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <form role="form">
+                                            <div role="form">
                                                 <div class="form-group">
                                                     <label class="control-label"">Cari NIK Nasabah</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="NIK">
+                                                        {!! Form::select('name', ['' => ''], old('name'), [
+                                                                'class' => 'select2 nik',
+                                                                'data-placeholder' => 'NIK',
+                                                                'id' => 'nik'
+                                                            ]) !!}
                                                         <span class="input-group-btn">
-                                                        <a href="#" class="btn waves-effect waves-light btn-primary"><i class="fa fa-search"></i> Cari</a>
+                                                        <a href="#" class="btn waves-effect waves-light btn-primary" id="search"><i class="fa fa-search"></i> Cari</a>
                                                         </span>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <form class="form-inline m-t-27" role="form">
+                                            <div class="form-inline m-t-27" role="form">
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
                                                 <a href="{{route('customers.create')}}" class="btn btn-primary waves-effect waves-light m-l-10 btn-md"><i class="fa fa-plus-circle"></i> Tambah Nasabah Baru</a>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <div class="">
-                                                <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
-
+                                            <div class="" id="detail">
+                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
+ -->
                                                 <!-- ============================================== -->
                                                 <!-- Space untuk Detail Nasabah -->
-                                                <p class="text-muted font-13 m-t-20">
+                                               <!--  <p class="text-muted font-13 m-t-20" >
                                                     <code>Space ini nantinya berisi detail nasabah (seperti yang ada di dalam modul nasabah / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
-                                                </p>
+                                                </p> -->
                                                 <!-- End Detail Nasabah -->
                                                 <!-- ============================================== -->
 
@@ -83,12 +89,12 @@
                                             <p class="text-muted m-b-30 font-13">
                                                 Tentukan Waktu Pertemuan
                                             </p>
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="control-label col-md-4">Tanggal :</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="datepicker-autoclose">
+                                                            <input type="text" class="form-control" id="datepicker-autoclose" name="date">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
                                                     </div>
@@ -97,12 +103,12 @@
                                                     <label class="control-label col-md-4">Pukul :</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="timepicker2">
+                                                            <input type="text" class="form-control" id="timepicker2" name="time">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-clock"></i></span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -138,504 +144,27 @@
                                             <p class="text-muted m-b-30 font-13">
                                                 Pilih kantor cabang terdekat
                                             </p>
-                                            <form role="form">
+                                            <div role="form">
                                                 <div class="form-group">
                                                     <label class="control-label">Kota</label>
-                                                    <select class="form-control">
-                                                        <option>-- Pilih --</option>
-                                                        <option>Jakarta</option>
-                                                        <option>Bandung</option>
-                                                        <option>Semarang</option>
-                                                        <option>Surabaya</option>
-                                                    </select>
+                                                    {!! Form::select('cities', ['' => ''], old('cities'), [
+                                                        'class' => 'select2 cities',
+                                                        'data-placeholder' => 'Pilih Kota'
+                                                    ]) !!}
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="control-label">Kantor Cabang BRI</label>
-                                                    <select class="form-control">
-                                                        <option>-- Pilih --</option>
-                                                        <option>BSD</option>
-                                                        <option>Ragunan</option>
-                                                    </select>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </section>
-                                <h3>Produk</h3>
-                                <section>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h4 class="m-t-0 header-title"><b>Selesai</b></h4>
-                                            <p class="text-muted m-b-30 font-13">
-                                                Pilih produk pembiayaan dan selesai
-                                            </p>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <ul class="nav nav-pills m-b-30">
-                                                        <li class="active">
-                                                            <a href="#kpr" data-toggle="tab" aria-expanded="true">KPR</a>
-                                                        </li>
-                                                        <li class="">
-                                                            <a href="#kkb" data-toggle="tab" aria-expanded="false">KKB</a>
-                                                        </li>
-                                                        <li class="">
-                                                            <a href="#briguna" data-toggle="tab" aria-expanded="false">BRIGUNA</a>
-                                                        </li>
-                                                        <li class="">
-                                                            <a href="#britama" data-toggle="tab" aria-expanded="false">BRITAMA</a>
-                                                        </li>
-                                                        <li class="">
-                                                            <a href="#kur" data-toggle="tab" aria-expanded="false">KUR/KUPEDES</a>
-                                                        </li>
-                                                        <li class="">
-                                                            <a href="#kartu" data-toggle="tab" aria-expanded="false">KARTU KREDIT</a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content br-n pn">
-                                                        <div id="kpr" class="tab-pane active">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jumlah Permohonan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jangka Waktu :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">Tahun</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Lokasi Rumah :</label>
-                                                                            <div class="col-md-8">
-                                                                                <textarea class="form-control" rows="3"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">KPR Aktif ke :</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="number" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Harga Rumah :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Uang Muka :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Luas Bangunan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">m<sup>2</sup></span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <p class="text-muted m-b-30 font-13">
-                                                                Unggah foto dokumen asli
-                                                            </p>
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Dokumen Legal Agunan :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Slip Gaji :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Bank Statement :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Kartu Keluarga :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Akta Pisah Harta :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="kkb" class="tab-pane">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jumlah Permohonan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jangka Waktu :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">Tahun</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Kondisi Kendaraan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Baru</option>
-                                                                                    <option>Bekas</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Merk Kendaraan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Toyota</option>
-                                                                                    <option>Honda</option>
-                                                                                    <option>Suzuki</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Harga Kendaraan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Uang Muka :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jenis Kendaraan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Minibus</option>
-                                                                                    <option>Truk</option>
-                                                                                    <option>Pick Up</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Tahun Pembuatan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control" id="datepicker-year">
-                                                                                    <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <p class="text-muted m-b-30 font-13">
-                                                                Unggah foto dokumen asli
-                                                            </p>
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Dokumen Legal Agunan :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Slip Gaji :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Bank Statement :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Kartu Keluarga :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-6 control-label">Akta Pisah Harta :</label>
-                                                                            <div class="col-md-6">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="briguna" class="tab-pane">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jumlah Permohonan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Status Peminjam :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Kawin</option>
-                                                                                    <option>Tidak Kawin</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jangka Waktu :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">Tahun</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <p class="text-muted m-b-30 font-13">
-                                                                Unggah foto dokumen asli
-                                                            </p>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-4 control-label">Slip Gaji :</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-4 control-label">Bank Statement :</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-4 control-label">Kartu Keluarga :</label>
-                                                                            <div class="col-md-8">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="britama" class="tab-pane">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jumlah Setoran :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Fasilitas E-Banking :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Fasilitas 1</option>
-                                                                                    <option>Fasilitas 2</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Tujuan Penggunaan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Tujuan 1</option>
-                                                                                    <option>Tujuan 2</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="kur" class="tab-pane">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jumlah Permohonan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <span class="input-group-addon">Rp</span>
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">,00</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Jangka Waktu :</label>
-                                                                            <div class="col-md-8">
-                                                                                <div class="input-group">
-                                                                                    <input type="text" class="form-control">
-                                                                                    <span class="input-group-addon">Tahun</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <p class="text-muted m-b-30 font-13">
-                                                                Unggah foto dokumen asli
-                                                            </p>
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Kartu Keluarga :</label>
-                                                                            <div class="col-md-7">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Dokumen Legal Usaha / Ijin Praktek :</label>
-                                                                            <div class="col-md-7">
-                                                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="kartu" class="tab-pane">
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="control-label col-md-4">Tipe Kartu yg Diinginkan :</label>
-                                                                            <div class="col-md-8">
-                                                                                <select class="form-control">
-                                                                                    <option>-- Pilih --</option>
-                                                                                    <option>Visa Touch untuk gaya hidup modern</option>
-                                                                                    <option>MasterCard Easy Card untuk keluarga modern</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {!! Form::select('office_name', ['' => ''], old('office_name'), [
+                                                        'class' => 'select2 offices',
+                                                        'data-placeholder' => 'Pilih Kantor'
+                                                    ]) !!}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </section>
+                                <h3>Produk</h3>
+                                @include('internals.eform.product')
                             </div>
                         </form>
                     </div>
@@ -645,3 +174,124 @@
     </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var lastStatusElement = null;
+        $('.select2').select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+        
+        $('.nik').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getCustomer")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.customers.data,
+                        pagination: {
+                            more: (params.page * data.customers.per_page) < data.customers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.cities').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+       $('#search').on('click', function() {
+           var id = $('#nik').val();
+
+           $.ajax({
+                dataType: 'json',
+                type: 'GET',
+                url: '{{route("detailCustomer")}}',
+                data: { id : id } 
+            }).done(function(data){
+                console.log(data);
+                $('#detail').html(data['view']);
+            });
+           
+       });
+    });
+
+    $('.cities').on('select2:unselect', function (e) {
+        $('.offices').empty().select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+    });
+
+    $('.cities').on('select2:select', function (e) {
+        var citi_id = e.params.data.id;
+        get_offices(citi_id);
+    });
+
+    function get_offices(citi_id) {
+        $('.offices').empty().select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: `/offices?citi_id=${citi_id}`,
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1,
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.offices.data,
+                        pagination: {
+                            more: (params.page * data.offices.per_page) < data.offices.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+    }
+</script>
