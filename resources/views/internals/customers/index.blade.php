@@ -52,10 +52,11 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Jenis Kelamin :</label>
                                                             <div class="col-sm-8">
-                                                            {!! Form::select('office_name', ['' => ''], old('office_name'), [
-                                                                'class' => 'select2 offices',
-                                                                'data-placeholder' => 'Pilih Kantor'
-                                                            ]) !!}
+                                                            <select name="gender" class="form-control">
+                                                                <option disabled="" selected="">Pilih Jenis Kelamin</option>
+                                                                <option value="L">Laki-laki</option>
+                                                                <option value="L">Perempuan</option>
+                                                            </select>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -127,7 +128,7 @@
             },
             "aoColumns" : [
                 { data: "nik", name: 'nik' },
-                { data: "fullname", name: 'fullname' },
+                { data: "name", name: 'name' },
                 { data: "email", name: 'email' },
                 { data: "city", name: 'office_name' },
                 { data: "mobile_phone", name: 'mobile_phone' },
@@ -138,34 +139,6 @@
 
         $('#btn-filter').on('click', function () {
             table.fnDraw();
-        });
-
-        $(document).on('click', '.status input[type=checkbox]', function(e){
-            e.preventDefault();
-            var val = $(this).is(':checked');
-            lastStatusElement = $(this);
-            $(this).prop('checked', !val);
-            $('b.fullname').text($(this).data('customer'));
-            $('#confirm').modal('show');
-        });
-
-        $('.btn-save').click(function () {
-            var val = lastStatusElement.is(':checked');
-            var id = lastStatusElement.attr('id');
-
-            $.ajax({
-                url : `/customers/${id}/actived`,
-                method : 'put',
-                dataType : 'json',
-                data : {
-                    _token : "{!! csrf_token() !!}",
-                    is_actived : !val
-                }
-            })
-            .done(function (response) {
-                table.fnDraw();
-                $('#confirm').modal('hide');
-            });
         });
         
         $('.cities').select2({
@@ -196,47 +169,9 @@
         });
     });
 
-
-    $('.cities').on('select2:unselect', function (e) {
-        $('.offices').empty().select2({
-            witdh : '100%',
-            allowClear: true,
-        });
-    });
-
     $('.cities').on('select2:select', function (e) {
         var citi_id = e.params.data.id;
-        get_offices(citi_id);
     });
-
-    function get_offices(citi_id) {
-        $('.offices').empty().select2({
-            witdh : '100%',
-            allowClear: true,
-            ajax: {
-                url: `/offices?citi_id=${citi_id}`,
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        name: params.term,
-                        page: params.page || 1,
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: data.offices.data,
-                        pagination: {
-                            more: (params.page * data.offices.per_page) < data.offices.total
-                        }
-                    };
-                },
-                cache: true
-            },
-        });
-    }
 
     TableManageButtons.init();
 </script>

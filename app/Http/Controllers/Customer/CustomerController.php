@@ -11,7 +11,7 @@ class CustomerController extends Controller
 {
     protected $columns = [
         'nik',
-        'fullname',
+        'name',
         'email',
         'city',
         'mobile_phone',
@@ -350,11 +350,11 @@ class CustomerController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'office_id' => $request->input('office_id')
+                    'name' => $request->input('search.value')
                 ])->get();
 
         foreach ($customers['customers']['data'] as $key => $customer) {
-            $customer['fullname'] = $customer['first_name'].' '.$customer['last_name'];
+            $customer['name'] = $customer['first_name'].' '.$customer['last_name'];
             $customer['action'] = view('internals.layouts.actions', [
                 'edit' => route('customers.edit', $customer['id']),
                 'show' => route('customers.show', $customer['id']),

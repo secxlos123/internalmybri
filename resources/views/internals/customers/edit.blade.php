@@ -42,19 +42,19 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">NIK :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['nik']}}" name="nik">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['personal']['nik']}}" name="nik" maxlength="16">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Nama Lengkap :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['name']}}" name="full_name" id="full_name">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['name']}}" name="full_name" id="full_name" maxlength="50">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tempat Lahir :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['birth_place']}}" name="birth_place">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['birth_place']}}" name="birth_place" maxlength="50">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -69,7 +69,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Alamat :</label>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" rows="3" name="address">{{$dataCustomer['personal']['address']}}</textarea>
+                                                            <textarea class="form-control" rows="3" name="address" maxlength="255">{{$dataCustomer['personal']['address']}}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,13 +124,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Email :</label>
                                                         <div class="col-md-7">
-                                                            <input type="email" class="form-control" value="{{$dataCustomer['personal']['email']}}" name="email">
+                                                            <input type="email" class="form-control" value="{{$dataCustomer['personal']['email']}}" name="email" maxlength="30">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['mother_name']}}" name="mother_name">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['mother_name']}}" name="mother_name" maxlength="50">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -164,19 +164,19 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Pekerjaan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work']}}" name="work">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work']}}" name="work" maxlength="50">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Perusahaan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['company_name']}}" name="company_name">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['company_name']}}" name="company_name" maxlength="50">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Bidang Pekerjaan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work_field']}}" name="work_field">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work_field']}}" name="work_field" maxlength="50">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -186,19 +186,19 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jabatan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['position']}}" name="position">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['position']}}" name="position" maxlength="50">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Lama Kerja :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work_duration']}}" name="work_duration" >
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['work']['work_duration']}}" name="work_duration" maxlength="2" >
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Alamat Kantor :</label>
                                                         <div class="col-md-8">
-                                                            <textarea class="form-control" rows="3" name="office_address">{{$dataCustomer['work']['office_address']}}</textarea>
+                                                            <textarea class="form-control" rows="3" name="office_address" maxlength="255">{{$dataCustomer['work']['office_address']}}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -222,13 +222,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['salary']}}" name="salary" >
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['salary']}}" name="salary" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Pendapatan Lain :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['other_salary']}}" name="other_salary">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['other_salary']}}" name="other_salary" maxlength="12">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -238,13 +238,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['loan_installment']}}" name="loan_installment">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['loan_installment']}}" name="loan_installment" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['financial']['dependent_amount']}}" name="dependent_amount">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['dependent_amount']}}" name="dependent_amount" maxlength="2">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,13 +269,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['phone']}}" name="phone" maxlength="12">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['contact']['phone']}}" name="phone" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['mobile_phone']}}" name="mobile_phone" maxlength="12">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['contact']['mobile_phone']}}" name="mobile_phone" maxlength="12">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -285,13 +285,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Emergency Contact :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_contact']}}" name="emergency_contact" maxlength="12">
+                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['contact']['emergency_contact']}}" name="emergency_contact" maxlength="12">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Hubungan :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_relation']}}" name="emergency_relation">
+                                                            <input type="text" class="form-control" value="{{$dataCustomer['contact']['emergency_relation']}}" name="emergency_relation" maxlength="50">
                                                         </div>
                                                     </div>
                                                 </div>
