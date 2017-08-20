@@ -26,6 +26,9 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    @if (\Session::has('error'))
+                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    @endif
                     <div class="card-box">
                         <form id="basic-form" action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}

@@ -24,6 +24,9 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
+                                @if (\Session::has('success'))
+                                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                                @endif
                                 <div class="card-box table-responsive">
                                     <div class="add-button">
                                         <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
