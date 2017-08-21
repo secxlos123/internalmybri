@@ -134,7 +134,7 @@ class UserController extends Controller
            ->post('multipart');
         
         if($client['status']['succeded'] == true){
-            \Session::flash('success', 'Data sudah diubah.');
+            \Session::flash('success', 'Data berhasil disimpan.');
             return redirect()->route('users.index');
         }else{
             \Session::flash('error', 'Kesalahan input.');
@@ -202,7 +202,7 @@ class UserController extends Controller
            ->put('multipart');
 
         if($client['status']['succeded'] == true){
-            \Session::flash('success', 'Data sudah diubah.');
+            \Session::flash('success', 'Data berhasil diubah.');
             return redirect()->route('users.index');
         }else{
             \Session::flash('error', 'Kesalahan input.');
