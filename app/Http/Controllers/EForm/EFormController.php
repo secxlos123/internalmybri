@@ -36,6 +36,7 @@ class EFormController extends Controller
     public function index()
     {
         $data = $this->getUser();
+        // dd($data);
         
         return view('internals.eform.index', compact('data'));
     }
@@ -52,7 +53,7 @@ class EFormController extends Controller
         $customers = Client::setEndpoint('customer')
             ->setHeaders(['Authorization' => $data['token']])
             ->setQuery([
-                'name' => $request->input('name'),
+                'nik' => $request->input('name'),
                 'page' => $request->input('page')
             ])
             ->get();
@@ -122,27 +123,28 @@ class EFormController extends Controller
         $customerData = Client::setEndpoint('customer/'.$request->name)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $nik = $customerData['data']['personal']['nik'];
-        // dd($nik);
+        // dd($request);
 
-        // if($request->images){
-        //     $image_path = $request->images->getPathname();
-        //     $image_mime = $request->images->getmimeType();
-        //     $image_name = $request->images->getClientOriginalName();
-        //     $image = [
-        //           'name'     => 'image',
-        //           'filename' => $image_name,
-        //           'Mime-Type'=> $image_mime,
-        //           'contents' => fopen( $image_path, 'r' ),
-        //         ];
-        // }else{
-        //   $image = [
-        //           'name'    => "",
-        //           'contents'=> ""
-        //         ];
-        // }
+        if($request->image){
+            foreach ($request->image as $index => $img) {
+                # code...
+                $image_path = $img->getPathname();
+                $image_mime = $img->getmimeType();
+                $image_name = $img->getClientOriginalName();
+                $image[] = [
+                      'name'     => 'images['.$index.']',
+                      'filename' => $image_name,
+                      'Mime-Type'=> $image_mime,
+                      'contents' => fopen( $image_path, 'r' ),
+                    ];
+            }
+        }else{
+          $allImage = '';
+        }
 
         //get Requests
         $req = [
+                "product_type"      => $request->product_type,
                 "request_amount"    => $request->request_amount,
                 "year"              => $request->year,
                 "home_location"     => $request->home_location,
@@ -152,16 +154,36 @@ class EFormController extends Controller
                 "building_area"     => $request->building_area
                ];
 
-        $newForm = [
-                    'nik'                   => $nik,
-                    'office_id'             => '544',
-                    'product'               => json_encode($req),
-                    "appointment_date"      => $request->date,
-                    "longitude"             => $request->lng,
-                    "latitude"              => $request->lat
-                ];
+        $newForm = array(
+                [
+                  'name'     => 'nik',
+                  'contents' => $nik
+                ],
+                [
+                  'name'     => 'office_id',
+                  'contents' => '544'
+                ],
+                [
+                  'name'     => 'product',
+                  'contents' => json_encode($req)
+                ],
+                [
+                  'name'     => 'appointment_date',
+                  'contents' => $request->date
+                ],
+                [
+                  'name'     => 'longitude',
+                  'contents' => $request->lng
+                ],
+                [
+                  'name'     => 'latitude',
+                  'contents' => $request->lat
+                ]
+            );
 
-        return $newForm;
+        $new = array_merge($newForm, $image);
+
+        return $new;
     }
 
     /**
@@ -175,11 +197,12 @@ class EFormController extends Controller
         $data = $this->getUser();
 
         $newForm = $this->eformRequest($request, $data);
+        // dd($newForm);
 
         $client = Client::setEndpoint('eforms')
            ->setHeaders(['Authorization' => $data['token']])
            ->setBody($newForm)
-           ->post('form_params');
+           ->post('multipart');
         
         if($client['status']['succeded'] == true){
             // dd($client);
@@ -251,9 +274,9 @@ class EFormController extends Controller
                 ])->get();
 
         foreach ($eforms['eforms']['data'] as $key => $form) {
-            $form['ref'] = strtoupper($form['nik']);
-            $form['fullname'] = strtoupper($form['nik']);
-            $form['request_amount'] = '200000000';
+            $form['ref'] = strtoupper($form['ref_number']);
+            $form['fullname'] = strtoupper($form['customer_name']);
+            $form['request_amount'] = $form['nominal'];
             $form['prescreening_status'] = 'green';
             $form['ao'] = 'Foo';
 
