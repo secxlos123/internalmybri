@@ -108,43 +108,43 @@
                                 <div class="col-md-8">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Dokumen Legal Agunan :</label>
+                                            <label class="col-md-6 control-label">Dokumen Legal Agunan *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[collateral_document]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Slip Gaji :</label>
+                                            <label class="col-md-6 control-label">Slip Gaji *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[salary_slip]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Bank Statement :</label>
+                                            <label class="col-md-6 control-label">Bank Statement *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[bank_statement]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Kartu Keluarga :</label>
+                                            <label class="col-md-6 control-label">Kartu Keluarga *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[family_card]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
+                                            <label class="col-md-6 control-label">Akta Nikah/Akta Cerai *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[marriage_certificate]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
+                                            <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[bussiness_document]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Akta Pisah Harta :</label>
+                                            <label class="col-md-6 control-label">Akta Pisah Harta *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[deed]" accept="image/png,image/jpg">
                                             </div>
@@ -158,7 +158,7 @@
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Jumlah Permohonan :</label>
+                                            <label class="control-label col-md-4">Jumlah Permohonan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -168,7 +168,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Jangka Waktu :</label>
+                                            <label class="control-label col-md-4">Jangka Waktu *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control">
@@ -177,7 +177,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Kondisi Kendaraan :</label>
+                                            <label class="control-label col-md-4">Kondisi Kendaraan *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control">
                                                     <option>-- Pilih --</option>
@@ -187,7 +187,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Merk Kendaraan :</label>
+                                            <label class="control-label col-md-4">Merk Kendaraan *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control">
                                                     <option>-- Pilih --</option>
@@ -202,7 +202,7 @@
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Harga Kendaraan :</label>
+                                            <label class="control-label col-md-4">Harga Kendaraan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -212,7 +212,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Uang Muka :</label>
+                                            <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -222,7 +222,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Jenis Kendaraan :</label>
+                                            <label class="control-label col-md-4">Jenis Kendaraan *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control">
                                                     <option>-- Pilih --</option>
@@ -233,7 +233,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Tahun Pembuatan :</label>
+                                            <label class="control-label col-md-4">Tahun Pembuatan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control" id="datepicker-year">
@@ -252,13 +252,13 @@
                                 <div class="col-md-8">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Dokumen Legal Agunan :</label>
+                                            <label class="col-md-6 control-label">Dokumen Legal Agunan *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label">Slip Gaji :</label>
+                                            <label class="col-md-6 control-label">Slip Gaji *:</label>
                                             <div class="col-md-6">
                                                 <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
                                             </div>

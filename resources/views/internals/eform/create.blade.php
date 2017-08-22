@@ -1,6 +1,5 @@
 @section('title','My BRI - Tambah Pengajuan')
 @include('internals.layouts.head')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
@@ -43,7 +42,7 @@
                                         <div class="col-md-6">
                                             <div role="form">
                                                 <div class="form-group">
-                                                    <label class="control-label"">Cari NIK Nasabah</label>
+                                                    <label class="control-label"">Cari NIK Nasabah *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('name', ['' => ''], old('name'), [
                                                                 'class' => 'select2 nik',
@@ -94,7 +93,7 @@
                                             </p>
                                             <div class="form-horizontal" role="form">
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4">Tanggal :</label>
+                                                    <label class="control-label col-md-4">Tanggal *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" id="datepicker-autoclose" name="date">
@@ -103,7 +102,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4">Pukul :</label>
+                                                    <label class="control-label col-md-4">Pukul *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" id="timepicker2" name="time">
@@ -116,7 +115,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h4 class="m-t-0 header-title"><b>Lokasi</b></h4>
+                                            <h4 class="m-t-0 header-title"><b>Lokasi *</b></h4>
                                             <p class="text-muted m-b-30 font-13">
                                                 Tentukan lokasi/tempat Pertemuan
                                             </p>
@@ -149,14 +148,14 @@
                                             </p>
                                             <div role="form">
                                                 <div class="form-group">
-                                                    <label class="control-label">Kota</label>
+                                                    <label class="control-label">Kota *</label>
                                                     {!! Form::select('cities', ['' => ''], old('cities'), [
                                                         'class' => 'select2 cities',
                                                         'data-placeholder' => 'Pilih Kota'
                                                     ]) !!}
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label">Kantor Cabang BRI</label>
+                                                    <label class="control-label">Kantor Cabang BRI *</label>
                                                     {!! Form::select('office_name', ['' => ''], old('office_name'), [
                                                         'class' => 'select2 offices',
                                                         'data-placeholder' => 'Pilih Kantor'

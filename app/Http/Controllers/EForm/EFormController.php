@@ -132,35 +132,11 @@ class EFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLKN()
-    {
-        $data = $this->getUser();
-        
-        return view('internals.eform.lkn', compact('data'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function getDispotition($id)
     {
         $data = $this->getUser();
         
         return view('internals.eform.dispotition', compact('data', 'id'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getVerification($id)
-    {
-        $data = $this->getUser();
-        
-        return view('internals.eform.verification', compact('data', 'id'));
     }
 
     /**
@@ -170,6 +146,11 @@ class EFormController extends Controller
      */
     public function eformRequest($request, $data)
     {
+        // $this->validate($request, [
+        //         'title'     => 'required',
+        //         'content'       => 'mimes:pdf|max:50485760'
+        //     ]);
+        
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$request->name)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
@@ -212,7 +193,7 @@ class EFormController extends Controller
                 ],
                 [
                   'name'     => 'office_id',
-                  'contents' => '544'
+                  'contents' => $request->office_name
                 ],
                 [
                   'name'     => 'product',

@@ -1,6 +1,5 @@
 @section('title','My BRI - E-Form')
 @include('internals.layouts.head')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
             <div class="content-page">
@@ -12,7 +11,7 @@
                                     <h4 class="page-title">E-Form</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="index.html">Dashboard</a>
+                                            <a href="{{url('/')}}">Dashboard</a>
                                         </li>
                                         <li class="active">
                                             E-Form
