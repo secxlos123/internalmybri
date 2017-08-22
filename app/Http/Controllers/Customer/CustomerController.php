@@ -351,7 +351,8 @@ class CustomerController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'name' => $request->input('search.value')
+                    'name'      => $request->input('search.value'),
+                    'page'      => (int) $request->input('page') + 1
                 ])->get();
 
         foreach ($customers['customers']['data'] as $key => $customer) {
@@ -365,7 +366,7 @@ class CustomerController extends Controller
 
         $customers['customers']['draw'] = $request->input('draw');
         $customers['customers']['recordsTotal'] = $customers['customers']['total'];
-        $customers['customers']['recordsFiltered'] = $customers['customers']['per_page'];
+        $customers['customers']['recordsFiltered'] = $customers['customers']['total'];
 
         return response()->json($customers['customers']);
     }
