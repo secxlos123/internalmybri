@@ -242,7 +242,8 @@ class UserController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'office_id' => $request->input('office_id')
+                    'office_id' => $request->input('office_id'),
+                    'page'      => (int) $request->input('page') + 1
                 ])->get();
 
         foreach ($users['users']['data'] as $key => $user) {
@@ -256,7 +257,7 @@ class UserController extends Controller
 
         $users['users']['draw'] = $request->input('draw');
         $users['users']['recordsTotal'] = $users['users']['total'];
-        $users['users']['recordsFiltered'] = $users['users']['per_page'];
+        $users['users']['recordsFiltered'] = $users['users']['total'];
 
         return response()->json($users['users']);
     }
