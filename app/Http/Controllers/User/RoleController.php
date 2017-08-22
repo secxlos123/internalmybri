@@ -192,7 +192,7 @@ class RoleController extends Controller
             $delete = ! $role['is_default'] ? route('roles.destroy', $role['id']) : null;
             $role['action'] = view('internals.layouts.actions', [
                 'edit' => route('roles.edit', $role['id']),
-                'show' => route('roles.show', $role['id']),
+                'showModal' => $role,
                 'delete' => $delete,
             ])->render();
             $roles['roles']['data'][$key] = $role;

@@ -70,8 +70,6 @@
         $('#datatable').on('click','.btn-delete', function(e) {
             $('#destroy').attr('action', $(this).data('url'));
             $('#delete-modal').modal('show');
-            // $("#delete-modal #name").html(name);
-            // $("#delete-modal #id").val(id);
             e.preventDefault();
         });
 
@@ -88,7 +86,12 @@
                     console.log(response);
                     $("#permission tbody").html("");
                     $.each(response, function (index, value){
-                        var html = '<tr><td width="150">'+ index +'</td><td  width="50">'+ value +'</td></tr>';
+                        if(value == true){
+                            check = '<i class="mdi mdi-check"></i>';
+                        }else{
+                            check = '<i class="mdi mdi-close"></i>';
+                        }
+                        var html = '<tr><td width="150">'+ index +'</td><td  width="50">'+ check +'</td></tr>';
                         $("#permission tbody").append(html);
 
                     });
