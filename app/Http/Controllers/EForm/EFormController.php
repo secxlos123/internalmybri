@@ -349,6 +349,7 @@ class EFormController extends Controller
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'office_id' => $request->input('search.value'),
                     'customer_name' => $request->input('search.value'),
+                    'page'      => (int) $request->input('page') + 1
                 ])->get();
 
         foreach ($eforms['eforms']['data'] as $key => $form) {
@@ -369,7 +370,7 @@ class EFormController extends Controller
 
         $eforms['eforms']['draw'] = $request->input('draw');
         $eforms['eforms']['recordsTotal'] = $eforms['eforms']['total'];
-        $eforms['eforms']['recordsFiltered'] = $eforms['eforms']['per_page'];
+        $eforms['eforms']['recordsFiltered'] = $eforms['eforms']['total'];
 
         return response()->json($eforms['eforms']);
     }

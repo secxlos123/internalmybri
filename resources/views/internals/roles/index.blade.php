@@ -59,6 +59,16 @@
             },
             ajax : {
                 url : '/datatables/roles',
+                data : function(d, settings){
+                    var api = new $.fn.dataTable.Api(settings);
+
+                    d.page = Math.min(
+                        Math.max(0, Math.round(d.start / api.page.len())),
+                        api.page.info().pages
+                    );
+
+                    d.office_id = $('.offices').val();
+                }
             },
             aoColumns : [
                 { data: 'name', name: 'name' },
