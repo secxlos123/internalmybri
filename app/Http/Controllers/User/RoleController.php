@@ -185,6 +185,7 @@ class RoleController extends Controller
                     'name'  => $request->input('search.value'),
                     'slug'  => $request->input('search.value'),
                     'sort'  => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                    'page'  => (int) $request->input('page') + 1
                 ])->get();
 
         foreach ($roles['roles']['data'] as $key => $role) {
@@ -200,7 +201,7 @@ class RoleController extends Controller
 
         $roles['roles']['draw'] = $request->input('draw');
         $roles['roles']['recordsTotal'] = $roles['roles']['total'];
-        $roles['roles']['recordsFiltered'] = $roles['roles']['to'];
+        $roles['roles']['recordsFiltered'] = $roles['roles']['total'];
 
         return response()->json($roles['roles']);
     }
