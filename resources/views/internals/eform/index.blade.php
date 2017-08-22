@@ -74,7 +74,8 @@
                                                 <th>Nominal</th>
                                                 <th>KC BRI Terdekat</th>
                                                 <th>AO</th>
-                                                <th>Status Pengajuan</th>
+                                                <th>Status Prescreening</th>
+                                                <th>Status Aplikasi</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -185,23 +186,48 @@
             },
             aoColumns : [
                 {   data: 'ref', name: 'ref' },
-                {   data: 'fullname', name: 'fullname' },
+                {   data: 'customer_name', name: 'customer_name' },
                 {   data: 'request_amount', name: 'request_amount' },
-                {   data: 'office_id', name: 'office_id' },
+                {   data: 'office', name: 'office' },
                 {   data: 'ao', name: 'ao' },
+                {   data: 'application_status', 
+                    name: 'application_status', 
+                    bSortable: false,
+                    mRender: function (data, type, full) {
+                        if(full.application_status == '3'){
+                            color = 'text-success';
+                            text = 'Diterima';
+                        }else if(full.application_status == '2'){
+                            color = 'text-warning';
+                            text = 'Proses';
+                        }else if(full.application_status == '1'){
+                            color = 'text-danger';
+                            text = 'Ditolak';
+                        }else {
+                            color = '';
+                            text = 'Pengajuan Baru';
+                        }
+                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+                    },
+                    createdCell:  function (td, cellData, rowData, row, col) {
+                        $(td).attr('class', 'status'); 
+                    }},
                 {   data: 'prescreening_status', 
                     name: 'prescreening_status', 
                     bSortable: false,
                     mRender: function (data, type, full) {
-                        if(full.prescreening_status == 'green'){
+                        if(full.prescreening_status == '3'){
                             color = 'text-success';
                             text = 'Diterima';
-                        }else if(full.prescreening_status == 'red'){
+                        }else if(full.prescreening_status == '2'){
                             color = 'text-warning';
                             text = 'Proses';
-                        }else{
+                        }else if(full.prescreening_status == '1'){
                             color = 'text-danger';
                             text = 'Ditolak';
+                        }else {
+                            color = '';
+                            text = 'Pengajuan Baru';
                         }
                         return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
                     },

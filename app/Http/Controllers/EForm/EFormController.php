@@ -11,11 +11,12 @@ class EFormController extends Controller
 {
     protected $columns = [
         'ref',
-        'fullname',
+        'customer_name',
         'request_amount',
-        'office_name',
+        'office',
         'ao',
         'prescreening_status',
+        'application_status',
         'action',
     ];
 
@@ -67,6 +68,32 @@ class EFormController extends Controller
         return response()->json(['customers' => $customers['customers']]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAO(Request $request)
+    {
+        $data = $this->getUser();
+
+        $officers = Client::setEndpoint('account-officers')
+            ->setHeaders(['Authorization' => $data['token']])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($officers['account_officers']['data'] as $key => $ao) {
+            // $cust['text'] = $cust['first_name'].' '.$cust['last_name'];
+            $ao['text'] = $ao['name'];
+            $officers['account_officers']['data'][$key] = $ao;
+        }
+
+        return response()->json(['officers' => $officers['account_officers']]);
+    }
+
     public function detailCustomer(Request $request)
     {
         $data = $this->getUser();
@@ -110,6 +137,30 @@ class EFormController extends Controller
         $data = $this->getUser();
         
         return view('internals.eform.lkn', compact('data'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getDispotition($id)
+    {
+        $data = $this->getUser();
+        
+        return view('internals.eform.dispotition', compact('data', 'id'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getVerification($id)
+    {
+        $data = $this->getUser();
+        
+        return view('internals.eform.verification', compact('data', 'id'));
     }
 
     /**
@@ -215,6 +266,32 @@ class EFormController extends Controller
         }
     }
 
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postDispotition(Request $request, $id)
+    {
+        $data = $this->getUser();
+
+        $dispotition = [
+            'ao_id' => $request->name,
+        ];
+
+        $client = Client::setEndpoint('eforms/'.$id.'/disposition')->setHeaders(['Authorization' => $data['token']])->setBody($dispotition)->post();
+
+        if($client['status']['succeded'] == true){
+            \Session::flash('error', 'Disposisi Pengajuan berhasil disimpan!');
+            return redirect()->route('eform.index');
+        }else{
+            \Session::flash('error', 'Disposisi Pengajuan gagal disimpan!');
+            return redirect()->back();
+        }
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -271,17 +348,20 @@ class EFormController extends Controller
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'office_id' => $request->input('search.value'),
+                    'customer_name' => $request->input('search.value'),
                 ])->get();
 
         foreach ($eforms['eforms']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
-            $form['fullname'] = strtoupper($form['customer_name']);
+            $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = $form['nominal'];
-            $form['prescreening_status'] = 'green';
-            $form['ao'] = 'Foo';
+            $form['prescreening_status'] = '0';
+            $form['application_status'] = '0';
+            $form['office'] = $form['office'];
+            $form['ao'] = $form['ao_name'];
 
             $form['action'] = view('internals.layouts.actions', [
-                'assign' => route('eform.edit', $form['id']),
+                'dispotition' => route('getDispotition', $form['id']),
                 'screening' => route('eform.show', $form['id']),
             ])->render();
             $eforms['eforms']['data'][$key] = $form;
