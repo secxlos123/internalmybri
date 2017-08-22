@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customer\CustomerRequest;
+use App\Http\Requests\Customer\UpdateCustomerRequest;
 use Client;
 
 class CustomerController extends Controller
@@ -268,7 +269,6 @@ class CustomerController extends Controller
             \Session::flash('success', 'Data sudah tersimpan!');
             return redirect()->route('customers.index');
          }else{
-         dd($client);
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();
          }
@@ -318,7 +318,7 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCustomerRequest $request, $id)
     {
         $data = $this->getUser();
 
@@ -334,7 +334,6 @@ class CustomerController extends Controller
             \Session::flash('success', 'Data berhasil diubah!');
             return redirect()->route('customers.index');
         }else{
-         dd($client);
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();
         }
