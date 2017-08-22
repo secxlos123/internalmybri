@@ -29,7 +29,20 @@
 @endif
 
 @if (isset($screening))
-	<a href="#" class="btn btn-icon waves-effect waves-light btn-info disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Screening">
+	<a href="#" class="btn btn-icon waves-effect waves-light btn-info " data-toggle="tooltip" data-placement="top" title="" data-original-title="Screening">
 	    <i class="mdi mdi-eye"></i>
 	</a>
+@endif
+
+
+@if (isset($verification))
+<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info">
+    Verifikasi
+</a>
+@endif
+
+@if (isset($lkn))
+<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
+    LKN
+</a>
 @endif

@@ -52,17 +52,22 @@
         Route::resource('users', 'User\UserController');
 
         /* E-Form */
-        Route::get('eform/lkn', ['as'=>'getLKN', 'uses'=>'EForm\EFormController@getLKN']);
 
         Route::get('eform/dispotition/{id}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
         Route::post('/eform/dispotition/{id}', 
             ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
 
-        Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\EFormController@getVerification']);
+        Route::post('/eform/postLKN/{id}', 
+            ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
+
+        Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+
+        Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
+
+        Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
         Route::resource('eform', 'EForm\EFormController');
-
 
     });
 
@@ -91,6 +96,8 @@
 
         /* EForms */
         Route::get('eform', 'EForm\EFormController@datatables');
+
+        Route::get('eform-ao', ['as'=>'eform-ao', 'uses'=>'EForm\AOController@datatables']);
     });
 
 

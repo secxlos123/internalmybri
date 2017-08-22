@@ -13,7 +13,7 @@
                                 <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
                             </li>
                             <li>
-                                <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+                            <a href="@if($data['role']=='ao'){{route('indexAO')}}@else{{route('eform.index')}}@endif" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
                             </li>
                             <li>
                                 <a href="developer.html" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
