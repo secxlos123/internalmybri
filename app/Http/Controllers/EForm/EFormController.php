@@ -227,9 +227,9 @@ class EFormController extends Controller
     public function store(Request $request)
     {
         $data = $this->getUser();
-
+// 
         $newForm = $this->eformRequest($request, $data);
-        // dd($newForm);
+        // dd($data);
 
         $client = Client::setEndpoint('eforms')
            ->setHeaders(['Authorization' => $data['token']])
@@ -239,9 +239,11 @@ class EFormController extends Controller
         if($client['status']['succeded'] == true){
             // dd($client);
             \Session::flash('success', 'Data sudah disimpan.');
-            return redirect()->route('eform.index');
+            ($data['role'] == 'ao') ? $route = 'indexAO' : $route = 'eform.index';
+
+            return redirect()->route($route);
         }else{
-            dd($client);
+            // dd($client);
             \Session::flash('error', 'Kesalahan input.');
             return redirect()->back();
         }
@@ -343,8 +345,9 @@ class EFormController extends Controller
             $form['ao'] = $form['ao_name'];
 
             $form['action'] = view('internals.layouts.actions', [
-                'dispotition' => route('getDispotition', $form['id']),
+                'dispotition' => $form,
                 'screening' => route('eform.show', $form['id']),
+                'approve' => $form,
             ])->render();
             $eforms['eforms']['data'][$key] = $form;
         }

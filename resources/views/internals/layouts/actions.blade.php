@@ -23,7 +23,7 @@
 @endif
 
 @if (isset($dispotition))
-	<a href="{!! $dispotition !!}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
+	<a href="{{route('getDispotition', $dispotition['id'])}}" class="btn btn-icon waves-effect waves-light btn-teal @if($dispotition['ao_name'] == '-')@else disabled @endif" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
 		<i class="mdi mdi-loupe"></i>
 	</a>
 @endif
@@ -44,5 +44,11 @@
 @if (isset($lkn))
 <a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
     LKN
+</a>
+@endif
+
+@if (isset($approve))
+<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info @if($approve['is_approved'] == false)@else disabled @endif" data-original-title="Approval" title="Approval">
+    <i class="mdi mdi-check"></i>
 </a>
 @endif

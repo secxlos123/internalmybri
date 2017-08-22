@@ -200,13 +200,13 @@
                     name: 'application_status', 
                     bSortable: false,
                     mRender: function (data, type, full) {
-                        if(full.application_status == '3'){
+                        if(full.application_status == '0'){
                             color = 'text-success';
                             text = 'Diterima';
-                        }else if(full.application_status == '2'){
+                        }else if(full.application_status == '1'){
                             color = 'text-warning';
                             text = 'Proses';
-                        }else if(full.application_status == '1'){
+                        }else if(full.application_status == '2'){
                             color = 'text-danger';
                             text = 'Ditolak';
                         }else {

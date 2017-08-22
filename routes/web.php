@@ -65,6 +65,14 @@
 
         Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
 
+        Route::put('/eform/verification/{id}', 
+            ['as'=>'postVerification', 'uses'=>'Customer\CustomerController@verifyCustomer']);
+
+        Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
+
+        Route::post('/eform/approve/{id}', 
+            ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
+
         Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
         Route::resource('eform', 'EForm\EFormController');
