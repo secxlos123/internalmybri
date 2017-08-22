@@ -92,9 +92,6 @@
                         $("#permission tbody").append(html);
 
                     });
-                    // // billing detail
-                    // var permission = response[0].permission;
-                    // var status = response[0].status;
 
                     $('#view-modal').modal('show');
                     $("#view-modal #name").html(name);

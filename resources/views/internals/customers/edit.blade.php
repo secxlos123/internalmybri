@@ -40,9 +40,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">NIK :</label>
+                                                        <label class="col-md-3 control-label">NIK *:</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control numericOnly" value="{{$dataCustomer['personal']['nik']}}" name="nik" maxlength="16">
+                                                            <input type="text" class="form-control numericOnly" value="@if(!empty($dataCustomer['personal']['nik'])){{$dataCustomer['personal']['nik']}}@endif" name="nik" maxlength="16">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -54,14 +54,14 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tempat Lahir :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['birth_place']}}" name="birth_place" maxlength="50">
+                                                            <input type="text" class="form-control" value="@if(!empty($dataCustomer['personal']['birth_place'])){{$dataCustomer['personal']['birth_place']}}@endif" name="birth_place" maxlength="50">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tanggal Lahir :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose" value="{{$dataCustomer['personal']['birth_date']}}" name="birth_date">
+                                                                <input type="text" class="form-control" id="datepicker-autoclose" value="@if(!empty($dataCustomer['personal']['birth_date'])){{$dataCustomer['personal']['birth_date']}}@endif" name="birth_date">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                             </div>
                                                         </div>
@@ -69,7 +69,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Alamat :</label>
                                                         <div class="col-md-9">
-                                                            <textarea class="form-control" rows="3" name="address" maxlength="255">{{$dataCustomer['personal']['address']}}</textarea>
+                                                            <textarea class="form-control" rows="3" name="address" maxlength="255">@if(!empty($dataCustomer['personal']['address'])){{$dataCustomer['personal']['address']}}@endif</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -94,8 +94,8 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="citizenship">
                                                                 <option disabled="">-- Pilih --</option>
-                                                                <option {{($dataCustomer['personal']['citizenship'] == "WNI") ? 'selected' : '' }}>WNI</option>
-                                                                <option {{($dataCustomer['personal']['citizenship'] == "WNA") ? 'selected' : '' }}>WNA</option>
+                                                                <option @if(!empty($dataCustomer['personal']['citizenship'])){{($dataCustomer['personal']['citizenship'] == "Indonesia") ? 'selected' : '' }}@endif>WNI</option>
+                                                                <option @if(!empty($dataCustomer['personal']['citizenship'])){{($dataCustomer['personal']['citizenship'] == "WNA") ? 'selected' : '' }}@endif>WNA</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -104,10 +104,10 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="status">
                                                                 <option disabled="">-- Pilih --</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }} value="0">Tidak Menikah</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "1") ? 'selected' : '' }} value="1">Menikah</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "2") ? 'selected' : '' }} value="2">Janda</option>
-                                                                <option {{($dataCustomer['personal']['status'] == "3") ? 'selected' : '' }} value="3">Duda</option>
+                                                                <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }}@endif value="0">Tidak Menikah</option>
+                                                                <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "1") ? 'selected' : '' }}@endif value="1">Menikah</option>
+                                                                <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "2") ? 'selected' : '' }}@endif value="2">Janda</option>
+                                                                <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "3") ? 'selected' : '' }}@endif value="3">Duda</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -116,8 +116,8 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="address_status">
                                                                 <option disabled="">-- Pilih --</option>
-                                                                <option {{($dataCustomer['personal']['address_status'] == "menetap") ? 'selected' : '' }}>Permanen</option>
-                                                                <option {{($dataCustomer['personal']['address_status'] == "sementara") ? 'selected' : '' }}>Sementara</option>
+                                                                <option @if(!empty($dataCustomer['personal']['address_status'])){{($dataCustomer['personal']['address_status'] == "menetap") ? 'selected' : '' }}@endif>Permanen</option>
+                                                                <option @if(!empty($dataCustomer['personal']['address_status'])){{($dataCustomer['personal']['address_status'] == "sementara") ? 'selected' : '' }}@endif>Sementara</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -130,7 +130,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" value="{{$dataCustomer['personal']['mother_name']}}" name="mother_name" maxlength="50">
+                                                            <input type="text" class="form-control" value="@if(!empty($dataCustomer['personal']['mother_name'])){{$dataCustomer['personal']['mother_name']}}@endif" name="mother_name" maxlength="50">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -316,19 +316,19 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto KTP :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['identity']}}" name="identity">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="@if(!empty($dataCustomer['other']['identity'])){{$dataCustomer['other']['identity']}}@endif" name="identity">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto NPWP :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['npwp']}}" name="npwp">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="@if(!empty($dataCustomer['other']['npwp'])){{$dataCustomer['other']['npwp']}}@endif" name="npwp">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Foto Nasabah :</label>
                                                         <div class="col-md-8">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataCustomer['other']['image']}}" name="images">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="@if(!empty($dataCustomer['other']['image'])){{$dataCustomer['other']['image']}}@endif" name="images">
                                                         </div>
                                                     </div>
                                                 </div>

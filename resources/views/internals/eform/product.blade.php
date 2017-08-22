@@ -29,11 +29,12 @@
                     </ul>
                     <div class="tab-content br-n pn">
                         <div id="kpr" class="tab-pane active">
+                            <input type="hidden" name="product_type" value="kpr">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Jumlah Permohonan :</label>
+                                            <label class="control-label col-md-4">Jumlah Permohonan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -43,7 +44,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Jangka Waktu :</label>
+                                            <label class="control-label col-md-4">Jangka Waktu *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control numericOnly" name="year" value="{{old('year')}}" maxlength="2">
@@ -52,7 +53,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Lokasi Rumah :</label>
+                                            <label class="control-label col-md-4">Lokasi Rumah *:</label>
                                             <div class="col-md-8">
                                                 <textarea class="form-control" rows="3" maxlength="255" name="home_location">{{old('home_location')}}</textarea>
                                             </div>
@@ -62,13 +63,13 @@
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">KPR Aktif ke :</label>
+                                            <label class="control-label col-md-4">KPR Aktif ke *:</label>
                                             <div class="col-md-8">
                                                 <input type="number" class="form-control numericOnly" name="active_kpr" value="{{old('active_kpr')}}" value="1" maxlength="2" min="0">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Harga Rumah :</label>
+                                            <label class="control-label col-md-4">Harga Rumah *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -78,7 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Uang Muka :</label>
+                                            <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -88,7 +89,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Luas Bangunan :</label>
+                                            <label class="control-label col-md-4">Luas Bangunan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control numericOnly" name="building_area" value="{{old('building_area')}}" maxlength="5">
@@ -109,43 +110,43 @@
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Dokumen Legal Agunan :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="collateral_document" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[collateral_document]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Slip Gaji :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="salary_slip" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[salary_slip]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Bank Statement :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="bank_statement" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[bank_statement]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Kartu Keluarga :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="family_card" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[family_card]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="marriage_certificate" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[marriage_certificate]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="bussiness_document" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[bussiness_document]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label">Akta Pisah Harta :</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="deed" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[deed]" accept="image/png,image/jpg">
                                             </div>
                                         </div>
                                     </div>

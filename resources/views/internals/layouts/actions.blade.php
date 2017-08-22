@@ -10,6 +10,10 @@
 	</a>
 @endif
 
+@if (isset($showModal))
+	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info btn-view" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail" data-slug="{{$role['slug']}}" data-name="{{$role['name']}}" data-id="{{$role['id']}}">
+@endif
+
 @if (isset($delete))
 	<a href="javascript:void(0)" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus" data-url="{!! $delete !!}">
 		<i class="mdi mdi-delete"></i>
