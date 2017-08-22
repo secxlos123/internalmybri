@@ -60,6 +60,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title"><b>Data Pribadi</b></h4>
                                     <table class="table table-bordered">
                                         <thead class="bg-primary">
@@ -74,9 +75,12 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">NIK</td>
-                                                <td class="align-middle">0987654321</td>
-                                                <td class="align-middle">0987654321</td>
-                                                <td class="align-middle">0987654321</td>
+                                                <td class="align-middle">
+                                                        <span id="nikDF">
+                                                        {{$dataCustomer['personal']['nik']}}</span>
+                                                    </td>
+                                                <td class="align-middle" id="nikCIF">0987654908189866</td>
+                                                <td class="align-middle" id="nikKM">0876543908898678</td>
                                                 <td>
                                                     <a href="#" class="btn waves-effect waves-light btn-default" data-toggle="modal" data-target="#update">Sesuaikan</a>
                                                     <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
@@ -84,7 +88,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Lengkap</td>
-                                                <td class="align-middle">Nasabah 1</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['name']}}</td>
                                                 <td class="align-middle">Nasabah 1</td>
                                                 <td class="align-middle">Nasabah 1</td>
                                                 <td>
@@ -94,7 +98,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Tempat Lahir</td>
-                                                <td class="align-middle">Cianjur</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['birth_place']}}</td>
                                                 <td class="align-middle">Bandung</td>
                                                 <td class="align-middle">Bandung</td>
                                                 <td>
@@ -104,7 +108,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Tanggal Lahir</td>
-                                                <td class="align-middle">17 Agustus 1987</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['birth_date']}}</td>
                                                 <td class="align-middle">17 Agustus 1989</td>
                                                 <td class="align-middle">17 Agustus 1989</td>
                                                 <td>
@@ -114,7 +118,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Alamat</td>
-                                                <td class="align-middle">Jl. Soekarno Hatta No. 12 Bandung 40912</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['address']}}</td>
                                                 <td class="align-middle">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
                                                 <td class="align-middle">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
                                                 <td>
@@ -124,7 +128,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jenis Kelamin</td>
-                                                <td class="align-middle">Laki-laki</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['gender']}}</td>
                                                 <td class="align-middle">Laki-laki</td>
                                                 <td class="align-middle">Laki-laki</td>
                                                 <td>
@@ -134,7 +138,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Kewarganegaraan</td>
-                                                <td class="align-middle">WNI</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['citizenship']}}</td>
                                                 <td class="align-middle">WNI</td>
                                                 <td class="align-middle">WNI</td>
                                                 <td>
@@ -144,7 +148,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Status Pernikahan</td>
-                                                <td class="align-middle">Menikah</td>
+                                                <td class="align-middle">@if($dataCustomer['personal']['status'] == 0) Tidak Menikah @else Menikah @endif</td>
                                                 <td class="align-middle">Menikah</td>
                                                 <td class="align-middle">Menikah</td>
                                                 <td>
@@ -154,7 +158,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Status Tempat Tinggal</td>
-                                                <td class="align-middle">Permanen</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['address_status']}}</td>
                                                 <td class="align-middle">Permanen</td>
                                                 <td class="align-middle">Permanen</td>
                                                 <td>
@@ -164,7 +168,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Email</td>
-                                                <td class="align-middle">nasabah1@gmail.com</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['email']}}</td>
                                                 <td class="align-middle">nasabah1@yahoo.com</td>
                                                 <td class="align-middle">nasabah1@yahoo.com</td>
                                                 <td>
@@ -174,7 +178,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Gadis Ibu Kandung</td>
-                                                <td class="align-middle">Nia</td>
+                                                <td class="align-middle">{{$dataCustomer['personal']['mother_name']}}</td>
                                                 <td class="align-middle">Ani</td>
                                                 <td class="align-middle">Ani</td>
                                                 <td>
@@ -205,7 +209,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jenis Pekerjaan</td>
-                                                <td class="align-middle">Pegawai Swasta</td>
+                                                <td class="align-middle">Pegawai {{$dataCustomer['work']['type']}}</td>
                                                 <td class="align-middle">Pegawai Swasta</td>
                                                 <td class="align-middle">Pegawai Swasta</td>
                                                 <td>
@@ -215,7 +219,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Pekerjaan</td>
-                                                <td class="align-middle">Desainer</td>
+                                                <td class="align-middle">{{$dataCustomer['work']['work']}}</td>
                                                 <td class="align-middle">Web Developer</td>
                                                 <td class="align-middle">Web Developer</td>
                                                 <td>
@@ -225,7 +229,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Perusahaan</td>
-                                                <td class="align-middle">Jaya Abadi</td>
+                                                <td class="align-middle">{{$dataCustomer['work']['company_name']}}</td>
                                                 <td class="align-middle">Jaya Abadi</td>
                                                 <td class="align-middle">Jaya Abadi</td>
                                                 <td>
@@ -235,7 +239,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Bidang Pekerjaan</td>
-                                                <td class="align-middle">Teknologi</td>
+                                                <td class="align-middle">{{$dataCustomer['work']['work_field']}}</td>
                                                 <td class="align-middle">Teknologi</td>
                                                 <td class="align-middle">Teknologi</td>
                                                 <td>
@@ -245,7 +249,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jabatan</td>
-                                                <td class="align-middle">Admin</td>
+                                                <td class="align-middle">{{$dataCustomer['work']['position']}}</td>
                                                 <td class="align-middle">Admin</td>
                                                 <td class="align-middle">Admin</td>
                                                 <td>
@@ -255,7 +259,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Lama Kerja</td>
-                                                <td class="align-middle">5 Tahun</td>
+                                                <td class="align-middle">{{$dataCustomer['work']['work_duration']}} Tahun</td>
                                                 <td class="align-middle">4 Tahun</td>
                                                 <td class="align-middle">4 Tahun</td>
                                                 <td>
@@ -265,7 +269,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Alamat Kantor</td>
-                                                <td class="align-middle">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
+                                                <td class="align-middle">{{$dataCustomer['work']['office_address']}}</td>
                                                 <td class="align-middle">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
                                                 <td class="align-middle">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
                                                 <td>
@@ -296,7 +300,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">Gaji/Pendapatan</td>
-                                                <td class="align-middle">Rp3.000.000,00</td>
+                                                <td class="align-middle">Rp{{$dataCustomer['financial']['salary']}},00</td>
                                                 <td class="align-middle">Rp3.000.000,00</td>
                                                 <td class="align-middle">Rp3.000.000,00</td>
                                                 <td>
@@ -306,7 +310,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Pendapatan Lain</td>
-                                                <td class="align-middle">Tidak ada</td>
+                                                <td class="align-middle">{{$dataCustomer['financial']['other_salary']}}</td>
                                                 <td class="align-middle">Tidak ada</td>
                                                 <td class="align-middle">Tidak ada</td>
                                                 <td>
@@ -316,7 +320,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Angsuran Pinjaman</td>
-                                                <td class="align-middle">Rp1.000.000,00</td>
+                                                <td class="align-middle">Rp{{$dataCustomer['financial']['loan_installment']}},00</td>
                                                 <td class="align-middle">Rp1.000.000,00</td>
                                                 <td class="align-middle">Rp1.000.000,00</td>
                                                 <td>
@@ -326,7 +330,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jumlah Tanggungan</td>
-                                                <td class="align-middle">2</td>
+                                                <td class="align-middle">{{$dataCustomer['financial']['dependent_amount']}}</td>
                                                 <td class="align-middle">1</td>
                                                 <td class="align-middle">1</td>
                                                 <td>
@@ -357,7 +361,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Telepon</td>
-                                                <td class="align-middle">012345678</td>
+                                                <td class="align-middle">{{$dataCustomer['contact']['phone']}}</td>
                                                 <td class="align-middle">012345678</td>
                                                 <td class="align-middle">012345678</td>
                                                 <td>
@@ -367,7 +371,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Handphone</td>
-                                                <td class="align-middle">09876543321</td>
+                                                <td class="align-middle">{{$dataCustomer['contact']['mobile_phone']}}</td>
                                                 <td class="align-middle">09876543321</td>
                                                 <td class="align-middle">09876543321</td>
                                                 <td>
@@ -377,7 +381,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Emergency Contact</td>
-                                                <td class="align-middle">08876543351</td>
+                                                <td class="align-middle">{{$dataCustomer['contact']['emergency_contact']}}</td>
                                                 <td class="align-middle">081234353678</td>
                                                 <td class="align-middle">081234353678</td>
                                                 <td>
@@ -387,7 +391,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Hubungan</td>
-                                                <td class="align-middle">Kakak Kandung</td>
+                                                <td class="align-middle">{{$dataCustomer['contact']['emergency_relation']}}</td>
                                                 <td class="align-middle">Kakak Kandung</td>
                                                 <td class="align-middle">Kakak Kandung</td>
                                                 <td>
@@ -401,14 +405,43 @@
                             </div>
                         </div>
 
+                    <form action="{{route('postVerification', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+                            <input type="hidden" name="nik" value="{{$dataCustomer['personal']['nik']}}" id="nik">
+                            <input type="hidden" name="email" value="{{$dataCustomer['personal']['email']}}" id="email">
+                            <input type="hidden" name="full_name" value="{{$dataCustomer['personal']['name']}}" id="name">
+                            <input type="hidden" name="birth_place" value="{{$dataCustomer['personal']['birth_place']}}" id="birth_place">
+                            <input type="hidden" name="birth_date" value="{{$dataCustomer['personal']['birth_date']}}" id="birth_date">
+                            <input type="hidden" name="address" value="{{$dataCustomer['personal']['address']}}" id="address">
+                            <input type="hidden" name="gender" value="@if($dataCustomer['personal']['gender'] == 'Laki-laki')L @else P @endif" id="gender">
+                            <input type="hidden" name="citizenship" value="{{$dataCustomer['personal']['citizenship']}}" id="citizenship">
+                            <input type="hidden" name="status" value="@if($dataCustomer['personal']['status'] == 'Tidak menikah') 0 @else 1 @endif" id="status">
+                            <input type="hidden" name="address_status" value="{{$dataCustomer['personal']['address_status']}}" id="address_status">
+                            <input type="hidden" name="mother_name" value="{{$dataCustomer['personal']['mother_name']}}" id="mother_name">
+                            <input type="hidden" name="phone" value="{{$dataCustomer['contact']['phone']}}" id="phone">
+                            <input type="hidden" name="mobile_phone" value="{{$dataCustomer['contact']['mobile_phone']}}" id="mobile_phone">
+                            <input type="hidden" name="emergency_contact" value="{{$dataCustomer['contact']['emergency_contact']}}" id="emergency_contact">
+                            <input type="hidden" name="emergency_relation" value="{{$dataCustomer['contact']['emergency_relation']}}" id="emergency_relation">
+                            <input type="hidden" name="work_type" value="pegawai {{$dataCustomer['work']['type']}}" id="type">
+                            <input type="hidden" name="work" value="{{$dataCustomer['work']['work']}}" id="work">
+                            <input type="hidden" name="company_name" value="{{$dataCustomer['work']['company_name']}}" id="company_name">
+                            <input type="hidden" name="work_field" value="{{$dataCustomer['work']['work_field']}}" id="work_field">
+                            <input type="hidden" name="position" value="{{$dataCustomer['work']['position']}}" id="position">
+                            <input type="hidden" name="work_duration" value="{{$dataCustomer['work']['work_duration']}}" id="work_duration">
+                            <input type="hidden" name="office_address" value="{{$dataCustomer['work']['office_address']}}" id="office_address">
+                            <input type="hidden" name="salary" value="{{$dataCustomer['financial']['salary']}}" id="salary">
+                            <input type="hidden" name="other_salary" value="{{$dataCustomer['financial']['other_salary']}}" id="other_salary">
+                            <input type="hidden" name="loan_installment" value="{{$dataCustomer['financial']['loan_installment']}}" id="loan_installment">
+                            <input type="hidden" name="dependent_amount" value="{{$dataCustomer['financial']['dependent_amount']}}" id="dependent_amount">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</a>
+                                    <button type="subm" href="#" id="save" class="btn btn-success waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
                             </div>
                         </div>
-
+                    </form>
                     </div>
                 </div>
         </div>
@@ -441,9 +474,19 @@
 <script type="text/javascript">
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
-            // $("#formLKN").submit();
-            console.log($('#data-source').val());
+            var data = $('#data-source');
+            if(data.val() == 'cif'){
+                $('#nikDF').text($( "#nikCIF" ).text());
+                $('#nik').val($( "#nikCIF" ).text());
+            }else if(data.val() == 'kemendagri'){
+                $('#nikDF').text($( "#nikKM" ).text());
+                $('#nik').val($( "#nikKM" ).text());
+            }
             $('#update').modal('hide');
        });
+
+       // $('#save').on('click', function(e) {
+       //      $("#form1").submit();
+       // });
    });
 </script>

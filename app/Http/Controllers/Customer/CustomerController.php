@@ -38,6 +38,7 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
+        // dd($data);
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
             foreach ($customerData as $role) {
@@ -333,6 +334,34 @@ class CustomerController extends Controller
           // dd($client);
             \Session::flash('success', 'Data berhasil diubah!');
             return redirect()->route('customers.index');
+        }else{
+            \Session::flash('error', 'Lengkapi data Anda!');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verifyCustomer(Request $request, $id)
+    {
+        $data = $this->getUser();
+
+        $newCustomer = $this->customerRequest($request);
+
+        $client = Client::setEndpoint('customer/'.$id)
+         ->setHeaders(['Authorization' => $data['token']])
+         ->setBody($newCustomer)
+         ->put('multipart');
+
+        if($client['status']['succeded'] == true){
+          // dd($client);
+            \Session::flash('success', 'Data berhasil diverifikasi!');
+            return redirect()->route('indexAO');
         }else{
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();
