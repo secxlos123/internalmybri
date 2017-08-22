@@ -54,6 +54,12 @@
         /* E-Form */
         Route::get('eform/lkn', ['as'=>'getLKN', 'uses'=>'EForm\EFormController@getLKN']);
 
+        Route::get('eform/dispotition/{id}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
+
+        Route::post('/eform/dispotition/{id}', 
+            ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
+
+        Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\EFormController@getVerification']);
 
         Route::resource('eform', 'EForm\EFormController');
 
@@ -67,6 +73,8 @@
     Route::get('offices', 'OfficeController');
 
     Route::get('getCustomer', ['as'=>'getCustomer', 'uses'=>'EForm\EFormController@getCustomer']);
+
+    Route::get('getAO', ['as'=>'getAO', 'uses'=>'EForm\EFormController@getAO']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
 
