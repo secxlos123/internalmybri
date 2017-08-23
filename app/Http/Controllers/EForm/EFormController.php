@@ -5,7 +5,9 @@ namespace App\Http\Controllers\EForm;
 use Illuminate\Http\Request;
 use Request as AjaxRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EForm\EFormRequest;
 use Client;
+use Validator;
 
 class EFormController extends Controller
 {
@@ -36,9 +38,7 @@ class EFormController extends Controller
      */
     public function index()
     {
-        $data = $this->getUser();
-        // dd($data);
-        
+        $data = $this->getUser();        
         return view('internals.eform.index', compact('data'));
     }
 
@@ -145,16 +145,16 @@ class EFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      */
     public function eformRequest($request, $data)
-    {
-        // $this->validate($request, [
-        //         'title'     => 'required',
-        //         'content'       => 'mimes:pdf|max:50485760'
-        //     ]);
-        
-        /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$request->name)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-        
-        $nik = $customerData['data']['personal']['nik'];
+    {       
+        if(!empty($request->name)){
+            /* GET Customer Data */
+            $customerData = Client::setEndpoint('customer/'.$request->name)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+            
+            $nik = $customerData['data']['personal']['nik'];
+        }else{
+            \Session::flash("error", "NIP harus diisi");
+            return redirect()->back()->withInput();
+        }
         // dd($request);
 
         if($request->image){
@@ -171,7 +171,8 @@ class EFormController extends Controller
                     ];
             }
         }else{
-          $allImage = '';
+          \Session::flash("error", "Foto Dokumen harus diisi");
+            return redirect()->back()->withInput();
         }
 
         //get Requests
@@ -229,24 +230,75 @@ class EFormController extends Controller
         $data = $this->getUser();
 // 
         $newForm = $this->eformRequest($request, $data);
-        // dd($data);
 
-        $client = Client::setEndpoint('eforms')
-           ->setHeaders(['Authorization' => $data['token']])
-           ->setBody($newForm)
-           ->post('multipart');
-        
-        if($client['status']['succeded'] == true){
-            // dd($client);
-            \Session::flash('success', 'Data sudah disimpan.');
-            ($data['role'] == 'ao') ? $route = 'indexAO' : $route = 'eform.index';
-
-            return redirect()->route($route);
-        }else{
-            // dd($client);
-            \Session::flash('error', 'Kesalahan input.');
-            return redirect()->back();
+        $validator = $this->generalRules($request->all());
+        if ($validator->fails()) {
+            \Session::flash("error", "Data yang anda masukan tidak valid");
+            return redirect()->back()->withErrors($validator->errors())->withInput();
         }
+
+        if ($request->product_type == "kpr") {
+            $validator = $this->kprRules($request->all());
+            if ($validator->fails()) {
+                \Session::flash("error", "Data yang anda masukan tidak valid");
+                return redirect()->back()->withErrors($validator->errors())->withInput();
+            }
+
+            if (!isset($request->image['collateral_document']) || !isset($request->image['salary_slip']) || !isset($request->image['bank_statement']) || !isset($request->image['family_card']) || !isset($request->image['marriage_certificate']) || !isset($request->image['bussiness_document']) || !isset($request->image['deed'])) {
+                \Session::flash("error", "Foto Dokumen tidak boleh ada yang kosong");
+                return redirect()->back()->withInput();
+            }
+
+                $client = Client::setEndpoint('eforms')
+                   ->setHeaders(['Authorization' => $data['token']])
+                   ->setBody($newForm)
+                   ->post('multipart');
+                
+                if($client['status']['succeded'] == true){
+                    // dd($client);
+                    \Session::flash('success', 'Data sudah disimpan.');
+                    ($data['role'] == 'ao') ? $route = 'indexAO' : $route = 'eform.index';
+
+                    return redirect()->route($route);
+                }else{
+                    // dd($client);
+                    \Session::flash('error', 'Kesalahan input.');
+                    return redirect()->back();
+                }
+            } elseif ($request->product_type == "kkb") {
+                $validator = $this->kkbRules($request->all());
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator->errors());
+                }
+
+            } elseif ($request->product_type == "briguna") {
+                $validator = $this->brigunaRules($request->all());
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator->errors());
+                }
+
+            } elseif ($request->product_type == "britama") {
+                $validator = $this->britamaRules($request->all());
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator->errors());
+                }
+
+            } elseif ($request->product_type == "kur") {
+                $validator = $this->kurRules($request->all());
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator->errors());
+                }
+
+            } elseif ($request->product_type == "kartu") {
+                $rules = [
+                            'card_type' => 'required',
+                        ];
+                $validator = Validator::make($request->all(), $rules);
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator->errors());
+                }
+                
+            }
     }
 
      /**
@@ -276,49 +328,9 @@ class EFormController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Get Datatables
+     * @param $request
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public function datatables(Request $request)
     {
@@ -357,5 +369,114 @@ class EFormController extends Controller
         $eforms['eforms']['recordsFiltered'] = $eforms['eforms']['total'];
 
         return response()->json($eforms['eforms']);
+    }
+
+     /**
+     * Validation general
+     * @param $request
+     */
+    public function generalRules($request)
+    {
+        $rules = [
+                    'name' => 'required',
+                    'date' => 'required|date|after_or_equal:today',
+                    'location' => 'required',
+                    'cities' => 'required',
+                    'office_name' => 'required',
+                ];
+
+        $validator = Validator::make($request, $rules);
+        return $validator;
+    }
+
+    /**
+     * Validation KPR
+     * @param $request
+     */
+
+    public function kprRules($request)
+    {
+        $rules = [
+                    'request_amount' => 'required_if:product_type,kpr',
+                    'year' => 'required_if:product_type,kpr',
+                    'home_location' => 'required_if:product_type,kpr',
+                    'active_kpr' => 'required_if:product_type,kpr',
+                    'price' => 'required_if:product_type,kpr',
+                    'down_payment' => 'required_if:product_type,kpr',
+                    'building_area' => 'required_if:product_type,kpr',
+                    'image.*' => 'mimes:jpeg,jpg,png,gif,docx,pdf|max:10000',
+                ];
+
+        $validator = Validator::make($request, $rules);
+        return $validator;
+    }
+
+    /**
+     * Validation KKB
+     * @param $request
+     */
+
+    public function kkbRules($request)
+    {
+        $rules = [
+                    'kkb_application' => 'required',
+                    'kkb_time_periode' => 'required',
+                    'vehicle_condition' => 'required',
+                    'vehicle_brand' => 'required',
+                    'vehicle_price' => 'required',
+                    'kkb_payment' => 'required',
+                    'vehicle_type' => 'required',
+                    'production_year' => 'required',
+                ];
+
+        $validator = Validator::make($request, $rules);
+        return $validator;
+    }
+
+    /**
+     * Validation briguna
+     * @param $request
+     */
+
+    public function brigunaRules($request) {
+        $rules = [
+                    'briguna_application' => 'required',
+                    'briguna_time_periode' => 'required',
+                    'loan_status' => 'required',
+                ];
+
+        $validator = Validator::make($request, $rules);
+        return $validator;
+    }
+
+    /**
+     * Validation britama
+     * @param $request
+     */
+
+    public function britamaRules($request) {
+        $rules = [
+                    'deposit_amount' => 'required',
+                    'ebanking_fasility' => 'required',
+                    'purpose_utilization' => 'required',
+                ];
+
+        $validator = Validator::make($request, $rules);
+        return $validator;
+    }
+
+    /**
+     * Validation KUR
+     * @param $request
+     */
+
+    public function kurRules($request) {
+        $rules = [
+                    'kur_application' => 'required',
+                    'kur_time_periode' => 'required',
+                ];
+
+        $validator = Validator::make($request, $rules);
+        return $validator;
     }
 }
