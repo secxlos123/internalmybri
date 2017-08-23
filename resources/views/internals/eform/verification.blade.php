@@ -29,7 +29,7 @@
                             <div class="col-md-12">
                                 <div class="card-box m-t-30">
                                     <div class="add-button">
-                                        <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Cari Data</a>
+                                        <a href="javascript:void(0);filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Cari Data</a>
                                     </div>
                                     <div id="filter" class="collapse m-b-15">
                                         <div class="row">
@@ -42,7 +42,7 @@
                                                                 <input class="form-control" type="" name="">
                                                             </div>
                                                             <div class="col-sm-3">
-                                                            <a href="#" class="btn btn-success waves-light waves-effect w-md">Cari</a>
+                                                            <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md">Cari</a>
                                                         </div>
                                                             </div>
                                                             <div class="form-group">
@@ -51,7 +51,7 @@
                                                                     <input class="form-control" type="" name="">
                                                                 </div>
                                                                 <div class="col-sm-3">
-                                                            <a href="#" class="btn btn-success waves-light waves-effect w-md">Cari</a>
+                                                            <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md">Cari</a>
                                                         </div>
                                                         </div>
                                                     </form>
@@ -82,108 +82,108 @@
                                                 <td class="align-middle" id="nikCIF">0987654908189866</td>
                                                 <td class="align-middle" id="nikKM">0876543908898678</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default" data-toggle="modal" data-target="#update">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-toggle="modal" data-field="nik">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Lengkap</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['name']}}</td>
-                                                <td class="align-middle">Nasabah 1</td>
-                                                <td class="align-middle">Nasabah 1</td>
+                                                <td class="align-middle"><span id="nameDF">{{$dataCustomer['personal']['name']}}</span></td>
+                                                <td class="align-middle" id="nameCIF">Nasabah 1</td>
+                                                <td class="align-middle" id="nameKM">Nasabah 1</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="name">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Tempat Lahir</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['birth_place']}}</td>
-                                                <td class="align-middle">Bandung</td>
-                                                <td class="align-middle">Bandung</td>
+                                                <td class="align-middle"><span id="birth_placeDF">{{$dataCustomer['personal']['birth_place']}}</span></td>
+                                                <td class="align-middle" id="birth_placeCIF">Bandung</td>
+                                                <td class="align-middle" id="birth_placeKM">Bandung</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="birth_place">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Tanggal Lahir</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['birth_date']}}</td>
-                                                <td class="align-middle">17 Agustus 1989</td>
-                                                <td class="align-middle">17 Agustus 1989</td>
+                                                <td class="align-middle"><span id="birth_dateDF">{{$dataCustomer['personal']['birth_date']}}</span></td>
+                                                <td class="align-middle" id="birth_dateCIF">17 Agustus 1989</td>
+                                                <td class="align-middle" id="birth_dateKM">17 Agustus 1989</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="birth_date">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Alamat</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['address']}}</td>
-                                                <td class="align-middle">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
-                                                <td class="align-middle">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
+                                                <td class="align-middle"><span id="addressDF">{{$dataCustomer['personal']['address']}}</span></td>
+                                                <td class="align-middle" id="addressCIF">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
+                                                <td class="align-middle" id="addressKM">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="address">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jenis Kelamin</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['gender']}}</td>
-                                                <td class="align-middle">Laki-laki</td>
-                                                <td class="align-middle">Laki-laki</td>
+                                                <td class="align-middle"><span id="genderDF">{{$dataCustomer['personal']['gender']}}</span></td>
+                                                <td class="align-middle" id="genderCIF">Laki-laki</td>
+                                                <td class="align-middle" id="genderKM">Laki-laki</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="gender">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Kewarganegaraan</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['citizenship']}}</td>
-                                                <td class="align-middle">WNI</td>
-                                                <td class="align-middle">WNI</td>
+                                                <td class="align-middle"><span id="citizenshipDF">{{$dataCustomer['personal']['citizenship']}}</span></td>
+                                                <td class="align-middle" id="citizenshipCIF">WNI</td>
+                                                <td class="align-middle" id="citizenshipKM">WNI</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="citizenship">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Status Pernikahan</td>
-                                                <td class="align-middle">@if($dataCustomer['personal']['status'] == 0) Tidak Menikah @else Menikah @endif</td>
-                                                <td class="align-middle">Menikah</td>
-                                                <td class="align-middle">Menikah</td>
+                                                <td class="align-middle"><span id="statusDF">@if($dataCustomer['personal']['status'] == 0) Tidak Menikah @else Menikah @endif</span></td>
+                                                <td class="align-middle" id="statusCIF">Menikah</td>
+                                                <td class="align-middle" id="statusKM">Menikah</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="status">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Status Tempat Tinggal</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['address_status']}}</td>
-                                                <td class="align-middle">Permanen</td>
-                                                <td class="align-middle">Permanen</td>
+                                                <td class="align-middle"><span id="address_statusDF">{{$dataCustomer['personal']['address_status']}}</span></td>
+                                                <td class="align-middle" id="address_statusCIF">Permanen</td>
+                                                <td class="align-middle" id="address_statusKM">Permanen</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="address_status">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Email</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['email']}}</td>
-                                                <td class="align-middle">nasabah1@yahoo.com</td>
-                                                <td class="align-middle">nasabah1@yahoo.com</td>
+                                                <td class="align-middle"><span id="emailDF">{{$dataCustomer['personal']['email']}}</span></td>
+                                                <td class="align-middle" id="emailCIF">nasabah1@yahoo.com</td>
+                                                <td class="align-middle" id="emailKM">nasabah1@yahoo.com</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="email">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Gadis Ibu Kandung</td>
-                                                <td class="align-middle">{{$dataCustomer['personal']['mother_name']}}</td>
-                                                <td class="align-middle">Ani</td>
-                                                <td class="align-middle">Ani</td>
+                                                <td class="align-middle"><span id="mother_nameDF">{{$dataCustomer['personal']['mother_name']}}</span></td>
+                                                <td class="align-middle" id="mother_nameCIF">Ani</td>
+                                                <td class="align-middle" id="mother_nameKM">Ani</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="mother_name">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -209,72 +209,72 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jenis Pekerjaan</td>
-                                                <td class="align-middle">Pegawai {{$dataCustomer['work']['type']}}</td>
-                                                <td class="align-middle">Pegawai Swasta</td>
-                                                <td class="align-middle">Pegawai Swasta</td>
+                                                <td class="align-middle"><span id="typeDF">Pegawai {{$dataCustomer['work']['type']}}</span></td>
+                                                <td class="align-middle" id="typeCIF">Pegawai Swasta</td>
+                                                <td class="align-middle" id="typeMK">Pegawai Swasta</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="type">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Pekerjaan</td>
-                                                <td class="align-middle">{{$dataCustomer['work']['work']}}</td>
-                                                <td class="align-middle">Web Developer</td>
-                                                <td class="align-middle">Web Developer</td>
+                                                <td class="align-middle"><span id="workDF">{{$dataCustomer['work']['work']}}</span></td>
+                                                <td class="align-middle" id="workCIF">Web Developer</td>
+                                                <td class="align-middle" id="workKM">Web Developer</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="work">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Perusahaan</td>
-                                                <td class="align-middle">{{$dataCustomer['work']['company_name']}}</td>
-                                                <td class="align-middle">Jaya Abadi</td>
-                                                <td class="align-middle">Jaya Abadi</td>
+                                                <td class="align-middle"><span id="company_nameDF">{{$dataCustomer['work']['company_name']}}</span></td>
+                                                <td class="align-middle" id="company_nameCIF">Jaya Abadi</td>
+                                                <td class="align-middle" id="company_nameKM">Jaya Abadi</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="company_name">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Bidang Pekerjaan</td>
-                                                <td class="align-middle">{{$dataCustomer['work']['work_field']}}</td>
-                                                <td class="align-middle">Teknologi</td>
-                                                <td class="align-middle">Teknologi</td>
+                                                <td class="align-middle"><span id="work_fieldDF">{{$dataCustomer['work']['work_field']}}</span></td>
+                                                <td class="align-middle" id="work_fieldCIF">Teknologi</td>
+                                                <td class="align-middle" id="work_fieldKM">Teknologi</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="work_field">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jabatan</td>
-                                                <td class="align-middle">{{$dataCustomer['work']['position']}}</td>
-                                                <td class="align-middle">Admin</td>
-                                                <td class="align-middle">Admin</td>
+                                                <td class="align-middle"><span id="positionDF">{{$dataCustomer['work']['position']}}</span></td>
+                                                <td class="align-middle" id="positionCIF">Admin</td>
+                                                <td class="align-middle" id="positionKM">Admin</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="position">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Lama Kerja</td>
-                                                <td class="align-middle">{{$dataCustomer['work']['work_duration']}} Tahun</td>
-                                                <td class="align-middle">4 Tahun</td>
-                                                <td class="align-middle">4 Tahun</td>
+                                                <td class="align-middle"><span id="work_durationDF">{{$dataCustomer['work']['work_duration']}} Tahun</span></td>
+                                                <td class="align-middle" id="work_durationCIF">4 Tahun</td>
+                                                <td class="align-middle" id="work_durationKM">4 Tahun</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="work_duration">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Alamat Kantor</td>
-                                                <td class="align-middle">{{$dataCustomer['work']['office_address']}}</td>
-                                                <td class="align-middle">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
-                                                <td class="align-middle">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
+                                                <td class="align-middle"><span id="office_addressDF">{{$dataCustomer['work']['office_address']}}</span></td>
+                                                <td class="align-middle" id="office_addressCIF">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
+                                                <td class="align-middle" id="office_addressKM">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="office_address">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -300,42 +300,42 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">Gaji/Pendapatan</td>
-                                                <td class="align-middle">Rp{{$dataCustomer['financial']['salary']}},00</td>
-                                                <td class="align-middle">Rp3.000.000,00</td>
-                                                <td class="align-middle">Rp3.000.000,00</td>
+                                                <td class="align-middle"><span id="salaryDF">Rp{{$dataCustomer['financial']['salary']}},00</span></td>
+                                                <td class="align-middle" id="salaryCIF">Rp3.000.000,00</td>
+                                                <td class="align-middle" id="salaryKM">Rp3.000.000,00</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="salary">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Pendapatan Lain</td>
-                                                <td class="align-middle">{{$dataCustomer['financial']['other_salary']}}</td>
-                                                <td class="align-middle">Tidak ada</td>
-                                                <td class="align-middle">Tidak ada</td>
+                                                <td class="align-middle"><span id="other_salaryDF">{{$dataCustomer['financial']['other_salary']}}</span></td>
+                                                <td class="align-middle" id="other_salaryCIF">Tidak ada</td>
+                                                <td class="align-middle" id="other_salaryKM">Tidak ada</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="other_salary">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Angsuran Pinjaman</td>
-                                                <td class="align-middle">Rp{{$dataCustomer['financial']['loan_installment']}},00</td>
-                                                <td class="align-middle">Rp1.000.000,00</td>
-                                                <td class="align-middle">Rp1.000.000,00</td>
+                                                <td class="align-middle"><span id="loan_installmentDF">Rp{{$dataCustomer['financial']['loan_installment']}},00</span></td>
+                                                <td class="align-middle" id="loan_installmentCIF">Rp1.000.000,00</td>
+                                                <td class="align-middle" id="loan_installmentKM">Rp1.000.000,00</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="loan_installment">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Jumlah Tanggungan</td>
-                                                <td class="align-middle">{{$dataCustomer['financial']['dependent_amount']}}</td>
-                                                <td class="align-middle">1</td>
-                                                <td class="align-middle">1</td>
+                                                <td class="align-middle"><span id="dependent_amountDF">{{$dataCustomer['financial']['dependent_amount']}}</span></td>
+                                                <td class="align-middle" id="dependent_amountCIF">1</td>
+                                                <td class="align-middle" id="dependent_amountKM">1</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="dependent_amount">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -361,42 +361,42 @@
                                         <tbody>
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Telepon</td>
-                                                <td class="align-middle">{{$dataCustomer['contact']['phone']}}</td>
-                                                <td class="align-middle">012345678</td>
-                                                <td class="align-middle">012345678</td>
+                                                <td class="align-middle"><span id="phoneDF">{{$dataCustomer['contact']['phone']}}</span></td>
+                                                <td class="align-middle" id="phoneCIF">012345678</td>
+                                                <td class="align-middle" id="phoneKM">012345678</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="phone">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Handphone</td>
-                                                <td class="align-middle">{{$dataCustomer['contact']['mobile_phone']}}</td>
-                                                <td class="align-middle">09876543321</td>
-                                                <td class="align-middle">09876543321</td>
+                                                <td class="align-middle"><span id="mobile_phoneDF">{{$dataCustomer['contact']['mobile_phone']}}</span></td>
+                                                <td class="align-middle" id="mobile_phoneCIF">09876543321</td>
+                                                <td class="align-middle" id="mobile_phoneKM">09876543321</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="mobile_phone">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Emergency Contact</td>
-                                                <td class="align-middle">{{$dataCustomer['contact']['emergency_contact']}}</td>
-                                                <td class="align-middle">081234353678</td>
-                                                <td class="align-middle">081234353678</td>
+                                                <td class="align-middle"><span id="emergency_contactDF">{{$dataCustomer['contact']['emergency_contact']}}</span></td>
+                                                <td class="align-middle" id="emergency_contactCIF">081234353678</td>
+                                                <td class="align-middle" id="emergency_contactKM">081234353678</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="emergency_contact">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="align-middle bg-primary">Hubungan</td>
-                                                <td class="align-middle">{{$dataCustomer['contact']['emergency_relation']}}</td>
-                                                <td class="align-middle">Kakak Kandung</td>
-                                                <td class="align-middle">Kakak Kandung</td>
+                                                <td class="align-middle"><span id="emergency_relationDF">{{$dataCustomer['contact']['emergency_relation']}}</span></td>
+                                                <td class="align-middle" id="emergency_relationCIF">Kakak Kandung</td>
+                                                <td class="align-middle" id="emergency_relationKM">Kakak Kandung</td>
                                                 <td>
-                                                    <a href="#" class="btn waves-effect waves-light btn-default">Sesuaikan</a>
-                                                    <a href="#" class="btn waves-effect waves-light btn-success">Verifikasi</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="emergency_relation">Sesuaikan</a>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -432,12 +432,12 @@
                             <input type="hidden" name="office_address" value="{{$dataCustomer['work']['office_address']}}" id="office_address">
                             <input type="hidden" name="salary" value="{{$dataCustomer['financial']['salary']}}" id="salary">
                             <input type="hidden" name="other_salary" value="{{$dataCustomer['financial']['other_salary']}}" id="other_salary">
-                            <input type="hidden" name="loan_installment" value="{{$dataCustomer['financial']['loan_installment']}}" id="loan_installment">
+                            <input type="hidden" class="numericOnly" name="loan_installment" value="{{$dataCustomer['financial']['loan_installment']}}" id="loan_installment">
                             <input type="hidden" name="dependent_amount" value="{{$dataCustomer['financial']['dependent_amount']}}" id="dependent_amount">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-right">
-                                    <button type="subm" href="#" id="save" class="btn btn-success waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
+                                    <button type="subm" href="javascript:void(0);" id="save" class="btn btn-success waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -459,6 +459,7 @@
                                     <option value="cif">Data CIF</option>
                                     <option value="kemendagri">Data Kemendagri</option>
                                 </select>
+                                <input type="hidden" id="field">
                             </div>
                         </div>
                     </div>
@@ -471,22 +472,4 @@
         </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
-<script type="text/javascript">
-    $(document).ready(function() {
-       $('#btnSave').on('click', function(e) {
-            var data = $('#data-source');
-            if(data.val() == 'cif'){
-                $('#nikDF').text($( "#nikCIF" ).text());
-                $('#nik').val($( "#nikCIF" ).text());
-            }else if(data.val() == 'kemendagri'){
-                $('#nikDF').text($( "#nikKM" ).text());
-                $('#nik').val($( "#nikKM" ).text());
-            }
-            $('#update').modal('hide');
-       });
-
-       // $('#save').on('click', function(e) {
-       //      $("#form1").submit();
-       // });
-   });
-</script>
+@include('internals.eform.verification_script')
