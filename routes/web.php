@@ -51,6 +51,9 @@
         /* Users */
         Route::resource('users', 'User\UserController');
 
+        /* Developers */
+        Route::resource('developers', 'Developer\DeveloperController');
+
         /* E-Form */
 
         Route::get('eform/dispotition/{id}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
@@ -101,6 +104,9 @@
 
         /* Customers */
         Route::get('customers', 'Customer\CustomerController@datatables');
+
+        /* Developers */
+        Route::get('developers', 'Developer\DeveloperController@datatables');
 
         /* EForms */
         Route::get('eform', 'EForm\EFormController@datatables');

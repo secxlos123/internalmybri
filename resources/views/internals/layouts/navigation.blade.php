@@ -7,7 +7,7 @@
                                 <a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home </span> </a>
                             </li>
                             <li>
-                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Nasabah </span> </a>
+                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Leads </span> </a>
                             </li>
                             <li>
                                 <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
@@ -16,7 +16,7 @@
                             <a href="@if($data['role']=='ao'){{route('indexAO')}}@else{{route('eform.index')}}@endif" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
                             </li>
                             <li>
-                                <a href="developer.html" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
+                                <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                             </li>
                             <li>
                                 <a href="debitur.html" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
