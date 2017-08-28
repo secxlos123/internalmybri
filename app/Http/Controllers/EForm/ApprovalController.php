@@ -33,7 +33,8 @@ class ApprovalController extends Controller
         $detail = $formDetail['data'];
 
         /*GET DETAIL PRODUCT*/
-        $product = (json_decode($detail['product']));
+        $product = json_decode($detail['product']);
+        // dd($product);
 
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])->setHeaders(['Authorization' => $data['token']])->get();

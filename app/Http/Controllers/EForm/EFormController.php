@@ -178,12 +178,12 @@ class EFormController extends Controller
         //get Requests
         $req = [
                 "product_type"      => $request->product_type,
-                "request_amount"    => $request->request_amount,
+                "request_amount"    => intval(preg_replace('(\D+)', '', $request->request_amount)),
                 "year"              => $request->year,
                 "home_location"     => $request->home_location,
                 "active_kpr"        => $request->active_kpr,
-                "price"             => $request->price,
-                "down_payment"      => $request->down_payment,
+                "price"             => intval(preg_replace('(\D+)', '', $request->price)),
+                "down_payment"      => intval(preg_replace('(\D+)', '', $request->down_payment)),
                 "building_area"     => $request->building_area
                ];
 

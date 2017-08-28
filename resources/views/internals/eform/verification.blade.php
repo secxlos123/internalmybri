@@ -83,7 +83,6 @@
                                                 <td class="align-middle" id="nikKM">0876543908898678</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-toggle="modal" data-field="nik">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -93,7 +92,6 @@
                                                 <td class="align-middle" id="nameKM">Nasabah 1</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="name">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -103,7 +101,6 @@
                                                 <td class="align-middle" id="birth_placeKM">Bandung</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="birth_place">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -113,7 +110,6 @@
                                                 <td class="align-middle" id="birth_dateKM">17 Agustus 1989</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="birth_date">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -123,7 +119,6 @@
                                                 <td class="align-middle" id="addressKM">Jl. Soekarno Hatta No. 12 Bandung 40913</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="address">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -133,7 +128,6 @@
                                                 <td class="align-middle" id="genderKM">Laki-laki</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="gender">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -143,7 +137,6 @@
                                                 <td class="align-middle" id="citizenshipKM">WNI</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="citizenship">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -153,7 +146,6 @@
                                                 <td class="align-middle" id="statusKM">Menikah</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="status">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -163,7 +155,6 @@
                                                 <td class="align-middle" id="address_statusKM">Permanen</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="address_status">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -173,7 +164,6 @@
                                                 <td class="align-middle" id="emailKM">nasabah1@yahoo.com</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="email">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -183,7 +173,6 @@
                                                 <td class="align-middle" id="mother_nameKM">Ani</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="mother_name">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -214,7 +203,6 @@
                                                 <td class="align-middle" id="typeMK">Pegawai Swasta</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="type">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -224,7 +212,6 @@
                                                 <td class="align-middle" id="workKM">Web Developer</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="work">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -234,7 +221,6 @@
                                                 <td class="align-middle" id="company_nameKM">Jaya Abadi</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="company_name">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -244,7 +230,6 @@
                                                 <td class="align-middle" id="work_fieldKM">Teknologi</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="work_field">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -254,7 +239,6 @@
                                                 <td class="align-middle" id="positionKM">Admin</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="position">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -264,7 +248,6 @@
                                                 <td class="align-middle" id="work_durationKM">4 Tahun</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="work_duration">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -274,7 +257,6 @@
                                                 <td class="align-middle" id="office_addressKM">Jl. Soekarno-Hatta No. 52 Kel. Turangga Kec. Turangga Bandung</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="office_address">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -305,7 +287,6 @@
                                                 <td class="align-middle" id="salaryKM">Rp3.000.000,00</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="salary">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -315,7 +296,6 @@
                                                 <td class="align-middle" id="other_salaryKM">Tidak ada</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="other_salary">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -325,7 +305,6 @@
                                                 <td class="align-middle" id="loan_installmentKM">Rp1.000.000,00</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="loan_installment">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -335,7 +314,6 @@
                                                 <td class="align-middle" id="dependent_amountKM">1</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="dependent_amount">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -366,7 +344,6 @@
                                                 <td class="align-middle" id="phoneKM">012345678</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="phone">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -376,7 +353,6 @@
                                                 <td class="align-middle" id="mobile_phoneKM">09876543321</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="mobile_phone">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -386,7 +362,6 @@
                                                 <td class="align-middle" id="emergency_contactKM">081234353678</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="emergency_contact">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -396,7 +371,6 @@
                                                 <td class="align-middle" id="emergency_relationKM">Kakak Kandung</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="emergency_relation">Sesuaikan</a>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-success">Verifikasi</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -437,7 +411,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="pull-right">
-                                    <button type="subm" href="javascript:void(0);" id="save" class="btn btn-success waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
+                                    <button type="submit" href="javascript:void(0);" id="save" class="btn btn-default waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
+                                </div>
+                                <div class="col-md-1 pull-right">
+                                    <button type="submit" href="javascript:void(0);" id="save" class="btn waves-effect waves-light btn-success"><i class="mdi mdi-content-save"></i> Verifikasi</button>
                                 </div>
                             </div>
                         </div>

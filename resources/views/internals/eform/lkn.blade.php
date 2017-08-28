@@ -155,9 +155,9 @@
                                             <label class="col-md-4 control-label">Penghasilan per-Bulan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="income" maxlength="12" value="{{ old('income') }}">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="income" maxlength="24" value="{{ old('income') }}">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('income')) <p class="help-block">{{ $errors->first('income') }}</p> @endif
                                                 </div>
                                             </div>
@@ -166,9 +166,9 @@
                                             <label class="col-md-4 control-label">Gaji / THP :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="income_salary" maxlength="12" value="{{ old('income_salary') }}">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="income_salary" maxlength="24" value="{{ old('income_salary') }}">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('income_salary')) <p class="help-block">{{ $errors->first('income_salary') }}</p> @endif
                                                 </div>
                                             </div>
@@ -177,10 +177,10 @@
                                             <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="income_allowance" maxlength="12" value="{{ old('income_allowance') }}">
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="income_allowance" maxlength="24" value="{{ old('income_allowance') }}">
                                                     @if ($errors->has('income_allowance')) <p class="help-block">{{ $errors->first('income_allowance') }}</p> @endif
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -211,9 +211,9 @@
                                             <label class="col-md-4 control-label">Penghasilan Usaha per-Bulan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="business_income" maxlength="12" value="{{ old('bussiness_income') }}">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="business_income" maxlength="24" value="{{ old('bussiness_income') }}">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('bussiness_income')) <p class="help-block">{{ $errors->first('bussiness_income') }}</p> @endif
                                                 </div>
                                             </div>
@@ -428,9 +428,9 @@
                                             <label class="col-md-5 control-label">Harga Jual *:</label>
                                             <div class="col-md-7">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="selling_price" maxlength="12" value="{{ old('selling_price') }}">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="selling_price" maxlength="24" value="{{ old('selling_price') }}">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                 </div>
                                                     @if ($errors->has('selling_price')) <p class="help-block">{{ $errors->first('selling_price') }}</p> @endif
                                             </div>

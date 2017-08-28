@@ -32,17 +32,17 @@
                         <form id="basic-form" action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div>
-                                <h3>Nasabah</h3>
+                                <h3>Leads</h3>
                                 <section>
-                                    <h4 class="m-t-0 header-title"><b>Nasabah</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Leads</b></h4>
                                     <p class="text-muted m-b-30 font-13">
-                                        Cari NIK nasabah atau tambah nasabah baru
+                                        Cari NIK Leads atau tambah Leads baru
                                     </p>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div role="form">
                                                 <div class="form-group name {!! $errors->has('name') ? 'has-error' : '' !!}">
-                                                    <label class="control-label"">Cari NIK Nasabah *</label>
+                                                    <label class="control-label"">Cari NIK Leads *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('name', ['' => ''], old('name'), [
                                                                 'class' => 'select2 nik',
@@ -62,7 +62,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="{{route('customers.create')}}" class="btn btn-primary waves-effect waves-light m-l-10 btn-md"><i class="fa fa-plus-circle"></i> Tambah Nasabah Baru</a>
+                                                <a href="{{route('customers.create')}}" class="btn btn-primary waves-effect waves-light m-l-10 btn-md"><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -70,14 +70,14 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
                                             <div class="" id="detail">
-                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
+                                                <!-- <h4 class="m-t-0 header-title"><b>Data Leads</b></h4>
  -->
                                                 <!-- ============================================== -->
-                                                <!-- Space untuk Detail Nasabah -->
+                                                <!-- Space untuk Detail Leads -->
                                                <!--  <p class="text-muted font-13 m-t-20" >
-                                                    <code>Space ini nantinya berisi detail nasabah (seperti yang ada di dalam modul nasabah / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
+                                                    <code>Space ini nantinya berisi detail Leads (seperti yang ada di dalam modul Leads / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
                                                 </p> -->
-                                                <!-- End Detail Nasabah -->
+                                                <!-- End Detail Leads -->
                                                 <!-- ============================================== -->
 
                                             </div>
@@ -97,7 +97,7 @@
                                                     <label class="control-label col-md-4">Tanggal *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="datepicker-autoclose" name="date" value="{{old('date')}}">
+                                                            <input type="text" class="form-control" id="datepicker-mindate" name="date" value="{{old('date')}}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
                                                             @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif
