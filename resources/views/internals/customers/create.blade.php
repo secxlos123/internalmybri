@@ -1,4 +1,4 @@
-@section('title','My BRI - Tambah Nasabah')
+@section('title','My BRI - Tambah Leads')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Tambah Nasabah</h4>
+                                    <h4 class="page-title">Tambah Leads</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Nasabah</a>
+                                            <a href="{{route('customers.index')}}">Leads</a>
                                         </li>
                                         <li class="active">
-                                            Tambah Nasabah
+                                            Tambah Leads
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -82,14 +82,11 @@
                                                     <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Jenis Kelamin * :</label>
                                                         <div class="col-md-7">
-                                                            <div class="radio radio-info radio-inline">
-                                                                <input type="radio" id="laki" value="L"  name="gender">
-                                                                <label for="laki"> Laki-laki </label>
-                                                            </div>
-                                                            <div class="radio radio-pink radio-inline">
-                                                                <input type="radio" id="perempuan" value="P" name="gender">
-                                                                <label for="perempuan"> Perempuan </label>
-                                                            </div>
+                                                            <select class="form-control" name="gender">
+                                                                <option disabled="" selected="">-- Pilih --</option>
+                                                                <option value="L">Laki-laki</option>
+                                                                <option value="P">Perempuan</option>
+                                                            </select>
                                                             @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -98,8 +95,8 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="citizenship">
                                                                 <option disabled="" selected="">-- Pilih --</option>
-                                                                <option>WNI</option>
-                                                                <option>WNA</option>
+                                                                <option value="indonesia">WNI</option>
+                                                                <option value="wna">WNA</option>
                                                             </select>
                                                             @if ($errors->has('citizenship')) <p class="help-block">{{ $errors->first('citizenship') }}</p> @endif
                                                         </div>
@@ -142,6 +139,72 @@
                                                             @if ($errors->has('mother_name')) <p class="help-block">{{ $errors->first('mother_name') }}</p> @endif
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="couple_data">
+                            <div class="col-md-12">
+                                @if (\Session::has('error'))
+                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                                @endif
+                                <div class="panel panel-color panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Pasangan</h3>
+                                    </div>
+                                    <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
+                                    {{ csrf_field() }}
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-horizontal" >
+                                                    <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-3 control-label">NIK * :</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control numericOnly" name="nik" id="nik" value="{{ old('nik') }}" maxlength="16">
+                                                            @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group full_name {!! $errors->has('full_name') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-3 control-label">Nama Lengkap * :</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="full_name" id="full_name" value="{{ old('full_name') }}" maxlength="50">
+                                                             @if ($errors->has('full_name')) <p class="help-block">{{ $errors->first('full_name') }}</p> @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group birth_place {!! $errors->has('birth_place') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-3 control-label">Tempat Lahir * :</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}" maxlength="50">
+                                                            @if ($errors->has('birth_place')) <p class="help-block">{{ $errors->first('birth_place') }}</p> @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-3 control-label">Tanggal Lahir * :</label>
+                                                        <div class="col-md-9">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="birth_date" value="{{ old('birth_date') }}">
+                                                                <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
+                                                                @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-5 control-label">KTP Pasangan * :</label>
+                                                        <div class="col-md-7">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
+                                                            @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
+                                                        </div>
+                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -204,9 +267,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group work_duration {!! $errors->has('work_duration') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-4 control-label">Lama Kerja (Tahun) * :</label>
+                                                        <label class="col-md-4 control-label">Lama Kerja * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" value="{{old('work_duration')}}">
+                                                            <div class="col-md-4">
+                                                                <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" value="{{old('work_duration')}}">
+                                                            </div>
+                                                                <label class="col-md-2 control-label">Tahun</label>
+                                                            <div class="col-md-4">
+                                                                <input type="number" class="form-control" name="work_duration" maxlength="2" min="0" max="11" value="{{old('work_duration')}}">
+                                                            </div>
+                                                                <label class="col-md-1 control-label">Bulan</label>
                                                             @if ($errors->has('work_duration')) <p class="help-block">{{ $errors->first('work_duration') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -238,14 +308,14 @@
                                                     <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Gaji/Pendapatan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="salary" maxlength="12" value="{{old('salary')}}" >
+                                                            <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24" value="{{old('salary')}}" >
                                                             @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                         </div>
                                                     </div>
                                                     <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
                                                         <label class="col-md-4 control-label">Pendapatan Lain * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control numericOnly" name="other_salary" maxlength="12" value="{{old('salary')}}" >
+                                                            <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" value="{{old('salary')}}" >
                                                             @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -352,7 +422,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group images {!! $errors->has('images') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-4 control-label">Foto Nasabah * :</label>
+                                                        <label class="col-md-4 control-label">Foto Leads * :</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="images" accept="image/png,image/jpeg,image/gif">
                                                             @if ($errors->has('images')) <p class="help-block">{{ $errors->first('images') }}</p> @endif
@@ -385,7 +455,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah nasabah "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin menambah Leads "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>
@@ -410,5 +480,32 @@
             $("#save #name").html(name);
        });
    });
+
+    function hideEdit(){
+        $('#name').hide();
+        $('#penName').hide();
+        $('#selectSegment').hide();
+        $('#selectCategory').hide();
+        $('#selling').hide();
+        $('#key').hide();
+        $('#title').hide();
+        $('#editor').hide();
+        $('#new_category').hide();
+        $('#spt-editor').hide();
+
+    }
+    hideEdit();
+
+    $('#action').on('change', function() {
+        if(this.value==2){
+            $('#new_category').show();
+            $('#editor').hide();
+        }else if(this.value==1){
+            $('#editor').show();
+            $('#new_category').hide();
+        }else{
+            hideEdit();
+        }
+    })
 
 </script>

@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Nasabah')
+@section('title','My BRI - Daftar Leads')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
                             <div class="col-xs-12">
                                 
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Daftar Nasabah</h4>
+                                    <h4 class="page-title">Daftar Leads</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="{{url('/')}}">Dashboard</a>
                                         </li>
                                         <li class="active">
-                                            Daftar Nasabah
+                                            Daftar Leads
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -30,8 +30,8 @@
                                 <div class="card-box table-responsive">
                                     <div class="add-button">
                                         <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                        <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Nasabah</a>
-                                        <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Nasabah</a>
+                                       <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Leads</a> -->
+                                        <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Leads</a>
                                         <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                                     </div>
                                     <div id="filter" class="collapse m-b-15">
@@ -70,7 +70,7 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>NIK</th>
-                                                <th>Nama Nasabah</th>
+                                                <th>Nama Leads</th>
                                                 <th>Email</th>
                                                 <th>Kota</th>
                                                 <th>Handphone</th>
@@ -82,7 +82,7 @@
                                             <!-- <tr>
                                                 <td class="align-middle">1</td>
                                                 <td class="align-middle">123455667</td>
-                                                <td class="align-middle">Nasabah 1</td>
+                                                <td class="align-middle">Leads 1</td>
                                                 <td class="align-middle">xx@xx.com</td>
                                                 <td class="align-middle">Kota 1</td>
                                                 <td class="align-middle">21213212</td>

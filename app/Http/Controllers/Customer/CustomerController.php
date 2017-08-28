@@ -79,6 +79,8 @@ class CustomerController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
+        $salary = intval(preg_replace('(\D+)', '',$request->salary));
+        $other_salary = intval(preg_replace('(\D+)', '', $request->other_salary));
 
         if($request->npwp){
           $npwp_path = $request->npwp->getPathname();
@@ -230,11 +232,11 @@ class CustomerController extends Controller
                 ],
                 [
                   'name'     => 'salary',
-                  'contents' => $request->salary,
+                  'contents' => $salary,
                 ],
                 [
                   'name'     => 'other_salary',
-                  'contents' => $request->other_salary,
+                  'contents' => $other_salary,
                 ],
                 [
                   'name'     => 'loan_installment',
@@ -386,7 +388,7 @@ class CustomerController extends Controller
         foreach ($customers['customers']['data'] as $key => $customer) {
             $customer['name'] = $customer['first_name'].' '.$customer['last_name'];
             $customer['action'] = view('internals.layouts.actions', [
-                'edit' => route('customers.edit', $customer['id']),
+                // 'edit' => route('customers.edit', $customer['id']),
                 'show' => route('customers.show', $customer['id']),
             ])->render();
             $customers['customers']['data'][$key] = $customer;

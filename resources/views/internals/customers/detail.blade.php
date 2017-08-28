@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Nasabah')
+@section('title','My BRI - Detail Leads')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Detail Nasabah "{{$dataCustomer['personal']['name']}}" </h4>
+                                    <h4 class="page-title">Detail Leads "{{$dataCustomer['personal']['name']}}" </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Nasabah</a>
+                                            <a href="{{route('customers.index')}}">Leads</a>
                                         </li>
                                         <li class="active">
-                                            Detail Nasabah
+                                            Detail Leads
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -298,7 +298,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row foto-nasabah">
+                                            <div class="row foto-Leads">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-color panel-primary">
                                                         <div class="panel-heading">
@@ -321,7 +321,7 @@
                                                                 <div class="col-md-4" align="center">
                                                                     <div class="card-box">
                                                                         <img src="{{$dataCustomer['other']['image']}}" class="img-responsive">
-                                                                        <p>Foto Nasabah</p>
+                                                                        <p>Foto Leads</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
