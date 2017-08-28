@@ -38,6 +38,9 @@
         <script src="{{asset('assets/js/jquery.time-pickers.init.js')}}"></script>
         <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 
+        <script src="{{asset('js/jquery.inputmask.bundle.min.js')}}"></script>
+        <script src="{{asset('js/inputmask.numeric.extensions.js')}}"></script>
+
 
         <script>
            $(document).ready(function() {
@@ -57,6 +60,26 @@
                    e.preventDefault();
                });
            });
+
+           $(document).ready(function() {
+                Inputmask.extendAliases({
+                    rupiah: {
+                        prefix: "Rp ",
+                        radixPoint: ",",
+                        groupSeparator: ".",
+                        alias: "numeric",
+                        placeholder: "0",
+                        autoGroup: !0,
+                        digits: 2,
+                        digitsOptional: !1,
+                        clearMaskOnLostFocus: !1,
+                        rightAlign: false
+                    }
+                });
+                $(document).ready(function() {
+                    $('.currency-rp').inputmask({ alias : "rupiah" });
+                });
+            });
 
            $(".numericOnly").keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
