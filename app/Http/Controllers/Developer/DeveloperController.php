@@ -58,7 +58,7 @@ class DeveloperController extends Controller
      */
     public function devRequest($request, $data)
     {
-        if($request->images){
+        if(!empty($request->image)){
             $imgReq = $request->image;
                 $image_path = $imgReq->getPathname();
                 $image_mime = $imgReq->getmimeType();
@@ -76,7 +76,7 @@ class DeveloperController extends Controller
                 ];
         }
 
-        $allReq = $request->except(['image']);
+        $allReq = $request->except(['image', '_token']);
         foreach ($allReq as $index => $req) {
             $inputData[] = [
                       'name'     => $index,
@@ -105,7 +105,7 @@ class DeveloperController extends Controller
            ->setBody($newDev)
            ->post('multipart');
         
-            dd($client);
+            // dd($client);
         if($client['status']['succeded'] == true){
             \Session::flash('success', 'Data Developer sudah disimpan.');
             return redirect()->route('developers.index');
