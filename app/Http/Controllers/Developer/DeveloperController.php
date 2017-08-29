@@ -170,8 +170,6 @@ class DeveloperController extends Controller
            ->setBody($newDev)
            ->put('multipart');
 
-           dd($client);
-
         if($client['status']['succeded'] == true){
             \Session::flash('success', 'Data Developer sudah diubah.');
             return redirect()->route('developers.index');
