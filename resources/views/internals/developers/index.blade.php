@@ -76,6 +76,7 @@
                                     <th>Nomor Telepon</th>
                                     <th>Kota</th>
                                     <th>Jumlah Project</th>
+                                    <!-- <th>Status</th> -->
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -147,6 +148,18 @@
                 { data: 'phone_number', name: 'phone_number' },
                 { data: 'city_name', name: 'city_name' },
                 { data: 'project', name: 'project' },
+                // {
+                //    data: 'is_actived', 
+                //    name: 'is_actived', 
+                //    bSortable: false,
+                //    mRender: function (data, type, full) {
+                //         var checked = full.is_actived ? 'checked' : '';
+                //         return `<input type="checkbox" data-user="${full.name}" id="${full.id}" class="status" switch="success" ${checked}><label for="${full.id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
+                //    },
+                //    createdCell:  function (td, cellData, rowData, row, col) {
+                //         $(td).attr('class', 'status'); 
+                //    }
+                // },
                 { data: 'action', name: 'action', bSortable: false },
             ],
         });

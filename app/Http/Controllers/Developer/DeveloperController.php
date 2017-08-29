@@ -17,6 +17,7 @@ class DeveloperController extends Controller
         'phone_number',
         'city_name',
         'project',
+        // 'is_actived',
         'action',
     ];
 
