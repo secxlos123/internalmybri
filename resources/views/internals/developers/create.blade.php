@@ -97,10 +97,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group summary {!! $errors->has('summary') ? 'has-error' : '' !!}">
-                                                    <label class="col-md-4 control-label">Ringkasan :</label>
+                                                    <label class="col-md-4 control-label">Ringkasan * :</label>
                                                     <div class="col-md-8">
                                                         <textarea class="form-control" name="summary" cols="3" maxlength="255"></textarea>
-                                                    @if ($errors->has('summary')) <p class="help-block">{{ $errors->first('summary') }}</p> @endif
+                                                    @if ($errors->has('summary')) <p class="help-block"> {{ $errors->first('summary') }}</p> @endif
                                                     </div>
                                                 </div>
                                             </div>

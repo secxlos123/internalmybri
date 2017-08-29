@@ -31,6 +31,7 @@ class UpdateDevRequest extends FormRequest
             "company_name"      => "required",
             "email"             => "required|email",
             "phone"             => "required|digits_between:12,12",
+            "summary"           => "required",
         ];
     }
 
@@ -52,6 +53,7 @@ class UpdateDevRequest extends FormRequest
             "email.required"                 => "Email harus diisi",
             "phone.required"                 => "Nomor Telepon harus diisi",
             "phone.digits_between"           => "Nomor Telepon harus diisi 12 karakter",
+            "summary"                        => "required",
         ];
     }
 }
