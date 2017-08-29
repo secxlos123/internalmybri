@@ -104,7 +104,7 @@
                                                     <div class="form-group status {!! $errors->has('status') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Status Pernikahan * :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control" name="status">
+                                                            <select class="form-control" name="status" id="status">
                                                                 <option disabled="" selected="">-- Pilih --</option>
                                                                 <option value="0">Tidak Menikah</option>
                                                                 <option value="1">Menikah</option>
@@ -481,30 +481,17 @@
        });
    });
 
-    function hideEdit(){
-        $('#name').hide();
-        $('#penName').hide();
-        $('#selectSegment').hide();
-        $('#selectCategory').hide();
-        $('#selling').hide();
-        $('#key').hide();
-        $('#title').hide();
-        $('#editor').hide();
-        $('#new_category').hide();
-        $('#spt-editor').hide();
+    function hideCouple(){
+        $('#couple_data').hide();
 
     }
-    hideEdit();
+    hideCouple();
 
-    $('#action').on('change', function() {
-        if(this.value==2){
-            $('#new_category').show();
-            $('#editor').hide();
-        }else if(this.value==1){
-            $('#editor').show();
-            $('#new_category').hide();
+    $('#status').on('change', function() {
+        if(this.value==1){
+            $('#couple_data').show();
         }else{
-            hideEdit();
+            hideCouple();
         }
     })
 

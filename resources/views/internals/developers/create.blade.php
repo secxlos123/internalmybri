@@ -36,7 +36,7 @@
                                                 <div class="form-group developer_name {!! $errors->has('developer_name') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Nama Developer *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="developer_name" maxlength="50" required="" value="{{old('developer_name')}}" id="name">
+                                                        <input type="text" class="form-control alphaOnly" name="developer_name" maxlength="150" required="" value="{{old('developer_name')}}" id="name">
                                                     @if ($errors->has('developer_name')) <p class="help-block">{{ $errors->first('developer_name') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -71,7 +71,7 @@
                                                 <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Email *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="email" class="form-control" name="email" required="" value="{{old('email')}}">
+                                                        <input type="email" class="form-control" name="email" required="" maxlength="100" value="{{old('email')}}">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                     </div>
                                                 </div>

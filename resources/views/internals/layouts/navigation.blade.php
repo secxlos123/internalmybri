@@ -9,30 +9,30 @@
                             <li>
                                 <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Leads </span> </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
-                            </li>
+                            </li> -->
                             <li>
                             <a href="@if($data['role']=='ao'){{route('indexAO')}}@else{{route('eform.index')}}@endif" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
                             </li>
                             <li>
                                 <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                             </li>
-                            <li>
+                           <!--  <li>
                                 <a href="debitur.html" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
-                            </li>
-                            <li>
+                            </li> -->
+                            <!-- <li>
                                 <a href="penjadwalan.html" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
-                            </li>
-                            <li>
+                            </li> -->
+                            <!-- <li>
                                 <a href="kalkultor.html" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
-                            </li>
-                            <li>
+                            </li> -->
+                           <!--  <li>
                                 <a href="tracking.html" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
-                            </li>
-                            <li>
+                            </li> -->
+                            <!-- <li>
                                 <a href="pihak3.html" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
                             </li>

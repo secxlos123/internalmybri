@@ -102,6 +102,13 @@
                     e.preventDefault();
             }
         });
+
+        $(".alphaOnly").keypress(function (e) {
+            if (e.which >= 48 && e.which <= 57 ) {
+                // $("#errmsg").html("Nama Belakang harus diisi hanya menggunakan huruf").show().fadeOut("slow");
+                return false;
+            }
+        });
         </script>
 @include('internals.layouts.signout')
     </body>

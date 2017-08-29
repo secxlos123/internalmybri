@@ -43,11 +43,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group text-center m-t-30">
+                                        <!-- <div class="form-group text-center m-t-30">
                                             <div class="col-sm-12">
                                                 <a href="{{url('/forgot-password')}}" class="text-muted"><i class="fa fa-lock m-r-5"></i> Lupa kata sandi?</a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group account-btn text-center m-t-10">
                                             <div class="col-xs-12">
                                                 <button class="btn w-md btn-bordered btn-primary waves-effect waves-light" type="submit" id="loginButton" data-loading-text="Loading...">Masuk</button>
