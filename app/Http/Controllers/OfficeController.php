@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class OfficeController extends Controller
 {
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,8 +21,9 @@ class OfficeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $data = $this->getUser();
         $offices = \Client::setEndpoint('offices')
-            ->setHeaders(['Authorization' => session('user.data.token')])
+            ->setHeaders(['Authorization' => $data['token']])
             ->setQuery([
                 'city_id' => $request->input('citi_id'),
                 'page' => $request->input('page'),

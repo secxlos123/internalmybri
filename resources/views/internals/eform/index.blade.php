@@ -248,7 +248,7 @@
             table.fnDraw();
         });
         
-        $('.offices').select2({
+        $('.office').select2({
             witdh : '100%',
             allowClear: true,
             ajax: {
@@ -263,7 +263,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-
                     return {
                         results: data.offices.data,
                         pagination: {

@@ -42,7 +42,8 @@ class CustomerController extends Controller
     public function index()
     {
         /* GET UserLogin Data */
-        $data = $this->getUser();
+        $data = $this->getUser();      
+
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
                       ->setQuery(['limit' => 100])

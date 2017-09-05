@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
+    public function getUser(){
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,8 +22,9 @@ class CityController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $data = $this->getUser();
         $cities = \Client::setEndpoint('cities')
-            ->setHeaders(['Authorization' => session('user.data.token')])
+            ->setHeaders(['Authorization' => $data['token']])
             ->setQuery([
                 'name' => $request->input('name'),
                 'page' => $request->input('page')

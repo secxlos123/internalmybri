@@ -30,7 +30,6 @@ class AOController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        // dd($data);
         
         return view('internals.eform.index-ao', compact('data'));
     }
