@@ -32,6 +32,8 @@
                         <form id="basic-form" action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div>
+                                <h3>Produk</h3>
+                                @include('internals.eform.product')
                                 <h3>Leads</h3>
                                 <section>
                                     <h4 class="m-t-0 header-title"><b>Leads</b></h4>
@@ -85,12 +87,13 @@
                                     </div>
                                 </section>
                                 <h3>Penjadwalan</h3>
+
                                 <section>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h4 class="m-t-0 header-title"><b>Waktu</b></h4>
                                             <p class="text-muted m-b-30 font-13">
-                                                Tentukan Waktu Pertemuan
+                                                Tentukan Perjanjian
                                             </p>
                                             <div class="form-horizontal" role="form">
                                                 <div class="form-group date {!! $errors->has('date') ? 'has-error' : '' !!}">
@@ -103,7 +106,7 @@
                                                             @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <!-- <div class="form-group">
                                                     <label class="control-label col-md-4">Pukul :</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -111,7 +114,7 @@
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-clock"></i></span>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -128,26 +131,27 @@
                                                     <label class="control-label">Lokasi</label>
                                                     <textarea name="location" id="location" class="form-control" readonly="" rows="3">{{old('location')}}</textarea>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <!-- <div class="col-md-3">
                                                     <label class="control-label">Latitude</label>
                                                     <input type="text" name="lat" id="lat" class="form-control" readonly="" value="{{old('lat')}}">
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label class="control-label">Longitude</label>
                                                     <input type="text" name="lng" id="lng" class="form-control" readonly="" value="{{old('lng')}}">
-                                                </div>
+                                                </div> -->
                                                 @if ($errors->has('location')) <p class="help-block">{{ $errors->first('location') }}</p> @endif
                                             </div>
                                         </div>
                                     </div>
                                 </section>
+                               
                                 <h3>Kantor Cabang</h3>
-                                <section>
+                                 <section>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h4 class="m-t-0 header-title"><b>Kantor Cabang</b></h4>
                                             <p class="text-muted m-b-30 font-13">
-                                                Pilih kantor cabang terdekat
+                                                Pilih Lokasi Bank Pengajuan
                                             </p>
                                             <div role="form">
                                                 <div class="form-group >
@@ -172,8 +176,6 @@
                                         </div>
                                     </div>
                                 </section>
-                                <h3>Produk</h3>
-                                @include('internals.eform.product')
                             </div>
                         </form>
                     </div>

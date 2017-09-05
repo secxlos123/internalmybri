@@ -37,9 +37,9 @@
                                             <label class="control-label col-md-4">Jumlah Permohonan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="request_amount" value="{{old('request_amount')}}" maxlength="12">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{old('request_amount')}}" maxlength="24">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
                                                 </div>
                                             </div>
@@ -76,9 +76,9 @@
                                             <label class="control-label col-md-4">Harga Rumah *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="price" value="{{old('price')}}" maxlength="12">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="price" value="{{old('price')}}" maxlength="24">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                                 </div>
                                             </div>
@@ -87,9 +87,9 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly" name="down_payment" value="{{old('down_payment')}}" maxlength="12">
-                                                    <span class="input-group-addon">,00</span>
+                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="24">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
                                                 </div>
                                             </div>
