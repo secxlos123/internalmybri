@@ -153,7 +153,6 @@
                    name: 'is_actived', 
                    bSortable: false,
                    mRender: function (data, type, full) {
-                    console.log(full);
                         var checked = full.is_actived ? 'checked' : '';
                         return `<input type="checkbox" data-user="${full.name}" id="${full.dev_id}" class="status" switch="success" ${checked}><label for="${full.dev_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
                    },
