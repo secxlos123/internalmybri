@@ -339,7 +339,6 @@ class CustomerController extends Controller
          ->put('multipart');
 
         if($client['code'] == 200){
-          // dd($client);
             \Session::flash('success', 'Data berhasil diubah!');
             return redirect()->route('customers.index');
         }else{
@@ -367,7 +366,6 @@ class CustomerController extends Controller
          ->put('multipart');
 
         if($client['code'] == 200){
-          // dd($client);
             \Session::flash('success', 'Data berhasil diverifikasi!');
             return redirect()->route('indexAO');
         }else{
@@ -394,7 +392,6 @@ class CustomerController extends Controller
         foreach ($customers['contents']['data'] as $key => $customer) {
             $customer['name'] = $customer['first_name'].' '.$customer['last_name'];
             $customer['action'] = view('internals.layouts.actions', [
-                // 'edit' => route('customers.edit', $customer['id']),
                 'show' => route('customers.show', $customer['id']),
             ])->render();
             $customers['contents']['data'][$key] = $customer;

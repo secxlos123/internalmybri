@@ -62,17 +62,6 @@ class AOController extends Controller
      */
     public function lknRequest($request, $data)
     {
-        // $this->validate($request, [
-        //         'title'     => 'required',
-        //         'content'       => 'mimes:pdf|max:50485760'
-        //     ]);
-        
-        /* GET Role Data */
-        // $customerData = Client::setEndpoint('customer/'.$request->name)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-        
-        // $nik = $customerData['data']['personal']['nik'];
-        // dd($request);
-
         $imgReq = $request->only(['income_salary_image', 'mutation_file', 'photo_with_customer']);
         foreach ($imgReq as $index => $img) {
         	$image_path = $img->getPathname();
@@ -109,14 +98,12 @@ class AOController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->lknRequest($request, $data);
-    	// dd($data);
 
-    	$client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
+    	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
            ->setHeaders(['Authorization' => $data['token']])
            ->setBody($newForm)
            ->post('multipart');
-        
-            // dd($client);
+
         if($client['code'] == 201){
             \Session::flash('success', 'Data LKN sudah disimpan.');
             return redirect()->route('indexAO');

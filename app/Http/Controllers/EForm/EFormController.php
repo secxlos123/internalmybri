@@ -44,7 +44,7 @@ class EFormController extends Controller
     public function index()
     {
         $data = $this->getUser(); 
-        // dd($data);
+
         if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   
         } elseif ($data['role'] == 'admin') {
@@ -71,7 +71,7 @@ class EFormController extends Controller
             ->get();
 
         foreach ($customers['contents']['data'] as $key => $cust) {
-            // $cust['text'] = $cust['first_name'].' '.$cust['last_name'];
+
             $cust['text'] = $cust['nik'];
             $customers['contents']['data'][$key] = $cust;
         }
@@ -97,7 +97,6 @@ class EFormController extends Controller
             ->get();
 
         foreach ($officers['contents']['data'] as $key => $ao) {
-            // $cust['text'] = $cust['first_name'].' '.$cust['last_name'];
             $ao['text'] = $ao['name'];
             $officers['contents']['data'][$key] = $ao;
         }
@@ -172,7 +171,6 @@ class EFormController extends Controller
             \Session::flash("error", "NIP harus diisi");
             return redirect()->back()->withInput();
         }
-        // dd($request);
 
         if($request->image){
             foreach ($request->image as $index => $img) {
@@ -272,11 +270,9 @@ class EFormController extends Controller
                    ->post('multipart');
                 
                 if($client['code'] == 201){
-                    // dd($client);
                     \Session::flash('success', 'Data sudah disimpan.');
                     return redirect()->route('eform.index');
                 }else{
-                    // dd($client);
                     \Session::flash('error', 'Kesalahan input.');
                     return redirect()->back();
                 }
