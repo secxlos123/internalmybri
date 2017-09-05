@@ -154,7 +154,7 @@
                    bSortable: false,
                    mRender: function (data, type, full) {
                         var checked = full.is_actived ? 'checked' : '';
-                        return `<input type="checkbox" data-user="${full.name}" id="${full.dev_id}" class="status" switch="success" ${checked}><label for="${full.dev_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
+                        return `<input type="checkbox" data-developer="${full.name}" id="${full.dev_id}" class="status" switch="success" ${checked}><label for="${full.dev_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
                    },
                    createdCell:  function (td, cellData, rowData, row, col) {
                         $(td).attr('class', 'status'); 
@@ -173,7 +173,7 @@
             var val = $(this).is(':checked');
             lastStatusElement = $(this);
             $(this).prop('checked', !val);
-            $('b.fullname').text($(this).data('Developer'));
+            $('b.fullname').text($(this).data('developer'));
             $('#confirm').modal('show');
         });
 
