@@ -10,6 +10,11 @@ use Client;
 
 class DeveloperController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('developers', ['except' => ['datatables']]);
+    }
+
     protected $columns = [
         // 'company_name',
         'name',
@@ -106,7 +111,7 @@ class DeveloperController extends Controller
            ->setBody($newDev)
            ->post('multipart');
         
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah disimpan.');
             return redirect()->route('developers.index');
         }else{
@@ -130,9 +135,27 @@ class DeveloperController extends Controller
          /* GET User Data */
         $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
-        $dataDev = $userData['data'];
+        $dataDev = $userData['contents'];
 
         return view('internals.developers.detail', compact('data', 'dataDev'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function property_detail($id)
+    {
+        $data = $this->getUser();
+
+         /* GET User Data */
+        // $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        
+        // $dataDev = $userData['contents'];
+
+        return view('internals.developers.property-detail', compact('data', 'dataDev', 'id'));
     }
 
     /**
@@ -148,7 +171,7 @@ class DeveloperController extends Controller
          /* GET User Data */
         $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
-        $dataDev = $userData['data'];
+        $dataDev = $userData['contents'];
 
         return view('internals.developers.edit', compact('data', 'dataDev', 'id'));
     }
@@ -170,7 +193,7 @@ class DeveloperController extends Controller
            ->setBody($newDev)
            ->put('multipart');
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah diubah.');
             return redirect()->route('developers.index');
         }else{
@@ -206,18 +229,18 @@ class DeveloperController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
-        foreach ($developers['developers']['data'] as $key => $developer) {
+        foreach ($developers['contents']['data'] as $key => $developer) {
             $developer['action'] = view('internals.layouts.actions', [
                 'edit' => route('developers.edit', $developer['dev_id']),
                 'show' => route('developers.show', $developer['dev_id']),
             ])->render();
-            $developers['developers']['data'][$key] = $developer;
+            $developers['contents']['data'][$key] = $developer;
         }
 
-        $developers['developers']['draw'] = $request->input('draw');
-        $developers['developers']['recordsTotal'] = $developers['developers']['total'];
-        $developers['developers']['recordsFiltered'] = $developers['developers']['total'];
+        $developers['contents']['draw'] = $request->input('draw');
+        $developers['contents']['recordsTotal'] = $developers['contents']['total'];
+        $developers['contents']['recordsFiltered'] = $developers['contents']['total'];
 
-        return response()->json($developers['developers']);
+        return response()->json($developers['contents']);
     }
 }

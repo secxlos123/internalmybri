@@ -178,7 +178,7 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-
+                    console.log(data);
                     return {
                         results: data.cities.data,
                         pagination: {

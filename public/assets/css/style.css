@@ -5325,3 +5325,120 @@ table .checkbox {
 #searchInput:focus {
   border-color: #4d90fe;
 }
+.m-l-58 {
+  margin-left: 58px !important;
+}
+.m-l-127 {
+  margin-left: 127px !important;
+}
+.m-l-310 {
+  margin-left: 310px !important;
+}
+.m-t-min30 {
+  margin-top: -30px !important;
+}
+.custom-title {
+  display: block;
+  width: fit-content;
+  background-color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #00529C;
+}
+.m-w-210 {
+  min-width: 210px;
+}
+.dev-logo>img.img-thumbnail {
+    height: 150px;
+    border-radius: 0;
+}
+.w-5 {
+  width: 5%;
+  border-top: solid 3px #eee;
+}
+.property-card {
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  background-clip: padding-box;
+  box-shadow: 0 0 11px 0 rgba(49, 58, 70, 0.15);
+}
+.property-card .property-content {
+  position: relative;
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+}
+.property-card .property-image {
+  display: block;
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+}
+.property-card .property-action {
+  padding: 12px 15px;
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+}
+.property-card .property-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-transform: uppercase;
+}
+.property-card.property-horizontal .property-content {
+  width: 100%;
+  height: 230px;
+}
+.property-card.property-horizontal .property-content .listingInfo {
+  display: table-cell;
+  height: 155px;
+  vertical-align: middle;
+}
+.property-card.property-horizontal .property-content .property-action {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.property-card.property-horizontal .property-content .property-action a {
+  margin-right: 7px;
+  color: #313a46;
+  -webkit-transition: color .3s ease;
+  transition: color .3s ease;
+  display: inline-block;
+  border: 1px solid #dcdee0;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+.property-card.property-horizontal .property-content .property-action a i {
+  font-size: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.property-detail-wrapper {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+.property-detail-wrapper .bx-wrapper {
+  margin-bottom: 0;
+}
+.property-detail-wrapper .bx-wrapper .bx-next {
+  right: 20px;
+}
+.property-detail-wrapper .bx-wrapper .bx-controls-direction a {
+  z-index: 9;
+}
+.property-detail-wrapper #bx-pager a.active img {
+  border: 1px solid #7fc1fc;
+}
+.property-detail-wrapper #bx-pager a img {
+  padding: 3px;
+  border: solid #ccc 1px;
+}
+.property-detail-wrapper .proprerty-features li {
+  line-height: 30px;
+}
+.property-detail-wrapper #map-property {
+  height: 300px;
+  background: #69c;
+}

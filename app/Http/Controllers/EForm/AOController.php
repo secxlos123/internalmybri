@@ -9,6 +9,11 @@ use Client;
 
 class AOController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('eform', ['except' => ['datatables']]);
+    }
+
 	protected $columns = [
         'ref',
         'customer_name',
@@ -113,7 +118,7 @@ class AOController extends Controller
            ->post('multipart');
         
             // dd($client);
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 201){
             \Session::flash('success', 'Data LKN sudah disimpan.');
             return redirect()->route('indexAO');
         }else{
@@ -134,10 +139,12 @@ class AOController extends Controller
         $data = $this->getUser();
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $customerData = Client::setEndpoint('customer/'.$id)
+                      ->setQuery(['limit' => 100])
+                      ->setHeaders(['Authorization' => $data['token']])
+                      ->get();
         
-        $dataCustomer = $customerData['data'];
-        // dd($dataCustomer);
+        $dataCustomer = $customerData['contents'];
         
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
@@ -158,22 +165,22 @@ class AOController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
-        foreach ($eforms['eforms']['data'] as $key => $form) {
+        foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = $form['nominal'];
             $form['appointment_date'] = $form['appointment_date'];
             $form['action'] = view('internals.layouts.actions', [
-                'verification' => route('getVerification', $form['user_id']),
+                'verification' => route('getVerification', $form['User_id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();
-            $eforms['eforms']['data'][$key] = $form;
+            $eforms['contents']['data'][$key] = $form;
         }
 
-        $eforms['eforms']['draw'] = $request->input('draw');
-        $eforms['eforms']['recordsTotal'] = $eforms['eforms']['total'];
-        $eforms['eforms']['recordsFiltered'] = $eforms['eforms']['total'];
+        $eforms['contents']['draw'] = $request->input('draw');
+        $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
+        $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
 
-        return response()->json($eforms['eforms']);
+        return response()->json($eforms['contents']);
     }
 }

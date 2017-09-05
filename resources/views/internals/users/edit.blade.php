@@ -111,7 +111,7 @@
                                                         <div class="col-md-8">
                                                             <select class="form-control" name="role_id">
                                                                 <option disabled="" selected="">-- Pilih --</option>
-                                                                @foreach($roles['roles']['data'] as $role)
+                                                                @foreach($roles['contents']['data'] as $role)
                                                                 <option value="{{$role['id']}}" {{($role['id'] == $dataUser['role_id']) ? 'selected' : '' }}>{{$role['name']}}</option>
                                                                 @endforeach
                                                             </select>
@@ -152,7 +152,7 @@
                                                         <div class="col-md-9">
                                                             <select class="form-control" name="office_id">
                                                                 <option selected="" disabled="" >-- Pilih --</option>
-                                                                @foreach($offices['offices']['data'] as $office)
+                                                                @foreach($offices['contents']['data'] as $office)
                                                                 <option value="{{$office['id']}}" {{($office['id'] == $dataUser['office_id']) ? 'selected' : '' }}>{{$office['name']}}</option>
                                                                 @endforeach
                                                             </select>

@@ -21,11 +21,11 @@ class CityController extends Controller
             ])
             ->get();
 
-        foreach ($cities['cities']['data'] as $key => $city) {
+        foreach ($cities['contents']['data'] as $key => $city) {
             $city['text'] = $city['name'];
-            $cities['cities']['data'][$key] = $city;
+            $cities['contents']['data'][$key] = $city;
         }
 
-        return response()->json(['cities' => $cities['cities']]);
+        return response()->json(['cities' => $cities['contents']]);
     }
 }

@@ -160,7 +160,6 @@
                                                     <div class="card-box table-responsive">
                                                         <div class="add-button">
                                                             <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                                            <a href="tambah-property.html" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Property</a>
                                                             <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                                                         </div>
                                                         <div id="filter" class="collapse m-b-15">
@@ -220,10 +219,7 @@
                                                                     <td class="align-middle">1</td>
                                                                     <td class="align-middle">100</td>
                                                                     <td>
-                                                                        <a href="#" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                                            <i class="mdi mdi-pencil"></i>
-                                                                        </a>
-                                                                        <a href="property-detail.html" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                                        <a href="{{route('property_detail', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
                                                                             <i class="mdi mdi-eye"></i>
                                                                         </a>
                                                                     </td>
@@ -235,10 +231,7 @@
                                                                     <td class="align-middle">4</td>
                                                                     <td class="align-middle">200</td>
                                                                     <td>
-                                                                        <a href="#" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                                            <i class="mdi mdi-pencil"></i>
-                                                                        </a>
-                                                                        <a href="property-detail.html" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
+                                                                        <a href="{{route('property_detail', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">
                                                                             <i class="mdi mdi-eye"></i>
                                                                         </a>
                                                                     </td>

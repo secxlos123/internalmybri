@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('dashboard');
+    // }
+
 	public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');

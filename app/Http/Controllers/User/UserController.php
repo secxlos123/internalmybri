@@ -9,6 +9,11 @@ use Client;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('user', ['except' => ['datatables']]);
+    }
+
     protected $columns = [
         'nip',
         'fullname',
@@ -37,6 +42,7 @@ class UserController extends Controller
     public function index()
     {
         $data = $this->getUser();
+        // dd($data);
         return view('internals.users.index', compact('data'));
     }
 
@@ -50,9 +56,13 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET Role Data */
-        $roles = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
+        $roles = Client::setEndpoint('role')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->get();
         /* GET Office Data */
-        $offices = Client::setEndpoint('offices')->setHeaders(['Authorization' => $data['token']])->get();
+        $offices = Client::setEndpoint('offices')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->get();
 
         return view('internals.users.create', compact('data', 'roles', 'offices'));
     }
@@ -133,7 +143,7 @@ class UserController extends Controller
            ->setBody($newUser)
            ->post('multipart');
         
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil disimpan.');
             return redirect()->route('users.index');
         }else{
@@ -155,7 +165,7 @@ class UserController extends Controller
          /* GET User Data */
         $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
-        $dataUser = $userData['data'];
+        $dataUser = $userData['contents'];
 
         return view('internals.users.detail', compact('data', 'dataUser'));
     }
@@ -173,12 +183,16 @@ class UserController extends Controller
          /* GET User Data */
         $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
-        $dataUser = $userData['data'];
+        $dataUser = $userData['contents'];
 
          /* GET Role Data */
-        $roles = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->get();
+        $roles = Client::setEndpoint('role')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->get();
         /* GET Office Data */
-        $offices = Client::setEndpoint('offices')->setHeaders(['Authorization' => $data['token']])->get();
+        $offices = Client::setEndpoint('offices')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->get();
 
         return view('internals.users.edit', compact('data', 'dataUser', 'roles', 'offices'));
     }
@@ -195,13 +209,15 @@ class UserController extends Controller
         $data = $this->getUser();
 
         $newUser = $this->userRequest($request);
+        // dd($newUser);
 
         $client = Client::setEndpoint('user/'.$id)
            ->setHeaders(['Authorization' => $data['token']])
            ->setBody($newUser)
            ->put('multipart');
 
-        if($client['status']['succeded'] == true){
+
+        if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil diubah.');
             return redirect()->route('users.index');
         }else{
@@ -246,19 +262,19 @@ class UserController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
-        foreach ($users['users']['data'] as $key => $user) {
+        foreach ($users['contents']['data'] as $key => $user) {
             $user['role_slug'] = strtoupper($user['role_slug']);
             $user['action'] = view('internals.layouts.actions', [
                 'edit' => route('users.edit', $user['id']),
                 'show' => route('users.show', $user['id']),
             ])->render();
-            $users['users']['data'][$key] = $user;
+            $users['contents']['data'][$key] = $user;
         }
 
-        $users['users']['draw'] = $request->input('draw');
-        $users['users']['recordsTotal'] = $users['users']['total'];
-        $users['users']['recordsFiltered'] = $users['users']['total'];
+        $users['contents']['draw'] = $request->input('draw');
+        $users['contents']['recordsTotal'] = $users['contents']['total'];
+        $users['contents']['recordsFiltered'] = $users['contents']['total'];
 
-        return response()->json($users['users']);
+        return response()->json($users['contents']);
     }
 }

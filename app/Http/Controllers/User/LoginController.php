@@ -44,9 +44,11 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-        $client = Client::setEndpoint('auth/login')->setBody($data)->post();
+        $client = Client::setEndpoint('auth/login')
+                ->setBody($data)
+                ->post();
 
-        $codeResponse = $client['status']['code'];
+        $codeResponse = $client['code'];
 
         if($codeResponse == 200){
             session()->put('user', $client);

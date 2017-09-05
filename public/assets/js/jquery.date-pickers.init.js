@@ -2,10 +2,10 @@ jQuery(document).ready(function () {
     // Date Picker
     jQuery('#datepicker').datepicker();
     jQuery('#datepicker-autoclose').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd-MM-yyyy",
         clearBtn: true,
         autoclose: true,
-        todayHighlight: true,
+        todayHighlight: true
     });
     jQuery('#datepicker-year').datepicker({
         format: "yyyy",
@@ -23,13 +23,5 @@ jQuery(document).ready(function () {
     });
     jQuery('#date-range').datepicker({
         toggleActive: true
-    });
-    jQuery('#datepicker-mindate').datepicker({
-        format: "yyyy-mm-dd",
-        clearBtn: true,
-        autoclose: true,
-        todayHighlight: true,
-        startDate: '0',
-        hideIfNoPrevNext: true
     });
 });

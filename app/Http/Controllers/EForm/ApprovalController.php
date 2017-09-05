@@ -28,7 +28,9 @@ class ApprovalController extends Controller
         $data = $this->getUser();
 
          /* GET Form Data */
-        $formDetail = Client::setEndpoint('eforms/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
+        $formDetail = Client::setEndpoint('eforms/'.$id)
+                    ->setHeaders(['Authorization' => $data['token']])
+                    ->get();
         
         $detail = $formDetail['data'];
 
@@ -37,9 +39,11 @@ class ApprovalController extends Controller
         // dd($product);
 
         /*GET DETAIL CUST*/
-        $customerData = Client::setEndpoint('customer/'.$detail['user_id'])->setHeaders(['Authorization' => $data['token']])->get();
+        $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
+                        ->setHeaders(['Authorization' => $data['token']])
+                        ->get();
 
-        $customer = $customerData['data'];
+        $customer = $customerData['contents'];
         // dd($detail);
 
         return view('internals.eform.approval', compact('data', 'detail', 'product', 'customer', 'id'));
@@ -60,11 +64,10 @@ class ApprovalController extends Controller
 
         $client = Client::setEndpoint('eforms/'.$id.'/approve')->setHeaders(['Authorization' => $data['token']])->setBody($dispotition)->post();
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 201){
             \Session::flash('success', 'EForm berhasil diapprove!');
             return redirect()->route('eform.index');
         }else{
-        dd($client);
             \Session::flash('error', 'EForm gagal diapprove!');
             return redirect()->back();
         }

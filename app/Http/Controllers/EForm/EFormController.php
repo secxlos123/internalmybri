@@ -11,6 +11,11 @@ use Validator;
 
 class EFormController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('eform', ['except' => ['datatables']]);
+    }
+
     protected $columns = [
         'ref',
         'customer_name',
@@ -38,8 +43,14 @@ class EFormController extends Controller
      */
     public function index()
     {
-        $data = $this->getUser();        
-        return view('internals.eform.index', compact('data'));
+        $data = $this->getUser(); 
+        // dd($data);
+        if($data['role'] == 'ao'){
+            return view('internals.eform.index-ao', compact('data'));   
+        } elseif ($data['role'] == 'admin') {
+            return view('internals.eform.index', compact('data'));
+            # code...
+        }     
     }
 
     /**
@@ -59,13 +70,13 @@ class EFormController extends Controller
             ])
             ->get();
 
-        foreach ($customers['customers']['data'] as $key => $cust) {
+        foreach ($customers['contents']['data'] as $key => $cust) {
             // $cust['text'] = $cust['first_name'].' '.$cust['last_name'];
             $cust['text'] = $cust['nik'];
-            $customers['customers']['data'][$key] = $cust;
+            $customers['contents']['data'][$key] = $cust;
         }
 
-        return response()->json(['customers' => $customers['customers']]);
+        return response()->json(['customers' => $customers['contents']]);
     }
 
     /**
@@ -85,13 +96,13 @@ class EFormController extends Controller
             ])
             ->get();
 
-        foreach ($officers['account_officers']['data'] as $key => $ao) {
+        foreach ($officers['contents']['data'] as $key => $ao) {
             // $cust['text'] = $cust['first_name'].' '.$cust['last_name'];
             $ao['text'] = $ao['name'];
-            $officers['account_officers']['data'][$key] = $ao;
+            $officers['contents']['data'][$key] = $ao;
         }
 
-        return response()->json(['officers' => $officers['account_officers']]);
+        return response()->json(['officers' => $officers['contents']]);
     }
 
     public function detailCustomer(Request $request)
@@ -99,9 +110,12 @@ class EFormController extends Controller
         $data = $this->getUser();
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$request->id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $customerData = Client::setEndpoint('customer/'.$request->id)
+                        ->setQuery(['limit' => 100])
+                        ->setHeaders(['Authorization' => $data['token']])
+                        ->get();
         
-        $dataCustomer = $customerData['data'];
+        $dataCustomer = $customerData['contents'];
 
         if(!empty($dataCustomer)){
             $view = (String)view('internals.eform.detail-customer')
@@ -148,9 +162,12 @@ class EFormController extends Controller
     {       
         if(!empty($request->name)){
             /* GET Customer Data */
-            $customerData = Client::setEndpoint('customer/'.$request->name)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+            $customerData = Client::setEndpoint('customer/'.$request->name)
+                            ->setQuery(['limit' => 100])
+                            ->setHeaders(['Authorization' => $data['token']])
+                            ->get();
             
-            $nik = $customerData['data']['personal']['nik'];
+            $nik = $customerData['contents']['personal']['nik'];
         }else{
             \Session::flash("error", "NIP harus diisi");
             return redirect()->back()->withInput();
@@ -254,12 +271,10 @@ class EFormController extends Controller
                    ->setBody($newForm)
                    ->post('multipart');
                 
-                if($client['status']['succeded'] == true){
+                if($client['code'] == 201){
                     // dd($client);
                     \Session::flash('success', 'Data sudah disimpan.');
-                    ($data['role'] == 'ao') ? $route = 'indexAO' : $route = 'eform.index';
-
-                    return redirect()->route($route);
+                    return redirect()->route('eform.index');
                 }else{
                     // dd($client);
                     \Session::flash('error', 'Kesalahan input.');
@@ -315,9 +330,12 @@ class EFormController extends Controller
             'ao_id' => $request->name,
         ];
 
-        $client = Client::setEndpoint('eforms/'.$id.'/disposition')->setHeaders(['Authorization' => $data['token']])->setBody($dispotition)->post();
+        $client = Client::setEndpoint('eforms/'.$id.'/disposition')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setBody($dispotition)
+                ->post();
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 201){
             \Session::flash('error', 'Disposisi Pengajuan berhasil disimpan!');
             return redirect()->route('eform.index');
         }else{
@@ -347,7 +365,7 @@ class EFormController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
-        foreach ($eforms['eforms']['data'] as $key => $form) {
+        foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = $form['nominal'];
@@ -361,12 +379,12 @@ class EFormController extends Controller
                 'screening' => route('eform.show', $form['id']),
                 'approve' => $form,
             ])->render();
-            $eforms['eforms']['data'][$key] = $form;
+            $eforms['contents']['data'][$key] = $form;
         }
 
-        $eforms['eforms']['draw'] = $request->input('draw');
-        $eforms['eforms']['recordsTotal'] = $eforms['eforms']['total'];
-        $eforms['eforms']['recordsFiltered'] = $eforms['eforms']['total'];
+        $eforms['contents']['draw'] = $request->input('draw');
+        $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
+        $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
 
         return response()->json($eforms['eforms']);
     }

@@ -21,11 +21,11 @@ class OfficeController extends Controller
                 'name' => $request->input('name'),
             ])->get();
 
-        foreach ($offices['offices']['data'] as $key => $office) {
+        foreach ($offices['contents']['data'] as $key => $office) {
             $office['text'] = $office['name'];
-            $offices['offices']['data'][$key] = $office;
+            $offices['contents']['data'][$key] = $office;
         }
 
-        return response()->json(['offices' => $offices['offices']]);
+        return response()->json(['offices' => $offices['contents']]);
     }
 }

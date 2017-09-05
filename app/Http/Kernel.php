@@ -50,8 +50,22 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        // 'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+
+        /* Middleware for Menus */
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'leads' => \App\Http\Middleware\MenuAccessor\Leads::class,
+        'eform' => \App\Http\Middleware\MenuAccessor\EForm::class,
+        'developers' => \App\Http\Middleware\MenuAccessor\Developers::class,
+        'dashboard' => \App\Http\Middleware\MenuAccessor\Dashboard::class,
+        'debitur' => \App\Http\Middleware\MenuAccessor\Debitur::class,
+        'scheduler' => \App\Http\Middleware\MenuAccessor\Scheduler::class,
+        'calculator' => \App\Http\Middleware\MenuAccessor\Calculator::class,
+        'tracking' => \App\Http\Middleware\MenuAccessor\Tracking::class,
+        'others' => \App\Http\Middleware\MenuAccessor\Others::class,
+        'user' => \App\Http\Middleware\MenuAccessor\User::class,
+        'role' => \App\Http\Middleware\MenuAccessor\Role::class,
+        /* End of Middleware Menu */
+
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

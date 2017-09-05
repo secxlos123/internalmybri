@@ -25,6 +25,8 @@
         <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
 
+        <script src="{{asset('assets/pack/bx-slider/jquery.bxslider.min.j')}}s"></script>
+
         <!-- App js -->
         <script src="{{asset('assets/js/jquery.core.js')}}"></script>
         <script src="{{asset('assets/js/jquery.app.js')}}"></script>

@@ -52,6 +52,9 @@
         Route::resource('users', 'User\UserController');
 
         /* Developers */
+
+        Route::get('developers/{id}/property_detail', ['as'=>'property_detail', 'uses'=>'Developer\DeveloperController@property_detail']);
+
         Route::resource('developers', 'Developer\DeveloperController');
 
         /* E-Form */

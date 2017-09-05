@@ -10,12 +10,17 @@ use Client;
 
 class CustomerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('leads', ['except' => ['datatables']]);
+    }
+
     protected $columns = [
         'nik',
         'name',
         'email',
         'city',
-        'mobile_phone',
+        'phone',
         'gender',
         'action',
     ];
@@ -38,13 +43,13 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
-        // dd($data);
         /* GET Role Data */
-        $customerData = Client::setEndpoint('customer')->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-            foreach ($customerData as $role) {
-                $role = $role;
-            }
-        $dataCustomer = $role['data'];
+        $customerData = Client::setEndpoint('customer')
+                      ->setQuery(['limit' => 100])
+                      ->setHeaders(['Authorization' => $data['token']])
+                      ->get();
+        $dataCustomer = $customerData['contents']['data'];
+        // dd($dataCustomer);
 
         return view('internals.customers.index', compact('data', 'dataCustomer'));
     }
@@ -268,7 +273,7 @@ class CustomerController extends Controller
          ->setBody($newCustomer)
          ->post('multipart');
 
-         if($client['status']['succeded'] == true){
+         if($client['code'] == 200){
             \Session::flash('success', 'Data sudah tersimpan!');
             return redirect()->route('customers.index');
          }else{
@@ -292,7 +297,7 @@ class CustomerController extends Controller
          /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
-        $dataCustomer = $customerData['data'];
+        $dataCustomer = $customerData['contents'];
 
         return view('internals.customers.detail', compact('data', 'dataCustomer'));
     }
@@ -332,7 +337,7 @@ class CustomerController extends Controller
          ->setBody($newCustomer)
          ->put('multipart');
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
           // dd($client);
             \Session::flash('success', 'Data berhasil diubah!');
             return redirect()->route('customers.index');
@@ -360,7 +365,7 @@ class CustomerController extends Controller
          ->setBody($newCustomer)
          ->put('multipart');
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
           // dd($client);
             \Session::flash('success', 'Data berhasil diverifikasi!');
             return redirect()->route('indexAO');
@@ -385,19 +390,19 @@ class CustomerController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
-        foreach ($customers['customers']['data'] as $key => $customer) {
+        foreach ($customers['contents']['data'] as $key => $customer) {
             $customer['name'] = $customer['first_name'].' '.$customer['last_name'];
             $customer['action'] = view('internals.layouts.actions', [
                 // 'edit' => route('customers.edit', $customer['id']),
                 'show' => route('customers.show', $customer['id']),
             ])->render();
-            $customers['customers']['data'][$key] = $customer;
+            $customers['contents']['data'][$key] = $customer;
         }
 
-        $customers['customers']['draw'] = $request->input('draw');
-        $customers['customers']['recordsTotal'] = $customers['customers']['total'];
-        $customers['customers']['recordsFiltered'] = $customers['customers']['total'];
+        $customers['contents']['draw'] = $request->input('draw');
+        $customers['contents']['recordsTotal'] = $customers['contents']['total'];
+        $customers['contents']['recordsFiltered'] = $customers['contents']['total'];
 
-        return response()->json($customers['customers']);
+        return response()->json($customers['contents']);
     }
 }

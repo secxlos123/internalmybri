@@ -10,6 +10,10 @@ use Client;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role', ['except' => ['datatables']]);
+    }
 
     protected $columns = [
         'name',
@@ -89,9 +93,12 @@ class RoleController extends Controller
 
         $newRole = $this->roleRequest($request);
 
-        $client = Client::setEndpoint('role')->setHeaders(['Authorization' => $data['token']])->setBody($newRole)->post();
+        $client = Client::setEndpoint('role')
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setBody($newRole)
+                ->post();
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
             return redirect()->route('roles.index');
         }else{
             \Session::flash('error', 'Role sudah ada!');
@@ -111,9 +118,11 @@ class RoleController extends Controller
         $data = $this->getUser();
 
         /* GET Role Data */
-        $roleData = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
+        $roleData = Client::setEndpoint('role/'.$id)
+                    ->setHeaders(['Authorization' => $data['token']])
+                    ->get();
 
-        $dataRole = $roleData['data']['permissions'];
+        $dataRole = $roleData['contents']['permissions'];
 
         return $dataRole;
     }
@@ -129,9 +138,11 @@ class RoleController extends Controller
         $data = $this->getUser();
 
         /* GET Role Data */
-        $roleData = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->get();
+        $roleData = Client::setEndpoint('role/'.$id)
+                    ->setHeaders(['Authorization' => $data['token']])
+                    ->get();
 
-        $dataRole = $roleData['data'];
+        $dataRole = $roleData['contents'];
 
         return view('internals.roles.edit', compact('data', 'dataRole'));
     }
@@ -149,9 +160,12 @@ class RoleController extends Controller
 
         $newRole = $this->roleRequest($request);
 
-        $client = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->setBody($newRole)->put();
+        $client = Client::setEndpoint('role/'.$id)
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setBody($newRole)
+                ->put();
 
-        if($client['status']['succeded'] == true){
+        if($client['code'] == 200){
             return redirect()->route('roles.index');
         }else{
             \Session::flash('error', 'Role sudah ada!');
@@ -188,22 +202,23 @@ class RoleController extends Controller
                     'page'  => (int) $request->input('page') + 1
                 ])->get();
 
-        foreach ($roles['roles']['data'] as $key => $role) {
+        foreach ($roles['contents']['data'] as $key => $role) {
             $role['slug'] = strtoupper($role['slug']);
-            $delete = ! $role['is_default'] ? route('roles.destroy', $role['id']) : null;
+            // $delete = ! $role['is_default'] ? route('roles.destroy', $role['id']) : null;
+            $delete = route('roles.destroy', $role['id']);
             $role['action'] = view('internals.layouts.actions', [
                 'edit' => route('roles.edit', $role['id']),
                 'showModal' => $role,
                 'delete' => $delete,
             ])->render();
-            $roles['roles']['data'][$key] = $role;
+            $roles['contents']['data'][$key] = $role;
         }
 
-        $roles['roles']['draw'] = $request->input('draw');
-        $roles['roles']['recordsTotal'] = $roles['roles']['total'];
-        $roles['roles']['recordsFiltered'] = $roles['roles']['total'];
+        $roles['contents']['draw'] = $request->input('draw');
+        $roles['contents']['recordsTotal'] = $roles['contents']['total'];
+        $roles['contents']['recordsFiltered'] = $roles['contents']['total'];
 
-        return response()->json($roles['roles']);
+        return response()->json($roles['contents']);
     }
 
 }

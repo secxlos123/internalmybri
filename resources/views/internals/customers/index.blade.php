@@ -137,7 +137,7 @@
                 { data: "name", name: 'name' },
                 { data: "email", name: 'email' },
                 { data: "city", name: 'office_name' },
-                { data: "mobile_phone", name: 'mobile_phone' },
+                { data: "phone", name: 'phone' },
                 { data: "gender", name: 'gender' },
                 { data: "action", name: 'action', bSortable: false },
             ],
