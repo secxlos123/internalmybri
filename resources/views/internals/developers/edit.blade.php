@@ -44,7 +44,7 @@
                                                 <div class="form-group company_name {!! $errors->has('company_name') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Nama Perusahaan *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="company_name" maxlength="50" required="" value="{{$dataDev['company_name']}}">
+                                                        <input type="text" class="form-control" name="company_name" maxlength="50" required="" value="{{$dataDev['company_name']}}" readonly="">
                                                     @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -74,7 +74,7 @@
                                                 <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Email *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="email" class="form-control" name="email" required="" value="{{$dataDev['email']}}">
+                                                        <input type="email" class="form-control" name="email" required="" value="{{$dataDev['email']}}" readonly="">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -104,6 +104,20 @@
                                                     <div class="col-md-8">
                                                         <textarea class="form-control" name="summary" cols="3" maxlength="255">{{$dataDev['summary']}}</textarea>
                                                     @if ($errors->has('summary')) <p class="help-block">{{ $errors->first('summary') }}</p> @endif
+                                                    </div>
+                                                </div>
+                                                <div class="form-group pks_number {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
+                                                    <label class="col-md-4 control-label">No. PKS *:</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="pks_number" value="{{$dataDev['pks_number']}}">
+                                                    @if ($errors->has('pks_number')) <p class="help-block">{{ $errors->first('pks_number') }}</p> @endif
+                                                    </div>
+                                                </div>
+                                                <div class="form-group plafond {!! $errors->has('plafond') ? 'has-error' : '' !!}">
+                                                    <label class="col-md-4 control-label">Plafon * :</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control numericOnly" name="plafond" cols="3" maxlength="12" value="{{intval(preg_replace('(\D+)', '', $dataDev['plafond']))}}">
+                                                    @if ($errors->has('plafond')) <p class="help-block"> {{ $errors->first('plafond') }}</p> @endif
                                                     </div>
                                                 </div>
                                             </div>

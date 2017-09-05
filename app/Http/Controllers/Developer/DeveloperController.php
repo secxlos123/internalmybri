@@ -12,7 +12,7 @@ class DeveloperController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('developers', ['except' => ['datatables']]);
+        $this->middleware('developers', ['except' => ['datatables', 'actived']]);
     }
 
     protected $columns = [
@@ -22,7 +22,7 @@ class DeveloperController extends Controller
         'phone_number',
         'city_name',
         'project',
-        // 'is_actived',
+        'is_actived',
         'action',
     ];
 
@@ -114,8 +114,11 @@ class DeveloperController extends Controller
         if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah disimpan.');
             return redirect()->route('developers.index');
+        }elseif($client['code'] == 500){
+            \Session::flash('error', 'Maaf, server sedang gangguan');
+            return redirect()->back();
         }else{
-            \Session::flash('error', 'Kesalahan input.');
+            \Session::flash('error', 'Kesalahan input');
             return redirect()->back();
         }
         
@@ -193,6 +196,7 @@ class DeveloperController extends Controller
            ->setBody($newDev)
            ->put('multipart');
 
+        // dd($client);
         if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah diubah.');
             return redirect()->route('developers.index');
@@ -213,6 +217,18 @@ class DeveloperController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function actived(Request $request, $id)
+    {
+        $data = $this->getUser();
+
+        $developers = Client::setEndpoint("developer/{$id}/actived")
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
+                ->put();
+
+        return response()->json($developers['descriptions']);
     }
 
     public function datatables(Request $request)

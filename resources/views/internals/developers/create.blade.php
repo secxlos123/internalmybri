@@ -103,6 +103,20 @@
                                                     @if ($errors->has('summary')) <p class="help-block"> {{ $errors->first('summary') }}</p> @endif
                                                     </div>
                                                 </div>
+                                                <div class="form-group pks_number {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
+                                                    <label class="col-md-4 control-label">No. PKS *:</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="pks_number" value="{{old('pks_number')}}">
+                                                    @if ($errors->has('pks_number')) <p class="help-block">{{ $errors->first('pks_number') }}</p> @endif
+                                                    </div>
+                                                </div>
+                                                <div class="form-group plafond {!! $errors->has('plafond') ? 'has-error' : '' !!}">
+                                                    <label class="col-md-4 control-label">Plafon * :</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control numericOnly" name="plafond" cols="3" maxlength="12" value="{{old('plafond')}}">
+                                                    @if ($errors->has('plafond')) <p class="help-block"> {{ $errors->first('plafond') }}</p> @endif
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

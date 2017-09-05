@@ -17,7 +17,7 @@ class User
     {
         $users = session()->get('user')['contents']['role'];
         
-        if(($users == 'superadmin')){
+        if(($users == 'ao')){
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             }

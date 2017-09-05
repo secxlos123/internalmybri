@@ -87,6 +87,8 @@
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
 
+    Route::put('developers/{developers}/actived', 'Developer\DeveloperController@actived');
+
     Route::get('cities', 'CityController');
 
     Route::get('offices', 'OfficeController');
