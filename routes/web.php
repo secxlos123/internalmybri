@@ -34,7 +34,7 @@
 
         Route::delete('logout', 'User\LoginController@logout');
 
-    Route::group(['middleware'=>'auth'], function () {
+    Route::group(['middleware'=> [ 'auth', 'check-token']], function () {
 
         /* Dashboard */
         Route::get('/', 
@@ -80,6 +80,8 @@
             ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
 
         Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
+
+        Route::get('test', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
         Route::resource('eform', 'EForm\EFormController');
 

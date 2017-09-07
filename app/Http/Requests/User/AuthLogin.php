@@ -24,9 +24,9 @@ class AuthLogin extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'pn' => 'required',
             'password' => 'required',
-            'g-recaptcha-response' => 'required|recaptcha',
+            // 'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 
@@ -38,11 +38,10 @@ class AuthLogin extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email harus diisi',
-            'email.email' => 'Alamat email tidak valid',
+            'pn.required' => 'PN harus diisi',
             'password.required'  => 'Password harus diisi',
-            'g-recaptcha-response.required'  => 'Captcha harus diisi',
-            'g-recaptcha-response.recaptcha'  => 'Captcha harus diisi dengan benar'
+            // 'g-recaptcha-response.required'  => 'Captcha harus diisi',
+            // 'g-recaptcha-response.recaptcha'  => 'Captcha harus diisi dengan benar'
         ];
     }
 }

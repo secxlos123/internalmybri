@@ -80,7 +80,7 @@
 
                                 <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                     <li>
-                                        <h5>Hai, {{$data['first_name']}}</h5>
+                                        <h5>Hai, {{$data['name']}}</h5>
                                     </li>
                                     <li><a href="#"><i class="ti-user m-r-5"></i> Profil</a></li>
                                     <li><a href="#"><i class="ti-settings m-r-5"></i> Pengaturan</a></li>

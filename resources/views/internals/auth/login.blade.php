@@ -15,12 +15,12 @@
                                     </h2>
                                 </div>
                                 <div class="account-content">
-                                    <form class="form-horizontal" id="loginForm">
+                                    <form class="form-horizontal" id="loginForm" autocomplete="off">
                                         {{ csrf_field() }}
                                         <div class="divError"></div>
                                         <div class="form-group ">
                                             <div class="col-xs-12">
-                                                <input class="form-control" type="email" required="" placeholder="Email" name="email">
+                                                <input class="form-control" type="number" required="" placeholder="Personal Number" name="pn" maxlength="8">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -30,7 +30,6 @@
                                         </div>
                                         <div class="form-group">
                                             <div align="center">
-                                            {!! Recaptcha::render() !!}
                                             </div>
                                           </div>
                                         <div class="form-group ">
@@ -82,7 +81,7 @@
                     success: function (data) {
                        $btn.button('reset');
                        console.log(data);
-                       if(data.code == 400){
+                       if(data.code >= 400){
                         $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                        }else{
                             window.location = data.url;
@@ -90,49 +89,8 @@
                     },
                     error: function(response){
                         $btn.button('reset');
-                        console.log(response);
-                        errorResponse = response.responseJSON;
-                        if(errorResponse.email != 'undefined'){
-                            error = errorResponse.email;
-                        }else if(errorResponse.password != 'undefined'){
-                            error = errorResponse.password;
-                        }else{
-                            console.log("error");
-                            error = 'Captcha harus diisi';
-                        }
-                        if(response.responseText = '{"g-recaptcha-response":["Captcha harus diisi dengan benar"]}'){
-                            error = 'Captcha harus diisi dengan benar';
-                        }
-                        $('.divError').html('<div class="alert alert-danger">' +error + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                     }
                 });
         });
-
-    $('#loginForm').validate({
-    onkeyup: false,
-    rules: {
-      email: {
-        required: true,
-        email: true
-      },
-      password: {
-        required: true,
-        minlength: 8
-      }
-    },
-    messages: {
-      email: {
-        required: "Anda harus memasukkan Alamat Email",
-        email: jQuery.validator.format("Format email tidak valid")
-      },
-      password: {
-        required: "Anda harus memasukkan Password",
-        minlength: jQuery.validator.format("Password harus diisi setidaknya 8 karakter")
-      }
-    },
-    onsubmit: function( element, event ) {
-        this.element( element );
-    }
-});
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

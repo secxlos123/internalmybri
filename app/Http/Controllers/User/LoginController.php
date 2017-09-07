@@ -37,10 +37,10 @@ class LoginController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function postLogin(AuthLogin $request)
+    public function postLogin(Request $request)
     {
         $data = [
-            'email' => $request->email,
+            'pn' => $request->pn,
             'password' => $request->password
         ];
 
@@ -49,12 +49,17 @@ class LoginController extends Controller
                 ->post();
 
         $codeResponse = $client['code'];
+        $codeDescription = $client['descriptions'];
 
         if($codeResponse == 200){
             session()->put('user', $client);
-            return response()->json(['url' => route('dashboard'), 'message' => 'Login sukses', 'code' => 200]);
+            return response()->json(['url' => route('dashboard'), 'message' => $codeDescription, 'code' => $codeResponse]);
+        }elseif($codeResponse == 422){
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
+        }elseif($codeResponse == 404){
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
         }else{
-            return response()->json(['message' => 'Email atau Kata Sandi Salah', 'code' => 400]);
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
         }
 
     }
