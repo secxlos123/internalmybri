@@ -10,10 +10,10 @@ use Client;
 
 class CustomerController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('leads', ['except' => ['datatables']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('leads', ['except' => ['datatables']]);
+    // }
 
     protected $columns = [
         'nik',
@@ -42,7 +42,8 @@ class CustomerController extends Controller
     public function index()
     {
         /* GET UserLogin Data */
-        $data = $this->getUser();      
+        $data = $this->getUser();  
+        dd(session()->get('user.contents'));   
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')

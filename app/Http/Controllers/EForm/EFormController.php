@@ -11,10 +11,10 @@ use Validator;
 
 class EFormController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('eform', ['except' => ['datatables']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('eform', ['except' => ['datatables', 'getCustomer', 'detailCustomer']]);
+    // }
 
     protected $columns = [
         'ref',
@@ -28,6 +28,7 @@ class EFormController extends Controller
     ];
 
     public function getUser(){
+
      /* GET UserLogin Data */
         $users = session()->get('user');
             foreach ($users as $user) {
@@ -44,7 +45,7 @@ class EFormController extends Controller
     public function index()
     {
         $data = $this->getUser(); 
-
+        dd($data);
         if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   
         } elseif ($data['role'] == 'admin') {
