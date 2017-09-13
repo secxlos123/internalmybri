@@ -259,10 +259,14 @@
             // console.log(this.value);
             if (this.value == 'new') {
                 $('#property_name').removeAttr('hidden');
+                $('#property_type').removeAttr('hidden');
+                $('#property_unit').removeAttr('hidden');
                 $('#developer').removeAttr('hidden');
 
             }else if (this.value == 'second') {
                 $('#property_name').attr('hidden', true);
+                $('#property_type').attr('hidden', true);
+                $('#property_unit').attr('hidden', true);
                 $('#developer').attr('hidden', true);
             }
         });
@@ -371,3 +375,5 @@
         });
     }
 </script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#basic-form'); !!}

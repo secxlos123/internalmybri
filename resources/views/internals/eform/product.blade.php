@@ -12,85 +12,79 @@
                         <li id="li_kpr" class="active">
                             <a href="#kpr" data-toggle="tab" aria-expanded="true">KPR</a>
                         </li>
-                        <li id="li_kkb" class="">
+                        <li id="li_kkb" class="disabled">
                             <a href="#kkb" data-toggle="tab" aria-expanded="false">KKB</a>
                         </li>
-                        <li id="li_briguna" class="">
+                        <li id="li_briguna" class="disabled">
                             <a href="#briguna" data-toggle="tab" aria-expanded="false">BRIGUNA</a>
                         </li>
-                        <li id="li_britama" class="">
+                        <li id="li_britama" class="disabled">
                             <a href="#britama" data-toggle="tab" aria-expanded="false">BRITAMA</a>
                         </li>
-                        <li id="li_kur" class="">
+                        <li id="li_kur" class="disabled">
                             <a href="#kur" data-toggle="tab" aria-expanded="false">KUR/KUPEDES</a>
                         </li>
-                        <li id="li_kartu" class="">
+                        <li id="li_kartu" class="disabled">
                             <a href="#kartu" data-toggle="tab" aria-expanded="false">KARTU KREDIT</a>
                         </li>
                     </ul>
                     <div class="tab-content br-n pn">
                         <div id="kpr" class="tab-pane active">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-horizontal" role="form">
-                                        <div class="form-group request_amount {!! $errors->has('request_amount') ? 'has-error' : '' !!}">
-                                            <label class="control-label col-md-4">Jumlah Permohonan *:</label>
-                                            <div class="col-md-8">
-                                                <div class="input-group">
-                                                    <!-- <span class="input-group-addon">Rp</span> -->
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{old('request_amount')}}" maxlength="24">
-                                                    <!-- <span class="input-group-addon">,00</span> -->
-                                                    @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <div class="form-horizontal" role="form">
+                                            <div class="form-group status_property {!! $errors->has('status') ? 'has-error' : '' !!}">
+                                                <label class="control-label col-md-4">Status Properti *:</label>
+                                                <div class="col-md-6">
+                                                    <div class="radio radio-info radio-inline">
+                                                        <input type="radio" id="new" value="new" name="status_property" checked="">
+                                                        <label for="new"> Baru </label>
+                                                    </div>
+                                                    <div class="radio radio-pink radio-inline">
+                                                        <input type="radio" id="second" value="second" name="status_property">
+                                                        <label for="second"> Bekas </label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group year {!! $errors->has('year') ? 'has-error' : '' !!}">
-                                            <label class="control-label col-md-4">Jangka Waktu *:</label>
-                                            <div class="col-md-8">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly" name="year" value="{{old('year')}}" maxlength="2">
-                                                    <span class="input-group-addon">Tahun</span>
-                                                    @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
-                                            <label class="control-label col-md-4">Lokasi Rumah *:</label>
-                                            <div class="col-md-8">
-                                                <textarea class="form-control" rows="3" maxlength="255" name="home_location">{{old('home_location')}}</textarea>
-                                                @if ($errors->has('home_location')) <p class="help-block">{{ $errors->first('home_location') }}</p> @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
-                                        <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
-                                            <label class="control-label col-md-4">KPR Aktif ke *:</label>
+                                        <div class="form-group" id="developer">
+                                            <label class="control-label col-md-4">Developer *:</label>
                                             <div class="col-md-8">
-                                                <input type="number" class="form-control numericOnly" name="active_kpr" value="{{old('active_kpr')}}" value="1" maxlength="2" min="0">
-                                                @if ($errors->has('active_kpr')) <p class="help-block">{{ $errors->first('active_kpr') }}</p> @endif
+                                                {!! Form::select('developer', ['' => ''], old('developers'), [
+                                                        'class' => 'select2 developers',
+                                                        'data-placeholder' => '-- Pilih Developer --'
+                                                    ]) !!}
                                             </div>
                                         </div>
+                                        <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
+                                            <label class="control-label col-md-4">Nama Properti *:</label>
+                                            <div class="col-md-8">
+                                                <select class="select2 property_name" data-placeholder="-- Pilih Properti --" name="property">
+                                                    <option> </option>
+                                                    <option value="1">Properti 1</option>
+                                                    <option value="2">Properti 2</option>
+                                                </select>
+                                                <!-- {!! Form::select('property_name', ['' => ''], old('property_name'), [
+                                                    'class' => 'select2 property_name',
+                                                    'data-placeholder' => 'Pilih Nama Properti',
+                                                ]) !!} -->
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    
                                         <div class="form-group price {!! $errors->has('price') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Harga Rumah *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <!-- <span class="input-group-addon">Rp</span> -->
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="price" value="{{old('price')}}" maxlength="24">
+                                                    <span class="input-group-addon">Rp</span>
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="price" value="{{old('price')}}" maxlength="16" id="price">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
-                                            <label class="control-label col-md-4">Uang Muka *:</label>
-                                            <div class="col-md-8">
-                                                <div class="input-group">
-                                                    <!-- <span class="input-group-addon">Rp</span> -->
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="24">
-                                                    <!-- <span class="input-group-addon">,00</span> -->
-                                                    @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -98,74 +92,126 @@
                                             <label class="control-label col-md-4">Luas Bangunan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly" name="building_area" value="{{old('building_area')}}" maxlength="5">
+                                                    <input type="number" class="form-control numericOnly" name="building_area" value="{{old('building_area')}}" maxlength="3" placeholder="0" id="building_area">
                                                     <span class="input-group-addon">m<sup>2</sup></span>
                                                     @if ($errors->has('building_area')) <p class="help-block">{{ $errors->first('building_area') }}</p> @endif
                                                 </div>
                                             </div>
                                         </div>
+                                        
+                                        <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">Lokasi Rumah *:</label>
+                                            <div class="col-md-8">
+                                                <textarea class="form-control" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah">{{old('home_location')}}</textarea>
+                                                @if ($errors->has('home_location')) <p class="help-block">{{ $errors->first('home_location') }}</p> @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <p class="text-muted m-b-30 font-13">
-                                Unggah foto dokumen asli
-                            </p>
-                            <div class="row">
-                                <div class="col-md-8">
+
+
+                                <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Dokumen Legal Agunan *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[collateral_document]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+                                        <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_type">
+                                            <label class="control-label col-md-4">Tipe Properti *:</label>
+                                            <div class="col-md-8">
+                                                <select class="select2 property_type" data-placeholder="-- Pilih Tipe Properti --" name="type">
+                                                    <option> </option>
+                                                    <option value="1">Tipe Properti 1</option>
+                                                    <option value="2">Tipe Properti 2</option>
+                                                </select>
+                                                <!-- {!! Form::select('property_name', ['' => ''], old('property_name'), [
+                                                    'class' => 'select2 property_name',
+                                                    'data-placeholder' => 'Pilih Nama Properti',
+                                                ]) !!} -->
                                             </div>
                                         </div>
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Slip Gaji *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[salary_slip]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+                                        <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_unit">
+                                            <label class="control-label col-md-4">Unit Properti *:</label>
+                                            <div class="col-md-8">
+                                                <select class="select2 property_unit" data-placeholder="-- Pilih Unit Properti --" name="unit">
+                                                    <option> </option>
+                                                    <option value="1">Unit Properti 1</option>
+                                                    <option value="2">Unit Properti 2</option>
+                                                </select>
+                                                <!-- {!! Form::select('property_name', ['' => ''], old('property_name'), [
+                                                    'class' => 'select2 property_name',
+                                                    'data-placeholder' => 'Pilih Nama Properti',
+                                                ]) !!} -->
                                             </div>
                                         </div>
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Bank Statement *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[bank_statement]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+                                        <hr>
+
+                                        <div class="form-group year {!! $errors->has('year') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">Jangka Waktu *:</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control numericOnly" name="year" value="{{old('year')}}" maxlength="2" placeholder="0">
+                                                    <span class="input-group-addon">Tahun</span>
+                                                    @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Kartu Keluarga *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[family_card]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+                                        <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">KPR Aktif ke *:</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control" name="active_kpr" id="active_kpr" disabled="">
+                                                    <option value="0" selected="" disabled=""> Pilih </option>
+                                                    <option value="1"> 1 </option>
+                                                    <option value="2"> 2 </option>
+                                                    <option value="3"> > 2 </option>
+                                                </select>
+                                                @if ($errors->has('active_kpr')) <p class="help-block">{{ $errors->first('active_kpr') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Akta Nikah/Akta Cerai *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[marriage_certificate]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+                                        
+                                        <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">Uang Muka *:</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control numericOnly" name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" disabled="">
+                                                    <span class="input-group-addon">%</span>
+                                                    @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
+                                                </div><br>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Rp</span>
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment" readonly="">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
+                                                    @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[bussiness_document]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+
+                                        <div class="form-group request_amount {!! $errors->has('request_amount') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">Jumlah Permohonan *:</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Rp</span>
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{old('request_amount')}}" maxlength="16" id="request_amount" readonly="">
+                                                    <!-- <span class="input-group-addon">,00</span> -->
+                                                    @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
-                                            <label class="col-md-6 control-label">Akta Pisah Harta *:</label>
-                                            <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image[deed]" accept="image/png,image/jpg">
-                                                @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
+                                        <br>
+                                        <!-- <div class="form-group">
+                                            <label class="control-label col-md-4">Catatan :</label>
+                                            <div class="col-md-8">
+                                                <div class="input-group">
+                                                    <p class="control-label" >1. Jika KPR aktif ke-1, maka minimal uang muka 0 %</p><br>
+                                                </div>
+                                                <div class="input-group">
+                                                    <p class="control-label" >2. Jika KPR aktif ke-2, maka minimal uang muka 10 %</p><br>
+                                                </div>
+                                                <div class="input-group">
+                                                    <p class="control-label">Kondisi Luas Bangunan</p>
+                                                </div>
                                             </div>
                                         </div>
+                                         -->
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                         </div>
                         <div id="kkb" class="tab-pane">
                             <div class="row">

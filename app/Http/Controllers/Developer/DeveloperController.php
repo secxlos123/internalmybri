@@ -10,10 +10,10 @@ use Client;
 
 class DeveloperController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('developers', ['except' => ['datatables', 'actived']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('developers', ['except' => ['datatables', 'actived']]);
+    // }
 
     protected $columns = [
         // 'company_name',
@@ -43,6 +43,7 @@ class DeveloperController extends Controller
     public function index()
     {
         $data = $this->getUser();
+        // dd($data);
         return view('internals.developers.index', compact('data'));
     }
 
@@ -231,13 +232,38 @@ class DeveloperController extends Controller
         return response()->json($developers['descriptions']);
     }
 
+    public function getDeveloper(Request $request)
+    {
+        $data = $this->getUser();
+        $developers = \Client::setEndpoint('developer')
+            ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($developers['contents']['data'] as $key => $dev) {
+            $dev['text'] = $dev['name'];
+            $dev['id'] = $dev['dev_id'];
+            $developers['contents']['data'][$key] = $dev;
+        }
+
+        return response()->json(['developers' => $developers['contents']]);
+    }
+
     public function datatables(Request $request)
     {
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $developers = Client::setEndpoint('developer')
-                ->setHeaders(['Authorization' => $data['token']])
-                ->setQuery([
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],

@@ -44,7 +44,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jumlah Pinjaman :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">Rp{{number_format($product->request_amount,2,',','.')}}</p>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -56,7 +56,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jangka Waktu :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">{{$product->year}} Tahun</p>
+                                                            
                                                         </div>
                                                     </div>
                                                 </form>

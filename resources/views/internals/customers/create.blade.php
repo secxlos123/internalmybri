@@ -62,7 +62,7 @@
                                                         <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="birth_date" value="{{ old('birth_date') }}">
+                                                                <input type="text" class="form-control" id="datepicker-date" name="birth_date" value="{{ old('birth_date') }}">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                                 @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
                                                             </div>
@@ -494,5 +494,14 @@
             hideCouple();
         }
     })
+
+    $('#datepicker-date').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        autoclose: true,
+        endDate: new Date(),
+        todayHighlight: true
+    });
+    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
 
 </script>

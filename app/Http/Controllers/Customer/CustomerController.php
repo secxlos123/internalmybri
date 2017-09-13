@@ -43,13 +43,15 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();  
-        dd(session()->get('user.contents'));   
+        // dd(session()->get('user.contents'));   
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
                       ->setQuery(['limit' => 100])
-                      ->setHeaders(['Authorization' => $data['token']])
-                      ->get();
+                      ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                      ])->get();
         $dataCustomer = $customerData['contents']['data'];
         // dd($dataCustomer);
 
@@ -271,8 +273,10 @@ class CustomerController extends Controller
         $newCustomer = $this->customerRequest($request);
 
         $client = Client::setEndpoint('customer')
-         ->setHeaders(['Authorization' => $data['token']])
-         ->setBody($newCustomer)
+         ->setHeaders([
+              'Authorization' => $data['token'],
+              'pn' => $data['pn']
+          ])->setBody($newCustomer)
          ->post('multipart');
 
          if($client['code'] == 200){
@@ -335,9 +339,11 @@ class CustomerController extends Controller
         $newCustomer = $this->customerRequest($request);
 
         $client = Client::setEndpoint('customer/'.$id)
-         ->setHeaders(['Authorization' => $data['token']])
-         ->setBody($newCustomer)
-         ->put('multipart');
+          ->setHeaders([
+              'Authorization' => $data['token'],
+              'pn' => $data['pn']
+          ])->setBody($newCustomer)
+          ->put('multipart');
 
         if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil diubah!');
@@ -381,8 +387,10 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $customers = Client::setEndpoint('customer')
-                ->setHeaders(['Authorization' => $data['token']])
-                ->setQuery([
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],

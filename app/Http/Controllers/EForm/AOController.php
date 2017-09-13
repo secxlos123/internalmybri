@@ -9,10 +9,10 @@ use Client;
 
 class AOController extends Controller
 {
-  public function __construct()
-    {
-        $this->middleware('eform', ['except' => ['datatables']]);
-    }
+  // public function __construct()
+  //   {
+  //       $this->middleware('eform', ['except' => ['datatables']]);
+  //   }
 
 	protected $columns = [
         'ref',
@@ -53,6 +53,14 @@ class AOController extends Controller
         $data = $this->getUser();
         
         return view('internals.eform.lkn', compact('data', 'id'));
+    }
+
+    public function renderMutation(Request $request)
+    {
+      
+       $view = (String)view('internals.eform.lkn._render-mutation')
+          ->render();
+       return response()->json(['view' => $view]);
     }
 
     /**
@@ -100,7 +108,10 @@ class AOController extends Controller
         $newForm = $this->lknRequest($request, $data);
 
     	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
-           ->setHeaders(['Authorization' => $data['token']])
+           ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
            ->setBody($newForm)
            ->post('multipart');
 
@@ -127,7 +138,10 @@ class AOController extends Controller
          /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$id)
                       ->setQuery(['limit' => 100])
-                      ->setHeaders(['Authorization' => $data['token']])
+                      ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                      ])
                       ->get();
         
         $dataCustomer = $customerData['contents'];
@@ -141,7 +155,10 @@ class AOController extends Controller
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])
                 ->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
@@ -157,7 +174,7 @@ class AOController extends Controller
             $form['request_amount'] = $form['nominal'];
             $form['appointment_date'] = $form['appointment_date'];
             $form['action'] = view('internals.layouts.actions', [
-                'verification' => route('getVerification', $form['user_id']),
+                'verification' => route('getVerification', $form['User_id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;

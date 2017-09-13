@@ -31,7 +31,7 @@
         <script src="{{asset('assets/js/jquery.core.js')}}"></script>
         <script src="{{asset('assets/js/jquery.app.js')}}"></script>
 
-        <script src="{{asset('assets/js/jquery.steps.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('assets/js/jquery.steps.js')}}" type="text/javascript"></script>
         <script type="text/javascript" src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-timepicker.js')}}"></script>
 
@@ -42,6 +42,7 @@
 
         <script src="{{asset('js/jquery.inputmask.bundle.min.js')}}"></script>
         <script src="{{asset('js/inputmask.numeric.extensions.js')}}"></script>
+        <script src="{{asset('assets/js/select2.min.js')}}"></script>
 
 
         <script>
@@ -66,7 +67,7 @@
            $(document).ready(function() {
                 Inputmask.extendAliases({
                     rupiah: {
-                        prefix: "Rp ",
+                        // prefix: "Rp ",
                         radixPoint: ",",
                         groupSeparator: ".",
                         alias: "numeric",

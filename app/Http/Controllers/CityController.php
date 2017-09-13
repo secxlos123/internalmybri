@@ -24,8 +24,10 @@ class CityController extends Controller
     {
         $data = $this->getUser();
         $cities = \Client::setEndpoint('cities')
-            ->setHeaders(['Authorization' => $data['token']])
-            ->setQuery([
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
                 'name' => $request->input('name'),
                 'page' => $request->input('page')
             ])

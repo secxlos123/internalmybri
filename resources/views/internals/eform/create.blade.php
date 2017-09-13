@@ -43,11 +43,11 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div role="form">
-                                                <div class="form-group name {!! $errors->has('name') ? 'has-error' : '' !!}">
+                                                <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
                                                     <label class="control-label"">Cari NIK Leads *</label>
                                                     <div class="input-group">
-                                                        {!! Form::select('name', ['' => ''], old('name'), [
-                                                                'class' => 'select2 nik',
+                                                        {!! Form::select('nik', ['' => ''], old('nik'), [
+                                                                'class' => 'select2 nikSelect',
                                                                 'data-placeholder' => 'NIK',
                                                                 'id' => 'nik'
                                                             ]) !!}
@@ -55,7 +55,7 @@
                                                         <a href="#" class="btn waves-effect waves-light btn-primary" id="search"><i class="fa fa-search"></i> Cari</a>
                                                         </span>
                                                     </div>
-                                                            @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
+                                                            @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -96,14 +96,14 @@
                                                 Tentukan Perjanjian
                                             </p>
                                             <div class="form-horizontal" role="form">
-                                                <div class="form-group date {!! $errors->has('date') ? 'has-error' : '' !!}">
+                                                <div class="form-group appointment_date {!! $errors->has('appointment_date') ? 'has-error' : '' !!}">
                                                     <label class="control-label col-md-4">Tanggal *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="datepicker-mindate" name="date" value="{{old('date')}}">
+                                                            <input type="text" class="form-control" id="datepicker-mindate" name="appointment_date" value="{{old('appointment_date')}}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
-                                                            @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif
+                                                            @if ($errors->has('appointment_date')) <p class="help-block">{{ $errors->first('appointment_date') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <!-- <div class="form-group">
@@ -129,16 +129,16 @@
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
                                                     <label class="control-label">Lokasi</label>
-                                                    <textarea name="location" id="location" class="form-control" readonly="" rows="3">{{old('location')}}</textarea>
-                                                </div>
-                                                <!-- <div class="col-md-3">
-                                                    <label class="control-label">Latitude</label>
-                                                    <input type="text" name="lat" id="lat" class="form-control" readonly="" value="{{old('lat')}}">
+                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">Bandung</textarea>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <label class="control-label">Longitude</label>
-                                                    <input type="text" name="lng" id="lng" class="form-control" readonly="" value="{{old('lng')}}">
-                                                </div> -->
+                                                    <!-- <label class="control-label">Latitude</label> -->
+                                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" value="123456789">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <!-- <label class="control-label">Longitude</label> -->
+                                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" value="12345678">
+                                                </div>
                                                 @if ($errors->has('location')) <p class="help-block">{{ $errors->first('location') }}</p> @endif
                                             </div>
                                         </div>
@@ -154,29 +154,50 @@
                                                 Pilih Lokasi Bank Pengajuan
                                             </p>
                                             <div role="form">
-                                                <div class="form-group >
+                                                <div class="form-group">
                                                     <label class="control-label">Kota *</label>
-                                                    {!! Form::select('cities', ['' => ''], old('cities'), [
+                                                    <!-- {!! Form::select('cities', ['1' => 'Bandung'], old('cities'), [
                                                         'class' => 'select2 cities',
-                                                        'data-placeholder' => 'Pilih Kota'
-                                                    ]) !!}
+                                                        'data-placeholder' => 'Pilih Kota',
+                                                        'readonly' => true
+                                                    ]) !!} -->
+                                                    <!-- <div class="col-md-3"> -->
+                                                        <input type="hidden" name="cities" value="1">
+                                                        <input type="text" name="city" value="Bandung" readonly="" class="form-control">
+                                                    <!-- </div> -->
 
                                                     @if ($errors->has('cities')) <p class="help-block">{{ $errors->first('cities') }}</p> @endif
                                                 </div>
-                                                <div class="form-group office_name {!! $errors->has('office_name') ? 'has-error' : '' !!}">
+                                                <div class="form-group office_id {!! $errors->has('office_name') ? 'has-error' : '' !!}">
                                                     <label class="control-label">Kantor Cabang BRI *</label>
-                                                    {!! Form::select('office_name', ['' => ''], old('office_name'), [
+                                                    <!-- {!! Form::select('office_name', ['' => ''], old('office_name'), [
                                                         'class' => 'select2 offices',
-                                                        'data-placeholder' => 'Pilih Kantor'
-                                                    ]) !!}
+                                                        'data-placeholder' => 'Pilih Kantor',
+                                                        'readonly' => true
+                                                    ]) !!} -->
+                                                    <input type="hidden" name="office_id" value="1">
+                                                        <input type="text" name="office" value="KC Lembang" readonly="" class="form-control">
 
-                                                    @if ($errors->has('office_name')) <p class="help-block">{{ $errors->first('office_name') }}</p> @endif
+                                                    @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
+                                                </div>
+                                                <div class="form-group office_id {!! $errors->has('office_name') ? 'has-error' : '' !!}">
+                                                    <label class="control-label">Alamat Kantor Cabang </label>
+                                                    <!-- {!! Form::select('office_name', ['' => ''], old('office_name'), [
+                                                        'class' => 'select2 offices',
+                                                        'data-placeholder' => 'Pilih Kantor',
+                                                        'readonly' => true
+                                                    ]) !!} -->
+                                                    <!-- <input type="hidden" name="office_id" value="1"> -->
+                                                        <textarea type="text" name="office" value="KC Lembang" readonly="" class="form-control">Bandung Barat</textarea>
+
+                                                    @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </section>
                             </div>
+                            <!-- <input type="submit" name="" value="Done"> -->
                         </form>
                     </div>
                 </div>
@@ -185,241 +206,6 @@
     </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
+@include('internals.eform.script-eform') 
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        var lastStatusElement = null;
-        $('.select2').select2({
-            witdh : '100%',
-            allowClear: true,
-        });
-        
-        $('.nik').select2({
-            witdh : '100%',
-            allowClear: true,
-            ajax: {
-                url: '{{route("getCustomer")}}',
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        name: params.term,
-                        page: params.page || 1
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-                    // console.log(data);
-                    return {
-                        results: data.customers.data,
-                        pagination: {
-                            more: (params.page * data.customers.per_page) < data.customers.total
-                        }
-                    };
-                },
-                cache: true
-            },
-        });
-
-        $('.cities').select2({
-            witdh : '100%',
-            allowClear: true,
-            ajax: {
-                url: '/cities',
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        name: params.term,
-                        page: params.page || 1
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: data.cities.data,
-                        pagination: {
-                            more: (params.page * data.cities.per_page) < data.cities.total
-                        }
-                    };
-                },
-                cache: true
-            },
-        });
-
-       $('#search').on('click', function() {
-           var id = $('#nik').val();
-
-           $.ajax({
-                dataType: 'json',
-                type: 'GET',
-                url: '{{route("detailCustomer")}}',
-                data: { id : id } 
-            }).done(function(data){
-                console.log(data);
-                $('#detail').html(data['view']);
-            });
-           
-       });
-
-       $( "ul.nav.nav-pills.m-b-30 li" ).click(function() {
-            $("ul.nav.nav-pills.m-b-30 li").removeClass('active');
-            $(this).addClass('active');
-
-           if($('li#li_kpr').hasClass('active')){
-                $('#product_type').val('kpr');  
-
-                 $('#form1').validate({
-                    onkeyup: false,
-                    rules: {
-                      name: {
-                        required: true
-                      },
-                      date: {
-                        required: true
-                      },
-                      location: {
-                        required: true,
-                        email: true
-                      },
-                      cities: {
-                        required: true
-                      },
-                      office_name: {
-                        required: true
-                      },
-                      request_amount: {
-                        required: true
-                      },
-                      year: {
-                        required: true
-                      },
-                      home_location: {
-                        required: true,
-                        email: true
-                      },
-                      active_kpr: {
-                        required: true
-                      },
-                      price: {
-                        required: true
-                      },
-                      down_payment: {
-                        required: true,
-                        email: true
-                      },
-                      building_area: {
-                        required: true
-                      },
-                      image: {
-                        required: true
-                      }
-                    },
-                    messages: {
-                      name: {
-                        required: "Anda harus memasukkan NIK"
-                      },
-                      date: {
-                        required: "Anda harus memasukkan Tanggal"
-                      },
-                      location: {
-                        required: "Anda harus memasukkan Lokasi"
-                      },
-                      cities: {
-                        required: "Anda harus memasukkan Kota"
-                      },
-                      office_name: {
-                        required: "Anda harus memasukkan Kantor Cabang"
-                      },
-                      request_amount: {
-                        required: "Anda harus memasukkan Jumlah Permohonan"
-                      },
-                      year: {
-                        required: "Anda harus memasukkan Jangka Waktu"
-                      },
-                      home_location: {
-                        required: "Anda harus memasukkan Lokasi Rumah"
-                      },
-                      active_kpr: {
-                        required: "Anda harus memasukkan KPR Aktif"
-                      },
-                      price: {
-                        required: "Anda harus memasukkan Harga Rumah"
-                      },
-                      down_payment: {
-                        required: "Anda harus memasukkan Jumlah Uang Muka"
-                      },
-                      building_area: {
-                        required: "Anda harus memasukkan Luas Bangunan"
-                      },
-                      image: {
-                        required: "Anda harus memasukkan Foto Dokumen"
-                      }
-                    },
-                    onsubmit: function( element, event ) {
-                        this.element( element );
-                    }
-                });
-           }
-           if($('li#li_kkb').hasClass('active')){
-                $('#product_type').val('kkb');
-           }
-           if($('li#li_briguna').hasClass('active')){
-                $('#product_type').val('briguna');  
-           }
-           if($('li#li_britama').hasClass('active')){
-                $('#product_type').val('britama');  
-           }
-           if($('li#li_kur').hasClass('active')){
-                $('#product_type').val('kur');  
-           }
-           if($('li#li_kartu').hasClass('active')){
-                $('#product_type').val('kartu');    
-           }
-        });
-    });
-
-    $('.cities').on('select2:unselect', function (e) {
-        $('.offices').empty().select2({
-            witdh : '100%',
-            allowClear: true,
-        });
-    });
-
-    $('.cities').on('select2:select', function (e) {
-        var citi_id = e.params.data.id;
-        get_offices(citi_id);
-    });
-
-    function get_offices(citi_id) {
-        $('.offices').empty().select2({
-            witdh : '100%',
-            allowClear: true,
-            ajax: {
-                url: `/offices?citi_id=${citi_id}`,
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        name: params.term,
-                        page: params.page || 1,
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: data.offices.data,
-                        pagination: {
-                            more: (params.page * data.offices.per_page) < data.offices.total
-                        }
-                    };
-                },
-                cache: true
-            },
-        });
-    }
-</script>

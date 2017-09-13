@@ -95,9 +95,13 @@
 
     Route::get('offices', 'OfficeController');
 
+    Route::get('getDeveloper', ['as'=>'getDeveloper', 'uses'=>'Developer\DeveloperController@getDeveloper']);
+
     Route::get('getCustomer', ['as'=>'getCustomer', 'uses'=>'EForm\EFormController@getCustomer']);
 
     Route::get('getAO', ['as'=>'getAO', 'uses'=>'EForm\EFormController@getAO']);
+
+    Route::get('renderMutation', ['as'=>'renderMutation', 'uses'=>'EForm\AOController@renderMutation']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
 

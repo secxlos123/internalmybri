@@ -23,8 +23,10 @@ class OfficeController extends Controller
     {
         $data = $this->getUser();
         $offices = \Client::setEndpoint('offices')
-            ->setHeaders(['Authorization' => $data['token']])
-            ->setQuery([
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
                 'city_id' => $request->input('citi_id'),
                 'page' => $request->input('page'),
                 'name' => $request->input('name'),

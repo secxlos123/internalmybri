@@ -45,13 +45,13 @@ class EFormController extends Controller
     public function index()
     {
         $data = $this->getUser(); 
-        dd($data);
-        if($data['role'] == 'ao'){
+
+        // if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   
-        } elseif ($data['role'] == 'admin') {
-            return view('internals.eform.index', compact('data'));
+        // } elseif ($data['role'] == 'admin') {
+            // return view('internals.eform.index', compact('data'));
             # code...
-        }     
+        // }     
     }
 
     /**
@@ -64,8 +64,10 @@ class EFormController extends Controller
         $data = $this->getUser();
 
         $customers = Client::setEndpoint('customer')
-            ->setHeaders(['Authorization' => $data['token']])
-            ->setQuery([
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
                 'nik' => $request->input('name'),
                 'page' => $request->input('page')
             ])
@@ -90,7 +92,10 @@ class EFormController extends Controller
         $data = $this->getUser();
 
         $officers = Client::setEndpoint('account-officers')
-            ->setHeaders(['Authorization' => $data['token']])
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
             ->setQuery([
                 'name' => $request->input('name'),
                 'page' => $request->input('page')
@@ -112,8 +117,10 @@ class EFormController extends Controller
          /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$request->id)
                         ->setQuery(['limit' => 100])
-                        ->setHeaders(['Authorization' => $data['token']])
-                        ->get();
+                        ->setHeaders([
+                            'Authorization' => $data['token'],
+                            'pn' => $data['pn']
+                        ])->get();
         
         $dataCustomer = $customerData['contents'];
 
@@ -154,83 +161,105 @@ class EFormController extends Controller
     }
 
     /**
-     * List of request needed for input to customer
+     * List of request needed for input to eform
      *
      * @param  \Illuminate\Http\Request  $request
      */
     public function eformRequest($request, $data)
     {       
-        if(!empty($request->name)){
+        if(!empty($request->nik)){
             /* GET Customer Data */
-            $customerData = Client::setEndpoint('customer/'.$request->name)
+            $customerData = Client::setEndpoint('customer/'.$request->nik)
                             ->setQuery(['limit' => 100])
-                            ->setHeaders(['Authorization' => $data['token']])
+                            ->setHeaders([
+                                'Authorization' => $data['token'],
+                                'pn' => $data['pn']
+                            ])
                             ->get();
             
             $nik = $customerData['contents']['personal']['nik'];
         }else{
-            \Session::flash("error", "NIP harus diisi");
+            \Session::flash("error", "NIK harus diisi");
             return redirect()->back()->withInput();
         }
 
-        if($request->image){
-            foreach ($request->image as $index => $img) {
-                # code...
-                $image_path = $img->getPathname();
-                $image_mime = $img->getmimeType();
-                $image_name = $img->getClientOriginalName();
-                $image[] = [
-                      'name'     => 'images['.$index.']',
-                      'filename' => $image_name,
-                      'Mime-Type'=> $image_mime,
-                      'contents' => fopen( $image_path, 'r' ),
-                    ];
-            }
-        }else{
-          \Session::flash("error", "Foto Dokumen harus diisi");
-            return redirect()->back()->withInput();
-        }
+        // if($request->image){
+        //     foreach ($request->image as $index => $img) {
+        //         # code...
+        //         $image_path = $img->getPathname();
+        //         $image_mime = $img->getmimeType();
+        //         $image_name = $img->getClientOriginalName();
+        //         $image[] = [
+        //               'name'     => 'images['.$index.']',
+        //               'filename' => $image_name,
+        //               'Mime-Type'=> $image_mime,
+        //               'contents' => fopen( $image_path, 'r' ),
+        //             ];
+        //     }
+        // }else{
+        //   \Session::flash("error", "Foto Dokumen harus diisi");
+        //     return redirect()->back()->withInput();
+        // }
 
         //get Requests
-        $req = [
-                "product_type"      => $request->product_type,
-                "request_amount"    => intval(preg_replace('(\D+)', '', $request->request_amount)),
-                "year"              => $request->year,
-                "home_location"     => $request->home_location,
-                "active_kpr"        => $request->active_kpr,
-                "price"             => intval(preg_replace('(\D+)', '', $request->price)),
-                "down_payment"      => intval(preg_replace('(\D+)', '', $request->down_payment)),
-                "building_area"     => $request->building_area
-               ];
+        // $req = [
+        //         "product_type"      => $request->product_type,
+        //         "request_amount"    => intval(preg_replace('(\D+)', '', $request->request_amount)),
+        //         "year"              => $request->year,
+        //         "home_location"     => $request->home_location,
+        //         "active_kpr"        => $request->active_kpr,
+        //         "price"             => intval(preg_replace('(\D+)', '', $request->price)),
+        //         "down_payment"      => intval(preg_replace('(\D+)', '', $request->down_payment)),
+        //         "building_area"     => $request->building_area
+        //        ];
 
-        $newForm = array(
-                [
-                  'name'     => 'nik',
-                  'contents' => $nik
-                ],
-                [
-                  'name'     => 'office_id',
-                  'contents' => $request->office_name
-                ],
-                [
-                  'name'     => 'product',
-                  'contents' => json_encode($req)
-                ],
-                [
-                  'name'     => 'appointment_date',
-                  'contents' => $request->date
-                ],
-                [
-                  'name'     => 'longitude',
-                  'contents' => $request->lng
-                ],
-                [
-                  'name'     => 'latitude',
-                  'contents' => $request->lat
-                ]
-            );
+        // $newForm = array(
+        //         [
+        //           'name'     => 'nik',
+        //           'contents' => $nik
+        //         ],
+        //         [
+        //           'name'     => 'office_id',
+        //           'contents' => $request->office_name
+        //         ],
+        //         [
+        //           'name'     => 'product',
+        //           'contents' => json_encode($req)
+        //         ],
+        //         [
+        //           'name'     => 'appointment_date',
+        //           'contents' => $request->date
+        //         ],
+        //         [
+        //           'name'     => 'longitude',
+        //           'contents' => $request->lng
+        //         ],
+        //         [
+        //           'name'     => 'latitude',
+        //           'contents' => $request->lat
+        //         ]
+        //     );
 
-        $new = array_merge($newForm, $image);
+        // $new = array_merge($newForm, $image);
+
+        $allReq = $request->except(['request_amount', 'price', '_token']);;
+        foreach ($allReq as $index => $req) {
+            $inputData[] = [
+                      'name'     => $index,
+                      'contents' => $req
+                    ];
+        }
+            $moneyInput = array(
+                    [
+                        'name'    => 'request_amount',
+                        'contents' => intval(preg_replace('(\D+)', '', $request->request_amount))
+                    ],
+                    [
+                        'name'    => 'price',
+                        'contents' => intval(preg_replace('(\D+)', '', $request->price))
+                    ]
+                );
+        $new = array_merge($inputData, $moneyInput);
 
         return $new;
     }
@@ -246,12 +275,13 @@ class EFormController extends Controller
         $data = $this->getUser();
 // 
         $newForm = $this->eformRequest($request, $data);
+        // dd($newForm);
 
-        $validator = $this->generalRules($request->all());
-        if ($validator->fails()) {
-            \Session::flash("error", "Data yang anda masukan tidak valid");
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
+        // $validator = $this->generalRules($request->all());
+        // if ($validator->fails()) {
+        //     \Session::flash("error", "Data yang anda masukan tidak valid");
+        //     return redirect()->back()->withErrors($validator->errors())->withInput();
+        // }
 
         if ($request->product_type == "kpr") {
             $validator = $this->kprRules($request->all());
@@ -260,57 +290,22 @@ class EFormController extends Controller
                 return redirect()->back()->withErrors($validator->errors())->withInput();
             }
 
-            if (!isset($request->image['collateral_document']) || !isset($request->image['salary_slip']) || !isset($request->image['bank_statement']) || !isset($request->image['family_card']) || !isset($request->image['marriage_certificate']) || !isset($request->image['bussiness_document']) || !isset($request->image['deed'])) {
-                \Session::flash("error", "Foto Dokumen tidak boleh ada yang kosong");
-                return redirect()->back()->withInput();
-            }
-
                 $client = Client::setEndpoint('eforms')
-                   ->setHeaders(['Authorization' => $data['token']])
-                   ->setBody($newForm)
+                   ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])->setBody($newForm)
                    ->post('multipart');
+                // dd($client);
                 
                 if($client['code'] == 201){
-                    \Session::flash('success', 'Data sudah disimpan.');
+                    \Session::flash('success', $client['descriptions']);
                     return redirect()->route('eform.index');
                 }else{
-                    \Session::flash('error', 'Kesalahan input.');
+                    \Session::flash('error', $client['descriptions']);
                     return redirect()->back();
                 }
-            } elseif ($request->product_type == "kkb") {
-                $validator = $this->kkbRules($request->all());
-                if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator->errors());
-                }
-
-            } elseif ($request->product_type == "briguna") {
-                $validator = $this->brigunaRules($request->all());
-                if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator->errors());
-                }
-
-            } elseif ($request->product_type == "britama") {
-                $validator = $this->britamaRules($request->all());
-                if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator->errors());
-                }
-
-            } elseif ($request->product_type == "kur") {
-                $validator = $this->kurRules($request->all());
-                if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator->errors());
-                }
-
-            } elseif ($request->product_type == "kartu") {
-                $rules = [
-                            'card_type' => 'required',
-                        ];
-                $validator = Validator::make($request->all(), $rules);
-                if ($validator->fails()) {
-                    return redirect()->back()->withErrors($validator->errors());
-                }
-                
-            }
+        }
     }
 
      /**
@@ -328,8 +323,10 @@ class EFormController extends Controller
         ];
 
         $client = Client::setEndpoint('eforms/'.$id.'/disposition')
-                ->setHeaders(['Authorization' => $data['token']])
-                ->setBody($dispotition)
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setBody($dispotition)
                 ->post();
 
         if($client['code'] == 201){
@@ -352,8 +349,10 @@ class EFormController extends Controller
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
-                ->setHeaders(['Authorization' => $data['token']])
-                ->setQuery([
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
@@ -361,6 +360,7 @@ class EFormController extends Controller
                     'customer_name' => $request->input('search.value'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
+            // dd($eforms);
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
@@ -383,26 +383,26 @@ class EFormController extends Controller
         $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
         $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
 
-        return response()->json($eforms['eforms']);
+        return response()->json($eforms['contents']);
     }
 
      /**
      * Validation general
      * @param $request
      */
-    public function generalRules($request)
-    {
-        $rules = [
-                    'name' => 'required',
-                    'date' => 'required|date|after_or_equal:today',
-                    'location' => 'required',
-                    'cities' => 'required',
-                    'office_name' => 'required',
-                ];
+    // public function generalRules($request)
+    // {
+    //     $rules = [
+    //                 'name' => 'required',
+    //                 'date' => 'required|date|after_or_equal:today',
+    //                 'location' => 'required',
+    //                 'cities' => 'required',
+    //                 'office_name' => 'required',
+    //             ];
 
-        $validator = Validator::make($request, $rules);
-        return $validator;
-    }
+    //     $validator = Validator::make($request, $rules);
+    //     return $validator;
+    // }
 
     /**
      * Validation KPR
@@ -412,14 +412,23 @@ class EFormController extends Controller
     public function kprRules($request)
     {
         $rules = [
-                    'request_amount' => 'required_if:product_type,kpr',
-                    'year' => 'required_if:product_type,kpr',
-                    'home_location' => 'required_if:product_type,kpr',
-                    'active_kpr' => 'required_if:product_type,kpr',
-                    'price' => 'required_if:product_type,kpr',
-                    'down_payment' => 'required_if:product_type,kpr',
-                    'building_area' => 'required_if:product_type,kpr',
-                    'image.*' => 'mimes:jpeg,jpg,png,gif,docx,pdf|max:10000',
+                   'product_type' => 'required|in:kpr',
+                   'status_property' => 'required_if:product_type,kpr,required|in:new,second',
+                   'developer' => 'required_if:product_type,kpr,required_if:status_property,new',
+                   'property' => 'required_if:product_type,kpr,required_if:status_property,new',
+                   'price' => 'required_if:product_type,kpr,required',
+                   'building_area' => 'required_if:product_type,kpr,required|numeric',
+                   'home_location' => 'required_if:product_type,kpr,required',
+                   'year' => 'required_if:product_type,kpr,required|numeric',
+                   'active_kpr' => 'required_if:product_type,kpr,required|numeric',
+                   'dp' => 'required_if:product_type,kpr,required',
+                   'request_amount' => 'required_if:product_type,kpr,required',
+                   'nik' => 'required',
+                   'office_id' => 'required',
+                   'appointment_date' => 'required|date',
+                   'address' => 'required',
+                   'longitude' => 'required',
+                   'latitude' => 'required'
                 ];
 
         $validator = Validator::make($request, $rules);

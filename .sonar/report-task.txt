@@ -1,0 +1,5 @@
+projectKey=my-bri-internal
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/my-bri-internal
+ceTaskId=AV5RX_85Y0hQRZGQr11r
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AV5RX_85Y0hQRZGQr11r

@@ -21,6 +21,10 @@ class AuthCheckToken
                       ])->get();
         // dd($checkToken);
 
+        if($checkToken['code'] == 404){
+            return redirect()->guest('/login');
+        }
+
         if($checkToken['contents']['refreshed'] == true){
             session()->put('user.contents.token', $checkToken['contents']['token']);
         }else{
