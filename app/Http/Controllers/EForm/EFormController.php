@@ -183,65 +183,6 @@ class EFormController extends Controller
             return redirect()->back()->withInput();
         }
 
-        // if($request->image){
-        //     foreach ($request->image as $index => $img) {
-        //         # code...
-        //         $image_path = $img->getPathname();
-        //         $image_mime = $img->getmimeType();
-        //         $image_name = $img->getClientOriginalName();
-        //         $image[] = [
-        //               'name'     => 'images['.$index.']',
-        //               'filename' => $image_name,
-        //               'Mime-Type'=> $image_mime,
-        //               'contents' => fopen( $image_path, 'r' ),
-        //             ];
-        //     }
-        // }else{
-        //   \Session::flash("error", "Foto Dokumen harus diisi");
-        //     return redirect()->back()->withInput();
-        // }
-
-        //get Requests
-        // $req = [
-        //         "product_type"      => $request->product_type,
-        //         "request_amount"    => intval(preg_replace('(\D+)', '', $request->request_amount)),
-        //         "year"              => $request->year,
-        //         "home_location"     => $request->home_location,
-        //         "active_kpr"        => $request->active_kpr,
-        //         "price"             => intval(preg_replace('(\D+)', '', $request->price)),
-        //         "down_payment"      => intval(preg_replace('(\D+)', '', $request->down_payment)),
-        //         "building_area"     => $request->building_area
-        //        ];
-
-        // $newForm = array(
-        //         [
-        //           'name'     => 'nik',
-        //           'contents' => $nik
-        //         ],
-        //         [
-        //           'name'     => 'office_id',
-        //           'contents' => $request->office_name
-        //         ],
-        //         [
-        //           'name'     => 'product',
-        //           'contents' => json_encode($req)
-        //         ],
-        //         [
-        //           'name'     => 'appointment_date',
-        //           'contents' => $request->date
-        //         ],
-        //         [
-        //           'name'     => 'longitude',
-        //           'contents' => $request->lng
-        //         ],
-        //         [
-        //           'name'     => 'latitude',
-        //           'contents' => $request->lat
-        //         ]
-        //     );
-
-        // $new = array_merge($newForm, $image);
-
         $allReq = $request->except(['request_amount', 'price', '_token']);;
         foreach ($allReq as $index => $req) {
             $inputData[] = [

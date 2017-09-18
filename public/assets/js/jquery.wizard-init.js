@@ -15,6 +15,7 @@
             }, 
             onFinished: function (event, currentIndex) {
                //NOTE: Submit the form, if all validation passed.
+               // alert("Submitted!");
                 console.log("Form can be submitted using submit method. E.g. $('#basic-form').submit()"); 
                 $("#basic-form").submit();
 
@@ -25,10 +26,23 @@
     //creates form with validation
     FormWizard.prototype.createValidatorForm = function($form_container) {
         $form_container.validate({
-            errorPlacement: function errorPlacement(error, element) {
-                element.after(error);
-            }
+            messages: {
+                home_location: "Harus Diisi",
+                postcode: {
+                    required: "Harus Diisi"
+                }
+            },
+            errorPlacement: function(error, element) {
+                if (element.parent('.input-group').length ||
+                    element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    error.insertAfter(element.parent());
+                    // else just place the validation message immediatly after the input
+                } else {
+                    error.insertAfter(element);
+                }
+            },
         });
+
         $form_container.children("div").steps({
             headerTag: "h3",
             bodyTag: "section",
@@ -42,7 +56,25 @@
                 return $form_container.valid();
             },
             onFinished: function (event, currentIndex) {
-                alert("Submitted!");
+                var request_amount = $('#request_amount').val();
+                var year = $('#year').val();
+                var office = $('#office').val();
+                var appointment_date = $('#datepicker-mindate').val();
+                var request_amount = $('#request_amount').val();
+                var request_amount = $('#request_amount').val();
+                var request_amount = $('#request_amount').val();
+                var request_amount = $('#request_amount').val();
+
+                $('#view-modal').modal('show');
+                $("#view-modal #request_amount").html('Rp '+request_amount);
+                $("#view-modal #year").html(year);
+                $("#view-modal #office").html(office);
+                $("#view-modal #appointment_date").html(appointment_date);
+                $("#view-modal #office").html(office);
+                $("#view-modal #office").html(office);
+                $("#view-modal #office").html(office);
+                $("#view-modal #office").html(office);
+                return false;
             }
         });
 

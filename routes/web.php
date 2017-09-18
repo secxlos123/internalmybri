@@ -71,6 +71,8 @@
 
         Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
 
+        Route::get('/eform/completeData/{id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
+
         Route::put('/eform/verification/{id}', 
             ['as'=>'postVerification', 'uses'=>'Customer\CustomerController@verifyCustomer']);
 
@@ -104,6 +106,8 @@
     Route::get('renderMutation', ['as'=>'renderMutation', 'uses'=>'EForm\AOController@renderMutation']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
+
+    /* Datatables */
 
     Route::group(['prefix'=>'datatables'], function () {
 

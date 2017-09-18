@@ -2,6 +2,11 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style type="text/css">
+    #wizard-validation-form label.error{
+        font-family: 'Varela Round', sans-serif;
+    }
+</style>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 <div class="content-page">
     <div class="content">
@@ -29,7 +34,7 @@
                      <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
                     <div class="card-box">
-                        <form id="basic-form" action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
+                        <form id="wizard-validation-form"  action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div>
                                 <h3>Produk</h3>
@@ -47,7 +52,7 @@
                                                     <label class="control-label"">Cari NIK Leads *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
-                                                                'class' => 'select2 nikSelect',
+                                                                'class' => 'select2 nikSelect required',
                                                                 'data-placeholder' => 'NIK',
                                                                 'id' => 'nik'
                                                             ]) !!}
@@ -100,7 +105,7 @@
                                                     <label class="control-label col-md-4">Tanggal *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" id="datepicker-mindate" name="appointment_date" value="{{old('appointment_date')}}">
+                                                            <input type="text" class="form-control required" id="datepicker-mindate" name="appointment_date" value="{{old('appointment_date')}}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
                                                             @if ($errors->has('appointment_date')) <p class="help-block">{{ $errors->first('appointment_date') }}</p> @endif
@@ -124,7 +129,7 @@
                                             <p class="text-muted m-b-30 font-13">
                                                 Tentukan lokasi/tempat Pertemuan
                                             </p>
-                                            <input id="searchInput" class="input-controls" type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
+                                            <input id="searchInput" class="input-controls required" type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
                                             <div class="map" id="map" style="width: 100%; height: 400px;"></div>
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
@@ -163,7 +168,7 @@
                                                     ]) !!} -->
                                                     <!-- <div class="col-md-3"> -->
                                                         <input type="hidden" name="cities" value="1">
-                                                        <input type="text" name="city" value="Bandung" readonly="" class="form-control">
+                                                        <input type="text" name="city" value="Bandung" readonly="" class="form-control" id="city">
                                                     <!-- </div> -->
 
                                                     @if ($errors->has('cities')) <p class="help-block">{{ $errors->first('cities') }}</p> @endif
@@ -176,7 +181,7 @@
                                                         'readonly' => true
                                                     ]) !!} -->
                                                     <input type="hidden" name="office_id" value="1">
-                                                        <input type="text" name="office" value="KC Lembang" readonly="" class="form-control">
+                                                        <input type="text" name="office" value="KC Lembang" readonly="" class="form-control" id="office">
 
                                                     @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
                                                 </div>
@@ -204,6 +209,7 @@
             </div>
         </div>
     </div>
+@include('internals.eform.eform-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->

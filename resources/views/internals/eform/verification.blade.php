@@ -24,13 +24,18 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="add-button">
+                                    <p class="col-md-2">Lengkapi Data Nasabah</p>
+                                    <a href="{{route('completeData', $id)}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-pencil"></i> Lengkapi Data</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box m-t-30">
-                                    <div class="add-button">
-                                        <a href="javascript:void(0);filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-pencil"></i> Lengkapi Data</a>
-                                    </div>
+
                                     <!-- <div id="filter" class="collapse m-b-15">
                                         <div class="row">
                                             <div class="col-md-7">

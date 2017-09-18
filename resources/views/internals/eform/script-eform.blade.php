@@ -132,7 +132,7 @@
             //             down_payment.val(payment);
             // console.log(payment);
 
-            if(building_area.val() < '21'){
+            if(building_area.val() < 21){
                 switch (val) {
                     case '1':
                         dp.val('0');
@@ -162,7 +162,7 @@
                         break;
                 }
                 // console.log('22');
-            }if((building_area.val() >= '22') || (building_area <= '70')){
+            }if((building_area.val() >= 22) || (building_area <= 70)){
                 switch (val) {
                     case '1':
                         dp.val('0');
@@ -190,7 +190,7 @@
                         break;
                 }
                 // console.log('23');
-            }if(building_area.val() > '70'){
+            }if(building_area.val() > 70){
                 switch (val) {
                     case '1':
                         dp.val('15');
@@ -334,6 +334,11 @@
         });
     });
 
+    //showing modal of efor
+    $('#view-modal').on('click', '#agree', function() {
+       $("#wizard-validation-form").submit();
+   });
+
     $('.cities').on('select2:unselect', function (e) {
         $('.offices').empty().select2({
             witdh : '100%',
@@ -375,5 +380,4 @@
         });
     }
 </script>
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#basic-form'); !!}
+<!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->

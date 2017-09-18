@@ -149,6 +149,29 @@ class AOController extends Controller
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function completeData($id)
+    {
+        $data = $this->getUser();
+
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('customer/'.$id)
+                      ->setQuery(['limit' => 100])
+                      ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                      ])
+                      ->get();
+        
+        $dataCustomer = $customerData['contents'];
+        
+        return view('internals.eform.complete', compact('data', 'id', 'dataCustomer'));
+    }
+
     //datatable
     public function datatables(Request $request)
     {
