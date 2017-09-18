@@ -304,6 +304,7 @@ class CustomerController extends Controller
         $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
         
         $dataCustomer = $customerData['contents'];
+        // dd(($dataCustomer['personal']['status'] == 0) ? 'Lajang' : '');
 
         return view('internals.customers.detail', compact('data', 'dataCustomer'));
     }
