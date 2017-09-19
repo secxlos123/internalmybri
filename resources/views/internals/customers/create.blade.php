@@ -62,7 +62,7 @@
                                                         <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-date" name="birth_date" value="{{ old('birth_date') }}">
+                                                                <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" value="{{ old('birth_date') }}">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                                 @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
                                                             </div>
@@ -90,8 +90,7 @@
                                                                 <option disabled="" selected="">-- Pilih --</option>
                                                                 <option value="0">Tidak Menikah</option>
                                                                 <option value="1">Menikah</option>
-                                                                <option value="2">Janda</option>
-                                                                <option value="3">Duda</option>
+                                                                <option value="2">Janda/Duda</option>
                                                             </select>
                                                             @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                         </div>
@@ -176,7 +175,7 @@
                                                         <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                         <div class="col-md-9">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="couple_birth_date" value="{{ old('couple_birth_date') }}">
+                                                                <input type="text" class="form-control datepicker-date" id="datepicker-autoclose" name="couple_birth_date" value="{{ old('couple_birth_date') }}">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                                 @if ($errors->has('couple_birth_date')) <p class="help-block">{{ $errors->first('couple_birth_date') }}</p> @endif
                                                             </div>

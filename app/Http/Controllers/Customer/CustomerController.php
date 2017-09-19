@@ -43,7 +43,7 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();  
-        // dd(session()->get('user.contents'));   
+        dd(session()->get('user.contents'));   
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
@@ -86,177 +86,168 @@ class CustomerController extends Controller
 
     public function customerRequest($request)
     {
-        $first_name = $this->split_name($request)['0'];
-        $last_name = $this->split_name($request)['1'];
-        $salary = intval(preg_replace('(\D+)', '',$request->salary));
-        $other_salary = intval(preg_replace('(\D+)', '', $request->other_salary));
-
-        if($request->npwp){
-          $npwp_path = $request->npwp->getPathname();
-          $npwp_mime = $request->npwp->getmimeType();
-          $npwp_name = $request->npwp->getClientOriginalName();
-          $npwp = [
+        $npwpReq = $request->npwp;
+          $npwp_path = $npwpReq->getPathname();
+            $npwp_mime = $npwpReq->getmimeType();
+            $npwp_name = $npwpReq->getClientOriginalName();
+            $npwp[] = [
                   'name'     => 'npwp',
                   'filename' => $npwp_name,
                   'Mime-Type'=> $npwp_mime,
                   'contents' => fopen( $npwp_path, 'r' ),
                 ];
-        }else{
-          $npwp = [
-                  'name'    => "",
-                  'contents'=> ""
+
+        $legal_documentReq = $request->legal_document;
+          $legal_document_path = $npwpReq->getPathname();
+            $legal_document_mime = $npwpReq->getmimeType();
+            $legal_document_name = $npwpReq->getClientOriginalName();
+            $legal_document[] = [
+                  'name'     => 'legal_document',
+                  'filename' => $legal_document_name,
+                  'Mime-Type'=> $legal_document_mime,
+                  'contents' => fopen( $legal_document_path, 'r' ),
                 ];
+
+        $salary_slipReq = $request->salary_slip;
+          $salary_slip_path = $npwpReq->getPathname();
+            $salary_slip_mime = $npwpReq->getmimeType();
+            $salary_slip_name = $npwpReq->getClientOriginalName();
+            $salary_slip[] = [
+                  'name'     => 'salary_slip',
+                  'filename' => $salary_slip_name,
+                  'Mime-Type'=> $salary_slip_mime,
+                  'contents' => fopen( $salary_slip_path, 'r' ),
+                ];
+
+        $bank_statementReq = $request->bank_statement;
+          $bank_statement_path = $npwpReq->getPathname();
+            $bank_statement_mime = $npwpReq->getmimeType();
+            $bank_statement_name = $npwpReq->getClientOriginalName();
+            $bank_statement[] = [
+                  'name'     => 'bank_statement',
+                  'filename' => $bank_statement_name,
+                  'Mime-Type'=> $bank_statement_mime,
+                  'contents' => fopen( $bank_statement_path, 'r' ),
+                ];
+
+        $family_cardReq = $request->family_card;
+          $family_card_path = $npwpReq->getPathname();
+            $family_card_mime = $npwpReq->getmimeType();
+            $family_card_name = $npwpReq->getClientOriginalName();
+            $family_card[] = [
+                  'name'     => 'family_card',
+                  'filename' => $family_card_name,
+                  'Mime-Type'=> $family_card_mime,
+                  'contents' => fopen( $family_card_path, 'r' ),
+                ];
+
+        $marrital_certificateReq = $request->marrital_certificate;
+          $marrital_certificate_path = $npwpReq->getPathname();
+            $marrital_certificate_mime = $npwpReq->getmimeType();
+            $marrital_certificate_name = $npwpReq->getClientOriginalName();
+            $marrital_certificate[] = [
+                  'name'     => 'marrital_certificate',
+                  'filename' => $marrital_certificate_name,
+                  'Mime-Type'=> $marrital_certificate_mime,
+                  'contents' => fopen( $marrital_certificate_path, 'r' ),
+                ];
+
+        if($request->diforce_certificate){
+          $imgReq = $request->diforce_certificate;
+            $image_path = $imgReq->getPathname();
+              $image_mime = $imgReq->getmimeType();
+              $image_name = $imgReq->getClientOriginalName();
+              $couple[] = [
+                    'name'     => 'diforce_certificate',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen( $image_path, 'r' ),
+                    ];
+          $allReq = $request->except(['npwp', '_token', 'diforce_certificate', 'legal_document', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate']);
+            foreach ($allReq as $index => $req) {
+              $inputData[] = [
+                        'name'     => $index,
+                        'contents' => $req
+                      ];
+            }
+            $newCustomer = array_merge($npwp, $inputData, $legal_document, $bank_statement, $family_card, $marrital_certificate, $diforce_certificate);
+        }else{
+          $allReq = $request->except(['identity', '_token', 'full_name']);
+            foreach ($allReq as $index => $req) {
+              $inputData[] = [
+                        'name'     => $index,
+                        'contents' => $req
+                      ];
+            }
+
+            $newCustomer = array_merge($npwp, $inputData, $bank_statement, $legal_document, $family_card, $marrital_certificate);
         }
-        if($request->images){
-          $image_path = $request->images->getPathname();
-          $image_mime = $request->images->getmimeType();
-          $image_name = $request->images->getClientOriginalName();
-          $image = [
-                  'name'     => 'image',
+        return $newCustomer;
+    }
+
+    /**
+     * List of request needed for input to customer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function dataRequest($request)
+    {
+        $first_name = $this->split_name($request)['0'];
+        $last_name = $this->split_name($request)['1'];
+
+        $name = array(
+            [
+              'name'     => 'first_name',
+              'contents' => $first_name,
+            ],
+            [
+              'name'     => 'last_name',
+              'contents' => $last_name,
+            ],
+          );
+
+        $imgReq = $request->identity;
+          $image_path = $imgReq->getPathname();
+            $image_mime = $imgReq->getmimeType();
+            $image_name = $imgReq->getClientOriginalName();
+            $image[] = [
+                  'name'     => 'identity',
                   'filename' => $image_name,
                   'Mime-Type'=> $image_mime,
                   'contents' => fopen( $image_path, 'r' ),
                 ];
+
+        if($request->couple_identity){
+          $imgReq = $request->couple_identity;
+            $image_path = $imgReq->getPathname();
+              $image_mime = $imgReq->getmimeType();
+              $image_name = $imgReq->getClientOriginalName();
+              $couple[] = [
+                    'name'     => 'couple_identity',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen( $image_path, 'r' ),
+                  ];
+        $allReq = $request->except(['identity', '_token', 'couple_identity', 'full_name']);
+          foreach ($allReq as $index => $req) {
+            $inputData[] = [
+                      'name'     => $index,
+                      'contents' => $req
+                    ];
+          }
+          $newCustomer = array_merge($image, $inputData, $couple, $name);
         }else{
-          $image = [
-                  'name'    => "",
-                  'contents'=> ""
-                ];
+          $allReq = $request->except(['identity', '_token', 'full_name']);
+          foreach ($allReq as $index => $req) {
+            $inputData[] = [
+                      'name'     => $index,
+                      'contents' => $req
+                    ];
+          }
+
+          $newCustomer = array_merge($image, $inputData, $name);
         }
-        if($request->identity){
-          $identity_path = $request->identity->getPathname();
-          $identity_mime = $request->identity->getmimeType();
-          $identity_name = $request->identity->getClientOriginalName();
-          $identity = [
-                  'name'     => 'identity',
-                  'filename' => $identity_name,
-                  'Mime-Type'=> $identity_mime,
-                  'contents' => fopen( $identity_path, 'r' ),
-                ];
-        }else{
-          $identity = [
-                  'name'    => "",
-                  'contents'=> ""
-                ];
-        }
-        $newCustomer = array(
-                [
-                  'name'     => 'nik',
-                  'contents' => $request->nik
-                ],
-                [
-                  'name'     => 'email',
-                  'contents' => $request->email
-                ],
-                [
-                  'name'     => 'first_name',
-                  'contents' => $first_name,
-                ],
-                [
-                  'name'     => 'last_name',
-                  'contents' => $last_name,
-                ],
-                [
-                  'name'     => 'birth_place',
-                  'contents' => $request->birth_place,
-                ],
-                [
-                  'name'     => 'birth_date',
-                  'contents' => $request->birth_date,
-                ],
-                [
-                  'name'     => 'address',
-                  'contents' => $request->address,
-                ],
-                [
-                  'name'     => 'gender',
-                  'contents' => $request->gender,
-                ],
-                [
-                  'name'     => 'city',
-                  'contents' => 'Bandung',
-                ],
-                [
-                  'name'     => 'phone',
-                  'contents' => $request->phone,
-                ],
-                [
-                  'name'     => 'citizenship',
-                  'contents' => $request->citizenship,
-                ],
-                [
-                  'name'     => 'status',
-                  'contents' => $request->status,
-                ],
-                [
-                  'name'     => 'address_status',
-                  'contents' => $request->address_status,
-                ],
-                [
-                  'name'     => 'mother_name',
-                  'contents' => $request->mother_name,
-                ],
-                [
-                  'name'     => 'mobile_phone',
-                  'contents' => $request->mobile_phone,
-                ],
-                [
-                  'name'     => 'emergency_contact',
-                  'contents' => $request->emergency_contact,
-                ],
-                [
-                  'name'     => 'emergency_relation',
-                  'contents' => $request->emergency_relation,
-                ],
-                $identity,
-                $npwp,
-                $image,
-                [
-                  'name'     => 'work_type',
-                  'contents' => $request->work_type,
-                ],
-                [
-                  'name'     => 'work',
-                  'contents' => $request->work,
-                ],
-                [
-                  'name'     => 'company_name',
-                  'contents' => $request->company_name,
-                ],
-                [
-                  'name'     => 'work_field',
-                  'contents' => $request->work_field,
-                ],
-                [
-                  'name'     => 'position',
-                  'contents' => $request->position,
-                ],
-                [
-                  'name'     => 'work_duration',
-                  'contents' => $request->work_duration,
-                ],
-                [
-                  'name'     => 'office_address',
-                  'contents' => $request->office_address,
-                ],
-                [
-                  'name'     => 'salary',
-                  'contents' => $salary,
-                ],
-                [
-                  'name'     => 'other_salary',
-                  'contents' => $other_salary,
-                ],
-                [
-                  'name'     => 'loan_installment',
-                  'contents' => $request->loan_installment,
-                ],
-                [
-                  'name'     => 'dependent_amount',
-                  'contents' => $request->dependent_amount,
-                ]
-              );
-          // [
+        
         return $newCustomer;
     }
 
@@ -270,7 +261,8 @@ class CustomerController extends Controller
     {
         $data = $this->getUser();
 
-        $newCustomer = $this->customerRequest($request);
+        $newCustomer = $this->dataRequest($request);
+        // dd($newCustomer);
 
         $client = Client::setEndpoint('customer')
          ->setHeaders([
@@ -279,13 +271,27 @@ class CustomerController extends Controller
           ])->setBody($newCustomer)
          ->post('multipart');
 
-         if($client['code'] == 200){
-            \Session::flash('success', 'Data sudah tersimpan!');
-            return redirect()->route('customers.index');
-         }else{
-            \Session::flash('error', 'Lengkapi data Anda!');
-            return redirect()->back();
-         }
+         // if($client['code'] == 200){
+         //    \Session::flash('success', $client['descriptions']);
+         //    return redirect()->back();
+         // }else{
+         //    \Session::flash('error', $client['descriptions']);
+         //    return redirect()->back();
+         // }
+
+        $codeResponse = $client['code'];
+        $codeDescription = $client['descriptions'];
+
+        if($codeResponse == 200){
+            session()->put('user', $client);
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
+        }elseif($codeResponse == 422){
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
+        }elseif($codeResponse == 404){
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
+        }else{
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
+        }
 
 
     }
@@ -369,12 +375,15 @@ class CustomerController extends Controller
         $newCustomer = $this->customerRequest($request);
 
         $client = Client::setEndpoint('customer/'.$id)
-         ->setHeaders(['Authorization' => $data['token']])
+         ->setHeaders([
+              'Authorization' => $data['token'],
+              'pn' => $data['pn']
+          ])
          ->setBody($newCustomer)
          ->put('multipart');
 
         if($client['code'] == 200){
-            \Session::flash('success', 'Data berhasil diverifikasi!');
+            \Session::flash('success', 'Data berhasil ubah!');
             return redirect()->route('indexAO');
         }else{
             \Session::flash('error', 'Lengkapi data Anda!');
