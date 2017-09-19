@@ -112,6 +112,15 @@
                 return false;
             }
         });
+
+        $('.datepicker-date').datepicker({
+            format: "yyyy-mm-dd",
+            clearBtn: true,
+            autoclose: true,
+            endDate: new Date(),
+            todayHighlight: true
+        });
+            $('.datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
         </script>
 @include('internals.layouts.signout')
     </body>
