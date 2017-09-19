@@ -21,9 +21,13 @@ class Authenticate
             foreach ($users as $key ) {
                 $data = $key;
             }
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            }
+
+            /**
+             * Lisda ini buat apa iya? ini ga bisa create customer itu gara2 ada logic ini.
+             */
+            // if ($request->ajax()) {
+            //     return response('Unauthorized.', 401);
+            // }
         }else{
             return redirect()->guest('/login');
         }
