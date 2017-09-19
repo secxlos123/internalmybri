@@ -19,6 +19,11 @@ class AOController extends Controller
         'customer_name',
         'request_amount',
         'appointment_date',
+        'product_type',
+        'mobile_phone',
+        'prescreening_status',
+        'status',
+        'aging',
         'action',
     ];
 
@@ -197,7 +202,7 @@ class AOController extends Controller
             $form['request_amount'] = $form['nominal'];
             $form['appointment_date'] = $form['appointment_date'];
             $form['action'] = view('internals.layouts.actions', [
-                'verification' => route('getVerification', $form['User_id']),
+                'verification' => route('getVerification', $form['user_id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
