@@ -36,13 +36,14 @@ class CustomerRequest extends FormRequest
             'mother_name'   => 'required',
             'mobile_phone'  => 'required|numeric|digits_between:1,12',
             'identity'  => 'mimes:jpeg,jpg,png,gif|required|max:10000',
-            'couple_nik' => 'required_if:status,1,required',
-            'couple_name' => 'required_if:status,1,required',
-            'couple_birth_date' => 'required_if:status,1,required',
-            'couple_birth_place' => 'required_if:status,1,required',
-            'couple_identity'  => 'required_if:status,1|mimes:jpeg,jpg,png,gif|required|max:10000'
+            'couple_nik' => 'required_if:status,1',
+            'couple_name' => 'required_if:status,1',
+            'couple_birth_date' => 'required_if:status,1',
+            'couple_birth_place' => 'required_if:status,1',
+            'couple_identity'  => 'required_if:status,1|mimes:jpeg,jpg,png,gif|max:10000'
         ];
     }
+
     public function messages()
     {
         return [
