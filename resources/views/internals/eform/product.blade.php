@@ -56,23 +56,18 @@
                                             <label class="control-label col-md-4">Developer *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('developer', ['' => ''], old('developers'), [
-                                                        'class' => 'select2 developers ',
-                                                        'data-placeholder' => '-- Pilih Developer --'
-                                                    ]) !!}
+                                                    'class' => 'select2 developers ',
+                                                    'data-placeholder' => '-- Pilih Developer --'
+                                                ]) !!}
                                             </div>
                                         </div>
-                                        <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
+                                        <div class="form-group {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                             <label class="control-label col-md-4">Nama Properti *:</label>
                                             <div class="col-md-8">
-                                                <select class="select2 property_name " data-placeholder="-- Pilih Properti --" name="property">
-                                                    <option> </option>
-                                                    <option value="1">Properti 1</option>
-                                                    <option value="2">Properti 2</option>
-                                                </select>
-                                                <!-- {!! Form::select('property_name', ['' => ''], old('property_name'), [
+                                                {!! Form::select('property_name', ['' => ''], old('property_name'), [
                                                     'class' => 'select2 property_name',
                                                     'data-placeholder' => 'Pilih Nama Properti',
-                                                ]) !!} -->
+                                                ]) !!}
                                             </div>
                                         </div>
                                         <hr>
@@ -102,7 +97,7 @@
                                         <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Lokasi Rumah *:</label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control " rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah">{{old('home_location')}}</textarea>
+                                                <textarea class="form-control " rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah" id="home_location">{{old('home_location')}}</textarea>
                                                 @if ($errors->has('home_location')) <p class="help-block">{{ $errors->first('home_location') }}</p> @endif
                                             </div>
                                         </div>
@@ -112,32 +107,22 @@
 
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
-                                        <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_type">
+                                        <div class="form-group {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
                                             <label class="control-label col-md-4">Tipe Properti *:</label>
                                             <div class="col-md-8">
-                                                <select class="select2 property_type " data-placeholder="-- Pilih Tipe Properti --" name="type">
-                                                    <option> </option>
-                                                    <option value="1">Tipe Properti 1</option>
-                                                    <option value="2">Tipe Properti 2</option>
-                                                </select>
-                                                <!-- {!! Form::select('property_name', ['' => ''], old('property_name'), [
-                                                    'class' => 'select2 property_name',
+                                                {!! Form::select('property_type', ['' => ''], old('property_type'), [
+                                                    'class' => 'select2 property_type',
                                                     'data-placeholder' => 'Pilih Nama Properti',
-                                                ]) !!} -->
+                                                ]) !!}
                                             </div>
                                         </div>
-                                        <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_unit">
+                                        <div class="form-group {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
                                             <label class="control-label col-md-4">Unit Properti *:</label>
                                             <div class="col-md-8">
-                                                <select class="select2 property_unit " data-placeholder="-- Pilih Unit Properti --" name="unit">
-                                                    <option> </option>
-                                                    <option value="1">Unit Properti 1</option>
-                                                    <option value="2">Unit Properti 2</option>
-                                                </select>
-                                                <!-- {!! Form::select('property_name', ['' => ''], old('property_name'), [
-                                                    'class' => 'select2 property_name',
+                                                {!! Form::select('property_item', ['' => ''], old('property_item'), [
+                                                    'class' => 'select2 property_item',
                                                     'data-placeholder' => 'Pilih Nama Properti',
-                                                ]) !!} -->
+                                                ]) !!}
                                             </div>
                                         </div>
                                         <hr>
@@ -155,8 +140,8 @@
                                         <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">KPR Aktif ke *:</label>
                                             <div class="col-md-8">
-                                                <select class="form-control " name="active_kpr" id="active_kpr" disabled="">
-                                                    <option value="0" selected="" disabled=""> Pilih </option>
+                                                <select class="form-control " name="active_kpr" id="active_kpr">
+                                                    <option value="0" selected=""> Pilih </option>
                                                     <option value="1"> 1 </option>
                                                     <option value="2"> 2 </option>
                                                     <option value="3"> > 2 </option>

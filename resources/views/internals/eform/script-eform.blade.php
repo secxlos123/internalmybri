@@ -59,6 +59,110 @@
             },
         });
 
+        $('.developers').on('change', function () {
+            var id = $(this).val();
+
+            $('.property_name').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/properties',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            dev_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.properties.data,
+                            pagination: {
+                                more: (params.page * data.properties.per_page) < data.properties.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        $('.property_name').on('change', function () {
+            var id = $(this).val();
+
+            $('.property_type').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/types',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            prop_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.types.data,
+                            pagination: {
+                                more: (params.page * data.types.per_page) < data.types.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        $('.property_item').on('select2:select', function (e) {
+            var price = e.params.data.price;
+            var address = e.params.data.address;
+            $('#price').val(price).trigger('change');
+            $('#home_location').val(address).trigger('change');
+        });
+
+        $('.property_type').on('select2:select', function (e) {
+            var id = e.params.data.id;
+            var luasBangunan = e.params.data.building_area;
+            $('#building_area').val(luasBangunan).trigger('change');
+
+            $('.property_item').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/units',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            prop_type_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.units.data,
+                            pagination: {
+                                more: (params.page * data.units.per_page) < data.units.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,
@@ -392,6 +496,7 @@
        $("#form1").submit(function(){
 
             var formData = new FormData(this);
+            console.log(formData);
 
             $.ajax({
                 url: "/customers",

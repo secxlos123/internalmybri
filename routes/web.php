@@ -97,6 +97,12 @@
 
     Route::get('offices', 'OfficeController');
 
+    Route::get('dropdown/properties', 'DropdownController@properties');
+
+    Route::get('dropdown/types', 'DropdownController@types');
+
+    Route::get('dropdown/units', 'DropdownController@units');
+
     Route::get('getDeveloper', ['as'=>'getDeveloper', 'uses'=>'Developer\DeveloperController@getDeveloper']);
 
     Route::get('getCustomer', ['as'=>'getCustomer', 'uses'=>'EForm\EFormController@getCustomer']);
