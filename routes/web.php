@@ -107,6 +107,8 @@
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
 
+    Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
+
     /* Datatables */
 
     Route::group(['prefix'=>'datatables'], function () {
