@@ -31,8 +31,9 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
                                     </div>
-                                    <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
+                                    <form action="{{route('postVerification', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
                                     {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -76,13 +77,13 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
+                                                    <!-- <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">KTP * :</label>
                                                         <div class="col-md-9">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
                                                             @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -103,10 +104,9 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="status" id="status">
                                                                 <option disabled="" selected="">-- Pilih --</option>
-                                                                <option @if($dataCustomer['personal']['status'] == '0') ? selected @endif value="0">Tidak Menikah</option>
-                                                                <option @if($dataCustomer['personal']['status'] == '1') ? selected @endif value="1">Menikah</option>
-                                                                <option @if($dataCustomer['personal']['status'] == '2') ? selected @endif value="2">Janda</option>
-                                                                <option @if($dataCustomer['personal']['status'] == '3') ? selected @endif value="3">Duda</option>
+                                                                <option @if($dataCustomer['personal']['status'] == 0) ? selected @endif value="0">Tidak Menikah</option>
+                                                                <option @if($dataCustomer['personal']['status'] == 1) ? selected @endif value="1">Menikah</option>
+                                                                <option @if($dataCustomer['personal']['status'] == 2) ? selected @endif value="2">Janda/Duda</option>
                                                             </select>
                                                             @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                         </div>
@@ -174,13 +174,13 @@
                                                              @if ($errors->has('full_name')) <p class="help-block">{{ $errors->first('full_name') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
+                                                   <!--  <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">KTP Pasangan * :</label>
                                                         <div class="col-md-9">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
                                                             @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     
                                                 </div>
                                             </div>
@@ -423,43 +423,43 @@
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Dokumen Legal Agunan *:</label>
                                                         <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="legal_document">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-6 control-label">Slip Gaji *:</label>
+                                                        <label class="col-md-6 control-label">Slip Gaji / Dokumen Legal Usaha / Izin Praktek *:</label>
                                                         <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="salary_slip">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Bank Statement :</label>
                                                         <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="bank_statement">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Kartu Keluarga :</label>
                                                         <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="family_card">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
                                                         <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="marrital_certificate">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                         <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
                                                         <div class="col-md-6">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group">
+                                                    </div> -->
+                                                    <div class="form-group" id="separate_certificate">
                                                         <label class="col-md-6 control-label">Akta Pisah Harta :</label>
                                                         <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="diforce_certificate">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -517,6 +517,7 @@
 
     function hideCouple(){
         $('#couple_data').hide();
+        $('#separate_certificate').hide();
 
     }
     hideCouple();
@@ -524,6 +525,9 @@
     $('#status').on('change', function() {
         if(this.value==1){
             $('#couple_data').show();
+        }else if(this.value==2){
+            $('#separate_certificate').show();
+            $('#couple_data').hide();
         }else{
             hideCouple();
         }

@@ -21,7 +21,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.customers.data,
                         pagination: {
@@ -334,10 +333,12 @@
         });
     });
 
-    //showing modal of efor
+    //showing modal of eform
     $('#view-modal').on('click', '#agree', function() {
        $("#wizard-validation-form").submit();
-   });
+    });
+
+
 
     $('.cities').on('select2:unselect', function (e) {
         $('.offices').empty().select2({
@@ -379,5 +380,52 @@
             },
         });
     }
+
+    //showing modal create leads
+    $('#btn-leads').on('click', function() {
+       $('#leads-modal').modal('show');
+    });
+
+    //storing leads
+    // $('#leads-modal #btn-save').on('click', function() {
+        // console.log('click');
+       $("#form1").submit(function(){
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: "/customers",
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    alert(data)
+                },
+                error: function (response) {
+                    console.log(response)
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            return false;
+        });
+    // });
+
+    //hide and show couple data div
+    function hideCouple(){
+        $('#leads-modal #couple_data').hide();
+
+    }
+    hideCouple();
+
+    $('#leads-modal #status').on('change', function() {
+        if(this.value==1){
+            $('#leads-modal #couple_data').show();
+        }else{
+            hideCouple();
+        }
+    })
 </script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->

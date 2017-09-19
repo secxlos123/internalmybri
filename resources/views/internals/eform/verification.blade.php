@@ -418,9 +418,9 @@
                                 <div class="pull-right">
                                     <button type="submit" href="javascript:void(0);" id="save" class="btn btn-default waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
-                                <div class="col-md-1 pull-right">
+                                <!-- <div class="col-md-1 pull-right">
                                     <button type="submit" href="javascript:void(0);" id="save" class="btn waves-effect waves-light btn-success"><i class="mdi mdi-content-save"></i> Verifikasi</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </form>

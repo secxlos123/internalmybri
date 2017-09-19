@@ -52,7 +52,7 @@
                                                     <label class="control-label"">Cari NIK Leads *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
-                                                                'class' => 'select2 nikSelect required',
+                                                                'class' => 'select2 nikSelect',
                                                                 'data-placeholder' => 'NIK',
                                                                 'id' => 'nik'
                                                             ]) !!}
@@ -69,7 +69,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="{{route('customers.create')}}" class="btn btn-primary waves-effect waves-light m-l-10 btn-md"><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads"><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                                     <label class="control-label col-md-4">Tanggal *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control required" id="datepicker-mindate" name="appointment_date" value="{{old('appointment_date')}}">
+                                                            <input type="text" class="form-control" id="datepicker-mindate" name="appointment_date" value="{{old('appointment_date')}}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
                                                             @if ($errors->has('appointment_date')) <p class="help-block">{{ $errors->first('appointment_date') }}</p> @endif
@@ -129,7 +129,7 @@
                                             <p class="text-muted m-b-30 font-13">
                                                 Tentukan lokasi/tempat Pertemuan
                                             </p>
-                                            <input id="searchInput" class="input-controls required" type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
+                                            <input id="searchInput" class="input-controls " type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan">
                                             <div class="map" id="map" style="width: 100%; height: 400px;"></div>
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
@@ -210,6 +210,7 @@
         </div>
     </div>
 @include('internals.eform.eform-modal')
+@include('internals.eform.leads-form-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->

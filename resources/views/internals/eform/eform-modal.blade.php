@@ -22,12 +22,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <form class="form-horizontal" role="form">
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label class="col-md-5 control-label">Nomor Referensi :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="ref_number"></p>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label class="col-md-5 control-label">Jumlah Pinjaman :</label>
                                                 <div class="col-md-7">
@@ -112,13 +112,13 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="form-group">
+                                            <div class="form-group" id="couple1">
                                                 <label class="col-md-5 control-label">NIK Pasangan :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="couple_nik"></p>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" id="couple2">
                                                 <label class="col-md-5 control-label">Nama Lengkap Pasangan :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="couple_name"></p>
@@ -148,13 +148,13 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <div class="form-group">
+                                            <div class="form-group" id="couple3">
                                                 <label class="col-md-5 control-label">Tempat Lahir Pasangan :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="couple_birth_place"></p>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" id="couple4">
                                                 <label class="col-md-5 control-label">Tanggal Lahir Pasangan :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="couple_birth_date"></p>
@@ -176,13 +176,13 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6" align="center">
-                                        <div class="card-box">
+                                        <div class="card-box" id="identity">
                                             <img src="@if(!empty($dataCustomer['other']['identity'])){{$dataCustomer['other']['identity']}}@endif" class="img-responsive">
                                             <p>Foto KTP</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6" align="center">
-                                        <div class="card-box">
+                                    <div class="col-md-6" align="center" id="couple5">
+                                        <div class="card-box" id="couple_identity">
                                             <img src="@if(!empty($dataCustomer['other']['npwp'])){{$dataCustomer['other']['npwp']}}@endif" class="img-responsive">
                                             <p>Foto KTP Pasangan</p>
                                         </div>

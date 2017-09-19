@@ -11,39 +11,39 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">NIK :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static" id="cust_nik">@if(!empty($dataCustomer['personal']['nik'])){{$dataCustomer['personal']['nik']}}@endif</p>
+                                    <p class="form-control-static" id="cust_nik">@if(!empty($dataCustomer['nik'])){{$dataCustomer['nik']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" id="cust_name">Nama Lengkap :</label>
+                                <label class="col-md-4 control-label">Nama Lengkap :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['personal']['name'])){{$dataCustomer['personal']['name']}}@endif</p>
+                                    <p class="form-control-static">{{$dataCustomer['first_name']}} {{$dataCustomer['last_name']}}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tempat Lahir :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['personal']['birth_place'])){{$dataCustomer['personal']['birth_place']}}@endif</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['birth_place'])){{$dataCustomer['birth_place']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tanggal Lahir :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['personal']['birth_date'])){{$dataCustomer['personal']['birth_date']}}@endif</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['birth_date'])){{$dataCustomer['birth_date']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Alamat :</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static">
-                                        @if(!empty($dataCustomer['personal']['address'])){{$dataCustomer['personal']['address']}}@endif
+                                        @if(!empty($dataCustomer['address'])){{$dataCustomer['address']}}@endif
                                     </p>
                                 </div>
                             </div>
                              <div class="form-group">
                                 <label class="col-md-4 control-label">Jenis Kelamin :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['personal']['gender'])){{$dataCustomer['personal']['gender']}}@endif</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['gender'])){{$dataCustomer['gender']}}@endif</p>
                                 </div>
                             </div>
                         </form>
@@ -55,10 +55,9 @@
                                 <label class="col-md-4 control-label">Status Pernikahan :</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static">
-                                    {{($dataCustomer['personal']['status'] == "0") ? 'Tidak Menikah' : ''}}
-                                    {{($dataCustomer['personal']['status'] == "1") ? 'Menikah' : ''}}
-                                    {{($dataCustomer['personal']['status'] == "2") ? 'Duda' : ''}}
-                                    {{($dataCustomer['personal']['status'] == "3") ? 'Janda' : ''}}
+                                        {{($dataCustomer['status'] == 0) ? 'Tidak Menikah' : ''}}
+                                        {{($dataCustomer['status'] == 1) ? 'Menikah' : ''}}
+                                        {{($dataCustomer['status'] == 2) ? 'Janda/Duda' : ''}}
                                     </p>
                                 </div>
                             </div>
@@ -66,20 +65,20 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Email :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['personal']['email']))
-                                    {{$dataCustomer['personal']['email']}}@endif</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['email']))
+                                    {{$dataCustomer['email']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Nama Gadis Ibu Kandung :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['personal']['mother_name'])){{$dataCustomer['personal']['mother_name']}}@endif</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['mother_name'])){{$dataCustomer['mother_name']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">No. Handphone :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">{{$dataCustomer['contact']['mobile_phone']}}</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['mobile_phone'])){{$dataCustomer['mobile_phone']}}@endif</p>
                                 </div>
                             </div>
                         </form>
@@ -90,7 +89,7 @@
     </div>
 </div>
 
-@if($dataCustomer)
+@if(!empty($dataCustomer['status']) &&($dataCustomer['status'] == 1))
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-color panel-primary">
@@ -104,13 +103,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">NIK :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">{{$dataCustomer['personal']['nik']}}</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['couple_nik'])){{$dataCustomer['couple_nik']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Nama Lengkap :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">{{$dataCustomer['personal']['name']}}</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['couple_name'])){{$dataCustomer['couple_name']}}@endif</p>
                                 </div>
                             </div>      
                         </form>
@@ -120,13 +119,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tempat Lahir :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">{{$dataCustomer['personal']['birth_place']}}</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['couple_birth_place'])){{$dataCustomer['couple_birth_place']}}@endif</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tanggal Lahir :</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static">{{$dataCustomer['personal']['birth_date']}}</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['couple_birth_date'])){{$dataCustomer['couple_birth_date']}}@endif</p>
                                 </div>
                             </div>
                         </form>
@@ -146,16 +145,18 @@
                 <div class="row">
                     <div class="col-md-6" align="center">
                         <div class="card-box">
-                            <img src="@if(!empty($dataCustomer['other']['identity'])){{$dataCustomer['other']['identity']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($dataCustomer['identity'])){{$dataCustomer['identity']}}@endif" class="img-responsive">
                             <p>Foto KTP</p>
                         </div>
                     </div>
+                    @if(!empty($dataCustomer['status']) &&($dataCustomer['status'] == 1))
                     <div class="col-md-6" align="center">
                         <div class="card-box">
-                            <img src="@if(!empty($dataCustomer['other']['npwp'])){{$dataCustomer['other']['npwp']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($dataCustomer['couple_identity'])){{$dataCustomer['couple_identity']}}@endif" class="img-responsive">
                             <p>Foto KTP Pasangan</p>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

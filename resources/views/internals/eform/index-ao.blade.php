@@ -68,10 +68,15 @@
                                     <table id="datatable" class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>No. Ref Aplikasi</th>
-                                                <th>Nama Nasabah</th>
-                                                <th>Jumlah Pengajuan</th>
+                                                <th>No. Ref</th>
+                                                <th>Leads</th>
+                                                <th>Nominal</th>
                                                 <th>Tanggal Perjanjian</th>
+                                                <th>Produk</th>
+                                                <th>No. HP</th>
+                                                <th>Status Prescreening</th>
+                                                <th>Status</th>
+                                                <th>Aging</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -107,7 +112,7 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
-                url : '{{route("eform-ao")}}',
+                url : '/datatables/eform',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 
@@ -124,6 +129,55 @@
                 {   data: 'customer_name', name: 'customer_name' },
                 {   data: 'request_amount', name: 'request_amount' },
                 {   data: 'appointment_date', name: 'appointment_date' },
+                {   data: 'product_type', name: 'product_type' },
+                {   data: 'mobile_phone', name: 'mobile_phone' },
+                {   data: 'prescreening_status', 
+                    name: 'prescreening_status', 
+                    bSortable: false,
+                    mRender: function (data, type, full) {
+                        if(full.prescreening_status == '3'){
+                            color = 'text-success';
+                            text = 'Diterima';
+                        }else if(full.prescreening_status == '2'){
+                            color = 'text-warning';
+                            text = 'Proses';
+                        }else if(full.prescreening_status == '1'){
+                            color = 'text-danger';
+                            text = 'Ditolak';
+                        }else {
+                            color = '';
+                            text = 'Pengajuan Baru';
+                        }
+                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+                    },
+                    createdCell:  function (td, cellData, rowData, row, col) {
+                        $(td).attr('class', 'status'); 
+                    }
+                },
+                {   data: 'status', 
+                    name: 'status', 
+                    bSortable: false,
+                    mRender: function (data, type, full) {
+                        if(full.status == '0'){
+                            color = 'text-success';
+                            text = 'Diterima';
+                        }else if(full.status == '1'){
+                            color = 'text-warning';
+                            text = 'Proses';
+                        }else if(full.status == '2'){
+                            color = 'text-danger';
+                            text = 'Ditolak';
+                        }else {
+                            color = '';
+                            text = 'Pengajuan Baru';
+                        }
+                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+                    },
+                    createdCell:  function (td, cellData, rowData, row, col) {
+                        $(td).attr('class', 'status'); 
+                    }
+                },
+                {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
         });
@@ -132,7 +186,7 @@
             table.fnDraw();
         });
         
-        $('.offices').select2({
+        $('.office').select2({
             witdh : '100%',
             allowClear: true,
             ajax: {
@@ -147,7 +201,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-
                     return {
                         results: data.offices.data,
                         pagination: {

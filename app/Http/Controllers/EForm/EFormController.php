@@ -76,6 +76,7 @@ class EFormController extends Controller
         foreach ($customers['contents']['data'] as $key => $cust) {
 
             $cust['text'] = $cust['nik'];
+            $cust['id'] = $cust['nik'];
             $customers['contents']['data'][$key] = $cust;
         }
 
@@ -113,16 +114,18 @@ class EFormController extends Controller
     public function detailCustomer(Request $request)
     {
         $data = $this->getUser();
+        $customerData = $this->getCustomer($request);
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$request->id)
-                        ->setQuery(['limit' => 100])
+        $customerData = Client::setEndpoint('customer')
                         ->setHeaders([
                             'Authorization' => $data['token'],
                             'pn' => $data['pn']
-                        ])->get();
-        
-        $dataCustomer = $customerData['contents'];
+                        ])->setQuery([
+                            'nik' => $request->input('id'),
+                        ])
+                        ->get();
+        $dataCustomer = $customerData['contents']['data'][0];
 
         if(!empty($dataCustomer)){
             $view = (String)view('internals.eform.detail-customer')
@@ -134,6 +137,25 @@ class EFormController extends Controller
             return view('internals.eform.detail-customer')
                 ->with('dataCustomer', $dataCustomer);
         }
+    }
+
+    public function getData(Request $request)
+    {
+        $data = $this->getUser();
+        $customerData = $this->getCustomer($request);
+
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('customer')
+                        ->setHeaders([
+                            'Authorization' => $data['token'],
+                            'pn' => $data['pn']
+                        ])->setQuery([
+                            'nik' => $request->input('id'),
+                        ])
+                        ->get();
+        $dataCustomer = $customerData['contents']['data'][0];
+        
+        return response()->json(['data' => $dataCustomer]);
     }
 
     /**
@@ -183,13 +205,19 @@ class EFormController extends Controller
             return redirect()->back()->withInput();
         }
 
-        $allReq = $request->except(['request_amount', 'price', '_token']);;
+        $allReq = $request->except(['request_amount', 'price', '_token', 'nik']);;
         foreach ($allReq as $index => $req) {
             $inputData[] = [
                       'name'     => $index,
                       'contents' => $req
                     ];
         }
+        $nikValue = array(
+                    [
+                        'name' => 'nik',
+                        'contents' => $nik
+                    ]
+                );
             $moneyInput = array(
                     [
                         'name'    => 'request_amount',
@@ -200,7 +228,7 @@ class EFormController extends Controller
                         'contents' => intval(preg_replace('(\D+)', '', $request->price))
                     ]
                 );
-        $new = array_merge($inputData, $moneyInput);
+        $new = array_merge($inputData, $moneyInput, $nikValue);
 
         return $new;
     }
@@ -216,7 +244,6 @@ class EFormController extends Controller
         $data = $this->getUser();
 // 
         $newForm = $this->eformRequest($request, $data);
-        // dd($newForm);
 
         // $validator = $this->generalRules($request->all());
         // if ($validator->fails()) {
@@ -226,10 +253,10 @@ class EFormController extends Controller
 
         if ($request->product_type == "kpr") {
             $validator = $this->kprRules($request->all());
-            if ($validator->fails()) {
-                \Session::flash("error", "Data yang anda masukan tidak valid");
-                return redirect()->back()->withErrors($validator->errors())->withInput();
-            }
+            // if ($validator->fails()) {
+            //     \Session::flash("error", "Data yang anda masukan tidak valid");
+            //     return redirect()->back()->withErrors($validator->errors())->withInput();
+            // }
 
                 $client = Client::setEndpoint('eforms')
                    ->setHeaders([
@@ -301,7 +328,6 @@ class EFormController extends Controller
                     'customer_name' => $request->input('search.value'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
-            // dd($eforms);
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
@@ -313,9 +339,11 @@ class EFormController extends Controller
             $form['ao'] = $form['ao_name'];
 
             $form['action'] = view('internals.layouts.actions', [
-                'dispotition' => $form,
-                'screening' => route('eform.show', $form['id']),
-                'approve' => $form,
+                // 'dispotition' => $form,
+                // 'screening' => route('eform.show', $form['id']),
+                // 'approve' => $form,
+                'verification' => route('getVerification', $form['user_id']),
+                'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }

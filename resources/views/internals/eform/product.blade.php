@@ -1,9 +1,9 @@
 <section>
     <div class="row">
         <div class="col-md-12">
-            <h4 class="m-t-0 header-title"><b>Selesai</b></h4>
+            <!-- <h4 class="m-t-0 header-title"><b>Selesai</b></h4> -->
             <p class="text-muted m-b-30 font-13">
-                Pilih produk pembiayaan dan selesai
+                Pilih produk pembiayaan
             </p>
             <input type="hidden" name="product_type" value="kpr" id="product_type">
             <div class="row">
@@ -41,10 +41,10 @@
                                                         <input type="radio" id="new" value="new" name="status_property" checked="">
                                                         <label for="new"> Baru </label>
                                                     </div>
-                                                    <div class="radio radio-pink radio-inline">
+                                                    <!-- <div class="radio radio-pink radio-inline">
                                                         <input type="radio" id="second" value="second" name="status_property" disabled="">
                                                         <label for="second"> Bekas </label>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                             <label class="control-label col-md-4">Developer *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('developer', ['' => ''], old('developers'), [
-                                                        'class' => 'select2 developers required',
+                                                        'class' => 'select2 developers ',
                                                         'data-placeholder' => '-- Pilih Developer --'
                                                     ]) !!}
                                             </div>
@@ -64,7 +64,7 @@
                                         <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                             <label class="control-label col-md-4">Nama Properti *:</label>
                                             <div class="col-md-8">
-                                                <select class="select2 property_name required" data-placeholder="-- Pilih Properti --" name="property">
+                                                <select class="select2 property_name " data-placeholder="-- Pilih Properti --" name="property">
                                                     <option> </option>
                                                     <option value="1">Properti 1</option>
                                                     <option value="2">Properti 2</option>
@@ -82,7 +82,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp required" id="price" name="price" value="{{old('price')}}" maxlength="16" id="price">
+                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                                 </div>
@@ -92,7 +92,7 @@
                                             <label class="control-label col-md-4">Luas Bangunan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control numericOnly required" name="building_area" value="{{old('building_area')}}" maxlength="3" placeholder="0" id="building_area">
+                                                    <input type="text" class="form-control numericOnly " name="building_area" value="{{old('building_area')}}" maxlength="3" placeholder="0" id="building_area">
                                                     <span class="input-group-addon">m<sup>2</sup></span>
                                                     @if ($errors->has('building_area')) <p class="help-block">{{ $errors->first('building_area') }}</p> @endif
                                                 </div>
@@ -102,7 +102,7 @@
                                         <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Lokasi Rumah *:</label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control required" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah">{{old('home_location')}}</textarea>
+                                                <textarea class="form-control " rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah">{{old('home_location')}}</textarea>
                                                 @if ($errors->has('home_location')) <p class="help-block">{{ $errors->first('home_location') }}</p> @endif
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                         <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_type">
                                             <label class="control-label col-md-4">Tipe Properti *:</label>
                                             <div class="col-md-8">
-                                                <select class="select2 property_type required" data-placeholder="-- Pilih Tipe Properti --" name="type">
+                                                <select class="select2 property_type " data-placeholder="-- Pilih Tipe Properti --" name="type">
                                                     <option> </option>
                                                     <option value="1">Tipe Properti 1</option>
                                                     <option value="2">Tipe Properti 2</option>
@@ -129,7 +129,7 @@
                                         <div class="form-group property_name {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_unit">
                                             <label class="control-label col-md-4">Unit Properti *:</label>
                                             <div class="col-md-8">
-                                                <select class="select2 property_unit required" data-placeholder="-- Pilih Unit Properti --" name="unit">
+                                                <select class="select2 property_unit " data-placeholder="-- Pilih Unit Properti --" name="unit">
                                                     <option> </option>
                                                     <option value="1">Unit Properti 1</option>
                                                     <option value="2">Unit Properti 2</option>
@@ -146,7 +146,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required" name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year">
+                                                    <input type="text" class="form-control numericOnly " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year">
                                                     <span class="input-group-addon">Tahun</span>
                                                     @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
                                                 </div>
@@ -155,7 +155,7 @@
                                         <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">KPR Aktif ke *:</label>
                                             <div class="col-md-8">
-                                                <select class="form-control required" name="active_kpr" id="active_kpr" disabled="">
+                                                <select class="form-control " name="active_kpr" id="active_kpr" disabled="">
                                                     <option value="0" selected="" disabled=""> Pilih </option>
                                                     <option value="1"> 1 </option>
                                                     <option value="2"> 2 </option>
@@ -169,7 +169,7 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required" name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" disabled="">
+                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" disabled="">
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>
