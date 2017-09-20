@@ -64,7 +64,7 @@
                                         <div class="form-group {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                             <label class="control-label col-md-4">Nama Properti *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('property_name', ['' => ''], old('property_name'), [
+                                                {!! Form::select('property', ['' => ''], old('property_name'), [
                                                     'class' => 'select2 property_name',
                                                     'data-placeholder' => 'Pilih Nama Properti',
                                                 ]) !!}
@@ -154,7 +154,7 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" disabled="">
+                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" readonly="">
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>
