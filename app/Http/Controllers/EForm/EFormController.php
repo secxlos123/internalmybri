@@ -189,46 +189,26 @@ class EFormController extends Controller
      */
     public function eformRequest($request, $data)
     {       
-        if(!empty($request->nik)){
-            /* GET Customer Data */
-            $customerData = Client::setEndpoint('customer/'.$request->nik)
-                            ->setQuery(['limit' => 100])
-                            ->setHeaders([
-                                'Authorization' => $data['token'],
-                                'pn' => $data['pn']
-                            ])
-                            ->get();
-            
-            $nik = $customerData['contents']['personal']['nik'];
-        }else{
-            \Session::flash("error", "NIK harus diisi");
-            return redirect()->back()->withInput();
-        }
-
-        $allReq = $request->except(['request_amount', 'price', '_token', 'nik']);;
+        $allReq = $request->except(['request_amount', 'price', '_token']);;
         foreach ($allReq as $index => $req) {
             $inputData[] = [
                       'name'     => $index,
                       'contents' => $req
                     ];
         }
-        $nikValue = array(
-                    [
-                        'name' => 'nik',
-                        'contents' => $nik
-                    ]
-                );
-            $moneyInput = array(
-                    [
-                        'name'    => 'request_amount',
-                        'contents' => intval(preg_replace('(\D+)', '', $request->request_amount))
-                    ],
-                    [
-                        'name'    => 'price',
-                        'contents' => intval(preg_replace('(\D+)', '', $request->price))
-                    ]
-                );
-        $new = array_merge($inputData, $moneyInput, $nikValue);
+
+        $moneyInput = array(
+                [
+                    'name'    => 'request_amount',
+                    'contents' => intval(preg_replace('(\D+)', '', $request->request_amount))
+                ],
+                [
+                    'name'    => 'price',
+                    'contents' => intval(preg_replace('(\D+)', '', $request->price))
+                ]
+            );
+
+        $new = array_merge($inputData, $moneyInput);
 
         return $new;
     }
@@ -244,6 +224,7 @@ class EFormController extends Controller
         $data = $this->getUser();
 // 
         $newForm = $this->eformRequest($request, $data);
+        dd($newForm);
 
         // $validator = $this->generalRules($request->all());
         // if ($validator->fails()) {
