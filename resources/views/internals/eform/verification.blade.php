@@ -24,10 +24,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        @if (\Session::has('success'))
+                            <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                        @endif
+                        <div class="row" @if($dataCustomer['is_completed'] == true) hidden="" @endif>
                             <div class="col-md-12">
                                 <div class="add-button">
-                                    <p class="col-md-2">Lengkapi Data Nasabah</p>
+                                    <p class="col-md-2">Lengkapi Data Leads</p>
                                     <a href="{{route('completeData', $id)}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-pencil"></i> Lengkapi Data</a>
                                 </div>
                             </div>
@@ -163,6 +166,24 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td class="align-middle bg-primary">No. Telepon</td>
+                                                <td class="align-middle"><span id="phoneDF">{{$dataCustomer['contact']['phone']}}</span></td>
+                                                <td class="align-middle" id="phoneCIF">012345678</td>
+                                                <td class="align-middle" id="phoneKM">012345678</td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="phone">Sesuaikan</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle bg-primary">No. Handphone</td>
+                                                <td class="align-middle"><span id="mobile_phoneDF">{{$dataCustomer['contact']['mobile_phone']}}</span></td>
+                                                <td class="align-middle" id="mobile_phoneCIF">09876543321</td>
+                                                <td class="align-middle" id="mobile_phoneKM">09876543321</td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="mobile_phone">Sesuaikan</a>
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
                                                 <td class="align-middle bg-primary">Email</td>
                                                 <td class="align-middle"><span id="emailDF">{{$dataCustomer['personal']['email']}}</span></td>
                                                 <td class="align-middle" id="emailCIF">nasabah1@yahoo.com</td>
@@ -170,7 +191,7 @@
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="email">Sesuaikan</a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Gadis Ibu Kandung</td>
                                                 <td class="align-middle"><span id="mother_nameDF">{{$dataCustomer['personal']['mother_name']}}</span></td>
@@ -186,7 +207,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box m-t-20">
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title"><b>Data Pekerjaan</b></h4>
@@ -268,9 +289,9 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box m-t-20">
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title"><b>Data Finansial</b></h4>
@@ -325,9 +346,9 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box m-t-20">
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title"><b>Data Contact Person</b></h4>
@@ -382,9 +403,9 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                    <form action="{{route('postVerification', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
+                    <form action="{{route('verifyData', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                             <input type="hidden" name="nik" value="{{$dataCustomer['personal']['nik']}}" id="nik">
@@ -393,27 +414,15 @@
                             <input type="hidden" name="birth_place" value="{{$dataCustomer['personal']['birth_place']}}" id="birth_place">
                             <input type="hidden" name="birth_date" value="{{$dataCustomer['personal']['birth_date']}}" id="birth_date">
                             <input type="hidden" name="address" value="{{$dataCustomer['personal']['address']}}" id="address">
-                            <input type="hidden" name="gender" value="@if($dataCustomer['personal']['gender'] == 'Laki-laki')L @else P @endif" id="gender">
+                            <input type="hidden" name="gender" value="@if($dataCustomer['personal']['gender'] == 'Laki-laki')L@else P @endif" id="gender">
                             <input type="hidden" name="citizenship" value="{{$dataCustomer['personal']['citizenship']}}" id="citizenship">
-                            <input type="hidden" name="status" value="@if($dataCustomer['personal']['status'] == 'Tidak menikah') 0 @else 1 @endif" id="status">
+                            <input type="hidden" name="status" @if($dataCustomer['personal']['status'] == 'Tidak menikah') value="0" @else value="1" @endif id="status">
                             <input type="hidden" name="address_status" value="{{$dataCustomer['personal']['address_status']}}" id="address_status">
                             <input type="hidden" name="mother_name" value="{{$dataCustomer['personal']['mother_name']}}" id="mother_name">
                             <input type="hidden" name="phone" value="{{$dataCustomer['contact']['phone']}}" id="phone">
                             <input type="hidden" name="mobile_phone" value="{{$dataCustomer['contact']['mobile_phone']}}" id="mobile_phone">
-                            <input type="hidden" name="emergency_contact" value="{{$dataCustomer['contact']['emergency_contact']}}" id="emergency_contact">
-                            <input type="hidden" name="emergency_relation" value="{{$dataCustomer['contact']['emergency_relation']}}" id="emergency_relation">
-                            <input type="hidden" name="work_type" value="pegawai {{$dataCustomer['work']['type']}}" id="type">
-                            <input type="hidden" name="work" value="{{$dataCustomer['work']['work']}}" id="work">
-                            <input type="hidden" name="company_name" value="{{$dataCustomer['work']['company_name']}}" id="company_name">
-                            <input type="hidden" name="work_field" value="{{$dataCustomer['work']['work_field']}}" id="work_field">
-                            <input type="hidden" name="position" value="{{$dataCustomer['work']['position']}}" id="position">
-                            <input type="hidden" name="work_duration" value="{{$dataCustomer['work']['work_duration']}}" id="work_duration">
-                            <input type="hidden" name="office_address" value="{{$dataCustomer['work']['office_address']}}" id="office_address">
-                            <input type="hidden" name="salary" value="{{$dataCustomer['financial']['salary']}}" id="salary">
-                            <input type="hidden" name="other_salary" value="{{$dataCustomer['financial']['other_salary']}}" id="other_salary">
-                            <input type="hidden" class="numericOnly" name="loan_installment" value="{{$dataCustomer['financial']['loan_installment']}}" id="loan_installment">
-                            <input type="hidden" name="dependent_amount" value="{{$dataCustomer['financial']['dependent_amount']}}" id="dependent_amount">
-                        <div class="row">
+                            
+                        <div class="row" @if($dataCustomer['is_completed'] == false) hidden="" @endif>
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <button type="submit" href="javascript:void(0);" id="save" class="btn btn-default waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>

@@ -37,10 +37,6 @@
                         $('#statusDF').text($( "#statusCIF" ).text());
                         $('#status').val($( "#statusCIF" ).text());
                         break;
-                    case 'email':
-                        $('#emailDF').text($( "#emailCIF" ).text());
-                        $('#email').val($( "#emailCIF" ).text());
-                        break;
                     case 'mother_name':
                         $('#mother_nameDF').text($( "#mother_nameCIF" ).text());
                         $('#mother_name').val($( "#mother_nameCIF" ).text());
@@ -73,22 +69,6 @@
                         $('#office_addressDF').text($( "#office_addressCIF" ).text());
                         $('#office_address').val($( "#office_addressCIF" ).text());
                         break;
-                    case 'salary':
-                        $('#salaryDF').text($( "#salaryCIF" ).text());
-                        $('#salary').val($( "#salaryCIF" ).text());
-                        break;
-                    case 'other_salary':
-                        $('#other_salaryDF').text($( "#other_salaryCIF" ).text());
-                        $('#other_salary').val($( "#other_salaryCIF" ).text());
-                        break;
-                    case 'loan_installment':
-                        $('#loan_installmentDF').text($( "#loan_installmentCIF" ).text());
-                        $('#loan_installment').val($( "#loan_installmentCIF" ).text());
-                        break;
-                    case 'dependent_amount':
-                        $('#dependent_amountDF').text($( "#dependent_amountCIF" ).text());
-                        $('#dependent_amount').val($( "#dependent_amountCIF" ).text());
-                        break;
                     case 'phone':
                         $('#phoneDF').text($( "#phoneCIF" ).text());
                         $('#phone').val($( "#phoneCIF" ).text());
@@ -97,13 +77,9 @@
                         $('#mobile_phoneDF').text($( "#mobile_phoneCIF" ).text());
                         $('#mobile_phone').val($( "#mobile_phoneCIF" ).text());
                         break;
-                    case 'emergency_contact':
-                        $('#emergency_contactDF').text($( "#emergency_contactCIF" ).text());
-                        $('#emergency_contact').val($( "#emergency_contactCIF" ).text());
-                        break;
-                    case 'emergency_relation':
-                        $('#emergency_relationDF').text($( "#emergency_relationCIF" ).text());
-                        $('#emergency_relation').val($( "#emergency_relationCIF" ).text());
+                    case 'address_status':
+                        $('#address_statusDF').text($( "#address_statusKM" ).text());
+                        $('#address_status').val($( "#address_statusKM" ).text());
                         break;
                 }
                 
@@ -141,10 +117,6 @@
                         $('#statusDF').text($( "#statusKM" ).text());
                         $('#status').val($( "#statusKM" ).text());
                         break;
-                    case 'email':
-                        $('#emailDF').text($( "#emailKM" ).text());
-                        $('#email').val($( "#emailKM" ).text());
-                        break;
                     case 'mother_name':
                         $('#mother_nameDF').text($( "#mother_nameKM" ).text());
                         $('#mother_name').val($( "#mother_nameKM" ).text());
@@ -177,22 +149,6 @@
                         $('#office_addressDF').text($( "#office_addressKM" ).text());
                         $('#office_address').val($( "#office_addressKM" ).text());
                         break;
-                    case 'salary':
-                        $('#salaryDF').text($( "#salaryKM" ).text());
-                        $('#salary').val($( "#salaryKM" ).text());
-                        break;
-                    case 'other_salary':
-                        $('#other_salaryDF').text($( "#other_salaryKM" ).text());
-                        $('#other_salary').val($( "#other_salaryKM" ).text());
-                        break;
-                    case 'loan_installment':
-                        $('#loan_installmentDF').text($( "#loan_installmentKM" ).text());
-                        $('#loan_installment').val($( "#loan_installmentKM" ).text());
-                        break;
-                    case 'dependent_amount':
-                        $('#dependent_amountDF').text($( "#dependent_amountKM" ).text());
-                        $('#dependent_amount').val($( "#dependent_amountKM" ).text());
-                        break;
                     case 'phone':
                         $('#phoneDF').text($( "#phoneKM" ).text());
                         $('#phone').val($( "#phoneKM" ).text());
@@ -201,13 +157,9 @@
                         $('#mobile_phoneDF').text($( "#mobile_phoneKM" ).text());
                         $('#mobile_phone').val($( "#mobile_phoneKM" ).text());
                         break;
-                    case 'emergency_contact':
-                        $('#emergency_contactDF').text($( "#emergency_contactKM" ).text());
-                        $('#emergency_contact').val($( "#emergency_contactKM" ).text());
-                        break;
-                    case 'emergency_relation':
-                        $('#emergency_relationDF').text($( "#emergency_relationKM" ).text());
-                        $('#emergency_relation').val($( "#emergency_relationKM" ).text());
+                    case 'address_status':
+                        $('#address_statusDF').text($( "#address_statusKM" ).text());
+                        $('#address_status').val($( "#address_statusKM" ).text());
                         break;
                       }
             }

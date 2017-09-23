@@ -94,4 +94,110 @@ class DropdownController extends Controller
 
         return response()->json(['units' => $units['contents']]);
     }
+
+    public function birth_place(Request $request)
+    {
+        $data = $this->getUser();
+        $cities = \Client::setEndpoint('cities')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($cities['contents']['data'] as $key => $city) {
+            $city['text'] = $city['name'];
+            $city['id'] = $city['name'];
+            $cities['contents']['data'][$key] = $city;
+        }
+
+        return response()->json(['cities' => $cities['contents']]);
+    }
+
+    public function jobs(Request $request)
+    {
+        $data = $this->getUser();
+        $jobs = \Client::setEndpoint('job-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($jobs['contents']['data'] as $key => $job) {
+            $job['text'] = $job['name'];
+            $jobs['contents']['data'][$key] = $job;
+        }
+
+        return response()->json(['jobs' => $jobs['contents']]);
+    }
+
+    public function job_types(Request $request)
+    {
+        $data = $this->getUser();
+        $job_types = \Client::setEndpoint('job-type-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($job_types['contents']['data'] as $key => $type) {
+            $type['text'] = $type['name'];
+            $job_types['contents']['data'][$key] = $type;
+        }
+
+        return response()->json(['job_types' => $job_types['contents']]);
+    }
+
+    public function job_fields(Request $request)
+    {
+        $data = $this->getUser();
+        $job_fields = \Client::setEndpoint('job-field-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($job_fields['contents']['data'] as $key => $field) {
+            $field['text'] = $field['name'];
+            $job_fields['contents']['data'][$key] = $field;
+        }
+
+        return response()->json(['job_fields' => $job_fields['contents']]);
+    }
+
+    public function citizenship(Request $request)
+    {
+        $data = $this->getUser();
+        $citizenship = \Client::setEndpoint('citizenship-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($citizenship['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $citizenship['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['citizenship' => $citizenship['contents']]);
+    }
 }

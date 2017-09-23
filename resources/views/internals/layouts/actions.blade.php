@@ -35,13 +35,19 @@
 @endif
 
 
-@if (isset($verification))
+@if ((isset($verification) && ($verified == false)))
 <a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info">
     Verifikasi
 </a>
 @endif
 
-@if (isset($lkn))
+@if ($verified == true)
+<span class="btn btn-icon waves-effect waves-light btn-success">
+    Verified
+</span>
+@endif
+
+@if ((isset($lkn))  && ($verified == true))
 <a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
     LKN
 </a>

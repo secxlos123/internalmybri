@@ -2,6 +2,9 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+        <form action="{{route('postVerification', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <div class="content-page">
                 <div class="content">
                     <div class="container">
@@ -31,9 +34,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
                                     </div>
-                                    <form action="{{route('postVerification', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
-                                    {{ csrf_field() }}
-                                    {{ method_field('PUT') }}
+                                    
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -52,10 +53,14 @@
                                                              @if ($errors->has('full_name')) <p class="help-block">{{ $errors->first('full_name') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group birth_place {!! $errors->has('birth_place') ? 'has-error' : '' !!}">
+                                                    <div class="form-group">
                                                         <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="birth_place" value="{{ $dataCustomer['personal']['birth_place'] }}" maxlength="50">
+                                                            {!! Form::select('birth_place', ['' => ''], old('birth_place'), [
+                                                                'class' => 'select2 birth_place',
+                                                                'data-placeholder' => 'Pilih Kota Tempat Lahir',
+                                                                'readonly' => true
+                                                            ]) !!}
                                                             @if ($errors->has('birth_place')) <p class="help-block">{{ $errors->first('birth_place') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -77,25 +82,39 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-3 control-label">KTP * :</label>
+                                                    <div class="form-group city {!! $errors->has('city') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-3 control-label">Kota * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
-                                                            @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
+                                                            {!! Form::select('city', ['' => ''], old('cities'), [
+                                                                'class' => 'select2 cities',
+                                                                'data-placeholder' => 'Pilih Kota',
+                                                                'readonly' => true
+                                                            ]) !!}
                                                         </div>
-                                                    </div> -->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group citizenship {!! $errors->has('citizenship') ? 'has-error' : '' !!}">
+                                                    <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-5 control-label">Jenis Kelamin * :</label>
+                                                        <div class="col-md-7">
+                                                            <select class="form-control" name="gender">
+                                                                <option disabled="" selected="">-- Pilih --</option>
+                                                                <option @if($dataCustomer['personal']['gender'] == 'Laki-laki') ? selected @endif value="L">Laki-laki</option>
+                                                                <option @if($dataCustomer['personal']['gender'] == 'Perempuan') ? selected @endif value="P">Perempuan</option>
+                                                            </select>
+                                                            @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="col-md-5 control-label">Kewarganegaraan * :</label>
                                                         <div class="col-md-7">
-                                                            <select class="form-control" name="citizenship">
-                                                                <option disabled="" selected="">-- Pilih --</option>
-                                                                <option @if($dataCustomer['personal']['citizenship'] == 'Indonesia') ? selected @endif value="indonesia">WNI</option>
-                                                                <option @if($dataCustomer['personal']['citizenship'] == 'wna') ? selected @endif value="wna">WNA</option>
-                                                            </select>
+                                                            {!! Form::select('citizenship', ['' => ''], old('citizenship'), [
+                                                                'class' => 'select2 citizenship',
+                                                                'data-placeholder' => 'Pilih Kewarganegaraan',
+                                                                'readonly' => true
+                                                            ]) !!}
                                                             @if ($errors->has('citizenship')) <p class="help-block">{{ $errors->first('citizenship') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -154,24 +173,23 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pasangan</h3>
                                     </div>
-                                    <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
-                                    {{ csrf_field() }}
+                                    
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" >
-                                                    <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-3 control-label">NIK * :</label>
+                                                    <div class="form-group couple_nik {!! $errors->has('couple_nik') ? 'has-error' : '' !!}">
+                                                        <label class="col-md-3 control-label">couple_nik * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control numericOnly" name="nik" id="nik" value="{{ old('nik') }}" maxlength="16">
-                                                            @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
+                                                            <input type="text" class="form-control numericOnly" name="couple_nik" id="couple_nik" value="{{ old('couple_nik') }}" maxlength="16">
+                                                            @if ($errors->has('couple_nik')) <p class="help-block">{{ $errors->first('couple_nik') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group full_name {!! $errors->has('full_name') ? 'has-error' : '' !!}">
+                                                    <div class="form-group couple_name {!! $errors->has('couple_name') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">Nama Lengkap * :</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="full_name" id="full_name" value="{{ old('full_name') }}" maxlength="50">
-                                                             @if ($errors->has('full_name')) <p class="help-block">{{ $errors->first('full_name') }}</p> @endif
+                                                            <input type="text" class="form-control" name="couple_name" id="couple_name" value="{{ old('couple_name') }}" maxlength="50">
+                                                             @if ($errors->has('couple_name')) <p class="help-block">{{ $errors->first('couple_name') }}</p> @endif
                                                         </div>
                                                     </div>
                                                    <!--  <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
@@ -186,20 +204,24 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group birth_place {!! $errors->has('birth_place') ? 'has-error' : '' !!}">
+                                                    <div class="form-group couple_birth_place {!! $errors->has('couple_birth_place') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Tempat Lahir * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control" name="birth_place" value="{{ old('birth_place') }}" maxlength="50">
-                                                            @if ($errors->has('birth_place')) <p class="help-block">{{ $errors->first('birth_place') }}</p> @endif
+                                                            {!! Form::select('couple_birth_place', ['' => ''], old('couple_birth_place'), [
+                                                                'class' => 'select2 couple_birth_place',
+                                                                'data-placeholder' => 'Pilih Kota Tempat Lahir',
+                                                                'readonly' => true
+                                                            ]) !!}
+                                                            @if ($errors->has('couple_birth_place')) <p class="help-block">{{ $errors->first('couple_birth_place') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
+                                                    <div class="form-group couple_birth_date {!! $errors->has('couple_birth_date') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Tanggal Lahir * :</label>
                                                         <div class="col-md-7">
                                                             <div class="input-group">
-                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="birth_date" value="{{ old('birth_date') }}">
+                                                                <input type="text" class="form-control" id="datepicker-autoclose" name="couple_birth_date" value="{{ old('couple_birth_date') }}">
                                                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                                                                @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
+                                                                @if ($errors->has('couple_birth_date')) <p class="help-block">{{ $errors->first('couple_birth_date') }}</p> @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -222,36 +244,44 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group work_type {!! $errors->has('work_type') ? 'has-error' : '' !!}">
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
+                                                        <div class="col-md-8">
+                                                            {!! Form::select('work_field', ['' => ''], old('work_field'), [
+                                                                'class' => 'select2 work_field',
+                                                                'data-placeholder' => 'Pilih Bidang Pekerjaan',
+                                                                'readonly' => true
+                                                            ]) !!}
+                                                            @if ($errors->has('work_field')) <p class="help-block">{{ $errors->first('work_field') }}</p> @endif
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Jenis Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <select class="form-control" name="work_type">
-                                                                <option disabled="" selected="">-- Pilih --</option>
-                                                                <option value="swasta">Pegawai Swasta</option>
-                                                                <option value="negeri">Pegawai Negeri</option>
-                                                            </select>
+                                                            {!! Form::select('work_type', ['' => ''], old('work_type'), [
+                                                                'class' => 'select2 work_type',
+                                                                'data-placeholder' => 'Pilih Jenis Pekerjaan',
+                                                                'readonly' => true
+                                                            ]) !!}
                                                             @if ($errors->has('work_type')) <p class="help-block">{{ $errors->first('work_type') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group work {!! $errors->has('work') ? 'has-error' : '' !!}">
+                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="work" value="{{$dataCustomer['work']['work']}}">
+                                                            {!! Form::select('work', ['' => ''], old('work'), [
+                                                                'class' => 'select2 work',
+                                                                'data-placeholder' => 'Pilih Pekerjaan',
+                                                                'readonly' => true
+                                                            ]) !!}
                                                             @if ($errors->has('work')) <p class="help-block">{{ $errors->first('work') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    <div class="form-group company_name {!! $errors->has('company_name') ? 'has-error' : '' !!}">
+                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Perusahaan * :</label>
                                                         <div class="col-md-8">
                                                             <input type="text" class="form-control" name="company_name" value="{{$dataCustomer['work']['company_name']}}" maxlength="50">
                                                             @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group work_field {!! $errors->has('work_field') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="work_field" value="{{$dataCustomer['work']['work_field']}}" maxlength="50">
-                                                            @if ($errors->has('work_field')) <p class="help-block">{{ $errors->first('work_field') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,7 +303,7 @@
                                                             </div>
                                                                 <label class="col-md-2 control-label">Tahun</label>
                                                             <div class="col-md-4">
-                                                                <input type="number" class="form-control" name="work_duration" maxlength="2" min="0" max="11" value="{{old('work_duration')}}">
+                                                                <input type="text" class="form-control numericOnly" name="work_duration" maxlength="2" value="0">
                                                             </div>
                                                                 <label class="col-md-1 control-label">Bulan</label>
                                                             @if ($errors->has('work_duration')) <p class="help-block">{{ $errors->first('work_duration') }}</p> @endif
@@ -338,8 +368,11 @@
                                                     <div class="form-group loan_installment {!! $errors->has('loan_installment') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Angsuran Pinjaman * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="text" class="form-control numericOnly" name="loan_installment" maxlength="12" value="{{$dataCustomer['financial']['loan_installment']}}" >
-                                                            @if ($errors->has('loan_installment')) <p class="help-block">{{ $errors->first('loan_installment') }}</p> @endif
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">Rp</span>
+                                                                <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24" value="{{$dataCustomer['financial']['loan_installment']}}" >
+                                                                @if ($errors->has('loan_installment')) <p class="help-block">{{ $errors->first('loan_installment') }}</p> @endif
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group dependent_amount {!! $errors->has('dependent_amount') ? 'has-error' : '' !!}">
@@ -444,7 +477,7 @@
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="family_card">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="form-group" id="marrital_certificate">
                                                         <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
                                                         <div class="col-md-6">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="marrital_certificate">
@@ -474,7 +507,8 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a>
+                                    <!-- <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a> -->
+                                    <button type="submit" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -483,7 +517,7 @@
             </form>
 
                  <!-- Modals Save -->
-        <div id="save" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+       <!--  <div id="save" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -499,7 +533,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
 <script type="text/javascript">
@@ -518,12 +552,14 @@
     function hideCouple(){
         $('#couple_data').hide();
         $('#separate_certificate').hide();
+        $('#marrital_certificate').hide();
 
     }
     hideCouple();
 
     $('#status').on('change', function() {
         if(this.value==1){
+            $('#marrital_certificate').show();
             $('#couple_data').show();
         }else if(this.value==2){
             $('#separate_certificate').show();
@@ -542,4 +578,169 @@
     });
     $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
 
+    $('.cities').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/cities',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.cities.data,
+                    pagination: {
+                        more: (params.page * data.cities.per_page) < data.cities.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
+    $('.birth_place').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/dropdown/birth_place',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.cities.data,
+                    pagination: {
+                        more: (params.page * data.cities.per_page) < data.cities.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
+    $('.work').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/dropdown/jobs',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.jobs.data,
+                    pagination: {
+                        more: (params.page * data.jobs.per_page) < data.jobs.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
+    $('.work_type').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/dropdown/job_types',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.job_types.data,
+                    pagination: {
+                        more: (params.page * data.job_types.per_page) < data.job_types.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
+    $('.work_field').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/dropdown/job_fields',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.job_fields.data,
+                    pagination: {
+                        more: (params.page * data.job_fields.per_page) < data.job_fields.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
+    $('.citizenship').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/dropdown/citizenship',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.citizenship.data,
+                    pagination: {
+                        more: (params.page * data.citizenship.per_page) < data.citizenship.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
 </script>
+
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
