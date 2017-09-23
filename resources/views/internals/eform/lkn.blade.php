@@ -57,7 +57,6 @@
                             <h3 class="panel-title">Rincian Mutasi Rekening</h3>
                         </div>
                         @include('internals.eform.lkn._mutation')
-                        <div class="panel-body mutation_form" id="render_form">
                         </div>
                     </div>
                 </div>
@@ -73,8 +72,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
+            <!--Hanya muncul jika properti bekas-->
+            <!-- <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
@@ -83,7 +82,7 @@
                         @include('internals.eform.lkn._investigate')
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row">
                 <div class="col-md-12">
@@ -120,6 +119,7 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
 @include('internals.eform.lkn.lkn-script')
+@include('internals.eform.lkn.render-mutation')
 
 <script type="text/javascript">
     $(document).ready(function() {

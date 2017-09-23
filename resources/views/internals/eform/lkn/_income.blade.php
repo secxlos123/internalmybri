@@ -67,13 +67,7 @@
                                                 <a href="javascript:void(0)" class="form-control btn btn-info" title="Tambah Rekening" id="add_account">+</a>
                                             </div>
                                         </div>
-                                        <div class="form-group mutation_file {!! $errors->has('mutation_file') ? 'has-error' : '' !!}">
-                                            <label class="col-md-4 control-label">Unggah Foto Slip Gaji *</label>
-                                            <div class="col-md-8">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="mutation_file" accept="image/png,image/jpg,application/pdf,application/docx">
-                                                @if ($errors->has('mutation_file')) <p class="help-block">{{ $errors->first('mutation_file') }}</p> @endif
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

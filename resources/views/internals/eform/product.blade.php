@@ -34,7 +34,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-6">
                                         <div class="form-horizontal" role="form">
-                                            <div class="form-group status_property {!! $errors->has('status') ? 'has-error' : '' !!}">
+                                            <div class="form-group status_property {!! $errors->has('status') ? 'has-error' : '' !!}" hidden="" >
                                                 <label class="control-label col-md-4">Status Properti *:</label>
                                                 <div class="col-md-6">
                                                     <div class="radio radio-info radio-inline">
@@ -154,7 +154,7 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" readonly="">
+                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" >
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>

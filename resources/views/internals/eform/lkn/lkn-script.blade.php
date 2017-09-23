@@ -3,64 +3,49 @@
 	    // console.log(index);
 	  return index;
 	  }
-
+	
 	// function resetBase() {
 	//     $('select.selectpicker:not(.base-select)').each(function(){
 	//       $("select.base-select option[value*=" + $(this).val() + "]").prop("disabled", true);
 	//     });
 	// }
-
-	$('#add_account').click(function(){
-		$.ajax({
-		  url:'{{route("renderMutation")}}',
-		  type:"GET",
-		  dataType: "json",
-		  success: function (data)
-		  {
-		  	console.log(data);
-		    $('.mutation_form').html(data['view']);
-		  	$('#render_form').removeAttr("id");
-		  },
-		  error: function (xhr, status)
-		  {
-		    console.log(xhr.error);
-		  }
-		});
-	});
-
-	$('#add-row').click(function () {
-	    $('#accountTable').append(
-	    			'<tr>'
-                      +'<td>1</td>'
+		var bank = "0";
+	$(document).on('click', '.add-row', function () {
+		var row = $(this).data('row');
+		// console.log(row);
+		var	index = $('.add-row').length;
+	    $('#accountTable'+row).append(
+	    			'<tr data-tr="'+index+'">'
                       +'<td>'
                         +'<div class="input-group">'
-                            +'<input type="text" class="form-control" id="datepicker-inline" name="mutation_date">'
+                            +'<input type="text" class="form-control datepicker-mindate" id="datepicker-mindate" name="mutations['+row+'][tables]['+index+'][date]">'
                             +'<span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>'
                         +'</div>'
                       +'</td>'
                       +'<td>'
                         +'<div class="input-group">'
                             +'<span class="input-group-addon">Rp</span>'
-                            +'<input type="text" class="form-control numericOnly currency-rp" name="nominal" maxlength="12">'
+                            +'<input type="text" class="form-control numericOnly currency-rp" name="mutations['+row+'][tables]['+index+'][amount]" maxlength="24">'
                         +'</div>'
                       +'</td>'
                      +' <td>'
-                        +'<select class="form-control" name="transaction_type">'
+                        +'<select class="form-control" name="mutations['+row+'][tables]['+index+'][type]">'
                           +'  <option selected="" disabled="">-- Pilih --</option>'
                           +'  <option value="1">Transaksi Tidak Terkait Usaha</option>'
                           +'  <option value="2">Transaksi Overbooking</option>'
                         +'</select>'
                      +' </td>'
                      +' <td>'
-                       +' <input type="text" class="form-control" name="remark" maxlength="255">'
+                       +' <input type="text" class="form-control" name="mutations['+row+'][tables]['+index+'][note]" maxlength="255">'
                      +' </td>'
                      +' <td>'
-                       +' <span class="form-control btn btn-danger delete-row" title="Tambah Row" id="delete-row"><i class="mdi mdi-delete"></i></span>'
-                     +' </td>'
+                       +' <a href="javascript:void(0);" class="btn-icon waves-effect waves-light btn btn-danger delete-row" title="Delete Row" id="delete-row" data-tr="'+row+'.'+index+'"><i class="mdi mdi-delete"></i></a>'
+                     +'</td>'
                   +'</tr>')
+	    $('.currency-rp').inputmask({ alias : "rupiah" });
 	});
 
-	$('#accountTable').on('click', 'span.delete-row', function () {
+	$('#accountTable').on('click', '.delete-row', function () {
 	    $(this).closest('tr').remove();
 	})
 
@@ -77,4 +62,13 @@
 	    	$('#nonfixed-income').show();
 	    }
 	})
+
+	$('body').on('focus', ".datepicker-mindate", function(){
+	    $(this).datepicker({
+	        format: "yyyy-mm-dd",
+	        clearBtn: true,
+	        multidate: true,
+	        multidateSeparator: ","
+	    })
+	});
 </script>

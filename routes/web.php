@@ -76,6 +76,9 @@
         Route::put('/eform/verification/{id}', 
             ['as'=>'postVerification', 'uses'=>'Customer\CustomerController@verifyCustomer']);
 
+        Route::put('/eform/verifyData/{id}', 
+            ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
+
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
 
         Route::post('/eform/approve/{id}', 
@@ -102,6 +105,16 @@
     Route::get('dropdown/types', 'DropdownController@types');
 
     Route::get('dropdown/units', 'DropdownController@units');
+
+    Route::get('dropdown/birth_place', 'DropdownController@birth_place');
+
+    Route::get('dropdown/job_types', 'DropdownController@job_types');
+
+    Route::get('dropdown/jobs', 'DropdownController@jobs');
+
+    Route::get('dropdown/job_fields', 'DropdownController@job_fields');
+
+    Route::get('dropdown/citizenship', 'DropdownController@citizenship');
 
     Route::get('getDeveloper', ['as'=>'getDeveloper', 'uses'=>'Developer\DeveloperController@getDeveloper']);
 

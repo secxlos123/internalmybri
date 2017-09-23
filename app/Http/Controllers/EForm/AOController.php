@@ -56,8 +56,16 @@ class AOController extends Controller
     public function getLKN($id)
     {
         $data = $this->getUser();
+
+        $eforms = Client::setEndpoint('eforms/'.$id)
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->get();
+        $eformData = $eforms['contents'];
+        // dd($eformData);
         
-        return view('internals.eform.lkn', compact('data', 'id'));
+        return view('internals.eform.lkn', compact('data', 'id', 'eformData'));
     }
 
     public function renderMutation(Request $request)
@@ -75,30 +83,54 @@ class AOController extends Controller
      */
     public function lknRequest($request, $data)
     {
-        $imgReq = $request->only(['income_salary_image', 'mutation_file', 'photo_with_customer']);
-        foreach ($imgReq as $index => $img) {
-        	$image_path = $img->getPathname();
-            $image_mime = $img->getmimeType();
-            $image_name = $img->getClientOriginalName();
-            $image[] = [
-                  'name'     => $index,
-                  'filename' => $image_name,
-                  'Mime-Type'=> $image_mime,
-                  'contents' => fopen( $image_path, 'r' ),
-                ];
+        $application = [];
+
+        foreach ($request->all() as $keys => $values) {
+          if (is_array($values)) {
+            foreach ($values as $key => $value) {
+              if (is_array($value)) {
+                foreach ($value as $index => $content) {
+                  if (is_array($content)) {
+                    foreach ($content as $id => $file) {
+                      if (is_array($file)) {
+                        foreach ($file as $idx => $f) {
+                          if( strpos($f, ',') !== false ){
+                            $fl = intval(preg_replace('(\D+)', '', $f));
+                            $name = "{$keys}[{$key}][{$index}][{$id}][{$idx}]";
+                            $application[] = ['name' => $name, 'contents' => $fl];
+                          }else{
+                            $name = "{$keys}[{$key}][{$index}][{$id}][{$idx}]";
+                            $application[] = ['name' => $name, 'contents' => $f];
+                          }
+                        }
+                      }else{
+                        $name = "{$keys}[{$key}][{$index}][{$id}]";
+                        $application[] = ['name' => $name, 'contents' => $file];
+                      }
+                    }
+                  }else{
+                    $name = "{$keys}[{$key}][{$index}]";
+                    $application[] = ['name' => $name, 'contents' => $content];
+                  }
+                }
+                $ctn = $index == 'file' ? fopen($content->getRealPath(), 'r')  : $content;
+                $application[] = ['name' => "{$keys}[{$key}][{$index}]", 'contents' => $ctn];
+              }
+            }
+          }else{
+            if( strpos($values, ',') !== false ){
+              $content = intval(preg_replace('(\D+)', '', $values));
+              $application[] = ['name'     => $keys, 'contents' => $content];
+            }else{
+              $application[] = ['name'     => $keys, 'contents' => $values];
+            }
+
+            $ctn = $keys == 'photo_with_customer' ? fopen($values->getRealPath(), 'r')  : $values;
+            $application[] = ['name' => "{$keys}", 'contents' => $ctn];
+          }
         }
+        return $application;
 
-        $allReq = $request->except(['income_salary_image', 'mutation_file', 'photo_with_customer']);
-        foreach ($allReq as $index => $req) {
-	        $inputData[] = [
-	                  'name'     => $index,
-	                  'contents' => $req
-	                ];
-        }
-
-        $newLKN = array_merge($image, $inputData);
-
-        return $newLKN;
     }
 
 
@@ -107,11 +139,11 @@ class AOController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postLKN(LKNRequest $request, $id)
+    public function postLKN(Request $request, $id)
     {
         $data = $this->getUser();
         $newForm = $this->lknRequest($request, $data);
-
+        // dd($newForm);
     	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
            ->setHeaders([
                 'Authorization' => $data['token'],
@@ -119,6 +151,8 @@ class AOController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
+
+           dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', 'Data LKN sudah disimpan.');
@@ -150,6 +184,7 @@ class AOController extends Controller
                       ->get();
         
         $dataCustomer = $customerData['contents'];
+        // dd($dataCustomer);
         
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
@@ -175,6 +210,84 @@ class AOController extends Controller
         $dataCustomer = $customerData['contents'];
         
         return view('internals.eform.complete', compact('data', 'id', 'dataCustomer'));
+    }
+
+    // uses regex that accepts any word character or hyphen in last name
+    function split_name($request) {
+        $name = trim($request->full_name);
+        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+        $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+        return array($first_name, $last_name);
+    }
+
+    /**
+     * List of request needed for input to customer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function dataRequest($request)
+    {
+        $first_name = $this->split_name($request)['0'];
+        $last_name = $this->split_name($request)['1'];
+
+        $verifyStatus[] = [
+                      'name'     => 'verify_status',
+                      'contents' => 'verified'
+                    ];
+
+        $name = array(
+            [
+              'name'     => 'first_name',
+              'contents' => $first_name,
+            ],
+            [
+              'name'     => 'last_name',
+              'contents' => $last_name,
+            ],
+          );
+
+        $allReq = $request->except(['full_name']);
+          foreach ($allReq as $index => $req) {
+            $inputData[] = [
+                      'name'     => $index,
+                      'contents' => $req
+                    ];
+          }
+          $newData = array_merge($inputData, $name, $verifyStatus);
+        
+        
+        return $newData;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verifyData(Request $request, $id)
+    {
+        $data = $this->getUser();
+
+        $newData = $this->dataRequest($request);
+        // dd($newData);
+
+        $client = Client::setEndpoint('customer/'.$id.'/verify')
+         ->setHeaders([
+              'Authorization' => $data['token'],
+              'pn' => $data['pn']
+          ])
+         ->setBody($newData)
+         ->put('multipart');
+
+        if($client['code'] == 200){
+            \Session::flash('success', 'Data berhasil dilengkapi!');
+            return redirect()->route('getVerification', $id);
+        }else{
+            \Session::flash('error', 'Lengkapi data Anda!');
+            return redirect()->back();
+        }
     }
 
     //datatable

@@ -31,9 +31,8 @@
                                             <label class="col-md-5 control-label">Harga Jual *:</label>
                                             <div class="col-md-7">
                                                 <div class="input-group">
-                                                    <!-- <span class="input-group-addon">Rp</span> -->
+                                                    <span class="input-group-addon">Rp</span>
                                                     <input type="text" class="form-control numericOnly currency-rp" name="selling_price" maxlength="24" value="{{ old('selling_price') }}">
-                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                 </div>
                                                     @if ($errors->has('selling_price')) <p class="help-block">{{ $errors->first('selling_price') }}</p> @endif
                                             </div>

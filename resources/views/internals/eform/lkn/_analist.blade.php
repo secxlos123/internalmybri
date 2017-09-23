@@ -27,7 +27,7 @@
                                         <div class="form-group photo_with_customer {!! $errors->has('photo_with_customer') ? 'has-error' : '' !!}">
                                             <label class="col-md-6 control-label">Unggah Foto Bersama Nasabah *</label>
                                             <div class="col-md-6">
-                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
+                                                <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
                                                 @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
                                             </div>
                                         </div>
