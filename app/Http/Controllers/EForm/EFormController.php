@@ -45,6 +45,7 @@ class EFormController extends Controller
     public function index()
     {
         $data = $this->getUser(); 
+        // dd($data);
 
         // if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   
@@ -224,7 +225,7 @@ class EFormController extends Controller
         $data = $this->getUser();
 // 
         $newForm = $this->eformRequest($request, $data);
-        dd($newForm);
+        // dd($newForm);
 
         // $validator = $this->generalRules($request->all());
         // if ($validator->fails()) {
@@ -233,7 +234,7 @@ class EFormController extends Controller
         // }
 
         if ($request->product_type == "kpr") {
-            $validator = $this->kprRules($request->all());
+            // $validator = $this->kprRules($request->all());
             // if ($validator->fails()) {
             //     \Session::flash("error", "Data yang anda masukan tidak valid");
             //     return redirect()->back()->withErrors($validator->errors())->withInput();
@@ -245,7 +246,7 @@ class EFormController extends Controller
                         'pn' => $data['pn']
                     ])->setBody($newForm)
                    ->post('multipart');
-                // dd($client);
+                dd($client);
                 
                 if($client['code'] == 201){
                     \Session::flash('success', $client['descriptions']);
@@ -310,6 +311,7 @@ class EFormController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
+
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
@@ -319,10 +321,21 @@ class EFormController extends Controller
             $form['office'] = $form['office'];
             $form['ao'] = $form['ao_name'];
 
+            $customerData = Client::setEndpoint('customer/'.$form['user_id'])
+                      ->setQuery(['limit' => 100])
+                      ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                      ])
+                      ->get();
+        
+            $verify = $customerData['contents']['is_verified'];
+
             $form['action'] = view('internals.layouts.actions', [
                 // 'dispotition' => $form,
                 // 'screening' => route('eform.show', $form['id']),
                 // 'approve' => $form,
+                'verified' => $verify,
                 'verification' => route('getVerification', $form['user_id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();
