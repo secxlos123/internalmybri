@@ -86,6 +86,34 @@ class CustomerController extends Controller
 
     public function customerRequest($request)
     {
+        $first_name = $this->split_name($request)['0'];
+        $last_name = $this->split_name($request)['1'];
+        $name = array(
+            [
+              'name'     => 'first_name',
+              'contents' => $first_name,
+            ],
+            [
+              'name'     => 'last_name',
+              'contents' => $last_name,
+            ],
+          );
+
+        $moneyInput = array(
+                [
+                    'name'    => 'salary',
+                    'contents' => intval(preg_replace('(\D+)', '', $request->salary))
+                ],
+                [
+                    'name'    => 'other_salary',
+                    'contents' => intval(preg_replace('(\D+)', '', $request->other_salary))
+                ],
+                [
+                    'name'    => 'loan_installment',
+                    'contents' => intval(preg_replace('(\D+)', '', $request->loan_installment))
+                ]
+            );
+
         $npwpReq = $request->npwp;
           $npwp_path = $npwpReq->getPathname();
             $npwp_mime = $npwpReq->getmimeType();
@@ -163,16 +191,16 @@ class CustomerController extends Controller
                     'Mime-Type'=> $image_mime,
                     'contents' => fopen( $image_path, 'r' ),
                     ];
-          $allReq = $request->except(['npwp', '_token', 'diforce_certificate', 'legal_document', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate']);
+          $allReq = $request->except(['npwp', '_token', 'diforce_certificate', 'legal_document', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate', 'salary', 'other_salary', 'loan_installment']);
             foreach ($allReq as $index => $req) {
               $inputData[] = [
                         'name'     => $index,
                         'contents' => $req
                       ];
             }
-            $newCustomer = array_merge($npwp, $inputData, $legal_document, $bank_statement, $family_card, $marrital_certificate, $diforce_certificate);
+            $newCustomer = array_merge($npwp, $inputData, $legal_document, $bank_statement, $family_card, $marrital_certificate, $diforce_certificate, $name, $salary_slip);
         }else{
-          $allReq = $request->except(['identity', '_token', 'full_name']);
+          $allReq = $request->except(['npwp', '_token', 'legal_document', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate', '_token', 'full_name', 'salary', 'other_salary', 'loan_installment']);
             foreach ($allReq as $index => $req) {
               $inputData[] = [
                         'name'     => $index,
@@ -180,7 +208,7 @@ class CustomerController extends Controller
                       ];
             }
 
-            $newCustomer = array_merge($npwp, $inputData, $bank_statement, $legal_document, $family_card, $marrital_certificate);
+            $newCustomer = array_merge($npwp, $inputData, $bank_statement, $legal_document, $family_card, $marrital_certificate, $name, $moneyInput, $salary_slip);
         }
         return $newCustomer;
     }
@@ -373,6 +401,7 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
         $newCustomer = $this->customerRequest($request);
+        // dd($newCustomer);
 
         $client = Client::setEndpoint('customer/'.$id)
          ->setHeaders([
@@ -383,8 +412,8 @@ class CustomerController extends Controller
          ->put('multipart');
 
         if($client['code'] == 200){
-            \Session::flash('success', 'Data berhasil ubah!');
-            return redirect()->route('indexAO');
+            \Session::flash('success', 'Data berhasil dilengkapi!');
+            return redirect()->route('getVerification', $id);
         }else{
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();
