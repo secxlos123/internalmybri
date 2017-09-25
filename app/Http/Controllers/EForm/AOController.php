@@ -114,7 +114,10 @@ class AOController extends Controller
                   }
                 }
                 $ctn = $index == 'file' ? fopen($content->getRealPath(), 'r')  : $content;
-                $application[] = ['name' => "{$keys}[{$key}][{$index}]", 'contents' => $ctn];
+                $mime = $content->getmimeType();
+                $name = $content->getClientOriginalName();
+
+                $application[] = ['name' => "{$keys}[{$key}][{$index}]", 'contents' => $ctn, 'filename' => $name, 'Mime-Type'=> $mime];
               }
             }
           }else{
@@ -125,8 +128,19 @@ class AOController extends Controller
               $application[] = ['name'     => $keys, 'contents' => $values];
             }
 
-            $ctn = $keys == 'photo_with_customer' ? fopen($values->getRealPath(), 'r')  : $values;
-            $application[] = ['name' => "{$keys}", 'contents' => $ctn];
+            // $ctn = $keys == 'photo_with_customer' ? fopen($values->getRealPath(), 'r')  : $values;
+                if($keys == 'photo_with_customer'){
+                  $ctn = fopen($values->getRealPath(), 'r');
+                  $mime = $values->getmimeType();
+                  $name = $values->getClientOriginalName();
+                  
+                  $application[] = ['name' => "{$keys}", 'contents' => $ctn, 'filename' => $name, 'Mime-Type'=> $mime];
+                }else{
+                  $ctn = $values;
+
+                  $application[] = ['name' => "{$keys}", 'contents' => $ctn];
+                }
+
           }
         }
         return $application;
@@ -152,11 +166,11 @@ class AOController extends Controller
            ->setBody($newForm)
            ->post('multipart');
 
-           dd($client);
+           // dd($client);
 
         if($client['code'] == 201){
-            \Session::flash('success', 'Data LKN sudah disimpan.');
-            return redirect()->route('indexAO');
+            \Session::flash('success', $client['descriptions']);
+            return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'Kesalahan input.');
             return redirect()->back();
@@ -280,10 +294,11 @@ class AOController extends Controller
           ])
          ->setBody($newData)
          ->put('multipart');
+         // dd($client);
 
         if($client['code'] == 200){
-            \Session::flash('success', 'Data berhasil dilengkapi!');
-            return redirect()->route('getVerification', $id);
+            \Session::flash('success', $client['descriptions']);
+            return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();

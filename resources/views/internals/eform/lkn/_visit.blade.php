@@ -12,8 +12,11 @@
                                         <div class="form-group place {!! $errors->has('visitor_name') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">Tempat Kunjungan *:</label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control" rows="3" name="place" maxlength="255">{{ old('place') }}</textarea>
+                                                <input id="searchInput" class="input-controls " type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan" name="place">
+                                                <div class="map" id="map" style="width: 100%; height: 200px;"></div>
+                                                <textarea class="form-control" rows="3" name="place" maxlength="255" id="location">{{ old('place') }}</textarea>
                                                 @if ($errors->has('place')) <p class="help-block">{{ $errors->first('place') }}</p> @endif
+                                                <input type="hidden" name="lng" id="lng" value="{{$eformData['longitude']}}"><input type="hidden" name="lat" id="lat" value="{{$eformData['latitude']}}">
                                             </div>
                                         </div>
                                         <div class="form-group date {!! $errors->has('date') ? 'has-error' : '' !!}">
@@ -43,7 +46,7 @@
                                         <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">No Telp Kantor / Tempat Usaha *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control numericOnly" name="phone" maxlength="12" value="{{ old('phone') }}">
+                                                <input type="text" class="form-control numericOnly" name="phone" maxlength="12" value="{{ $eformData['mobile_phone'] }}">
                                                 @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                             </div>
                                         </div>
