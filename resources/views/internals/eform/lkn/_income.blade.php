@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
                                        
-                                        <h3 class="header-title m-l-310 m-t-20">Sumber Data</h3>
+                                        <!-- <h3 class="header-title m-l-310 m-t-20">Sumber Data</h3>
                                         <div class="form-group bussiness_mutation_type {!! $errors->has('bussiness_mutation_type') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">Mutasi Rekening :</label>
                                             <div class="col-md-3">
@@ -66,7 +66,7 @@
                                             <div class="col-md-1">
                                                 <a href="javascript:void(0)" class="form-control btn btn-info" title="Tambah Rekening" id="add_account">+</a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                     </div>
                                 </div>

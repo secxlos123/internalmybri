@@ -12,7 +12,7 @@
                         <li id="li_kpr" class="active">
                             <a href="#kpr" data-toggle="tab" aria-expanded="true">KPR</a>
                         </li>
-                        <li id="li_kkb" class="disabled">
+                        <!-- <li id="li_kkb" class="disabled">
                             <a href="#kkb" data-toggle="tab" aria-expanded="false">KKB</a>
                         </li>
                         <li id="li_briguna" class="disabled">
@@ -26,7 +26,7 @@
                         </li>
                         <li id="li_kartu" class="disabled">
                             <a href="#kartu" data-toggle="tab" aria-expanded="false">KARTU KREDIT</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="tab-content br-n pn">
                         <div id="kpr" class="tab-pane active">

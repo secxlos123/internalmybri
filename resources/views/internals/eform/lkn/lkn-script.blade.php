@@ -45,7 +45,7 @@
 	    $('.currency-rp').inputmask({ alias : "rupiah" });
 	});
 
-	$('#accountTable').on('click', '.delete-row', function () {
+	$(document).on('click', '.delete-row', function () {
 	    $(this).closest('tr').remove();
 	})
 

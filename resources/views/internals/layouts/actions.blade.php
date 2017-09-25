@@ -22,7 +22,7 @@
 	</a>
 @endif
 
-@if (isset($dispotition))
+@if (isset($dispotition) && (empty($dispose)))
 	<a href="{{route('getDispotition', $dispotition['id'])}}" class="btn btn-icon waves-effect waves-light btn-teal @if($dispotition['ao_name'] == '-')@else disabled @endif" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
 		<i class="mdi mdi-loupe"></i>
 	</a>
@@ -53,7 +53,7 @@
 </a>
 @endif
 
-@if (isset($approve))
+@if (isset($approve) && (!empty($visited)) && ($visited == true))
 <a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info @if($approve['is_approved'] == false)@else disabled @endif" data-original-title="Approval" title="Approval">
     <i class="mdi mdi-check"></i>
 </a>

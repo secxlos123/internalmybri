@@ -81,7 +81,7 @@ $('#add_account').click(function(){
                     +'</table>'
                     +'<div class="col-md-6">'
                       +'<div class="form-group mutation_file">'
-                          +'<label class="col-md-4 control-label">Unggah Foto Slip Gaji *</label>'
+                          +'<label class="col-md-4 control-label">Unggah File Mutasi *</label>'
                           +'<div class="col-md-8">'
                               +'<input type="file" class="filestyle-mutation" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="mutations['+index+'][file]" accept="image/png,image/jpg,application/pdf,application/docx">'
                          +' </div>'

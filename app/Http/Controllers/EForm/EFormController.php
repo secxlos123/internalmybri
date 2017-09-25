@@ -280,10 +280,10 @@ class EFormController extends Controller
                 ->post();
 
         if($client['code'] == 201){
-            \Session::flash('error', 'Disposisi Pengajuan berhasil disimpan!');
+            \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
-            \Session::flash('error', 'Disposisi Pengajuan gagal disimpan!');
+            \Session::flash('error', $client['descriptions']);
             return redirect()->back();
         }
 
@@ -311,13 +311,14 @@ class EFormController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
 
-
+            // dd($eforms);
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
             $form['prescreening_status'] = '0';
             $form['application_status'] = '0';
+            $form['product_type'] = strtoupper($form['product_type']);
             $form['office'] = $form['office'];
             $form['ao'] = $form['ao_name'];
 
@@ -332,10 +333,11 @@ class EFormController extends Controller
         
             $verify = $customerData['contents']['is_verified'];
             $visit = $form['is_visited'];
+            $dispose = $form['ao_name'];
 
             $form['action'] = view('internals.layouts.actions', [
                 // 'dispotition' => $form,
-                // 'screening' => route('eform.show', $form['id']),
+                // // 'screening' => route('eform.show', $form['id']),
                 // 'approve' => $form,
                 'verified' => $verify,
                 'visited' => $visit,

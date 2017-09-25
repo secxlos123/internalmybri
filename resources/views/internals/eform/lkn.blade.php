@@ -56,10 +56,12 @@
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Rincian Mutasi Rekening</h3>
+                            <h3 class="panel-title">Mutasi Rekening</h3>
                         </div>
                         @include('internals.eform.lkn._mutation')
                         </div>
+                        <br>
+                             <a href="javascript:void(0)" class="btn btn-info" title="Tambah Rekening" id="add_account">+ Tambah Rekening Bank</a>
                     </div>
                 </div>
             </div>
