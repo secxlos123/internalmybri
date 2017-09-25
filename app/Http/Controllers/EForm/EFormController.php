@@ -156,7 +156,7 @@ class EFormController extends Controller
                         ->get();
         $dataCustomer = $customerData['contents']['data'][0];
         
-        return response()->json(['data' => $dataCustomer]);
+        return response()->json(['data' => $dataCustomer, 'user' => $data['name']]);
     }
 
     /**
@@ -246,7 +246,7 @@ class EFormController extends Controller
                         'pn' => $data['pn']
                     ])->setBody($newForm)
                    ->post('multipart');
-                dd($client);
+                // dd($client);
                 
                 if($client['code'] == 201){
                     \Session::flash('success', $client['descriptions']);
@@ -315,7 +315,7 @@ class EFormController extends Controller
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
-            $form['request_amount'] = $form['nominal'];
+            $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
             $form['prescreening_status'] = '0';
             $form['application_status'] = '0';
             $form['office'] = $form['office'];
@@ -328,14 +328,17 @@ class EFormController extends Controller
                           'pn' => $data['pn']
                       ])
                       ->get();
+            // dd($form);
         
             $verify = $customerData['contents']['is_verified'];
+            $visit = $form['is_visited'];
 
             $form['action'] = view('internals.layouts.actions', [
                 // 'dispotition' => $form,
                 // 'screening' => route('eform.show', $form['id']),
                 // 'approve' => $form,
                 'verified' => $verify,
+                'visited' => $visit,
                 'verification' => route('getVerification', $form['user_id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();

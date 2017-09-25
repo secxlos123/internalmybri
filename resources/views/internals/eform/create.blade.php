@@ -39,6 +39,7 @@
                             <div>
                                 <h3>Produk</h3>
                                 @include('internals.eform.product')
+                                <div id="divForm"></div>
                                 <h3>Leads</h3>
                                 <section>
                                     <h4 class="m-t-0 header-title"><b>Leads</b></h4>
@@ -215,4 +216,5 @@
 @include('internals.layouts.foot') 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
 @include('internals.eform.script-eform') 
+ <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 

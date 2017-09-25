@@ -57,7 +57,7 @@
                                             <div class="col-md-8">
                                                 {!! Form::select('developer', ['' => ''], old('developers'), [
                                                     'class' => 'select2 developers ',
-                                                    'data-placeholder' => '-- Pilih Developer --'
+                                                    'data-placeholder' => 'Pilih Developer'
                                                 ]) !!}
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price">
+                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price" readonly="">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                                 </div>
@@ -87,7 +87,7 @@
                                             <label class="control-label col-md-4">Luas Bangunan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly " name="building_area" value="{{old('building_area')}}" maxlength="3" placeholder="0" id="building_area">
+                                                    <input type="text" class="form-control numericOnly " name="building_area" value="{{old('building_area')}}" maxlength="3" placeholder="0" id="building_area" readonly="">
                                                     <span class="input-group-addon">m<sup>2</sup></span>
                                                     @if ($errors->has('building_area')) <p class="help-block">{{ $errors->first('building_area') }}</p> @endif
                                                 </div>

@@ -41,13 +41,13 @@
 </a>
 @endif
 
-@if ($verified == true)
+@if (!empty($verified) && $verified == true)
 <span class="btn btn-icon waves-effect waves-light btn-success">
     Verified
 </span>
 @endif
 
-@if ((isset($lkn))  && ($verified == true))
+@if ((isset($lkn))  && ($verified == true) && ($visited == false))
 <a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
     LKN
 </a>

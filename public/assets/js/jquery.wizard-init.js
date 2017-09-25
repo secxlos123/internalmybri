@@ -73,6 +73,7 @@
                     success: function(result, data) {
                         console.log(result.data);
                         var nik = result.data.nik;
+                        var ao_name = result.user;
                         var full_name = result.data.first_name+' '+result.data.last_name;
                         var email = result.data.email;
                         var birth_place = result.data.birth_place;
@@ -123,6 +124,7 @@
                         $("#view-modal #mother_name").html(mother_name);
                         $("#view-modal #mobile_phone").html(mobile_phone);
                         $("#view-modal #status").html(status); 
+                        $("#view-modal #ao_name").html(ao_name);
                         $("#view-modal #couple_nik").html(couple_nik); 
                         $("#view-modal #couple_name").html(couple_name); 
                         $("#view-modal #couple_birth_place").html(couple_birth_place); 

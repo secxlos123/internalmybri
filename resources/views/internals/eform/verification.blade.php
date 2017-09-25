@@ -81,7 +81,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="align-middle bg-primary">NIK</td>
                                                 <td class="align-middle">
                                                         <span id="nikDF">
@@ -92,7 +92,7 @@
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-toggle="modal" data-field="nik">Sesuaikan</a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td class="align-middle bg-primary">Nama Lengkap</td>
                                                 <td class="align-middle"><span id="nameDF">{{$dataCustomer['personal']['name']}}</span></td>
@@ -168,8 +168,8 @@
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Telepon</td>
                                                 <td class="align-middle"><span id="phoneDF">{{$dataCustomer['contact']['phone']}}</span></td>
-                                                <td class="align-middle" id="phoneCIF">012345678</td>
-                                                <td class="align-middle" id="phoneKM">012345678</td>
+                                                <td class="align-middle" id="phoneCIF">022718171811</td>
+                                                <td class="align-middle" id="phoneKM">022718171811</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="phone">Sesuaikan</a>
                                                 </td>
@@ -177,8 +177,8 @@
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Handphone</td>
                                                 <td class="align-middle"><span id="mobile_phoneDF">{{$dataCustomer['contact']['mobile_phone']}}</span></td>
-                                                <td class="align-middle" id="mobile_phoneCIF">09876543321</td>
-                                                <td class="align-middle" id="mobile_phoneKM">09876543321</td>
+                                                <td class="align-middle" id="mobile_phoneCIF">089187165124</td>
+                                                <td class="align-middle" id="mobile_phoneKM">089187165124</td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="mobile_phone">Sesuaikan</a>
                                                 </td>
@@ -408,13 +408,12 @@
                     <form action="{{route('verifyData', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
-                            <input type="hidden" name="nik" value="{{$dataCustomer['personal']['nik']}}" id="nik">
                             <input type="hidden" name="email" value="{{$dataCustomer['personal']['email']}}" id="email">
                             <input type="hidden" name="full_name" value="{{$dataCustomer['personal']['name']}}" id="name">
                             <input type="hidden" name="birth_place" value="{{$dataCustomer['personal']['birth_place']}}" id="birth_place">
                             <input type="hidden" name="birth_date" value="{{$dataCustomer['personal']['birth_date']}}" id="birth_date">
                             <input type="hidden" name="address" value="{{$dataCustomer['personal']['address']}}" id="address">
-                            <input type="hidden" name="gender" value="@if($dataCustomer['personal']['gender'] == 'Laki-laki')L@else P @endif" id="gender">
+                            <input type="hidden" name="gender" value="@if($dataCustomer['personal']['gender'] == 'Laki-laki')L @else P @endif" id="gender">
                             <input type="hidden" name="citizenship" value="{{$dataCustomer['personal']['citizenship']}}" id="citizenship">
                             <input type="hidden" name="status" @if($dataCustomer['personal']['status'] == 'Tidak menikah') value="0" @else value="1" @endif id="status">
                             <input type="hidden" name="address_status" value="{{$dataCustomer['personal']['address_status']}}" id="address_status">

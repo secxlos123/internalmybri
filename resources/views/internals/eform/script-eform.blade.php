@@ -496,7 +496,6 @@
        $("#form1").submit(function(){
 
             var formData = new FormData(this);
-            console.log(formData);
 
             $.ajax({
                 url: "/customers",
@@ -504,7 +503,10 @@
                 data: formData,
                 async: false,
                 success: function (data) {
-                    alert(data)
+                    // console.log(data)
+                    // $('#divForm').addClass('alert alert-success');
+                    // $('#divForm').append('Data Berhasil Ditambahkan');
+                    $('#leads-modal').modal('toggle');
                 },
                 error: function (response) {
                     console.log(response)
