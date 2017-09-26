@@ -181,7 +181,7 @@
                                         <div class="card-box table-responsive">
                                             <div class="add-button">
                                                 <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                                <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
+                                                <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15 hide"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                                             </div>
                                             <div id="filter" class="collapse m-b-15">
                                                 <div class="row">
@@ -191,31 +191,15 @@
                                                                 <div class="form-group">
                                                                     <label class="col-sm-4 control-label">Kota :</label>
                                                                     <div class="col-sm-8">
-                                                                        <select class="form-control">
-                                                                            <option>-- Pilih --</option>
-                                                                            <option>Bandung</option>
-                                                                            <option>Jakarta</option>
-                                                                            <option>Semarang</option>
-                                                                            <option>Surabaya</option>
-                                                                            <option>Yogyakarta</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-sm-4 control-label">Tipe Property :</label>
-                                                                    <div class="col-sm-8">
-                                                                        <select class="form-control">
-                                                                            <option>-- Pilih --</option>
-                                                                            <option>1</option>
-                                                                            <option>2</option>
-                                                                            <option>3</option>
-                                                                            <option>4</option>
-                                                                        </select>
+                                                                        {!! Form::select('cities', ['' => ''], old('cities'), [
+                                                                            'class' => 'select2 cities',
+                                                                            'data-placeholder' => '-- Pilih Kota --'
+                                                                        ]) !!}
                                                                     </div>
                                                                 </div>
                                                             </form>
                                                             <div class="text-right">
-                                                                <a href="#" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                                <a href="javascript:void(0)" id="btn-filter" class="btn btn-success waves-light waves-effect w-md">Filter</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -226,14 +210,13 @@
                                             <table id="datatable-properties" class="table table-bordered">
                                                 <thead class="bg-primary">
                                                     <tr>
-                                                        <th>Nama Property</th>
+                                                        <th>Nama Proyek</th>
                                                         <th>Kota</th>
-                                                        <th>Tipe Property</th>
-                                                        <th>Property #</th>
+                                                        <th>Banyak Tipe</th>
+                                                        <th>Banyak Unit</th>
                                                     </tr>
                                                 </thead>
                                             </table>
-
                                         </div>
                                     </div>
                                 </div>
@@ -245,4 +228,71 @@
         </div>
     </div>
     @include('internals.layouts.footer')
-    @include('internals.layouts.foot')    
+    @include('internals.layouts.foot')
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table_property = $('#datatable-properties').dataTable({
+                processing : true,
+                serverSide : true,
+                lengthMenu: [
+                    [ 10, 25, 50, -1 ],
+                    [ '10', '25', '50', 'All' ]
+                ],
+                language : {
+                    infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+                },
+                ajax : {
+                    url : "{!! $dataDev['id'] !!}/properties",
+                    data : function(d, settings){
+                        var api = new $.fn.dataTable.Api(settings);
+
+                        d.page = Math.min(
+                            Math.max(0, Math.round(d.start / api.page.len())),
+                            api.page.info().pages
+                        );
+
+                        d.city_id = $('.cities').val();
+                    }
+                },
+                aoColumns : [
+                    { data: 'prop_name', name: 'prop_name' },
+                    { data: 'prop_city_name', name: 'prop_city_name' },
+                    { data: 'prop_types', name: 'prop_types' },
+                    { data: 'prop_items', name: 'prop_items' },
+                ],
+            });
+
+            $('.cities').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/cities',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.cities.data,
+                            pagination: {
+                                more: (params.page * data.cities.per_page) < data.cities.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+
+            $('#btn-filter').on('click', function () {
+                table_property.fnDraw();
+            });
+        });
+
+    </script>    
