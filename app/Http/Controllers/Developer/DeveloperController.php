@@ -108,7 +108,10 @@ class DeveloperController extends Controller
         $newDev = $this->devRequest($request, $data);
         
         $client = Client::setEndpoint('developer')
-           ->setHeaders(['Authorization' => $data['token']])
+           ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
            ->setBody($newDev)
            ->post('multipart');
         
@@ -178,7 +181,9 @@ class DeveloperController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $userData = Client::setEndpoint("developer/{$id}")
+            ->setHeaders([ 'Authorization' => $data['token'], 'pn' => $data['pn'] ])
+            ->get();
         
         $dataDev = $userData['contents'];
 
