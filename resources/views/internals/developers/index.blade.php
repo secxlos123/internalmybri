@@ -49,12 +49,12 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Jumlah Project :</label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" name="projects">
+                                                    <select class="form-control projects" name="projects">
                                                         <option value="0" disabled="" selected=""> -- Pilih -- </option>
-                                                        <option value="1"> < 50 </option>
-                                                        <option value="2"> 50 - 100 </option>
-                                                        <option value="3"> 100 - 200 </option>
-                                                        <option value="4"> > 200 </option>
+                                                        <option value="0|49"> < 50 </option>
+                                                        <option value="50|100"> 50 - 100 </option>
+                                                        <option value="100|200"> 100 - 200 </option>
+                                                        <option value="200|400"> > 200 </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -138,7 +138,8 @@
                         api.page.info().pages
                     );
 
-                    d.office_id = $('.offices').val();
+                    d.city_id = $('.cities').val();
+                    d.project = $('.projects').val();
                 }
             },
             aoColumns : [

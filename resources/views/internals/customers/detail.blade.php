@@ -32,12 +32,14 @@
                                                 <span class="hidden-xs">Contact Info</span>
                                             </a>
                                         </li>
-                                        <li class="">
-                                            <a href="#schedule" data-toggle="tab" aria-expanded="false">
-                                                <span class="visible-xs"><i class="fa fa-user"></i></span>
-                                                <span class="hidden-xs">Schedule</span>
-                                            </a>
-                                        </li>
+                                        <fieldset hidden>
+                                            <li class="">
+                                                <a href="#schedule" data-toggle="tab" aria-expanded="false">
+                                                    <span class="visible-xs"><i class="fa fa-user"></i></span>
+                                                    <span class="hidden-xs">Schedule</span>
+                                                </a>
+                                            </li>
+                                        </fieldset>
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="contact-info">

@@ -122,6 +122,7 @@
         });
             $('.datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
         </script>
+        @stack('scripts')
 @include('internals.layouts.signout')
     </body>
 </html>
