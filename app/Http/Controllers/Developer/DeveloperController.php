@@ -85,10 +85,15 @@ class DeveloperController extends Controller
 
         $allReq = $request->except(['image', '_token']);
         foreach ($allReq as $index => $req) {
-            $inputData[] = [
-                      'name'     => $index,
-                      'contents' => $req
-                    ];
+            if( strpos($req, ',') !== false ){
+              $content = intval(preg_replace('(\D+)', '', $req));
+              $inputData[] = ['name'     => $index, 'contents' => $content];
+            }else{
+                $inputData[] = [
+                  'name'     => $index,
+                  'contents' => $req
+                ];
+            }
         }
 
         $newDeveloper = array_merge($image, $inputData);
@@ -106,6 +111,7 @@ class DeveloperController extends Controller
     {   
         $data = $this->getUser();
         $newDev = $this->devRequest($request, $data);
+        // dd($newDev);
         
         $client = Client::setEndpoint('developer')
            ->setHeaders([
