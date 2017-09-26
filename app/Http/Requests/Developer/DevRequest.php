@@ -28,7 +28,7 @@ class DevRequest extends FormRequest
             "city_id"           => "required",
             "address"           => "required",
             "mobile_phone"      => "required|digits_between:12,12",
-            "image"             => "required|mimes:jpeg,jpg,png, gif",
+            "image"             => "required|mimes:jpeg,jpg,png,gif|max:10000",
             "summary"           => "required",
             "company_name"      => "required",
             "email"             => "required|email",
