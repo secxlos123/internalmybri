@@ -19,7 +19,7 @@ class CustomerController extends Controller
         'nik',
         'name',
         'email',
-        'city',
+        'city_id',
         'phone',
         'gender',
         'action',
@@ -43,7 +43,7 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();  
-        dd(session()->get('user.contents'));   
+        // dd(session()->get('user.contents'));   
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
@@ -335,9 +335,15 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $customerData = Client::setEndpoint('customer/'.$id)
+                        ->setQuery(['limit' => 100])
+                        ->setHeaders(['Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                        ->get();
         
         $dataCustomer = $customerData['contents'];
+        // dd($dataCustomer);
         // dd(($dataCustomer['personal']['status'] == 0) ? 'Lajang' : '');
 
         return view('internals.customers.detail', compact('data', 'dataCustomer'));
@@ -410,6 +416,7 @@ class CustomerController extends Controller
           ])
          ->setBody($newCustomer)
          ->put('multipart');
+         // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil dilengkapi!');
