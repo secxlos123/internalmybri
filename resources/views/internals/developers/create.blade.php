@@ -92,7 +92,7 @@
                                                 <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Logo *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image" accept="image/png,image/jpg,image/gif">
+                                                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="image" accept="image/*">
                                                     @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
                                                     </div>
                                                 </div>

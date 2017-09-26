@@ -27,12 +27,12 @@ class DevRequest extends FormRequest
             "developer_name"    => "required",
             "city_id"           => "required",
             "address"           => "required",
-            "mobile_phone"      => "required|digits_between:12,12",
-            "image"             => "required|mimes:jpeg,jpg,png,gif|max:10000",
+            "mobile_phone"      => "required|digits_between:1,12",
+            "image"             => "required|mimes:jpeg,jpg,png,gif|max:1024",
             "summary"           => "required",
             "company_name"      => "required",
             "email"             => "required|email",
-            "phone"             => "required|digits_between:12,12",
+            "phone"             => "required|digits_between:1,12",
         ];
     }
 
@@ -52,6 +52,7 @@ class DevRequest extends FormRequest
             "mobile_phone.digits_between"    => "Nomor Handphone harus diisi 12 karakter",
             "image.required"                 => "Logo Harus diisi",
             "image.mimes:jpeg,jpg,png"       => "Logo harus berupa gambar .jpg, .png, atau .gif",
+            "image.max"                      => "Logo harus kurang dari 1 MB",
             "summary.required"               => "Ringkasan harus diisi",
             "company_name.required"          => "Nama Perusahaan harus diisi",
             "email.required"                 => "Email harus diisi",
