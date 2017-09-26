@@ -140,7 +140,12 @@ class DeveloperController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $userData = Client::setEndpoint('developer/'.$id)
+                    ->setQuery(['limit' => 100])
+                    ->setHeaders(['Authorization' => $data['token'],
+                                    'pn' => $data['pn']
+                                ])
+                    ->get();
         
         $dataDev = $userData['contents'];
 

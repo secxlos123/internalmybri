@@ -110,7 +110,7 @@ class DropdownController extends Controller
 
         foreach ($cities['contents']['data'] as $key => $city) {
             $city['text'] = $city['name'];
-            $city['id'] = $city['name'];
+            // $city['id'] = $city['name'];
             $cities['contents']['data'][$key] = $city;
         }
 

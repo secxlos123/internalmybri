@@ -29,7 +29,7 @@
                                 <div class="card-box table-responsive">
                                     <div class="add-button">
                                         <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                        <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
+                                        <!-- <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a> -->
                                         <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                                     </div>
                                     <div id="filter" class="collapse m-b-15">
@@ -71,10 +71,13 @@
                                                 <th>No. Ref Aplikasi</th>
                                                 <th>Nama Nasabah</th>
                                                 <th>Nominal</th>
+                                                <th>Tanggal Pertemuan</th>
+                                                <th>Jenis Produk</th>
                                                 <th>KC BRI Terdekat</th>
-                                                <th>AO</th>
                                                 <th>Status Prescreening</th>
+                                                <th>AO</th>
                                                 <th>Status Aplikasi</th>
+                                                <th>Aging</th>                                           
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -194,43 +197,22 @@
                 {   data: 'ref', name: 'ref' },
                 {   data: 'customer_name', name: 'customer_name' },
                 {   data: 'request_amount', name: 'request_amount' },
-                {   data: 'office', name: 'office' },
-                {   data: 'ao', name: 'ao' },
-                {   data: 'application_status', 
-                    name: 'application_status', 
-                    bSortable: false,
-                    mRender: function (data, type, full) {
-                        if(full.application_status == '0'){
-                            color = 'text-success';
-                            text = 'Diterima';
-                        }else if(full.application_status == '1'){
-                            color = 'text-warning';
-                            text = 'Proses';
-                        }else if(full.application_status == '2'){
-                            color = 'text-danger';
-                            text = 'Ditolak';
-                        }else {
-                            color = '';
-                            text = 'Pengajuan Baru';
-                        }
-                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-                    },
-                    createdCell:  function (td, cellData, rowData, row, col) {
-                        $(td).attr('class', 'status'); 
-                    }},
+                {   data: 'appointment_date', name: 'appointment_date' },
+                {   data: 'product_type', name: 'product_type' },
+                {   data: 'branch_id', name: 'branch_id' },
                 {   data: 'prescreening_status', 
                     name: 'prescreening_status', 
                     bSortable: false,
                     mRender: function (data, type, full) {
-                        if(full.prescreening_status == '3'){
+                        if(full.prescreening_status == 'hijau'){
                             color = 'text-success';
-                            text = 'Diterima';
-                        }else if(full.prescreening_status == '2'){
+                            text = 'Hijau';
+                        }else if(full.prescreening_status == 'kuning'){
                             color = 'text-warning';
-                            text = 'Proses';
-                        }else if(full.prescreening_status == '1'){
+                            text = 'Kuning';
+                        }else if(full.prescreening_status == 'merah'){
                             color = 'text-danger';
-                            text = 'Ditolak';
+                            text = 'Merah';
                         }else {
                             color = '';
                             text = 'Pengajuan Baru';
@@ -240,6 +222,9 @@
                     createdCell:  function (td, cellData, rowData, row, col) {
                         $(td).attr('class', 'status'); 
                     }},
+                {   data: 'ao', name: 'ao' },
+                {   data: 'status', name: 'status' },
+                {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
         });

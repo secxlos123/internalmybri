@@ -22,11 +22,11 @@
 	</a>
 @endif
 
-@if (isset($dispotition) && (empty($dispose)))
-	<a href="{{route('getDispotition', $dispotition['id'])}}" class="btn btn-icon waves-effect waves-light btn-teal @if($dispotition['ao_name'] == '-')@else disabled @endif" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
-		<i class="mdi mdi-loupe"></i>
-	</a>
-@endif
+	@if (isset($dispotition)  && $submited == false)
+		<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.$dispotition['ref_number'])}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
+			<i class="mdi mdi-loupe"></i>
+		</a>
+	@endif
 
 @if (isset($screening))
 	<a href="#" class="btn btn-icon waves-effect waves-light btn-info " data-toggle="tooltip" data-placement="top" title="" data-original-title="Screening">
@@ -34,27 +34,34 @@
 	</a>
 @endif
 
+@if(isset($verified))
+	@if ((isset($verification) && ($verified == false)))
+	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info">
+	    Verifikasi
+	</a>
+	@endif
 
-@if ((isset($verification) && ($verified == false)))
-<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info">
-    Verifikasi
-</a>
+	@if (!empty($verified) && $verified == true)
+	<span class="btn btn-icon waves-effect waves-light btn-success">
+	    Verified
+	</span>
+	@endif
+
+	@if ((isset($lkn))  && ($verified == true) && ($visited == false))
+	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
+	    LKN
+	</a>
+	@endif
 @endif
 
-@if (!empty($verified) && $verified == true)
-<span class="btn btn-icon waves-effect waves-light btn-success">
-    Verified
-</span>
-@endif
-
-@if ((isset($lkn))  && ($verified == true) && ($visited == false))
-<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
-    LKN
-</a>
-@endif
-
-@if (isset($approve) && (!empty($visited)) && ($visited == true))
-<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info @if($approve['is_approved'] == false)@else disabled @endif" data-original-title="Approval" title="Approval">
+@if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
+<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
     <i class="mdi mdi-check"></i>
 </a>
+@endif
+
+@if (!empty($submited) && $submited == true)
+	<span class="btn btn-icon waves-effect waves-light btn-success">
+	    Approved
+	</span>
 @endif
