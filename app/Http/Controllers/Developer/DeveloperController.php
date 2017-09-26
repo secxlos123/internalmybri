@@ -128,6 +128,7 @@ class DeveloperController extends Controller
             ])
            ->setBody($newDev)
            ->post('multipart');
+           // dd($client);
         
         if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah disimpan.');
