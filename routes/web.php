@@ -59,7 +59,7 @@
 
         /* E-Form */
 
-        Route::get('eform/dispotition/{id}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
+        Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
         Route::post('/eform/dispotition/{id}', 
             ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
