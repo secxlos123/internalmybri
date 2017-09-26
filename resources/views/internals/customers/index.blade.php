@@ -136,7 +136,7 @@
                 { data: "nik", name: 'nik' },
                 { data: "name", name: 'name' },
                 { data: "email", name: 'email' },
-                { data: "city", name: 'office_name' },
+                { data: "city_id", name: 'office_name' },
                 { data: "phone", name: 'phone' },
                 { data: "gender", name: 'gender' },
                 { data: "action", name: 'action', bSortable: false },

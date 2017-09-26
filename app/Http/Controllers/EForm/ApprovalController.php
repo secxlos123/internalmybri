@@ -29,14 +29,14 @@ class ApprovalController extends Controller
 
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
-                    ->setHeaders(['Authorization' => $data['token']])
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
                     ->get();
         
-        $detail = $formDetail['data'];
-
-        /*GET DETAIL PRODUCT*/
-        $product = json_decode($detail['product']);
-        // dd($product);
+        $detail = $formDetail['contents'];
+        // dd(json_encode($detail));
 
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
@@ -60,12 +60,21 @@ class ApprovalController extends Controller
 
         $dispotition = [
             'id' => $id,
+            'pros' => $request->pros,
+            'cons' => $request->cons,
         ];
 
-        $client = Client::setEndpoint('eforms/'.$id.'/approve')->setHeaders(['Authorization' => $data['token']])->setBody($dispotition)->post();
+        $client = Client::setEndpoint('eforms/'.$id.'/approve')
+                    ->setHeaders([  
+                                    'Authorization' => $data['token'],
+                                    'pn' => $data['pn']
+                                ])
+                    ->setBody($dispotition)
+                    ->post();
+        // dd($client);
 
         if($client['code'] == 201){
-            \Session::flash('success', 'EForm berhasil diapprove!');
+            \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'EForm gagal diapprove!');

@@ -319,17 +319,34 @@ class AOController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'office_id' => $request->input('search.value'),
+                    'branch_id' => $request->input('search.value'),
                     'customer_name' => $request->input('search.value'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
-
+                // dd($eforms);
+                
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
+            $form['product_type'] = strtoupper($form['product_type']);
             $form['request_amount'] = $form['nominal'];
             $form['appointment_date'] = $form['appointment_date'];
+
+            $customerData = Client::setEndpoint('customer/'.$form['user_id'])
+                ->setQuery(['limit' => 100])
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])
+                ->get();
+
+            $verify = $customerData['contents']['is_verified'];
+            $visit = $form['is_visited'];
+
             $form['action'] = view('internals.layouts.actions', [
+                'verified' => $verify,
+                'visited' => $visit,
+
                 'verification' => route('getVerification', $form['user_id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();

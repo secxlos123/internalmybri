@@ -56,7 +56,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                         <div class="col-md-9">
-                                                            {!! Form::select('birth_place', ['' => ''], old('birth_place'), [
+                                                            {!! Form::select('birth_place_id', [$dataCustomer['personal']['birth_place_id'] => $dataCustomer['personal']['birth_place']], old('birth_place'), [
                                                                 'class' => 'select2 birth_place',
                                                                 'data-placeholder' => 'Pilih Kota Tempat Lahir',
                                                                 'readonly' => true
@@ -85,7 +85,7 @@
                                                     <div class="form-group city {!! $errors->has('city') ? 'has-error' : '' !!}">
                                                         <label class="col-md-3 control-label">Kota * :</label>
                                                         <div class="col-md-9">
-                                                            {!! Form::select('city', ['' => ''], old('cities'), [
+                                                            {!! Form::select('city_id', [$dataCustomer['personal']['city_id'] => $dataCustomer['personal']['city']], old('cities'), [
                                                                 'class' => 'select2 cities',
                                                                 'data-placeholder' => 'Pilih Kota',
                                                                 'readonly' => true
@@ -110,7 +110,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Kewarganegaraan * :</label>
                                                         <div class="col-md-7">
-                                                            {!! Form::select('citizenship', ['' => ''], old('citizenship'), [
+                                                            {!! Form::select('citizenship_id', [$dataCustomer['personal']['citizenship_id'] => $dataCustomer['personal']['citizenship']], old('citizenship'), [
                                                                 'class' => 'select2 citizenship',
                                                                 'data-placeholder' => 'Pilih Kewarganegaraan',
                                                                 'readonly' => true
@@ -204,10 +204,10 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
-                                                    <div class="form-group couple_birth_place {!! $errors->has('couple_birth_place') ? 'has-error' : '' !!}">
+                                                    <div class="form-group couple_birth_place_id {!! $errors->has('couple_birth_place_id') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Tempat Lahir * :</label>
                                                         <div class="col-md-7">
-                                                            {!! Form::select('couple_birth_place', ['' => ''], old('couple_birth_place'), [
+                                                            {!! Form::select('couple_birth_place_id', [$dataCustomer['personal']['couple_birth_place_id'] => $dataCustomer['personal']['couple_birth_place']], old('couple_birth_place_id'), [
                                                                 'class' => 'select2 couple_birth_place',
                                                                 'data-placeholder' => 'Pilih Kota Tempat Lahir',
                                                                 'readonly' => true
@@ -247,7 +247,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            {!! Form::select('work_field', ['' => ''], old('work_field'), [
+                                                            {!! Form::select('job_field_id', [$dataCustomer['work']['work_field_id'] => $dataCustomer['work']['work_field']], old('work_field'), [
                                                                 'class' => 'select2 work_field',
                                                                 'data-placeholder' => 'Pilih Bidang Pekerjaan',
                                                                 'readonly' => true
@@ -258,7 +258,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jenis Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            {!! Form::select('work_type', ['' => ''], old('work_type'), [
+                                                            {!! Form::select('job_type_id', [$dataCustomer['work']['type_id'] => $dataCustomer['work']['type']], old('work_type'), [
                                                                 'class' => 'select2 work_type',
                                                                 'data-placeholder' => 'Pilih Jenis Pekerjaan',
                                                                 'readonly' => true
@@ -269,7 +269,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Pekerjaan * :</label>
                                                         <div class="col-md-8">
-                                                            {!! Form::select('work', ['' => ''], old('work'), [
+                                                            {!! Form::select('job_id', [$dataCustomer['work']['work_id'] => $dataCustomer['work']['work']], old('work'), [
                                                                 'class' => 'select2 work',
                                                                 'data-placeholder' => 'Pilih Pekerjaan',
                                                                 'readonly' => true

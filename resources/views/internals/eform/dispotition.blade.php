@@ -32,7 +32,7 @@
                                     <div class="col-md-6">
                                         <h4 class="m-t-0 header-title"><b>Form Disposisi Pengajuan</b></h4>
                                         <p class="text-muted m-b-30 font-13">
-                                            No. Referensi Pengajuan : {{$id}}
+                                            No. Referensi Pengajuan : {{$ref_number}}
                                         </p>
                                         <form role="role" action="{{route('postDispotition', $id)}}" method="POST" >
                                         {{ csrf_field() }}

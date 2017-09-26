@@ -20,7 +20,7 @@ class EFormController extends Controller
         'ref',
         'customer_name',
         'request_amount',
-        'office',
+        'branch_id',
         'ao',
         'prescreening_status',
         'application_status',
@@ -47,12 +47,12 @@ class EFormController extends Controller
         $data = $this->getUser(); 
         // dd($data);
 
-        // if($data['role'] == 'ao'){
+        if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   
-        // } elseif ($data['role'] == 'admin') {
-            // return view('internals.eform.index', compact('data'));
+        } elseif (($data['role'] == 'pinca') || ($data['role'] == 'pinca')) {
+            return view('internals.eform.index', compact('data'));
             # code...
-        // }     
+        }     
     }
 
     /**
@@ -176,11 +176,12 @@ class EFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getDispotition($id)
+    public function getDispotition($id, $ref_number)
     {
+        // dd($id);
         $data = $this->getUser();
         
-        return view('internals.eform.dispotition', compact('data', 'id'));
+        return view('internals.eform.dispotition', compact('data', 'id', 'ref_number'));
     }
 
     /**
@@ -306,7 +307,7 @@ class EFormController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'office_id' => $request->input('search.value'),
+                    'branch_id' => $request->input('search.value'),
                     'customer_name' => $request->input('search.value'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
@@ -319,7 +320,7 @@ class EFormController extends Controller
             $form['prescreening_status'] = '0';
             $form['application_status'] = '0';
             $form['product_type'] = strtoupper($form['product_type']);
-            $form['office'] = $form['office'];
+            $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_name'];
 
             $customerData = Client::setEndpoint('customer/'.$form['user_id'])
@@ -333,16 +334,18 @@ class EFormController extends Controller
         
             $verify = $customerData['contents']['is_verified'];
             $visit = $form['is_visited'];
-            $dispose = $form['ao_name'];
 
             $form['action'] = view('internals.layouts.actions', [
-                // 'dispotition' => $form,
-                // // 'screening' => route('eform.show', $form['id']),
-                // 'approve' => $form,
-                'verified' => $verify,
+
+                'dispose' => $form['ao_name'],
+                'submited' => $form['is_approved'],
+                'dispotition' => $form,
+                // 'screening' => route('eform.show', $form['id']),
+                'approve' => $form,
+                // 'verified' => $verify,
                 'visited' => $visit,
-                'verification' => route('getVerification', $form['user_id']),
-                'lkn' => route('getLKN', $form['id']),
+                // 'verification' => route('getVerification', $form['user_id']),
+                // 'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }

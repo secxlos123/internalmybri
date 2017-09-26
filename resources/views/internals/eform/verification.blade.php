@@ -411,10 +411,12 @@
                             <input type="hidden" name="email" value="{{$dataCustomer['personal']['email']}}" id="email">
                             <input type="hidden" name="full_name" value="{{$dataCustomer['personal']['name']}}" id="name">
                             <input type="hidden" name="birth_place" value="{{$dataCustomer['personal']['birth_place']}}" id="birth_place">
+                            <input type="hidden" name="birth_place_id" value="{{$dataCustomer['personal']['birth_place_id']}}" id="birth_place_id">
                             <input type="hidden" name="birth_date" value="{{$dataCustomer['personal']['birth_date']}}" id="birth_date">
                             <input type="hidden" name="address" value="{{$dataCustomer['personal']['address']}}" id="address">
                             <input type="hidden" name="gender" value="@if($dataCustomer['personal']['gender'] == 'Laki-laki')L @else P @endif" id="gender">
                             <input type="hidden" name="citizenship" value="{{$dataCustomer['personal']['citizenship']}}" id="citizenship">
+                            <input type="hidden" name="citizenship_id" value="{{$dataCustomer['personal']['citizenship_id']}}" id="citizenship_id">
                             <input type="hidden" name="status" @if($dataCustomer['personal']['status'] == 'Tidak menikah') value="0" @else value="1" @endif id="status">
                             <input type="hidden" name="address_status" value="{{$dataCustomer['personal']['address_status']}}" id="address_status">
                             <input type="hidden" name="mother_name" value="{{$dataCustomer['personal']['mother_name']}}" id="mother_name">
