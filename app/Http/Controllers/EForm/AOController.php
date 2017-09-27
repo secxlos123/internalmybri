@@ -187,18 +187,17 @@ class AOController extends Controller
     public function getVerification($id)
     {
         $data = $this->getUser();
-
+        // dd($data);
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$id)
+        $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
                       ->setQuery(['limit' => 100])
                       ->setHeaders([
                           'Authorization' => $data['token'],
                           'pn' => $data['pn']
                       ])
-                      ->get();
+                      ->post();
         
         $dataCustomer = $customerData['contents'];
-        // dd($dataCustomer);
         
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
@@ -324,7 +323,7 @@ class AOController extends Controller
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
                 // dd($eforms);
-                
+
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
@@ -347,7 +346,7 @@ class AOController extends Controller
                 'verified' => $verify,
                 'visited' => $visit,
 
-                'verification' => route('getVerification', $form['user_id']),
+                'verification' => route('getVerification', $form['id']),
                 'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;

@@ -181,8 +181,8 @@
                                                         'data-placeholder' => 'Pilih Kantor',
                                                         'readonly' => true
                                                     ]) !!} -->
-                                                    <input type="hidden" name="office_id" value="1">
-                                                        <input type="text" name="office" value="KC Lembang" readonly="" class="form-control" id="office">
+                                                    <input type="hidden" name="branch_id" value="{{$data['branch']}}">
+                                                        <input type="text" name="branch" value="KC Lembang" readonly="" class="form-control" id="branch">
 
                                                     @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
                                                 </div>
@@ -194,7 +194,7 @@
                                                         'readonly' => true
                                                     ]) !!} -->
                                                     <!-- <input type="hidden" name="office_id" value="1"> -->
-                                                        <textarea type="text" name="office" value="KC Lembang" readonly="" class="form-control">Bandung Barat</textarea>
+                                                        <textarea type="text" name="branch" value="KC Lembang" readonly="" class="form-control">Bandung Barat</textarea>
 
                                                     @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
                                                 </div>
