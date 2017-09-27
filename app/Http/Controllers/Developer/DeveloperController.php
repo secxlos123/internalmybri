@@ -16,7 +16,6 @@ class DeveloperController extends Controller
     // }
 
     protected $columns = [
-        // 'company_name',
         'name',
         'email',
         'phone_number',
@@ -25,6 +24,15 @@ class DeveloperController extends Controller
         'is_actived',
         'action',
     ];
+
+    protected $columnsProp = [
+        'prop_name',
+        'prop_city_name',
+        'prop_types',
+        'prop_items',
+    ];
+
+
 
     public function getUser(){
      /* GET UserLogin Data */
@@ -157,6 +165,29 @@ class DeveloperController extends Controller
         $dataDev = $userData['contents'];
 
         return view('internals.developers.detail', compact('data', 'dataDev'));
+    }
+
+    public function properties(Request $request, $id)
+    {
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+        $developers = Client::setEndpoint("developer/{$id}/properties")
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
+                    'limit'  => $request->input('length'),
+                    'prop_city_id' => $request->input('city_id'),
+                    'search' => $request->input('search.value'),
+                    'sort'   => $this->columnsProp[$sort['column']] .'|'. $sort['dir'],
+                    'page'   => (int) $request->input('page') + 1
+                ])->get();
+
+        $developers['contents']['draw'] = $request->input('draw');
+        $developers['contents']['recordsTotal'] = $developers['contents']['total'];
+        $developers['contents']['recordsFiltered'] = $developers['contents']['total'];
+
+        return response()->json($developers['contents']);
     }
 
     /**
