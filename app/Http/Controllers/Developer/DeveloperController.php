@@ -289,13 +289,14 @@ class DeveloperController extends Controller
                     'pn' => $data['pn']
                 ])
             ->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('name'),
                 'page' => $request->input('page')
             ])
             ->get();
+            // dd($developers);
 
         foreach ($developers['contents']['data'] as $key => $dev) {
-            $dev['text'] = $dev['name'];
+            $dev['text'] = $dev['company_name'];
             $dev['id'] = $dev['dev_id'];
             $developers['contents']['data'][$key] = $dev;
         }

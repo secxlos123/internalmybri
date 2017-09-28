@@ -22,7 +22,7 @@
 	</a>
 @endif
 
-	@if (isset($dispotition)  && $submited == false)
+	@if (isset($dispotition)  && $submited == false && $visited == false)
 		<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.$dispotition['ref_number'])}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
 			<i class="mdi mdi-loupe"></i>
 		</a>

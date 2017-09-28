@@ -2,7 +2,7 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
-        <form action="{{route('postVerification', $id)}}" method="POST" enctype="multipart/form-data" id="form1">
+        <form action="{{route('postVerification', ['eform_id' => $eform_id, 'customer_id' => $customer_id ])}}" method="POST" enctype="multipart/form-data" id="form1">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="content-page">

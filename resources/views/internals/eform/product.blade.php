@@ -131,7 +131,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year">
+                                                    <input type="text" class="form-control numericOnly " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year" max="20">
                                                     <span class="input-group-addon">Tahun</span>
                                                     @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
                                                 </div>

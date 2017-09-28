@@ -59,7 +59,7 @@
                 var request_amount = $('#request_amount').val();
                 console.log(request_amount);
                 var year = $('#year').val();
-                var office = $('#office').val();
+                var office = $('#branch').val();
                 var appointment_date = $('#datepicker-mindate').val();
                 var year = $('#year').val();
 

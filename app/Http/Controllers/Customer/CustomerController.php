@@ -298,7 +298,7 @@ class CustomerController extends Controller
               'pn' => $data['pn']
           ])->setBody($newCustomer)
          ->post('multipart');
-
+         dd($client);
          // if($client['code'] == 200){
          //    \Session::flash('success', $client['descriptions']);
          //    return redirect()->back();
@@ -344,6 +344,7 @@ class CustomerController extends Controller
         
         $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
+        // dd($dataCustomer);
         // dd(($dataCustomer['personal']['status'] == 0) ? 'Lajang' : '');
 
         return view('internals.customers.detail', compact('data', 'dataCustomer'));
@@ -388,7 +389,7 @@ class CustomerController extends Controller
 
         if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil diubah!');
-            return redirect()->route('customers.index');
+            return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();
@@ -402,14 +403,15 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function verifyCustomer(Request $request, $id)
+    public function verifyCustomer(Request $request, $eform_id, $customer_id)
     {
         $data = $this->getUser();
+        // dd($request->all());
 
         $newCustomer = $this->customerRequest($request);
         // dd($newCustomer);
 
-        $client = Client::setEndpoint('customer/'.$id)
+        $client = Client::setEndpoint('customer/'.$customer_id)
          ->setHeaders([
               'Authorization' => $data['token'],
               'pn' => $data['pn']
@@ -420,7 +422,7 @@ class CustomerController extends Controller
 
         if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil dilengkapi!');
-            return redirect()->route('getVerification', $id);
+            return redirect()->route('getVerification', $eform_id);
         }else{
             \Session::flash('error', 'Lengkapi data Anda!');
             return redirect()->back();

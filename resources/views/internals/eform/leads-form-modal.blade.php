@@ -44,8 +44,12 @@
                                             <div class="form-group birth_place {!! $errors->has('birth_place') ? 'has-error' : '' !!}">
                                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="birth_place" id="birth_place" value="{{ old('birth_place') }}" maxlength="50">
-                                                    @if ($errors->has('birth_place')) <p class="help-block">{{ $errors->first('birth_place') }}</p> @endif
+                                                    {!! Form::select('birth_place_id', ['' => ''], old('cities'), [
+                                                        'class' => 'select2 cities',
+                                                        'data-placeholder' => 'Pilih Kota',
+                                                        'readonly' => true,
+                                                        'style' => "width:100%"
+                                                    ]) !!}
                                                 </div>
                                             </div>
                                             <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
@@ -157,8 +161,12 @@
                                             <div class="form-group couple_birth_place {!! $errors->has('couple_birth_place') ? 'has-error' : '' !!}">
                                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="couple_birth_place" value="{{ old('couple_birth_place') }}" maxlength="50">
-                                                    @if ($errors->has('couple_birth_place')) <p class="help-block">{{ $errors->first('couple_birth_place') }}</p> @endif
+                                                    {!! Form::select('couple_birth_place_id', ['' => ''], old('cities'), [
+                                                        'class' => 'select2 cities',
+                                                        'data-placeholder' => 'Pilih Kota',
+                                                        'readonly' => true,
+                                                        'style' => "width:100%"
+                                                    ]) !!}
                                                 </div>
                                             </div>
                                             <div class="form-group couple_birth_date {!! $errors->has('couple_birth_date') ? 'has-error' : '' !!}">

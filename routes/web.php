@@ -73,9 +73,9 @@
 
         Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
 
-        Route::get('/eform/completeData/{id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
+        Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
 
-        Route::put('/eform/verification/{id}', 
+        Route::put('/eform/verification/{eform_id}/completeData/{customer_id}', 
             ['as'=>'postVerification', 'uses'=>'Customer\CustomerController@verifyCustomer']);
 
         Route::put('/eform/verifyData/{id}', 

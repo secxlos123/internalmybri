@@ -27,11 +27,11 @@
                                     <div class="alert alert-success">{{ \Session::get('success') }}</div>
                                 @endif
                                 <div class="card-box table-responsive">
-                                    <div class="add-button">
+                                   <!--  <div class="add-button">
                                         <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                        <!-- <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a> -->
+                                        <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
                                         <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
-                                    </div>
+                                    </div> -->
                                     <div id="filter" class="collapse m-b-15">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -171,6 +171,7 @@
         });
 
         var table = $('#datatable').dataTable({
+            searching : false,
             processing : true,
             serverSide : true,
             lengthMenu: [
@@ -204,13 +205,13 @@
                     name: 'prescreening_status', 
                     bSortable: false,
                     mRender: function (data, type, full) {
-                        if(full.prescreening_status == 'hijau'){
+                        if(full.prescreening_status == 'Hijau'){
                             color = 'text-success';
                             text = 'Hijau';
-                        }else if(full.prescreening_status == 'kuning'){
+                        }else if(full.prescreening_status == 'Kuning'){
                             color = 'text-warning';
                             text = 'Kuning';
-                        }else if(full.prescreening_status == 'merah'){
+                        }else if(full.prescreening_status == 'Merah'){
                             color = 'text-danger';
                             text = 'Merah';
                         }else {

@@ -198,6 +198,7 @@ class AOController extends Controller
                       ->post();
         
         $dataCustomer = $customerData['contents'];
+        // dd($dataCustomer);
         
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
@@ -207,12 +208,13 @@ class AOController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function completeData($id)
+    public function completeData($eform_id, $customer_id)
     {
         $data = $this->getUser();
+        // dd($data);
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$id)
+        $customerData = Client::setEndpoint('customer/'.$customer_id)
                       ->setQuery(['limit' => 100])
                       ->setHeaders([
                           'Authorization' => $data['token'],
@@ -221,8 +223,9 @@ class AOController extends Controller
                       ->get();
         
         $dataCustomer = $customerData['contents'];
+        // dd($customerData);
         
-        return view('internals.eform.complete', compact('data', 'id', 'dataCustomer'));
+        return view('internals.eform.complete', compact('data', 'eform_id', 'dataCustomer', 'customer_id'));
     }
 
     // uses regex that accepts any word character or hyphen in last name
@@ -242,6 +245,19 @@ class AOController extends Controller
     {
         $first_name = $this->split_name($request)['0'];
         $last_name = $this->split_name($request)['1'];
+        // dd($request->gender);
+
+        if(($request->gender == "M") || ($request->gender == "Laki-laki") || ($request->gender == "L") ){
+          $gender = "L"; 
+        }elseif(($request->gender == "F")  || ($request->gender == "Perempuan") || ($request->gender == "P")){
+          $gender = "P";
+        }
+
+        $gen[] = [
+                      'name'     => 'gender',
+                      'contents' => $gender
+                    ];
+
 
         $verifyStatus[] = [
                       'name'     => 'verify_status',
@@ -259,14 +275,14 @@ class AOController extends Controller
             ],
           );
 
-        $allReq = $request->except(['full_name']);
+        $allReq = $request->except(['full_name', 'gender', '_token']);
           foreach ($allReq as $index => $req) {
             $inputData[] = [
                       'name'     => $index,
                       'contents' => $req
                     ];
           }
-          $newData = array_merge($inputData, $name, $verifyStatus);
+          $newData = array_merge($inputData, $name, $verifyStatus, $gen);
         
         
         return $newData;
@@ -279,14 +295,15 @@ class AOController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function verifyData(Request $request, $id)
+    public function verifyData(Request $request, $customer_id)
     {
         $data = $this->getUser();
 
         $newData = $this->dataRequest($request);
-        // dd($newData);
+        // echo '<pre>';
+        // print_r($newData);die();
 
-        $client = Client::setEndpoint('customer/'.$id.'/verify')
+        $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
               'Authorization' => $data['token'],
               'pn' => $data['pn']

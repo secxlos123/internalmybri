@@ -70,7 +70,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads"><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" disabled><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -160,20 +160,6 @@
                                                 Pilih Lokasi Bank Pengajuan
                                             </p>
                                             <div role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label">Kota *</label>
-                                                    <!-- {!! Form::select('cities', ['1' => 'Bandung'], old('cities'), [
-                                                        'class' => 'select2 cities',
-                                                        'data-placeholder' => 'Pilih Kota',
-                                                        'readonly' => true
-                                                    ]) !!} -->
-                                                    <!-- <div class="col-md-3"> -->
-                                                        <input type="hidden" name="cities" value="1">
-                                                        <input type="text" name="city" value="Bandung" readonly="" class="form-control" id="city">
-                                                    <!-- </div> -->
-
-                                                    @if ($errors->has('cities')) <p class="help-block">{{ $errors->first('cities') }}</p> @endif
-                                                </div>
                                                 <div class="form-group office_id {!! $errors->has('office_name') ? 'has-error' : '' !!}">
                                                     <label class="control-label">Kantor Cabang BRI *</label>
                                                     <!-- {!! Form::select('office_name', ['' => ''], old('office_name'), [
@@ -181,8 +167,8 @@
                                                         'data-placeholder' => 'Pilih Kantor',
                                                         'readonly' => true
                                                     ]) !!} -->
-                                                    <input type="hidden" name="branch_id" value="{{$data['branch']}}">
-                                                        <input type="text" name="branch" value="KC Lembang" readonly="" class="form-control" id="branch">
+                                                    <input type="hidden" name="branch_id" value="{{$office['branch']}}">
+                                                        <input type="text" name="branch" value="{{$office['unit']}}" readonly="" class="form-control" id="branch">
 
                                                     @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
                                                 </div>
@@ -194,7 +180,7 @@
                                                         'readonly' => true
                                                     ]) !!} -->
                                                     <!-- <input type="hidden" name="office_id" value="1"> -->
-                                                        <textarea type="text" name="branch" value="KC Lembang" readonly="" class="form-control">Bandung Barat</textarea>
+                                                        <textarea type="text" name="branch" value="KC Lembang" readonly="" class="form-control">{{$office['address']}}</textarea>
 
                                                     @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
                                                 </div>

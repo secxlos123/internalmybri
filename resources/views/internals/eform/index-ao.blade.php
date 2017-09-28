@@ -28,7 +28,7 @@
                                 @endif
                                 <div class="card-box table-responsive">
                                     <div class="add-button">
-                                        <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
+                                        <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                                         <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
                                         <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                                     </div>
@@ -102,6 +102,7 @@
         });
 
         var table = $('#datatable').dataTable({
+            searching : false,
             processing : true,
             serverSide : true,
             lengthMenu: [

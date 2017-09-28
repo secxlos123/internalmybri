@@ -443,8 +443,8 @@
                                         <hr>
                                         <div class="text-center">
                                             <button type="submit" href="#" class="btn btn-success waves-light waves-effect w-md m-b-20">Terima</button>
-                                            <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button>
-                                            <button type="submit" href="#" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</button>
+                                            <!-- <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button> -->
+                                            <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                         </div>
                                     </div>
                                 </div>

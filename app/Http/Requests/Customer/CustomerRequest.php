@@ -26,7 +26,7 @@ class CustomerRequest extends FormRequest
         return [
             'nik' => 'required|numeric|digits_between:10,16',
             'full_name' => 'required',
-            'birth_place'   => 'required',
+            'birth_place_id'   => 'required',
             'birth_date'    => 'date|date_format:Y-m-d|before:today',
             'gender'    => 'required',
             // 'city'  => 'required',
@@ -39,7 +39,7 @@ class CustomerRequest extends FormRequest
             'couple_nik' => 'required_if:status,1',
             'couple_name' => 'required_if:status,1',
             'couple_birth_date' => 'required_if:status,1',
-            'couple_birth_place' => 'required_if:status,1',
+            'couple_birth_place_id' => 'required_if:status,1',
             'couple_identity'  => 'required_if:status,1|mimes:jpeg,jpg,png,gif|max:10000'
         ];
     }
@@ -51,7 +51,7 @@ class CustomerRequest extends FormRequest
             'nik.numeric' => 'Kolom NIK harus berisikan angka.',
             'nik.max' => 'Kolom NIK maksimal 16 digit.',
             'full_name.required' => 'Kolom nama depan harus diisi.',
-            'birth_place.required' => 'Kolom tempat lahir harus diisi.',
+            'birth_place_id.required' => 'Kolom tempat lahir harus diisi.',
             'birth_date.required' => 'Kolom tanggal lahir harus diisi.',
             'gender.required' => 'Kolom jenis kelamin harus diisi.',
             // 'city.required' => 'Kolom kota harus diisi.',
@@ -65,7 +65,7 @@ class CustomerRequest extends FormRequest
             'couple_name.required' => 'Nama Pasangan harus diisi.',
             'couple_identity.required' => 'Kolom foto ktp pasangan harus diisi.',
             'couple_birth_date' => 'Kolom Tanggal Lahir Pasangan harus diisi',
-            'couple_birth_place' => 'Kolom Tempat Lahir Pasangan harus diisi'
+            'couple_birth_place_id' => 'Kolom Tempat Lahir Pasangan harus diisi'
         ];
     }
 }

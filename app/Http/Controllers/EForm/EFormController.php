@@ -47,9 +47,9 @@ class EFormController extends Controller
         $data = $this->getUser(); 
         // dd($data);
 
-        if($data['role'] == 'ao'){
+        if($data['role'] == 'mp'){
             return view('internals.eform.index-ao', compact('data'));   
-        } elseif (($data['role'] == 'pinca') || ($data['role'] == 'pinca')) {
+        } elseif (($data['role'] == 'ao') || ($data['role'] == 'pinca')) {
             return view('internals.eform.index', compact('data'));
             # code...
         }     
@@ -167,8 +167,21 @@ class EFormController extends Controller
     public function create()
     {
         $data = $this->getUser();
+
+        $offices = Client::setEndpoint('offices')
+                    ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])->setQuery([
+                        'branch' => $data['branch'],
+                        'distance' => 1,
+                        'long' => 0,
+                        'lat' => 0
+                    ])
+                    ->get();
+        $office = $offices['contents']['data'][0];
         
-        return view('internals.eform.create', compact('data'));
+        return view('internals.eform.create', compact('data', 'office'));
     }
 
     /**
