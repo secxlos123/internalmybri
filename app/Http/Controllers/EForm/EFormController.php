@@ -47,9 +47,9 @@ class EFormController extends Controller
         $data = $this->getUser(); 
         // dd($data);
 
-        if($data['role'] == 'mp'){
+        if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   
-        } elseif (($data['role'] == 'ao') || ($data['role'] == 'pinca')) {
+        } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             return view('internals.eform.index', compact('data'));
             # code...
         }     
