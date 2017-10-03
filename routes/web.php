@@ -13,16 +13,16 @@
 /* Backend */
 
     /* Auth */
-        Route::post('/login', 
+        Route::post('/login',
             ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
 
-        Route::get('/login', 
+        Route::get('/login',
             ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
 
-        Route::get('/forgot-password', 
+        Route::get('/forgot-password',
             ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
 
-        Route::post('/post-email', 
+        Route::post('/post-email',
             ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
 
         Route::get('/email-sent', function () {
@@ -37,10 +37,10 @@
     Route::group(['middleware'=> [ 'auth', 'check-token']], function () {
 
         /* Dashboard */
-        Route::get('/', 
+        Route::get('/',
             ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
-        /* Customers */        
+        /* Customers */
         Route::resource('customers', 'Customer\CustomerController');
 
         /* Roles */
@@ -63,10 +63,10 @@
 
         Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
-        Route::post('/eform/dispotition/{id}', 
+        Route::post('/eform/dispotition/{id}',
             ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
 
-        Route::post('/eform/postLKN/{id}', 
+        Route::post('/eform/postLKN/{id}',
             ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
         Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
@@ -75,15 +75,15 @@
 
         Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
 
-        Route::put('/eform/verification/{eform_id}/completeData/{customer_id}', 
+        Route::put('/eform/verification/{eform_id}/completeData/{customer_id}',
             ['as'=>'postVerification', 'uses'=>'Customer\CustomerController@verifyCustomer']);
 
-        Route::put('/eform/verifyData/{id}', 
+        Route::put('/eform/verifyData/{id}',
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
 
-        Route::post('/eform/approve/{id}', 
+        Route::post('/eform/approve/{id}',
             ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
 
         Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
@@ -117,6 +117,18 @@
     Route::get('dropdown/job_fields', 'DropdownController@job_fields');
 
     Route::get('dropdown/citizenship', 'DropdownController@citizenship');
+
+    Route::get('dropdown/kpptypelist', 'DropdownController@kppTypeList');
+
+    Route::get('dropdown/typefinanced', 'DropdownController@typeFinanced');
+
+    Route::get('dropdown/economysectors', 'DropdownController@economySectors');
+
+    Route::get('dropdown/projectlist', 'DropdownController@projectList');
+
+    Route::get('dropdown/programlist', 'DropdownController@programList');
+
+    Route::get('dropdown/usereason', 'DropdownController@useReason');
 
     Route::get('getDeveloper', ['as'=>'getDeveloper', 'uses'=>'Developer\DeveloperController@getDeveloper']);
 

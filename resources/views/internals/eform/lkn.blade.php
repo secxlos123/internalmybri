@@ -56,6 +56,28 @@
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
+                            <h3 class="panel-title">Data Penghasilan Pasangan</h3>
+                        </div>
+                        @include('internals.eform.lkn._income-partners')
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-color panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">KPP</h3>
+                        </div>
+                        @include('internals.eform.lkn._kpp-type')
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-color panel-primary">
+                        <div class="panel-heading">
                             <h3 class="panel-title">Mutasi Rekening</h3>
                         </div>
                         @include('internals.eform.lkn._mutation')
@@ -121,7 +143,7 @@
         </div>
 
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 @include('internals.eform.lkn.lkn-script')
 @include('internals.eform.lkn.render-mutation')
 <!-- <script async defer
@@ -156,7 +178,7 @@ function initialize() {
     var geocoder = new google.maps.Geocoder();
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
-    var infowindow = new google.maps.InfoWindow();   
+    var infowindow = new google.maps.InfoWindow();
     autocomplete.addListener('place_changed', function() {
         infowindow.close();
         marker.setVisible(false);
@@ -173,20 +195,20 @@ function initialize() {
             map.setCenter(place.geometry.location);
             map.setZoom(17);
         }
-       
+
         marker.setPosition(place.geometry.location);
-        marker.setVisible(true);          
-    
+        marker.setVisible(true);
+
         bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng());
         infowindow.setContent(place.formatted_address);
         infowindow.open(map, marker);
-       
+
     });
-    // this function will work on marker move event into map 
+    // this function will work on marker move event into map
     google.maps.event.addListener(marker, 'dragend', function() {
         geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-          if (results[0]) {        
+          if (results[0]) {
               bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
               infowindow.setContent(results[0].formatted_address);
               infowindow.open(map, marker);

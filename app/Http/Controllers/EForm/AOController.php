@@ -35,7 +35,7 @@ class AOController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        
+
         return view('internals.eform.index-ao', compact('data'));
     }
 
@@ -63,14 +63,21 @@ class AOController extends Controller
                     'pn' => $data['pn']
                 ])->get();
         $eformData = $eforms['contents'];
-        // dd($eformData);
-        
+
+        // $typeFinanced = Client::setEndpoint('use-reasons')
+        //         ->setHeaders([
+        //             'Authorization' => $data['token'],
+        //             'pn' => $data['pn']
+        //         ])
+        //         ->get();
+        // dd($eforms);
+
         return view('internals.eform.lkn', compact('data', 'id', 'eformData'));
     }
 
     public function renderMutation(Request $request)
     {
-      
+
        $view = (String)view('internals.eform.lkn._render-mutation')
           ->render();
        return response()->json(['view' => $view]);
@@ -133,7 +140,7 @@ class AOController extends Controller
                   $ctn = fopen($values->getRealPath(), 'r');
                   $mime = $values->getmimeType();
                   $name = $values->getClientOriginalName();
-                  
+
                   $application[] = ['name' => "{$keys}", 'contents' => $ctn, 'filename' => $name, 'Mime-Type'=> $mime];
                 }else{
                   $ctn = $values;
@@ -175,7 +182,7 @@ class AOController extends Controller
             \Session::flash('error', 'Kesalahan input.');
             return redirect()->back();
         }
-        
+
         return view('internals.eform.lkn', compact('data'));
     }
 
@@ -196,10 +203,10 @@ class AOController extends Controller
                           'pn' => $data['pn']
                       ])
                       ->post();
-        
+
         $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
-        
+
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
 
@@ -221,10 +228,10 @@ class AOController extends Controller
                           'pn' => $data['pn']
                       ])
                       ->get();
-        
+
         $dataCustomer = $customerData['contents'];
         // dd($customerData);
-        
+
         return view('internals.eform.complete', compact('data', 'eform_id', 'dataCustomer', 'customer_id'));
     }
 
@@ -248,7 +255,7 @@ class AOController extends Controller
         // dd($request->gender);
 
         if(($request->gender == "M") || ($request->gender == "Laki-laki") || ($request->gender == "L") ){
-          $gender = "L"; 
+          $gender = "L";
         }elseif(($request->gender == "F")  || ($request->gender == "Perempuan") || ($request->gender == "P")){
           $gender = "P";
         }
@@ -283,8 +290,8 @@ class AOController extends Controller
                     ];
           }
           $newData = array_merge($inputData, $name, $verifyStatus, $gen);
-        
-        
+
+
         return $newData;
     }
 
