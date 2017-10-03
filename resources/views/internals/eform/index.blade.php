@@ -215,8 +215,8 @@
                             color = 'text-danger';
                             text = 'Merah';
                         }else {
-                            color = '';
-                            text = 'Pengajuan Baru';
+                            color = 'text-info';
+                            text = 'On Progress';
                         }
                         return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
                     },

@@ -261,7 +261,7 @@ class AOController extends Controller
 
         $verifyStatus[] = [
                       'name'     => 'verify_status',
-                      'contents' => 'verified'
+                      'contents' => 'verify'
                     ];
 
         $name = array(

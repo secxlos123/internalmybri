@@ -23,7 +23,7 @@ class EFormController extends Controller
         'branch_id',
         'ao',
         'prescreening_status',
-        'application_status',
+        'status',
         'action',
     ];
 
@@ -330,8 +330,6 @@ class EFormController extends Controller
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            $form['prescreening_status'] = '0';
-            $form['application_status'] = '0';
             $form['product_type'] = strtoupper($form['product_type']);
             $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_name'];
