@@ -3,7 +3,7 @@
 	    // console.log(index);
 	  return index;
 	  }
-	
+
 	// function resetBase() {
 	//     $('select.selectpicker:not(.base-select)').each(function(){
 	//       $("select.base-select option[value*=" + $(this).val() + "]").prop("disabled", true);
@@ -70,5 +70,134 @@
 	        multidate: true,
 	        multidateSeparator: ","
 	    })
+	});
+
+	$('.use_reason').on('change', function(){
+		$('#use_reason_id').val($(this).val());
+		console.log($(this).val());
+	});
+
+
+	$(document).ready(function() {
+		$('.kpp_type').select2({
+            // width : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/kpptypelist',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.kppType.data,
+                        pagination: {
+                            more: (params.page * data.kppType.per_page) < data.kppType.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.type_financed').select2({
+            // width : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/typefinanced',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.typeFinanced.data,
+                        pagination: {
+                            more: (params.page * data.typeFinanced.per_page) < data.typeFinanced.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.economy_sector').select2({
+            // width : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/economysectors',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.economySector.data,
+                        pagination: {
+                            more: (params.page * data.economySector.per_page) < data.economySector.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.project_list').select2({
+            // width : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/projectlist',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.projectList.data,
+                        pagination: {
+                            more: (params.page * data.projectList.per_page) < data.projectList.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.program_list').select2({
+            // width : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/programlist',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.programList.data,
+                        pagination: {
+                            more: (params.page * data.programList.per_page) < data.programList.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.use_reason').select2({
+            // width : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/usereason',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.useReason.data,
+                        pagination: {
+                            more: (params.page * data.useReason.per_page) < data.useReason.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
 	});
 </script>

@@ -12,7 +12,7 @@ class DropdownController extends Controller
 	{
 		/* GET UserLogin Data */
 		$users = session()->get('user');
-		
+
 		foreach ($users as $user) {
 			$data = $user;
 		}
@@ -23,7 +23,7 @@ class DropdownController extends Controller
     public function properties(Request $request)
     {
         $data = $this->getUser();
-        
+
         $properties = Client::setEndpoint('dropdown/properties')
         	->setHeaders([
 	        	'Authorization' => $data['token'],
@@ -48,7 +48,7 @@ class DropdownController extends Controller
     public function types(Request $request)
     {
         $data = $this->getUser();
-        
+
         $types = Client::setEndpoint('dropdown/types')
         	->setHeaders([
 	        	'Authorization' => $data['token'],
@@ -73,7 +73,7 @@ class DropdownController extends Controller
     public function units(Request $request)
     {
         $data = $this->getUser();
-        
+
         $units = Client::setEndpoint('dropdown/units')
         	->setHeaders([
 	        	'Authorization' => $data['token'],
@@ -199,5 +199,114 @@ class DropdownController extends Controller
         }
 
         return response()->json(['citizenship' => $citizenship['contents']]);
+    }
+
+    public function kppTypeList(Request $request)
+    {
+        $data = $this->getUser();
+        $kppType = \Client::setEndpoint('kpp-type-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->get();
+
+        foreach ($kppType['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $kppType['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['kppType' => $kppType['contents']]);
+    }
+
+    public function typeFinanced(Request $request)
+    {
+        $data = $this->getUser();
+        $typeFinanced = \Client::setEndpoint('list-jenis-dibiayai')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->get();
+
+        foreach ($typeFinanced['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $typeFinanced['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['typeFinanced' => $typeFinanced['contents']]);
+    }
+
+    public function economySectors(Request $request)
+    {
+        $data = $this->getUser();
+        $economySector = \Client::setEndpoint('economy-sectors')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setQuery(['limit' => 5])
+            ->get();
+
+        foreach ($economySector['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $economySector['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['economySector' => $economySector['contents']]);
+    }
+
+    public function projectList(Request $request)
+    {
+        $data = $this->getUser();
+        $projectList = \Client::setEndpoint('project-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->get();
+
+        foreach ($projectList['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $projectList['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['projectList' => $projectList['contents']]);
+    }
+
+    public function programList(Request $request)
+    {
+        $data = $this->getUser();
+        $programList = \Client::setEndpoint('program-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->get();
+
+        foreach ($programList['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $programList['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['programList' => $programList['contents']]);
+    }
+
+    public function useReason(Request $request)
+    {
+        $data = $this->getUser();
+        $useReason = \Client::setEndpoint('use-reasons')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->get();
+
+        foreach ($useReason['contents']['data'] as $key => $czen) {
+            $czen['text'] = $czen['name'];
+            $useReason['contents']['data'][$key] = $czen;
+        }
+
+        return response()->json(['useReason' => $useReason['contents']]);
     }
 }

@@ -36,6 +36,13 @@
                                                 @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                                             </div>
                                         </div>
+                                        <div class="form-group name {!! $errors->has('npwp') ? 'has-error' : '' !!}">
+                                            <label class="col-md-4 control-label">NPWP *:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control numericOnly" name="npwp" maxlength="50" value="" readonly="">
+                                                @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
+                                            </div>
+                                        </div>
                                         <div class="form-group job {!! $errors->has('job') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                                             <div class="col-md-8">
@@ -100,9 +107,9 @@
                                                 @if ($errors->has('result')) <p class="help-block">{{ $errors->first('result') }}</p> @endif
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
