@@ -194,7 +194,7 @@ class AOController extends Controller
     public function getVerification($id)
     {
         $data = $this->getUser();
-        // dd($data);
+        // dd($id);
          /* GET Role Data */
         $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
                       ->setQuery(['limit' => 100])
@@ -363,7 +363,7 @@ class AOController extends Controller
                 ])
                 ->get();
 
-            $verify = $customerData['contents']['is_verified'];
+            $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];
 
             $form['action'] = view('internals.layouts.actions', [

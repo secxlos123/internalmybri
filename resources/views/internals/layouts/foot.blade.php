@@ -38,11 +38,12 @@
         <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script>
         <script src="{{asset('assets/js/jquery.date-pickers.init.js')}}"></script>
         <script src="{{asset('assets/js/jquery.time-pickers.init.js')}}"></script>
-        <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
+        <!-- <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->
 
         <script src="{{asset('js/jquery.inputmask.bundle.min.js')}}"></script>
         <script src="{{asset('js/inputmask.numeric.extensions.js')}}"></script>
         <script src="{{asset('assets/js/select2.min.js')}}"></script>
+        <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
 
         <script>

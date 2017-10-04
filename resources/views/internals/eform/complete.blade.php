@@ -288,10 +288,14 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" role="form">
-                                                    <div class="form-group position {!! $errors->has('position') ? 'has-error' : '' !!}">
+                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Jabatan * :</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="position" value="{{$dataCustomer['work']['position']}}" maxlength="50">
+                                                            {!! Form::select('position', [$dataCustomer['work']['position'] => $dataCustomer['work']['position']], old('positions'), [
+                                                                'class' => 'select2 positions',
+                                                                'data-placeholder' => 'Pilih Posisi',
+                                                                'readonly' => true
+                                                            ]) !!}
                                                             @if ($errors->has('position')) <p class="help-block">{{ $errors->first('position') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -706,6 +710,33 @@
                     results: data.job_fields.data,
                     pagination: {
                         more: (params.page * data.job_fields.per_page) < data.job_fields.total
+                    }
+                };
+            },
+            cache: true
+        },
+    });
+
+    $('.positions').select2({
+        witdh : '100%',
+        allowClear: true,
+        ajax: {
+            url: '/dropdown/positions',
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    name: params.term,
+                    page: params.page || 1
+                };
+            },
+            processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                    results: data.positions.data,
+                    pagination: {
+                        more: (params.page * data.positions.per_page) < data.positions.total
                     }
                 };
             },

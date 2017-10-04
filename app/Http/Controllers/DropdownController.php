@@ -180,6 +180,27 @@ class DropdownController extends Controller
         return response()->json(['job_fields' => $job_fields['contents']]);
     }
 
+    public function positions(Request $request)
+    {
+        $data = $this->getUser();
+        $positions = \Client::setEndpoint('positions')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        foreach ($positions['contents']['data'] as $key => $position) {
+            $position['text'] = $position['name'];
+            $positions['contents']['data'][$key] = $position;
+        }
+
+        return response()->json(['positions' => $positions['contents']]);
+    }
+
     public function citizenship(Request $request)
     {
         $data = $this->getUser();

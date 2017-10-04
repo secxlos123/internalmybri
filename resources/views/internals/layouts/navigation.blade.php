@@ -40,9 +40,9 @@
                            <!--  <li>
                                 <a href="tracking.html" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
                             </li> -->
-                            <!-- <li>
-                                <a href="pihak3.html" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
-                            </li> -->
+                            <li>
+                                <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
+                            </li>
                             <!-- <li>
                                 <a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
                             </li>

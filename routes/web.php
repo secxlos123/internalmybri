@@ -92,6 +92,9 @@
 
         Route::resource('eform', 'EForm\EFormController');
 
+        /* Pihak Ke -3 (Third Party) */
+        Route::resource('third-party', 'ThirdParty\ThirdPartyController');
+
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
@@ -115,6 +118,8 @@
     Route::get('dropdown/jobs', 'DropdownController@jobs');
 
     Route::get('dropdown/job_fields', 'DropdownController@job_fields');
+
+    Route::get('dropdown/positions', 'DropdownController@positions');
 
     Route::get('dropdown/citizenship', 'DropdownController@citizenship');
 
@@ -157,6 +162,9 @@
 
         /* Developers */
         Route::get('developers', 'Developer\DeveloperController@datatables');
+
+        /* Third Party (Pihak ke-3) */
+        Route::get('third-party', 'ThirdParty\ThirdPartyController@datatables');
 
         /* EForms */
         Route::get('eform', 'EForm\EFormController@datatables');
