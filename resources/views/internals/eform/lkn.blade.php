@@ -67,6 +67,17 @@
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
+                            <h3 class="panel-title">Data Keluarga</h3>
+                        </div>
+                        @include('internals.eform.lkn._family')
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-color panel-primary">
+                        <div class="panel-heading">
                             <h3 class="panel-title">KPP</h3>
                         </div>
                         @include('internals.eform.lkn._kpp-type')

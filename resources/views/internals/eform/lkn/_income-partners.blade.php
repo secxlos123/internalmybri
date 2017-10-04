@@ -2,6 +2,17 @@
     <div class="row">
         <div class="col-md-9">
             <div class="form-horizontal" role="form">
+                <div class="form-group separated_property_status {!! $errors->has('separated_property_status') ? 'has-error' : '' !!}">
+                    <label class="col-md-4 control-label">Status Pisah Harta *:</label>
+                    <div class="col-md-8">
+                        <select class="form-control" name="separated_property_status" id="separated_property_status">
+                            <option selected="" disabled="">-- Pilih --</option>
+                            <option value="separatedproperty">Pisah Harta</option>
+                            <option value="nonseparatedproperty">Gabung Harta</option>
+                        </select>
+                        @if ($errors->has('separated_property_status')) <p class="help-block">{{ $errors->first('separated_property_status') }}</p> @endif
+                    </div>
+                </div>
                 <div class="form-group source_income {!! $errors->has('source_income') ? 'has-error' : '' !!}">
                     <label class="col-md-4 control-label">Sumber *:</label>
                     <div class="col-md-8">
@@ -24,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group income_other {!! $errors->has('income_other') ? 'has-error' : '' !!}" id="fixed-allowance">
+                <div class="form-group income_other {!! $errors->has('income_other') ? 'has-error' : '' !!}" id="income_other">
                     <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                     <div class="col-md-8">
                         <div class="input-group">
