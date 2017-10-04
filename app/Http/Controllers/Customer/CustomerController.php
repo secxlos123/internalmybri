@@ -42,8 +42,8 @@ class CustomerController extends Controller
     public function index()
     {
         /* GET UserLogin Data */
-        $data = $this->getUser();  
-        // dd(session()->get('user.contents'));   
+        $data = $this->getUser();
+        // dd(session()->get('user.contents'));
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
@@ -275,7 +275,7 @@ class CustomerController extends Controller
 
           $newCustomer = array_merge($image, $inputData, $name);
         }
-        
+
         return $newCustomer;
     }
 
@@ -298,7 +298,7 @@ class CustomerController extends Controller
               'pn' => $data['pn']
           ])->setBody($newCustomer)
          ->post('multipart');
-         dd($client);
+         // dd($client);
          // if($client['code'] == 200){
          //    \Session::flash('success', $client['descriptions']);
          //    return redirect()->back();
@@ -341,7 +341,7 @@ class CustomerController extends Controller
                                       'pn' => $data['pn']
                                     ])
                         ->get();
-        
+
         $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
         // dd($dataCustomer);
@@ -362,7 +362,7 @@ class CustomerController extends Controller
 
          /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-        
+
         $dataCustomer = $customerData['data'];
         return view('internals.customers.edit', compact('data', 'dataCustomer', 'id'));
     }

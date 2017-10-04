@@ -21,7 +21,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Personal</h3>
                             </div>
-                            <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form1">
+                            <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form_data_personal">
                             {{ csrf_field() }}
                             <div class="panel-body">
                                 <div class="row">
@@ -73,7 +73,7 @@
                                                     @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -89,7 +89,7 @@
                                                     @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                 <label class="col-md-5 control-label">Email * :</label>
                                                 <div class="col-md-7">
@@ -120,7 +120,7 @@
                                                 </div>
                                             </div>
                                         <div class="form-horizontal">
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@
                                                     @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +210,7 @@
                 </div>
             </form>
             </div>
-            
+
         </div>
     </div>
 </div>

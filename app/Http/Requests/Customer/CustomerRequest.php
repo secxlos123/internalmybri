@@ -24,7 +24,7 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'nik' => 'required|numeric|digits_between:10,16',
+            'nik' => 'required|numeric|digits:16',
             'full_name' => 'required',
             'birth_place_id'   => 'required',
             'birth_date'    => 'date|date_format:Y-m-d|before:today',
@@ -33,6 +33,7 @@ class CustomerRequest extends FormRequest
             // 'phone' => 'required|numeric|digits_between:1,12',
             // 'citizenship'   => 'required',
             'status'    => 'required',
+            'email'    => 'email|required',
             'mother_name'   => 'required',
             'mobile_phone'  => 'required|numeric|digits_between:1,12',
             'identity'  => 'mimes:jpeg,jpg,png,gif|required|max:10000',
@@ -54,6 +55,7 @@ class CustomerRequest extends FormRequest
             'birth_place_id.required' => 'Kolom tempat lahir harus diisi.',
             'birth_date.required' => 'Kolom tanggal lahir harus diisi.',
             'gender.required' => 'Kolom jenis kelamin harus diisi.',
+            'email.required'    => 'email harus diisi',
             // 'city.required' => 'Kolom kota harus diisi.',
             // 'phone.required' => 'Kolom telephone harus diisi.',
             'status.required' => 'Kolom status pernikahan harus diisi.',

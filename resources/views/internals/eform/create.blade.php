@@ -150,7 +150,7 @@
                                         </div>
                                     </div>
                                 </section>
-                               
+
                                 <h3>Kantor Cabang</h3>
                                  <section>
                                     <div class="row">
@@ -199,8 +199,10 @@
 @include('internals.eform.eform-modal')
 @include('internals.eform.leads-form-modal')
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
-@include('internals.eform.script-eform') 
- <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
+@include('internals.eform.script-eform')
+<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
 

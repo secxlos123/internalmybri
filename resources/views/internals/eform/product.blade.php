@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                    
+
                                         <div class="form-group price {!! $errors->has('price') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Harga Rumah *:</label>
                                             <div class="col-md-8">
@@ -93,7 +93,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Lokasi Rumah *:</label>
                                             <div class="col-md-8">
@@ -149,12 +149,12 @@
                                                 @if ($errors->has('active_kpr')) <p class="help-block">{{ $errors->first('active_kpr') }}</p> @endif
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="3" max="100" placeholder="0" id="dp" >
+                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="2" max="90" placeholder="0" id="dp" >
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>
@@ -196,7 +196,7 @@
                                          -->
                                     </div>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                         <div id="kkb" class="tab-pane">
                             <div class="row">
