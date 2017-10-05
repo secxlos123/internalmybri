@@ -61,6 +61,16 @@
 	    	$('#fixed-allowance').hide();
 	    	$('#nonfixed-income').show();
 	    }
+	});
+
+	$('#source_income').on('change', function() {
+		if ($(this).val() == 'single') {
+			$('#income_partner').hide();
+			$('#income_other').hide();
+		}else{
+			$('#income_partner').show();
+			$('#income_other').show();
+		}
 	})
 
 	$('body').on('focus', ".datepicker-mindate", function(){
