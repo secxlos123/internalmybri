@@ -95,6 +95,9 @@
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
+        /* Schedule */
+        Route::resource('schedule', 'Schedule\ScheduleController');
+
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');

@@ -17,6 +17,8 @@
         <script src="{{asset('assets/js/waves.js')}}"></script>
         <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
         <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
+        <script src="{{asset('assets/js/switchery.min.js')}}"></script>
+
 
         <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
@@ -26,6 +28,19 @@
         <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
 
         <script src="{{asset('assets/pack/bx-slider/jquery.bxslider.min.j')}}s"></script>
+        <script src="{{asset('assets/js/moment.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap-colorpicker.min.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap-clockpicker.min.js')}}"></script>
+        <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
+
+        <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+
+        <!-- Calendar -->
+        <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.fullcalendar.js')}}"></script>
+
+        <!-- Init js -->
+        <script src="{{asset('assets/js/jquery.form-pickers.init.js')}}"></script>
 
         <!-- App js -->
         <script src="{{asset('assets/js/jquery.core.js')}}"></script>

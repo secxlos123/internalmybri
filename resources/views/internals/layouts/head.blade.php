@@ -7,19 +7,27 @@
         <meta name="author" content="Reza">
         <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}" />
         <title>@yield("title")</title>
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-icons.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
-        <link href="{{asset('assets/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
-        <link href="{{asset('assets/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.dataTables.min.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap.min.css')}}"/>
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.steps.css')}}" />
-        <link href="{{asset('assets/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
-        <link href="{{asset('assets/css/bootstrap-timepicker.min.css')}}" rel="stylesheet">
-        <link href="{{asset('assets/css/select2.min.css')}}" rel="stylesheet">
 
-        <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> -->
+        <!--date range picker -->
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datepicker.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-timepicker.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-clockpicker.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-colorpicker.min.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/daterangepicker.css')}}">
 
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
+
+        <!--calendar css-->
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fullcalendar.min.css')}}">
+
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/icons.css')}}"> -->
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-icons.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

@@ -31,9 +31,9 @@
                            <!--  <li>
                                 <a href="debitur.html" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
                             </li> -->
-                            <!-- <li>
-                                <a href="penjadwalan.html" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
-                            </li> -->
+                            <li>
+                                <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
+                            </li>
                             <!-- <li>
                                 <a href="kalkultor.html" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
                             </li> -->

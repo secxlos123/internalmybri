@@ -1,10 +1,8 @@
 /*@import url(https://fonts.googleapis.com/css?family=Varela+Round);*/
-/*@import 'https://fonts.googleapis.com/css?family=Hind+Madurai:600,700';*/
 @import url('https://fonts.googleapis.com/css?family=Quicksand|Titillium+Web');
+@import 'https://fonts.googleapis.com/css?family=Hind+Madurai:600,700';
 body {
-  /*font-family: 'Varela Round', sans-serif;*/
-  /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   margin: 0;
   padding-bottom: 60px;
   overflow-x: hidden;
@@ -27,8 +25,7 @@ h4,
 h5,
 h6 {
   color: #505458;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   margin: 10px 0;
 }
 h5 {
@@ -43,8 +40,7 @@ p {
 b,
 strong {
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 a:hover {
   outline: 0;
@@ -202,8 +198,7 @@ a:focus {
   overflow: hidden;
 }
 .font-secondary {
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .font-600 {
   font-weight: 600;
@@ -524,8 +519,7 @@ a:focus {
   font-weight: 600;
   letter-spacing: 0.05em;
   padding: .3em .6em .2em;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .label-white {
   background-color: rgba(255, 255, 255, 0.7);
@@ -917,8 +911,7 @@ a:focus {
   border-color: transparent !important;
 }
 .tooltip {
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .tooltip .tooltip-inner {
   padding: 4px 10px;
@@ -1312,8 +1305,7 @@ a:focus {
   margin-top: 0;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .panel-sub-title {
   margin-bottom: 0px;
@@ -1447,8 +1439,7 @@ a:focus {
   margin-top: 9px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .portlet .portlet-heading .portlet-widgets {
   display: inline-block;
@@ -1554,9 +1545,7 @@ a:focus {
   display: inline-block;
   padding-left: 5px;
   position: relative;
-  /*font-family: 'Varela Round', sans-serif;*/
-  /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: normal;
 }
 .checkbox label::before {
@@ -1690,9 +1679,7 @@ a:focus {
   display: inline-block;
   padding-left: 5px;
   position: relative;
-  /*font-family: 'Varela Round', sans-serif;*/
-  /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: normal;
 }
 .radio label::before {
@@ -1902,8 +1889,7 @@ a:focus {
   color: #313a46;
   text-transform: uppercase;
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .nav-tabs > li > a:hover {
   background-color: rgba(152, 166, 173, 0.1);
@@ -1930,8 +1916,7 @@ a:focus {
   text-align: center;
   white-space: nowrap;
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   text-transform: uppercase;
 }
 .tabs-vertical-env .nav.tabs-vertical li.active > a {
@@ -2123,8 +2108,7 @@ a:focus {
 }
 .alert .alert-link {
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .alert-icon {
   padding-left: 50px;
@@ -2486,8 +2470,7 @@ a:focus {
   font-size: 12px;
   font-style: normal;
   font-weight: bold;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   position: relative;
 }
 .conversation-list .ctext-wrap p {
@@ -2562,9 +2545,7 @@ a:focus {
   border-bottom: none;
 }
 .todo-list label {
-  /*font-family: 'Varela Round', sans-serif;*/
-  /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 .todo-send {
   padding-left: 0;
@@ -2577,8 +2558,7 @@ a:focus {
   line-height: 32px;
   text-align: center;
   border-radius: 50%;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   font-size: 16px;
 }
 .custom-dd .dd-list .dd-item .dd-handle {
@@ -2587,8 +2567,7 @@ a:focus {
   padding: 8px 16px;
   height: auto;
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   -moz-border-radius: 3px;
@@ -2623,8 +2602,7 @@ a:focus {
   padding: 8px 16px 8px 46px;
   background: #f3f3f3;
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .custom-dd-empty .dd-list .dd3-content:hover {
   color: #7fc1fc;
@@ -2683,13 +2661,11 @@ a:focus {
 .fc-toolbar h2 {
   font-size: 18px;
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
   font-family: 'Quicksand', sans-serif;
   line-height: 30px;
   text-transform: uppercase;
 }
 .fc-day-grid-event .fc-time {
-  /*font-family: 'Hind Madurai', sans-serif;*/
   font-family: 'Quicksand', sans-serif;
 }
 .fc-day {
@@ -2813,19 +2789,16 @@ a:focus {
 .fc-basic-view td.fc-week-number span {
   padding-right: 8px;
   font-weight: 700;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .fc-basic-view td.fc-day-number {
   padding-right: 8px;
   font-weight: 700;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 label {
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 textarea.form-control {
   min-height: 90px;
@@ -3442,8 +3415,7 @@ input[switch="teal"]:checked + label {
   color: #313a46;
   font-weight: 600;
   font-size: 12px;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .daterangepicker select.hourselect,
 .daterangepicker select.minuteselect,
@@ -3460,84 +3432,82 @@ input[switch="teal"]:checked + label {
   color: #ffffff;
 }
 .wizard > .content {
-  background: #ffffff;
-  min-height: 240px;
+  background: #ffffff !important;
+  min-height: 240px !important;
   padding: 20px !important;
   border: 1px solid #f3f3f3;
   margin-top: 10px !important;
 }
 .wizard > .content > .body {
-  padding: 0px;
-  position: relative;
-  width: 100%;
+  padding: 0px !important;
+  position: relative !important;
+  width: 100% !important;
 }
 .wizard > .content > .body input {
-  border: 1px solid #e9e9e9;
+  border: 1px solid #e9e9e9 !important;
 }
 .wizard > .content > .body ul > li {
-  display: block;
-  line-height: 30px;
+  display: block !important;
+  line-height: 30px !important;
 }
 .wizard > .content > .body label.error {
-  color: #f5707a;
-  margin-left: 0;
-  margin-top: 5px;
-  font-size: 12px;
+  color: #f5707a !important;
+  margin-left: 0 !important;
+  margin-top: 5px !important;
+  font-size: 12px !important;
 }
 .wizard > .content > .body label {
-  display: inline-block;
-  margin-top: 10px;
+  display: inline-block !important;
+  margin-top: 10px !important;
 }
 .wizard > .steps a {
-  font-size: 16px;
-  text-align: center;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-size: 16px !important;
+  text-align: center !important;
+  font-family: 'Hind Madurai', sans-serif ;
 }
 .wizard > .steps .number {
-  font-size: 86px;
-  line-height: 86px;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
-  position: absolute;
-  left: 10px;
-  top: -14px;
-  opacity: 0.1;
+  font-size: 86px !important;
+  line-height: 86px !important;
+  font-family: 'Hind Madurai', sans-serif;
+  position: absolute !important;
+  left: 10px !important;
+  top: -14px !important;
+  opacity: 0.1 !important;
 }
 .wizard > .steps .disabled a {
-  background: #f3f3f3;
+  background: #f3f3f3 !important;
   color: #3c4655 !important;
-  cursor: default;
-  border: 1px solid #e6e6e6;
+  cursor: default !important;
+  border: 1px solid #e6e6e6 !important;
 }
 .wizard > .steps .disabled a:hover {
-  background: #e6e6e6;
-  border: 1px solid #dadada;
+  background: #e6e6e6 !important;
+  border: 1px solid #dadada !important;
 }
 .wizard > .steps .disabled a:active {
-  background: #e6e6e6;
-  border: 1px solid #dadada;
+  background: #e6e6e6 !important;
+  border: 1px solid #dadada !important;
 }
 .wizard > .steps .current a {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
 }
 .wizard > .steps .current a:hover {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
 }
 .wizard > .steps .current a:hover .number {
-  color: #ffffff;
-  opacity: 0.4;
+  color: #ffffff !important;
+  opacity: 0.4 !important;
 }
 .wizard > .steps .current a:active {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
 }
 .wizard > .steps .current a:active .number {
-  color: #ffffff;
-  opacity: 0.4;
+  color: #ffffff !important;
+  opacity: 0.4 !important;
 }
 .wizard > .steps .current a .number {
-  color: #ffffff;
-  opacity: 0.4;
+  color: #ffffff !important;
+  opacity: 0.4 !important;
 }
 .wizard > .steps .done a {
   background: #f3f3f3 !important;
@@ -3547,42 +3517,42 @@ input[switch="teal"]:checked + label {
 .wizard > .steps a:hover,
 .wizard > .steps a:active,
 .wizard > .content {
-  border-radius: 2px;
-  position: relative;
+  border-radius: 2px !important;
+  position: relative !important;
 }
 .wizard > .actions {
   margin-top: 15px !important;
 }
 .wizard > .actions a {
-  background: #7fc1fc;
+  background: #7fc1fc !important;
   border-radius: 2px !important;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .wizard > .actions a:hover {
-  background: #349dfa;
-  color: #ffffff;
+  background: #349dfa !important;
+  color: #ffffff !important;
 }
 .wizard > .actions a:active {
-  background: #349dfa;
-  color: #ffffff;
+  background: #349dfa !important;
+  color: #ffffff !important;
 }
 .wizard > .actions .disabled a {
-  background: #ffffff;
-  color: #313a46;
-  cursor: default;
-  border: 1px solid #eaeaea;
+  background: #ffffff !important;
+  color: #313a46 !important;
+  cursor: default !important;
+  border: 1px solid #eaeaea !important;
 }
 .wizard > .actions .disabled a:hover {
-  background: #f3f3f3;
-  color: #313a46;
-  cursor: default;
-  border: 1px solid #eaeaea;
+  background: #f3f3f3 !important;
+  color: #313a46 !important;
+  cursor: default !important;
+  border: 1px solid #eaeaea !important;
 }
 .wizard > .actions .disabled a:active {
-  background: #f3f3f3;
-  color: #313a46;
-  cursor: default;
-  border: 1px solid #eaeaea;
+  background: #f3f3f3 !important;
+  color: #313a46 !important;
+  cursor: default !important;
+  border: 1px solid #eaeaea !important;
 }
 .wizard.vertical > .content {
   margin-top: 0px !important;
@@ -3590,7 +3560,7 @@ input[switch="teal"]:checked + label {
 @media (max-width: 560px) {
   .wizard.vertical > .steps,
   .wizard.vertical > .content {
-    width: 100%;
+    width: 100% !important;
   }
 }
 .note-editor {
@@ -3655,8 +3625,7 @@ input[switch="teal"]:checked + label {
   background-color: #7fc1fc !important;
 }
 .mce-window-head .mce-title {
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .mce-window {
   padding: 20px !important;
@@ -3679,8 +3648,7 @@ input[switch="teal"]:checked + label {
   border: 1px solid #7fc1fc !important;
 }
 th {
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   font-weight: 600;
 }
 .table-centered td {
@@ -3714,8 +3682,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before
   background-color: #f5707a;
 }
 table.dataTable > tbody > tr.child span.dtr-title {
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 div.ColVis {
   float: none;
@@ -3927,8 +3894,7 @@ table.dataTable thead th.sorting_desc:after {
 .tablesaw thead tr:first-child th {
   font-weight: 600;
   border: none;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .tablesaw td {
   border-top: 1px solid rgba(243, 243, 243, 0.7) !important;
@@ -4228,8 +4194,7 @@ table.dataTable thead th.sorting_desc:after {
 }
 .legend tr {
   height: 20px;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .legendLabel {
   padding-left: 5px !important;
@@ -4354,8 +4319,7 @@ table.dataTable thead th.sorting_desc:after {
 .c3-chart-arcs-title {
   font-size: 18px;
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .c3-tooltip tr {
   border: none !important;
@@ -4365,8 +4329,7 @@ table.dataTable thead th.sorting_desc:after {
 }
 .c3-tooltip .value {
   font-weight: 600;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .jqstooltip {
   -webkit-box-sizing: content-box;
@@ -4422,8 +4385,7 @@ table.dataTable thead th.sorting_desc:after {
   color: #ffffff !important;
   font-size: 24px;
   text-transform: uppercase;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
   line-height: 70px;
@@ -4651,8 +4613,7 @@ body.fixed-left .side-menu.left {
   font-size: 11px;
   text-transform: uppercase;
   color: #f3f3f3;
-  /*font-family: 'Hind Madurai', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Hind Madurai', sans-serif;
 }
 .help-box {
   color: rgba(255, 255, 255, 0.5);
@@ -5290,7 +5251,11 @@ table .checkbox {
     margin-top: 27px !important;
 }
 .wizard > .content > .body .form-group label {
-    margin-top: 0;
+    margin-top: 0 !important;
+}
+.error{
+    color: #c81e32;
+    font-size: 11px;
 }
 #map-canvas {
   height: 100%;
@@ -5479,9 +5444,8 @@ table .checkbox {
   background: #69c;
 }
 
-
-
 .form-group.for-switch-btn .csm-switch-btn {
   vertical-align: middle;
   margin-left: 10px;
 }
+
