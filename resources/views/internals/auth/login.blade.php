@@ -79,7 +79,7 @@
                     data: $(this).serialize(),
                     dataType: 'json',
                     success: function (data) {
-                       $btn.button('reset');
+                       // $btn.button('reset');
                        console.log(data);
                        if(data.code >= 400){
                         $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
