@@ -71,7 +71,7 @@
 <script type="text/javascript">
     $("#loginForm").submit(function (e) {
             e.preventDefault();
-            var $btn = $('#loginButton').button('loading');
+            // var $btn = $('#loginButton').button('loading');
 
             $.ajax({
                     url: "{!! route('postLogin') !!}",
@@ -88,7 +88,7 @@
                        }
                     },
                     error: function(response){
-                        $btn.button('reset');
+                        // $btn.button('reset');
                     }
                 });
         });
