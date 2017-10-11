@@ -68,11 +68,11 @@
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
+                                                <div class="form-group">
                                                     <label class="col-md-4 control-label">No. Handphone *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="mobile_phone" value="{{old('mobile_phone')}}">
-                                                    @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="phone_number" value="{{old('phone_number')}}">
+                                                    @if ($errors->has('phone_number')) <p class="help-block">{{ $errors->first('phone_number') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <input type="hidden" name="status" value="1">

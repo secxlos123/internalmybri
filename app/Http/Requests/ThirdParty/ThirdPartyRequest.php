@@ -27,7 +27,7 @@ class ThirdPartyRequest extends FormRequest
             "name"              => "required",
             "city_id"           => "required",
             "address"           => "required",
-            "mobile_phone"      => "required|digits_between:1,12",
+            "phone_number"      => "required|digits_between:1,12",
             "email"             => "required|email"
         ];
     }
@@ -44,7 +44,7 @@ class ThirdPartyRequest extends FormRequest
             "email.required"                 => "Email harus diisi",
             "city_id.required"               => "Nama Kota harus diisi",
             "address.required"               => "Alamat harus diisi",
-            "mobile_phone.required"          => "Nomor Handphone harus diisi",
+            "phone_number.required"          => "Nomor Handphone harus diisi",
             "mobile_phone.digits_between"    => "Nomor Handphone harus diisi 12 karakter",
             "email.required"                 => "Email harus diisi"
         ];

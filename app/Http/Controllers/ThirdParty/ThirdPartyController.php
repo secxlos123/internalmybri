@@ -4,13 +4,15 @@ namespace App\Http\Controllers\ThirdParty;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ThirdParty\ThirdPartyRequest;
+use Client;
 
 class ThirdPartyController extends Controller
 {
     protected $columns = [
         'name',
         'address',
-        'city_name',
+        'city_id',
         'phone_number',
         'email',
         'is_actived',
@@ -46,14 +48,58 @@ class ThirdPartyController extends Controller
     }
 
     /**
+     * List of request needed for input to customer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function otherRequest($request, $data)
+    {
+        $allReq = $request->all();
+        foreach ($allReq as $index => $req) {
+                $inputData[] = [
+                  'name'     => $index,
+                  'contents' => $req
+                ];
+            }
+
+        $requests = $inputData;
+
+        return $requests;
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThirdPartyRequest $request)
     {
-        //
+        $data = $this->getUser();
+        $newOther = $this->otherRequest($request, $data);
+        // dd($newOther);
+        
+        $client = Client::setEndpoint('thirdparty')
+           ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+           ->setBody($newOther)
+           ->post('multipart');
+           // dd($client);
+        
+        if($client['code'] == 200){
+            \Session::flash('success', 'Data Pihak Ke-3 sudah disimpan.');
+            return redirect()->route('third-party.index');
+        }elseif($client['code'] == 500){
+            \Session::flash('error', 'Maaf, server sedang gangguan');
+            return redirect()->back();
+        }else{
+            \Session::flash('error', 'Kesalahan input');
+            return redirect()->back();
+        }
+        
+        return view('internals.third-party.index', compact('data'));
     }
 
     /**
@@ -64,7 +110,19 @@ class ThirdPartyController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->getUser();
+
+         /* GET User Data */
+        $userData = Client::setEndpoint('thirdparty/'.$id)
+                    ->setHeaders(['Authorization' => $data['token'],
+                                    'pn' => $data['pn']
+                                ])
+                    ->get();
+        // dd($userData);
+        
+        $datas = $userData['contents']['0'];
+
+        return view('internals.third-party.detail', compact('data', 'datas'));
     }
 
     /**
@@ -75,7 +133,16 @@ class ThirdPartyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->getUser();
+         /* GET User Data */
+        $userData = Client::setEndpoint('thirdparty/'.$id)
+                    ->setHeaders(['Authorization' => $data['token'],
+                                    'pn' => $data['pn']
+                                ])
+                    ->get();
+        
+        $datas = $userData['contents']['0'];
+        return view('internals.third-party.edit', compact('data', 'datas', 'id'));
     }
 
     /**
@@ -87,7 +154,27 @@ class ThirdPartyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->getUser();
+        $newOther = $this->otherRequest($request, $data);
+        
+        $client = Client::setEndpoint('thirdparty')
+           ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+           ->setBody($newOther)
+           ->post('multipart');
+
+        // dd($client);
+        if($client['code'] == 200){
+            \Session::flash('success', 'Data Pihak ke-3 sudah diubah.');
+            return redirect()->route('third-party.index');
+        }else{
+            \Session::flash('error', 'Kesalahan input.');
+            return redirect()->back();
+        }
+        
+        return view('internals.third-party.index', compact('data'));
     }
 
     /**
@@ -105,7 +192,7 @@ class ThirdPartyController extends Controller
     {
         $sort = $request->input('order.0');
         $data = $this->getUser();
-        $third_party = Client::setEndpoint('third-party')
+        $third_party = Client::setEndpoint('thirdparty')
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn' => $data['pn']
@@ -117,11 +204,13 @@ class ThirdPartyController extends Controller
                     'project'   => $request->input('project'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
+        // dd($third_party);
 
         foreach ($third_party['contents']['data'] as $key => $third) {
             $third['action'] = view('internals.layouts.actions', [
                 'edit' => route('third-party.edit', $third['id']),
                 'show' => route('third-party.show', $third['id']),
+                // 'delete' => route('third-party.delete', $third['id']),
             ])->render();
             $third_party['contents']['data'][$key] = $third;
         }
