@@ -19,6 +19,7 @@
         <script src="{{asset('assets/js/jquery.scrollTo.min.js')}}"></script>
         <script src="{{asset('assets/js/switchery.min.js')}}"></script>
 
+        <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
 
         <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
@@ -31,9 +32,8 @@
         <script src="{{asset('assets/js/moment.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-colorpicker.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-clockpicker.min.js')}}"></script>
-        <!-- <script src="{{asset('assets/js/daterangepicker.js')}}"></script> -->
+        <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
 
-        <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
 
         <!-- Calendar -->
         <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
