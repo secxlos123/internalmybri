@@ -31,7 +31,7 @@
         <script src="{{asset('assets/js/moment.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-colorpicker.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-clockpicker.min.js')}}"></script>
-        <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
+        <!-- <script src="{{asset('assets/js/daterangepicker.js')}}"></script> -->
 
         <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
 
@@ -40,7 +40,7 @@
         <script src="{{asset('assets/js/jquery.fullcalendar.js')}}"></script>
 
         <!-- Init js -->
-        <script src="{{asset('assets/js/jquery.form-pickers.init.js')}}"></script>
+        <!-- <script src="{{asset('assets/js/jquery.form-pickers.init.js')}}"></script> -->
 
         <!-- App js -->
         <script src="{{asset('assets/js/jquery.core.js')}}"></script>

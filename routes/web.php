@@ -90,6 +90,8 @@
 
         Route::get('test', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
+        Route::get('downloadTracking', ['as'=>'downloadTracking', 'uses'=>'Tracking\TrackingController@downloadTracking']);
+
         Route::resource('eform', 'EForm\EFormController');
 
         /* Pihak Ke -3 (Third Party) */
@@ -98,6 +100,11 @@
         /* Schedule */
         Route::resource('schedule', 'Schedule\ScheduleController');
 
+        /* Tracking */
+        Route::resource('tracking', 'Tracking\TrackingController');
+
+        /* Calculator */
+        Route::resource('calculator', 'Calculator\CalculatorController');
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
@@ -168,6 +175,9 @@
 
         /* Third Party (Pihak ke-3) */
         Route::get('third-party', 'ThirdParty\ThirdPartyController@datatables');
+
+        /* Tracking */
+        Route::get('tracking', 'Tracking\TrackingController@datatables');
 
         /* EForms */
         Route::get('eform', 'EForm\EFormController@datatables');

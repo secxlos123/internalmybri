@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-timepicker.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-clockpicker.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-colorpicker.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/daterangepicker.css')}}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/daterangepicker.css')}}"> -->
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
 

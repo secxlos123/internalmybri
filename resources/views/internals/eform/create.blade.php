@@ -70,7 +70,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" disabled><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -205,4 +205,5 @@
 <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
+<!-- {!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!} -->
 

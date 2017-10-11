@@ -34,12 +34,12 @@
                             <li>
                                 <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
                             </li>
-                            <!-- <li>
-                                <a href="kalkultor.html" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
-                            </li> -->
-                           <!--  <li>
-                                <a href="tracking.html" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
-                            </li> -->
+                            <li>
+                                <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
+                            </li>
+                            <li>
+                                <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
+                            </li>
                             <li>
                                 <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
                             </li>

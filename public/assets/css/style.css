@@ -5485,3 +5485,45 @@ table .checkbox {
   vertical-align: middle;
   margin-left: 10px;
 }
+.tracking-widget .widget-box-three p {
+  margin-top: 16px !important;
+  margin-bottom: 18px;
+  color: #98a6ad;
+}
+.tracking-widget .card-box {
+  border-color: #e6e6e6;
+  width: 90%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.tracking-widget .bg-icon {
+  margin-right: 0px !important;
+}
+.tracking-widget span {
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  font-size: 30px;
+  color: #98a6ad;
+}
+.tracking-widget .card-box.active {
+    background-color: #F7941E;
+    border-color: #F7941E;
+}
+.tracking-widget .widget-box-three.active p {
+    color: #fff;
+}
+.widget-box-three.active .bg-icon {
+  border-color: #fff;
+  background-color: #f7941e;
+}
+.widget-box-three.active .bg-icon {
+  background-color: #fff;
+  border: none;
+}
+.widget-box-three.active .bg-icon i {
+  color: #f7941e;
+}
+.w-80 {
+    width: 95%;
+}
