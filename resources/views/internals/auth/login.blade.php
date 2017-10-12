@@ -66,8 +66,7 @@
                 </div>
             </div>
         </section>
-@include('internals.layouts.foot') 
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+@include('internals.layouts.foot')
 <script type="text/javascript">
     $("#loginForm").submit(function (e) {
             e.preventDefault();
