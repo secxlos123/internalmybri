@@ -208,8 +208,8 @@ class ThirdPartyController extends Controller
 
         foreach ($third_party['contents']['data'] as $key => $third) {
             $third['action'] = view('internals.layouts.actions', [
-                'edit' => route('third-party.edit', $third['id']),
-                'show' => route('third-party.show', $third['id']),
+                'edit' => route('third-party.edit', $third['user_id']),
+                'show' => route('third-party.show', $third['user_id']),
                 // 'delete' => route('third-party.delete', $third['id']),
             ])->render();
             $third_party['contents']['data'][$key] = $third;
