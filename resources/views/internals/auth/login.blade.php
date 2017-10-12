@@ -20,7 +20,7 @@
                                         <div class="divError"></div>
                                         <div class="form-group ">
                                             <div class="col-xs-12">
-                                                <input class="form-control" type="number" required="" placeholder="Personal Number" name="pn" maxlength="8">
+                                                <input class="form-control numericOnly" type="text" required="" placeholder="Personal Number" name="pn" maxlength="8">
                                             </div>
                                         </div>
                                         <div class="form-group">
