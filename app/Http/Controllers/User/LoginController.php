@@ -76,7 +76,7 @@ class LoginController extends Controller
 
         $logout = Client::setEndpoint('auth/logout')->setHeaders(['Authorization' => $data['token']])->deleted();
         session()->flush();
-        return view('internals.auth.logout');
+        return view('internals.auth.login');
     }
 
     /**
