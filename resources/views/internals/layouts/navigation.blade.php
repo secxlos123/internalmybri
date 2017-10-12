@@ -31,7 +31,7 @@
                            <!--  <li>
                                 <a href="debitur.html" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
                             </li> -->
-                            <li>
+                            <!-- <li>
                                 <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
                             </li>
                             <li>
@@ -42,7 +42,7 @@
                             </li>
                             <li>
                                 <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
-                            </li>
+                            </li> -->
                             <!-- <li>
                                 <a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
                             </li>
