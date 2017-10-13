@@ -32,6 +32,7 @@ class HomeController extends Controller
     	foreach ($users as $user) {
     		$data = $user;
     	}
+        // dd($data);
         return view('internals.home.index', compact('data'));
     }
 }

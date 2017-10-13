@@ -72,7 +72,7 @@
                                                 <div class="form-group city_id {!! $errors->has('city_id') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Jenis Suku Bunga *:</label>
                                                     <div class="col-md-8">
-                                                       <select class="form-control " name="interest" id="interest">
+                                                       <select class="form-control " name="interest" id="interest_rate_type">
                                                             <option value="0" selected="" disabled=""> Pilih </option>
                                                             <option value="1"> FLAT </option>
                                                             <option value="2"> EFEKTIF </option>
@@ -90,7 +90,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="time_period_div">
                                                     <label class="control-label col-md-4">Jangka Waktu *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -99,7 +99,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="time_period_total_div">
                                                     <label class="control-label col-md-4">Jangka Waktu Total *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -108,7 +108,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="time_period_fixed_div">
                                                     <label class="control-label col-md-4">Jangka Waktu Fixed *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -117,7 +117,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="time_period_floor_div">
                                                     <label class="control-label col-md-4">Jangka Waktu Floor *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -126,7 +126,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="interest_rate_div">
                                                     <label class="control-label col-md-4">Suku Bunga *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -135,7 +135,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="interest_rate_float_div">
                                                     <label class="control-label col-md-4">Suku Bunga Float *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -144,8 +144,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-4">Suku Bunga Efektif *:</label>
+                                                <div class="form-group" id="interest_rate_fixed_div">
+                                                    <label class="control-label col-md-4">Suku Bunga Fixed *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control numericOnly required " name="interest_rate" value="{{old('interest_rate')}}" maxlength="2" placeholder="0" id="interest_rate_efektif" max="20">
@@ -153,7 +153,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group" id="interest_rate_floor_div">
                                                     <label class="control-label col-md-4">Suku Bunga Floor *:</label>
                                                     <div class="col-md-8">
                                                         <div class="input-group">
@@ -251,8 +251,38 @@
         });
     });
 
-    $('#interest').on('change', function() {
+    $('#interest_rate_floor_div').addClass('hidden');
+    $('#interest_rate_float_div').addClass('hidden');
+    $('#interest_rate_fixed_div').addClass('hidden');
+    $('#time_period_floor_div').addClass('hidden');
+    $('#time_period_total_div').addClass('hidden');
+    $('#time_period_fixed_div').addClass('hidden');
+
+    $('#interest_rate_type').on('change', function() {
             console.log($(this).val());
+            if($(this).val() == 1){
+                $('#interest_rate_floor_div').addClass('hidden');
+                $('#interest_rate_float_div').addClass('hidden');
+                $('#interest_rate_fixed_div').addClass('hidden');
+                $('#time_period_floor_div').addClass('hidden');
+                $('#time_period_total_div').addClass('hidden');
+                $('#time_period_fixed_div').addClass('hidden');
+            }else if($(this).val() == 2){
+                $('#interest_rate_floor_div').addClass('hidden');
+                $('#interest_rate_float_div').addClass('hidden');
+                $('#interest_rate_fixed_div').addClass('hidden');
+                $('#time_period_floor_div').addClass('hidden');
+                $('#time_period_total_div').addClass('hidden');
+                $('#time_period_fixed_div').addClass('hidden');
+            }else if($(this).val() == 3){
+                $('#interest_rate_div').addClass('hidden');
+                $('#time_period_div').addClass('hidden');
+                $('#interest_rate_floor_div').addClass('hidden');
+                $('#interest_rate_float_div').removeClass('hidden');
+                $('#interest_rate_fixed_div').removeClass('hidden');
+                $('#time_period_total_div').removeClass('hidden');
+                $('#time_period_fixed_div').removeClass('hidden');
+            }
         });
 
     TableManageButtons.init();

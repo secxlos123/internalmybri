@@ -48,11 +48,24 @@ class LoginController extends Controller
                 ->setBody($data)
                 ->post();
 
+        if($request->pn == '66777'){
+            $role = ['role' => 'ao'];
+        }else if($request->pn == '68881'){
+            $role = ['role' => 'mp'];
+        }else{
+            $role = ['role' => 'pinca'];
+        }
+
+        // $userRole = array_merge($client['contents'], $role);
+        // $userRole = $client['contents']['role'];
+        // dd($userRole);
+
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];
 
         if($codeResponse == 200){
             session()->put('user', $client);
+            // session()->put('user.role', $userRole);
             return response()->json(['url' => route('dashboard'), 'message' => $codeDescription, 'code' => $codeResponse]);
         }elseif($codeResponse == 422){
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);

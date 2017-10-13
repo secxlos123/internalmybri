@@ -54,7 +54,7 @@ class ThirdPartyController extends Controller
      */
     public function otherRequest($request, $data)
     {
-        $allReq = $request->all();
+        $allReq = $request->except('_token');
         foreach ($allReq as $index => $req) {
                 $inputData[] = [
                   'name'     => $index,
@@ -120,7 +120,7 @@ class ThirdPartyController extends Controller
                     ->get();
         // dd($userData);
         
-        $datas = $userData['contents']['0'];
+        $datas = $userData['contents'];
 
         return view('internals.third-party.detail', compact('data', 'datas'));
     }
@@ -141,7 +141,7 @@ class ThirdPartyController extends Controller
                                 ])
                     ->get();
         
-        $datas = $userData['contents']['0'];
+        $datas = $userData['contents'];
         return view('internals.third-party.edit', compact('data', 'datas', 'id'));
     }
 
@@ -157,15 +157,14 @@ class ThirdPartyController extends Controller
         $data = $this->getUser();
         $newOther = $this->otherRequest($request, $data);
         
-        $client = Client::setEndpoint('thirdparty')
+        $client = Client::setEndpoint('thirdparty/'.$id)
            ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])
            ->setBody($newOther)
-           ->post('multipart');
+           ->put('multipart');
 
-        // dd($client);
         if($client['code'] == 200){
             \Session::flash('success', 'Data Pihak ke-3 sudah diubah.');
             return redirect()->route('third-party.index');

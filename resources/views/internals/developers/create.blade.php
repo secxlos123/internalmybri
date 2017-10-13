@@ -33,18 +33,18 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-horizontal" role="form">
-                                                <div class="form-group developer_name {!! $errors->has('developer_name') ? 'has-error' : '' !!}">
-                                                    <label class="col-md-4 control-label">Nama Developer *:</label>
-                                                    <div class="col-md-8">
-                                                        <input type="text" class="form-control alphaOnly" name="developer_name" maxlength="150" required="" value="{{old('developer_name')}}" id="name">
-                                                    @if ($errors->has('developer_name')) <p class="help-block">{{ $errors->first('developer_name') }}</p> @endif
-                                                    </div>
-                                                </div>
                                                 <div class="form-group company_name {!! $errors->has('company_name') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Nama Perusahaan *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="company_name" maxlength="50" required="" value="{{old('company_name')}}">
+                                                        <input type="text" class="form-control" name="company_name" maxlength="50" required="" value="{{old('company_name')}}" id="name">
                                                     @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
+                                                    </div>
+                                                </div>
+                                                <div class="form-group developer_name {!! $errors->has('developer_name') ? 'has-error' : '' !!}">
+                                                    <label class="col-md-4 control-label">Nama PIC *:</label>
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control alphaOnly" name="developer_name" maxlength="150" required="" value="{{old('developer_name')}}" >
+                                                    @if ($errors->has('developer_name')) <p class="help-block">{{ $errors->first('developer_name') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group address {!! $errors->has('address') ? 'has-error' : '' !!}">
@@ -103,17 +103,17 @@
                                                     @if ($errors->has('summary')) <p class="help-block"> {{ $errors->first('summary') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group pks_number {!! $errors->has('pks_number') ? 'has-error' : '' !!}">
+                                                <div class="form-group hidden">
                                                     <label class="col-md-4 control-label">No. PKS *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="pks_number" value="{{old('pks_number')}}">
+                                                        <input type="hidden" class="form-control numericOnly" maxlength="12" name="pks_number" value="0">
                                                     @if ($errors->has('pks_number')) <p class="help-block">{{ $errors->first('pks_number') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group plafond {!! $errors->has('plafond') ? 'has-error' : '' !!}">
+                                                <div class="form-group hidden">
                                                     <label class="col-md-4 control-label">Plafon * :</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly currency-rp" name="plafond" cols="3" maxlength="12" value="{{old('plafond')}}">
+                                                        <input type="hidden" class="form-control numericOnly currency-rp" name="plafond" cols="3" maxlength="12" value="0">
                                                     @if ($errors->has('plafond')) <p class="help-block"> {{ $errors->first('plafond') }}</p> @endif
                                                     </div>
                                                 </div>

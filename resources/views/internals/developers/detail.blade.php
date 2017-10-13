@@ -83,12 +83,7 @@
                                                                 <p class="form-control-static">{{$dataDev['city_name']}}</p>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-4 control-label">Plafon :</label>
-                                                            <div class="col-md-8">
-                                                                <p class="form-control-static">{{$dataDev['plafond']}}</p>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </form>
                                                 </div>
                                                 <div class="col-md-6">
@@ -111,12 +106,7 @@
                                                                 <p class="form-control-static">{{$dataDev['summary']}}</p>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-4 control-label">Nomor PKS :</label>
-                                                            <div class="col-md-8">
-                                                                <p class="form-control-static">{{$dataDev['pks_number']}}</p>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </form>
                                                 </div>
                                             </div>
