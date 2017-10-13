@@ -241,7 +241,9 @@ class DeveloperController extends Controller
         $newDev = $this->devRequest($request, $data);
         
         $client = Client::setEndpoint('developer/'.$id)
-           ->setHeaders(['Authorization' => $data['token']])
+           ->setHeaders(['Authorization' => $data['token'],
+                         'pn' => $data['pn']
+                        ])
            ->setBody($newDev)
            ->put('multipart');
 
