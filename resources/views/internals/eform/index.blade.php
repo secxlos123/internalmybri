@@ -72,7 +72,7 @@
                                                 <th>Nama Nasabah</th>
                                                 <th>Nominal</th>
                                                 <th>Tanggal Pertemuan</th>
-                                                <th>Jenis Produk</th>
+                                                <!-- <th>Jenis Produk</th> -->
                                                 <th>KC BRI Terdekat</th>
                                                 <th>Status Prescreening</th>
                                                 <th>AO</th>
@@ -195,11 +195,11 @@
                 }
             },
             aoColumns : [
-                {   data: 'ref', name: 'ref' },
-                {   data: 'customer_name', name: 'customer_name' },
-                {   data: 'request_amount', name: 'request_amount' },
+                {   data: 'ref', name: 'ref', bSortable: false  },
+                {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
+                {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
                 {   data: 'appointment_date', name: 'appointment_date' },
-                {   data: 'product_type', name: 'product_type' },
+                // {   data: 'product_type', name: 'product_type' },
                 {   data: 'branch_id', name: 'branch_id' },
                 {   data: 'prescreening_status', 
                     name: 'prescreening_status', 
@@ -223,7 +223,7 @@
                     createdCell:  function (td, cellData, rowData, row, col) {
                         $(td).attr('class', 'status'); 
                     }},
-                {   data: 'ao', name: 'ao' },
+                {   data: 'ao', name: 'ao', bSortable: false },
                 {   data: 'status', name: 'status' },
                 {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false },

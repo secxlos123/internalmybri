@@ -20,10 +20,12 @@ class EFormController extends Controller
         'ref',
         'customer_name',
         'request_amount',
+        'appointment_date',
         'branch_id',
-        'ao',
         'prescreening_status',
+        'ao',
         'status',
+        'appointment_date',
         'action',
     ];
 

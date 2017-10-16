@@ -20,6 +20,12 @@ jQuery(document).ready(function () {
         multidate: true,
         multidateSeparator: ","
     });
+    jQuery('.datepicker-inline').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        multidate: true,
+        multidateSeparator: ","
+    });
     jQuery('#datepicker-multiple-date').datepicker({
         format: "mm/dd/yyyy",
         clearBtn: true,

@@ -332,6 +332,7 @@ class AOController extends Controller
     public function datatables(Request $request)
     {
         $sort = $request->input('order.0');
+        // dd($sort);
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
                 ->setHeaders([

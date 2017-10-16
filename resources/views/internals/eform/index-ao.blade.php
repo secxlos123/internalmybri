@@ -32,28 +32,47 @@
                                         <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
                                         <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                                     </div>
-                                    <div id="filter" class="collapse m-b-15">
+                                    <div id="filter" class="m-b-15">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="card-box">
                                                     <form class="form-horizontal" role="form">
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Kantor Cabang :</label>
+                                                            <label class="col-sm-4 control-label">Tanggal Awal :</label>
                                                             <div class="col-sm-8">
-                                                                {!! Form::select('office', ['' => ''], old('office'), [
-                                                                    'class' => 'select2 office',
-                                                                    'data-placeholder' => 'Pilih Kantor Cabang'
-                                                                ]) !!}
+                                                                <input type="text" class="form-control datepicker-inline" name="birth_date" value="{{ old('birth_date') }}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Status Pengajuan :</label>
+                                                            <label class="col-sm-4 control-label">Tanggal Akhir :</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control datepicker-inline" name="birth_date" value="{{ old('birth_date') }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Kantor Cabang :</label>
                                                             <div class="col-sm-8">
                                                                 <select class="form-control">
-                                                                    <option>-- Pilih --</option>
-                                                                    <option>Proses</option>
-                                                                    <option>Diterima</option>
-                                                                    <option>Ditolak</option>
+                                                                    <option selected="" disabled=""> Semua</option>
+                                                                    <option value="Rekomend">Rekomend</option>
+                                                                    <option value="Dispose">Dispose</option>
+                                                                    <option value="Initiate">Initiate</option>
+                                                                    <option value="Submit">Submit</option>
+                                                                    <option value="Approval1">Approval 1</option>
+                                                                    <option value="Approval2">Approval 2</option>
+                                                                    <option value="Rejected">Rejected</option>
+                                                                    <option value="Onprogress">On Progress</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Status Prescreening :</label>
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option selected="" disabled="" value="0"> Semua</option>
+                                                                    <option value="1">Hijau</option>
+                                                                    <option value="2">Kuning</option>
+                                                                    <option value="3">Merah</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -72,11 +91,10 @@
                                                 <th>Leads</th>
                                                 <th>Nominal</th>
                                                 <th>Tanggal Perjanjian</th>
-                                                <th>Produk</th>
                                                 <th>No. HP</th>
                                                 <th>Status Prescreening</th>
                                                 <th>Status</th>
-                                                <th>Aging</th>
+                                                <th>Aging (hari)</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -100,65 +118,65 @@
             witdh : '100%',
             allowClear: true,
         });
+        $('#datatable').hide();
 
-        var table = $('#datatable').dataTable({
-            searching : false,
-            processing : true,
-            serverSide : true,
-            lengthMenu: [
-                [ 10, 25, 50, -1 ],
-                [ '10', '25', '50', 'All' ]
-            ],
-            language : {
-                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-            },
-            ajax : {
-                url : '/datatables/eform-ao',
-                data : function(d, settings){
-                    var api = new $.fn.dataTable.Api(settings);
+        // var table = $('#datatable').dataTable({
+        //     searching : false,
+        //     processing : true,
+        //     serverSide : true,
+        //     lengthMenu: [
+        //         [ 10, 25, 50, -1 ],
+        //         [ '10', '25', '50', 'All' ]
+        //     ],
+        //     language : {
+        //         infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+        //     },
+        //     ajax : {
+        //         url : '/datatables/eform-ao',
+        //         data : function(d, settings){
+        //             var api = new $.fn.dataTable.Api(settings);
 
-                    d.page = Math.min(
-                        Math.max(0, Math.round(d.start / api.page.len())),
-                        api.page.info().pages
-                    );
+        //             d.page = Math.min(
+        //                 Math.max(0, Math.round(d.start / api.page.len())),
+        //                 api.page.info().pages
+        //             );
 
-                    d.office_id = $('.offices').val();
-                }
-            },
-            aoColumns : [
-                {   data: 'ref', name: 'ref' },
-                {   data: 'customer_name', name: 'customer_name' },
-                {   data: 'request_amount', name: 'request_amount' },
-                {   data: 'appointment_date', name: 'appointment_date' },
-                {   data: 'product_type', name: 'product_type' },
-                {   data: 'mobile_phone', name: 'mobile_phone' },
-                {   data: 'prescreening_status', 
-                    name: 'prescreening_status', 
-                    bSortable: false,
-                    mRender: function (data, type, full) {
-                        if(full.prescreening_status == 'Hijau'){
-                            color = 'text-success';
-                            text = 'Hijau';
-                        }else if(full.prescreening_status == 'Kuning'){
-                            color = 'text-warning';
-                            text = 'Kuning';
-                        }else if(full.prescreening_status == 'Merah'){
-                            color = 'text-danger';
-                            text = 'Merah';
-                        }else {
-                            color = '';
-                            text = 'Pengajuan Baru';
-                        }
-                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-                    },
-                    createdCell:  function (td, cellData, rowData, row, col) {
-                        $(td).attr('class', 'status'); 
-                    }},
-                {   data: 'status', name: 'status' },
-                {   data: 'aging', name: 'aging' },
-                {   data: 'action', name: 'action', bSortable: false },
-            ],
-        });
+        //             d.office_id = $('.offices').val();
+        //         }
+        //     },
+        //     aoColumns : [
+        //         {   data: 'ref', name: 'ref', bSortable: false },
+        //         {   data: 'customer_name', name: 'customer_name', bSortable: false  },
+        //         {   data: 'request_amount', name: 'request_amount', bSortable: false  },
+        //         {   data: 'appointment_date', name: 'appointment_date' },
+        //         {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
+        //         {   data: 'prescreening_status', 
+        //             name: 'prescreening_status', 
+        //             bSortable: false,
+        //             mRender: function (data, type, full) {
+        //                 if(full.prescreening_status == 'Hijau'){
+        //                     color = 'text-success';
+        //                     text = 'Hijau';
+        //                 }else if(full.prescreening_status == 'Kuning'){
+        //                     color = 'text-warning';
+        //                     text = 'Kuning';
+        //                 }else if(full.prescreening_status == 'Merah'){
+        //                     color = 'text-danger';
+        //                     text = 'Merah';
+        //                 }else {
+        //                     color = '';
+        //                     text = 'Pengajuan Baru';
+        //                 }
+        //                 return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+        //             },
+        //             createdCell:  function (td, cellData, rowData, row, col) {
+        //                 $(td).attr('class', 'status'); 
+        //             }},
+        //         {   data: 'status', name: 'status' },
+        //         {   data: 'aging', name: 'aging' },
+        //         {   data: 'action', name: 'action', bSortable: false },
+        //     ],
+        // });
 
         $('#btn-filter').on('click', function () {
             table.fnDraw();
