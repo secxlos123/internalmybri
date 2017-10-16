@@ -23,8 +23,9 @@ jQuery(document).ready(function () {
     jQuery('.datepicker-inline').datepicker({
         format: "yyyy-mm-dd",
         clearBtn: true,
-        multidate: true,
-        multidateSeparator: ","
+        autoclose: true,
+        multidateSeparator: ",",
+        todayHighlight: true
     });
     jQuery('#datepicker-multiple-date').datepicker({
         format: "mm/dd/yyyy",

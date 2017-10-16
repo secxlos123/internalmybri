@@ -24,7 +24,7 @@ class DevRequest extends FormRequest
     public function rules()
     {
         return [
-            "developer_name"    => "required",
+            "developer_name"    => "required|regex:/^[a-zA-Z ]+$/",
             "city_id"           => "required",
             "address"           => "required",
             "mobile_phone"      => "required|digits_between:1,12",
@@ -44,7 +44,8 @@ class DevRequest extends FormRequest
     public function messages()
     {
         return [
-            "developer_name.required"        => "Nama Developer harus diisi",
+            "developer_name.required"        => "Nama PIC harus diisi",
+            "developer_name.regex"           => "Nama PIC harus diisi hanya dengan karakter dan spasi",
             "email.required"                 => "Email harus diisi",
             "city_id.required"               => "Nama Kota harus diisi",
             "address.required"               => "Alamat harus diisi",

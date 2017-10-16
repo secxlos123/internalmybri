@@ -40,19 +40,19 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Tanggal Awal :</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control datepicker-inline" name="birth_date" value="{{ old('birth_date') }}">
+                                                                <input type="text" class="form-control datepicker-inline" id="from" name="birth_date" value="{{ old('birth_date') }}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Tanggal Akhir :</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control datepicker-inline" name="birth_date" value="{{ old('birth_date') }}">
+                                                                <input type="text" class="form-control datepicker-inline" id="to" name="birth_date" value="{{ old('birth_date') }}">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Kantor Cabang :</label>
+                                                            <label class="col-sm-4 control-label">Status Pengajuan :</label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control">
+                                                                <select class="form-control" id="status">
                                                                     <option selected="" disabled=""> Semua</option>
                                                                     <option value="Rekomend">Rekomend</option>
                                                                     <option value="Dispose">Dispose</option>
@@ -70,15 +70,15 @@
                                                             <div class="col-sm-8">
                                                                 <select class="form-control">
                                                                     <option selected="" disabled="" value="0"> Semua</option>
-                                                                    <option value="1">Hijau</option>
-                                                                    <option value="2">Kuning</option>
-                                                                    <option value="3">Merah</option>
+                                                                    <option value="1" class="text-success">Hijau</option>
+                                                                    <option value="2" class="text-warning">Kuning</option>
+                                                                    <option value="3" class="text-danger">Merah</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </form>
                                                     <div class="text-right">
-                                                        <a href="#" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                        <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md" id="btn-filter">Filter</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,107 +107,180 @@
                     </div>
                 </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
+@include('internals.layouts.foot')
 <script type="text/javascript">
-    var resizefunc = [];
-    $(document).ready(function () {
-        var lastStatusElement = null;
-        $('.select2').select2({
-            witdh : '100%',
-            allowClear: true,
+    var table1 = $('#datatable').DataTable({
+            searching: false,
+            "language": {
+                "emptyTable": "No data available in table"
+            }
         });
-        $('#datatable').hide();
 
-        // var table = $('#datatable').dataTable({
-        //     searching : false,
-        //     processing : true,
-        //     serverSide : true,
-        //     lengthMenu: [
-        //         [ 10, 25, 50, -1 ],
-        //         [ '10', '25', '50', 'All' ]
-        //     ],
-        //     language : {
-        //         infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-        //     },
-        //     ajax : {
-        //         url : '/datatables/eform-ao',
-        //         data : function(d, settings){
-        //             var api = new $.fn.dataTable.Api(settings);
+    $(document).on('click', "#btn-filter", function(){
+        table1.destroy();
+        reloadData1($('#from').val(), $('#to').val(), $('#status').val());
+      })
 
-        //             d.page = Math.min(
-        //                 Math.max(0, Math.round(d.start / api.page.len())),
-        //                 api.page.info().pages
-        //             );
-
-        //             d.office_id = $('.offices').val();
-        //         }
-        //     },
-        //     aoColumns : [
-        //         {   data: 'ref', name: 'ref', bSortable: false },
-        //         {   data: 'customer_name', name: 'customer_name', bSortable: false  },
-        //         {   data: 'request_amount', name: 'request_amount', bSortable: false  },
-        //         {   data: 'appointment_date', name: 'appointment_date' },
-        //         {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
-        //         {   data: 'prescreening_status', 
-        //             name: 'prescreening_status', 
-        //             bSortable: false,
-        //             mRender: function (data, type, full) {
-        //                 if(full.prescreening_status == 'Hijau'){
-        //                     color = 'text-success';
-        //                     text = 'Hijau';
-        //                 }else if(full.prescreening_status == 'Kuning'){
-        //                     color = 'text-warning';
-        //                     text = 'Kuning';
-        //                 }else if(full.prescreening_status == 'Merah'){
-        //                     color = 'text-danger';
-        //                     text = 'Merah';
-        //                 }else {
-        //                     color = '';
-        //                     text = 'Pengajuan Baru';
-        //                 }
-        //                 return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-        //             },
-        //             createdCell:  function (td, cellData, rowData, row, col) {
-        //                 $(td).attr('class', 'status'); 
-        //             }},
-        //         {   data: 'status', name: 'status' },
-        //         {   data: 'aging', name: 'aging' },
-        //         {   data: 'action', name: 'action', bSortable: false },
-        //     ],
-        // });
-
-        $('#btn-filter').on('click', function () {
-            table.fnDraw();
-        });
-        
-        $('.office').select2({
-            witdh : '100%',
-            allowClear: true,
-            ajax: {
-                url: '/offices',
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        name: params.term,
-                        page: params.page || 1
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-                    return {
-                        results: data.offices.data,
-                        pagination: {
-                            more: (params.page * data.cities.per_page) < data.offices.total
-                        }
-                    };
-                },
-                cache: true
+    function reloadData1(from, to, status)
+      {
+        table1 = $('#datatable').DataTable({
+           processing : true,
+           serverSide : true,
+           lengthMenu: [
+                [ 10, 25, 50, -1 ],
+                [ '10', '25', '50', 'All' ]
+            ],
+           language : {
+                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
-        });
-    });
+           ajax : {
+                url : '/datatables/eform-ao',
+                data : function(d, settings){
+                    var api = new $.fn.dataTable.Api(settings);
 
-    TableManageButtons.init();
+                    d.page = Math.min(
+                        Math.max(0, Math.round(d.start / api.page.len())),
+                        api.page.info().pages
+                    );
+
+                    d.start_date = $('#from').val();
+                    d.end_date = $('#to').val();
+                    d.status = $('#status').val();
+                }
+            },
+          aoColumns : [
+                {   data: 'ref', name: 'ref', bSortable: false },
+                {   data: 'customer_name', name: 'customer_name', bSortable: false  },
+                {   data: 'request_amount', name: 'request_amount', bSortable: false  },
+                {   data: 'appointment_date', name: 'appointment_date' },
+                {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
+                {   data: 'prescreening_status', 
+                    name: 'prescreening_status', 
+                    bSortable: false,
+                    mRender: function (data, type, full) {
+                        if(full.prescreening_status == 'Hijau'){
+                            color = 'text-success';
+                            text = 'Hijau';
+                        }else if(full.prescreening_status == 'Kuning'){
+                            color = 'text-warning';
+                            text = 'Kuning';
+                        }else if(full.prescreening_status == 'Merah'){
+                            color = 'text-danger';
+                            text = 'Merah';
+                        }else {
+                            color = '';
+                            text = 'Pengajuan Baru';
+                        }
+                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+                    },
+                    createdCell:  function (td, cellData, rowData, row, col) {
+                        $(td).attr('class', 'status'); 
+                    }},
+                {   data: 'status', name: 'status' },
+                {   data: 'aging', name: 'aging' },
+                {   data: 'action', name: 'action', bSortable: false },
+            ],
+      }); 
+      }
+    // var resizefunc = [];
+    // $(document).ready(function () {
+    //     var lastStatusElement = null;
+    //     $('.select2').select2({
+    //         witdh : '100%',
+    //         allowClear: true,
+    //     });
+    //     // $('#datatable').hide();
+
+
+    //     // $('#filter').on('click', function () {
+    //     // var table = $('#datatable').dataTable({
+    //     //     searching : false,
+    //     //     processing : true,
+    //     //     serverSide : true,
+    //     //     lengthMenu: [
+    //     //         [ 10, 25, 50, -1 ],
+    //     //         [ '10', '25', '50', 'All' ]
+    //     //     ],
+    //     //     language : {
+    //     //         infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+    //     //     },
+    //     //     ajax : {
+    //     //         url : '/datatables/eform-ao',
+    //     //         data : function(d, settings){
+    //     //             var api = new $.fn.dataTable.Api(settings);
+
+    //     //             d.page = Math.min(
+    //     //                 Math.max(0, Math.round(d.start / api.page.len())),
+    //     //                 api.page.info().pages
+    //     //             );
+
+    //     //             d.office_id = $('.offices').val();
+    //     //         }
+    //     //     },
+    //     //     aoColumns : [
+    //     //         {   data: 'ref', name: 'ref', bSortable: false },
+    //     //         {   data: 'customer_name', name: 'customer_name', bSortable: false  },
+    //     //         {   data: 'request_amount', name: 'request_amount', bSortable: false  },
+    //     //         {   data: 'appointment_date', name: 'appointment_date' },
+    //     //         {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
+    //     //         {   data: 'prescreening_status', 
+    //     //             name: 'prescreening_status', 
+    //     //             bSortable: false,
+    //     //             mRender: function (data, type, full) {
+    //     //                 if(full.prescreening_status == 'Hijau'){
+    //     //                     color = 'text-success';
+    //     //                     text = 'Hijau';
+    //     //                 }else if(full.prescreening_status == 'Kuning'){
+    //     //                     color = 'text-warning';
+    //     //                     text = 'Kuning';
+    //     //                 }else if(full.prescreening_status == 'Merah'){
+    //     //                     color = 'text-danger';
+    //     //                     text = 'Merah';
+    //     //                 }else {
+    //     //                     color = '';
+    //     //                     text = 'Pengajuan Baru';
+    //     //                 }
+    //     //                 return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+    //     //             },
+    //     //             createdCell:  function (td, cellData, rowData, row, col) {
+    //     //                 $(td).attr('class', 'status'); 
+    //     //             }},
+    //     //         {   data: 'status', name: 'status' },
+    //     //         {   data: 'aging', name: 'aging' },
+    //     //         {   data: 'action', name: 'action', bSortable: false },
+    //     //     ],
+
+    //     // });
+
+    //     //     // table.fnDraw();
+    //     // });
+        
+    //     $('.office').select2({
+    //         witdh : '100%',
+    //         allowClear: true,
+    //         ajax: {
+    //             url: '/offices',
+    //             dataType: 'json',
+    //             delay: 250,
+    //             data: function (params) {
+    //                 return {
+    //                     name: params.term,
+    //                     page: params.page || 1
+    //                 };
+    //             },
+    //             processResults: function (data, params) {
+    //                 params.page = params.page || 1;
+    //                 return {
+    //                     results: data.offices.data,
+    //                     pagination: {
+    //                         more: (params.page * data.cities.per_page) < data.offices.total
+    //                     }
+    //                 };
+    //             },
+    //             cache: true
+    //         },
+    //     });
+    // });
+
+    // TableManageButtons.init();
 </script>
