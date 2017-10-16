@@ -117,6 +117,7 @@
             witdh : '100%',
             allowClear: true,
         });
+        var baseurl = window.location.origin;
 
         var table = $('#datatable').dataTable({
             processing : true,
@@ -129,7 +130,7 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
-                url : '/datatables/developers',
+                url : baseurl+'/datatables/developers',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 

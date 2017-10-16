@@ -322,6 +322,7 @@ class DeveloperController extends Controller
                     'project'   => $request->input('project'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
+        // dd($developers);
 
         foreach ($developers['contents']['data'] as $key => $developer) {
             $developer['action'] = view('internals.layouts.actions', [
