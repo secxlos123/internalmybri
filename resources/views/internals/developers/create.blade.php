@@ -106,7 +106,7 @@
                                                 <div class="form-group hidden">
                                                     <label class="col-md-4 control-label">No. PKS *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="hidden" class="form-control numericOnly" maxlength="12" name="pks_number" value="0">
+                                                        <input type="hidden" class="form-control numericOnly" maxlength="12" name="pks_number" value="-">
                                                     @if ($errors->has('pks_number')) <p class="help-block">{{ $errors->first('pks_number') }}</p> @endif
                                                     </div>
                                                 </div>
