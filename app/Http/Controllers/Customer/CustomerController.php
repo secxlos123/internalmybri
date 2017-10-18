@@ -310,8 +310,8 @@ class CustomerController extends Controller
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];
 
-        if($codeResponse == 200){
-            session()->put('user', $client);
+        if($codeResponse == 201){
+            // session()->put('user', $client);
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
         }elseif($codeResponse == 422){
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
@@ -431,6 +431,7 @@ class CustomerController extends Controller
 
     public function datatables(Request $request)
     {
+      // dd($request->input('city_id'));
         $sort = $request->input('order.0');
         $data = $this->getUser();
 
@@ -442,12 +443,15 @@ class CustomerController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'name'      => $request->input('search.value'),
-                    'page'      => (int) $request->input('page') + 1
+                    'name'      => $request->input('name'),
+                    'nik'      => $request->input('nik'),
+                    'city_id'   => $request->input('city_id'),
+                    'page'      => (int) $request->input('page') + 1,
                 ])->get();
 
         foreach ($customers['contents']['data'] as $key => $customer) {
             $customer['name'] = $customer['first_name'].' '.$customer['last_name'];
+            $customer['city_id'] = $customer['city'];
             $customer['action'] = view('internals.layouts.actions', [
                 'show' => route('customers.show', $customer['id']),
             ])->render();
