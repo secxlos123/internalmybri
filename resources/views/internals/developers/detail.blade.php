@@ -66,7 +66,7 @@
                                                 <div class="col-md-6">
                                                     <form class="form-horizontal" role="form">
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label">Nama Developer :</label>
+                                                            <label class="col-md-4 control-label">Nama PIC :</label>
                                                             <div class="col-md-8">
                                                                 <p class="form-control-static">{{$dataDev['developer_name']}}</p>
                                                             </div>

@@ -294,6 +294,7 @@ class EFormController extends Controller
                     'pn' => $data['pn']
                 ])->setBody($dispotition)
                 ->post();
+        // dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
