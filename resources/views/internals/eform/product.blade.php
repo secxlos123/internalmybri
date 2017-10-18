@@ -132,7 +132,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year" max="20">
-                                                    <span class="input-group-addon">Tahun</span>
+                                                    <span class="input-group-addon">Bulan</span>
                                                     @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
                                                 </div>
                                             </div>

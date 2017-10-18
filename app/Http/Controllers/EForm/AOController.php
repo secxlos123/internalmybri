@@ -15,15 +15,14 @@ class AOController extends Controller
   //   }
 
 	protected $columns = [
-        'ref',
+        'ref_number',
         'customer_name',
         'request_amount',
-        'appointment_date',
-        'product_type',
+        'created_at',
         'mobile_phone',
         'prescreening_status',
         'status',
-        'aging',
+        'created_at',
         'action',
     ];
 
@@ -332,7 +331,6 @@ class AOController extends Controller
     public function datatables(Request $request)
     {
         $sort = $request->input('order.0');
-        // dd($sort);
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
                 ->setHeaders([
@@ -341,28 +339,21 @@ class AOController extends Controller
                 ])
                 ->setQuery([
                     'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'branch_id' => $request->input('search.value'),
-                    'customer_name' => $request->input('search.value'),
-                    'page'      => (int) $request->input('page') + 1
+                    'search'    => $request->input('search.value'),
+                    'page'      => (int) $request->input('page') + 1,
+                    'start_date'=> $request->input('start_date'),
+                    'end_date'  => $request->input('end_date'),
+                    'status'    => $request->input('status')
                 ])->get();
-                // dd($eforms);
 
         foreach ($eforms['contents']['data'] as $key => $form) {
-            $form['ref'] = strtoupper($form['ref_number']);
+            $form['ref_number'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
-            $form['product_type'] = strtoupper($form['product_type']);
+            $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
+            // $form['product_type'] = strtoupper($form['product_type']);
             $form['request_amount'] = $form['nominal'];
-            $form['appointment_date'] = $form['appointment_date'];
-
-            $customerData = Client::setEndpoint('customer/'.$form['user_id'])
-                ->setQuery(['limit' => 100])
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])
-                ->get();
+            $form['created_at'] = $form['created_at'];
 
             $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];

@@ -34,26 +34,24 @@
                                     </div>
                                     <div id="filter" class="m-b-15">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <div class="card-box">
                                                     <form class="form-horizontal" role="form">
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Tanggal Awal :</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" class="form-control datepicker-inline" id="from" name="birth_date" value="{{ old('birth_date') }}">
+                                                            <label class="col-sm-4 control-label">Tanggal Pengajuan :</label>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="from" name="start_date">
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" class="form-control" id="to" name="end_date">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Tanggal Akhir :</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" class="form-control datepicker-inline" id="to" name="birth_date" value="{{ old('birth_date') }}">
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Pengajuan :</label>
                                                             <div class="col-sm-8">
                                                                 <select class="form-control" id="status">
-                                                                    <option selected="" disabled=""> Semua</option>
+                                                                    <option selected="" value="All"> Semua</option>
                                                                     <option value="Rekomend">Rekomend</option>
                                                                     <option value="Dispose">Dispose</option>
                                                                     <option value="Initiate">Initiate</option>
@@ -69,7 +67,7 @@
                                                             <label class="col-sm-4 control-label">Status Prescreening :</label>
                                                             <div class="col-sm-8">
                                                                 <select class="form-control">
-                                                                    <option selected="" disabled="" value="0"> Semua</option>
+                                                                    <option selected="" value="All"> Semua</option>
                                                                     <option value="1" class="text-success">Hijau</option>
                                                                     <option value="2" class="text-warning">Kuning</option>
                                                                     <option value="3" class="text-danger">Merah</option>
@@ -90,7 +88,7 @@
                                                 <th>No. Ref</th>
                                                 <th>Leads</th>
                                                 <th>Nominal</th>
-                                                <th>Tanggal Perjanjian</th>
+                                                <th>Tanggal Pengajuan</th>
                                                 <th>No. HP</th>
                                                 <th>Status Prescreening</th>
                                                 <th>Status</th>
@@ -109,6 +107,28 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#from").datepicker({
+            todayBtn:  1,
+            autoclose: true,
+            todayHighlight: true,
+            format: 'yyyy-mm-dd',
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#to').datepicker('setStartDate', minDate);
+        });
+
+        $("#to").datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+        }).on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#from').datepicker('setEndDate', maxDate);
+            });
+
+    });
+
     var table1 = $('#datatable').DataTable({
             searching: false,
             "language": {
@@ -149,10 +169,10 @@
                 }
             },
           aoColumns : [
-                {   data: 'ref', name: 'ref', bSortable: false },
+                {   data: 'ref_number', name: 'ref_number', bSortable: false },
                 {   data: 'customer_name', name: 'customer_name', bSortable: false  },
                 {   data: 'request_amount', name: 'request_amount', bSortable: false  },
-                {   data: 'appointment_date', name: 'appointment_date' },
+                {   data: 'created_at', name: 'created_at' },
                 {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
                 {   data: 'prescreening_status', 
                     name: 'prescreening_status', 
@@ -185,10 +205,6 @@
     // var resizefunc = [];
     // $(document).ready(function () {
     //     var lastStatusElement = null;
-    //     $('.select2').select2({
-    //         witdh : '100%',
-    //         allowClear: true,
-    //     });
     //     // $('#datatable').hide();
 
 
@@ -221,7 +237,7 @@
     //     //         {   data: 'ref', name: 'ref', bSortable: false },
     //     //         {   data: 'customer_name', name: 'customer_name', bSortable: false  },
     //     //         {   data: 'request_amount', name: 'request_amount', bSortable: false  },
-    //     //         {   data: 'appointment_date', name: 'appointment_date' },
+    //     //         {   data: 'created_at', name: 'created_at' },
     //     //         {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
     //     //         {   data: 'prescreening_status', 
     //     //             name: 'prescreening_status', 
@@ -255,31 +271,6 @@
     //     //     // table.fnDraw();
     //     // });
         
-    //     $('.office').select2({
-    //         witdh : '100%',
-    //         allowClear: true,
-    //         ajax: {
-    //             url: '/offices',
-    //             dataType: 'json',
-    //             delay: 250,
-    //             data: function (params) {
-    //                 return {
-    //                     name: params.term,
-    //                     page: params.page || 1
-    //                 };
-    //             },
-    //             processResults: function (data, params) {
-    //                 params.page = params.page || 1;
-    //                 return {
-    //                     results: data.offices.data,
-    //                     pagination: {
-    //                         more: (params.page * data.cities.per_page) < data.offices.total
-    //                     }
-    //                 };
-    //             },
-    //             cache: true
-    //         },
-    //     });
     // });
 
     // TableManageButtons.init();

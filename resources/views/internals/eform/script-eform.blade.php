@@ -516,7 +516,7 @@
     //storing leads
     // $('#leads-modal #btn-save').on('click', function() {
         // console.log('click');
-       $("#form1").submit(function(){
+       $("#form_data_personal").submit(function(){
 
             var formData = new FormData(this);
 
@@ -526,7 +526,7 @@
                 data: formData,
                 async: false,
                 success: function (data) {
-                    // console.log(data)
+                    console.log(data)
                     // $('#divForm').addClass('alert alert-success');
                     // $('#divForm').append('Data Berhasil Ditambahkan');
                     $('#leads-modal').modal('toggle');

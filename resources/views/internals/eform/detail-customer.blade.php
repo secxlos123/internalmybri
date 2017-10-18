@@ -32,14 +32,14 @@
                                     <p class="form-control-static">@if(!empty($dataCustomer['birth_date'])){{$dataCustomer['birth_date']}}@endif</p>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-4 control-label">Alamat :</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static">
                                         @if(!empty($dataCustomer['address'])){{$dataCustomer['address']}}@endif
                                     </p>
                                 </div>
-                            </div>
+                            </div> -->
                              <div class="form-group">
                                 <label class="col-md-4 control-label">Jenis Kelamin :</label>
                                 <div class="col-md-8">

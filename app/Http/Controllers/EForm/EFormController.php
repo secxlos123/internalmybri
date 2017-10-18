@@ -17,15 +17,15 @@ class EFormController extends Controller
     // }
 
     protected $columns = [
-        'ref',
+        'ref_number',
         'customer_name',
         'request_amount',
-        'appointment_date',
+        'created_at',
         'branch_id',
         'prescreening_status',
-        'ao',
+        'ao_name',
         'status',
-        'appointment_date',
+        'created_at',
         'action',
     ];
 
@@ -322,9 +322,10 @@ class EFormController extends Controller
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'branch_id' => $request->input('search.value'),
-                    'customer_name' => $request->input('search.value'),
-                    'page'      => (int) $request->input('page') + 1
+                    'page'      => (int) $request->input('page') + 1,
+                    'start_date'=> $request->input('start_date'),
+                    'end_date'  => $request->input('end_date'),
+                    'status'    => $request->input('status')
                 ])->get();
 
             // dd($eforms);
@@ -332,20 +333,11 @@ class EFormController extends Controller
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            $form['product_type'] = strtoupper($form['product_type']);
+            // $form['product_type'] = strtoupper($form['product_type']);
             $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_name'];
-
-            $customerData = Client::setEndpoint('customer/'.$form['user_id'])
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                      ])
-                      ->get();
-            // dd($form);
         
-            $verify = $customerData['contents']['is_verified'];
+            $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];
 
             $form['action'] = view('internals.layouts.actions', [

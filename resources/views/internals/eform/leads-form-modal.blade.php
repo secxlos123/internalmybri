@@ -21,7 +21,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Personal</h3>
                             </div>
-                            <form class="form-horizontal" role="form" action="{{route('customers.store')}}" method="POST" enctype="multipart/form-data" id="form_data_personal">
+                            <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_data_personal">
                             {{ csrf_field() }}
                             <div class="panel-body">
                                 <div class="row">
