@@ -283,6 +283,7 @@ class EFormController extends Controller
     public function postDispotition(Request $request, $id)
     {
         $data = $this->getUser();
+        // dd($id);
 
         $dispotition = [
             'ao_id' => $request->name,
@@ -294,7 +295,7 @@ class EFormController extends Controller
                     'pn' => $data['pn']
                 ])->setBody($dispotition)
                 ->post();
-        // dd($client);
+        dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
