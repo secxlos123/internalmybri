@@ -93,11 +93,11 @@
                                     </div>
                                 @if((($data['uker'] == "KC")||($data['uker'] == "KCP")))
                                     <input type="hidden" class="form-control" id="datepicker-mindate" name="appointment_date" value="2017-10-19">
-                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" value="{{$office['lat']}}">
-                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" value="{{$office['long']}}">
-                                    <input type="hidden" name="address" id="address" class="form-control" readonly="" value="{{$office['address']}}">
-                                    <input type="hidden" name="branch_id" value="{{$office['branch']}}">
-                                    <input type="hidden" name="unit" id="branch_id" value="{{$office['unit']}}">
+                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>
+                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" @if(!empty($office)) value="{{$office['long']}}" @endif>
+                                    <input type="hidden" name="address" id="address" class="form-control" readonly="" @if(!empty($office)) value="{{$office['address']}}" @endif>
+                                    <input type="hidden" name="branch_id" @if(!empty($office)) value="{{$office['branch']}}" @endif>
+                                    <input type="hidden" name="unit" id="branch_id" @if(!empty($office)) value="{{$office['unit']}}" @endif>
                                 @endif
                                 </section>
                                 @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
@@ -144,15 +144,15 @@
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
                                                     <label class="control-label">Lokasi</label>
-                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">{{$office['address']}}</textarea>
+                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!-- <label class="control-label">Latitude</label> -->
-                                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" value="{{$office['lat']}}">
+                                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!-- <label class="control-label">Longitude</label> -->
-                                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" value="{{$office['long']}}">
+                                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" @if(!empty($office)) value="{{$office['long']}}" @endif>
                                                 </div>
                                                 @if ($errors->has('location')) <p class="help-block">{{ $errors->first('location') }}</p> @endif
                                             </div>

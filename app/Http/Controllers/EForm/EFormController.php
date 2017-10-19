@@ -54,7 +54,9 @@ class EFormController extends Controller
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             return view('internals.eform.index', compact('data'));
             # code...
-        }     
+        } else{
+            return view('internals.eform.index', compact('data'));
+        }
     }
 
     /**
@@ -185,8 +187,8 @@ class EFormController extends Controller
                         'lat' => 0
                     ])
                     ->get();
-
-        if(!empty($offices)){
+                    // dd($offices);
+        if(!empty($offices['contents']['data'])){
           $office = $offices['contents']['data'][0];
         }else{
           $office = [];
