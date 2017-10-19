@@ -3,7 +3,7 @@
         <div id="wrapper">
             <div class="topbar">
                 <div class="topbar-left">
-                    <a href="#" class="logo">
+                    <a href="{{route('dashboard')}}" class="logo">
                         <span>
                             <img src="{{asset('assets/images/logo.png')}}" alt="" height="40">
                         </span>

@@ -17,7 +17,7 @@ class EForm
     {
         $users = session()->get('user')['contents']['role'];
         
-        if(($users == 'ao') || ($users == 'mp') || ($users == 'pinca') || ($users == 'cs-bri')){
+        if(($users == 'ao') || ($users == 'mp') || ($users == 'pinca') || ($users == 'cs-bri') || ($users == 'others')){
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             }

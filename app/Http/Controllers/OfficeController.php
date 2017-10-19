@@ -21,19 +21,24 @@ class OfficeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // dd($request->all());
         $data = $this->getUser();
         $offices = \Client::setEndpoint('offices')
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'city_id' => $request->input('citi_id'),
+                'distance' => $request->input('distance'),
+                'long' => $request->input('long'),
+                'lat' => $request->input('lat'),
                 'page' => $request->input('page'),
-                'name' => $request->input('name'),
+                // 'name' => $request->input('name'),
             ])->get();
+            // dd(json_encode($offices));
 
         foreach ($offices['contents']['data'] as $key => $office) {
-            $office['text'] = $office['name'];
+            $office['text'] = $office['unit'];
+            $office['id'] = $office['branch'];
             $offices['contents']['data'][$key] = $office;
         }
 

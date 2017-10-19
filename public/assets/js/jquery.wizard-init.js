@@ -57,11 +57,12 @@
             },
             onFinished: function (event, currentIndex) {
                 var request_amount = $('#request_amount').val();
-                console.log(request_amount);
+                // console.log(request_amount);
                 var year = $('#year').val();
                 var office = $('#office').val();
                 var appointment_date = $('#datepicker-mindate').val();
                 var year = $('#year').val();
+                var office = $('#branch_id').val();
 
                 var id = $('#nik').val();
 
@@ -71,7 +72,6 @@
                     url: '/getData',
                     data: { id : id },
                     success: function(result, data) {
-                        console.log(result.data);
                         var nik = result.data.nik;
                         var full_name = result.data.first_name+' '+result.data.last_name;
                         var email = result.data.email;
@@ -85,6 +85,7 @@
                         var couple_birth_date = result.data.couple_birth_date;
                         var couple_identity = result.data.couple_identity;
                         var identity = result.data.identity;
+                        var ao_name = result.data.name;
 
                         if(result.data.status == 0){
                             var status = 'Tidak Menikah';
@@ -130,6 +131,8 @@
                         $("#view-modal #couple_identity").html('<img src="'+couple_identity+'" class="img-responsive">'); 
                         $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">'); 
                         $("#view-modal #marritalstatus").val(status); 
+                        $("#view-modal #office").val(office); 
+                        $("#view-modal #ao_name").val(ao_name); 
 
                     },
                     error: function(result, data){

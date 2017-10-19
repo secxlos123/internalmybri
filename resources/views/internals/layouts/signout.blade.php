@@ -11,7 +11,7 @@
                    <div class="modal-footer">
                         {!! Form::open(['id' => 'out', 'method' => 'DELETE']) !!}
                            <a id="delete-modal-cancel" class="btn btn-default" data-dismiss="modal">Batal</a>
-                          {!! Form::submit('Keluar', ['class' => 'btn btn-success']) !!}
+                          {!! Form::submit('Keluar', ['class' => 'btn btn-success', 'id' => 'btn-logout']) !!}
                         {!! Form::close() !!}
                    </div>
                </div>

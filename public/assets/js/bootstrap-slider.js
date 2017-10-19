@@ -1884,8 +1884,9 @@ var windowIsDefined = (typeof window === "undefined" ? "undefined" : _typeof(win
 			var autoRegisterNamespace = void 0;
 
 			if (!$.fn.slider) {
-				$.bridget(NAMESPACE_MAIN, Slider);
-				autoRegisterNamespace = NAMESPACE_MAIN;
+				var namespace = $.fn.slider ? 'bootstrapSlider' : 'slider';
+				$.bridget('bootstrapSlider', Slider);
+				// autoRegisterNamespace = NAMESPACE_MAIN;
 			} else {
 				if (windowIsDefined) {
 					window.console.warn("bootstrap-slider.js - WARNING: $.fn.slider namespace is already bound. Use the $.fn.bootstrapSlider namespace instead.");

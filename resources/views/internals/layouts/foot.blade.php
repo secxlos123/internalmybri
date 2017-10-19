@@ -45,6 +45,7 @@
         <!-- App js -->
         <script src="{{asset('assets/js/jquery.core.js')}}"></script>
         <script src="{{asset('assets/js/jquery.app.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap-slider.js')}}"></script>
 
         <script src="{{asset('assets/js/jquery.steps.js')}}" type="text/javascript"></script>
         <script type="text/javascript" src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
@@ -59,9 +60,9 @@
         <script src="{{asset('js/inputmask.numeric.extensions.js')}}"></script>
         <script src="{{asset('assets/js/select2.min.js')}}"></script>
         <script src="{{asset('assets/js/HoldOn.min.js')}}"></script>
-        
-        <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
+
+        <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
         <script>
            $(document).ready(function() {
@@ -74,13 +75,29 @@
         </script>
 
         <script>
+            var options = {
+                 theme:"sk-bounce",
+                 message:'Mohon tunggu sebentar.',
+                 textColor:"white"
+            };
            $(document).ready(function() {
                $('#signout').on('click', function(e) {
                    $('#out').attr('action', '{{url("logout")}}');
                    $('#sign-out').modal('show');
                    e.preventDefault();
                });
+
+               $('#btn-logout').on('click', function() {
+                    HoldOn.open(options);
+               });
+
+               $('#distance1').slider({
+                    formatter: function(value) {
+                        return 'Current value: ' + value;
+                    }
+                });
            });
+
 
            $(document).ready(function() {
                 Inputmask.extendAliases({
