@@ -27,6 +27,9 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            @if (\Session::has('error'))
+                             <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                            @endif
                             <div class="card-box">
                                 <div class="row">
                                     <div class="col-md-6">
