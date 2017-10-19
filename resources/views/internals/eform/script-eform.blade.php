@@ -72,6 +72,17 @@
 
         $('.developers').on('change', function () {
             var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+
+            if(text == "TIDAK ADA"){
+                $('#price').removeAttr('readonly');
+                $('#home_location').removeAttr('readonly');
+                $('#building_area').removeAttr('readonly');
+            }else{
+                $('#price').attr('readonly', true);
+                $('#home_location').attr('readonly', true);
+                $('#building_area').attr('readonly', true); 
+            }
 
             $('.property_name').select2({
                 witdh : '100%',
@@ -369,12 +380,12 @@
         });
 
         $('#year').on('keyup', function(e){
-            if ($(this).val() > 20 
+            if ($(this).val() > 240 
                 && e.keyCode != 46 // delete
                 && e.keyCode != 8 // backspace
                ) {
                e.preventDefault();
-               $(this).val('20');
+               $(this).val('240');
             }else{
                 return true;
             }

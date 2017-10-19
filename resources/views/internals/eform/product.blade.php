@@ -97,7 +97,7 @@
                                         <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Lokasi Rumah *:</label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control required" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah" id="home_location">{{old('home_location')}}</textarea>
+                                                <textarea class="form-control required" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah" id="home_location" readonly="">{{old('home_location')}}</textarea>
                                                 @if ($errors->has('home_location')) <p class="help-block">{{ $errors->first('home_location') }}</p> @endif
                                             </div>
                                         </div>
