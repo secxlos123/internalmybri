@@ -135,10 +135,10 @@ class DeveloperController extends Controller
             return redirect()->route('developers.index');
         }elseif($client['code'] == 500){
             \Session::flash('error', 'Maaf, server sedang gangguan');
-            return redirect()->back();
+            return redirect()->back()->withInput($request->input());
         }else{
             \Session::flash('error', 'Kesalahan input');
-            return redirect()->back();
+            return redirect()->back()->withInput($request->input());
         }
         
         return view('internals.developers.index', compact('data'));
