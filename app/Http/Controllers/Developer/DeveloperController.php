@@ -134,10 +134,11 @@ class DeveloperController extends Controller
             \Session::flash('success', 'Data Developer sudah disimpan.');
             return redirect()->route('developers.index');
         }elseif($client['code'] == 500){
-            \Session::flash('error', 'Maaf, server sedang gangguan');
+            \Session::flash('error', 'Maaf, server sedang gangguan.');
             return redirect()->back()->withInput($request->input());
         }else{
-            \Session::flash('error', 'Kesalahan input');
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
             return redirect()->back()->withInput($request->input());
         }
         
@@ -252,8 +253,9 @@ class DeveloperController extends Controller
             \Session::flash('success', 'Data Developer sudah diubah.');
             return redirect()->route('developers.index');
         }else{
-            \Session::flash('error', 'Kesalahan input.');
-            return redirect()->back();
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
         }
         
         return view('internals.developers.index', compact('data'));

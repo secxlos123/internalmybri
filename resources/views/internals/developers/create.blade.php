@@ -78,14 +78,14 @@
                                                 <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">No. Telepon *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="phone" value="{{old('phone')}}">
+                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="phone" value="{{old('phone')}}">
                                                     @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">No. Handphone *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="mobile_phone" value="{{old('mobile_phone')}}">
+                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="mobile_phone" value="{{old('mobile_phone')}}">
                                                     @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -99,7 +99,7 @@
                                                 <div class="form-group summary {!! $errors->has('summary') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Ringkasan * :</label>
                                                     <div class="col-md-8">
-                                                        <textarea class="form-control" name="summary" cols="3" maxlength="255"></textarea>
+                                                        <textarea class="form-control" name="summary" cols="3" maxlength="255">{{old('summary')}}</textarea>
                                                     @if ($errors->has('summary')) <p class="help-block"> {{ $errors->first('summary') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -160,9 +160,15 @@
 @include('internals.layouts.foot')    
 
 <script type="text/javascript">
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             $("#form1").submit();
+            HoldOn.open(options);
        });
 
        $('#btn-save').on('click', function(e) {
