@@ -1,9 +1,22 @@
 <script type="text/javascript">
+    $(document).ready(function() {
+        var distance = 10;
+        var long = $('#lng').val();
+        var lat = $('#lat').val();
+        get_offices(distance, long, lat);
+    });
+
     $(document).ready(function () {
         var lastStatusElement = null;
         $('.select2').select2({
             witdh : '100%',
             allowClear: true,
+        });
+
+        $('#distance1').bootstrapSlider({
+            formatter: function(value) {
+                return 'Current value: ' + value;
+            }
         });
         
         $('.nikSelect').select2({
@@ -23,13 +36,13 @@
                     // console.log(data);
                     if((data.customers.data.length) == 0 ){
                         $('#search').addClass('disabled');
-                        $('#btn-leads').removeAttr('disabled');
+                        $('#btn-leads').removeClass('disabled');
                         return {
                             results: '',
                         }; 
                     }else{
                         $('#search').removeClass('disabled');
-                        $('#btn-leads').attr('disabled', true);
+                        $('#btn-leads').addClass('disabled', true);
                         params.page = params.page || 1;
                         return {
                             results: data.customers.data,
@@ -74,14 +87,22 @@
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
 
-            if(text == "TIDAK ADA"){
+            if(text == "INDEPENDENT"){
                 $('#price').removeAttr('readonly');
                 $('#home_location').removeAttr('readonly');
                 $('#building_area').removeAttr('readonly');
+                $('#property_name').attr('hidden',true);
+                $('#property_unit').attr('hidden',true);
+                $('#property_type').attr('hidden',true);
+                $('#line').attr('hidden',true);
             }else{
                 $('#price').attr('readonly', true);
                 $('#home_location').attr('readonly', true);
                 $('#building_area').attr('readonly', true); 
+                $('#property_name').removeAttr('hidden');
+                $('#property_type').removeAttr('hidden');
+                $('#property_unit').removeAttr('hidden');
+                $('#line').removeAttr('hidden');
             }
 
             $('.property_name').select2({
@@ -471,8 +492,14 @@
         });
     });
 
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
     //showing modal of eform
     $('#view-modal').on('click', '#agree', function() {
+           HoldOn.open(options);
        $("#wizard-validation-form").submit();
     });
 
@@ -490,16 +517,34 @@
         get_offices(citi_id);
     });
 
-    function get_offices(citi_id) {
+    $('#changeDistance').on('click', function (e) {
+        $('.offices').empty().select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+    });
+
+    $('#changeDistance').on('click', function (e) {
+        // console.log('success');
+        var distance = $('#distance1').val();
+        var long = $('#lng').val();
+        var lat = $('#lat').val();
+        get_offices(distance, long, lat);
+    });
+
+    function get_offices(distance, long, lat) {
         $('.offices').empty().select2({
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: `/offices?citi_id=${citi_id}`,
+                url: `/offices`,
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
                     return {
+                        distance : distance,
+                        long : long,
+                        lat : lat,
                         name: params.term,
                         page: params.page || 1,
                     };
@@ -518,10 +563,25 @@
             },
         });
     }
+        $('.offices').on('select2:select', function (e) {
+            var alamat = e.params.data.alamat;
+            $('#branch_address').val(alamat).trigger('change');
+        });
+
 
     //showing modal create leads
     $('#btn-leads').on('click', function() {
        $('#leads-modal').modal('show');
+    });
+
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
+
+    $('#btn-save').on('click', function() {
+       HoldOn.open(options);
     });
 
     //storing leads
@@ -537,13 +597,15 @@
                 data: formData,
                 async: false,
                 success: function (data) {
-                    console.log(data)
+                    // console.log(data)
+                    HoldOn.close();
                     // $('#divForm').addClass('alert alert-success');
                     // $('#divForm').append('Data Berhasil Ditambahkan');
                     $('#leads-modal').modal('toggle');
                 },
                 error: function (response) {
-                    console.log(response)
+                    // console.log(response)
+                    HoldOn.close();
                 },
                 cache: false,
                 contentType: false,

@@ -125,7 +125,7 @@
                                                 ]) !!}
                                             </div>
                                         </div>
-                                        <hr>
+                                        <hr id="line">
 
                                         <div class="form-group year {!! $errors->has('year') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Jangka Waktu *:</label>

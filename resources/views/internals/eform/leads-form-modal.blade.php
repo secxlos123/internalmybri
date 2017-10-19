@@ -101,7 +101,7 @@
                                             <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
                                                 <label class="col-md-5 control-label">No. Handphone * :</label>
                                                 <div class="col-md-7">
-                                                    <input type="text" class="form-control numericOnly" name="mobile_phone" value="{{old('mobile_phone')}}" maxlength="12" id="mobile_phone">
+                                                    <input type="text" class="form-control numericOnly" name="mobile_phone" value="{{old('mobile_phone')}}" maxlength="16" id="mobile_phone">
                                                     @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                 </div>
                                             </div>

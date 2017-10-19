@@ -7,7 +7,7 @@
         font-family: 'Varela Round', sans-serif;
     }
 </style>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+
 <div class="content-page">
     <div class="content">
         <div class="container">
@@ -70,7 +70,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" disabled id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md disabled" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +91,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                @if((($data['uker'] == "KC")||($data['uker'] == "KCP")))
+                                    <input type="hidden" class="form-control" id="datepicker-mindate" name="appointment_date" value="2017-10-19">
+                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" value="{{$office['lat']}}">
+                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" value="{{$office['long']}}">
+                                    <input type="hidden" name="address" id="address" class="form-control" readonly="" value="{{$office['address']}}">
+                                    <input type="hidden" name="branch_id" value="{{$office['branch']}}">
+                                    <input type="hidden" name="unit" id="branch_id" value="{{$office['unit']}}">
+                                @endif
                                 </section>
+                                @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
                                 <h3>Penjadwalan</h3>
 
                                 <section>
@@ -135,15 +144,15 @@
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
                                                     <label class="control-label">Lokasi</label>
-                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">Bandung</textarea>
+                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">{{$office['address']}}</textarea>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!-- <label class="control-label">Latitude</label> -->
-                                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" value="123456789">
+                                                    <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" value="{{$office['lat']}}">
                                                 </div>
                                                 <div class="col-md-3">
                                                     <!-- <label class="control-label">Longitude</label> -->
-                                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" value="12345678">
+                                                    <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" value="{{$office['long']}}">
                                                 </div>
                                                 @if ($errors->has('location')) <p class="help-block">{{ $errors->first('location') }}</p> @endif
                                             </div>
@@ -159,35 +168,37 @@
                                             <p class="text-muted m-b-30 font-13">
                                                 Pilih Lokasi Bank Pengajuan
                                             </p>
-                                            <div role="form">
-                                                <div class="form-group office_id {!! $errors->has('office_name') ? 'has-error' : '' !!}">
-                                                    <label class="control-label">Kantor Cabang BRI *</label>
-                                                    <!-- {!! Form::select('office_name', ['' => ''], old('office_name'), [
-                                                        'class' => 'select2 offices',
-                                                        'data-placeholder' => 'Pilih Kantor',
-                                                        'readonly' => true
-                                                    ]) !!} -->
-                                                    <input type="hidden" name="branch_id" value="{{$office['branch']}}">
-                                                        <input type="text" name="branch" value="{{$office['unit']}}" readonly="" class="form-control" id="branch">
-
-                                                    @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
+                                            <div class="form-group">
+                                              <label class="control-label">Jarak (Kilometer)</label>
+                                              <div class="form-group">
+                                                <div class="col-md-6">
+                                                  <input id="distance1" data-slider-id="distanceSlider" type="text" data-slider-min="0" data-slider-max="20" class="distanceSlider" data-slider-step="1" data-slider-value="10" name="distance" value="10">
                                                 </div>
-                                                <div class="form-group office_id {!! $errors->has('office_name') ? 'has-error' : '' !!}">
-                                                    <label class="control-label">Alamat Kantor Cabang </label>
-                                                    <!-- {!! Form::select('office_name', ['' => ''], old('office_name'), [
-                                                        'class' => 'select2 offices',
-                                                        'data-placeholder' => 'Pilih Kantor',
-                                                        'readonly' => true
-                                                    ]) !!} -->
-                                                    <!-- <input type="hidden" name="office_id" value="1"> -->
-                                                        <textarea type="text" name="branch" value="KC Lembang" readonly="" class="form-control">{{$office['address']}}</textarea>
-
-                                                    @if ($errors->has('office_id')) <p class="help-block">{{ $errors->first('office_id') }}</p> @endif
-                                                </div>
+                                                <a href="javascript:void(0);" id="changeDistance" class="btn waves-effect waves-light btn-primary"><i class="fa fa-search"></i> Cari</a>
+                                              </div>
                                             </div>
+                                             <div class="form-group">
+                                                  <label class="control-label">Kantor Cabang BRI</label>
+                                                  <div>
+                                                    <select id="branch_id" name="branch_id" class="select2 offices" value="1" data-placeholder="Pilih Kantor" style="width: 70%;">
+                                                    </select>
+                                                    <div id="alert-nik" class="text-danger">{!! $errors->first('branch_id') !!}</div>
+                                                  </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                  <label class="control-label">Alamat</label>
+                                                  <div>
+                                                    <textarea id="branch_address" class="form-control" placeholder="Alamat Kantor Cabang" readonly="">
+                                                    </textarea>
+                                                    <div id="alert-nik" class="text-danger">{!! $errors->first('branch_id') !!}</div>
+                                                  </div>
+                                                </div>
+                                              </div>
                                         </div>
                                     </div>
                                 </section>
+                            @endif
                             </div>
                             <!-- <input type="submit" name="" value="Done"> -->
                         </form>
@@ -202,7 +213,8 @@
 @include('internals.layouts.foot')
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
 @include('internals.eform.script-eform')
-<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
 <!-- {!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!} -->
