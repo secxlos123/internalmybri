@@ -27,6 +27,9 @@
 
                         <div class="row">
                             <div class="col-md-12">
+                                @if (\Session::has('error'))
+                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                                @endif
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pengajuan</h3>
@@ -442,7 +445,7 @@
                                         </div>
                                         <hr>
                                         <div class="text-center">
-                                            <button type="submit" href="#" class="btn btn-success waves-light waves-effect w-md m-b-20">Terima</button>
+                                            <button type="submit" href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
                                             <!-- <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button> -->
                                             <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                         </div>
@@ -458,3 +461,13 @@
 
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
+<script type="text/javascript">
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
+    $('#btn-approve').on('click', function(){
+        HoldOn.open(options);
+    })
+</script>
