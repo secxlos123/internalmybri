@@ -157,8 +157,11 @@ class EFormController extends Controller
                         ])
                         ->get();
         $dataCustomer = $customerData['contents']['data'][0];
+        // dd($data);
+        $userData = array_merge($dataCustomer, $data);
+        // dd($userData);
         
-        return response()->json(['data' => $dataCustomer, 'user' => $data['name']]);
+        return response()->json(['data' => $userData]);
     }
 
     /**
@@ -169,6 +172,7 @@ class EFormController extends Controller
     public function create()
     {
         $data = $this->getUser();
+        // dd($data);
 
         $offices = Client::setEndpoint('offices')
                     ->setHeaders([
@@ -181,7 +185,13 @@ class EFormController extends Controller
                         'lat' => 0
                     ])
                     ->get();
-        $office = $offices['contents']['data'][0];
+
+        if(!empty($offices)){
+          $office = $offices['contents']['data'][0];
+        }else{
+          $office = [];
+        }
+        // dd($office);
         
         return view('internals.eform.create', compact('data', 'office'));
     }
@@ -268,8 +278,9 @@ class EFormController extends Controller
                     \Session::flash('success', $client['descriptions']);
                     return redirect()->route('eform.index');
                 }else{
-                    \Session::flash('error', $client['descriptions']);
-                    return redirect()->back();
+                    $error = reset($client['contents']);
+                    \Session::flash('error', $client['descriptions'].' '.$error);
+                    return redirect()->back()->withInput($request->input());
                 }
         }
     }
@@ -295,14 +306,15 @@ class EFormController extends Controller
                     'pn' => $data['pn']
                 ])->setBody($dispotition)
                 ->post();
-        dd($client);
+        // dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
-            \Session::flash('error', $client['descriptions']);
-            return redirect()->back();
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
         }
 
     }

@@ -178,8 +178,9 @@ class AOController extends Controller
             \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
-            \Session::flash('error', 'Kesalahan input.');
-            return redirect()->back();
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
         }
 
         return view('internals.eform.lkn', compact('data'));
@@ -204,7 +205,7 @@ class AOController extends Controller
                       ->post();
 
         $dataCustomer = $customerData['contents'];
-        // dd($dataCustomer);
+        dd($customerData);
 
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
@@ -322,8 +323,9 @@ class AOController extends Controller
             \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
-            \Session::flash('error', 'Lengkapi data Anda!');
-            return redirect()->back();
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
         }
     }
 
