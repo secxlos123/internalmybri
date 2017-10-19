@@ -58,6 +58,8 @@
         <script src="{{asset('js/jquery.inputmask.bundle.min.js')}}"></script>
         <script src="{{asset('js/inputmask.numeric.extensions.js')}}"></script>
         <script src="{{asset('assets/js/select2.min.js')}}"></script>
+        <script src="{{asset('assets/js/HoldOn.min.js')}}"></script>
+        
         <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
 

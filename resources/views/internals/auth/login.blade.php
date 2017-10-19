@@ -68,6 +68,15 @@
         </section>
 @include('internals.layouts.foot')
 <script type="text/javascript">
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
+
+    $('#loginButton').click(function(){
+        HoldOn.open(options);   
+    })
     $("#loginForm").submit(function (e) {
             e.preventDefault();
             // var $btn = $('#loginButton').button('loading');

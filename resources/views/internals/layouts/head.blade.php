@@ -20,7 +20,8 @@
         <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/daterangepicker.css')}}"> -->
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
-
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/HoldOn.min.css')}}">
+        
         <!--calendar css-->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fullcalendar.min.css')}}">
 
