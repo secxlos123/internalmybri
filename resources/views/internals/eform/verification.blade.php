@@ -198,9 +198,9 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="status" id="status">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 0) ? selected @endif @endif value="0">Tidak Menikah</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 1) ? selected @endif @endif value="1">Menikah</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 2) ? selected @endif @endif value="2">Janda/Duda</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 1) ? selected @endif @endif value="1">Belum Menikah</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 2) ? selected @endif @endif value="2">Menikah</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 3) ? selected @endif @endif value="3">Janda/Duda</option>
                                                     </select>
                                                     @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                 </div>
@@ -210,8 +210,9 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="address_status">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == 'menetap') ? selected @endif @endif value="menetap">Permanen</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == 'sementara') ? selected @endif @endif value="sementara">Sementara</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == '0') ? selected @endif @endif value="0">Milik Sendiri</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == '1') ? selected @endif @endif value="1">Milik Orang Tua/Mertua atau Rumah Dinas </option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == '3') ? selected @endif @endif value="3">Tinggal di Rumah Kontrakan</option>
                                                     </select>
                                                     @if ($errors->has('address_status')) <p class="help-block">{{ $errors->first('address_status') }}</p> @endif
                                                 </div>
@@ -595,7 +596,7 @@
                         </div>
                     </div>
                 </div><!--End--> 
-                <!--Action button--> 
+                <!--Action button-->
                 <div class="row" @if(!empty($dataCustomer))  @if($dataCustomer['customer']['is_completed'] == false) hidden="" @endif @endif>
                     <div class="col-md-12">
                         <div class="pull-right">
