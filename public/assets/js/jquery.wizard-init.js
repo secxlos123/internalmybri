@@ -132,7 +132,7 @@
                         $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">'); 
                         $("#view-modal #marritalstatus").val(status); 
                         $("#view-modal #office").val(office); 
-                        $("#view-modal #ao_name").val(ao_name); 
+                        $("#view-modal #ao_name").html(ao_name); 
 
                     },
                     error: function(result, data){
