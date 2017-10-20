@@ -57,7 +57,8 @@
                                             <div class="col-md-8">
                                                 {!! Form::select('developer', ['' => ''], old('developers'), [
                                                     'class' => 'select2 developers ',
-                                                    'data-placeholder' => 'Pilih Developer'
+                                                    'data-placeholder' => 'Pilih Developer',
+                                                    'data-bri' => ''
                                                 ]) !!}
                                             </div>
                                         </div>

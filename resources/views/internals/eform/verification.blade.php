@@ -148,7 +148,7 @@
                                                 <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                 <div class="col-md-9">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="datepicker-date" name="birth_date" @if(!empty($dataCustomer)) value="{{ $dataCustomer['personal']['birth_date'] }}" @endif>
+                                                        <input type="text" class="form-control" id="datepicker-date" name="birth_date" @if(!empty($dataCustomer)) value="{{ $dataCustomer['customer']['birth_date'] }}" @endif>
                                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
                                                     </div>
@@ -187,8 +187,8 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="gender">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['gender'] == 'Laki-laki') ? selected @endif @endif value="L">Laki-laki</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['gender'] == 'Perempuan') ? selected @endif @endif value="P">Perempuan</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['gender'] == 'Laki-laki') ? selected @endif @endif value="L">Laki-laki</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['gender'] == 'Perempuan') ? selected @endif @endif value="P">Perempuan</option>
                                                     </select>
                                                     @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
                                                 </div>
@@ -198,9 +198,9 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="status" id="status">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['status'] == 0) ? selected @endif @endif value="0">Tidak Menikah</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['status'] == 1) ? selected @endif @endif value="1">Menikah</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['status'] == 2) ? selected @endif @endif value="2">Janda/Duda</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 0) ? selected @endif @endif value="0">Tidak Menikah</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 1) ? selected @endif @endif value="1">Menikah</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['status'] == 2) ? selected @endif @endif value="2">Janda/Duda</option>
                                                     </select>
                                                     @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                 </div>
@@ -210,8 +210,8 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="address_status">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['address_status'] == 'menetap') ? selected @endif @endif value="menetap">Permanen</option>
-                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['personal']['address_status'] == 'sementara') ? selected @endif @endif value="sementara">Sementara</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == 'menetap') ? selected @endif @endif value="menetap">Permanen</option>
+                                                        <option @if(!empty($dataCustomer)) @if($dataCustomer['customer']['address_status'] == 'sementara') ? selected @endif @endif value="sementara">Sementara</option>
                                                     </select>
                                                     @if ($errors->has('address_status')) <p class="help-block">{{ $errors->first('address_status') }}</p> @endif
                                                 </div>
@@ -230,7 +230,7 @@
                                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                 <label class="col-md-5 control-label">Email * :</label>
                                                 <div class="col-md-7">
-                                                    <input type="email" class="form-control" name="email" @if(!empty($dataCustomer)) value="{{$dataCustomer['personal']['email']}}" @endif maxlength="50" readonly="">
+                                                    <input type="email" class="form-control" name="email"  maxlength="50" readonly="">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                 </div>
                                             </div>  
@@ -373,7 +373,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Nama Perusahaan * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="company_name" @if(!empty($dataCustomer)) value="{{$dataCustomer['work']['company_name']}}" @endif maxlength="50">
+                                                    <input type="text" class="form-control" name="company_name" maxlength="50">
                                                     @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
                                                 </div>
                                             </div>
@@ -396,7 +396,7 @@
                                                 <label class="col-md-4 control-label">Lama Kerja * :</label>
                                                 <div class="col-md-8">
                                                     <div class="col-md-4">
-                                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" @if(!empty($dataCustomer)) value="{{$dataCustomer['work']['work_duration']}}" @endif>
+                                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0">
                                                     </div>
                                                         <label class="col-md-2 control-label">Tahun</label>
                                                     <div class="col-md-4">
@@ -409,7 +409,7 @@
                                             <div class="form-group office_address {!! $errors->has('office_address') ? 'has-error' : '' !!}">
                                                 <label class="col-md-4 control-label">Alamat Kantor * :</label>
                                                 <div class="col-md-8">
-                                                    <textarea class="form-control" rows="3" name="office_address" maxlength="255">@if(!empty($dataCustomer)) {{$dataCustomer['work']['office_address']}} @endif</textarea>
+                                                    <textarea class="form-control" rows="3" name="office_address" maxlength="255"></textarea>
                                                     @if ($errors->has('office_address')) <p class="help-block">{{ $errors->first('office_address') }}</p> @endif
                                                 </div>
                                             </div>
@@ -439,7 +439,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['salary']}}" @endif>
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24">
                                                                     @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -449,7 +449,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['other_salary']}}" @endif>
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" >
                                                                     @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -470,7 +470,7 @@
                                                             <div class="col-md-5">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['loan_installment']}}" @endif >
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24">
                                                                     @if ($errors->has('loan_installment')) <p class="help-block">{{ $errors->first('loan_installment') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -478,7 +478,7 @@
                                                         <div class="form-group dependent_amount {!! $errors->has('dependent_amount') ? 'has-error' : '' !!}">
                                                             <label class="col-md-5 control-label">Jumlah Tanggungan * :</label>
                                                             <div class="col-md-5">
-                                                                <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['dependent_amount']}}" @endif>
+                                                                <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2">
                                                                 @if ($errors->has('dependent_amount')) <p class="help-block">{{ $errors->first('dependent_amount') }}</p> @endif
                                                             </div>
                                                         </div>
@@ -511,7 +511,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['couple_salary']}}" @endif>
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24">
                                                                     @if ($errors->has('couple_salary')) <p class="help-block">{{ $errors->first('couple_salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -521,7 +521,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['couple_other_salary']}}" @endif>
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" >
                                                                     @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -535,7 +535,7 @@
                                                             <div class="col-md-7">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer)) value="{{$dataCustomer['financial']['couple_loan_installment']}}" @endif >
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24">
                                                                     @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -583,7 +583,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Hubungan * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="emergency_relation" @if(!empty($dataCustomer)) value="{{$dataCustomer['contact']['emergency_relation']}}" @endif>
+                                                    <input type="text" class="form-control" name="emergency_relation" >
                                                     @if ($errors->has('emergency_relation')) <p class="help-block">{{ $errors->first('emergency_relation') }}</p> @endif
                                                 </div>
                                             </div>
