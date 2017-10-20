@@ -491,10 +491,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6" id="join_income">
+                            <div class="col-md-7" id="join_income">
                                 <div class="checkbox checkbox-single checkbox-primary">
                                     <input type="checkbox" name="join_income" value="join_income" id="join_check">
-                                    <label>Join Income</label>
+                                    <label class="header-title custom-title-2"><b>  Joint Income</b></label>
                                 </div>
                             </div>
 
