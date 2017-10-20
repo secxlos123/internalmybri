@@ -491,6 +491,13 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6" id="join_income">
+                                <div class="checkbox checkbox-single checkbox-primary">
+                                    <input type="checkbox" name="join_income" value="join_income" id="join_check">
+                                    <label>Join Income</label>
+                                </div>
+                            </div>
+
                             <!--Pasangan-->
                             <div class="col-md-12" id="couple_financial">
                                 <div class="card-box m-t-30">                                    
@@ -639,14 +646,25 @@
             $('#save').modal('show');
             $("#save #name").html(name);
        });
+
+       $('#join_check').on('change', function() {
+            if(this.checked){
+                console.log('true');
+                $('#couple_financial').show();
+            }else{
+                $('#couple_financial').hide();
+            }
+       });
+
        // console.log($('#status').val());
        if($('#status').val() == 1){
             $('#marrital_certificate').show();
             $('#couple_data').show();
-            $('#couple_financial').show();
+            $('#join_income').show();
         }else if($('#status').val()== 2){
             $('#separate_certificate').show();
             $('#couple_data').hide();
+            $('#join_income').hide();
             $('#couple_financial').hide();
         }else{
             hideCouple();
@@ -657,6 +675,7 @@
         $('#couple_data').hide();
         $('#separate_certificate').hide();
         $('#marrital_certificate').hide();
+        $('#join_income').hide();
         $('#couple_financial').hide();
 
     }
@@ -666,11 +685,11 @@
         if(this.value==1){
             $('#marrital_certificate').show();
             $('#couple_data').show();
-            $('#couple_financial').show();
+            $('#join_income').show();
         }else if(this.value==2){
             $('#separate_certificate').show();
             $('#couple_data').hide();
-            $('#couple_financial').hide();
+            $('#join_income').hide();
         }else{
             hideCouple();
         }
