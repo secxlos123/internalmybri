@@ -564,7 +564,7 @@
                                             <div class="form-group ">
                                                 <label class="col-md-4 control-label">Nama * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control numericOnly" name="emergency_name" value="{{old('emergency_name')}}" maxlength="12">
+                                                    <input type="text" class="form-control" name="emergency_name" value="{{old('emergency_name')}}" maxlength="12">
                                                     @if ($errors->has('emergency_name')) <p class="help-block">{{ $errors->first('emergency_name') }}</p> @endif
                                                 </div>
                                             </div>
