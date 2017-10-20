@@ -40,17 +40,17 @@
                                 <h3>Produk</h3>
                                 @include('internals.eform.product')
                                 <div id="divForm"></div>
-                                <h3>Leads</h3>
+                                <h3>Nasabah</h3>
                                 <section>
-                                    <h4 class="m-t-0 header-title"><b>Leads</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Nasabah</b></h4>
                                     <p class="text-muted m-b-30 font-13">
-                                        Cari NIK Leads atau tambah Leads baru
+                                        Cari NIK Nasabah atau tambah Nasabah baru
                                     </p>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div role="form">
                                                 <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
-                                                    <label class="control-label"">Cari NIK Leads *</label>
+                                                    <label class="control-label"">Cari NIK Nasabah *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
                                                                 'class' => 'select2 nikSelect',
@@ -213,8 +213,8 @@
 @include('internals.layouts.foot')
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
 @include('internals.eform.script-eform')
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
-<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
 <!-- {!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!} -->

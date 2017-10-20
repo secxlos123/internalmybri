@@ -564,7 +564,7 @@
         });
     }
         $('.offices').on('select2:select', function (e) {
-            var alamat = e.params.data.alamat;
+            var alamat = e.params.data.address;
             $('#branch_address').val(alamat).trigger('change');
         });
 

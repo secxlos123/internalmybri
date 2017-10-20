@@ -5381,6 +5381,14 @@ table .checkbox {
   padding-right: 10px;
   color: #00529C;
 }
+.custom-title-2 {
+  display: block;
+  width: fit-content;
+  background-color: #fff;
+  padding-left: 11px !important;
+  padding-right: 10px;
+  color: #00529C;
+}
 .m-w-210 {
   min-width: 210px;
 }
