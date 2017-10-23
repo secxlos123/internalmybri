@@ -148,7 +148,7 @@
                                                 <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                                 <div class="col-md-9">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="datepicker-date" name="birth_date" @if(!empty($dataCustomer)) value="{{ $dataCustomer['customer']['birth_date'] }}" @endif>
+                                                        <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" @if(!empty($dataCustomer)) value="{{ $dataCustomer['customer']['birth_date'] }}" @endif>
                                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
                                                     </div>
@@ -314,7 +314,7 @@
                                                 <label class="col-md-5 control-label">Tanggal Lahir * :</label>
                                                 <div class="col-md-7">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="datepicker-autoclose" name="couple_birth_date" value="{{ old('couple_birth_date') }}">
+                                                        <input type="text" class="form-control datepicker-date" name="couple_birth_date" value="{{ old('couple_birth_date') }}">
                                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         @if ($errors->has('couple_birth_date')) <p class="help-block">{{ $errors->first('couple_birth_date') }}</p> @endif
                                                     </div>
@@ -564,14 +564,14 @@
                                             <div class="form-group ">
                                                 <label class="col-md-4 control-label">Nama * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control numericOnly" name="emergency_name" value="{{old('emergency_name')}}" maxlength="12">
+                                                    <input type="text" class="form-control" name="emergency_name" value="{{old('emergency_name')}}" maxlength="50">
                                                     @if ($errors->has('emergency_name')) <p class="help-block">{{ $errors->first('emergency_name') }}</p> @endif
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">No. Handphone * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{old('emergency_mobile_phone')}}" maxlength="12">
+                                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{old('emergency_mobile_phone')}}" maxlength="16">
                                                     @if ($errors->has('emergency_mobile_phone')) <p class="help-block">{{ $errors->first('emergency_mobile_phone') }}</p> @endif
                                                 </div>
                                             </div>
@@ -583,7 +583,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Hubungan * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="emergency_relation" >
+                                                    <input type="text" class="form-control" name="emergency_relation" maxlength="50">
                                                     @if ($errors->has('emergency_relation')) <p class="help-block">{{ $errors->first('emergency_relation') }}</p> @endif
                                                 </div>
                                             </div>
@@ -695,14 +695,14 @@
         }
     })
 
-    $('#datepicker-date').datepicker({
+    $('.datepicker-date').datepicker({
         format: "yyyy-mm-dd",
         clearBtn: true,
         autoclose: true,
         endDate: new Date(),
         todayHighlight: true
     });
-    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
+    $('.datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
 
     $('.cities').select2({
         witdh : '100%',
