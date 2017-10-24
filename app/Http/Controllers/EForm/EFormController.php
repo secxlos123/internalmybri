@@ -53,9 +53,8 @@ class EFormController extends Controller
             return view('internals.eform.index-ao', compact('data'));   
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             return view('internals.eform.index', compact('data'));
-            # code...
         } else{
-            return view('internals.eform.index', compact('data'));
+            return view('internals.eform.create', compact('data'));
         }
     }
 
