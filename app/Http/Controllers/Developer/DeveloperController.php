@@ -302,7 +302,7 @@ class DeveloperController extends Controller
         foreach ($developers['contents']['data'] as $key => $dev) {
             $dev['text'] = $dev['company_name'];
             $dev['id'] = $dev['dev_id'];
-            $dev['data-bri'] = $dev['bri'];
+            // $dev['data-bri'] = $dev['bri'];
 
             $developers['contents']['data'][$key] = $dev;
         }

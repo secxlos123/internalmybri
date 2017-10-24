@@ -26,6 +26,8 @@
 
         <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
             {{ csrf_field() }}
+
+            <!--Visits-->
             <div class="row">
                 <input type="hidden" name="id" value="{{$id}}">
                 <div class="col-md-12">
@@ -41,6 +43,7 @@
                 </div>
             </div>
 
+            <!--income-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
@@ -52,7 +55,9 @@
                 </div>
             </div>
 
-            <div class="row">
+            @if(!empty($eformData['customer']['personal']['couple_nik']))
+            <!--couple income-->
+            <div class="row" id="couple_income">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
@@ -62,8 +67,9 @@
                     </div>
                 </div>
             </div>
+            @endif
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
@@ -72,8 +78,9 @@
                         @include('internals.eform.lkn._family')
                     </div>
                 </div>
-            </div>
+            </div> -->
 
+            <!--kpp-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
@@ -85,6 +92,7 @@
                 </div>
             </div>
 
+            <!--mutation-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
@@ -99,6 +107,32 @@
                 </div>
             </div>
 
+            <!--Hanya muncul jika properti bekas-->
+            <!--investigation-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-color panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Investigasi Jual Beli</h3>
+                        </div>
+                        @include('internals.eform.lkn._investigate')
+                    </div>
+                </div>
+            </div>
+
+            <!--common-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-color panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Dokumen Pendukung</h3>
+                        </div>
+                        @include('internals.eform.lkn._common')
+                    </div>
+                </div>
+            </div>
+
+            <!--analist-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
@@ -109,17 +143,40 @@
                     </div>
                 </div>
             </div>
-            <!--Hanya muncul jika properti bekas-->
-            <!-- <div class="row">
+
+            <!--recommend-->
+            <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Investigasi Jual Beli</h3>
+                            <h3 class="panel-title">Rekomendasi AO</h3>
                         </div>
-                        @include('internals.eform.lkn._investigate')
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <p>Dengan ini saya meyakini kebenaran data nasabah dan merekomendasikan permohonan kredit untuk dapat diproses lebih lanjut</p>
+                                        @if ($errors->has('job')) <p class="help-block">{{ $errors->first('job') }}</p> @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <div class="radio radio-info radio-inline">
+                                                <input type="radio" id="yes" value="yes" name="recommended" checked="">
+                                                <label for="yes"> Ya </label>
+                                            </div>
+                                            <div class="radio radio-pink radio-inline">
+                                                <input type="radio" id="no" value="no" name="recommended">
+                                                <label for="no"> Tidak </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
+
 
             <div class="row">
                 <div class="col-md-12">

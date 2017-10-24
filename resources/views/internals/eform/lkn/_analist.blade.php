@@ -22,7 +22,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div role="form">
                                         <div class="form-group photo_with_customer {!! $errors->has('photo_with_customer') ? 'has-error' : '' !!}">
                                             <label class="col-md-6 control-label">Unggah Foto Bersama Nasabah *</label>
@@ -32,6 +32,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>

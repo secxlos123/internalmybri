@@ -35,6 +35,7 @@ class DropdownController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
+            // dd($properties);
 
         foreach ($properties['contents']['data'] as $key => $prop) {
             $prop['text'] = $prop['prop_name'];

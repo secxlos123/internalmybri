@@ -39,7 +39,7 @@
                                         <div class="form-group name {!! $errors->has('npwp') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">NPWP *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control numericOnly" name="npwp" maxlength="50" value="" readonly="">
+                                                <input type="text" class="form-control numericOnly" name="npwp" maxlength="50" value="">
                                                 @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                                         <div class="form-group result {!! $errors->has('result') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">Hasil Kunjungan *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="result" maxlength="50" value="{{ old('result') }}">
+                                                <textarea class="form-control" name="result">{{ old('result') }}</textarea>
                                                 @if ($errors->has('result')) <p class="help-block">{{ $errors->first('result') }}</p> @endif
                                             </div>
                                         </div>
