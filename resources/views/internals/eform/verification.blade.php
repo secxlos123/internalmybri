@@ -596,7 +596,7 @@
                     </div>
                 </div><!--End--> 
                 <!--Action button-->
-                <div class="row" @if(!empty($dataCustomer))  @if($dataCustomer['customer']['is_completed'] == false) hidden="" @endif @endif>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="pull-right">
                             <button type="submit" href="javascript:void(0);" id="save" class="btn btn-default waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Kirim Verifikasi Data</button>
