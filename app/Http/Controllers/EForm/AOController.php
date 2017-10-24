@@ -205,7 +205,7 @@ class AOController extends Controller
                       ->post();
 
         $dataCustomer = $customerData['contents'];
-        // dd($customerData);
+        // dd($dataCustomer);
 
         return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
     }
@@ -254,6 +254,32 @@ class AOController extends Controller
         $last_name = $this->split_name($request)['1'];
         // dd($request->gender);
 
+        if($request->couple_identity){
+          $imgReq = $request->identity;
+            $image_path = $imgReq->getPathname();
+            $image_mime = $imgReq->getmimeType();
+            $image_name = $imgReq->getClientOriginalName();
+            $image[] = [
+                  'name'     => 'identity',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ];
+        }
+
+        if($request->couple_identity){
+          $imgReq = $request->couple_identity;
+            $image_path = $imgReq->getPathname();
+            $image_mime = $imgReq->getmimeType();
+            $image_name = $imgReq->getClientOriginalName();
+            $couple[] = [
+                    'name'     => 'couple_identity',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen( $image_path, 'r' ),
+                  ];
+        }
+
         if(($request->gender == "M") || ($request->gender == "Laki-laki") || ($request->gender == "L") ){
           $gender = "L";
         }elseif(($request->gender == "F")  || ($request->gender == "Perempuan") || ($request->gender == "P")){
@@ -289,8 +315,14 @@ class AOController extends Controller
                       'contents' => $req
                     ];
           }
-          $newData = array_merge($inputData, $name, $verifyStatus, $gen);
 
+        if($request->identity){
+          $newData = array_merge($inputData, $name, $verifyStatus, $gen, $image);
+        }elseif($request->couple_identity){
+          $newData = array_merge($inputData, $name, $verifyStatus, $gen, $couple);
+        }else{
+          $newData = array_merge($inputData, $name, $verifyStatus, $gen);
+        }
 
         return $newData;
     }
@@ -308,7 +340,7 @@ class AOController extends Controller
 
         $newData = $this->dataRequest($request);
         // echo '<pre>';
-        // print_r($newData);die();
+        // dd(json_encode($request->all()));exit();
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
@@ -348,6 +380,7 @@ class AOController extends Controller
                     'end_date'  => $request->input('end_date'),
                     'status'    => $request->input('status')
                 ])->get();
+                // dd($eforms);
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref_number'] = strtoupper($form['ref_number']);
