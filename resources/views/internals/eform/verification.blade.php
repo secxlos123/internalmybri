@@ -169,7 +169,7 @@
                                                 <label class="col-md-3 control-label">KTP * :</label>
                                                 <div class="col-md-9">
                                                     <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" id="identity" accept="image/png,image/jpeg,image/gif">
-                                                    @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
+                                                    @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -285,7 +285,7 @@
                                             <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
                                                 <label class="col-md-3 control-label">KTP Pasangan * :</label>
                                                 <div class="col-md-9">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" id="couple_identity" accept="image/png,image/jpeg,image/gif">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="couple_identity" id="couple_identity" accept="image/png,image/jpeg,image/gif">
                                                     @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                                 </div>
                                             </div>                                            
@@ -384,7 +384,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Jabatan * :</label>
                                                 <div class="col-md-8">
-                                                    {!! Form::select('position', ['' => ''], old('positions'), [
+                                                    {!! Form::select('position',[$dataCustomer['customer']['position']['desc1'] => $dataCustomer['customer']['position']['desc2']], old('positions'), [
                                                         'class' => 'select2 positions',
                                                         'data-placeholder' => 'Pilih Posisi',
                                                         'readonly' => true
