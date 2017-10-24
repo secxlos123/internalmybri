@@ -136,7 +136,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                 <div class="col-md-9">
-                                                    {!! Form::select('birth_place_id', ['' => ''], old('birth_place'), [
+                                                    {!! Form::select('birth_place_id', [$dataCustomer['customer']['birth_place_id'] => $dataCustomer['customer']['birth_place']], old('birth_place'), [
                                                         'class' => 'select2 birth_place',
                                                         'data-placeholder' => 'Pilih Kota Tempat Lahir',
                                                         'readonly' => true
@@ -157,7 +157,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Kota * :</label>
                                                 <div class="col-md-9">
-                                                    {!! Form::select('city_id', ['' => ''], old('city_id'), [
+                                                    {!! Form::select('city_id', [$dataCustomer['customer']['city_id'] => $dataCustomer['customer']['city']], old('city_id'), [
                                                         'class' => 'select2 cities',
                                                         'data-placeholder' => 'Pilih Kota Tempat Tinggal',
                                                         'readonly' => true
@@ -175,7 +175,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label"></label>
                                                 <div class="col-md-9">
-                                                    <img id="preview" src="{{asset('assets/images/no-image.jpg')}}" alt="KTP Pasangan" width="300">
+                                                    <img id="preview" src="{{$dataCustomer['customer']['identity']}}" width="300">
                                                 </div>
                                             </div>
                                         </div>  
@@ -220,7 +220,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control-label">Kewarganegaraan * :</label>
                                                 <div class="col-md-7">
-                                                    {!! Form::select('citizenship_id', ['' => ''], old('citizenship'), [
+                                                    {!! Form::select('citizenship_id', [$dataCustomer['customer']['citizenship_id']['desc1'] => $dataCustomer['customer']['citizenship_id']['desc2']], old('citizenship'), [
                                                         'class' => 'select2 citizenship',
                                                         'data-placeholder' => 'Pilih Kewarganegaraan',
                                                         'readonly' => true
@@ -231,7 +231,7 @@
                                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                 <label class="col-md-5 control-label">Email * :</label>
                                                 <div class="col-md-7">
-                                                    <input type="email" class="form-control" name="email"  maxlength="50" readonly="">
+                                                    <input type="email" class="form-control" name="email"  maxlength="50" readonly="" value="{{$dataCustomer['customer']['email']}}">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                 </div>
                                             </div>  
@@ -248,7 +248,6 @@
                     <!-- <input type="hidden" name="birth_date"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['birth_date']}}" @endif id="birth_date"> -->
                     <input type="hidden" name="address"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['address']}}" @endif id="address">
                     <!-- <input type="hidden" name="gender"  @if(!empty($dataCustomer)) value="@if($dataCustomer['customer']['gender'] == 'Laki-laki')L @else P @endif" @endif id="gender"> -->
-                    <!-- <input type="hidden" name="citizenship_id"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['citizenship_id']}}" @endif id="citizenship_id"> -->
                     <!-- <input type="hidden" name="address_status"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['address_status']}}" @endif id="address_status"> -->
                     <input type="hidden" name="mother_name"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['mother_name']}}" @endif id="mother_name">
                     <input type="hidden" name="phone"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['phone']}}" @endif id="phone">
@@ -342,7 +341,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
                                                 <div class="col-md-8">
-                                                    {!! Form::select('job_field_id', ['' => ''], old('work_field'), [
+                                                    {!! Form::select('job_field_id', [$dataCustomer['customer']['job_field_id']['desc1'] => $dataCustomer['customer']['job_field_id']['desc2']], old('work_field'), [
                                                         'class' => 'select2 work_field',
                                                         'data-placeholder' => 'Pilih Bidang Pekerjaan'
                                                     ]) !!}
@@ -352,7 +351,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Jenis Pekerjaan * :</label>
                                                 <div class="col-md-8">
-                                                    {!! Form::select('job_type_id', ['' => ''], old('work_type'), [
+                                                    {!! Form::select('job_type_id', [$dataCustomer['customer']['job_type_id']['desc1'] => $dataCustomer['customer']['job_type_id']['desc2']], old('work_type'), [
                                                         'class' => 'select2 work_type',
                                                         'data-placeholder' => 'Pilih Jenis Pekerjaan',
                                                         'readonly' => true
@@ -363,7 +362,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Pekerjaan * :</label>
                                                 <div class="col-md-8">
-                                                    {!! Form::select('job_id', ['' => ''], old('work'), [
+                                                    {!! Form::select('job_id', [$dataCustomer['customer']['job_id']['desc1'] => $dataCustomer['customer']['job_id']['desc2']], old('work'), [
                                                         'class' => 'select2 work',
                                                         'data-placeholder' => 'Pilih Pekerjaan',
                                                         'readonly' => true
@@ -374,7 +373,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Nama Perusahaan * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="company_name" maxlength="50">
+                                                    <input type="text" class="form-control" name="company_name" maxlength="50" value="{{$dataCustomer['customer']['company_name']}}">
                                                     @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
                                                 </div>
                                             </div>
@@ -397,7 +396,7 @@
                                                 <label class="col-md-4 control-label">Lama Kerja * :</label>
                                                 <div class="col-md-8">
                                                     <div class="col-md-4">
-                                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0">
+                                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" value="{{$dataCustomer['customer']['work_duration']}}">
                                                     </div>
                                                         <label class="col-md-2 control-label">Tahun</label>
                                                     <div class="col-md-4">
@@ -410,7 +409,7 @@
                                             <div class="form-group office_address {!! $errors->has('office_address') ? 'has-error' : '' !!}">
                                                 <label class="col-md-4 control-label">Alamat Kantor * :</label>
                                                 <div class="col-md-8">
-                                                    <textarea class="form-control" rows="3" name="office_address" maxlength="255"></textarea>
+                                                    <textarea class="form-control" rows="3" name="office_address" maxlength="255">{{$dataCustomer['customer']['office_address']}}</textarea>
                                                     @if ($errors->has('office_address')) <p class="help-block">{{ $errors->first('office_address') }}</p> @endif
                                                 </div>
                                             </div>
@@ -437,20 +436,20 @@
                                                     <div class="form-horizontal">
                                                         <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
                                                             <label class="col-md-4 control-label">Gaji/Pendapatan * :</label>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24">
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24" value="{{$dataCustomer['customer']['salary']}}">
                                                                     @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
                                                             <label class="col-md-4 control-label">Pendapatan Lain * :</label>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" >
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" value="{{$dataCustomer['customer']['other_salary']}}">
                                                                     @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -468,18 +467,18 @@
                                                     <div class="form-horizontal">
                                                         <div class="form-group loan_installment {!! $errors->has('loan_installment') ? 'has-error' : '' !!}">
                                                             <label class="col-md-5 control-label">Angsuran Pinjaman * :</label>
-                                                            <div class="col-md-5">
+                                                            <div class="col-md-7">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24">
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24" value="{{$dataCustomer['customer']['loan_installment']}}">
                                                                     @if ($errors->has('loan_installment')) <p class="help-block">{{ $errors->first('loan_installment') }}</p> @endif
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group dependent_amount {!! $errors->has('dependent_amount') ? 'has-error' : '' !!}">
                                                             <label class="col-md-5 control-label">Jumlah Tanggungan * :</label>
-                                                            <div class="col-md-5">
-                                                                <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2">
+                                                            <div class="col-md-7">
+                                                                <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" value="{{$dataCustomer['customer']['dependent_amount']}}">
                                                                 @if ($errors->has('dependent_amount')) <p class="help-block">{{ $errors->first('dependent_amount') }}</p> @endif
                                                             </div>
                                                         </div>
@@ -512,7 +511,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24">
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" value="{{$dataCustomer['customer']['couple_salary']}}">
                                                                     @if ($errors->has('couple_salary')) <p class="help-block">{{ $errors->first('couple_salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -522,7 +521,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" >
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" value="{{$dataCustomer['customer']['couple_other_salary']}}">
                                                                     @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -536,7 +535,7 @@
                                                             <div class="col-md-7">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24">
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" value="{{$dataCustomer['customer']['couple_loan_installment']}}">
                                                                     @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -565,14 +564,14 @@
                                             <div class="form-group ">
                                                 <label class="col-md-4 control-label">Nama * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="emergency_name" value="{{old('emergency_name')}}" maxlength="50">
+                                                    <input type="text" class="form-control" name="emergency_name" value="{{$dataCustomer['customer']['emergency_name']}}" maxlength="50">
                                                     @if ($errors->has('emergency_name')) <p class="help-block">{{ $errors->first('emergency_name') }}</p> @endif
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">No. Handphone * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{old('emergency_mobile_phone')}}" maxlength="16">
+                                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{$dataCustomer['customer']['emergency_contact']}}" maxlength="16">
                                                     @if ($errors->has('emergency_mobile_phone')) <p class="help-block">{{ $errors->first('emergency_mobile_phone') }}</p> @endif
                                                 </div>
                                             </div>
@@ -584,7 +583,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Hubungan * :</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" name="emergency_relation" maxlength="50">
+                                                    <input type="text" class="form-control" name="emergency_relation" maxlength="50" value="{{$dataCustomer['customer']['emergency_relation']}}">
                                                     @if ($errors->has('emergency_relation')) <p class="help-block">{{ $errors->first('emergency_relation') }}</p> @endif
                                                 </div>
                                             </div>
@@ -627,8 +626,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                <button type="button" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</button>
+                <a href="javascript:void(0);" class="btn btn-default waves-effect" data-dismiss="modal">Batal</a>
+                <a href="javascript:void(0);" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</a>
             </div>
         </div>
     </div>
@@ -658,11 +657,11 @@
        });
 
        // console.log($('#status').val());
-       if($('#status').val() == 1){
+       if($('#status').val() == 2){
             $('#marrital_certificate').show();
             $('#couple_data').show();
             $('#join_income').show();
-        }else if($('#status').val()== 2){
+        }else if($('#status').val()== 3){
             $('#separate_certificate').show();
             $('#couple_data').hide();
             $('#join_income').hide();
@@ -683,11 +682,11 @@
     hideCouple();
 
     $('#status').on('change', function() {
-        if(this.value==1){
+        if(this.value==2){
             $('#marrital_certificate').show();
             $('#couple_data').show();
             $('#join_income').show();
-        }else if(this.value==2){
+        }else if(this.value==3){
             $('#separate_certificate').show();
             $('#couple_data').hide();
             $('#join_income').hide();
