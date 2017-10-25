@@ -48,7 +48,7 @@
                                                 ]) !!}
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Catatan Disposisi</label>
+                                                <label class="control-label">Catatan Disposisi * </label>
                                                 <textarea class="form-control" rows="5"></textarea>
                                             </div>
                                             <div class="form-group">
