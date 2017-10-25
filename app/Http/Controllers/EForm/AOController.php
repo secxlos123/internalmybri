@@ -260,15 +260,15 @@ class AOController extends Controller
         ];
 
         $name = array(
-            [
-              'name'     => 'first_name',
-              'contents' => $first_name,
-            ],
-            [
-              'name'     => 'last_name',
-              'contents' => $last_name,
-            ],
-          );
+          [
+            'name'     => 'first_name',
+            'contents' => $first_name,
+          ],
+          [
+            'name'     => 'last_name',
+            'contents' => $last_name,
+          ],
+        );
 
         $allReq = $request->except(['full_name', '_token']);
           foreach ($allReq as $index => $req) {
@@ -350,8 +350,8 @@ class AOController extends Controller
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
-              'Authorization' => $data['token'],
-              'pn' => $data['pn']
+            'Authorization' => $data['token'],
+            'pn' => $data['pn']
           ])
          ->setBody($newData)
          ->put('multipart');
@@ -374,17 +374,17 @@ class AOController extends Controller
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                  'Authorization' => $data['token'],
+                  'pn' => $data['pn']
                 ])
                 ->setQuery([
-                    'limit'     => $request->input('length'),
-                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'search'    => $request->input('search.value'),
-                    'page'      => (int) $request->input('page') + 1,
-                    'start_date'=> $request->input('start_date'),
-                    'end_date'  => $request->input('end_date'),
-                    'status'    => $request->input('status')
+                  'limit'     => $request->input('length'),
+                  'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                  'search'    => $request->input('search.value'),
+                  'page'      => (int) $request->input('page') + 1,
+                  'start_date'=> $request->input('start_date'),
+                  'end_date'  => $request->input('end_date'),
+                  'status'    => $request->input('status')
                 ])->get();
                 // dd($eforms);
 
@@ -400,11 +400,11 @@ class AOController extends Controller
             $visit = $form['is_visited'];
 
             $form['action'] = view('internals.layouts.actions', [
-                'verified' => $verify,
-                'visited' => $visit,
+              'verified' => $verify,
+              'visited' => $visit,
 
-                'verification' => route('getVerification', $form['id']),
-                'lkn' => route('getLKN', $form['id']),
+              'verification' => route('getVerification', $form['id']),
+              'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }

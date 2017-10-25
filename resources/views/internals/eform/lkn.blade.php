@@ -170,6 +170,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <textarea class="form-control" name="recommendation" placeholder="Tulis Rekomendasi">{{ old('recommendation') }}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
