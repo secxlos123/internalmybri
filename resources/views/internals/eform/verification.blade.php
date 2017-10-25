@@ -509,7 +509,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer)['customer']['couple_other_salary']) value="{{$dataCustomer)['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_other_salary'])) value="{{$dataCustomer['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
                                                                     @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                                                                 </div>
                                                             </div>
