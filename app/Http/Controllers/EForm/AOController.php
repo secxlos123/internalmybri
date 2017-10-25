@@ -254,48 +254,10 @@ class AOController extends Controller
         $last_name = $this->split_name($request)['1'];
         // dd($request->gender);
 
-        if($request->couple_identity){
-          $imgReq = $request->identity;
-            $image_path = $imgReq->getPathname();
-            $image_mime = $imgReq->getmimeType();
-            $image_name = $imgReq->getClientOriginalName();
-            $image[] = [
-                  'name'     => 'identity',
-                  'filename' => $image_name,
-                  'Mime-Type'=> $image_mime,
-                  'contents' => fopen( $image_path, 'r' ),
-                ];
-        }
-
-        if($request->couple_identity){
-          $imgReq = $request->couple_identity;
-            $image_path = $imgReq->getPathname();
-            $image_mime = $imgReq->getmimeType();
-            $image_name = $imgReq->getClientOriginalName();
-            $couple[] = [
-                    'name'     => 'couple_identity',
-                    'filename' => $image_name,
-                    'Mime-Type'=> $image_mime,
-                    'contents' => fopen( $image_path, 'r' ),
-                  ];
-        }
-
-        if(($request->gender == "M") || ($request->gender == "Laki-laki") || ($request->gender == "L") ){
-          $gender = "L";
-        }elseif(($request->gender == "F")  || ($request->gender == "Perempuan") || ($request->gender == "P")){
-          $gender = "P";
-        }
-
-        $gen[] = [
-                      'name'     => 'gender',
-                      'contents' => $gender
-                    ];
-
-
         $verifyStatus[] = [
-                      'name'     => 'verify_status',
-                      'contents' => 'verify'
-                    ];
+          'name'     => 'verify_status',
+          'contents' => 'verify'
+        ];
 
         $name = array(
             [
@@ -308,20 +270,43 @@ class AOController extends Controller
             ],
           );
 
-        $allReq = $request->except(['full_name', 'gender', '_token']);
+        $allReq = $request->except(['full_name', '_token']);
           foreach ($allReq as $index => $req) {
             $inputData[] = [
-                      'name'     => $index,
-                      'contents' => $req
-                    ];
+              'name'     => $index,
+              'contents' => $req
+            ];
           }
 
         if($request->identity){
-          $newData = array_merge($inputData, $name, $verifyStatus, $gen, $image);
-        }elseif($request->couple_identity){
-          $newData = array_merge($inputData, $name, $verifyStatus, $gen, $couple);
+          $imgReq = $request->identity;
+          $image_path = $imgReq->getPathname();
+          $image_mime = $imgReq->getmimeType();
+          $image_name = $imgReq->getClientOriginalName();
+          $image[] = [
+            'name'     => 'identity',
+            'filename' => $image_name,
+            'Mime-Type'=> $image_mime,
+            'contents' => fopen( $image_path, 'r' ),
+          ];
+
+          $newData = array_merge($inputData, $name, $verifyStatus, $image);
+
+        }else if($request->couple_identity){
+          $imgReq = $request->couple_identity;
+          $image_path = $imgReq->getPathname();
+          $image_mime = $imgReq->getmimeType();
+          $image_name = $imgReq->getClientOriginalName();
+          $couple[] = [
+            'name'     => 'couple_identity',
+            'filename' => $image_name,
+            'Mime-Type'=> $image_mime,
+            'contents' => fopen( $image_path, 'r' ),
+          ];
+          $newData = array_merge($inputData, $name, $verifyStatus, $couple);
+
         }else{
-          $newData = array_merge($inputData, $name, $verifyStatus, $gen);
+          $newData = array_merge($inputData, $name, $verifyStatus);
         }
 
         return $newData;
@@ -339,8 +324,7 @@ class AOController extends Controller
         $data = $this->getUser();
 
         $newData = $this->dataRequest($request);
-        // echo '<pre>';
-        // dd(json_encode($request->all()));exit();
+        dd($newData);
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([

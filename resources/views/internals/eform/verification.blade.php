@@ -91,15 +91,6 @@
                                                     <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="gender">Sesuaikan</a>
                                                 </td>
                                             </tr> -->
-                                         <!--    <tr>
-                                                <td class="align-middle bg-primary">Status Tempat Tinggal</td>
-                                                <td class="align-middle"><span id="address_statusDF">@if(!empty($dataCustomer)) {{$dataCustomer['customer']['address_status']}} @endif</span></td>
-                                                <td class="align-middle" id="address_statusCIF">@if(!empty($dataCustomer)) {{$dataCustomer['cif']['address_status']}} @endif</td>
-                                                <td class="align-middle" id="address_statusKM">@if(!empty($dataCustomer)) {{$dataCustomer['kemendagri']['address_status']}} @endif</td>
-                                                <td>
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="address_status">Sesuaikan</a>
-                                                </td>
-                                            </tr> -->
                                             <tr>
                                                 <td class="align-middle bg-primary">No. Telepon</td>
                                                 <td class="align-middle"><span id="phoneDF">@if(!empty($dataCustomer)) {{$dataCustomer['customer']['phone']}} @endif</span></td>
@@ -256,9 +247,6 @@
                 <!--Bundle of data pasangan--> 
                 <div class="row" id="couple_data">
                     <div class="col-md-12">
-                        @if (\Session::has('error'))
-                         <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                        @endif
                         <div class="panel panel-color panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Pasangan</h3>
@@ -384,7 +372,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label">Jabatan * :</label>
                                                 <div class="col-md-8">
-                                                    {!! Form::select('position', ['' => ''], old('positions'), [
+                                                    {!! Form::select('position', [$dataCustomer['customer']['position']['desc1'] => $dataCustomer['customer']['position']['desc2']], old('positions'), [
                                                         'class' => 'select2 positions',
                                                         'data-placeholder' => 'Pilih Posisi',
                                                         'readonly' => true
