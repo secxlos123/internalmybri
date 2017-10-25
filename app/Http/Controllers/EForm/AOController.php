@@ -324,7 +324,7 @@ class AOController extends Controller
         $data = $this->getUser();
 
         $newData = $this->dataRequest($request);
-        dd($newData);
+        // dd($newData);
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
@@ -364,7 +364,7 @@ class AOController extends Controller
                     'end_date'  => $request->input('end_date'),
                     'status'    => $request->input('status')
                 ])->get();
-                // dd($eforms);
+                dd($eforms);
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref_number'] = strtoupper($form['ref_number']);
