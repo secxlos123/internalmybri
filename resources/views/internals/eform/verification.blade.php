@@ -302,7 +302,7 @@
                                                 <label class="col-md-5 control-label">Tanggal Lahir * :</label>
                                                 <div class="col-md-7">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control datepicker-date" name="couple_birth_date" @if(!empty($dataCustomer['customer']['couple_birth_date'])) value="{{($dataCustomer['customer']['couple_birth_date']}}" @else value="{{ old('couple_birth_date') }}" @endif>
+                                                        <input type="text" class="form-control datepicker-date" name="couple_birth_date" @if(!empty($dataCustomer['customer']['couple_birth_date'])) value="{{$dataCustomer['customer']['couple_birth_date']}}" @else value="{{ old('couple_birth_date') }}" @endif>
                                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         @if ($errors->has('couple_birth_date')) <p class="help-block">{{ $errors->first('couple_birth_date') }}</p> @endif
                                                     </div>
