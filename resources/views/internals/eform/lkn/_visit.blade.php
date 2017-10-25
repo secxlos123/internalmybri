@@ -36,13 +36,7 @@
                                                 @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group name {!! $errors->has('npwp') ? 'has-error' : '' !!}">
-                                            <label class="col-md-4 control-label">NPWP *:</label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control numericOnly" name="npwp" maxlength="50" value="">
-                                                @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group job {!! $errors->has('job') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                                             <div class="col-md-8">
@@ -57,10 +51,10 @@
                                                 @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group account {!! $errors->has('account') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">No Rekening Pinjaman / ID Aplikasi *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control numericOnly" name="account" maxlength="20" value="{{ $eformData['ref_number'] }}" readonly="">
+                                                <input type="text" class="form-control numericOnly" name="ref_number" maxlength="20" value="{{ $eformData['ref_number'] }}" readonly="">
                                                 @if ($errors->has('account')) <p class="help-block">{{ $errors->first('account') }}</p> @endif
                                             </div>
                                         </div>
@@ -79,6 +73,13 @@
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="type" maxlength="50" value="{{ strtoupper($eformData['product_type']) }}" readonly="">
                                                 @if ($errors->has('type')) <p class="help-block">{{ $errors->first('type') }}</p> @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Nomor NPWP *:</label>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="">
+                                                @if ($errors->has('npwp_number')) <p class="help-block">{{ $errors->first('npwp_number') }}</p> @endif
                                             </div>
                                         </div>
                                         <div class="form-group purpose_of_visit {!! $errors->has('purpose_of_visit') ? 'has-error' : '' !!}">

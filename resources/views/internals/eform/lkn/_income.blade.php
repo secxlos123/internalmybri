@@ -6,8 +6,8 @@
                                             <label class="col-md-4 control-label">Sumber *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" name="source" id="source">
-                                                    <option selected="" disabled="">-- Pilih --</option>
-                                                    <option value="fixed">Fixed Income</option>
+                                                    <option disabled="">-- Pilih --</option>
+                                                    <option selected="" value="fixed">Fixed Income</option>
                                                     <option value="nonfixed">Non Fixed Income</option>
                                                 </select>
                                                 @if ($errors->has('source')) <p class="help-block">{{ $errors->first('source') }}</p> @endif

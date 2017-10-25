@@ -109,7 +109,7 @@
 
             <!--Hanya muncul jika properti bekas-->
             <!--investigation-->
-            <div class="row">
+            <div class="row" hidden>
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">

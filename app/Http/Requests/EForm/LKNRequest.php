@@ -24,38 +24,39 @@ class LKNRequest extends FormRequest
     public function rules()
     {
         return [
-           'visitor_name' => 'required',
-           'place' => 'required',
-           'date' => 'required|date|after_or_equal:today',
-           'name' => 'required',
-           'job' => 'required',
-           'phone' => 'required',
-           'account' => 'required',
-           'amount' => 'required',
-           'type' => 'required',
-           'purpose_of_visit' => 'required',
-           'result' => 'required',
-           'source' => 'required|in:fixed,not_fixed',
-           'income' => 'required_if:source,fixed',
-           'income_salary' => 'required_if:source,fixed',
-           'income_allowance' => 'required_if:source,fixed',
-           'income_mutation_type' => 'required_if:source,fixed',
-           'income_mutation_number' => 'required_if:source,fixed',
-           'income_salary_image' => 'required_if:source,fixed|image',
-           'business_income' => 'required_if:source,not_fixed',
-           'business_mutation_type' => 'required_if:source,not_fixed',
-           'bussiness_mutation_number' => 'required_if:source,not_fixed',
-           'bussiness_other' => 'required_if:source,not_fixed',
-           'mutation_file' => 'required|file',
-           'photo_with_customer' => 'required|image',
-           'pros' => 'required',
-           'cons' => 'required',
-           'seller_name' => 'required',
-           'seller_address' => 'required',
-           'seller_phone' => 'required',
-           'selling_price' => 'required|numeric',
-           'reason_for_sale' => 'required',
-           'relation_with_seller' => 'required'
+           'npwp_number'                => 'required',
+           'purpose_of_visit'           => 'required',
+           'result'                     => 'required',
+
+           'source'                     => 'required|in:fixed,not_fixed',
+
+           'kpp_type'                   => 'required',
+           'type_financed'              => 'required',
+           'economy_sector'             => 'required',
+           'project_list'               => 'required',
+           'program_list'               => 'required',
+           'use_reason'                 => 'required',
+
+           'mutations'                  => 'required',
+
+           'seller_name'                => 'required',
+           'seller_address'             => 'required',
+           'seller_phone'               => 'required',
+           'selling_price'              => 'required|numeric',
+           'reason_for_sale'            => 'required',
+           'relation_with_seller'       => 'required',
+
+           'income_salary_image'        => 'required_if:source,fixed|image',
+           'business_income'            => 'required_if:source,not_fixed',
+           'business_mutation_type'     => 'required_if:source,not_fixed',
+           'bussiness_mutation_number'  => 'required_if:source,not_fixed',
+           'bussiness_other'            => 'required_if:source,not_fixed',
+           'mutation_file'              => 'required|file',
+           'npwp'              => 'required|file',
+
+           'photo_with_customer'        => 'required|image',
+           'pros'                       => 'required',
+           'cons'                       => 'required',
         ];
     }
 }
