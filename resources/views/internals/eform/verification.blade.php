@@ -481,12 +481,12 @@
 
                             <div class="col-md-7" id="join_income">
                                 <div class="checkbox checkbox-single checkbox-primary">
-                                    <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(!empty($dataCustomer['customer']['couple_nik'])) ? checked="" @endif @endif value="join_income" id="join_check">
+                                    <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
                                     <label class="header-title custom-title-2"><b>  Joint Income</b></label>
                                 </div>
                             </div>
 
-                            @if(!empty($dataCustomer['customer']['couple_salary']))
+                            @if(($dataCustomer['customer']['couple_salary']) > 0)
                             <!--Pasangan-->
                             <div class="col-md-12" id="couple_financial">
                                 <div class="card-box m-t-30">                                    
