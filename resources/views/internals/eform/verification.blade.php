@@ -486,6 +486,7 @@
                                 </div>
                             </div>
 
+                            @if(!empty($dataCustomer['customer']['couple_salary']))
                             <!--Pasangan-->
                             <div class="col-md-12" id="couple_financial">
                                 <div class="card-box m-t-30">                                    
@@ -523,7 +524,7 @@
                                                             <div class="col-md-7">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
-                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer)['customer']['couple_loan_installment']) value="{{$dataCustomer)['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
+                                                                    <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer['customer']['couple_loan_installment'])) value="{{$dataCustomer['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
                                                                     @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
                                                                 </div>
                                                             </div>
@@ -534,6 +535,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div><!--End--> 
@@ -664,7 +666,6 @@
         $('#separate_certificate').hide();
         $('#marrital_certificate').hide();
         $('#join_income').hide();
-        $('#couple_financial').hide();
 
     }
     hideCouple();
