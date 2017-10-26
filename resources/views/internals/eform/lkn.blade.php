@@ -109,7 +109,7 @@
 
             <!--Hanya muncul jika properti bekas-->
             <!--investigation-->
-            <div class="row">
+            <div class="row" hidden>
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
@@ -226,7 +226,7 @@
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
