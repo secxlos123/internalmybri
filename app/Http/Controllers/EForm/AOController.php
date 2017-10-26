@@ -151,7 +151,7 @@ class AOController extends Controller
     public function returnContent( $field, $values, $baseName )
     {
       $excludeNumber = ['amount', 'npwp_number', 'income', 'income_salary', 'income_allowance', 'number'];
-      $excludeImage = ['file', 'npwp', 'legal_document', 'salary_slip', 'family_card', 'marrital_certificate', 'diforce_certificate', 'photo_with_customer', 'offering_letter', 'shm', 'imb', 'down_payment', 'pbb'];
+      $excludeImage = ['file', 'npwp', 'legal_document', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax'];
 
       if ( in_array($baseName, $excludeNumber) ) {
         $values = str_replace(',', '.', str_replace('.', '', $values));
