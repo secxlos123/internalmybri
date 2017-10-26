@@ -486,9 +486,8 @@
                                 </div>
                             </div>
 
-                            @if(($dataCustomer['customer']['couple_salary']) > 0)
                             <!--Pasangan-->
-                            <div class="col-md-12" id="couple_financial">
+                            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0) style="display:block;" @else style="display:none;" @endif >
                                 <div class="card-box m-t-30">                                    
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                                         <div class="panel-body">
@@ -535,7 +534,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                         </div>
                     </div>
                 </div><!--End--> 
@@ -639,7 +637,6 @@
 
        $('#join_check').on('change', function() {
             if(this.checked){
-                console.log('true');
                 $('#couple_financial').show();
             }else{
                 $('#couple_financial').hide();

@@ -225,15 +225,23 @@
 @include('internals.eform.lkn.render-mutation')
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+<!-- 
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
 
 <script type="text/javascript">
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             $("#formLKN").submit();
        });
+
+       npwp_masking($('#npwp_number'));
    });
+
+function npwp_masking(element) {
+   $(element).val($(element).val().replace(/[^\d+]/gi, ""));
+   $(element).inputmask("9{0,2}.9{0,3}.9{0,3}.9{0,1}-9{0,3}.9{0,3}");
+}
+
 
 function initialize() {
     var lng = $('#lng').val();

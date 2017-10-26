@@ -62,7 +62,7 @@ class AOController extends Controller
                     'pn' => $data['pn']
                 ])->get();
         $eformData = $eforms['contents'];
-
+        // dd($eformData);
         // $typeFinanced = Client::setEndpoint('use-reasons')
         //         ->setHeaders([
         //             'Authorization' => $data['token'],

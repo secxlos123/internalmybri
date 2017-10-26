@@ -63,7 +63,7 @@ class CompleteCustomer extends FormRequest
             'couple_name' => 'required_if:status,2',
             'couple_birth_date' => 'required_if:status,2',
             'couple_birth_place' => 'required_if:status,2',
-            'couple_identity'  => 'required_if:status,2|mimes:jpeg,jpg,png,gif|max:10000'
+            // 'couple_identity'  => 'required_if:status,2|mimes:jpeg,jpg,png,gif|max:10000'
         ];
     }
     public function messages()

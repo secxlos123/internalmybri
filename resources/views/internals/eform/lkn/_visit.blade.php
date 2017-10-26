@@ -78,7 +78,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Nomor NPWP *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="">
+                                                <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="" id="npwp_number">
                                                 @if ($errors->has('npwp_number')) <p class="help-block">{{ $errors->first('npwp_number') }}</p> @endif
                                             </div>
                                         </div>
