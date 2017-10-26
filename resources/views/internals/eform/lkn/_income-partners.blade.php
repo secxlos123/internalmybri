@@ -30,24 +30,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group income_partner {!! $errors->has('income_partner') ? 'has-error' : '' !!}" id="income_partner">
+                <div class="form-group" id="income_partner">
                     <label class="col-md-4 control-label">Penghasilan per-Bulan *:</label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" name="income_partner" maxlength="24" value="" readonly="">
+                            <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" value="" readonly="">
                             <!-- <span class="input-group-addon">,00</span> -->
-                            @if ($errors->has('income_partner')) <p class="help-block">{{ $errors->first('income_partner') }}</p> @endif
+                            @if ($errors->has('couple_salary')) <p class="help-block">{{ $errors->first('couple_salary') }}</p> @endif
                         </div>
                     </div>
                 </div>
-                <div class="form-group income_other {!! $errors->has('income_other') ? 'has-error' : '' !!}" id="income_other">
+                <div class="form-group" id="income_other">
                     <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" name="income_other" maxlength="24" value="" readonly="">
-                            @if ($errors->has('income_other')) <p class="help-block">{{ $errors->first('income_other') }}</p> @endif
+                            <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" value="" readonly="">
+                            @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                             <!-- <span class="input-group-addon">,00</span> -->
                         </div>
                     </div>

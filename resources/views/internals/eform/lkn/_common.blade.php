@@ -48,7 +48,7 @@
                 <div class="form-group" id="separate_certificate">
                     <label class="col-md-6 control-label">Akta Pisah Harta :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="diforce_certificate">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="divorce_certificate">
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,15 +64,15 @@
                     </div>
                 </div>
                 <div class="form-group" hidden="">
-                    <label class="col-md-6 control-label">SHM :</label>
+                    <label class="col-md-6 control-label">Sertifikat Hak Milik :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="shm" accept="image/png,image/jpg">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="proprietary" accept="image/png,image/jpg">
                     </div>
                 </div>
                 <div class="form-group" hidden="">
-                    <label class="col-md-6 control-label">IMB :</label>
+                    <label class="col-md-6 control-label">Izin Mendirikan Bangunan :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="imb" accept="image/png,image/jpg">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_permit" accept="image/png,image/jpg">
                     </div>
                 </div>
                 <div class="form-group">
@@ -82,9 +82,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">PBB Terakhir *</label>
+                    <label class="col-md-6 control-label">Pajak Bumi dan Bangunan Terakhir *</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="pbb" accept="image/png,image/jpg">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_tax" accept="image/png,image/jpg">
                     </div>
                 </div>
             </div>

@@ -14,8 +14,8 @@
                                             <div class="col-md-8">
                                                 <input id="searchInput" class="input-controls " type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan" name="place">
                                                 <div class="map" id="map" style="width: 100%; height: 200px;"></div>
-                                                <textarea class="form-control" rows="3" name="place" maxlength="255" id="location" readonly="">{{ old('place') }}</textarea>
-                                                @if ($errors->has('place')) <p class="help-block">{{ $errors->first('place') }}</p> @endif
+                                                <textarea class="form-control" rows="3" name="address" maxlength="255" id="location" readonly="">{{ old('address') }}</textarea>
+                                                @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
                                                 <input type="hidden" name="lng" id="lng" value="{{$eformData['longitude']}}"><input type="hidden" name="lat" id="lat" value="{{$eformData['latitude']}}">
                                             </div>
                                         </div>
@@ -68,11 +68,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group type {!! $errors->has('type') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Jenis Pinjaman *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control" name="type" maxlength="50" value="{{ strtoupper($eformData['product_type']) }}" readonly="">
-                                                @if ($errors->has('type')) <p class="help-block">{{ $errors->first('type') }}</p> @endif
+                                                <input type="text" class="form-control" name="product_type" maxlength="50" value="{{ strtoupper($eformData['product_type']) }}" readonly="">
+                                                @if ($errors->has('product_type')) <p class="help-block">{{ $errors->first('product_type') }}</p> @endif
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -104,7 +104,7 @@
                                         <div class="form-group result {!! $errors->has('result') ? 'has-error' : '' !!}">
                                             <label class="col-md-4 control-label">Hasil Kunjungan *:</label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control" name="result">{{ old('result') }}</textarea>
+                                                <textarea class="form-control" name="visit_result">{{ old('result') }}</textarea>
                                                 @if ($errors->has('result')) <p class="help-block">{{ $errors->first('result') }}</p> @endif
                                             </div>
                                         </div>
