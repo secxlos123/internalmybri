@@ -109,7 +109,7 @@
 
             <!--Hanya muncul jika properti bekas-->
             <!--investigation-->
-            <div class="row" hidden>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
@@ -170,10 +170,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <div class="col-md-6">
                                             <textarea class="form-control" name="recommendation" placeholder="Tulis Rekomendasi">{{ old('recommendation') }}</textarea>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -65,14 +65,14 @@
                         @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
                     </div>
                 </div>
-                <div class="form-group" hidden="">
+                <div class="form-group" >
                     <label class="col-md-6 control-label">SHM :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
                         @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
                     </div>
                 </div>
-                <div class="form-group" hidden="">
+                <div class="form-group" >
                     <label class="col-md-6 control-label">IMB :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
