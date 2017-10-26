@@ -374,7 +374,7 @@ class AOController extends Controller
                   'end_date'  => $request->input('end_date'),
                   'status'    => $request->input('status')
                 ])->get();
-                // dd($eforms);
+                // dd(json_encode($eforms));
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref_number'] = strtoupper($form['ref_number']);

@@ -625,15 +625,22 @@
 @include('internals.eform.verification_script')
 <script type="text/javascript">
     $(document).ready(function() {
-       $('#btnSave').on('click', function(e) {
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
+    
+       $('#save').on('click', function(e) {
             $("#form1").submit();
+            HoldOn.open(options);
        });
 
-       $('#btn-save').on('click', function(e) {
-            var name = $('#full_name').val();
-            $('#save').modal('show');
-            $("#save #name").html(name);
-       });
+       // $('#save').on('click', function(e) {
+       //      var name = $('#full_name').val();
+       //      $('#save').modal('show');
+       //      $("#save #name").html(name);
+       // });
 
        $('#join_check').on('change', function() {
             if(this.checked){
