@@ -246,6 +246,27 @@ class AOController extends Controller
     /**
      * List of request needed for input to customer
      *
+     * @param  \Illuminate\Http\Request  $requestImage
+     * @param  String $attribute
+     */
+    function parseImage( $requestImage, $attribute )
+    {
+      if ( isset($requestImage) ) {
+        $image[] = [
+          'name'     => $attribute,
+          'filename' => $requestImage->getClientOriginalName(),
+          'Mime-Type'=> $requestImage->getmimeType(),
+          'contents' => fopen( $requestImage->getPathname(), 'r' ),
+        ];
+        return $image;
+      };
+
+      return [];
+    }
+
+    /**
+     * List of request needed for input to customer
+     *
      * @param  \Illuminate\Http\Request  $request
      */
     public function dataRequest($request)
@@ -278,60 +299,13 @@ class AOController extends Controller
             ];
           }
 
-        if(($request->couple_identity) || ($request->identity)){
-          if((isset($request->identity) && (isset($request->couple_identity)))){
-            $imgReq = $request->identity;
-            $image_path = $imgReq->getPathname();
-            $image_mime = $imgReq->getmimeType();
-            $image_name = $imgReq->getClientOriginalName();
-            $image[] = [
-              'name'     => 'identity',
-              'filename' => $image_name,
-              'Mime-Type'=> $image_mime,
-              'contents' => fopen( $image_path, 'r' ),
-            ];
-
-            $couple_req = $request->couple_identity;
-            $couple_path = $couple_req->getPathname();
-            $couple_mime = $couple_req->getmimeType();
-            $couple_name = $couple_req->getClientOriginalName();
-            $couple[] = [
-              'name'     => 'couple_identity',
-              'filename' => $couple_name,
-              'Mime-Type'=> $couple_mime,
-              'contents' => fopen( $couple_path, 'r' ),
-            ];
-            $newData = array_merge($inputData, $name, $verifyStatus, $image, $couple);
-          }else if(isset($request->identity)){
-            $imgReq = $request->identity;
-            $image_path = $imgReq->getPathname();
-            $image_mime = $imgReq->getmimeType();
-            $image_name = $imgReq->getClientOriginalName();
-            $image[] = [
-              'name'     => 'identity',
-              'filename' => $image_name,
-              'Mime-Type'=> $image_mime,
-              'contents' => fopen( $image_path, 'r' ),
-            ];
-            $newData = array_merge($inputData, $name, $verifyStatus, $image);
-          }else if(isset($request->couple_identity)){
-            $couple_req = $request->couple_identity;
-            $couple_path = $couple_req->getPathname();
-            $couple_mime = $couple_req->getmimeType();
-            $couple_name = $couple_req->getClientOriginalName();
-            $couple[] = [
-              'name'     => 'couple_identity',
-              'filename' => $couple_name,
-              'Mime-Type'=> $couple_mime,
-              'contents' => fopen( $couple_path, 'r' ),
-            ];
-            $newData = array_merge($inputData, $name, $verifyStatus, $couple);
-          }
-        }else{
-          $newData = array_merge($inputData, $name, $verifyStatus);
-        }
-
-        return $newData;
+        return array_merge(
+          $inputData
+          , $name
+          , $verifyStatus
+          , $this->parseImage( $request->identity, 'identity' )
+          , $this->parseImage( $request->couple_identity, 'couple_identity' )
+        );
     }
 
     /**
