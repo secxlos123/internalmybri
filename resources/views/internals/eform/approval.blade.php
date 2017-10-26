@@ -34,6 +34,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pengajuan</h3>
                                     </div>
+                                    <!-- data pengajuan-->
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -104,6 +105,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Nasabah</h3>
                                     </div>
+                                    <!-- data nasabah -->
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -138,43 +140,56 @@
                                                             <p class="form-control-static">{{$detail['customer']['personal']['address']}}</p>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">No. Telepon :</label>
+                                                        <div class="col-md-8">
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['phone']}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">No. Handphone :</label>
+                                                        <div class="col-md-8">
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['mobile_phone']}}</p>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                                 </form>
                                             </div>
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Jenis Kelamin :</label>
-                                                        <div class="col-md-7">
+                                                        <label class="col-md-4 control-label">Jenis Kelamin :</label>
+                                                        <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['personal']['gender']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Kewarganegaraan :</label>
-                                                        <div class="col-md-7">
+                                                        <label class="col-md-4 control-label">Kewarganegaraan :</label>
+                                                        <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['personal']['citizenship']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Status Pernikahan :</label>
-                                                        <div class="col-md-7">
+                                                        <label class="col-md-4 control-label">Status Pernikahan :</label>
+                                                        <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['personal']['status']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Status Tempat Tinggal :</label>
-                                                        <div class="col-md-7">
+                                                        <label class="col-md-4 control-label">Status Tempat Tinggal :</label>
+                                                        <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['personal']['address_status']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Email :</label>
-                                                        <div class="col-md-7">
+                                                        <label class="col-md-4 control-label">Email :</label>
+                                                        <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['personal']['email']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
-                                                        <div class="col-md-7">
+                                                        <label class="col-md-4 control-label">Nama Gadis Ibu Kandung :</label>
+                                                        <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['personal']['mother_name']}}</p>
                                                         </div>
                                                     </div>
@@ -276,22 +291,6 @@
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">No. Telepon :</label>
-                                                        <div class="col-md-8">
-                                                            <p class="form-control-static">{{$detail['customer']['personal']['phone']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-4 control-label">No. Handphone :</label>
-                                                        <div class="col-md-8">
-                                                            <p class="form-control-static">{{$detail['customer']['personal']['mobile_phone']}}</p>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
-                                                    <div class="form-group">
                                                         <label class="col-md-4 control-label">Nama Kerabat/Keluarga :</label>
                                                         <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['contact']['emergency_contact']}}</p>
@@ -303,6 +302,11 @@
                                                             <p class="form-control-static">{{$detail['customer']['contact']['emergency_contact']}}</p>
                                                         </div>
                                                     </div>
+                                                    
+                                                </form>  
+                                            </div>
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Hubungan :</label>
                                                         <div class="col-md-8">
@@ -313,7 +317,6 @@
                                             </div>
                                         </div>
                                         <hr>
-                                       
                                     </div>
                                 </div>
                             </div>
@@ -325,6 +328,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data LKN</h3>
                                     </div>
+                                    <!-- data lkn -->
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -412,14 +416,12 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
-                                    {{ csrf_field() }}
-
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel panel-default">
@@ -454,6 +456,45 @@
                                             <button type="submit" href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
                                             <!-- <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button> -->
                                             <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-color panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Rekomendasi</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <p>Dengan ini saya meyakini kebenaran data nasabah dan merekomendasikan permohonan kredit untuk dapat diproses lebih lanjut</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6">
+                                                        <div class="radio radio-info radio-inline">
+                                                            <input type="radio" id="yes" value="yes" name="recommended" checked="">
+                                                            <label for="yes"> Ya </label>
+                                                        </div>
+                                                        <div class="radio radio-pink radio-inline">
+                                                            <input type="radio" id="no" value="no" name="recommended">
+                                                            <label for="no"> Tidak </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                        <textarea class="form-control" name="recommendation" placeholder="Tulis Rekomendasi">{{ old('recommendation') }}</textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
