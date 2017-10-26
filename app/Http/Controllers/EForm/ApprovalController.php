@@ -59,18 +59,18 @@ class ApprovalController extends Controller
         $data = $this->getUser();
 
         $dispotition = [
-            'id' => $id,
-            'pros' => $request->pros,
-            'cons' => $request->cons,
+          'id' => $id,
+          'pros' => $request->pros,
+          'cons ' => $request->cons,
         ];
 
         $client = Client::setEndpoint('eforms/'.$id.'/approve')
-                    ->setHeaders([  
-                                    'Authorization' => $data['token'],
-                                    'pn' => $data['pn']
-                                ])
-                    ->setBody($dispotition)
-                    ->post();
+                  ->setHeaders([  
+                                  'Authorization' => $data['token'],
+                                  'pn' => $data['pn']
+                              ])
+                  ->setBody($dispotition)
+                  ->post();
         // dd($client);
 
         if($client['code'] == 201){

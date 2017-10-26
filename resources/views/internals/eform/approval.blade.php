@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Verifikasi Data Nasabah')
+@section('title','My BRI - Form Approval Pengajuan')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -197,6 +197,42 @@
                                             </div>
                                         </div>
                                         <hr>
+
+                                        @if($detail['customer']['personal']['status_id'] == 2)
+                                        <!--pasangan-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">NIK Pasangan :</label>
+                                                        <div class="col-md-8">
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['couple_nik']}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Nama Pasangan :</label>
+                                                        <div class="col-md-8">
+                                                            <p class="form-control-static"> {{$detail['customer']['personal']['couple_name']}}</p>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </form>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Tempat, Tanggal Lahir Pasangan :</label>
+                                                        <div class="col-md-8">
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['couple_birth_place']}}, {{$detail['customer']['personal']['couple_birth_date']}}</p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        @endif
+
+                                        <!--pekerjaan-->
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
@@ -252,6 +288,7 @@
                                             </div>
                                         </div>
                                         <hr>
+
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
@@ -422,84 +459,86 @@
                         </div>
                         <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                         {{ csrf_field() }}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Pros dan Cons</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-horizontal" role="form">
-                                                    <div class="form-group">
-                                                        <label class="col-md-4 control-label">Pros :</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" name="pros" class="form-control">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Pros dan Cons</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-horizontal">
+                                                        <div class="form-group pros {!! $errors->has('pros') ? 'has-error' : '' !!}">
+                                                            <label class="col-md-2 control-label">Pros *:</label>
+                                                            <div class="col-md-10">
+                                                                <textarea class="form-control" rows="3" name="pros" maxlength="255">{{ old('pros') }}</textarea>
+                                                                @if ($errors->has('pros')) <p class="help-block">{{ $errors->first('pros') }}</p> @endif
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-horizontal" role="form">
-                                                    <div class="form-group">
-                                                        <label class="col-md-4 control-label">Cons :</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" name="cons" class="form-control">
+                                                <div class="col-md-6">
+                                                    <div class="form-horizontal">
+                                                        <div class="form-group cons {!! $errors->has('cons') ? 'has-error' : '' !!}">
+                                                            <label class="col-md-2 control-label">Cons *:</label>
+                                                            <div class="col-md-10">
+                                                                <textarea class="form-control" rows="3" name="cons" maxlength="255">{{ old('cons') }}</textarea>
+                                                                @if ($errors->has('cons')) <p class="help-block">{{ $errors->first('cons') }}</p> @endif
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Rekomendasi</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <p>Dengan ini saya meyakini kebenaran data nasabah dan merekomendasikan permohonan kredit untuk dapat diproses lebih lanjut</p>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <div class="radio radio-info radio-inline">
+                                                                <input type="radio" id="yes" value="yes" name="recommended" checked="">
+                                                                <label for="yes"> Ya </label>
+                                                            </div>
+                                                            <div class="radio radio-pink radio-inline">
+                                                                <input type="radio" id="no" value="no" name="recommended">
+                                                                <label for="no"> Tidak </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                            <textarea class="form-control" name="recommendation" placeholder="Tulis Rekomendasi">{{ old('recommendation') }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
                                         <div class="text-center">
                                             <button type="submit" href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
-                                            <!-- <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button> -->
+                                            <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button>
                                             <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-color panel-primary">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Rekomendasi</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <p>Dengan ini saya meyakini kebenaran data nasabah dan merekomendasikan permohonan kredit untuk dapat diproses lebih lanjut</p>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-md-6">
-                                                        <div class="radio radio-info radio-inline">
-                                                            <input type="radio" id="yes" value="yes" name="recommended" checked="">
-                                                            <label for="yes"> Ya </label>
-                                                        </div>
-                                                        <div class="radio radio-pink radio-inline">
-                                                            <input type="radio" id="no" value="no" name="recommended">
-                                                            <label for="no"> Tidak </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                        <textarea class="form-control" name="recommendation" placeholder="Tulis Rekomendasi">{{ old('recommendation') }}</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         
                         </form>
                     </div>
