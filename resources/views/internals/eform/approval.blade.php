@@ -243,13 +243,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">Rp{{number_format($detail['customer']['financial']['salary'],2,',','.')}}</p>
+                                                            <p class="form-control-static">Rp{{($detail['customer']['financial']['salary'])}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Pendapatan Lain :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">Rp{{number_format($detail['customer']['financial']['other_salary'],2,',','.')}}</p>
+                                                            <p class="form-control-static">Rp{{($detail['customer']['financial']['other_salary'])}}</p>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -259,7 +259,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Angsuran Pinjaman :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">Rp{{number_format($detail['customer']['financial']['loan_installment'],2,',','.')}}</p>
+                                                            <p class="form-control-static">Rp{{($detail['customer']['financial']['loan_installment'])}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -278,13 +278,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Telepon :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">{{$detail['customer']['contact']['phone']}}</p>
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['phone']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">No. Handphone :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">{{$detail['customer']['contact']['mobile_phone']}}</p>
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['mobile_phone']}}</p>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -292,7 +292,13 @@
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-4 control-label">Emergency Contact :</label>
+                                                        <label class="col-md-4 control-label">Nama Kerabat/Keluarga :</label>
+                                                        <div class="col-md-8">
+                                                            <p class="form-control-static">{{$detail['customer']['contact']['emergency_contact']}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label">Nomor Handphone :</label>
                                                         <div class="col-md-8">
                                                             <p class="form-control-static">{{$detail['customer']['contact']['emergency_contact']}}</p>
                                                         </div>

@@ -36,7 +36,7 @@ class ApprovalController extends Controller
                     ->get();
         
         $detail = $formDetail['contents'];
-        // dd(json_encode($detail));
+        // dd($formDetail);
 
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
