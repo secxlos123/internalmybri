@@ -74,86 +74,6 @@ class AOController extends Controller
         return view('internals.eform.lkn', compact('data', 'id', 'eformData'));
     }
 
-    public function renderMutation(Request $request)
-    {
-
-       $view = (String)view('internals.eform.lkn._render-mutation')
-          ->render();
-       return response()->json(['view' => $view]);
-    }
-
-    /**
-     * List of request needed for input to customer
-     *
-     * @param  \Illuminate\Http\Request  $request
-     */
-    public function lknRequest($request, $data)
-    {
-        $application = [];
-
-        foreach ($request->all() as $keys => $values) {
-          if (is_array($values)) {
-            foreach ($values as $key => $value) {
-              if (is_array($value)) {
-                foreach ($value as $index => $content) {
-                  if (is_array($content)) {
-                    foreach ($content as $id => $file) {
-                      if (is_array($file)) {
-                        foreach ($file as $idx => $f) {
-                          if( strpos($f, ',') !== false ){
-                            $fl = intval(preg_replace('(\D+)', '', $f));
-                            $name = "{$keys}[{$key}][{$index}][{$id}][{$idx}]";
-                            $application[] = ['name' => $name, 'contents' => $fl];
-                          }else{
-                            $name = "{$keys}[{$key}][{$index}][{$id}][{$idx}]";
-                            $application[] = ['name' => $name, 'contents' => $f];
-                          }
-                        }
-                      }else{
-                        $name = "{$keys}[{$key}][{$index}][{$id}]";
-                        $application[] = ['name' => $name, 'contents' => $file];
-                      }
-                    }
-                  }else{
-                    $name = "{$keys}[{$key}][{$index}]";
-                    $application[] = ['name' => $name, 'contents' => $content];
-                  }
-                }
-                $ctn = $index == 'file' ? fopen($content->getRealPath(), 'r')  : $content;
-                $mime = $content->getmimeType();
-                $name = $content->getClientOriginalName();
-
-                $application[] = ['name' => "{$keys}[{$key}][{$index}]", 'contents' => $ctn, 'filename' => $name, 'Mime-Type'=> $mime];
-              }
-            }
-          }else{
-            if( strpos($values, ',') !== false ){
-              $content = intval(preg_replace('(\D+)', '', $values));
-              $application[] = ['name'     => $keys, 'contents' => $content];
-            }else{
-              $application[] = ['name'     => $keys, 'contents' => $values];
-            }
-
-            // $ctn = $keys == 'photo_with_customer' ? fopen($values->getRealPath(), 'r')  : $values;
-                if($keys == 'photo_with_customer'){
-                  $ctn = fopen($values->getRealPath(), 'r');
-                  $mime = $values->getmimeType();
-                  $name = $values->getClientOriginalName();
-
-                  $application[] = ['name' => "{$keys}", 'contents' => $ctn, 'filename' => $name, 'Mime-Type'=> $mime];
-                }else{
-                  $ctn = $values;
-
-                  $application[] = ['name' => "{$keys}", 'contents' => $ctn];
-                }
-
-          }
-        }
-        return $application;
-
-    }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -162,8 +82,8 @@ class AOController extends Controller
     public function postLKN(Request $request, $id)
     {
         $data = $this->getUser();
-        $newForm = $this->lknRequest($request, $data);
-        // dd($newForm);
+        $newForm = $this->lknRequest($request);
+
     	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
            ->setHeaders([
                 'Authorization' => $data['token'],
@@ -171,8 +91,6 @@ class AOController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
-
-           // dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
@@ -184,6 +102,102 @@ class AOController extends Controller
         }
 
         return view('internals.eform.lkn', compact('data'));
+    }
+
+    public function renderMutation(Request $request)
+    {
+
+       $view = (String)view('internals.eform.lkn._render-mutation')
+          ->render();
+       return response()->json(['view' => $view]);
+    }
+
+    /**
+     * Reformat image request
+     *
+     * @param  \Illuminate\Http\Request  $image
+     * @param  String  $name
+     */
+    public function reformatImage( $name, $image )
+    {
+      return [
+        'name' => $name
+        , 'contents' => fopen($image->getRealPath(), 'r')
+        , 'filename' => $image->getClientOriginalName()
+        , 'Mime-Type'=> $image->getmimeType()
+      ];
+    }
+
+    /**
+     * Reformat content request
+     *
+     * @param  \Illuminate\Http\Request  $value
+     * @param  String  $name
+     */
+    public function reformatContent( $name, $value )
+    {
+      return [
+        'name' => $name
+        , 'contents' => $value
+      ];
+    }
+
+    /**
+     * Get return content
+     *
+     * @param  \Illuminate\Http\Request  $value
+     * @param  String  $name
+     */
+    public function returnContent( $field, $values, $baseName )
+    {
+      $excludeNumber = ['amount', 'npwp_number', 'income', 'income_salary', 'income_allowance', 'number'];
+      $excludeImage = ['file', 'npwp', 'legal_document', 'salary_slip', 'family_card', 'marrital_certificate', 'diforce_certificate', 'photo_with_customer', 'offering_letter', 'shm', 'imb', 'down_payment', 'pbb'];
+
+      if ( in_array($baseName, $excludeNumber) ) {
+        $values = str_replace(',', '.', str_replace('.', '', $values));
+      }
+
+      if ( in_array($baseName, $excludeImage) ) {
+        $return = $this->reformatImage( $field, $values );
+      } else {
+        $return = $this->reformatContent( $field, $values );
+      }
+
+      return $return;
+    }
+
+    /**
+     * List of request needed for input to customer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function lknRequest($request)
+    {
+        $application = [];
+
+        foreach ($request->all() as $field => $values) {
+          if ( $field == 'mutations' ) {
+            foreach ($values as $mutationIndex => $mutations) {
+              foreach ($mutations as $key => $value) {
+                $baseName = $field . '[' . $mutationIndex . '][' . $key . ']';
+                if ( $key == 'tables' ) {
+                  foreach ($value as $tablesIndex => $tables) {
+                    foreach ($tables as $tableKey => $data) {
+                      $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
+                      $application[] = $this->returnContent( $name, $data, $tableKey );
+                    }
+                  }
+                } else {
+                  $application[] = $this->returnContent( $baseName, $value, $key );
+                }
+              }
+            }
+
+          } else {
+            $application[] = $this->returnContent( $field, $values, $field );
+          }
+        }
+        return $application;
     }
 
      /**
