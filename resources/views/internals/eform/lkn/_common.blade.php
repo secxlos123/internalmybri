@@ -55,42 +55,36 @@
                     <label class="col-md-6 control-label">Foto Debitur * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
-                        @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label">Surat Penawaran * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
-                        @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="offering_letter" accept="image/png,image/jpg">
                     </div>
                 </div>
-                <div class="form-group" >
+                <div class="form-group" hidden="">
                     <label class="col-md-6 control-label">SHM :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
-                        @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="shm" accept="image/png,image/jpg">
                     </div>
                 </div>
-                <div class="form-group" >
+                <div class="form-group" hidden="">
                     <label class="col-md-6 control-label">IMB :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
-                        @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="imb" accept="image/png,image/jpg">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label">Bukti DP *</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
-                        @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="down_payment" accept="image/png,image/jpg">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label">PBB Terakhir *</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
-                        @if ($errors->has('photo_with_customer')) <p class="help-block">{{ $errors->first('photo_with_customer') }}</p> @endif
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="pbb" accept="image/png,image/jpg">
                     </div>
                 </div>
             </div>

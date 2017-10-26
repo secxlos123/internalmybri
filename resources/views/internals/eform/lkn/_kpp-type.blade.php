@@ -9,6 +9,7 @@
                     <div class="col-md-8">
                         {!! Form::select('kpp_type', ['' => ''], old('kpp_type'), [
                             'class' => 'select2 kpp_type',
+                            'data-option' => 1,
                             'data-placeholder' => 'Pilih KPP',
                         ]) !!}
                     </div>
@@ -18,6 +19,7 @@
                     <div class="col-md-8">
                         {!! Form::select('type_financed', ['' => ''], old('type_financed'), [
                             'class' => 'select2 type_financed',
+                            'data-option' => 1,
                             'data-placeholder' => 'Pilih Jenis Dibiayai',
                         ]) !!}
                     </div>
@@ -27,6 +29,7 @@
                     <div class="col-md-8">
                         {!! Form::select('economy_sector', ['' => ''], old('economy_sector'), [
                             'class' => 'select2 economy_sector',
+                            'data-option' => 1,
                             'data-placeholder' => 'Pilih Sektor Ekonomi',
                         ]) !!}
                     </div>
@@ -36,6 +39,7 @@
                     <div class="col-md-8">
                         {!! Form::select('project_list', ['' => ''], old('project_list'), [
                             'class' => 'select2 project_list',
+                            'data-option' => 1,
                             'data-placeholder' => 'Pilih Project',
                         ]) !!}
                     </div>
@@ -45,6 +49,7 @@
                     <div class="col-md-8">
                         {!! Form::select('program_list', ['' => ''], old('program_list'), [
                             'class' => 'select2 program_list',
+                            'data-option' => 1,
                             'data-placeholder' => 'Pilih Program',
                         ]) !!}
                     </div>
@@ -54,6 +59,7 @@
                     <div class="col-md-8">
                         {!! Form::select('use_reason', ['' => ''], old('use_reason'), [
                             'class' => 'select2 use_reason',
+                            'data-option' => 1,
                             'data-placeholder' => 'Pilih Tujuan Penggunaan',
                         ]) !!}
                     </div>
