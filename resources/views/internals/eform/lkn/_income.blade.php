@@ -8,7 +8,7 @@
                                                 <select class="form-control" name="source" id="source">
                                                     <option disabled="">-- Pilih --</option>
                                                     <option selected="" value="fixed">Fixed Income</option>
-                                                    <option value="unfixed">Non Fixed Income</option>
+                                                    <option value="nonfixed">Non Fixed Income</option>
                                                 </select>
                                                 @if ($errors->has('source')) <p class="help-block">{{ $errors->first('source') }}</p> @endif
                                             </div>
