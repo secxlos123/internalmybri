@@ -10,31 +10,43 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Dokumen Legal Agunan *:</label>
+                    <label class="col-md-6 control-label">Dokumen Legal Agunan * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="legal_document">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Slip Gaji / Dokumen Legal Usaha / Izin Praktek *:</label>
+                    <label class="col-md-6 control-label">Slip Gaji * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="salary_slip">
                     </div>
                 </div>
-               <!--  <div class="form-group">
-                    <label class="col-md-6 control-label">Bank Statement :</label>
-                    <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="bank_statement">
-                    </div>
-                </div> -->
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Kartu Keluarga :</label>
+                    <label class="col-md-6 control-label">Dokumen Legal Usaha * :</label>
+                    <div class="col-md-6">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="salary_slip">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Izin Praktek * :</label>
+                    <div class="col-md-6">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="salary_slip">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Surat Keterangan Kerja * :</label>
+                    <div class="col-md-6">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="work_letter">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label">Kartu Keluarga * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="family_card">
                     </div>
                 </div>
                 <div class="form-group" id="marrital_certificate">
-                    <label class="col-md-6 control-label">Akta Nikah/Akta Cerai :</label>
+                    <label class="col-md-6 control-label">Akta Nikah/Akta Cerai * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="marrital_certificate">
                     </div>
@@ -46,13 +58,13 @@
                     </div>
                 </div> -->
                 <div class="form-group" id="separate_certificate">
-                    <label class="col-md-6 control-label">Akta Pisah Harta :</label>
+                    <label class="col-md-6 control-label">Akta Pisah Harta * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="divorce_certificate">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Foto Debitur * :</label>
+                    <label class="col-md-6 control-label">Foto Debitur :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
                     </div>
