@@ -459,6 +459,7 @@
                         </div>
                         <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                         {{ csrf_field() }}
+                            <input type="hidden" name="is_approved" id="is_approved">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
@@ -534,7 +535,7 @@
                                     <hr>
                                         <div class="text-center">
                                             <button type="submit" href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
-                                            <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20">Tolak</button>
+                                            <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
                                             <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                         </div>
                                 </div>
@@ -554,6 +555,47 @@
          textColor:"white"
     };
     $('#btn-approve').on('click', function(){
+        $('#is_approved').attr('value', true);
+        $('#form1').submit();
         HoldOn.open(options);
     })
+
+    $('#btn-reject').on('click', function(){
+        $('#is_approved').attr('value', false);
+        $('#form1').submit();
+        HoldOn.open(options);
+    })
+
+    $('#form1').on('keyup keypress', function(e) { 
+        var keyCode = e.keyCode || e.which; 
+        if (keyCode === 13) { e.preventDefault(); return false; } 
+    });
+
+    // $("#btn-approve").click(function (e) {
+    //     e.preventDefault();
+    //     HoldOn.open(options);
+    //     // var $btn = $('#loginButton').button('loading');
+
+    //     $.ajax({
+    //             url: "{{route('postApproval', $id)}}",
+    //             type: 'POST',
+    //             data: $(this).serialize(),
+    //             dataType: 'json',
+    //             success: function (data) {
+    //                 dd($data);
+    //                // $btn.button('reset');
+    //                HoldOn.close();
+    //                // console.log(data);
+    //                if(data.code >= 400){
+    //                 $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+    //                }else{
+    //                     window.location = data.url;
+    //                }
+    //             },
+    //             error: function(response){
+    //                 // $btn.button('reset');
+    //                 HoldOn.close();
+    //             }
+    //         });
+    //     });
 </script>

@@ -57,22 +57,23 @@ class ApprovalController extends Controller
     public function postApproval(Request $request, $id)
     {
         $data = $this->getUser();
-
-        $dispotition = [
-          'id' => $id,
+        // dd($request->all());
+        $approve = [
           'pros' => $request->pros,
-          'cons ' => $request->cons,
+          'cons' => $request->cons,
+          'recommended' => $request->recommended,
+          'recommendation' => $request->recommendation,
+          'is_approved' => $request->is_approved == 'true' ? true : false
         ];
 
         $client = Client::setEndpoint('eforms/'.$id.'/approve')
                   ->setHeaders([  
-                                  'Authorization' => $data['token'],
-                                  'pn' => $data['pn']
-                              ])
-                  ->setBody($dispotition)
+                      'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                  ])
+                  ->setBody($approve)
                   ->post();
-        // dd($client);
-
+                  // dd($client);
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
