@@ -26,9 +26,9 @@ class LKNRequest extends FormRequest
         return [
            'npwp_number'                => 'required',
            'purpose_of_visit'           => 'required',
-           'result'                     => 'required',
+           'visit_result'               => 'required',
 
-           'source'                     => 'required|in:fixed,not_fixed',
+           'source'                     => 'required|in:fixed,unfixed',
 
            'kpp_type'                   => 'required',
            'type_financed'              => 'required',
@@ -47,12 +47,12 @@ class LKNRequest extends FormRequest
            'relation_with_seller'       => 'required',
 
            'income_salary_image'        => 'required_if:source,fixed|image',
-           'business_income'            => 'required_if:source,not_fixed',
-           'business_mutation_type'     => 'required_if:source,not_fixed',
-           'bussiness_mutation_number'  => 'required_if:source,not_fixed',
-           'bussiness_other'            => 'required_if:source,not_fixed',
+           'business_income'            => 'required_if:source,unfixed',
+           'business_mutation_type'     => 'required_if:source,unfixed',
+           'bussiness_mutation_number'  => 'required_if:source,unfixed',
+           'bussiness_other'            => 'required_if:source,unfixed',
            'mutation_file'              => 'required|file',
-           'npwp'              => 'required|file',
+           'npwp'                       => 'required|file',
 
            'photo_with_customer'        => 'required|image',
            'pros'                       => 'required',

@@ -229,9 +229,15 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
 
 <script type="text/javascript">
+    var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+    };
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             $("#formLKN").submit();
+            HoldOn.open(options);
        });
 
        npwp_masking($('#npwp_number'));

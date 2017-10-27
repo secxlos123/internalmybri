@@ -91,6 +91,7 @@ class AOController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
+           // dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
@@ -386,10 +387,12 @@ class AOController extends Controller
 
             $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];
+            $status = $form['response_status'];
 
             $form['action'] = view('internals.layouts.actions', [
               'verified' => $verify,
               'visited' => $visit,
+              'response_status' => $status,
 
               'verification' => route('getVerification', $form['id']),
               'lkn' => route('getLKN', $form['id']),

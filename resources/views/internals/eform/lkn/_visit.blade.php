@@ -101,7 +101,7 @@
                                                 @if ($errors->has('purpose_of_visit')) <p class="help-block">{{ $errors->first('purpose_of_visit') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group result {!! $errors->has('result') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Hasil Kunjungan *:</label>
                                             <div class="col-md-8">
                                                 <textarea class="form-control" name="visit_result">{{ old('result') }}</textarea>
