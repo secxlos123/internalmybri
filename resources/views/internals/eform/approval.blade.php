@@ -60,7 +60,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Jangka Waktu :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">{{$detail['kpr']['year']}} Tahun</p>
+                                                            <p class="form-control-static">{{$detail['kpr']['year']}} Bulan</p>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -166,7 +166,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-4 control-label">Kewarganegaraan :</label>
                                                         <div class="col-md-8">
-                                                            <p class="form-control-static">{{$detail['customer']['personal']['citizenship']}}</p>
+                                                            <p class="form-control-static">{{$detail['customer']['personal']['citizenship_id']['desc2']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -460,7 +460,7 @@
                         <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                         {{ csrf_field() }}
                             <input type="hidden" name="is_approved" id="is_approved">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
@@ -494,7 +494,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="panel panel-default">

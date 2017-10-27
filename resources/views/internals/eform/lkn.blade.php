@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-body">
+                        <!-- <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -181,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

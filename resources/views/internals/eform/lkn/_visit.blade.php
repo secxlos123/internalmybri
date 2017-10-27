@@ -63,7 +63,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="amount" maxlength="24" value="{{ $eformData['nominal'] }}" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="amount" maxlength="24" value="{{ $eformData['nominal'] }}">
                                                     @if ($errors->has('amount')) <p class="help-block">{{ $errors->first('amount') }}</p> @endif
                                                 </div>
                                             </div>

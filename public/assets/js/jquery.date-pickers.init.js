@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
     jQuery('#datepicker-inline').datepicker({
         format: "yyyy-mm-dd",
         clearBtn: true,
-        multidate: true,
+        multidate: false,
         multidateSeparator: ","
     });
     jQuery('.datepicker-inline').datepicker({
@@ -36,7 +36,7 @@ jQuery(document).ready(function () {
     jQuery('#datepicker-mindate').datepicker({
         format: "yyyy-mm-dd",
         clearBtn: true,
-        multidate: true,
+        multidate: false,
         startDate: new Date(),
         multidateSeparator: ","
     });

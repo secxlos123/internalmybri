@@ -18,8 +18,13 @@
                             @endif
                             
                             <li>
+                            @if(($data['role']=='ao') || ($data['role']=='other'))
                             <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+                            @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
+                            <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Disposisi dan Rekomendasi </span> </a>
+                            @endif
                             </li>
+
                             <li>
                                 <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                             </li>

@@ -244,7 +244,7 @@
                 {   data: 'ref_number', name: 'ref_number', bSortable: false  },
                 {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
                 {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
-                {   data: 'created_at', name: 'created_at' },
+                {   data: 'created_at', name: 'created_at', bSortable: true },
                 // {   data: 'product_type', name: 'product_type' },
                 {   data: 'branch_id', name: 'branch_id', bSortable: false },
                 {   data: 'prescreening_status', 
@@ -270,8 +270,8 @@
                         $(td).attr('class', 'status'); 
                     }},
                 {   data: 'ao_name', name: 'ao_name', bSortable: false },
-                {   data: 'status', name: 'status' },
-                {   data: 'aging', name: 'aging' },
+                {   data: 'status', name: 'status', bSortable: true },
+                {   data: 'aging', name: 'aging', bSortable: true },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
       }); 
