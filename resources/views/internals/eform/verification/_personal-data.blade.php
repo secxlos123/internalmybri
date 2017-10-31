@@ -73,14 +73,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-horizontal">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label">NIK * :</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="nik" value="{{$dataCustomer['customer']['nik']}}">
+                                        <input type="text" class="form-control" name="nik" value="{{$dataCustomer['customer']['nik']}}" readonly="">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                 <div class="col-md-9">
