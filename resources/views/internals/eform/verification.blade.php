@@ -920,6 +920,10 @@
     });
 
 </script>
+<script type="text/javascript">
+  function copy(){
+   document.getElementById("new_bank").value = document.getElementById("bank_name_setting").value;}
+</script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
