@@ -19,7 +19,7 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">Tempat, Tanggal Lahir Pasangan :</label>
+                <label class="col-md-5 control-label">Tempat Tanggal Lahir Pasangan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['customer']['personal']['couple_birth_place']}}, {{$detail['customer']['personal']['couple_birth_date']}}</p>
                 </div>
