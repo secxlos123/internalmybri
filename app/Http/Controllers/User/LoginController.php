@@ -48,16 +48,16 @@ class LoginController extends Controller
                 ->setBody($data)
                 ->post();
 
-        if($request->pn == '66777'){
-            $role = ['role' => 'ao'];
-            $uker = ['uker' => 'KC'];
-        }else if($request->pn == '68881'){
-            $role = ['role' => 'mp'];
-            $uker = ['uker' => 'KC'];
-        }else{
-            $role = ['role' => 'staff'];
-            $uker = ['uker' => 'other'];
-        }
+        // if($request->pn == '66777'){
+        //     $role = ['role' => 'ao'];
+        //     $uker = ['uker' => 'KC'];
+        // }else if($request->pn == '68881'){
+        //     $role = ['role' => 'mp'];
+        //     $uker = ['uker' => 'KC'];
+        // }else{
+        //     $role = ['role' => 'staff'];
+        //     $uker = ['uker' => 'other'];
+        // }
                 
         $user =array_merge($client['contents'], $uker, $role);
 
@@ -66,7 +66,7 @@ class LoginController extends Controller
 
         if($codeResponse == 200){
             session()->put('user', $client);
-            session()->put('user.contents', $user);
+            // session()->put('user.contents', $user);
             return response()->json(['url' => route('dashboard'), 'message' => $codeDescription, 'code' => $codeResponse]);
         }elseif($codeResponse == 422){
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
