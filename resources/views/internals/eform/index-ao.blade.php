@@ -26,7 +26,7 @@
                                 @if (\Session::has('success'))
                                     <div class="alert alert-success">{{ \Session::get('success') }}</div>
                                 @endif
-                                <div class="card-box table-responsive">
+                                <div class="card-box">
                                     <div class="add-button">
                                         <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                                         <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
@@ -153,6 +153,7 @@
            language : {
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
+            ajax : {
                 url : '/datatables/eform-ao',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
