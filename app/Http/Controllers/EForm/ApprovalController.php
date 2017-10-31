@@ -57,7 +57,7 @@ class ApprovalController extends Controller
                     ->get();
         
         $detail = $formDetail['contents'];
-
+        // dd($detail);
         // foreach ($request->all() as $index) {
         //     $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
         //     $application[] = $this->returnContent( $name, $data, $tableKey );
