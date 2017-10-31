@@ -29,7 +29,7 @@
                                     ]) !!}
                                     @if ($errors->has('work_type')) <p class="help-block">{{ $errors->first('work_type') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="job_type_name" id="new_job_type" value="$dataCustomer['customer']['job_type_name']">
+                                <input type="hidden" name="job_type_name" id="new_job_type" value="{{$dataCustomer['customer']['job_type_name']}}">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Pekerjaan * :</label>

@@ -173,7 +173,7 @@
                                     ]) !!}
                                     @if ($errors->has('citizenship')) <p class="help-block">{{ $errors->first('citizenship') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="citizenship_name" id="new_citizenship" value="{{$dataCustomer['customer']['citizenship_id']['desc2']}}">
+                                <input type="hidden" name="citizenship_name" id="new_citizenship" value="{{$dataCustomer['customer']['citizenship_name']}}">
                             </div>    
                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Email * :</label>
