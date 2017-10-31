@@ -59,7 +59,7 @@ class LoginController extends Controller
         //     $uker = ['uker' => 'other'];
         // }
                 
-        // $user =array_merge($client['contents'], $uker, $role);
+        $user =array_merge($client['contents'], $uker, $role);
 
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];

@@ -206,8 +206,18 @@ class EFormController extends Controller
     {
         // dd($id);
         $data = $this->getUser();
+         /* GET Form Data */
+        $formDetail = Client::setEndpoint('eforms/'.$id)
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->get();
         
-        return view('internals.eform.dispotition', compact('data', 'id', 'ref_number'));
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        
+        return view('internals.eform.dispotition', compact('data', 'id', 'ref_number', 'detail'));
     }
 
     /**

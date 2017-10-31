@@ -84,7 +84,20 @@
 
 	$('.use_reason').on('change', function(){
 		$('#use_reason_id').val($(this).val());
-		console.log($(this).val());
+		// console.log($(this).val());
+        if($(this).val() == 2){
+            $('#shm').removeAttr('hidden');
+            $('#imb').removeAttr('hidden');
+            $('#investigate').removeAttr('hidden');
+        }else if($(this).val() == 18){
+            $('#shm').removeAttr('hidden');
+            $('#imb').removeAttr('hidden');
+            $('#investigate').removeAttr('hidden');
+        }else{
+            $('#shm').attr('hidden', true);
+            $('#imb').attr('hidden', true);
+            $('#investigate').attr('hidden', true);
+        }
 	});
 
 
@@ -211,5 +224,3 @@
         });
 	});
 </script>
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\EForm\LKNRequest', '#formLKN'); !!}

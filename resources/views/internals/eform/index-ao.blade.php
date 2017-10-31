@@ -153,7 +153,6 @@
            language : {
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
-           ajax : {
                 url : '/datatables/eform-ao',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);

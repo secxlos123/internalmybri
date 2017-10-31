@@ -17,6 +17,27 @@ class ApprovalController extends Controller
         return $data;
     }
 
+    /**
+     * Showing image/download link of the specified resource.
+     *
+     * @param  String  $index
+     * @return \Illuminate\Http\Response
+     */
+    function urlImage($index){
+      $includeImage = ['npwp', 'legal_document', 'salary_slip', 'legal_bussiness_document','licence_of_practice', 'work_letter', 'family_card', 'marrital_certificate', 'divorce_certificate', 'offering_letter', 'down_payment', 'building_tax', 'photo_with_customer', 'building_permit', 'proprietary'];
+
+      if ( in_array($index, $includeImage) ) {
+        $value = pathinfo($detail['visit_report']["'".$index."'"], PATHINFO_EXTENSION);
+
+        if(($value == 'jpg') || ($value == 'png') || ($value == 'gif')){
+          return 'image';
+        }else{
+          return 'not image';
+        } 
+      }
+
+    }
+
 	/**
      * Display the specified resource.
      *
@@ -36,8 +57,12 @@ class ApprovalController extends Controller
                     ->get();
         
         $detail = $formDetail['contents'];
-        // dd($formDetail);
 
+        // foreach ($request->all() as $index) {
+        //     $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
+        //     $application[] = $this->returnContent( $name, $data, $tableKey );
+        //   }
+       
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
                         ->setHeaders(['Authorization' => $data['token']])
@@ -46,7 +71,7 @@ class ApprovalController extends Controller
         $customer = $customerData['contents'];
         // dd($detail);
 
-        return view('internals.eform.approval', compact('data', 'detail', 'product', 'customer', 'id'));
+        return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id'));
     }
     /**
      * Store a newly created resource in storage.

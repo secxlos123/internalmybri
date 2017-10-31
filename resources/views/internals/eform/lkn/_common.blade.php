@@ -24,19 +24,19 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label">Dokumen Legal Usaha * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="salary_slip">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="legal_bussiness_document">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label">Izin Praktek * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="salary_slip">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="licence_of_practice">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-6 control-label">Surat Keterangan Kerja * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="work_letter">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="work_letter">
                     </div>
                 </div>
                 <div class="form-group">
@@ -75,13 +75,13 @@
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="offering_letter" accept="image/png,image/jpg">
                     </div>
                 </div>
-                <div class="form-group" hidden="">
+                <div class="form-group" id="shm" hidden="">
                     <label class="col-md-6 control-label">Sertifikat Hak Milik :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="proprietary" accept="image/png,image/jpg">
                     </div>
                 </div>
-                <div class="form-group" hidden="">
+                <div class="form-group" id="imb" hidden="">
                     <label class="col-md-6 control-label">Izin Mendirikan Bangunan :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_permit" accept="image/png,image/jpg">
