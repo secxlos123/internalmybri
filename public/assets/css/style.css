@@ -1,10 +1,10 @@
-/*@import url(https://fonts.googleapis.com/css?family=Varela+Round);*/
-/*@import 'https://fonts.googleapis.com/css?family=Hind+Madurai:600,700';*/
-@import url('https://fonts.googleapis.com/css?family=Quicksand|Titillium+Web');
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+@import 'https://fonts.googleapis.com/css?family=Hind+Madurai:600,700';
+/*@import url('https://fonts.googleapis.com/css?family=Quicksand|Titillium+Web');*/
 body {
-  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Varela Round', sans-serif;
   /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  /*font-family: 'Quicksand', sans-serif;*/
   margin: 0;
   padding-bottom: 60px;
   overflow-x: hidden;
@@ -1554,9 +1554,9 @@ a:focus {
   display: inline-block;
   padding-left: 5px;
   position: relative;
-  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Varela Round', sans-serif;
   /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  /*font-family: 'Quicksand', sans-serif;*/
   font-weight: normal;
 }
 .checkbox label::before {
@@ -1690,9 +1690,9 @@ a:focus {
   display: inline-block;
   padding-left: 5px;
   position: relative;
-  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Varela Round', sans-serif;
   /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  /*font-family: 'Quicksand', sans-serif;*/
   font-weight: normal;
 }
 .radio label::before {
@@ -2562,9 +2562,9 @@ a:focus {
   border-bottom: none;
 }
 .todo-list label {
-  /*font-family: 'Varela Round', sans-serif;*/
+  font-family: 'Varela Round', sans-serif;
   /*font-family: 'Titillium Web', sans-serif;*/
-  font-family: 'Quicksand', sans-serif;
+  /*font-family: 'Quicksand', sans-serif;*/
 }
 .todo-send {
   padding-left: 0;
@@ -5381,14 +5381,6 @@ table .checkbox {
   padding-right: 10px;
   color: #00529C;
 }
-.custom-title-2 {
-  display: block;
-  width: fit-content;
-  background-color: #fff;
-  padding-left: 11px !important;
-  padding-right: 10px;
-  color: #00529C;
-}
 .m-w-210 {
   min-width: 210px;
 }
@@ -5534,4 +5526,10 @@ table .checkbox {
 }
 .w-80 {
     width: 95%;
+}
+.select2-container--default .select2-selection--single {
+  border-radius: 0;
+}
+.select2-dropdown {
+  border-radius: 0;
 }
