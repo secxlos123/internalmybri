@@ -14,7 +14,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group income {!! $errors->has('income') ? 'has-error' : '' !!}" id="nonfixed-income">
-                                            <label class="col-md-4 control-label">Penghasilan per-Bulan *:</label>
+                                            <label class="col-md-4 control-label">Penghasilan per-Bulan * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -25,7 +25,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group income_salary {!! $errors->has('income_salary') ? 'has-error' : '' !!}" id="fixed-salary">
-                                            <label class="col-md-4 control-label">Gaji / THP :</label>
+                                            <label class="col-md-4 control-label">Gaji / THP * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -40,7 +40,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="income_allowance" maxlength="24" value="{{ $eformData['customer']['financial']['other_salary'] }}" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="income_allowance" maxlength="24" value="{{ $eformData['customer']['financial']['other_salary'] }}" >
                                                     @if ($errors->has('income_allowance')) <p class="help-block">{{ $errors->first('income_allowance') }}</p> @endif
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                 </div>

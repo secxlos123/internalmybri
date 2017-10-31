@@ -109,7 +109,7 @@
 
             <!--Hanya muncul jika properti bekas-->
             <!--investigation-->
-            <div class="row" hidden>
+            <div class="row" hidden="" id="investigate">
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
@@ -191,7 +191,7 @@
                 <div class="col-md-12">
                     <div class="pull-right">
                         <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                        <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" data-target="#save"><i class="mdi mdi-content-save"></i> Simpan</a>
+                        <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="saveBtn"><i class="mdi mdi-content-save"></i> Simpan</a>
                     </div>
                 </div>
             </div>
@@ -225,8 +225,9 @@
 @include('internals.eform.lkn.render-mutation')
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
-<!-- 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\EForm\LKNRequest', '#formLKN'); !!}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 
 <script type="text/javascript">
     var options = {
@@ -235,9 +236,10 @@
          textColor:"white"
     };
     $(document).ready(function() {
-       $('#btnSave').on('click', function(e) {
-            $("#formLKN").submit();
+       $('#saveBtn').on('click', function(e) {
             HoldOn.open(options);
+            $("#formLKN").submit();
+            HoldOn.close();
        });
 
        npwp_masking($('#npwp_number'));

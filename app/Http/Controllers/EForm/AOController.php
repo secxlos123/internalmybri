@@ -62,7 +62,8 @@ class AOController extends Controller
                     'pn' => $data['pn']
                 ])->get();
         $eformData = $eforms['contents'];
-        // dd($eformData);
+        // $ext = pathinfo($eformData['visit_report']['npwp'], PATHINFO_EXTENSION);
+        // dd($ext);
         // $typeFinanced = Client::setEndpoint('use-reasons')
         //         ->setHeaders([
         //             'Authorization' => $data['token'],
@@ -71,7 +72,7 @@ class AOController extends Controller
         //         ->get();
         // dd($eforms);
 
-        return view('internals.eform.lkn', compact('data', 'id', 'eformData'));
+        return view('internals.eform.lkn.index', compact('data', 'id', 'eformData'));
     }
 
     /**
@@ -83,6 +84,7 @@ class AOController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->lknRequest($request);
+        // dd($newForm);
 
     	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
            ->setHeaders([
@@ -151,7 +153,7 @@ class AOController extends Controller
      */
     public function returnContent( $field, $values, $baseName )
     {
-      $excludeNumber = ['amount', 'npwp_number', 'income', 'income_salary', 'income_allowance', 'number'];
+      $excludeNumber = ['amount', 'npwp_number', 'income', 'income_salary', 'income_allowance', 'number', 'couple_salary', 'couple_other_salary', 'salary', 'other_salary'];
       $excludeImage = ['file', 'npwp', 'legal_document', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax'];
 
       if ( in_array($baseName, $excludeNumber) ) {
