@@ -51,7 +51,7 @@
                                     ]) !!}
                                     @if ($errors->has('couple_birth_place')) <p class="help-block">{{ $errors->first('couple_birth_place') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="couple_birth_place" id="new_couple_birth_date">
+                                <input type="hidden" name="couple_birth_place" id="new_couple_birth_date" value="{{$dataCustomer['customer']['couple_birth_place']}}">
                             </div>
                             <div class="form-group couple_birth_date {!! $errors->has('couple_birth_date') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Tanggal Lahir * :</label>

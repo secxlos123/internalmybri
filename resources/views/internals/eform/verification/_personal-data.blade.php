@@ -84,7 +84,7 @@
                                     ]) !!}
                                     @if ($errors->has('birth_place')) <p class="help-block">{{ $errors->first('birth_place') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="birth_place" id="new_birth_place">
+                                <input type="hidden" name="birth_place" id="new_birth_place" value="{{$dataCustomer['customer']['birth_place']}}">
                             </div>
                             <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
                                 <label class="col-md-3 control-label">Tanggal Lahir * :</label>
@@ -106,7 +106,7 @@
                                     ]) !!}
                                     @if ($errors->has('city_id')) <p class="help-block">{{ $errors->first('city_id') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="city" id="new_city">
+                                <input type="hidden" name="city" id="new_city" value="{{$dataCustomer['customer']['city']}}">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">KTP * :</label>
@@ -135,7 +135,7 @@
                                     </select>
                                     @if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="gender" id="new_gender">
+                                <input type="hidden" name="gender" id="new_gender" value="{{$dataCustomer['customer']['gender']}}">
                             </div>
                             <div class="form-group status {!! $errors->has('status') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Status Pernikahan * :</label>
@@ -148,7 +148,7 @@
                                     </select>
                                     @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="status" id="new_status">
+                                <input type="hidden" name="status" id="new_status" value="{{$dataCustomer['customer']['status']}}">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Status Tempat Tinggal * :</label>
@@ -161,7 +161,7 @@
                                     </select>
                                     @if ($errors->has('address_status')) <p class="help-block">{{ $errors->first('address_status') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="address_status" id="new_address_status">
+                                <input type="hidden" name="address_status" id="new_address_status" value="{{$dataCustomer['customer']['address_status']}}">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Kewarganegaraan * :</label>
@@ -173,7 +173,7 @@
                                     ]) !!}
                                     @if ($errors->has('citizenship')) <p class="help-block">{{ $errors->first('citizenship') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="citizenship_name" id="new_citizenship">
+                                <input type="hidden" name="citizenship_name" id="new_citizenship" value="{{$dataCustomer['customer']['citizenship_id']['desc2']}}">
                             </div>    
                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Email * :</label>
