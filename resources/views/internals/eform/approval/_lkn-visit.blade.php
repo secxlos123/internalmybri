@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Tujuan Kunjungan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static"></p>
+                    <p class="form-control-static">{{$detail['visit_report']['purpose_of_visit']}}</p>
                 </div>
             </div>
         </form>
@@ -60,13 +60,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nomor NPWP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static"></p>
+                    <p class="form-control-static">{{$detail['visit_report']['npwp_number_masking']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Hasil Kunjungan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static"></p>
+                    <p class="form-control-static">{{$detail['visit_report']['visit_result']}}</p>
                 </div>
             </div>
         </form>

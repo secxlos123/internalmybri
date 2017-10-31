@@ -64,28 +64,28 @@
 
     <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
+            <img src="@if(!empty($detail['visit_report']['divorce_certificate'])){{$detail['visit_report']['divorce_certificate']}}@endif" class="img-responsive">
             <p>Akta Pisah Harta</p>
         </div>
     </div>
 
     <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
+            <img src="@if(!empty($detail['visit_report']['photo_with_customer'])){{$detail['visit_report']['photo_with_customer']}}@endif" class="img-responsive">
             <p>Foto Debitur</p>
         </div>
     </div>
 
     <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
+            <img src="@if(!empty($detail['visit_report']['offering_letter'])){{$detail['visit_report']['offering_letter']}}@endif" class="img-responsive">
             <p>Surat Penawaran</p>
         </div>
     </div>
 
     <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
+            <img src="@if(!empty($detail['visit_report']['down_payment'])){{$detail['visit_report']['down_payment']}}@endif" class="img-responsive">
             <p>Bukti DP</p>
         </div>
     </div>
@@ -106,7 +106,7 @@
     
     <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
+            <img src="@if(!empty($detail['visit_report']['building_tax'])){{$detail['visit_report']['building_tax']}}@endif" class="img-responsive">
             <p>PBB Terakhir</p>
         </div>
     </div>

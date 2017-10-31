@@ -98,15 +98,17 @@
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-mutation')
                         </div>
+                        @if($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18)
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-investigate')
                         </div>
+                        @endif
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-analist')
                         </div>
-                        <div class="panel-body">
+                        <!-- <div class="panel-body">
                             @include('internals.eform.approval._lkn-recommend')
-                        </div>
+                        </div> -->
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-common')
                         </div>
