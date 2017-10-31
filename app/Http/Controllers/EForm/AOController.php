@@ -224,7 +224,7 @@ class AOController extends Controller
         $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
 
-        return view('internals.eform.verification', compact('data', 'id', 'dataCustomer'));
+        return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer'));
     }
 
     /**
@@ -337,7 +337,7 @@ class AOController extends Controller
         $data = $this->getUser();
 
         $newData = $this->dataRequest($request);
-        // dd($newData);
+        dd($newData);
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
