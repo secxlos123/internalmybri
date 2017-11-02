@@ -40,7 +40,7 @@
                 <div class="form-group {!! $errors->has('project_list') ? 'has-error' : '' !!}" id="project_list">
                     <label class="col-md-4 control-label">Project *:</label>
                     <div class="col-md-8">
-                        {!! Form::select('project_list', ['' => ''], old('project_list'), [
+                        {!! Form::select('project_list', [$eformData['property_id'] => $eformData['property_name']], old('project_list'), [
                             'class' => 'select2 project_list',
                             'data-option' => 1,
                             'data-placeholder' => 'Pilih Project',

@@ -106,9 +106,9 @@
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-analist')
                         </div>
-                        <!-- <div class="panel-body">
+                        <div class="panel-body">
                             @include('internals.eform.approval._lkn-recommend')
-                        </div> -->
+                        </div>
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-common')
                         </div>

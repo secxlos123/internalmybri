@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Leads')
+@section('title','My BRI - Daftar Profil Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
                             <div class="col-xs-12">
                                 
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Daftar Leads</h4>
+                                    <h4 class="page-title">Daftar Profil Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="{{url('/')}}">Dashboard</a>
                                         </li>
                                         <li class="active">
-                                            Daftar Leads
+                                            Daftar Profil Nasabah
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -27,12 +27,12 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="card-box table-responsive">
+                                <div class="card-box">
                                     <fieldset hidden>
                                         <div class="add-button">
                                             <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                           <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Leads</a> -->
-                                            <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Leads</a>
+                                           <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Nasabah</a> -->
+                                            <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Nasabah</a>
                                             <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                                         </div>
                                     </fieldset>
@@ -48,7 +48,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Nama Leads :</label>
+                                                            <label class="col-sm-4 control-label">Nama Profil Nasabah :</label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control" id="customer_name" name="customer_name">
                                                             </div>
@@ -100,7 +100,7 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>NIK</th>
-                                                <th>Nama Leads</th>
+                                                <th>Nama Profil Nasabah</th>
                                                 <th>Email</th>
                                                 <th>Kota</th>
                                                 <th>Handphone</th>
@@ -112,7 +112,7 @@
                                             <!-- <tr>
                                                 <td class="align-middle">1</td>
                                                 <td class="align-middle">123455667</td>
-                                                <td class="align-middle">Leads 1</td>
+                                                <td class="align-middle">Profil Nasabah 1</td>
                                                 <td class="align-middle">xx@xx.com</td>
                                                 <td class="align-middle">Kota 1</td>
                                                 <td class="align-middle">21213212</td>

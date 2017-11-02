@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Leads')
+@section('title','My BRI - Detail Profil Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Detail Leads "{{$dataCustomer['personal']['name']}}" </h4>
+                                    <h4 class="page-title">Detail Profil Nasabah "{{$dataCustomer['personal']['name']}}" </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Leads</a>
+                                            <a href="{{route('customers.index')}}">Profil Nasabah</a>
                                         </li>
                                         <li class="active">
-                                            Detail Leads
+                                            Detail Profil Nasabah
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -140,7 +140,7 @@
                                                 </div>
                                             </div>                                           
 
-                                            <div class="row foto-Leads">
+                                            <div class="row foto-nasabah">
                                                 <div class="col-md-12">
                                                     <div class="panel panel-color panel-primary">
                                                         <div class="panel-heading">

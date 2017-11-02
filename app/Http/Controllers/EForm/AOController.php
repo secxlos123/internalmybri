@@ -70,7 +70,7 @@ class AOController extends Controller
         //             'pn' => $data['pn']
         //         ])
         //         ->get();
-        // dd($eforms);
+        dd($eforms);
 
         return view('internals.eform.lkn.index', compact('data', 'id', 'eformData'));
     }
