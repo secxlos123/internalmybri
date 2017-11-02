@@ -90,6 +90,7 @@
         </div>
     </div>
 
+    @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
     <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="@if(!empty($detail['visit_report']['proprietary'])){{$detail['visit_report']['proprietary']}}@endif" class="img-responsive">
@@ -103,6 +104,7 @@
             <p>Izin Mendirikan Bangunan</p>
         </div>
     </div>
+    @endif
     
     <div class="col-md-6" align="center">
         <div class="card-box">

@@ -48,18 +48,20 @@ class LoginController extends Controller
                 ->setBody($data)
                 ->post();
 
-        if($request->pn == '66777'){
-            $role = ['role' => 'ao'];
-            $uker = ['uker' => 'KC'];
-        }else if($request->pn == '68881'){
-            $role = ['role' => 'mp'];
-            $uker = ['uker' => 'KC'];
-        }else{
-            $role = ['role' => 'staff'];
-            $uker = ['uker' => 'other'];
-        }
+        if(env('APP_ENV') == 'localhost'){
+            if($request->pn == '66777'){
+                $role = ['role' => 'ao'];
+                $uker = ['uker' => 'KC'];
+            }else if($request->pn == '68881'){
+                $role = ['role' => 'mp'];
+                $uker = ['uker' => 'KC'];
+            }else{
+                $role = ['role' => 'staff'];
+                $uker = ['uker' => 'other'];
+            }
                 
-        $user =array_merge($client['contents'], $uker, $role);
+            $user =array_merge($client['contents'], $uker, $role);
+        }
 
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];

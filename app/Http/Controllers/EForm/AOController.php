@@ -93,7 +93,7 @@ class AOController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
-           // dd($client);
+           dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
