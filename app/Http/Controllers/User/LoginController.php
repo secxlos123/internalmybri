@@ -68,7 +68,9 @@ class LoginController extends Controller
 
         if($codeResponse == 200){
             session()->put('user', $client);
-            session()->put('user.contents', $user);
+            if(env('APP_ENV') == 'localhost'){
+                session()->put('user.contents', $user);
+            }
             return response()->json(['url' => route('dashboard'), 'message' => $codeDescription, 'code' => $codeResponse]);
         }elseif($codeResponse == 422){
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);

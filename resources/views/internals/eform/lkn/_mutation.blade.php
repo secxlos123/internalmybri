@@ -61,8 +61,8 @@
                       <td>
                         <select class="form-control" name="mutations[0][tables][0][type]">
                             <option selected="" disabled="">-- Pilih --</option>
-                            <option value="1">Transaksi Tidak Terkait Usaha</option>
-                            <option value="2">Transaksi Overbooking</option>
+                            <option>Transaksi Tidak Terkait Usaha</option>
+                            <option>Transaksi Overbooking</option>
                         </select>
                       </td>
                       <td>
