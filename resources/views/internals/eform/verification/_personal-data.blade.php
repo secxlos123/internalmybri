@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <input type="hidden" name="cif_number">
+                            <input type="hidden" name="cif_number" value="{{$dataCustomer['cif']['cif_number']}}">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                 <div class="col-md-9">
