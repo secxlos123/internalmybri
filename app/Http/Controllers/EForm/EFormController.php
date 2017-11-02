@@ -350,7 +350,8 @@ class EFormController extends Controller
                     'page'      => (int) $request->input('page') + 1,
                     'start_date'=> $request->input('start_date'),
                     'end_date'  => $request->input('end_date'),
-                    'status'    => $request->input('status')
+                    'status'    => $request->input('status'),
+                    'branch_id' => $data['branch']
                 ])->get();
 
             // dd($eforms);
