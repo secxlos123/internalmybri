@@ -1,4 +1,5 @@
 <div class="panel-body">
+    <input type="hidden" name="status_id" value="{{$eformData['customer']['personal']['status_id']}}">
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-horizontal" role="form">
