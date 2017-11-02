@@ -61,6 +61,7 @@
                                                     'data-bri' => ''
                                                 ]) !!}
                                             </div>
+                                            <input type="hidden" name="developer_name" id="new_developer_name">
                                         </div>
                                         <div class="form-group {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                             <label class="control-label col-md-4">Nama Properti *:</label>
@@ -70,6 +71,7 @@
                                                     'data-placeholder' => 'Pilih Nama Properti',
                                                 ]) !!}
                                             </div>
+                                            <input type="hidden" name="property_name" id="new_property_name">
                                         </div>
                                         <hr>
 

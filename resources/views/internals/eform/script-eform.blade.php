@@ -86,6 +86,7 @@
         $('.developers').on('change', function () {
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
+            $('#new_developer_name').val(text);
 
             if(text == "INDEPENDENT"){
                 $('#price').removeAttr('readonly');
@@ -136,6 +137,8 @@
 
         $('.property_name').on('change', function () {
             var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#new_property_name').val(text);
 
             $('.property_type').select2({
                 witdh : '100%',
