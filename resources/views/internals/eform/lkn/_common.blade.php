@@ -45,6 +45,7 @@
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="family_card">
                     </div>
                 </div>
+                @if($eformData['customer']['personal']['status_id'] >= 2)
                 <div class="form-group" id="marrital_certificate">
                     <label class="col-md-6 control-label">Akta Nikah/Akta Cerai * :</label>
                     <div class="col-md-6">
@@ -63,6 +64,7 @@
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="divorce_certificate">
                     </div>
                 </div>
+                @endif
                 <div class="form-group">
                     <label class="col-md-6 control-label">Foto Debitur :</label>
                     <div class="col-md-6">
