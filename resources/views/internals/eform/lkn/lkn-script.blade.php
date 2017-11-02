@@ -122,6 +122,11 @@
                 cache: true
             },
         });
+        $('.kpp_type').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_kpp_type').val(text);
+        });
+
         $('.type_financed').select2({
             // width : '100%',
             allowClear: true,
@@ -142,6 +147,11 @@
                 cache: true
             },
         });
+        $('.type_financed').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_type_financed').val(text);
+        });
+
         $('.economy_sector').select2({
             // width : '100%',
             allowClear: true,
@@ -162,6 +172,11 @@
                 cache: true
             },
         });
+        $('.economy_sector').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_economy_sector').val(text);
+        });
+
         $('.project_list').select2({
             // width : '100%',
             allowClear: true,
@@ -182,6 +197,11 @@
                 cache: true
             },
         });
+        $('.project_list').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_project_list').val(text);
+        });
+
         $('.program_list').select2({
             // width : '100%',
             allowClear: true,
@@ -202,6 +222,11 @@
                 cache: true
             },
         });
+        $('.program_list').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_program_list').val(text);
+        });
+
         $('.use_reason').select2({
             // width : '100%',
             allowClear: true,
@@ -222,5 +247,10 @@
                 cache: true
             },
         });
+        $('.use_reason').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_use_reason').val(text);
+        });
+
 	});
 </script>

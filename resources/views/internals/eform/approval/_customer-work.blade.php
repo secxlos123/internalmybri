@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Lama Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static"> {{$detail['customer']['work']['work_duration']}} Tahun</p>
+                    <p class="form-control-static"> {{$detail['customer']['work']['work_duration']}} Tahun {{$detail['customer']['work']['work_duration_month']}} Bulan</p>
                 </div>
             </div>
             <div class="form-group">

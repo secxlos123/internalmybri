@@ -42,12 +42,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Nama Nasabah :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer_name']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Pertemuan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['appointment_date']}}</p>

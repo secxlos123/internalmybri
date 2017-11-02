@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label">Izin Praktek * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="licence_of_practice">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="license_of_practice">
                     </div>
                 </div>
                 <div class="form-group">

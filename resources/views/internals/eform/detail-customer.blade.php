@@ -55,9 +55,9 @@
                                 <label class="col-md-4 control-label">Status Pernikahan :</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static">
-                                        {{($dataCustomer['status'] == 0) ? 'Tidak Menikah' : ''}}
-                                        {{($dataCustomer['status'] == 1) ? 'Menikah' : ''}}
-                                        {{($dataCustomer['status'] == 2) ? 'Janda/Duda' : ''}}
+                                        {{($dataCustomer['status'] == 1) ? 'Belum Menikah' : ''}}
+                                        {{($dataCustomer['status'] == 2) ? 'Menikah' : ''}}
+                                        {{($dataCustomer['status'] == 3) ? 'Janda/Duda' : ''}}
                                     </p>
                                 </div>
                             </div>

@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-md-9">
             <div class="form-horizontal" role="form">
-                <input type="hidden" name="use_reason_id" id="use_reason_id" value="">
-                <input type="hidden" name="id_prescreening" id="id_prescreening" value="0">
+                <!-- <input type="hidden" name="use_reason_id" id="use_reason_id" value=""> -->
+                <input type="hidden" name="id_prescreening" id="id_prescreening" value="12">
                 <div class="form-group {!! $errors->has('kpp_type') ? 'has-error' : '' !!}" id="kpp_type">
                     <label class="col-md-4 control-label">KPP *:</label>
                     <div class="col-md-8">
@@ -13,6 +13,7 @@
                             'data-placeholder' => 'Pilih KPP',
                         ]) !!}
                     </div>
+                    <input type="hidden" name="kpp_type_name" id="new_kpp_type">
                 </div>
                 <div class="form-group {!! $errors->has('type_financed') ? 'has-error' : '' !!}" id="type_financed">
                     <label class="col-md-4 control-label">Jenis Dibiayai *:</label>
@@ -23,6 +24,7 @@
                             'data-placeholder' => 'Pilih Jenis Dibiayai',
                         ]) !!}
                     </div>
+                    <input type="hidden" name="type_financed_name" id="new_type_financed">
                 </div>
                 <div class="form-group {!! $errors->has('economy_sector') ? 'has-error' : '' !!}" id="economy_sector">
                     <label class="col-md-4 control-label">Sektor Ekonomi *:</label>
@@ -33,6 +35,7 @@
                             'data-placeholder' => 'Pilih Sektor Ekonomi',
                         ]) !!}
                     </div>
+                    <input type="hidden" name="economy_sector_name" id="new_economy_sector">
                 </div>
                 <div class="form-group {!! $errors->has('project_list') ? 'has-error' : '' !!}" id="project_list">
                     <label class="col-md-4 control-label">Project *:</label>
@@ -43,6 +46,7 @@
                             'data-placeholder' => 'Pilih Project',
                         ]) !!}
                     </div>
+                    <input type="hidden" name="project_list_name" id="new_project_list">
                 </div>
                 <div class="form-group {!! $errors->has('program_list') ? 'has-error' : '' !!}" id="program_list">
                     <label class="col-md-4 control-label">Program *:</label>
@@ -53,6 +57,7 @@
                             'data-placeholder' => 'Pilih Program',
                         ]) !!}
                     </div>
+                    <input type="hidden" name="program_list_name" id="new_program_list">
                 </div>
                 <div class="form-group {!! $errors->has('use_reason') ? 'has-error' : '' !!}" id="use_reason">
                     <label class="col-md-4 control-label">Tujuan Penggunaan *:</label>
@@ -63,6 +68,7 @@
                             'data-placeholder' => 'Pilih Tujuan Penggunaan',
                         ]) !!}
                     </div>
+                    <input type="hidden" name="use_reason_name" id="new_use_reason">
                 </div>
             </div>
         </div>
