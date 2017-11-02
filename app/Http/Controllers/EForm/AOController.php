@@ -93,7 +93,7 @@ class AOController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
-           dd($client);
+           // dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
@@ -284,6 +284,25 @@ class AOController extends Controller
     /**
      * List of request needed for input to customer
      *
+     * @param  \Illuminate\Http\Request  $requestNumber
+     * @param  String $attribute
+     */
+    function parseNumber( $requestNumber, $attribute )
+    {
+      if ( isset($requestNumber) ) {
+        $number[] = [
+          'name'     => $attribute,
+          'contents' => str_replace(',', '.', str_replace('.', '', $requestNumber))
+        ];
+        return $number;
+      };
+
+      return [];
+    }
+
+    /**
+     * List of request needed for input to customer
+     *
      * @param  \Illuminate\Http\Request  $request
      */
     public function dataRequest($request)
@@ -308,7 +327,7 @@ class AOController extends Controller
           ],
         );
 
-        $allReq = $request->except(['full_name', '_token']);
+        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity']);
           foreach ($allReq as $index => $req) {
             $inputData[] = [
               'name'     => $index,
@@ -322,6 +341,12 @@ class AOController extends Controller
           , $verifyStatus
           , $this->parseImage( $request->identity, 'identity' )
           , $this->parseImage( $request->couple_identity, 'couple_identity' )
+          , $this->parseNumber( $request->salary, 'salary' )
+          , $this->parseNumber( $request->other_salary, 'other_salary' )
+          , $this->parseNumber( $request->loan_installment, 'loan_installment' )
+          , $this->parseNumber( $request->couple_salary, 'couple_salary' )
+          , $this->parseNumber( $request->couple_other_salary, 'couple_other_salary' )
+          , $this->parseNumber( $request->couple_loan_installment, 'couple_loan_installment' )
         );
     }
 
