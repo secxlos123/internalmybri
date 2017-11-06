@@ -3265,7 +3265,8 @@ input[switch="teal"]:checked + label {
 .select2-container .select2-selection--single .select2-selection__arrow {
   height: 34px;
   width: 34px;
-  right: 3px;
+  /*right: 3px;*/
+  right: 30px;
 }
 .select2-container .select2-selection--single .select2-selection__arrow b {
   border-color: #999 transparent transparent transparent;
