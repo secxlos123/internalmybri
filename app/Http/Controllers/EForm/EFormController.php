@@ -173,26 +173,39 @@ class EFormController extends Controller
     public function create()
     {
         $data = $this->getUser();
-        // dd($data);
+
+        try {
+            $client = new \GuzzleHttp\Client();
+            $res = $client->request('GET', 'http://freegeoip.net/json/');
+            $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
+            $long = $getIP->longitude;
+            $lat = $getIP->latitude;
+
+        } catch (Exception $e) {
+            $getIP = null;
+            $long = 0;
+            $lat = 0;
+        
+        }
 
         $offices = Client::setEndpoint('offices')
-                    ->setHeaders([
-                        'Authorization' => $data['token'],
-                        'pn' => $data['pn']
-                    ])->setQuery([
-                        'branch' => $data['branch'],
-                        'distance' => 1,
-                        'long' => 0,
-                        'lat' => 0
-                    ])
-                    ->get();
-                    // dd($offices);
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'branch' => $data['branch'],
+                'distance' => 1,
+                'long' => 106.820788,
+                'lat' => -6.301752
+            ])
+            ->get();
+            
+        $office = [];
+
         if(!empty($offices['contents']['data'])){
           $office = $offices['contents']['data'][0];
-        }else{
-          $office = [];
+
         }
-        // dd($office);
         
         return view('internals.eform.create', compact('data', 'office'));
     }
