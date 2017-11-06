@@ -601,10 +601,24 @@
                 async: false,
                 success: function (data) {
                     // console.log(data)
+
+                    if ( data.code != 422 ) {
+                        $('#leads-modal').modal('toggle');
+                    } else {
+                        setTimeout(
+                            function(){ 
+                                $.each(data.contents, function(key, value) {
+                                    console.log(key);
+                                    $("#form_data_personal").find(".form-group." + key).eq(0).addClass('has-error');
+                                    $("#form_data_personal").find("span#"+key+"-error").eq(0).html(value);
+                                });
+                            }
+                        , 2000);
+                    }
+
                     HoldOn.close();
                     // $('#divForm').addClass('alert alert-success');
                     // $('#divForm').append('Data Berhasil Ditambahkan');
-                    $('#leads-modal').modal('toggle');
                 },
                 error: function (response) {
                     // console.log(response)

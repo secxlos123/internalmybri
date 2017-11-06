@@ -53,7 +53,7 @@
                                         <div class="col-md-6">
                                             <div role="form">
                                                 <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
-                                                    <label class="control-label"">Cari NIK Nasabah *</label>
+                                                    <label class="control-label">Cari NIK Nasabah *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
                                                                 'class' => 'select2 nikSelect',
