@@ -47,7 +47,7 @@ class EFormController extends Controller
     public function index()
     {
         $data = $this->getUser(); 
-        // dd($data);
+        // dd(env('APP_ENV'));
 
         if($data['role'] == 'ao'){
             return view('internals.eform.index-ao', compact('data'));   

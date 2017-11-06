@@ -48,7 +48,7 @@ class LoginController extends Controller
                 ->setBody($data)
                 ->post();
 
-        if(env('APP_ENV') == 'localhost'){
+        if(env('APP_ENV') == 'local'){
             if($request->pn == '66777'){
                 $role = ['role' => 'ao'];
                 $uker = ['uker' => 'KC'];
