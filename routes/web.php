@@ -92,6 +92,10 @@
 
         Route::get('downloadTracking', ['as'=>'downloadTracking', 'uses'=>'Tracking\TrackingController@downloadTracking']);
 
+        Route::get('collateral/assignment/{id}', ['as'=>'getAssignment', 'uses'=>'Collateral\CollateralController@assignment']);
+
+        Route::get('collateral/approval/{id}', ['as'=>'getApproval', 'uses'=>'Collateral\CollateralController@approval']);
+
         Route::resource('eform', 'EForm\EFormController');
 
         /* Pihak Ke -3 (Third Party) */
@@ -105,6 +109,9 @@
 
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
+
+        /* Collateral */
+        Route::resource('collateral', 'Collateral\CollateralController');
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
