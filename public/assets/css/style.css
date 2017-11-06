@@ -1,10 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Varela+Round);
-@import 'https://fonts.googleapis.com/css?family=Hind+Madurai:600,700';
-/*@import url('https://fonts.googleapis.com/css?family=Quicksand|Titillium+Web');*/
+/*@import url(https://fonts.googleapis.com/css?family=Varela+Round);*/
+/*@import 'https://fonts.googleapis.com/css?family=Hind+Madurai:600,700';*/
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Titillium+Web');
 body {
-  font-family: 'Varela Round', sans-serif;
+  /*font-family: 'Varela Round', sans-serif;*/
   /*font-family: 'Titillium Web', sans-serif;*/
-  /*font-family: 'Quicksand', sans-serif;*/
+  font-family: 'Quicksand', sans-serif;
   margin: 0;
   padding-bottom: 60px;
   overflow-x: hidden;
@@ -1554,9 +1554,9 @@ a:focus {
   display: inline-block;
   padding-left: 5px;
   position: relative;
-  font-family: 'Varela Round', sans-serif;
+  /*font-family: 'Varela Round', sans-serif;*/
   /*font-family: 'Titillium Web', sans-serif;*/
-  /*font-family: 'Quicksand', sans-serif;*/
+  font-family: 'Quicksand', sans-serif;
   font-weight: normal;
 }
 .checkbox label::before {
@@ -1690,9 +1690,9 @@ a:focus {
   display: inline-block;
   padding-left: 5px;
   position: relative;
-  font-family: 'Varela Round', sans-serif;
+  /*font-family: 'Varela Round', sans-serif;*/
   /*font-family: 'Titillium Web', sans-serif;*/
-  /*font-family: 'Quicksand', sans-serif;*/
+  font-family: 'Quicksand', sans-serif;
   font-weight: normal;
 }
 .radio label::before {
@@ -2562,9 +2562,9 @@ a:focus {
   border-bottom: none;
 }
 .todo-list label {
-  font-family: 'Varela Round', sans-serif;
+  /*font-family: 'Varela Round', sans-serif;*/
   /*font-family: 'Titillium Web', sans-serif;*/
-  /*font-family: 'Quicksand', sans-serif;*/
+  font-family: 'Quicksand', sans-serif;
 }
 .todo-send {
   padding-left: 0;
@@ -5532,4 +5532,94 @@ table .checkbox {
 }
 .select2-dropdown {
   border-radius: 0;
+}
+
+.bottom20 {
+    margin-bottom: 20px;
+}
+
+.for-filter-eform .form-group .add-btn.top20 {
+    float: right;
+}
+
+.top20 {
+    margin-top: 20px;
+}
+
+.bottom10 {
+    margin-bottom: 10px;
+}
+
+.has-bock-print h3 {
+  display: inline-block;
+  margin: 0;
+}
+
+.has-bock-print .btn-project.bottom10  {
+  display: inline-block;
+  float: right;
+}
+
+.has-bock-print .form-group, 
+.has-bock-print .form-group label,
+.has-bock-print .form-group .is-dropdown-select2 {
+  display: inline-block;
+}
+
+.has-bock-print .add-btn {
+  display: inline-block;
+  margin:0 20px;
+}
+
+.transparent {
+  opacity: 0;
+}
+
+
+.center-steps .wizard > .steps .current a .number {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.center-steps .wizard > .steps .number {
+    font-size: 40px;
+    line-height: inherit;
+    /* font-family: 'Hind Madurai', sans-serif; */
+    font-family: 'Quicksand', sans-serif;
+    position: inherit;
+    left: auto;
+    top: auto;
+    opacity: 0.1;
+}
+
+.center-steps .wizard > .steps a, 
+.center-steps .wizard > .steps a:hover, 
+.center-steps .wizard > .steps a:active {
+    display: block;
+    width: auto;
+    margin: 0 0.5em 0.5em;
+    padding: 0;
+    text-decoration: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.center-steps .wizard > .steps > ul > li {
+    width: 16.66%;
+}
+
+.horizontal-input .is-input {
+  display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+}
+
+.horizontal-input label {
+  width: 150px;
+}
+
+.btn-banning {
+  background-color: #e27a7a !important;
+  border: 1px solid #e27a7a !important;  
 }

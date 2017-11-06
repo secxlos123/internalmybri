@@ -96,6 +96,8 @@
 
         Route::get('collateral/approval/{id}', ['as'=>'getApproval', 'uses'=>'Collateral\CollateralController@approval']);
 
+        Route::get('staff-collateral/scoring-form/{id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+
         Route::resource('eform', 'EForm\EFormController');
 
         /* Pihak Ke -3 (Third Party) */
@@ -112,6 +114,9 @@
 
         /* Collateral */
         Route::resource('collateral', 'Collateral\CollateralController');
+
+        /* Collateral Staff*/
+        Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
