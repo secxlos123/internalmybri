@@ -177,16 +177,12 @@ class ThirdPartyController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Showing datatables 
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function datatables(Request $request)
     {
         $sort = $request->input('order.0');
