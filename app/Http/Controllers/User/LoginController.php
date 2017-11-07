@@ -48,6 +48,7 @@ class LoginController extends Controller
                 ->setBody($data)
                 ->post();
 
+
         if(env('APP_ENV') == 'local'){
             if($request->pn == '66777'){
                 $role = ['role' => 'ao'];
@@ -55,6 +56,12 @@ class LoginController extends Controller
             }else if($request->pn == '68881'){
                 $role = ['role' => 'mp'];
                 $uker = ['uker' => 'KC'];
+            }else if($request->pn == '123456'){
+                $role = ['role' => 'collateral'];
+                $uker = ['uker' => 'other'];
+            }else if($request->pn == '654321'){
+                $role = ['role' => 'staff-collateral'];
+                $uker = ['uker' => 'other'];
             }else{
                 $role = ['role' => 'staff'];
                 $uker = ['uker' => 'other'];
@@ -68,7 +75,7 @@ class LoginController extends Controller
 
         if($codeResponse == 200){
             session()->put('user', $client);
-            if(env('APP_ENV') == 'localhost'){
+            if(env('APP_ENV') == 'local'){
                 session()->put('user.contents', $user);
             }
             return response()->json(['url' => route('dashboard'), 'message' => $codeDescription, 'code' => $codeResponse]);

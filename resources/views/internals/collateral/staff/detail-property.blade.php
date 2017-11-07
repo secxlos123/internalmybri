@@ -236,6 +236,7 @@
     </div>
 </div>
 
+@include('internals.collateral.manager.detail-information-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 
@@ -274,4 +275,14 @@
             },
         });
     });
+
+    $(document).on('click', "#btn-reject", function(){
+        $('#reject-modal').modal('show');
+    })
+
+    $(document).on('click', "#btn-submit", function(){
+        $('#is_approved').attr('value', false);
+        $('#form1').submit();
+        HoldOn.open(options);
+    })
 </script>

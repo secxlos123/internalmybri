@@ -24,10 +24,11 @@
                             <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Disposisi dan Rekomendasi </span> </a>
                             @endif
                             </li>
-
+                            @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
                             <li>
                                 <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                             </li>
+                            @endif
                            <!--  <li>
                                 <a href="debitur.html" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
                             </li> -->
@@ -39,10 +40,24 @@
                             </li>
                             <li>
                                 <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
-                            </li>
+                            </li> -->
+                            @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
                             <li>
                                 <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
-                            </li> -->
+                            </li>
+                            @endif
+
+                            @if(($data['role']=='collateral'))
+                            <li>
+                                <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Approval Properti Baru </span> </a>
+                            </li>
+                            @endif
+
+                            @if(($data['role']=='staff-collateral'))
+                            <li>
+                                <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Approval Properti Baru </span> </a>
+                            </li>
+                            @endif
                             <!-- <li>
                                 <a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
                             </li>
