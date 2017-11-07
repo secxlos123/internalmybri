@@ -160,11 +160,7 @@
 @include('internals.layouts.foot')    
 
 <script type="text/javascript">
-    var options = {
-         theme:"sk-bounce",
-         message:'Mohon tunggu sebentar.',
-         textColor:"white"
-    };
+    
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             $("#form1").submit();

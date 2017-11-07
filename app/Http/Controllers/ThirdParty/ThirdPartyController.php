@@ -197,13 +197,11 @@ class ThirdPartyController extends Controller
                     'pn' => $data['pn']
                 ])->setQuery([
                     'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
+                    'name'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'city_id'   => $request->input('city_id'),
-                    'project'   => $request->input('project'),
                     'page'      => (int) $request->input('page') + 1
                 ])->get();
-        // dd($third_party);
 
         foreach ($third_party['contents']['data'] as $key => $third) {
             $third['action'] = view('internals.layouts.actions', [
