@@ -107,7 +107,7 @@
             Route::get('third-party', ['as'=>'approveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalThirdParty']);
 
             Route::get('third-party/approve/{id}', ['as'=>'getApproveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@getViewApprovalThirdParty']);
-        }
+        });
 
         Route::resource('eform', 'EForm\EFormController');
 
