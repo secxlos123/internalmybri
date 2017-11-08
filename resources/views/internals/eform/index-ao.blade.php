@@ -105,11 +105,11 @@
                         </div>
                     </div>
                 </div>
+@include('internals.eform._result-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function(){
-
         $("#from").datepicker({
             todayBtn:  1,
             autoclose: true,
@@ -140,6 +140,11 @@
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
+    })
+
+    $(document).on('click', "#btn-prescreening", function(){
+        console.log('click');
+        $('#result-modal').modal('show');
       })
 
     function reloadData1(from, to, status)
@@ -175,28 +180,7 @@
                 {   data: 'request_amount', name: 'request_amount', bSortable: false  },
                 {   data: 'created_at', name: 'created_at' },
                 {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
-                {   data: 'prescreening_status', 
-                    name: 'prescreening_status', 
-                    bSortable: false,
-                    mRender: function (data, type, full) {
-                        if(full.prescreening_status == 'Hijau'){
-                            color = 'text-success';
-                            text = 'Hijau';
-                        }else if(full.prescreening_status == 'Kuning'){
-                            color = 'text-warning';
-                            text = 'Kuning';
-                        }else if(full.prescreening_status == 'Merah'){
-                            color = 'text-danger';
-                            text = 'Merah';
-                        }else {
-                            color = '';
-                            text = 'Pengajuan Baru';
-                        }
-                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-                    },
-                    createdCell:  function (td, cellData, rowData, row, col) {
-                        $(td).attr('class', 'status'); 
-                    }},
+                {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
                 {   data: 'status', name: 'status' },
                 {   data: 'aging', name: 'aging' },
                 {   data: 'response_status'
