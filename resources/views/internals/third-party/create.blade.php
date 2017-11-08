@@ -36,18 +36,18 @@
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">Nama Pihak Ke-3 *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control alphaOnly" name="name" maxlength="150" required="" value="{{old('Pihak Ke-3_name')}}" id="name">
+                                                        <input type="text" class="form-control alphaOnly" name="name" maxlength="150" required="" value="{{old('name')}}" id="name">
                                                     </div>
                                                 </div>
                                                
-                                                <div class="form-group address {!! $errors->has('address') ? 'has-error' : '' !!}">
+                                                <div class="form-group ">
                                                     <label class="col-md-4 control-label">Alamat *:</label>
                                                     <div class="col-md-8">
                                                         <textarea class="form-control" rows="3" name="address" maxlength="255">{{old('address')}}</textarea>
                                                     @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group city_id {!! $errors->has('city_id') ? 'has-error' : '' !!}">
+                                                <div class="form-group">
                                                     <label class="col-md-4 control-label">Kota *:</label>
                                                     <div class="col-md-8">
                                                        {!! Form::select('city_id', ['' => ''], old('cities'), [
@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-horizontal" role="form">
-                                                <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
+                                                <div class="form-group">
                                                     <label class="col-md-4 control-label">Alamat Email *:</label>
                                                     <div class="col-md-8">
                                                         <input type="email" class="form-control" name="email" required="" maxlength="50" value="{{old('email')}}">
@@ -122,6 +122,7 @@
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             $("#form_third_party").submit();
+            HoldOn.open(options);
        });
 
        $('#btn-save').on('click', function(e) {

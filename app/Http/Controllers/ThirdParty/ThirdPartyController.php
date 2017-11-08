@@ -89,14 +89,16 @@ class ThirdPartyController extends Controller
            // dd($client);
         
         if($client['code'] == 200){
-            \Session::flash('success', 'Data Pihak Ke-3 sudah disimpan.');
+            \Session::flash('success', $client['descriptions']);
             return redirect()->route('third-party.index');
         }elseif($client['code'] == 500){
-            \Session::flash('error', 'Maaf, server sedang gangguan');
-            return redirect()->back();
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
         }else{
-            \Session::flash('error', 'Kesalahan input');
-            return redirect()->back();
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
         }
         
         return view('internals.third-party.index', compact('data'));
