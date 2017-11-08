@@ -98,6 +98,17 @@
 
         Route::get('staff-collateral/scoring-form/{id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
 
+        Route::group(['prefix'=>'approval-data'], function () {
+
+            Route::get('developer', ['as'=>'approveDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalDeveloper']);
+
+            Route::get('developer/approve/{id}', ['as'=>'getApproveDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@getViewApprovalDeveloper']);
+
+            Route::get('third-party', ['as'=>'approveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalThirdParty']);
+
+            Route::get('third-party/approve/{id}', ['as'=>'getApproveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@getViewApprovalThirdParty']);
+        }
+
         Route::resource('eform', 'EForm\EFormController');
 
         /* Pihak Ke -3 (Third Party) */
@@ -111,6 +122,9 @@
 
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
+
+        /* Calculator */
+        Route::resource('debitur', 'Debitur\DebiturController');
 
         /* Collateral */
         Route::resource('collateral', 'Collateral\CollateralController');
