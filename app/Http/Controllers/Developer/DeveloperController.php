@@ -262,16 +262,12 @@ class DeveloperController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Banned account of developer
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function actived(Request $request, $id)
     {
         $data = $this->getUser();
@@ -284,6 +280,13 @@ class DeveloperController extends Controller
         return response()->json($developers['descriptions']);
     }
 
+    /**
+     * Get list of developer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function getDeveloper(Request $request)
     {
         $data = $this->getUser();
@@ -310,6 +313,13 @@ class DeveloperController extends Controller
         return response()->json(['developers' => $developers['contents']]);
     }
 
+    /**
+     * Get datatable source data of developer
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function datatables(Request $request)
     {
         $sort = $request->input('order.0');
