@@ -92,7 +92,8 @@
                                                 <th>No. HP</th>
                                                 <th>Status Prescreening</th>
                                                 <th>Status</th>
-                                                <th>Aging (hari)</th>
+                                                <th>Aging (hari)</th>            
+                                                <th>Status Data Nasabah</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -198,6 +199,22 @@
                     }},
                 {   data: 'status', name: 'status' },
                 {   data: 'aging', name: 'aging' },
+                {   data: 'response_status'
+                    , name: 'response_status'
+                    , bSortable: false
+                    , mRender: function (data, type, full) {
+                        text = '-';
+
+                        if (full.response_status == 'approve') {
+                            text = 'Telah Disetujui';
+
+                        } else if(full.response_status == 'reject') {
+                            text = 'Belum Disetujui';
+
+                        }
+                        return text;
+                    }
+                },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
       }); 

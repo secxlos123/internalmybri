@@ -47,8 +47,8 @@
 	</span>
 	@endif
 
-	@if ((isset($lkn))  && ($verified == true) && ($visited == false))
-	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
+	@if ((isset($lkn)) && ($visited == false))
+	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info" {{ $verified ? '' : 'disabled' }}>
 	    LKN
 	</a>
 	@endif
