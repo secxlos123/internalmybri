@@ -211,6 +211,9 @@
                         } else if(full.response_status == 'reject') {
                             text = 'Belum Disetujui';
 
+                        } else if(full.response_status == 'unverified') {
+                            text = 'Dalam Proses';
+
                         }
                         return text;
                     }

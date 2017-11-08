@@ -35,7 +35,7 @@
 @endif
 
 @if(isset($verified))
-	@if ((isset($verification) && ($verified == false) && ($response_status != 'approve')))
+	@if ((isset($verification) && ($verified == false) && ($response_status != 'approve' || $response_status != 'unverified')))
 	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info">
 	    Verifikasi
 	</a>
