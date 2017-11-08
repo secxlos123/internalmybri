@@ -401,7 +401,7 @@ class AOController extends Controller
                   'start_date'=> $request->input('start_date'),
                   'end_date'  => $request->input('end_date'),
                   'status'    => $request->input('status'),
-                  // 'branch_id' => $data['branch']
+                  'branch_id' => $data['branch']
                 ])->get();
                 // dd(json_encode($eforms));
 
