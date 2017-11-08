@@ -413,7 +413,8 @@ class AOController extends Controller
             $form['request_amount'] = $form['nominal'];
             $form['created_at'] = $form['created_at'];
 
-            $verify = $form['customer']['is_verified'];
+            // $verify = $form['customer']['is_verified'];
+            $verify = $form['response_status'] == 'approve' ? true : false;
             $visit = $form['is_visited'];
             $status = $form['response_status'];
 
