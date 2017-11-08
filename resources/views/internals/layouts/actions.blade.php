@@ -65,3 +65,9 @@
 	    Approved
 	</span>
 @endif
+
+@if (isset($prescreening_status))
+	<a href="javascript:void(0);" id="btn-prescreening">
+		<p class="text-success">{{$prescreening_result}}</p>
+	</a>
+@endif
