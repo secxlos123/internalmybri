@@ -36,14 +36,31 @@ class ScheduleController extends Controller
      */
     public function schedule()
     {
-        $now = \Carbon\Carbon::now();
-        return $this->jsonResponse(
-          $this->api('schedule')
+        try {
+          $requestMonth = \Carbon\Carbon::createFromFormat('Y-m-d', request()->get('start'));
+          $response = $this->api('schedule')
               ->setQuery([
-                'month' => $now->month,
-                'year' => $now->year
-              ])->get()
-        );
+                'month' => $requestMonth->month,
+                'year' => $requestMonth->year
+              ])->get();
+          if ($response['code'] && $response['code'] === 200) {
+            $schedules = collect($response['contents']['data']);
+            $schedules = $schedules->map(function($schedule) {
+              $map = $schedule;
+              $map['origin_title'] = $schedule['title'];
+              $map['title'] = $schedule['ref_number'];
+              $map['start'] = $schedule['appointment_date'];
+              return $map;
+            });
+            return $this->jsonResponse($schedules);
+          } else {
+            throw new \Exception("Error Processing Request", 400);
+          }
+
+          throw new \Exception("Error Processing Request", 400);
+        } catch (\Exception $e) {
+          throw new \RuntimeException($e->getMessage());
+        }
     }
 
     /**
