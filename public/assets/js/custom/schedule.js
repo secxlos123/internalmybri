@@ -16,11 +16,12 @@ function onBeforeLoad () {
 }
 
 function onLoad () {
-  _schedule.loader(true);
+  // _schedule.loader(true);
 }
 
 function onReady () {
-  _schedule.get();
+  _schedule.render();
+  // _schedule.get();
 }
 
 function Schedule () {
@@ -29,15 +30,16 @@ function Schedule () {
 }
 
 Schedule.prototype.render = function (events) {
-  events = events.map(function(event) {
-    event.start = new Date(event.appointment_date);
-    event.className = 'bg-primary';
-    event.origin_title = event.title;
-    event.title = event.ref_number;
-    return event;
-  });
-  $.CalendarApp.init(events);
-  this.loader(false);
+  // events = events.map(function(event) {
+  //   event.start = new Date(event.appointment_date);
+  //   event.className = 'bg-primary';
+  //   event.origin_title = event.title;
+  //   event.title = event.ref_number;
+  //   return event;
+  // });
+  // $.CalendarApp.init(events);
+  // this.loader(false);
+  $.CalendarApp.init();
 }
 
 Schedule.prototype.get = function () {
@@ -78,8 +80,8 @@ Schedule.prototype.store = function (event) {
     };
     $.post(_self.url, mapData)
       .done(function(response) {
+        _self.loader(false);
         resolve(response);
-        _self.refresh();
       })
       .fail(function(response) {
         reject({status: false});
@@ -88,9 +90,9 @@ Schedule.prototype.store = function (event) {
   });
 }
 
-Schedule.prototype.update = function (event, dragMode) {
+Schedule.prototype.update = function (event, editMode) {
   var _self = this;
-  if (dragMode) {
+  if (editMode) {
     this.loader(true);
   }
   return new Promise(function(resolve, reject) {
@@ -111,7 +113,6 @@ Schedule.prototype.update = function (event, dragMode) {
     };
     $.post(_self.url, mapData)
       .done(function(response) {
-        _self.refresh();
         _self.loader(false);
         resolve(mapData);
       })

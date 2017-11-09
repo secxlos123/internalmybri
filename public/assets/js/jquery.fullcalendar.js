@@ -92,24 +92,6 @@
         });
         return form;
     },
-    // CalendarApp.prototype.validate = function (event) {
-    //   title: eFormTexts[0],
-    //   origin_title: title,
-    //   start: moment($('.appointment_date').val()),
-    //   end: end,
-    //   allDay: false,
-    //   eform_id: eForm.val(),
-    //   // desc: desc,
-    //   ref_number: eFormTexts[0],
-    //   guest_id: eFormTexts[2],
-    //   guest_name: eFormTexts[1],
-    //   className: categoryClass
-    //
-    //   if ($this.noEmpty(event.eform_id) && $this.noEmpty()) {
-    //
-    //   }
-    //   return true;
-    // },
     CalendarApp.prototype.valid = function (data) {
       return data !== '' && data !== null && data !== undefined && data.length > 0;
     },
@@ -215,6 +197,14 @@
                 form.submit();
             });
             initializeDatePicker($('.appointment_date'), start);
+            form.find(".select2").on('change', function(event) {
+              if ($(this).val() !== '' && $(this).val() !== null && $(this).val() !== undefined) {
+                var eFormTexts = $(this).find('option:selected').text().split('</span>').map(function(text) {
+                  return text.replace('<span>', '').replace('<span class="none">', '');
+                });
+                form.find("input[name=guest]").val(eFormTexts[1]);
+              }
+            });
             $this.$modal.find(".save-event").html("Simpan Jadwal");
             $this.$modal.find('form').on('submit', function () {
                 var title = form.find("input[name='title']").val();
@@ -252,11 +242,12 @@
                   var schedule = new Schedule();
                   schedule.store(newEvent)
                     .then(function(event) {
-                      $this.$calendarObj.fullCalendar('renderEvent', newEvent, true);
                       $this.$modal.modal('hide');
+                      $this.$calendarObj.fullCalendar('refetchEvents');
+                      toastr.success('Schedule Telah Berhasil Di Buat');
                     })
                     .catch(function() {
-                      toastr.error('Fail For Add Schedule');
+                      toastr.error('Gagal Untuk Menambah Schedule');
                     });
                 }
                 return false;
@@ -286,17 +277,28 @@
     CalendarApp.prototype.onEventDrop = function(calEvent, delta, revertFunc) {
       var event = calEvent;
       var schedule = new Schedule();
+      var $this = this;
+      toastr.options = {
+          timeOut: 0,
+          extendedTimeOut: 0,
+      };
+      toastr.info('Mengubah....');
       schedule.update(event)
         .then(function(response) {
-          toastr.success('Schedule has been changed');
+          toastr.clear();
+          toastr.options = {
+              timeOut: 3000,
+              extendedTimeOut: 3000
+          };
+          toastr.success('Schedule ' + calEvent.title + ' Telah Berhasil Di Ubah');
         })
         .catch(function(reason) {
-          toastr.error('Fail For Change Date');
-        })
+          toastr.error('Schedule ' + calEvent.title + ' Gagal DiUbah');
+        });
     }
 
     /* Initializing */
-    CalendarApp.prototype.init = function(events) {
+    CalendarApp.prototype.init = function() {
         this.enableDrag();
         /*  Initialize the calendar  */
         var date = new Date();
@@ -305,34 +307,8 @@
         var y = date.getFullYear();
         var form = '';
         var today = new Date($.now());
-        var defaultEvents = events || [];
-        // if (!events) {
-        //      defaultEvents =  [{
-        //             title: 'Jadwal 1',
-        //             start: new Date($.now() + 158000000),
-        //             className: 'bg-primary'
-        //         },
-        //         {
-        //             title: 'Jadwal 2',
-        //             start: today,
-        //             end: today,
-        //             className: 'bg-primary'
-        //         },
-        //         {
-        //             title: 'Jadwal 3',
-        //             start: new Date($.now() + 168000000),
-        //             className: 'bg-primary'
-        //         },
-        //         {
-        //             title: 'Jadwal 4',
-        //             start: new Date($.now() + 338000000),
-        //             className: 'bg-primary'
-        //         }];
-        // } else {
-        //     defaultEvents = events
-        // }
-
         var $this = this;
+        var _schedule = new Schedule();
         $this.$calendarObj = $this.$calendar.fullCalendar({
             slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
@@ -345,7 +321,20 @@
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            events: defaultEvents,
+            eventSources: [{
+              url: '/schedule/ao',
+              type: 'GET',
+              beforeSend: function() {
+                _schedule.loader(true);
+              },
+              error: function() {
+                toastr.error('Terjadi Kesalahan Ketika Mengambil Jadwal');
+                _schedule.loader(false);
+              },
+              success: function() {
+                _schedule.loader(false);
+              }
+            }],
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
             eventLimit: true, // allow "more" link when too many events
@@ -354,9 +343,8 @@
             select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
             eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); },
             eventDrop: function(calEvent, delta, revertFunc) { $this.onEventDrop(calEvent, delta, revertFunc); }
-
         });
-        $this.$calendarObj.fullCalendar('refetchEvents', defaultEvents);
+        // $this.$calendarObj.fullCalendar('refetchEvents', defaultEvents);
 
         //on new event
         this.$saveCategoryBtn.on('click', function(){
