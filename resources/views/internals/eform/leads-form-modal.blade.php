@@ -82,9 +82,9 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="status" id="status">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option value="0">Tidak Menikah</option>
-                                                        <option value="1">Menikah</option>
-                                                        <option value="2">Janda/Duda</option>
+                                                        <option value="1">Tidak Menikah</option>
+                                                        <option value="2">Menikah</option>
+                                                        <option value="3">Janda/Duda</option>
                                                     </select>
                                                     @if ($errors->has('status')) <p class="help-block">{{ $errors->first('status') }}</p> @endif
                                                 </div>

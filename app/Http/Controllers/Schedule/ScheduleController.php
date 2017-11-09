@@ -2,91 +2,110 @@
 
 namespace App\Http\Controllers\Schedule;
 
+use Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ScheduleController extends Controller
 {
-    public function getUser(){
-     /* GET UserLogin Data */
+
+    /**
+     * Get credentails user login from session
+     * @return array
+     */
+    public function getUser()
+    {
+        /* GET UserLogin Data */
         $users = session()->get('user')['contents'];
         return $users;
     }
+
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $data = $this->getUser();
-        // dd($user);
         return view('internals.schedule.index', compact('data'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get all schedules ao
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create()
+    public function schedule()
     {
-        //
+        try {
+          $requestMonth = \Carbon\Carbon::createFromFormat('Y-m-d', request()->get('start'));
+          $response = $this->api('schedule')
+              ->setQuery([
+                'month' => $requestMonth->month,
+                'year' => $requestMonth->year
+              ])->get();
+          if ($response['code'] && $response['code'] === 200) {
+            $schedules = collect($response['contents']['data']);
+            $schedules = $schedules->map(function($schedule) {
+              $map = $schedule;
+              $map['origin_title'] = $schedule['title'];
+              $map['title'] = $schedule['ref_number'];
+              $map['start'] = $schedule['appointment_date'];
+              return $map;
+            });
+            return $this->jsonResponse($schedules);
+          } else {
+            throw new \Exception("Error Processing Request", 400);
+          }
+
+          throw new \Exception("Error Processing Request", 400);
+        } catch (\Exception $e) {
+          throw new \RuntimeException($e->getMessage());
+        }
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Store new schedule to api
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postSchedule()
     {
-        //
+      $method = request()->has('id') ? 'put' : 'post';
+      $id = request()->has('id') ? '/' . request()->get('id') : '';
+      return $this->jsonResponse(
+        $this->api('schedule' . $id)
+          ->setBody(request()->except('id'))
+          ->{$method}()
+      );
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
+     * Get e-form resources from api
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function eFormList()
     {
-        //
+        return $this->jsonResponse(
+          $this->api('eforms')
+            ->setQuery([
+                'limit' => 10,
+                'office_id' => $this->getUser()['branch'],
+                'status' => 0
+            ])->get()
+        );
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Set Guzzle headers with token and pn
+     * @param  string $url
+     * @return Clint
      */
-    public function edit($id)
+    private function api($url)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $user = $this->getUser();
+        return Client::setEndpoint($url)
+            ->setHeaders([
+                'Authorization' => $user['token'],
+                'pn' => $user['pn']
+            ]);
     }
 }

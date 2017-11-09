@@ -1,16 +1,5 @@
-/**
-* Theme: Zircos Admin Template
-* Author: Coderthemes
-* Component: Full-Calendar
-* 
-*/
-
-
-
-
 !function($) {
     "use strict";
-
     var CalendarApp = function() {
         this.$body = $("body")
         this.$modal = $('#event-modal'),
@@ -22,9 +11,44 @@
         this.$calendarObj = null
     };
 
+    var ajaxConfig = {
+        minimumInputLength: 1,
+        placeholder: "Search Ref",
+        ajax: {
+            url: '/schedule/e-form',
+            dataType: 'json',
+            type: "GET",
+            quietMillis: 50,
+            data: function (term) {
+                return {
+                    term: term
+                };
+            },
+            processResults: function (data, params) {
+                var select2Data = $.map(data.contents.data, function (obj) {
+                    return {
+                        id: obj.id,
+                        text: '<span>' + obj.ref_number + '</span>' + '<span class="none">' + obj.customer_name + '</span><span class="none">' + obj.user_id + '</span>'
+                    }
+                });
+                // select2Data = select2Data.filter(function(data) {
+                //     return data.text.indexOf(params.term) !== -1
+                // });
+                return {
+                    results: select2Data
+                };
+            },
+            escapeMarkup: function(markup) {
+                return markup;
+            },
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
+    }
 
     /* on drop */
-    CalendarApp.prototype.onDrop = function (eventObj, date) { 
+    CalendarApp.prototype.onDrop = function (eventObj, date) {
         var $this = this;
             // retrieve the dropped element's stored Event Object
             var originalEventObject = eventObj.data('eventObject');
@@ -43,30 +67,111 @@
                 eventObj.remove();
             }
     },
-    /* on click on event */
+    CalendarApp.prototype.buildForm = function (calEvent, disabled) {
+      var $this = this;
+        $this.$modal.modal({
+            backdrop: 'static'
+        });
+        var form = $("<form></form>");
+        form.append("<div class='row'></div>");
+        form.find(".row")
+            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tanggal</label><input class='form-control appointment_date' readonly type='text' name='date' /></div></div>")
+            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>No. Referensi</label><select class='form-control select2' " + disabled + " name='eform-id'></select></div></div>")
+            .find("select[name='eform-id']");
+        form.find(".select2").append("<option value='" + calEvent.eform_id + "' selected='selected'>" + calEvent.ref_number +"</option>");
+        form.find(".select2").trigger('change');
+        form.find(".select2").select2(ajaxConfig);
+        form.find(".row")
+            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Title</label><input class='form-control' type='text' name='title' /></div></div>")
+            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Guest</label><input class='form-control' type='text' name='guest' readonly='' value='John Doe' /></div></div>")
+        // form.find(".row")
+        //     .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
+        $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').find('.form').empty().prepend(form);
+        $this.$modal.find('.save-event').unbind('click').click(function () {
+            form.submit();
+        });
+        return form;
+    },
+    CalendarApp.prototype.valid = function (data) {
+      return data !== '' && data !== null && data !== undefined && data.length > 0;
+    },
+    /* Edit Event */
     CalendarApp.prototype.onEventClick =  function (calEvent, jsEvent, view) {
         var $this = this;
-            var form = $("<form></form>");
-            form.append("<label>Change event name</label>");
-            form.append("<div class='input-group'><input class='form-control' type=text value='" + calEvent.title + "' /><span class='input-group-btn'><button type='submit' class='btn btn-success waves-effect waves-light'><i class='fa fa-check'></i> Save</button></span></div>");
-            $this.$modal.modal({
-                backdrop: 'static'
-            });
-            $this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
-                $this.$calendarObj.fullCalendar('removeEvents', function (ev) {
-                    return (ev._id == calEvent._id);
-                });
-                $this.$modal.modal('hide');
-            });
-            $this.$modal.find('form').on('submit', function () {
-                calEvent.title = form.find("input[type=text]").val();
+        $this.$modal.modal({
+            backdrop: 'static'
+        });
+        var form = $this.buildForm(calEvent, 'disabled');
+        form.find("input[name='title']").val(calEvent.origin_title);
+        form.find("input[name='guest']").val(calEvent.guest_name || '');
+        initializeDatePicker($('.appointment_date'), calEvent.start.format('YYYY-MM-DD'));
+        initializeMapPosition(calEvent);
+        $this.$modal.find(".save-event").html("Update Jadwal").attr('type', 'submit');
+        $this.$modal.find('form').on('submit', function () {
+          var title = form.find("input[name='title']").val();
+          var beginning = form.find("input[name='beginning']").val();
+          var ending = form.find("input[name='ending']").val();
+          var categoryClass = form.find("select[name='category'] option:checked").val();
+          var eForm = form.find('select[name="eform-id"]');
+          // var desc = form.find('textarea[name="description"]').val();
+          var eFormTexts = eForm.find('option:selected').text().split('</span>').map(function(text) {
+            return text.replace('<span>', '').replace('<span class="none">', '');
+          });
+
+          var updateEvent = {
+              id: calEvent.id,
+              title: eForm.find('option:selected').text(),
+              origin_title: title,
+              start: moment($('.appointment_date').val()),
+              // end: end,
+              allDay: false,
+              eform_id: eForm.val(),
+              // desc: desc,
+              ref_number: calEvent.ref_number || undefined,
+              guest_id: calEvent.guest_id || undefined,
+              guest_name: calEvent.guest_name || undefined,
+              address: calEvent.address,
+              latitude: calEvent.latitude,
+              longitude: calEvent.longitude,
+              className: 'bg-primary'
+          }
+          if (!$this.valid(updateEvent.origin_title)) {
+            form.find("input[name='title']").parent().parent().addClass('has-error');
+          } else {
+            var schedule = new Schedule();
+            schedule.update(updateEvent, true)
+              .then(function(event) {
+                toastr.success('Schedule Has Been Updated');
+                calEvent.origin_title = title;
+                calEvent.start = moment($('.appointment_date').val());
+                calEvent.latitude = event.latitude;
+                calEvent.longitude = event.longitude;
+                calEvent.address = event.address;
                 $this.$calendarObj.fullCalendar('updateEvent', calEvent);
                 $this.$modal.modal('hide');
-                return false;
-            });
+              })
+              .catch(function(reason) {
+                toastr.error('Fail For Update Schedule');
+              });
+          }
+          return false;
+
+        });
+        // $this.$modal.find('.delete-event').show().end().find('.save-event').hide().end().find('.modal-body').empty().prepend(form).end().find('.delete-event').unbind('click').click(function () {
+        //     $this.$calendarObj.fullCalendar('removeEvents', function (ev) {
+        //         return (ev._id == calEvent._id);
+        //     });
+        //     $this.$modal.modal('hide');
+        // });
+        // $this.$modal.find('form').on('submit', function () {
+        //     calEvent.title = form.find("input[type=text]").val();
+        //     $this.$calendarObj.fullCalendar('updateEvent', calEvent);
+        //     $this.$modal.modal('hide');
+        //     return false;
+        // });
     },
-    /* on select */
-    CalendarApp.prototype.onSelect = function (start, end, allDay) {
+    /* Create New */
+    CalendarApp.prototype.onSelect = function (start, end, allDay,) {
         var $this = this;
             $this.$modal.modal({
                 backdrop: 'static'
@@ -74,43 +179,79 @@
             var form = $("<form></form>");
             form.append("<div class='row'></div>");
             form.find(".row")
-                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>")
-                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Category</label><select class='form-control' name='category'></select></div></div>")
-                .find("select[name='category']")
-                .append("<option value='bg-danger'>Danger</option>")
-                .append("<option value='bg-success'>Success</option>")
-                .append("<option value='bg-purple'>Purple</option>")
-                .append("<option value='bg-primary'>Primary</option>")
-                .append("<option value='bg-pink'>Pink</option>")
-                .append("<option value='bg-info'>Info</option>")
-                .append("<option value='bg-inverse'>Inverse</option>")
-                .append("<option value='bg-orange'>Orange</option>")
-                .append("<option value='bg-brown'>Brown</option>")
-                .append("<option value='bg-teal'>Teal</option>")
-                .append("<option value='bg-warning'>Warning</option></div></div>");
-            $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function () {
+                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tanggal</label><input class='form-control appointment_date' readonly type='text' name='date' /></div></div>")
+                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>No. Referensi</label><select class='form-control select2' name='eform-id'></select></div></div>")
+                .find("select[name='eform-id']")
+                .append("<option value=''>-- Pilih --</option>")
+                .append("<option value=''>54321</option>")
+                .append("<option value=''>31245</option>")
+                .append("<option value=''>52341</option></div></div>");
+            form.find(".select2").select2(ajaxConfig);
+            form.find(".row")
+                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Title</label><input class='form-control' type='text' name='title' /></div></div>")
+                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Guest</label><input class='form-control' type='text' name='guest' readonly='' value='' /></div></div>")
+            // form.find(".row")
+            //     .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
+            $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').find('.form').empty().prepend(form);
+            $this.$modal.find('.save-event').unbind('click').click(function () {
                 form.submit();
             });
+            initializeDatePicker($('.appointment_date'), start);
+            form.find(".select2").on('change', function(event) {
+              if ($(this).val() !== '' && $(this).val() !== null && $(this).val() !== undefined) {
+                var eFormTexts = $(this).find('option:selected').text().split('</span>').map(function(text) {
+                  return text.replace('<span>', '').replace('<span class="none">', '');
+                });
+                form.find("input[name=guest]").val(eFormTexts[1]);
+              }
+            });
+            $this.$modal.find(".save-event").html("Simpan Jadwal");
             $this.$modal.find('form').on('submit', function () {
                 var title = form.find("input[name='title']").val();
                 var beginning = form.find("input[name='beginning']").val();
                 var ending = form.find("input[name='ending']").val();
                 var categoryClass = form.find("select[name='category'] option:checked").val();
-                if (title !== null && title.length != 0) {
-                    $this.$calendarObj.fullCalendar('renderEvent', {
-                        title: title,
-                        start:start,
-                        end: end,
-                        allDay: false,
-                        className: categoryClass
-                    }, true);  
-                    $this.$modal.modal('hide');
+                var eForm = form.find('select[name="eform-id"]');
+                // var desc = form.find('textarea[name="description"]').val();
+                var eFormTexts = eForm.find('option:selected').text().split('</span>').map(function(text) {
+                  return text.replace('<span>', '').replace('<span class="none">', '');
+                });
+                var newEvent = {
+                    title: eFormTexts[0],
+                    origin_title: title,
+                    start: moment($('.appointment_date').val()),
+                    end: end,
+                    allDay: false,
+                    eform_id: eForm.val(),
+                    // desc: desc,
+                    ref_number: eFormTexts[0],
+                    guest_id: eFormTexts[2],
+                    guest_name: eFormTexts[1],
+                    className: categoryClass
                 }
-                else{
-                    alert('You have to give a title to your event');
+
+                //
+                //
+                if (!$this.valid(newEvent.eform_id)) {
+                  eForm.parent().parent().addClass('has-error');
+                } else if (!$this.valid(newEvent.origin_title)) {
+                  form.find("input[name='title']").parent().parent().addClass('has-error');
+                } else if (!$this.valid(address.address)) {
+                  toastr.error('Lokasi Kosong!');
+                } else {
+                  var schedule = new Schedule();
+                  schedule.store(newEvent)
+                    .then(function(event) {
+                      $this.$modal.modal('hide');
+                      $this.$calendarObj.fullCalendar('refetchEvents');
+                      toastr.success('Schedule Telah Berhasil Di Buat');
+                    })
+                    .catch(function() {
+                      toastr.error('Gagal Untuk Menambah Schedule');
+                    });
                 }
                 return false;
-                
+
             });
             $this.$calendarObj.fullCalendar('unselect');
     },
@@ -132,6 +273,30 @@
             });
         });
     }
+
+    CalendarApp.prototype.onEventDrop = function(calEvent, delta, revertFunc) {
+      var event = calEvent;
+      var schedule = new Schedule();
+      var $this = this;
+      toastr.options = {
+          timeOut: 0,
+          extendedTimeOut: 0,
+      };
+      toastr.info('Mengubah....');
+      schedule.update(event)
+        .then(function(response) {
+          toastr.clear();
+          toastr.options = {
+              timeOut: 3000,
+              extendedTimeOut: 3000
+          };
+          toastr.success('Schedule ' + calEvent.title + ' Telah Berhasil Di Ubah');
+        })
+        .catch(function(reason) {
+          toastr.error('Schedule ' + calEvent.title + ' Gagal DiUbah');
+        });
+    }
+
     /* Initializing */
     CalendarApp.prototype.init = function() {
         this.enableDrag();
@@ -142,52 +307,44 @@
         var y = date.getFullYear();
         var form = '';
         var today = new Date($.now());
-
-        var defaultEvents =  [{
-                title: 'Hey!',
-                start: new Date($.now() + 158000000),
-                className: 'bg-purple'
-            },
-            {
-                title: 'See John Deo',
-                start: today,
-                end: today,
-                className: 'bg-success'
-            },
-            {
-                title: 'Meet John Deo',
-                start: new Date($.now() + 168000000),
-                className: 'bg-info'
-            },
-            {
-                title: 'Buy a Theme',
-                start: new Date($.now() + 338000000),
-                className: 'bg-primary'
-            }];
-
         var $this = this;
+        var _schedule = new Schedule();
         $this.$calendarObj = $this.$calendar.fullCalendar({
             slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
-            maxTime: '19:00:00',  
-            defaultView: 'month',  
-            handleWindowResize: true,   
-            height: $(window).height() - 200,   
+            maxTime: '19:00:00',
+            defaultView: 'month',
+            handleWindowResize: true,
+            height: $(window).height() - 200,
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            events: defaultEvents,
+            eventSources: [{
+              url: '/schedule/ao',
+              type: 'GET',
+              beforeSend: function() {
+                _schedule.loader(true);
+              },
+              error: function() {
+                toastr.error('Terjadi Kesalahan Ketika Mengambil Jadwal');
+                _schedule.loader(false);
+              },
+              success: function() {
+                _schedule.loader(false);
+              }
+            }],
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar !!!
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
             drop: function(date) { $this.onDrop($(this), date); },
             select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
-            eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); }
-
+            eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); },
+            eventDrop: function(calEvent, delta, revertFunc) { $this.onEventDrop(calEvent, delta, revertFunc); }
         });
+        // $this.$calendarObj.fullCalendar('refetchEvents', defaultEvents);
 
         //on new event
         this.$saveCategoryBtn.on('click', function(){
@@ -203,11 +360,11 @@
 
    //init CalendarApp
     $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
-    
+
 }(window.jQuery),
 
 //initializing CalendarApp
 function($) {
     "use strict";
-    $.CalendarApp.init()
+    // $.CalendarApp.init()
 }(window.jQuery);
