@@ -43,7 +43,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-5 control-label">Jangka Waktu :</label>
                                                 <div class="col-md-7">
-                                                    <p class="form-control-static" id="year"></p>
+                                                    <p class="form-control-static" id="month"></p>
                                                 </div>
                                             </div>
                                             <div class="form-group">

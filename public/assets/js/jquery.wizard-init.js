@@ -113,6 +113,7 @@
                         $('#view-modal').modal('show');
                         $("#view-modal #request_amount").html('Rp '+request_amount);
                         $("#view-modal #year").html(year+' tahun');
+                        $("#view-modal #month").html(year+' bulan');
                         $("#view-modal #office").html(office);
                         $("#view-modal #appointment_date").html(appointment_date); 
                         $("#view-modal #nik").html(nik);

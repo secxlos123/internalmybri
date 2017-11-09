@@ -307,7 +307,7 @@
                                                             </div>
                                                                 <label class="col-md-2 control-label">Tahun</label>
                                                             <div class="col-md-4">
-                                                                <input type="text" class="form-control numericOnly" name="work_duration" maxlength="2" value="0">
+                                                                <input type="text" class="form-control numericOnly" name="work_duration_month" maxlength="2" value="{{$dataCustomer['work']['work_duration_month']}}">
                                                             </div>
                                                                 <label class="col-md-1 control-label">Bulan</label>
                                                             @if ($errors->has('work_duration')) <p class="help-block">{{ $errors->first('work_duration') }}</p> @endif
@@ -580,6 +580,7 @@
         endDate: new Date(),
         todayHighlight: true
     });
+
     $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
 
     $('.cities').select2({
