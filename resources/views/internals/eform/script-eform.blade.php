@@ -245,7 +245,7 @@
                 url: '{{route("detailCustomer")}}',
                 data: { id : id } 
             }).done(function(data){
-                console.log(data);
+                // console.log(data);
                 $('#detail').html(data['view']);
             });
            
@@ -397,7 +397,7 @@
                e.preventDefault();
                $(this).val($(this).attr('min'));
             }else{
-            console.log($(this).attr('min'));
+            // console.log($(this).attr('min'));
             return true;
                 
             }
@@ -608,7 +608,7 @@
                         setTimeout(
                             function(){ 
                                 $.each(data.contents, function(key, value) {
-                                    console.log(key);
+                                    // console.log(key);
                                     $("#form_data_personal").find(".form-group." + key).eq(0).addClass('has-error');
                                     $("#form_data_personal").find("span#"+key+"-error").eq(0).html(value);
                                 });
@@ -641,7 +641,7 @@
     hideCouple();
 
     $('#leads-modal #status').on('change', function() {
-        if(this.value==1){
+        if(this.value==2){
             $('#leads-modal #couple_data').show();
         }else{
             hideCouple();

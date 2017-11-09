@@ -87,14 +87,14 @@
                         var identity = result.data.identity;
                         var ao_name = result.data.name;
 
-                        if(result.data.status == 0){
+                        if(result.data.status == 1){
                             var status = 'Tidak Menikah';
                             $('#view-modal #couple1').hide();
                             $('#view-modal #couple2').hide();
                             $('#view-modal #couple3').hide();
                             $('#view-modal #couple4').hide();
                             $('#view-modal #couple5').hide();
-                        }else if(result.data.status == 1){
+                        }else if(result.data.status == 2){
                             var status = 'Menikah';
                             $('#view-modal #couple1').show();
                             $('#view-modal #couple2').show();

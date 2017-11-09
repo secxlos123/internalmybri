@@ -89,7 +89,7 @@
     </div>
 </div>
 
-@if(!empty($dataCustomer['status']) &&($dataCustomer['status'] == 1))
+@if(!empty($dataCustomer['status']) &&($dataCustomer['status'] == 2))
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-color panel-primary">
@@ -149,7 +149,7 @@
                             <p>Foto KTP</p>
                         </div>
                     </div>
-                    @if(!empty($dataCustomer['status']) &&($dataCustomer['status'] == 1))
+                    @if(!empty($dataCustomer['status']) &&($dataCustomer['status'] == 2))
                     <div class="col-md-6" align="center">
                         <div class="card-box">
                             <img src="@if(!empty($dataCustomer['couple_identity'])){{$dataCustomer['couple_identity']}}@endif" class="img-responsive">

@@ -34,35 +34,42 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-horizontal" role="form">
-                                                <div class="form-group company_name {!! $errors->has('company_name') ? 'has-error' : '' !!}">
+                                                <div class="form-group ">
                                                     <label class="col-md-4 control-label">Nama Perusahaan *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="company_name" maxlength="50" required="" value="{{$dataDev['company_name']}}" readonly="">
+                                                        <input type="text" class="form-control" name="company_name" maxlength="50" required="" @if(!empty($dataDev['company_name'])) value="{{$dataDev['company_name']}}" @else value="{{old('company_name')}}" @endif readonly="">
                                                     @if ($errors->has('company_name')) <p class="help-block">{{ $errors->first('company_name') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group developer_name {!! $errors->has('developer_name') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Nama PIC *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="developer_name" maxlength="50" required="" value="{{$dataDev['developer_name']}}" id="name">
+                                                        <input type="text" class="form-control" name="developer_name" maxlength="50" required="" @if(!empty($dataDev['developer_name'])) value="{{$dataDev['developer_name']}}" @else value="{{old('developer_name')}}" @endif id="name">
                                                     @if ($errors->has('developer_name')) <p class="help-block">{{ $errors->first('developer_name') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group address {!! $errors->has('address') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Kantor *:</label>
                                                     <div class="col-md-8">
-                                                        <textarea class="form-control" rows="3" name="address" maxlength="255">{{$dataDev['address']}}</textarea>
+                                                        <textarea class="form-control" rows="3" name="address" maxlength="255">@if(!empty($dataDev['company_name'])) {{$dataDev['company_name']}} @else {{old('company_name')}} @endif</textarea>
                                                     @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group city_id {!! $errors->has('city_id') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Kota *:</label>
                                                     <div class="col-md-8">
-                                                       {!! Form::select('city_id', [$dataDev['city_id'] => $dataDev['city_name']], $dataDev['city_id'], [
-                                                            'class' => 'select2 cities',
-                                                            'id' => 'city_id',
-                                                            'data-option' => $dataDev['city_name']
-                                                        ]) !!}
+                                                        @if(!empty($dataDev['company_name'])) 
+                                                           {!! Form::select('city_id', [$dataDev['city_id'] => $dataDev['city_name']], $dataDev['city_id'], [
+                                                                'class' => 'select2 cities',
+                                                                'id' => 'city_id',
+                                                                'data-option' => $dataDev['city_name']
+                                                            ]) !!}
+                                                        @else
+                                                            {!! Form::select('city_id', ['' => ''], '', [
+                                                                'class' => 'select2 cities',
+                                                                'id' => 'city_id'
+                                                            ]) !!}
+                                                        @endif
 
                                                     @if ($errors->has('city_id')) <p class="help-block">{{ $errors->first('city_id') }}</p> @endif
                                                     </div>
@@ -74,35 +81,35 @@
                                                 <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Email *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="email" class="form-control" name="email" required="" value="{{$dataDev['email']}}" readonly="">
+                                                        <input type="email" class="form-control" name="email" required="" @if(!empty($dataDev['email'])) value="{{$dataDev['email']}}" @else value="{{old('email')}}" @endif readonly="">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">No. Telepon *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="s" name="phone" value="{{$dataDev['phone']}}">
+                                                        <input type="text" class="form-control numericOnly" maxlength="s" name="phone" @if(!empty($dataDev['phone'])) value="{{$dataDev['phone']}}" @else value="{{old('phone')}}" @endif>
                                                     @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
+                                                <div class="form-group">
                                                     <label class="col-md-4 control-label">No. Handphone *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="mobile_phone" value="{{$dataDev['mobile_phone']}}">
+                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="mobile_phone" @if(!empty($dataDev['mobile_phone'])) value="{{$dataDev['mobile_phone']}}" @else  value="{{old('mobile_phone')}}" @endif>
                                                     @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group image {!! $errors->has('image') ? 'has-error' : '' !!}">
+                                                <div class="form-group">
                                                     <label class="col-md-4 control-label">Logo *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="{{$dataDev['image']}}" name="image" accept="image/png,image/jpg,image/gif">
+                                                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" @if(!empty($dataDev['mobile_phone']))  data-placeholder="{{$dataDev['image']}}" @endif name="image" accept="image/png,image/jpg,image/gif">
                                                     @if ($errors->has('image')) <p class="help-block">{{ $errors->first('image') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group summary {!! $errors->has('summary') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Ringkasan *:</label>
                                                     <div class="col-md-8">
-                                                        <textarea class="form-control" name="summary" cols="3" maxlength="255">{{$dataDev['summary']}}</textarea>
+                                                        <textarea class="form-control" name="summary" cols="3" maxlength="255">@if(!empty($dataDev['summary'])) {{$dataDev['summary']}} @else {{old('summary')}} @endif </textarea>
                                                     @if ($errors->has('summary')) <p class="help-block">{{ $errors->first('summary') }}</p> @endif
                                                     </div>
                                                 </div>
