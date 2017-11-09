@@ -104,7 +104,15 @@
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
         /* Schedule */
-        Route::resource('schedule', 'Schedule\ScheduleController');
+        Route::resource('schedule', 'Schedule\ScheduleController', [
+            'only' => ['index']
+        ]);
+
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule'], function($router) {
+            $router->get('/ao', 'ScheduleController@schedule');
+            $router->post('/ao', 'ScheduleController@postSchedule');
+            $router->get('/e-form', 'ScheduleController@eFormList');
+        });
 
         /* Tracking */
         Route::resource('tracking', 'Tracking\TrackingController');
@@ -196,5 +204,3 @@
 
         Route::get('eform-ao', ['as'=>'eform-ao', 'uses'=>'EForm\AOController@datatables']);
     });
-
-
