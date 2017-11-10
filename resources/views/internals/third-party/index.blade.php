@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Pihak Ke-3')
+@section('title','My BRI - Daftar Pihak Ketiga')
 @include('internals.layouts.head')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
@@ -9,13 +9,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Daftar Pihak Ke-3</h4>
+                        <h4 class="page-title">Daftar Pihak Ketiga</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
-                                Manajemen Pihak Ke-3
+                                Manajemen Pihak Ketiga
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -30,7 +30,7 @@
                     <div class="card-box">
                         <div class="add-button">
                             <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
-                            <a href="{{route('third-party.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pihak Ke-3</a>
+                            <a href="{{route('third-party.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pihak Ketiga</a>
                         </div>
                         <div id="filter">
                             <div class="row">
@@ -58,7 +58,7 @@
                         <table id="datatable" class="table table-bordered">
                             <thead class="bg-primary">
                                 <tr>
-                                    <!-- <th>Nama Pihak Ke-3</th> -->
+                                    <!-- <th>Nama Pihak Ketiga</th> -->
                                     <th>Nama</th>
                                     <th>Alamat</th>
                                     <th>Kota</th>
@@ -82,7 +82,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <p>Apakah Anda yakin ingin mengubah status pihak ke-3 ini?</p>
+                        <p>Apakah Anda yakin ingin mengubah status pihak Ketiga ini?</p>
                     </div>
                 </div>
             </div>

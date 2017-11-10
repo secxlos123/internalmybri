@@ -21,7 +21,7 @@
                             @if(($data['role']=='ao') || ($data['role']=='other'))
                             <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
                             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
-                            <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Disposisi dan Rekomendasi </span> </a>
+                            <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Rekomendasi & Disposisi </span> </a>
                             @endif
                             </li>
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
@@ -43,7 +43,7 @@
                             </li> -->
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
                             <li>
-                                <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
+                                <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
                             </li>
                             @endif
 
