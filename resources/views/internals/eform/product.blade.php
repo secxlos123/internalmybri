@@ -157,7 +157,7 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly " name="dp" value="{{old('dp')}}" maxlength="2" max="90" placeholder="0" id="dp" >
+                                                    <input type="text" class="form-control numericOnly lovely-input" name="dp" value="{{old('dp')}}" maxlength="2" max="90" placeholder="0" id="dp" >
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>

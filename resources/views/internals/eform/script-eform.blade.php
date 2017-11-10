@@ -419,6 +419,17 @@
                 $(".lovely-input").val(dp.attr('min'));
               }else if($(".lovely-input").val() == ''){
                 $(".lovely-input").val(dp.attr('min'));
+                var val = $(".lovely-input").val();
+                var down_payment = $('#down_payment');
+                var request_amount = $('#request_amount');
+                var price_without_comma = price.val().replace(',00', '');
+                var static_price = price_without_comma.replace(/\./g, '');
+                // console.log('as');
+                payment = (val / 100) * static_price;
+                down_payment.val(payment);
+                amount = static_price - payment;
+                down_payment.val(payment);
+                request_amount.val(amount);
               }
             }
 
