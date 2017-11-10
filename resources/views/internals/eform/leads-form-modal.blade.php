@@ -107,7 +107,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-md-5 control-label">No. Telepon * :</label>
+                                                <label class="col-md-5 control-label">No. Telepon :</label>
                                                 <div class="col-md-7">
                                                     <input type="text" class="form-control numericOnly" name="phone" value="{{old('phone')}}" maxlength="16" id="phone">
                                                     @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif

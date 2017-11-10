@@ -656,6 +656,7 @@
         endDate: new Date(),
         todayHighlight: true
     });
+
     $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
 </script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
