@@ -21,7 +21,7 @@ class EFormController extends Controller
         'customer_name',
         'request_amount',
         'created_at',
-        'branch_id',
+        // 'branch_id',
         'prescreening_status',
         'ao_name',
         'status',
@@ -332,7 +332,7 @@ class EFormController extends Controller
         // dd($client);
 
         if($client['code'] == 201){
-            \Session::flash('success', $client['descriptions']);
+            \Session::flash('success', 'Disposisi Berhasil Dilakukan');
             return redirect()->route('eform.index');
         }else{
             $error = reset($client['contents']);
@@ -372,7 +372,7 @@ class EFormController extends Controller
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
             // $form['product_type'] = strtoupper($form['product_type']);
-            $form['branch_id'] = $form['branch_id'];
+            // $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_name'];
         
             $verify = $form['customer']['is_verified'];

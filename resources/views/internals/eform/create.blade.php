@@ -59,7 +59,8 @@
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
                                                                 'class' => 'select2 nikSelect',
                                                                 'data-placeholder' => 'NIK',
-                                                                'id' => 'nik'
+                                                                'id' => 'nik',
+                                                                'maximumInputLength' => 16
                                                             ]) !!}
                                                         <span class="input-group-btn">
                                                         <a href="#" class="btn waves-effect waves-light btn-primary" id="search"><i class="fa fa-search"></i> Cari</a>

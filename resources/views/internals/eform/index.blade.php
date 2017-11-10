@@ -90,7 +90,7 @@
                                                 <th>Nominal</th>
                                                 <th>Tanggal Pertemuan</th>
                                                 <!-- <th>Jenis Produk</th> -->
-                                                <th>KC BRI Terdekat</th>
+                                                <!-- <th>KC BRI Terdekat</th> -->
                                                 <th>Status Prescreening</th>
                                                 <th>AO</th>
                                                 <th>Status</th>
@@ -246,7 +246,7 @@
                 {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
                 {   data: 'created_at', name: 'created_at', bSortable: true },
                 // {   data: 'product_type', name: 'product_type' },
-                {   data: 'branch_id', name: 'branch_id', bSortable: false },
+                // {   data: 'branch_id', name: 'branch_id', bSortable: false },
                 {   data: 'prescreening_status', 
                     name: 'prescreening_status', 
                     bSortable: false,
