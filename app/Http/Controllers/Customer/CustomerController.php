@@ -344,7 +344,6 @@ class CustomerController extends Controller
 
         $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
-        // dd($dataCustomer);
         // dd(($dataCustomer['personal']['status'] == 0) ? 'Lajang' : '');
 
         return view('internals.customers.detail', compact('data', 'dataCustomer'));

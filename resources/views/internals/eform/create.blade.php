@@ -2,6 +2,7 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <style type="text/css">
     #wizard-validation-form label.error{
         font-family: 'Varela Round', sans-serif;
@@ -43,17 +44,17 @@
                                 <h3>Produk</h3>
                                 @include('internals.eform.product')
                                 <div id="divForm"></div>
-                                <h3>Nasabah</h3>
+                                <h3>Customer</h3>
                                 <section>
-                                    <h4 class="m-t-0 header-title"><b>Nasabah</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Customer</b></h4>
                                     <p class="text-muted m-b-30 font-13">
-                                        Cari NIK Nasabah atau tambah Nasabah baru
+                                        Cari NIK Customer atau tambah Customer baru
                                     </p>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div role="form">
                                                 <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
-                                                    <label class="control-label">Cari NIK Nasabah *</label>
+                                                    <label class="control-label">Cari NIK Customer *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
                                                                 'class' => 'select2 nikSelect',
@@ -217,6 +218,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
 @include('internals.eform.script-eform')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
 <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 @endif

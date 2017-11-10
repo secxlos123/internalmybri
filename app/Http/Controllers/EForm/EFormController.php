@@ -80,7 +80,7 @@ class EFormController extends Controller
         foreach ($customers['contents']['data'] as $key => $cust) {
 
             $cust['text'] = $cust['nik'];
-            $cust['id'] = $cust['nik'];
+            $cust['id'] = $cust['id'];
             $customers['contents']['data'][$key] = $cust;
         }
 
@@ -118,28 +118,31 @@ class EFormController extends Controller
     public function detailCustomer(Request $request)
     {
         $data = $this->getUser();
-        $customerData = $this->getCustomer($request);
-
+        // $customerData = $this->getCustomer($request);
+        // echo json_encode($request->input('id'));die();
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer')
+        $customerData = Client::setEndpoint('customer/'.$request->input('id'))
                         ->setHeaders([
                             'Authorization' => $data['token'],
                             'pn' => $data['pn']
-                        ])->setQuery([
-                            'nik' => $request->input('id'),
-                        ])
-                        ->get();
-        $dataCustomer = $customerData['contents']['data'][0];
+                        ])->get();
+        $dataCustomer = $customerData['contents'];
+        // echo json_encode($dataCustomer['data']);die();
 
-        if(!empty($dataCustomer)){
+        if(($customerData['code'])==200){
             $view = (String)view('internals.eform.detail-customer')
                 ->with('dataCustomer', $dataCustomer)
                 ->render();
 
             return response()->json(['view' => $view]);
         } else {
-            return view('internals.eform.detail-customer')
-                ->with('dataCustomer', $dataCustomer);
+            $view = (String)view('internals.eform.error')
+                ->with('dataCustomer', $dataCustomer)
+                ->render();
+
+            return response()->json(['view' => $view]);
+            // return view('internals.eform.detail-customer')
+            //     ->with('dataCustomer', $dataCustomer);
         }
     }
 
@@ -153,12 +156,9 @@ class EFormController extends Controller
                         ->setHeaders([
                             'Authorization' => $data['token'],
                             'pn' => $data['pn']
-                        ])->setQuery([
-                            'nik' => $request->input('id'),
                         ])
                         ->get();
         $dataCustomer = $customerData['contents']['data'][0];
-        // dd($data);
         $userData = array_merge($dataCustomer, $data);
         // dd($userData);
         

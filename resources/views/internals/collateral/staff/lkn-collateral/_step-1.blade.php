@@ -109,6 +109,7 @@
                                 <option>-- Pilih Tipe --</option>
                                 <option>Langsung Menghadap Jalan</option>
                                 <option>Tidak Menghadap ke jalan tetapi mempunyai jalan masuk</option>
+                                <option>Untuk mencapai tanah tersebut harus melewati orang lain</option>
                             </select>
                         </div>
                     </div>

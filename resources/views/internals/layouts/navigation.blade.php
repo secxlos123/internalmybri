@@ -8,7 +8,7 @@
                             </li>
                             @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
                             <li>
-                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Nasabah </span> </a>
+                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Customer </span> </a>
                             </li>
                             @endif
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))

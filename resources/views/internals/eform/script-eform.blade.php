@@ -601,7 +601,7 @@
                 async: false,
                 success: function (data) {
                     // console.log(data)
-
+                    toastr["success"]("Data Berhasil disimpan");
                     if ( data.code != 422 ) {
                         $('#leads-modal').modal('toggle');
                     } else {
@@ -622,6 +622,7 @@
                 },
                 error: function (response) {
                     // console.log(response)
+                    toastr["error"]("Data Gagal disimpan");
                     HoldOn.close();
                 },
                 cache: false,
