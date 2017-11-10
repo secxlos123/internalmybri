@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-right">
-                                                <a href="javascript:void(0)" id="btn-filter" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                <a href="javascript:void(0)" id="btn-filter" class="btn btn-orange waves-light waves-effect w-md">Filter</a>
                                             </div>
                                         </form>
                                     </div>
@@ -86,7 +86,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-success waves-effect waves-light btn-save">Simpan</button>
+                <button type="button" class="btn btn-orange waves-effect waves-light btn-save">Simpan</button>
             </div>
         </div>
     </div>

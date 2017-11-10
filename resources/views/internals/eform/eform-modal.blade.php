@@ -195,7 +195,7 @@
             </div>
             <div class="modal-footer">
                    <a href="#" class="btn btn-default" data-dismiss="modal" >Batal</a>
-                   <a id="agree" href="#" class="btn btn-success" data-dismiss="modal" >Ajukan</a>
+                   <a id="agree" href="#" class="btn btn-orange" data-dismiss="modal" >Ajukan</a>
                </form>
            </div>
         </div>

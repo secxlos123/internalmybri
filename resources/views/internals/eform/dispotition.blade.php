@@ -414,7 +414,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group pull-right">
-                                                        <button class="btn btn-success waves-effect waves-light" type="submit">Disposisi</button>
+                                                        <button class="btn btn-orange waves-effect waves-light" type="submit">Disposisi</button>
                                                     </div>
                                                 </div>
                                             </div>

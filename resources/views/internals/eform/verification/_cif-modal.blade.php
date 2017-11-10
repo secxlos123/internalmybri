@@ -16,7 +16,7 @@
             </div>
             <div class="modal-footer">
                 <a href="javascript:void(0);" class="btn btn-default waves-effect" data-dismiss="modal">Batal</a>
-                <a href="javascript:void(0);" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</a>
+                <a href="javascript:void(0);" id="btnSave" class="btn btn-orange waves-effect waves-light">Simpan</a>
             </div>
         </div>
     </div>

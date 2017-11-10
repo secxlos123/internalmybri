@@ -42,7 +42,7 @@
 	@endif
 
 	@if (!empty($verified) && $verified == true)
-	<span class="btn btn-icon waves-effect waves-light btn-success">
+	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Verified
 	</span>
 	@endif
@@ -61,7 +61,7 @@
 @endif
 
 @if (!empty($submited) && $submited == true)
-	<span class="btn btn-icon waves-effect waves-light btn-success">
+	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Approved
 	</span>
 @endif

@@ -75,7 +75,7 @@
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
                                         Batal
                                     </button>
-                                    <button type="button" class="btn btn-success save-event waves-effect waves-light">
+                                    <button type="button" class="btn btn-orange save-event waves-effect waves-light">
                                         Simpan Jadwal
                                     </button>
                                     <button type="button" class="btn btn-danger delete-event waves-effect waves-light"

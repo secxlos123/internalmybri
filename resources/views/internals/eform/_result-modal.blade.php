@@ -114,7 +114,7 @@
                                     <label class="col-md-12"> Mohon Maaf Pengajuan Anda tidak dapat diapprove. Apa anda ingin override?</label>
                                 </div>
                                 <div class="text-center">
-                                    <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md m-b-20">Ya</a>
+                                    <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20">Ya</a>
                                     <a href="javascript:void(0);" class="btn btn-default waves-light waves-effect w-md m-b-20">Tidak</a>
                                 </div>
                             </div>

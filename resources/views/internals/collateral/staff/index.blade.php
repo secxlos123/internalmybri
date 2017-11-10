@@ -46,7 +46,7 @@
                                             
                                         </form>
                                         <div class="text-right">
-                                            <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
                                         </div>
                                     </div>
                                 </div>

@@ -66,7 +66,7 @@
                                                         
                                                     </form>
                                                     <div class="text-right">
-                                                        <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                                        <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                                                         </div>
                                                     </form>
                                                     <div class="text-right">
-                                                        <a href="#" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                        <a href="#" class="btn btn-orange waves-light waves-effect w-md">Filter</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,7 +118,7 @@
                                                 <td class="align-middle">21213212</td>
                                                 <td class="align-middle">Laki-laki</td>
                                                 <td>
-                                                    <a href="{{route('customers.edit', 1)}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="{{route('customers.edit', 1)}}" class="btn btn-icon waves-effect waves-light btn-orange" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
                                                     <a href="{{route('customers.show', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">

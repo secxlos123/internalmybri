@@ -149,7 +149,7 @@
                                     <button type="submit" href="javascript:void(0);" id="save" class="btn btn-default waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
                                 <!-- <div class="col-md-1 pull-right">
-                                    <button type="submit" href="javascript:void(0);" id="save" class="btn waves-effect waves-light btn-success"><i class="mdi mdi-content-save"></i> Verifikasi</button>
+                                    <button type="submit" href="javascript:void(0);" id="save" class="btn waves-effect waves-light btn-orange"><i class="mdi mdi-content-save"></i> Verifikasi</button>
                                 </div> -->
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</button>
+                        <button type="button" id="btnSave" class="btn btn-orange waves-effect waves-light">Simpan</button>
                     </div>
                 </div>
             </div>

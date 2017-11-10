@@ -257,7 +257,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group pull-right">
-                                                        <button class="btn btn-success waves-effect waves-light" type="submit">Tugaskan</button>
+                                                        <button class="btn btn-orange waves-effect waves-light" type="submit">Tugaskan</button>
                                                     </div>
                                                 </div>
                                             </div>

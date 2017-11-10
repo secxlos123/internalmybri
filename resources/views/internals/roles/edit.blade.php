@@ -169,7 +169,7 @@
                                             </table>
                                             <div class="pull-right">
                                                 <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md">Kembali</a>
-                                                <button type="submit" class="btn btn-success waves-light waves-effect w-md" data-toggle="modal" id="save"><i class="mdi mdi-content-save"></i> Edit</button>
+                                                <button type="submit" class="btn btn-orange waves-light waves-effect w-md" data-toggle="modal" id="save"><i class="mdi mdi-content-save"></i> Edit</button>
                                             </div>
 
                                             </form>

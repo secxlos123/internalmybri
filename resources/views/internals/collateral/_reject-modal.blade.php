@@ -24,7 +24,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                <button type="button" id="btn-submit" class="btn btn-success waves-effect waves-light">Submit</button>
+                <button type="button" id="btn-submit" class="btn btn-orange waves-effect waves-light">Submit</button>
             </div>
         </div>
     </div>

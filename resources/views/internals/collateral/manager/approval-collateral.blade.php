@@ -61,7 +61,7 @@
                                             {{ csrf_field() }}
                                             <input type="hidden" name="is_approved" id="is_approved">
                                             <div class="text-center">
-                                                <button type="submit" class="btn btn-success waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
+                                                <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
                                                 <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
                                                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                             </div>
