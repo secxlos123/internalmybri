@@ -79,7 +79,7 @@
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Pengaju :</label>
+                                                        <label class="col-md-5 control-label">Pemohon :</label>
                                                         <div class="col-md-7">
                                                             <p class="form-control-static">{{$detail['customer_name']}}</p>
                                                         </div>
