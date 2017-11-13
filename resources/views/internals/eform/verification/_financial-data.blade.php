@@ -66,14 +66,26 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" value="{{$dataCustomer['customer']['dependent_amount']}}">
+                                            @if ($errors->has('dependent_amount')) <p class="help-block">{{ $errors->first('dependent_amount') }}</p> @endif
+                                        </div>
+                                    </div>       
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                <div class="col-md-7" id="join_income">
-                                    <div class="checkbox checkbox-single checkbox-primary">
-                                        <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
-                                        <label class="header-title custom-title-2"><b>  Joint Income</b></label>
-                                    </div>
-                                </div>
+            <div class="col-md-7" id="join_income">
+                <div class="checkbox checkbox-single checkbox-primary">
+                    <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
+                    <label class="header-title custom-title-2"><b>  Joint Income</b></label>
+                </div>
+            </div>
 
                                 <!--Pasangan-->
                                 <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0) style="display:block;" @else style="display:none;" @endif >
@@ -122,7 +134,36 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Pendapatan Lain :</label>
+                                        <div class="col-md-8">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Rp</span>
+                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_other_salary'])) value="{{$dataCustomer['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
+                                                @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-horizontal">
+                                    <div class="form-group ">
+                                        <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
+                                        <div class="col-md-7">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Rp</span>
+                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer['customer']['couple_loan_installment'])) value="{{$dataCustomer['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
+                                                @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
+                                            </div>
+                                        </div>
+                                    </div>                                            
+                                </div>
+                            </div>                                    
                         </div>
-                    </div><!--End--> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--End--> 

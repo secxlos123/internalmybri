@@ -27,10 +27,10 @@ class UpdateDevRequest extends FormRequest
             "developer_name"    => "required",
             "city_id"           => "required",
             "address"           => "required",
-            "mobile_phone"      => "required|digits_between:12,12",
+            "mobile_phone"      => "required|digits_between:9,13",
             "company_name"      => "required",
             "email"             => "required|email",
-            "phone"             => "required|digits_between:12,12",
+            "phone"             => "required|digits_between:9,13",
             "summary"           => "required",
         ];
     }

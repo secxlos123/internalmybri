@@ -101,6 +101,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label class="col-md-4 control-label">No. Handphone :</label>
+                                                            <div class="col-md-8">
+                                                                <p class="form-control-static">{{$dataDev['mobile_phone']}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="col-md-4 control-label">Ringkasan :</label>
                                                             <div class="col-md-8">
                                                                 <p class="form-control-static">{{$dataDev['summary']}}</p>

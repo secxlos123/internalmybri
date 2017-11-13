@@ -9,7 +9,7 @@
     <div class="custom-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Hasil Prescreening</h4>
+                <h4>Hasil Prescreening & Pre-Scoring</h4>
             </div>
             <div class="modal-body">
                 <div class="card-box m-t-30">
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="card-box m-t-30">
-                    <h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Informasi CRS</h4>
+                    <h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil Pre-Scoring</h4>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
@@ -86,7 +86,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12"> Selamat, pengajuan Pinjaman anda telah diapprove, dengan catatan data yang telah diinputkan sesuai dokumen yang diupload.</label>
+                                    <label class="col-md-6 control-label"> Risiko </label> 
+                                    <div class="col-md-6">
+                                        <p class="form-control-static">1</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12"> Permohonan kredit telah disetujui oleh sistem scoring BRI, pastikan data yang diinput telah sesuai dengan dokumen dan kondisi sebenarnya untuk menghindari putusan Tolak atau perubahan plafond</label>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +100,7 @@
                 </div>
 
                 <div class="card-box m-t-30">
-                    <h4 class="m-t-min30 m-b-30 header-title custom-title" id="failed">Informasi CRS</h4>
+                    <h4 class="m-t-min30 m-b-30 header-title custom-title" id="failed">Hasil Pre-Scoring</h4>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
@@ -111,12 +117,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12"> Mohon Maaf Pengajuan Anda tidak dapat diapprove. Apa anda ingin override?</label>
+                                    <label class="col-md-6 control-label"> Risiko </label> 
+                                    <div class="col-md-6">
+                                        <p class="form-control-static">1</p>
+                                    </div>
                                 </div>
-                                <div class="text-center">
+                                <div class="form-group">
+                                    <label class="col-md-12"> Permohonan masuk dalam kategori risiko [risiko scoring] sehingga permohonan kredit Saudara berpotensi untuk mendapat putusan tolak atau perubahan plafond. Pastikan terdapat pertimbangan khusus terkait kemampuan dan kualitas calon debitur.</label>
+                                </div>
+                                <!-- <div class="text-center">
                                     <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20">Ya</a>
                                     <a href="javascript:void(0);" class="btn btn-default waves-light waves-effect w-md m-b-20">Tidak</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

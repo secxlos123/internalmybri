@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Profil Nasabah')
+@section('title','My BRI - Daftar Profil Customer')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
                             <div class="col-xs-12">
                                 
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Daftar Profil Nasabah</h4>
+                                    <h4 class="page-title">Daftar Profil Customer</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="{{url('/')}}">Dashboard</a>
                                         </li>
                                         <li class="active">
-                                            Daftar Profil Nasabah
+                                            Daftar Profil Customer
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -31,8 +31,8 @@
                                     <fieldset hidden>
                                         <div class="add-button">
                                             <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                           <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Nasabah</a> -->
-                                            <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Nasabah</a>
+                                           <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Customer</a> -->
+                                            <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Customer</a>
                                             <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                                         </div>
                                     </fieldset>
@@ -100,7 +100,7 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>NIK</th>
-                                                <th>Nama Profil Nasabah</th>
+                                                <th>Nama Profil Customer</th>
                                                 <th>Email</th>
                                                 <th>Kota Tempat Tinggal</th>
                                                 <th>Handphone</th>
@@ -112,13 +112,13 @@
                                             <!-- <tr>
                                                 <td class="align-middle">1</td>
                                                 <td class="align-middle">123455667</td>
-                                                <td class="align-middle">Profil Nasabah 1</td>
+                                                <td class="align-middle">Profil Customer 1</td>
                                                 <td class="align-middle">xx@xx.com</td>
                                                 <td class="align-middle">Kota 1</td>
                                                 <td class="align-middle">21213212</td>
                                                 <td class="align-middle">Laki-laki</td>
                                                 <td>
-                                                    <a href="{{route('customers.edit', 1)}}" class="btn btn-icon waves-effect waves-light btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="{{route('customers.edit', 1)}}" class="btn btn-icon waves-effect waves-light btn-orange" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="mdi mdi-pencil"></i>
                                                     </a>
                                                     <a href="{{route('customers.show', 1)}}" class="btn btn-icon waves-effect waves-light btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lihat Detail">

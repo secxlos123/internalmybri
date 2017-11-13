@@ -1,4 +1,4 @@
-@section('title','My BRI - Tambah Pihak Ke-3')
+@section('title','My BRI - Tambah Pihak Ketiga')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Tambah Pihak Ke-3</h4>
+                                    <h4 class="page-title">Tambah Pihak Ketiga</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('third-party.index')}}">Pihak Ke-3</a>
+                                            <a href="{{route('third-party.index')}}">Pihak Ketiga</a>
                                         </li>
                                         <li class="active">
-                                            Tambah Pihak Ke-3
+                                            Tambah Pihak Ketiga
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -34,7 +34,7 @@
                                         <div class="col-md-6">
                                             <div class="form-horizontal" role="form">
                                                 <div class="form-group">
-                                                    <label class="col-md-4 control-label">Nama Pihak Ke-3 *:</label>
+                                                    <label class="col-md-4 control-label">Nama Pihak Ketiga *:</label>
                                                     <div class="col-md-8">
                                                         <input type="text" class="form-control alphaOnly" name="name" maxlength="150" required="" value="{{old('name')}}" id="name">
                                                     </div>
@@ -103,7 +103,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Pihak Ke-3 dengan nama : "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin menambah Pihak Ketiga dengan nama : "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>

@@ -8,7 +8,7 @@
                             </li>
                             @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
                             <li>
-                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Nasabah </span> </a>
+                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Customer </span> </a>
                             </li>
                             @endif
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
@@ -43,7 +43,7 @@
                             </li> -->
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
                             <li>
-                                <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak ke-3 </span> </a>
+                                <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
                             </li>
                             @endif
 

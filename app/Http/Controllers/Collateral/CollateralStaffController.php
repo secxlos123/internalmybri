@@ -4,9 +4,23 @@ namespace App\Http\Controllers\Collateral;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Client;
 
 class CollateralStaffController extends Controller
 {
+    protected $columns = [
+        'prop_name',
+        'prop_city_name',
+        'prop_types',
+        'prop_items',
+        // 'branch_id',
+        'prop_pic_name',
+        'prop_pic_phone',
+        'staff_name',
+        'status',
+        'action',
+    ];
+
     /* GET UserLogin Data */
     public function getUser(){
         $users = session()->get('user');
@@ -61,6 +75,23 @@ class CollateralStaffController extends Controller
     }
 
     /**
+     * Show the form for Assignment Agunan.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAssignmentAgunan($id)
+    {
+        $data = $this->getUser();
+        $detailCollateral = Client::setEndpoint('collateral/'.$id)
+                        ->setHeaders([
+                            'Authorization' => $data['token'],
+                            'pn' => $data['pn']
+                        ])->get();
+        $dataCollateral = $detailCollateral['contents'][0];
+        return view('internals.collateral.staff.assignment', compact('data', 'dataCollateral'));
+    }
+
+    /**
      * Show the form for LKN Agunan.
      *
      * @return \Illuminate\Http\Response
@@ -103,5 +134,63 @@ class CollateralStaffController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Get Datatables
+     * @param $request
+     */
+    public function datatables(Request $request)
+    {
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+        $collateral = Client::setEndpoint('collateral')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                    'page'      => (int) $request->input('page') + 1,
+                    // 'start_date'=> $request->input('start_date'),
+                    // 'end_date'  => $request->input('end_date'),
+                    // 'status'    => $request->input('status'),
+                    // 'branch_id' => $data['branch']
+                ])->get();
+
+            // dd($collateral);
+        foreach ($collateral['contents']['data'] as $key => $form) {
+            $form['prop_name'] = strtoupper($form['prop_name']);
+            // $form['customer_name'] = strtoupper($form['customer_name']);
+            // $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
+            // // $form['product_type'] = strtoupper($form['product_type']);
+            // $form['branch_id'] = $form['branch_id'];
+            // $form['ao'] = $form['ao_name'];
+        
+            // $verify = $form['customer']['is_verified'];
+            // $visit = $form['is_visited'];
+
+            $form['action'] = view('internals.layouts.actions', [
+
+                // 'dispose' => $form['ao_name'],
+                // 'submited' => $form['is_approved'],
+                // 'dispotition' => $form,
+                // // 'screening' => route('eform.show', $form['id']),
+                // 'approve' => $form,
+                // // 'verified' => $verify,
+                // 'visited' => $visit,
+                'detail_collateral' => route('staff-collateral.show', $form['prop_id']),
+                'assignment_collateral' => route('getAssignmentAgunan', $form['prop_id']),
+                'lkn_collateral' => route('getLKNAgunan', $form['prop_id']),
+            ])->render();
+            $collateral['contents']['data'][$key] = $form;
+        }
+
+        $collateral['contents']['draw'] = $request->input('draw');
+        $collateral['contents']['recordsTotal'] = $collateral['contents']['total'];
+        $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
+
+        return response()->json($collateral['contents']);
     }
 }

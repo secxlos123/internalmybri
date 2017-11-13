@@ -1,25 +1,27 @@
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         var distance = 10;
         var long = $('#lng').val();
         var lat = $('#lat').val();
         get_offices(distance, long, lat);
-    });
 
-    $(document).ready(function () {
         var lastStatusElement = null;
         $('.select2').select2({
             witdh : '100%',
             allowClear: true,
         });
 
+
+        //slider distance
         $('#distance1').bootstrapSlider({
             formatter: function(value) {
                 return 'Current value: ' + value;
             }
         });
         
+        //select2 customer
         $('.nikSelect').select2({
+            maximumInputLength : 16,
             witdh : '100%',
             allowClear: true,
             ajax: {
@@ -33,6 +35,28 @@
                     };
                 },
                 processResults: function (data, params) {
+                    $('.select2-search__field').attr('maxlength', 16);
+                    $(".select2-search__field").keydown(function (e) {
+                        // Allow: backspace, delete, tab, escape, enter and .
+                        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                             // Allow: Ctrl+A
+                            (e.keyCode == 65 && e.ctrlKey === true) ||
+                             // Allow: Ctrl+C
+                            (e.keyCode == 67 && e.ctrlKey === true) ||
+                             // Allow: Ctrl+X
+                            (e.keyCode == 88 && e.ctrlKey === true) ||
+                            // Allow: backspace
+                            (e.keyCode === 320 && e.ctrlKey === true) ||
+                             // Allow: home, end, left, right
+                            (e.keyCode >= 35 && e.keyCode <= 39)) {
+                                 // let it happen, don't do anything
+                                 return;
+                        }
+                        // Ensure that it is a number and stop the keypress
+                          if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                e.preventDefault();
+                        }
+                    });
                     // console.log(data);
                     if((data.customers.data.length) == 0 ){
                         $('#search').addClass('disabled');
@@ -56,6 +80,7 @@
             },
         });
 
+        //select2 developer
         $('.developers').select2({
             witdh : '100%',
             allowClear: true,
@@ -137,6 +162,7 @@
             });
         });
 
+        //select2 properti
         $('.property_name').on('change', function () {
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
@@ -211,6 +237,7 @@
             });
         });
 
+        //select2 city
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,
@@ -238,36 +265,42 @@
             },
         });
 
-       $('#search').on('click', function() {
+        //search customer detail
+        $('#search').on('click', function() {
            var id = $('#nik').val();
 
-           if (id != "") {
-                $.ajax({
-                    dataType: 'json',
-                    type: 'GET',
-                    url: '{{route("detailCustomer")}}',
-                    data: { id : id } 
-                }).done(function(data){
-                    // console.log(data);
-                    $('#detail').html(data['view']);
-                });
-           }
+           $.ajax({
+                dataType: 'json',
+                type: 'GET',
+                url: '{{route("detailCustomer")}}',
+                data: { id : id } 
+            }).done(function(data){
+                // console.log(data);
+                $('#detail').html(data['view']);
+            }).fail(function(errors) {
+                toastr.error('Data tidak ditemukan')
+            });
            
-       });
+        });
 
        //disable select kpr
         var price = $('#price');
         var building_area = $('#building_area');
         var active_kpr = $('#active_kpr');
-        $('#building_area').on('input', function() {
+        var dp = $('#dp');
+        var year = $('#year');
+        var down_payment = $('#down_payment');
+        var request_amount = $('#request_amount');
+        var price_without_comma = price.val().replace(',00', '');
+        var static_price = price_without_comma.replace(/\./g, '');
+
+        building_area.on('input', function() {
             if((price !== null) && (building_area !== null)){
-            // console.log(building_area);
-                $('#active_kpr').removeAttr('disabled');
-                $('#dp').removeAttr('disabled');
+                active_kpr.removeAttr('disabled');
+                dp.removeAttr('disabled');
             }else{
-                // console.log(building_area);
-                $('#active_kpr').attr('disabled', true);
-                $('#dp').attr('disabled', true);
+                active_kpr.attr('disabled', true);
+                dp.attr('disabled', true);
 
             }
         });
@@ -275,15 +308,10 @@
         //count dp
         active_kpr.on('change', function() {
             var val = $(this).val();
-            var dp = $('#dp');
             var down_payment = $('#down_payment');
             var request_amount = $('#request_amount');
             var price_without_comma = price.val().replace(',00', '');
             var static_price = price_without_comma.replace(/\./g, '');
-
-            // payment = (15 / 100) * static_price;
-            //             down_payment.val(payment);
-            // console.log(payment);
 
             if(building_area.val() < 21){
                 switch (val) {
@@ -379,7 +407,7 @@
        });
 
         //recounting dp
-        $('#dp').on('input', function() {
+        dp.on('input', function() {
             var val = $(this).val();
             var down_payment = $('#down_payment');
             var request_amount = $('#request_amount');
@@ -393,21 +421,46 @@
             request_amount.val(amount);
         });
 
-        $('#dp').on('keyup', function(e){
-            if ($(this).val() < $(this).attr('min') 
-                && e.keyCode != 46 // delete
-                && e.keyCode != 8 // backspace
-               ) {
-               e.preventDefault();
-               $(this).val($(this).attr('min'));
-            }else{
-            // console.log($(this).attr('min'));
-            return true;
-                
-            }
+        // dp.on('keyup', function(e){
+        //     if ($(this).val() < $(this).attr('min') 
+        //         && e.keyCode != 46 // delete
+        //         && e.keyCode != 8 // backspace
+        //        ) {
+        //        $(this).val($(this).attr('min'));
+        //     console.log($(this).attr('min'));
+
+        //     }else{
+        //     console.log($(this).attr('min'));
+        //         return true;
+        //     }
+        // });
+        var timeoutID = null;
+        dp.keyup(function(e) {
+            clearTimeout(timeoutID);
+            //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
+            timeoutID = setTimeout(function(){backIt()}, 500);
         });
 
-        $('#year').on('keyup', function(e){
+        function backIt(){
+              if(parseInt($(".lovely-input").val().replace( /[^0-9]/g, '' )) < parseInt(dp.attr('min'))){
+                $(".lovely-input").val(dp.attr('min'));
+              }else if($(".lovely-input").val() == ''){
+                $(".lovely-input").val(dp.attr('min'));
+                var val = $(".lovely-input").val();
+                var down_payment = $('#down_payment');
+                var request_amount = $('#request_amount');
+                var price_without_comma = price.val().replace(',00', '');
+                var static_price = price_without_comma.replace(/\./g, '');
+                // console.log('as');
+                payment = (val / 100) * static_price;
+                down_payment.val(payment);
+                amount = static_price - payment;
+                down_payment.val(payment);
+                request_amount.val(amount);
+              }
+            }
+
+        year.on('keyup', function(e){
             if ($(this).val() > 240 
                 && e.keyCode != 46 // delete
                 && e.keyCode != 8 // backspace
@@ -499,11 +552,6 @@
         });
     });
 
-    var options = {
-         theme:"sk-bounce",
-         message:'Mohon tunggu sebentar.',
-         textColor:"white"
-    };
     //showing modal of eform
     $('#view-modal').on('click', '#agree', function() {
            HoldOn.open(options);
@@ -581,62 +629,53 @@
        $('#leads-modal').modal('show');
     });
 
-    var options = {
-         theme:"sk-bounce",
-         message:'Mohon tunggu sebentar.',
-         textColor:"white"
-    };
-
     $('#btn-save').on('click', function() {
        HoldOn.open(options);
     });
 
     //storing leads
-    // $('#leads-modal #btn-save').on('click', function() {
-        // console.log('click');
-       $("#form_data_personal").submit(function(){
+    $("#form_data_personal").submit(function(){
 
-            var formData = new FormData(this);
-            console.log(formData);
+        var formData = new FormData(this);
 
-            $.ajax({
-                url: "/customers",
-                type: 'POST',
-                data: formData,
-                async: false,
-                success: function (data) {
-                    // console.log(data)
+        $.ajax({
+            url: "/customers",
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+                // console.log(data)
+                toastr["success"]("Data Berhasil disimpan");
+                if ( data.code != 422 ) {
+                    $('#leads-modal').modal('toggle');
+                } else {
+                    setTimeout(
+                        function(){ 
+                            $.each(data.contents, function(key, value) {
+                                // console.log(key);
+                                $("#form_data_personal").find(".form-group." + key).eq(0).addClass('has-error');
+                                $("#form_data_personal").find("span#"+key+"-error").eq(0).html(value);
+                            });
+                        }
+                    , 2000);
+                }
 
-                    if ( data.code != 422 ) {
-                        $('#leads-modal').modal('toggle');
-                    } else {
-                        setTimeout(
-                            function(){ 
-                                $.each(data.contents, function(key, value) {
-                                    // console.log(key);
-                                    $("#form_data_personal").find(".form-group." + key).eq(0).addClass('has-error');
-                                    $("#form_data_personal").find("span#"+key+"-error").eq(0).html(value);
-                                });
-                            }
-                        , 2000);
-                    }
-
-                    HoldOn.close();
-                    // $('#divForm').addClass('alert alert-success');
-                    // $('#divForm').append('Data Berhasil Ditambahkan');
-                },
-                error: function (response) {
-                    // console.log(response)
-                    HoldOn.close();
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-
-            return false;
+                HoldOn.close();
+                // $('#divForm').addClass('alert alert-success');
+                // $('#divForm').append('Data Berhasil Ditambahkan');
+            },
+            error: function (response) {
+                // console.log(response)
+                toastr["error"]("Data Gagal disimpan");
+                HoldOn.close();
+            },
+            cache: false,
+            contentType: false,
+            processData: false
         });
-    // });
+
+        return false;
+    });
 
     //hide and show couple data div
     function hideCouple(){

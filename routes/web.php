@@ -93,10 +93,11 @@
         Route::get('downloadTracking', ['as'=>'downloadTracking', 'uses'=>'Tracking\TrackingController@downloadTracking']);
 
         Route::get('collateral/assignment/{id}', ['as'=>'getAssignment', 'uses'=>'Collateral\CollateralController@assignment']);
-
-        Route::get('collateral/approval/{id}', ['as'=>'getCollateralApproval', 'uses'=>'Collateral\CollateralController@approval']);
+        Route::get('collateral/approval-collateral/{id}', ['as'=>'getApproval', 'uses'=>'Collateral\CollateralController@approval']);
 
         Route::get('staff-collateral/scoring-form/{id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+
+        Route::get('staff-collateral/get-assignment/{id}', ['as'=>'getAssignmentAgunan', 'uses'=>'Collateral\CollateralStaffController@getAssignmentAgunan']);
 
         Route::group(['prefix'=>'approval-data'], function () {
 
@@ -217,4 +218,9 @@
         Route::get('eform', 'EForm\EFormController@datatables');
 
         Route::get('eform-ao', ['as'=>'eform-ao', 'uses'=>'EForm\AOController@datatables']);
+
+        /* Collateral */
+        Route::get('collateral', 'Collateral\CollateralController@datatables');
+
+        Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
     });

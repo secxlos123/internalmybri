@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Pihak ke-3')
+@section('title','My BRI - Detail Pihak Ketiga')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Detail Pihak ke-3 "{{$datas['name']}}" </h4>
+                        <h4 class="page-title">Detail Pihak Ketiga "{{$datas['name']}}" </h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('third-party.index')}}">Pihak ke-3</a>
+                                <a href="{{route('third-party.index')}}">Pihak Ketiga</a>
                             </li>
                             <li class="active">
-                                Detail Pihak ke-3
+                                Detail Pihak Ketiga
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -30,7 +30,7 @@
                             <li class="active">
                                 <a href="#developer-info" data-toggle="tab" aria-expanded="true">
                                     <span class="visible-xs"><i class="fa fa-info"></i></span>
-                                    <span class="hidden-xs">Pihak ke-3 Info</span>
+                                    <span class="hidden-xs">Pihak Ketiga Info</span>
                                 </a>
                             </li>
                         </ul>
@@ -44,7 +44,7 @@
                                                 <div class="col-md-6">
                                                     <form class="form-horizontal" role="form">
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label">Nama Pihak Ke-3 :</label>
+                                                            <label class="col-md-4 control-label">Nama Pihak Ketiga :</label>
                                                             <div class="col-md-8">
                                                                 <p class="form-control-static">{{$datas['name']}}</p>
                                                             </div>

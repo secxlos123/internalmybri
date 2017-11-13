@@ -15,7 +15,7 @@
                             <tr>
                                 <th class="bg-inverse">Field</th>
                                 <th>Data Nasabah</th>
-                                <th>Data CIF</th>
+                                <th>Data CIF {{$dataCustomer['cif']['cif_number']}}</th>
                                 <th>Data Kemendagri</th>
                                 <th class="m-w-210">Aksi</th>
                             </tr>

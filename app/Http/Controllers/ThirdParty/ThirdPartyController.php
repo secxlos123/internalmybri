@@ -97,7 +97,7 @@ class ThirdPartyController extends Controller
             return redirect()->back()->withInput($request->input());
         }else{
             $error = reset($client['contents']);
-            \Session::flash('error', $client['descriptions'].' '.$error);
+            \Session::flash('error', 'Kesalahan Input'.$error);
             return redirect()->back()->withInput($request->input());
         }
         

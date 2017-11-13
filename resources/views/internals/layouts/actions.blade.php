@@ -36,8 +36,8 @@
 
 @if(isset($verified))
 	@if ((isset($verification) && ($verified == false) && ($response_status != 'approve' || $response_status != 'unverified')))
-	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info">
-	    Verifikasi
+	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Verification">
+	    <i class="fa fa-check-square-o" aria-hidden="true"></i>
 	</a>
 	@endif
 
@@ -48,8 +48,8 @@
 	@endif
 
 	@if ((isset($lkn)) && ($visited == false))
-	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-info">
-	    LKN
+	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Form LKN" title="Form LKN">
+	    <i class="fa fa-file-text-o" aria-hidden="true"></i>
 	</a>
 	@endif
 @endif
@@ -69,5 +69,43 @@
 @if (isset($prescreening_status))
 	<a href="javascript:void(0);" id="btn-prescreening">
 		<p class="text-success">{{$prescreening_result}}</p>
+	</a>
+@endif
+
+@if ((isset($dispose_collateral)))
+	<a href="{!! $dispose_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Penugasan" title="Penugasan">
+	    <i class="fa fa-user-plus" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if ((isset($approval_collateral)))
+	<a href="{!! $approval_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Approval" title="Approval">
+	    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+	</a>
+@endif
+
+<!-- @if ((isset($lkn_collateral)))
+	<a href="{!! $lkn_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Form LKN" title="Form LKN">
+	    <i class="fa fa-file-text" aria-hidden="true"></i>
+	</a>
+@endif -->
+
+@if ((isset($assignment_collateral)))
+	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Lakukan OTS / Penolakan 
+    Penugasan" title="Lakukan OTS / Penolakan 
+    Penugasan">
+	    <i class="fa fa-briefcase" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if ((isset($detail_collateral)))
+	<a href="{!! $detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-info" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if ((isset($detail)))
+	<a href="{!! $detail !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-info" aria-hidden="true"></i>
 	</a>
 @endif

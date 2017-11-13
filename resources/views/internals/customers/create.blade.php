@@ -1,4 +1,4 @@
-@section('title','My BRI - Tambah Leads')
+@section('title','My BRI - Tambah Profil Customer')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Tambah Leads</h4>
+                                    <h4 class="page-title">Tambah Profil Customer</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Leads</a>
+                                            <a href="{{route('customers.index')}}">Profil Customer</a>
                                         </li>
                                         <li class="active">
-                                            Tambah Leads
+                                            Tambah Profil Customer
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -220,7 +220,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Leads "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin menambah Profil Customer "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>
