@@ -95,7 +95,7 @@
                                                 <th>AO</th>
                                                 <th>Status</th>
                                                 <th>Aging (hari)</th>                                           
-                                                <th>Aksi</th>
+                                                <th style="width: 100px">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
