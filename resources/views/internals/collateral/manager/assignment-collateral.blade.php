@@ -36,7 +36,7 @@
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Form Penugasan Collateral Appraisal</b></h5>
                                 <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : 
+                                    <!-- No. Contact Agen / Sales :  -->
                                 </p>
                                 @if (\Session::has('error'))
                                  <div class="alert alert-danger">{{ \Session::get('error') }}</div>
@@ -53,20 +53,20 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Nama Proyek :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">ELWYN GOTTLIEB</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_name']}}</p>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Kota :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">Bandung</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_city_name']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Kategori :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">Rukan</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_city_name']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -88,26 +88,26 @@
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Nama PIC Proyek :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">Reece Morar</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_name']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Alamat Proyek :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">224 Conn Springs West Donnashire, MS 16200-7219</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_name']}}</p>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Nomor PKS :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">871871811</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_name']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">No. HP PIC Project :</label>
                                                         <div class="col-md-7">
-                                                            <p class="form-control-static">08191777171</p>
+                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_phone']}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

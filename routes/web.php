@@ -216,4 +216,7 @@
         Route::get('eform', 'EForm\EFormController@datatables');
 
         Route::get('eform-ao', ['as'=>'eform-ao', 'uses'=>'EForm\AOController@datatables']);
+
+        /* Collateral */
+        Route::get('collateral', 'Collateral\CollateralController@datatables');
     });

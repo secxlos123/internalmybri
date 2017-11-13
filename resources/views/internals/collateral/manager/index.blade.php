@@ -55,7 +55,6 @@
                         <table id="datatable" class="table table-bordered">
                             <thead class="bg-primary">
                                 <tr>
-                                    <th>No.</th>
                                     <th>Nama Proyek</th>
                                     <th>Kota</th>
                                     <th>Jumlah Tipe</th>
@@ -65,7 +64,7 @@
                                     <th>Telepon</th>
                                     <th>Staff Penilai</th>
                                     <th>Status Approval</th>                                           
-                                    <th>Aksi</th>
+                                    <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,7 +106,7 @@
             infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
         },
         ajax : {
-            url : '/datatables/eform',
+            url : '/datatables/collateral',
             data : function(d, settings){
                 var api = new $.fn.dataTable.Api(settings);
 
@@ -116,43 +115,21 @@
                     api.page.info().pages
                     );
 
-                d.start_date = from;
-                d.end_date = to;
-                d.status = status;
+                // d.start_date = from;
+                // d.end_date = to;
+                // d.status = status;
             }
         },
         aoColumns : [
-        {   data: 'ref_number', name: 'ref_number', bSortable: false  },
-        {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
-        {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
-        {   data: 'created_at', name: 'created_at', bSortable: true },
+                {   data: 'prop_name', name: 'prop_name', bSortable: false  },
+                {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
+                {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
+                {   data: 'prop_items', name: 'prop_items', bSortable: true },
                 // {   data: 'product_type', name: 'product_type' },
-                {   data: 'branch_id', name: 'branch_id', bSortable: false },
-                {   data: 'prescreening_status', 
-                name: 'prescreening_status', 
-                bSortable: false,
-                mRender: function (data, type, full) {
-                    if(full.prescreening_status == 'Hijau'){
-                        color = 'text-success';
-                        text = 'Hijau';
-                    }else if(full.prescreening_status == 'Kuning'){
-                        color = 'text-warning';
-                        text = 'Kuning';
-                    }else if(full.prescreening_status == 'Merah'){
-                        color = 'text-danger';
-                        text = 'Merah';
-                    }else {
-                        color = '';
-                        text = 'Pengajuan Baru';
-                    }
-                    return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-                },
-                createdCell:  function (td, cellData, rowData, row, col) {
-                    $(td).attr('class', 'status'); 
-                }},
-                {   data: 'ao_name', name: 'ao_name', bSortable: false },
+                {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
+                {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
+                {   data: 'staff_name', name: 'staff_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: true },
-                {   data: 'aging', name: 'aging', bSortable: true },
                 {   data: 'action', name: 'action', bSortable: false },
                 ],
             }); 
