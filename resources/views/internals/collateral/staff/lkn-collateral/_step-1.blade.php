@@ -16,11 +16,11 @@
                     </div>
                     <div class="col-md-3">
                         <label class="control-label">Latitude</label>
-                        <input type="text" name="lat" id="lat" class="form-control" readonly="" name="ground_lat">
+                        <input type="text" name="lat" id="lat" class="form-control" readonly="" name="ground_lat" value="-6.3026755">
                     </div>
                     <div class="col-md-3">
                         <label class="control-label">Longitude</label>
-                        <input type="text" name="lng" id="lng" class="form-control" readonly="" name="ground_long">
+                        <input type="text" name="lng" id="lng" class="form-control" readonly="" name="ground_long" value="106.82168409999997">
                     </div>
                 </div>
             </div>

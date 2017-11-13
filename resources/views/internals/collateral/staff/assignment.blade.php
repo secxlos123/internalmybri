@@ -218,10 +218,10 @@
                                     <div class="panel-body">
                                         <form class="form-horizontal" role="form" method="POST" id="form1">
                                             {{ csrf_field() }}
-                                            <!-- <input type="hidden" name="is_approved" id="is_approved">
+                                            <input type="hidden" name="is_approved" id="is_approved">
                                             <div class="text-center">
-                                                <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Lakukan OTS</button>
-                                                <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Penolakan Penugasan</button> -->
+                                                <a type="submit" href="{{route('getLKNAgunan', $dataCollateral['prop_id'])}}" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Lakukan OTS</a>
+                                                <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Penolakan Penugasan</button>
                                                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                             </div>
                                         </form>
