@@ -64,7 +64,7 @@
                                     <th>Telepon</th>
                                     <th>Staff Penilai</th>
                                     <th>Status Approval</th>                                           
-                                    <th style="width: 100px">Aksi</th>
+                                    <th style="width: 150px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

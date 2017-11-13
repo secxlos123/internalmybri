@@ -117,6 +117,7 @@ class CollateralController extends Controller
                 // 'approve' => $form,
                 // // 'verified' => $verify,
                 // 'visited' => $visit,
+                'detail' => route('collateral.show', $form['prop_id']),
                 'dispose_collateral' => route('getAssignment', $form['prop_id']),
                 'approval_collateral' => route('getApproval', $form['prop_id']),
             ])->render();
@@ -160,7 +161,8 @@ class CollateralController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->getUser();
+        return view('internals.collateral.manager.detail', compact('data'));
     }
 
     /**

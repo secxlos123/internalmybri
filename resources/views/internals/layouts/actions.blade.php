@@ -83,3 +83,29 @@
 	    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
 	</a>
 @endif
+
+<!-- @if ((isset($lkn_collateral)))
+	<a href="{!! $lkn_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Form LKN" title="Form LKN">
+	    <i class="fa fa-file-text" aria-hidden="true"></i>
+	</a>
+@endif -->
+
+@if ((isset($assignment_collateral)))
+	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Lakukan OTS / Penolakan 
+    Penugasan" title="Lakukan OTS / Penolakan 
+    Penugasan">
+	    <i class="fa fa-briefcase" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if ((isset($detail_collateral)))
+	<a href="{!! $detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-info" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if ((isset($detail)))
+	<a href="{!! $detail !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-info" aria-hidden="true"></i>
+	</a>
+@endif

@@ -97,6 +97,8 @@
 
         Route::get('staff-collateral/scoring-form/{id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
 
+        Route::get('staff-collateral/get-assignment/{id}', ['as'=>'getAssignmentAgunan', 'uses'=>'Collateral\CollateralStaffController@getAssignmentAgunan']);
+
         Route::group(['prefix'=>'approval-data'], function () {
 
             Route::get('developer', ['as'=>'approveDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalDeveloper']);
@@ -219,4 +221,6 @@
 
         /* Collateral */
         Route::get('collateral', 'Collateral\CollateralController@datatables');
+
+        Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
     });

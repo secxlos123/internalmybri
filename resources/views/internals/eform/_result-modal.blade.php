@@ -86,6 +86,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-6 control-label"> Risiko </label> 
+                                    <div class="col-md-6">
+                                        <p class="form-control-static">1</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-12"> Permohonan kredit telah disetujui oleh sistem scoring BRI, pastikan data yang diinput telah sesuai dengan dokumen dan kondisi sebenarnya untuk menghindari putusan Tolak atau perubahan plafond</label>
                                 </div>
                             </div>
@@ -119,10 +125,10 @@
                                 <div class="form-group">
                                     <label class="col-md-12"> Permohonan masuk dalam kategori risiko [risiko scoring] sehingga permohonan kredit Saudara berpotensi untuk mendapat putusan tolak atau perubahan plafond. Pastikan terdapat pertimbangan khusus terkait kemampuan dan kualitas calon debitur.</label>
                                 </div>
-                                <div class="text-center">
+                                <!-- <div class="text-center">
                                     <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20">Ya</a>
                                     <a href="javascript:void(0);" class="btn btn-default waves-light waves-effect w-md m-b-20">Tidak</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
