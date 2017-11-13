@@ -173,7 +173,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Hitung Simulasi </a>
+                        <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Hitung Simulasi </a>
                     </div>
                 </div>
             </div>

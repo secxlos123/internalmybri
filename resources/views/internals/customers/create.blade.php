@@ -88,7 +88,7 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="status" id="status">
                                                                 <option disabled="" selected="">-- Pilih --</option>
-                                                                <option value="0">Tidak Menikah</option>
+                                                                <option value="0">Belum Menikah</option>
                                                                 <option value="1">Menikah</option>
                                                                 <option value="2">Janda/Duda</option>
                                                             </select>
@@ -205,7 +205,7 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a>
+                                    <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</button>
+                        <button type="button" id="btnSave" class="btn btn-orange waves-effect waves-light">Simpan</button>
                     </div>
                 </div>
             </div>

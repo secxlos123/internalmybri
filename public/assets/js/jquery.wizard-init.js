@@ -88,7 +88,7 @@
                         var ao_name = result.data.name;
 
                         if(result.data.status == 1){
-                            var status = 'Tidak Menikah';
+                            var status = 'Belum Menikah';
                             $('#view-modal #couple1').hide();
                             $('#view-modal #couple2').hide();
                             $('#view-modal #couple3').hide();

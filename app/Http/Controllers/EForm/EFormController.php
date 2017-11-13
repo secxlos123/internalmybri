@@ -107,9 +107,13 @@ class EFormController extends Controller
             ])
             ->get();
 
+        $aoId = $request->input('aoId');
+
         foreach ($officers['contents']['data'] as $key => $ao) {
-            $ao['text'] = $ao['name'];
-            $officers['contents']['data'][$key] = $ao;
+            if ($ao['id'] != $aoId) {
+                $ao['text'] = $ao['name'];
+                $officers['contents']['data'][$key] = $ao;
+            }
         }
 
         return response()->json(['officers' => $officers['contents']]);

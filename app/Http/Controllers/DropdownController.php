@@ -126,7 +126,7 @@ class DropdownController extends Controller
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page')
             ])
             ->get();
@@ -147,7 +147,7 @@ class DropdownController extends Controller
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page')
             ])
             ->get();
@@ -168,7 +168,7 @@ class DropdownController extends Controller
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page')
             ])
             ->get();
@@ -189,7 +189,7 @@ class DropdownController extends Controller
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page')
             ])
             ->get();
@@ -210,7 +210,7 @@ class DropdownController extends Controller
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page')
             ])
             ->get();

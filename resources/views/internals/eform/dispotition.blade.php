@@ -299,13 +299,13 @@
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Gaji/Pendapatan :</label>
+                                                        <label title ="Take Home Pay Per Bulan" class="col-md-5 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-7">
                                                             <p class="form-control-static">Rp{{($detail['customer']['financial']['salary'])}}</p>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Pendapatan Lain :</label>
+                                                        <label title ="Rata-Rata Per Bulan" class="col-md-5 control-label">Pendapatan Lain :</label>
                                                         <div class="col-md-7">
                                                             <p class="form-control-static">Rp{{($detail['customer']['financial']['other_salary'])}}</p>
                                                         </div>
@@ -321,7 +321,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
+                                                        <label title ="Anak Dalam Tanggungan" class="col-md-5 control-label">Jumlah Tanggungan :</label>
                                                         <div class="col-md-7">
                                                             <p class="form-control-static">{{$detail['customer']['financial']['dependent_amount']}}</p>
                                                         </div>
@@ -369,7 +369,7 @@
                                                     <p>Foto KTP</p>
                                                 </div>
                                             </div>
-                                            @if(($detail['customer']['personal']['status_id']) == 2)
+                                            @if( ($detail['customer']['personal']['status_id']) == 2)
                                             <div class="col-md-6" align="center">
                                                 <div class="card-box">
                                                     <img src="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" class="img-responsive">
@@ -395,7 +395,18 @@
                                                         <div class="form-group">
                                                             <label class="col-md-5 control-label">Nama AO * :</label>
                                                             <div class="col-md-7">
-                                                                {!! Form::select('name', ['' => ''], old('name'), [
+
+                                                                @php( $name = "" )
+                                                                @php( $aoId = isset($detail['ao_id']) ? $detail['ao_id'] : "" )
+
+                                                                @foreach($detail['customer']['schedule'] as $schedule)
+                                                                    @if($schedule['ao_name'] != "" && $name == "")
+                                                                        @php( $name = $schedule['ao_name'] )
+                                                                        @break
+                                                                    @endif
+                                                                @endforeach
+
+                                                                {!! Form::select('name', [$aoId => $name], old('name'), [
                                                                     'class' => 'select2 name',
                                                                     'data-placeholder' => 'Pilih Nama AO',
                                                                     'id' => 'name'
@@ -414,11 +425,12 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group pull-right">
-                                                        <button class="btn btn-success waves-effect waves-light" type="submit">Disposisi</button>
+                                                        <button class="btn btn-orange waves-effect waves-light" type="submit">Disposisi</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+                                        <input type="hidden" id="fake-aoid" value="{{ $aoId }}">
                                         
                                     </div>
                                 </div>
@@ -452,6 +464,7 @@
                 data: function (params) {
                     return {
                         name: params.term,
+                        aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
@@ -467,6 +480,10 @@
                 },
                 cache: true
             },
+        });
+
+        $('.name').on('select2:select', function(){
+            $('#fake-aoid').val($(this).val());
         });
     });
 </script>

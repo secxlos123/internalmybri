@@ -106,7 +106,7 @@
                                                                             <div class="col-md-7">
                                                                                 <p class="form-control-static">
                                                                             @if(!empty($dataCustomer['personal']['status']))
-                                                                                @if($dataCustomer['personal']['status'] == 0) Tidak Menikah @elseif($dataCustomer['personal']['status'] == 1) Menikah @elseif ($dataCustomer['personal']['status'] == 2) Janda @elseif($dataCustomer['personal']['status'] == 3) Duda @endif
+                                                                                @if($dataCustomer['personal']['status'] == 0) Belum Menikah @elseif($dataCustomer['personal']['status'] == 1) Menikah @elseif ($dataCustomer['personal']['status'] == 2) Janda @elseif($dataCustomer['personal']['status'] == 3) Duda @endif
                                                                             @endif</p>
                                                                             </div>
                                                                         </div>

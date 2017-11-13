@@ -88,7 +88,7 @@
             var text = $(this).find("option:selected").text();
             $('#new_developer_name').val(text);
 
-            if(text == "INDEPENDENT"){
+            if(text == "Non Kerja Sama"){
                 $('#price').removeAttr('readonly');
                 $('#home_location').removeAttr('readonly');
                 $('#building_area').removeAttr('readonly');
@@ -96,6 +96,7 @@
                 $('#property_unit').attr('hidden',true);
                 $('#property_type').attr('hidden',true);
                 $('#line').attr('hidden',true);
+                
             }else{
                 $('#price').attr('readonly', true);
                 $('#home_location').attr('readonly', true);
@@ -104,6 +105,7 @@
                 $('#property_type').removeAttr('hidden');
                 $('#property_unit').removeAttr('hidden');
                 $('#line').removeAttr('hidden');
+                
             }
 
             $('.property_name').select2({
@@ -239,15 +241,17 @@
        $('#search').on('click', function() {
            var id = $('#nik').val();
 
-           $.ajax({
-                dataType: 'json',
-                type: 'GET',
-                url: '{{route("detailCustomer")}}',
-                data: { id : id } 
-            }).done(function(data){
-                // console.log(data);
-                $('#detail').html(data['view']);
-            });
+           if (id != "") {
+                $.ajax({
+                    dataType: 'json',
+                    type: 'GET',
+                    url: '{{route("detailCustomer")}}',
+                    data: { id : id } 
+                }).done(function(data){
+                    // console.log(data);
+                    $('#detail').html(data['view']);
+                });
+           }
            
        });
 
@@ -593,6 +597,7 @@
        $("#form_data_personal").submit(function(){
 
             var formData = new FormData(this);
+            console.log(formData);
 
             $.ajax({
                 url: "/customers",

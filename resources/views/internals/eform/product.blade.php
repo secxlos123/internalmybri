@@ -63,12 +63,43 @@
                                             </div>
                                             <input type="hidden" name="developer_name" id="new_developer_name">
                                         </div>
+                                        
+                                        <div class="form-group kpr_type {!! $errors->has('kpr_type') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">Jenis KPR *:</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control " name="kpr_type" id="kpr_type">
+                                                    <option value="0" selected=""> Pilih </option>
+                                                    <option value="1"> Baru </option>
+                                                    <option value="2"> Secondary </option>
+                                                    <option value="3"> Refinancing </option>
+                                                    <option value="4"> Renovasi </option>
+                                                    <option value="5"> Top Up </option>
+                                                    <option value="6"> Take Over </option>
+                                                    <option value="7"> Take Over Top Up </option>
+                                                </select>
+                                                @if ($errors->has('kpr_type')) <p class="help-block">{{ $errors->first('kpr_type') }}</p> @endif
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group kpr_type_property {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}">
+                                            <label class="control-label col-md-4">Jenis Properti *:</label>
+                                            <div class="col-md-8">
+                                                <select class="form-control " name="kpr_type_property" id="kpr_type_property">
+                                                    <option value="0" selected=""> Pilih </option>
+                                                    <option value="1"> Rumah Tapak </option>
+                                                    <option value="2"> Rumah Susun/Apartment </option>
+                                                    <option value="3"> Rumah Toko </option>
+                                                </select>
+                                                @if ($errors->has('kpr_type_property')) <p class="help-block">{{ $errors->first('kpr_type_property') }}</p> @endif
+                                            </div>
+                                        </div>
+                                        
                                         <div class="form-group {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
-                                            <label class="control-label col-md-4">Nama Properti *:</label>
+                                            <label class="control-label col-md-4">Nama Proyek *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('property', ['' => ''], old('property_name'), [
                                                     'class' => 'select2 property_name',
-                                                    'data-placeholder' => 'Pilih Nama Properti',
+                                                    'data-placeholder' => 'Pilih Nama Proyek',
                                                 ]) !!}
                                             </div>
                                             <input type="hidden" name="property_name" id="new_property_name">
@@ -134,7 +165,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="3" placeholder="0" id="year" >
+                                                    <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="3" placeholder="0" id="year" min="12">
                                                     <span class="input-group-addon">Bulan</span>
                                                     @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
                                                 </div>

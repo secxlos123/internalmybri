@@ -15,7 +15,7 @@
                                             <div class="col-md-8">
                                                 <input id="searchInput" class="input-controls " type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan" name="place">
                                                 <div class="map" id="map" style="width: 100%; height: 200px;"></div>
-                                                <textarea class="form-control" rows="3" name="address" maxlength="255" id="location" readonly="">{{ $eformData['address'] }}</textarea>
+                                                <textarea class="form-control" rows="3" name="address" maxlength="255" id="location">{{ $eformData['address'] }}</textarea>
                                                 @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
                                                 <input type="hidden" name="lng" id="lng" value="{{$eformData['longitude']}}"><input type="hidden" name="lat" id="lat" value="{{$eformData['latitude']}}">
                                             </div>

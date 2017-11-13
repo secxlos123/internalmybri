@@ -12,7 +12,7 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
-                                        <label class="col-md-4 control-label">Gaji/Pendapatan * :</label>
+                                        <label title ="Take Home Pay Per Bulan" class="col-md-4 control-label">Gaji/Pendapatan * :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Rp</span>
@@ -22,7 +22,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
-                                        <label class="col-md-4 control-label">Pendapatan Lain * :</label>
+                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain * :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Rp</span>
@@ -53,7 +53,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group dependent_amount {!! $errors->has('dependent_amount') ? 'has-error' : '' !!}">
-                                                            <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
+                                                            <label title ="Anak Dalam Tanggungan" class="col-md-5 control-label">Jumlah Tanggungan :</label>
                                                             <div class="col-md-7">
                                                                 <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" value="{{$dataCustomer['customer']['dependent_amount']}}">
                                                                 @if ($errors->has('dependent_amount')) <p class="help-block">{{ $errors->first('dependent_amount') }}</p> @endif
@@ -84,7 +84,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-horizontal">
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label">Gaji/Pendapatan * :</label>
+                                                            <label title ="Take Home Pay Per Bulan" class="col-md-4 control-label">Gaji/Pendapatan * :</label>
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>
@@ -94,7 +94,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-md-4 control-label">Pendapatan Lain :</label>
+                                                            <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain :</label>
                                                             <div class="col-md-8">
                                                                 <div class="input-group">
                                                                     <span class="input-group-addon">Rp</span>

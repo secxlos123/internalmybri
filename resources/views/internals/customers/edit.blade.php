@@ -111,7 +111,7 @@
                                                         <div class="col-md-7">
                                                             <select class="form-control" name="status">
                                                                 <option disabled="">-- Pilih --</option>
-                                                                <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }}@endif value="0">Tidak Menikah</option>
+                                                                <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "0") ? 'selected' : '' }}@endif value="0">Belum Menikah</option>
                                                                 <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "1") ? 'selected' : '' }}@endif value="1">Menikah</option>
                                                                 <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "2") ? 'selected' : '' }}@endif value="2">Janda</option>
                                                                 <option @if(!empty($dataCustomer['personal']['status'])){{($dataCustomer['personal']['status'] == "3") ? 'selected' : '' }}@endif value="3">Duda</option>
@@ -238,14 +238,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" role="form">
                                                     <div class="form-group salary {!! $errors->has('salary') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-4 control-label">Gaji/Pendapatan *:</label>
+                                                        <label title ="Take Home Pay Per Bulan" class="col-md-4 control-label">Gaji/Pendapatan *:</label>
                                                         <div class="col-md-8">
                                                             <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['salary']}}" name="salary" maxlength="12">
                                                             @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                                         </div>
                                                     </div>
                                                     <div class="form-group other_salary {!! $errors->has('other_salary') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-4 control-label">Pendapatan Lain *:</label>
+                                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain *:</label>
                                                         <div class="col-md-8">
                                                             <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['other_salary']}}" name="other_salary" maxlength="12">
                                                             @if ($errors->has('other_salary')) <p class="help-block">{{ $errors->first('other_salary') }}</p> @endif
@@ -263,7 +263,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group dependent_amount {!! $errors->has('dependent_amount') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-5 control-label">Jumlah Tanggungan *:</label>
+                                                        <label title ="Anak Dalam Tanggungan" class="col-md-5 control-label">Jumlah Tanggungan *:</label>
                                                         <div class="col-md-7">
                                                             <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['dependent_amount']}}" name="dependent_amount" maxlength="2">
                                                             @if ($errors->has('dependent_amount')) <p class="help-block">{{ $errors->first('dependent_amount') }}</p> @endif
@@ -372,7 +372,7 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Edit</a>
+                                    <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -393,7 +393,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btnSave" class="btn btn-success waves-effect waves-light">Simpan</button>
+                        <button type="button" id="btnSave" class="btn btn-orange waves-effect waves-light">Simpan</button>
                     </div>
                 </div>
             </div>

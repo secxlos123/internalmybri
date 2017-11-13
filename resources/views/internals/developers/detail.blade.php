@@ -189,7 +189,7 @@
                                                                 </div>
                                                             </form>
                                                             <div class="text-right">
-                                                                <a href="javascript:void(0)" id="btn-filter" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                                <a href="javascript:void(0)" id="btn-filter" class="btn btn-orange waves-light waves-effect w-md">Filter</a>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -82,7 +82,7 @@
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="status" id="status">
                                                         <option disabled="" selected="">-- Pilih --</option>
-                                                        <option value="1">Tidak Menikah</option>
+                                                        <option value="1">Belum Menikah</option>
                                                         <option value="2">Menikah</option>
                                                         <option value="3">Janda/Duda</option>
                                                     </select>
@@ -213,7 +213,7 @@
                         <div class="pull-right">
                             <a href="#" data-dismiss="modal" class="btn btn-default waves-light waves-effect w-md m-b-20">Batal</a>
                             <!-- <a href="#" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a> -->
-                            <button type="submit" class="btn btn-success waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
+                            <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
                         </div>
                     </div>
                 </div>

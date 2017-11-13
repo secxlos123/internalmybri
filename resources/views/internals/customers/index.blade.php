@@ -48,13 +48,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Nama Profil Nasabah :</label>
+                                                            <label class="col-sm-4 control-label">Nama Nasabah :</label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control" id="customer_name" name="customer_name">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Kota :</label>
+                                                            <label class="col-sm-4 control-label">Kota Tempat Tinggal:</label>
                                                             <div class="col-sm-8">
                                                             {!! Form::select('cities', ['' => ''], old('cities'), [
                                                                 'class' => 'select2 cities',
@@ -66,7 +66,7 @@
                                                         
                                                     </form>
                                                     <div class="text-right">
-                                                        <a href="javascript:void(0);" class="btn btn-success waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                                        <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                                                         </div>
                                                     </form>
                                                     <div class="text-right">
-                                                        <a href="#" class="btn btn-success waves-light waves-effect w-md">Filter</a>
+                                                        <a href="#" class="btn btn-orange waves-light waves-effect w-md">Filter</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,7 +102,7 @@
                                                 <th>NIK</th>
                                                 <th>Nama Profil Nasabah</th>
                                                 <th>Email</th>
-                                                <th>Kota</th>
+                                                <th>Kota Tempat Tinggal</th>
                                                 <th>Handphone</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>Aksi</th>
@@ -177,7 +177,7 @@
                 { data: "name", name: 'name' },
                 { data: "email", name: 'email' },
                 { data: "city_id", name: 'city_id' },
-                { data: "phone", name: 'phone' },
+                { data: "mobile_phone", name: 'mobile_phone' },
                 { data: "gender", name: 'gender' },
                 { data: "action", name: 'action', bSortable: false },
             ],

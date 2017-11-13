@@ -5624,3 +5624,10 @@ table .checkbox {
   background-color: #e27a7a !important;
   border: 1px solid #e27a7a !important;  
 }
+
+/* By Rachmat Ramadhan */
+.inline-block-menu > span {
+  display: inline-block;
+  width: 100px;
+}
+/* End */
