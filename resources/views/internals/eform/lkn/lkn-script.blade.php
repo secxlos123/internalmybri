@@ -45,6 +45,8 @@
 	})
 
 	$('#nonfixed-income').hide();
+    $('#legal_document').hide();
+    $('#legal_bussiness_document').hide();
 
 	$('#source').on('change', function () {
 	    if($(this).val() == 'fixed'){
@@ -53,7 +55,7 @@
             $('#nonfixed-income').hide();
             $('#salary_slip').show();
             $('#work_letter').show();
-            $('#legal_bussiness_document').hide();
+            $('#legal_document').hide();
             $('#legal_bussiness_document').hide();
 	    }else{
 	    	$('#fixed-salary').hide();
@@ -61,7 +63,7 @@
 	    	$('#nonfixed-income').show();
             $('#salary_slip').hide();
             $('#work_letter').hide();
-            $('#legal_bussiness_document').show();
+            $('#legal_document').show();
             $('#legal_bussiness_document').show();
 	    }
 	});
