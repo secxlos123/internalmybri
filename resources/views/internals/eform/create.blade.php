@@ -2,7 +2,6 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <style type="text/css">
     #wizard-validation-form label.error{
         font-family: 'Varela Round', sans-serif;
@@ -221,10 +220,8 @@
 @include('internals.eform.leads-form-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
 @include('internals.eform.script-eform')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
 <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 @endif

@@ -1,6 +1,5 @@
 @section('title','My BRI - Daftar Developer')
 @include('internals.layouts.head')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <div class="content-page">
@@ -107,8 +106,6 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
 <script type="text/javascript">
     var table1 = $('#datatable').DataTable({
             searching: false,
