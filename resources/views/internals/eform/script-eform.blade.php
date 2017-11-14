@@ -706,7 +706,9 @@
     $('#leads-modal #status').on('change', function() {
         if(this.value==2){
             $('#leads-modal #couple_data').show();
+            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d')}}");
         }else{
+            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
             hideCouple();
         }
     })
@@ -719,6 +721,6 @@
         todayHighlight: true
     });
 
-    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
+    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
 </script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
