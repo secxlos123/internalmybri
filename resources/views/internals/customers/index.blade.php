@@ -137,7 +137,6 @@
                 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 <script type="text/javascript">
     var table1 = $('#datatable').DataTable({

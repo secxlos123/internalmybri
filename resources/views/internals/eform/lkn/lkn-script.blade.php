@@ -4,11 +4,6 @@
 	  return index;
 	  }
 
-	// function resetBase() {
-	//     $('select.selectpicker:not(.base-select)').each(function(){
-	//       $("select.base-select option[value*=" + $(this).val() + "]").prop("disabled", true);
-	//     });
-	// }
 		var bank = "0";
 	$(document).on('click', '.add-row', function () {
 		var row = $(this).data('row');
@@ -50,16 +45,26 @@
 	})
 
 	$('#nonfixed-income').hide();
+    $('#legal_document').hide();
+    $('#legal_bussiness_document').hide();
 
 	$('#source').on('change', function () {
 	    if($(this).val() == 'fixed'){
 	    	$('#fixed-salary').show();
 	    	$('#fixed-allowance').show();
-	    	$('#nonfixed-income').hide();
+            $('#nonfixed-income').hide();
+            $('#salary_slip').show();
+            $('#work_letter').show();
+            $('#legal_document').hide();
+            $('#legal_bussiness_document').hide();
 	    }else{
 	    	$('#fixed-salary').hide();
 	    	$('#fixed-allowance').hide();
 	    	$('#nonfixed-income').show();
+            $('#salary_slip').hide();
+            $('#work_letter').hide();
+            $('#legal_document').show();
+            $('#legal_bussiness_document').show();
 	    }
 	});
 

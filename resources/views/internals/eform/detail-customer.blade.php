@@ -324,7 +324,7 @@
                                                         <label class="col-md-6 control-label">Angsuran Pinjaman :</label>
                                                         <div class="col-md-6">
                                                             <p class="form-control-static">
-                                                                @if(!empty($dataCustomer['financial']['loadn_installment_couple'])){{$dataCustomer['financial']['loadn_installment_couple']}}@else - @endif
+                                                                @if(!empty($dataCustomer['financial']['loan_installment_couple'])){{$dataCustomer['financial']['loan_installment_couple']}}@else - @endif
                                                             </p>
                                                         </div>
                                                     </div>                                                 

@@ -63,6 +63,7 @@
 
         {{--init toastr--}}
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
+        <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 
 
         <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
