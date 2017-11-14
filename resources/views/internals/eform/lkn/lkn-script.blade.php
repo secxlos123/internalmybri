@@ -109,6 +109,12 @@
                 url: '/dropdown/kpptypelist',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     // console.log(data);
@@ -134,6 +140,12 @@
                 url: '/dropdown/typefinanced',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     // console.log(data);
@@ -159,6 +171,12 @@
                 url: '/dropdown/economysectors',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     // console.log(data);
@@ -184,6 +202,12 @@
                 url: '/dropdown/projectlist',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     // console.log(data);
@@ -209,6 +233,12 @@
                 url: '/dropdown/programlist',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     // console.log(data);
@@ -234,6 +264,12 @@
                 url: '/dropdown/usereason',
                 dataType: 'json',
                 delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     // console.log(data);

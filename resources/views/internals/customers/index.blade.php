@@ -105,6 +105,7 @@
                                                 <th>Kota Tempat Tinggal</th>
                                                 <th>Handphone</th>
                                                 <th>Jenis Kelamin</th>
+                                                <th>Status Permohonan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -179,6 +180,7 @@
                 { data: "city_id", name: 'city_id' },
                 { data: "mobile_phone", name: 'mobile_phone' },
                 { data: "gender", name: 'gender' },
+                { data: "application_status", name: 'application_status', bSortable: false, bSearchable: false },
                 { data: "action", name: 'action', bSortable: false },
             ],
         });

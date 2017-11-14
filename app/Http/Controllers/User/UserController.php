@@ -136,7 +136,18 @@ class UserController extends Controller
     {
         $data = $this->getUser();
 
-        $newUser = $this->userRequest($request);
+        $imgReq = $request->identity;
+          $image_path = $imgReq->getPathname();
+            $image_mime = $imgReq->getmimeType();
+            $image_name = $imgReq->getClientOriginalName();
+            $image[] = [
+                  'name'     => 'identity',
+                  'filename' => $image_name,
+                  'Mime-Type'=> $image_mime,
+                  'contents' => fopen( $image_path, 'r' ),
+                ];
+
+        $newUser = $this->userRequest(array_merge($request,$imgReq));
 
         $client = Client::setEndpoint('user')
            ->setHeaders(['Authorization' => $data['token']])

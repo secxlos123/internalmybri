@@ -2,7 +2,7 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"> --}}
 <style type="text/css">
     #wizard-validation-form label.error{
         font-family: 'Varela Round', sans-serif;
@@ -63,7 +63,7 @@
                                                                 'maximumInputLength' => 16
                                                             ]) !!}
                                                         <span class="input-group-btn">
-                                                        <a href="#" class="btn waves-effect waves-light btn-primary" id="search"><i class="fa fa-search"></i> Cari</a>
+                                                        <a href="#" class="btn waves-effect waves-light btn-primary disabled" id="search"><i class="fa fa-search"></i> Cari</a>
                                                         </span>
                                                     </div>
                                                             @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
@@ -75,7 +75,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md disabled" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> -->
 @include('internals.eform.script-eform')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
 @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
 <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 @endif

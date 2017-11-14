@@ -30,19 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Dokumen Pevindo</label> 
-                                    <div class="col-md-6">
-                                        <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Dokumen SCID</label> 
-                                    <div class="col-md-6">
-                                        <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Dokumen DHN</label> 
+                                    <label class="col-md-6 control-label"> Dokumen Pefindo</label> 
                                     <div class="col-md-6">
                                         <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive">
                                     </div>
@@ -55,10 +43,11 @@
                                     <label class="col-md-6 control-label"> Hasil Prescreening</label> 
                                     <div class="col-md-6">
                                         <p class="form-control-static">Hijau</p>
+                                        {{-- salah satunya hijau jdi hijau, salah satu merah jdi merah, sisanya kuning --}}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Score Pevindo</label> 
+                                    <label class="col-md-6 control-label"> Score Pefindo</label> 
                                     <div class="col-md-6">
                                         <p class="form-control-static">100</p>
                                     </div>

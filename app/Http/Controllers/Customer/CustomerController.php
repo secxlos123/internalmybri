@@ -291,7 +291,6 @@ class CustomerController extends Controller
 
         $newCustomer = $this->dataRequest($request);
         // dd($newCustomer);
-
         $client = Client::setEndpoint('customer')
          ->setHeaders([
               'Authorization' => $data['token'],
@@ -447,10 +446,12 @@ class CustomerController extends Controller
                     'city_id'   => $request->input('city_id'),
                     'page'      => (int) $request->input('page') + 1,
                 ])->get();
-
         foreach ($customers['contents']['data'] as $key => $customer) {
             $customer['name'] = $customer['first_name'].' '.$customer['last_name'];
             $customer['city_id'] = $customer['city'];
+            if ($customer['application_status'] == "Tidak Ada Pengajuan") {
+              $customer['application_status'] = '<p class="text-danger">'.$customer['application_status'].'</p>';
+            }
             $customer['action'] = view('internals.layouts.actions', [
                 'show' => route('customers.show', $customer['id']),
             ])->render();

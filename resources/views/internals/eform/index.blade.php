@@ -90,7 +90,7 @@
                                                 <th>Nominal</th>
                                                 <th>Tanggal Pertemuan</th>
                                                 <!-- <th>Jenis Produk</th> -->
-                                                <!-- <th>KC BRI Terdekat</th> -->
+                                                <th>KC BRI Terdekat</th>
                                                 <th>Status Prescreening</th>
                                                 <th>AO</th>
                                                 <th>Status</th>

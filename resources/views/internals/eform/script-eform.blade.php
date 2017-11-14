@@ -18,6 +18,30 @@
                 return 'Current value: ' + value;
             }
         });
+
+        $('.status_properties').on('select2:select', function (e) {
+            /*
+            kalo baru muncul semua, gak perlu jenis properti
+            kalo secondary muncul jenis KPR, jenus properti
+            kalo baru + non kerja sama
+            */
+
+            if ($(this).val() == "1") {
+                $("div#kpr_type_property").addClass('hide');
+                $("div#developer").removeClass('hide');
+                $("div#property_name").removeClass('hide');
+                $("div#property_type").removeClass('hide');
+                $("div#property_unit").removeClass('hide');
+
+            } else {
+                $("div#kpr_type_property").removeClass('hide');
+                $("div#developer").addClass('hide');
+                $("div#property_name").addClass('hide');
+                $("div#property_type").addClass('hide');
+                $("div#property_unit").addClass('hide');
+            
+            }
+        });
         
         //select2 customer
         $('.nikSelect').select2({
@@ -58,7 +82,7 @@
                         }
                     });
                     // console.log(data);
-                    if((data.customers.data.length) == 0 ){
+                    if((data.customers.data.length) == 0){
                         $('#search').addClass('disabled');
                         $('#btn-leads').removeClass('disabled');
                         return {
@@ -66,7 +90,7 @@
                         }; 
                     }else{
                         $('#search').removeClass('disabled');
-                        $('#btn-leads').addClass('disabled', true);
+                        $('#btn-leads').addClass('disabled');
                         params.page = params.page || 1;
                         return {
                             results: data.customers.data,
@@ -278,7 +302,7 @@
                 // console.log(data);
                 $('#detail').html(data['view']);
             }).fail(function(errors) {
-                toastr.error('Data tidak ditemukan')
+                // toastr.error('Data tidak ditemukan')
             });
            
         });
@@ -645,7 +669,7 @@
             async: false,
             success: function (data) {
                 // console.log(data)
-                toastr["success"]("Data Berhasil disimpan");
+                // toastr["success"]("Data Berhasil disimpan");
                 if ( data.code != 422 ) {
                     $('#leads-modal').modal('toggle');
                 } else {
@@ -666,7 +690,7 @@
             },
             error: function (response) {
                 // console.log(response)
-                toastr["error"]("Data Gagal disimpan");
+                // toastr["error"]("Data Gagal disimpan");
                 HoldOn.close();
             },
             cache: false,
@@ -700,6 +724,6 @@
         todayHighlight: true
     });
 
-    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-20 years'))}}");
+    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
 </script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->

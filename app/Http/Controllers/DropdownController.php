@@ -230,6 +230,9 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
+            ])->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page')
             ])
             ->get();
 
@@ -248,6 +251,9 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
+            ])->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page')
             ])
             ->get();
 
@@ -266,8 +272,11 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
+            ])->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page'),
+                'limit' => 5
             ])
-            ->setQuery(['limit' => 5])
             ->get();
 
         foreach ($economySector['contents']['data'] as $key => $czen) {
@@ -285,6 +294,9 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
+            ])->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page')
             ])
             ->get();
 
@@ -303,6 +315,9 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
+            ])->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page')
             ])
             ->get();
 
@@ -321,6 +336,9 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
+            ])->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page')
             ])
             ->get();
 
