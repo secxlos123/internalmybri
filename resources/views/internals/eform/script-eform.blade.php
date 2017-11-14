@@ -460,6 +460,25 @@
               }
             }
 
+        var timeoutID = null;
+        year.keyup(function(e) {
+            clearTimeout(timeoutID);
+            //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
+            timeoutID = setTimeout(function(){timePeriod()}, 1000);
+        });
+
+        function timePeriod(){
+              if(parseInt(year.val().replace( /[^0-9]/g, '' )) <= 12){
+                year.val('12');
+              }else if(year.val() >= 240){
+                year.val('240');
+                var val = year.val();
+              }else if(year.val() == ''){
+                year.val('12');
+                var val = year.val();
+              }
+            }
+
         year.on('keyup', function(e){
             if ($(this).val() > 240 
                 && e.keyCode != 46 // delete
