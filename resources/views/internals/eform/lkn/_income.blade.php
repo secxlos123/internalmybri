@@ -25,7 +25,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group income_salary {!! $errors->has('income_salary') ? 'has-error' : '' !!}" id="fixed-salary">
-                                            <label class="col-md-4 control-label">Gaji / THP * :</label>
+                                            <label class="col-md-4 control-label">Gaji / THP per-Bulan * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
