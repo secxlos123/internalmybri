@@ -42,8 +42,8 @@
 	@endif
 
 	@if (!empty($verified) && $verified == true)
-	<span class="btn btn-icon waves-effect waves-light btn-orange">
-	    Verified
+	<span class="waves-effect waves-light" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;">
+	    <i class="fa fa-check-circle fa-2x" style="color: cadetblue;" aria-hidden="true" title="Verified"></i>
 	</span>
 	@endif
 
