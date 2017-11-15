@@ -51,7 +51,7 @@
         <script type="text/javascript" src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-timepicker.js')}}"></script>
 
-        <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script>
+        <!-- <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script> -->
         <script src="{{asset('assets/js/jquery.date-pickers.init.js')}}"></script>
         <script src="{{asset('assets/js/jquery.time-pickers.init.js')}}"></script>
         <!-- <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->

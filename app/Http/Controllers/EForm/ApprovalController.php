@@ -104,7 +104,7 @@ class ApprovalController extends Controller
             return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'EForm gagal diapprove!');
-            return redirect()->back();
+            return redirect()->back()->withInput($request->input());
         }
 
     }

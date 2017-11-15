@@ -146,14 +146,16 @@
     };
     $('#btn-approve').on('click', function(){
         $('#is_approved').attr('value', true);
-        $('#form1').submit();
         HoldOn.open(options);
+        $('#form1').submit();
+        HoldOn.close();
     })
 
     $('#btn-reject').on('click', function(){
         $('#is_approved').attr('value', false);
-        $('#form1').submit();
         HoldOn.open(options);
+        $('#form1').submit();
+        HoldOn.close();
     })
 
     $('#form1').on('keyup keypress', function(e) { 
@@ -162,3 +164,6 @@
     });
 
 </script>
+
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\EForm\ApprovalReq', '#form1'); !!}
