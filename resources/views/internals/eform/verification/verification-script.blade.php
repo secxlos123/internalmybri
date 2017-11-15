@@ -518,6 +518,19 @@
             $("#update #field").val(field);
        });
 
+       var timeoutID = null;
+        $('#work_duration_month').keyup(function(e) {
+            clearTimeout(timeoutID);
+            //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
+            timeoutID = setTimeout(function(){workDurationMonth()}, 1000);
+        });
+
+        function workDurationMonth(){
+            if(parseInt($('#work_duration_month').val().replace( /[^0-9]/g, '' )) > 12){
+                $('#work_duration_month').val('12');
+            }
+        }
+
        // $('#save').on('click', function(e) {
        //      $("#form1").submit();
        // });

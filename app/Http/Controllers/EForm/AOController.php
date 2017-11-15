@@ -403,7 +403,7 @@ class AOController extends Controller
                   'status'    => $request->input('status'),
                   'ref_number'=> $request->input('ref_number'),
                   'customer_name'=> ucwords($request->input('customer_name')),
-                  // 'branch_id' => $data['branch']
+                  'branch_id' => $data['branch']
                 ])->get();
                 // echo json_encode($request->input('customer_name'));exit();
 
