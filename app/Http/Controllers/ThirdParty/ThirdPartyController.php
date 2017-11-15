@@ -179,6 +179,26 @@ class ThirdPartyController extends Controller
     }
 
     /**
+     * Banned account of thirdparty
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function actived(Request $request, $id)
+    {
+        $data = $this->getUser();
+        // echo json_encode($request->all());die();
+
+        $thirdpartys = Client::setEndpoint("thirdparty/{$id}/actived")
+                ->setHeaders(['Authorization' => $data['token']])
+                ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
+                ->put();
+
+        return response()->json($thirdpartys['descriptions']);
+    }
+
+    /**
      * Showing datatables 
      *
      * @param  \Illuminate\Http\Request  $request

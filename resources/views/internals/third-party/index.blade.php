@@ -152,7 +152,7 @@
                        bSortable: false,
                        mRender: function (data, type, full) {
                             var checked = full.is_actived ? 'checked' : '';
-                            return `<input type="checkbox" data-third="${full.name}" id="${full.id}" class="status" switch="success" ${checked}><label for="${full.id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
+                            return `<input type="checkbox" data-third="${full.name}" id="${full.user_id}" class="status" switch="success" ${checked}><label for="${full.user_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
                        },
                        createdCell:  function (td, cellData, rowData, row, col) {
                             $(td).attr('class', 'status'); 
@@ -181,12 +181,13 @@
             var id = lastStatusElement.attr('id');
 
             $.ajax({
-                url : `/third-party/${id}/actived`,
+                url : `/thirdparty/${id}/actived`,
                 method : 'put',
                 dataType : 'json',
                 data : {
                     _token : "{!! csrf_token() !!}",
-                    is_actived : !val
+                    is_actived : !val,
+                    id : id
                 }
             })
             .done(function (response) {
