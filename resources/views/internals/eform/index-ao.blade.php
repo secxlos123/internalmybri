@@ -57,7 +57,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Nama Customer :</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" class="form-control" name="customer_name">
+                                                                <input type="text" class="form-control" name="customer_name" id="customer_name">
                                                             </div>
                                                         </div>
                                                         
@@ -188,6 +188,7 @@
                     d.end_date = $('#to').val();
                     d.status = $('#status').val();
                     d.ref_number = $('#ref_number').val();
+                    d.customer_name = $('#customer_name').val();
                 }
             },
           aoColumns : [
