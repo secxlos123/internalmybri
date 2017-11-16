@@ -222,7 +222,7 @@
                 {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
-      }); 
+        }); 
       }
     // var resizefunc = [];
     // $(document).ready(function () {

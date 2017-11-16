@@ -246,7 +246,7 @@
                 {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
                 {   data: 'created_at', name: 'created_at', bSortable: true },
                 // {   data: 'product_type', name: 'product_type' },
-                {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
+                // {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
                 {   data: 'prescreening_status', 
                     name: 'prescreening_status', 
                     bSortable: false,
