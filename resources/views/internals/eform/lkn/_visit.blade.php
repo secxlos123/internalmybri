@@ -3,14 +3,14 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-horizontal" role="form">
-                                        <div class="form-group visitor_name {!! $errors->has('visitor_name') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Pejabat BRI yang mengunjungi *:</label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="visitor_name" maxlength="50" value="{{ $data['name'] }}" readonly="">
                                                 @if ($errors->has('visitor_name')) <p class="help-block">{{ $errors->first('visitor_name') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group place {!! $errors->has('visitor_name') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Tempat Kunjungan *:</label>
                                             <div class="col-md-8">
                                                 <input id="searchInput" class="input-controls " type="text" placeholder="Masukkan nama tempat atau nama jalan untuk lokasi pertemuan" name="place">
@@ -20,7 +20,7 @@
                                                 <input type="hidden" name="lng" id="lng" value="{{$eformData['longitude']}}"><input type="hidden" name="lat" id="lat" value="{{$eformData['latitude']}}">
                                             </div>
                                         </div>
-                                        <div class="form-group date {!! $errors->has('date') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Tanggal Kunjungan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
@@ -30,7 +30,7 @@
                                                     @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group name {!! $errors->has('name') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Nama Calon Debitur/ Debitur *:</label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="name" maxlength="50" value="{{ $eformData['customer']['personal']['name'] }}" readonly="">
@@ -38,14 +38,14 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="form-group job {!! $errors->has('job') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="job" maxlength="50" value="{{ $eformData['customer']['work']['work'] }}" readonly="">
                                                 @if ($errors->has('job')) <p class="help-block">{{ $errors->first('job') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">No Telp Kantor / Tempat Usaha *:</label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control numericOnly" name="phone" maxlength="12" value="{{ $eformData['mobile_phone'] }}" readonly="">
@@ -59,7 +59,7 @@
                                                 @if ($errors->has('account')) <p class="help-block">{{ $errors->first('account') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group amount {!! $errors->has('amount') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Jumlah Permohonan *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
@@ -79,11 +79,11 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Nomor NPWP *:</label>
                                             <div class="col-md-8">
-                                                <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="" id="npwp_number">
+                                                <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="{{old('npwp_number')}}" id="npwp_number">
                                                 @if ($errors->has('npwp_number')) <p class="help-block">{{ $errors->first('npwp_number') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group purpose_of_visit {!! $errors->has('purpose_of_visit') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Tujuan Kunjungan *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" name="purpose_of_visit" title="Pilih Tujuan Kunjungan">

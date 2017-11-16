@@ -146,6 +146,8 @@
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
 
+    Route::put('thirdparty/{id}/actived', 'ThirdParty\ThirdPartyController@actived');
+
     Route::put('developers/{developers}/actived', 'Developer\DeveloperController@actived');
 
     Route::get('cities', 'CityController');

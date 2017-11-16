@@ -405,9 +405,11 @@ class AOController extends Controller
                   'start_date'=> $request->input('start_date'),
                   'end_date'  => $request->input('end_date'),
                   'status'    => $request->input('status'),
+                  'ref_number'=> $request->input('ref_number'),
+                  'customer_name'=> ucwords($request->input('customer_name')),
                   'branch_id' => $data['branch']
                 ])->get();
-                // dd(json_encode($eforms));
+                // echo json_encode($request->input('customer_name'));exit();
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref_number'] = strtoupper($form['ref_number']);

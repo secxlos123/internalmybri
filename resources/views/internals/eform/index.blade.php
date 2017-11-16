@@ -28,9 +28,9 @@
                         @endif
                         <div class="card-box ">
                             <div class="add-button">
-                                <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
+                                @if(($data['role']=='ao') || ($data['role']=='other'))
                                 <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
-                                <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
+                                @endif
                             </div>
                             <div id="filter" class="m-b-15">
                                 <div class="row">
@@ -180,28 +180,6 @@
                 // {   data: 'product_type', name: 'product_type' },
                 {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
                 {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
-                // {   data: 'prescreening_status', 
-                //     name: 'prescreening_status', 
-                //     bSortable: false,
-                //     mRender: function (data, type, full) {
-                //         if(full.prescreening_status == 'Hijau'){
-                //             color = 'text-success';
-                //             text = 'Hijau';
-                //         }else if(full.prescreening_status == 'Kuning'){
-                //             color = 'text-warning';
-                //             text = 'Kuning';
-                //         }else if(full.prescreening_status == 'Merah'){
-                //             color = 'text-danger';
-                //             text = 'Merah';
-                //         }else {
-                //             color = '';
-                //             text = 'Pengajuan Baru';
-                //         }
-                //         return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-                //     },
-                //     createdCell:  function (td, cellData, rowData, row, col) {
-                //         $(td).attr('class', 'status'); 
-                //     }},
                 {   data: 'ao_name', name: 'ao_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: false },
                 {   data: 'aging', name: 'aging' },
@@ -209,104 +187,4 @@
             ],
       }); 
       }
-    // var resizefunc = [];
-    // $(document).ready(function () {
-    //     var lastStatusElement = null;
-    //     $('.select2').select2({
-    //         witdh : '100%',
-    //         allowClear: true,
-    //     });
-
-    //     var table = $('#datatable').dataTable({
-    //         searching : false,
-    //         processing : true,
-    //         serverSide : true,
-    //         lengthMenu: [
-    //             [ 10, 25, 50, -1 ],
-    //             [ '10', '25', '50', 'All' ]
-    //         ],
-    //         language : {
-    //             infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-    //         },
-    //         ajax : {
-    //             url : '/datatables/eform',
-    //             data : function(d, settings){
-    //                 var api = new $.fn.dataTable.Api(settings);
-
-    //                 d.page = Math.min(
-    //                     Math.max(0, Math.round(d.start / api.page.len())),
-    //                     api.page.info().pages
-    //                 );
-
-    //                 d.office_id = $('.offices').val();
-    //             }
-    //         },
-    //         aoColumns : [
-    //             {   data: 'ref', name: 'ref', bSortable: false  },
-    //             {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
-    //             {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
-    //             {   data: 'appointment_date', name: 'appointment_date' },
-    //             // {   data: 'product_type', name: 'product_type' },
-    //             {   data: 'branch_id', name: 'branch_id' },
-    //             {   data: 'prescreening_status', 
-    //                 name: 'prescreening_status', 
-    //                 bSortable: false,
-    //                 mRender: function (data, type, full) {
-    //                     if(full.prescreening_status == 'Hijau'){
-    //                         color = 'text-success';
-    //                         text = 'Hijau';
-    //                     }else if(full.prescreening_status == 'Kuning'){
-    //                         color = 'text-warning';
-    //                         text = 'Kuning';
-    //                     }else if(full.prescreening_status == 'Merah'){
-    //                         color = 'text-danger';
-    //                         text = 'Merah';
-    //                     }else {
-    //                         color = 'text-info';
-    //                         text = 'On Progress';
-    //                     }
-    //                     return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-    //                 },
-    //                 createdCell:  function (td, cellData, rowData, row, col) {
-    //                     $(td).attr('class', 'status'); 
-    //                 }},
-    //             {   data: 'ao', name: 'ao', bSortable: false },
-    //             {   data: 'status', name: 'status' },
-    //             {   data: 'aging', name: 'aging' },
-    //             {   data: 'action', name: 'action', bSortable: false },
-    //         ],
-    //     });
-
-    //     $('#btn-filter').on('click', function () {
-    //         table.fnDraw();
-    //     });
-        
-    //     $('.office').select2({
-    //         witdh : '100%',
-    //         allowClear: true,
-    //         ajax: {
-    //             url: '/offices',
-    //             dataType: 'json',
-    //             delay: 250,
-    //             data: function (params) {
-    //                 return {
-    //                     name: params.term,
-    //                     page: params.page || 1
-    //                 };
-    //             },
-    //             processResults: function (data, params) {
-    //                 params.page = params.page || 1;
-    //                 return {
-    //                     results: data.offices.data,
-    //                     pagination: {
-    //                         more: (params.page * data.cities.per_page) < data.offices.total
-    //                     }
-    //                 };
-    //             },
-    //             cache: true
-    //         },
-    //     });
-    // });
-
-    // TableManageButtons.init();
 </script>

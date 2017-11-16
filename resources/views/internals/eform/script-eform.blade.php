@@ -124,9 +124,20 @@
                             }
                         };  
                     }
+
+                    var text = $(this).find("option:selected").text();
+                        // $('#new_developer_name').val(text);
+                        console.log(text);
                 },
                 cache: true
             },
+        });
+
+        $('.nikSelect').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#nik_customer').val(text);
+            // console.log(text);
         });
 
         //select2 developer
@@ -145,7 +156,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.developers.data,
                         pagination: {
@@ -240,7 +250,7 @@
             $("textarea[name='home_location']").val("").html("");
 
             $('#new_property_name').val(text);
-
+            // console.log(text);
             $('.property_type').select2({
                 witdh : '100%',
                 allowClear: true,
@@ -284,6 +294,9 @@
             $("textarea[name='home_location']").val("").html("");
 
             $('#building_area').val(luasBangunan).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_type_name').val(text).trigger('change');
 
             $('.property_item').select2({
                 witdh : '100%',
@@ -575,16 +588,16 @@
         });
 
         function timePeriod(){
-              if(parseInt(year.val().replace( /[^0-9]/g, '' )) <= 12){
+            if(parseInt(year.val().replace( /[^0-9]/g, '' )) <= 12){
                 year.val('12');
-              }else if(year.val() >= 240){
+            }else if(year.val() >= 240){
                 year.val('240');
                 var val = year.val();
-              }else if(year.val() == ''){
+            }else if(year.val() == ''){
                 year.val('12');
                 var val = year.val();
-              }
             }
+        }
 
         year.on('keyup', function(e){
             if ($(this).val() > 240 
@@ -825,7 +838,9 @@
     $('#leads-modal #status').on('change', function() {
         if(this.value==2){
             $('#leads-modal #couple_data').show();
+            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d')}}");
         }else{
+            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
             hideCouple();
         }
     })

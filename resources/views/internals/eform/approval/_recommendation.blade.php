@@ -29,6 +29,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
+                                <label class="col-md-1 control-label">Rekomendasi * :</label>
                                 <textarea class="form-control" name="recommendation" placeholder="Tulis Rekomendasi">{{ old('recommendation') }}</textarea>
                         </div>
                     </div>

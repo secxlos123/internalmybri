@@ -46,6 +46,20 @@
                                                                 <input type="text" class="form-control" id="to" name="end_date">
                                                             </div>
                                                         </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Nomor Referensi :</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="ref_number" id="ref_number">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Nama Customer :</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" class="form-control" name="customer_name" id="customer_name">
+                                                            </div>
+                                                        </div>
                                                         
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Pengajuan :</label>
@@ -94,7 +108,8 @@
                                                 <th>Status</th>
                                                 <th>Aging (hari)</th>            
                                                 <th>Status Data Nasabah</th>
-                                                <th>Aksi</th>
+                                                <th>Catatan Disposisi</th>
+                                                <th style="width: 100px">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -189,6 +204,8 @@
                     d.start_date = $('#from').val();
                     d.end_date = $('#to').val();
                     d.status = $('#status').val();
+                    d.ref_number = $('#ref_number').val();
+                    d.customer_name = $('#customer_name').val();
                 }
             },
           aoColumns : [
@@ -219,6 +236,7 @@
                         return text;
                     }
                 },
+                {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
       }); 
