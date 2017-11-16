@@ -52,13 +52,13 @@
                                                             <div class="col-sm-8">
                                                                 <select class="form-control" id="status">
                                                                     <option selected="" value="All"> Semua</option>
-                                                                    <option value="Rekomend">Rekomend</option>
-                                                                    <option value="Dispose">Dispose</option>
-                                                                    <option value="Initiate">Initiate</option>
-                                                                    <option value="Submit">Submit</option>
-                                                                    <option value="Approval1">Approval 1</option>
-                                                                    <option value="Approval2">Approval 2</option>
-                                                                    <option value="Rejected">Rejected</option>
+                                                                    <option value="Rekomend">Pengajuan Kredit</option>
+                                                                    <option value="Dispose">Disposisi Pengajuan</option>
+                                                                    <option value="Initiate">Prakarsa</option>
+                                                                    <option value="Submit">Proses CLF</option>
+                                                                    {{-- <option value="Approval1">Approval 1</option>
+                                                                    <option value="Approval2">Approval 2</option> --}}
+                                                                    <option value="Rejected">Kredit Ditolak</option>
                                                                     <option value="Onprogress">On Progress</option>
                                                                 </select>
                                                             </div>
@@ -132,6 +132,7 @@
 
     var table1 = $('#datatable').DataTable({
             searching: false,
+            order : [[3, 'desc']],
             "language": {
                 "emptyTable": "No data available in table"
             }
@@ -142,16 +143,32 @@
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
     })
 
-    $(document).on('click', "#btn-prescreening", function(){
-        console.log('click');
-        $('#result-modal').modal('show');
-      })
+    // $(document).on('click', "#btn-prescreening", function(){
+    //     console.log('click');
+
+    //     $.ajax({
+    //         dataType: 'json',
+    //         type: 'GET',
+    //         url: '{{ route("detailCustomer") }}',
+    //         data: { nik : nik }
+
+    //     }).done(function(data){
+    //         // console.log(data);
+    //         $('#detail').html(data['view']);
+    //         $('#result-modal').modal('show');
+        
+    //     }).fail(function(errors) {
+    //         // toastr.error('Data tidak ditemukan')
+        
+    //     });
+    // });
 
     function reloadData1(from, to, status)
       {
         table1 = $('#datatable').DataTable({
            processing : true,
            serverSide : true,
+           order : [[3, 'desc']],
            lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]
@@ -181,7 +198,7 @@
                 {   data: 'created_at', name: 'created_at' },
                 {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
                 {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
-                {   data: 'status', name: 'status' },
+                {   data: 'status', name: 'created_at', bSortable: false },
                 {   data: 'aging', name: 'aging' },
                 {   data: 'response_status'
                     , name: 'response_status'
@@ -205,77 +222,5 @@
                 {   data: 'action', name: 'action', bSortable: false },
             ],
       }); 
-      }
-    // var resizefunc = [];
-    // $(document).ready(function () {
-    //     var lastStatusElement = null;
-    //     // $('#datatable').hide();
-
-
-    //     // $('#filter').on('click', function () {
-    //     // var table = $('#datatable').dataTable({
-    //     //     searching : false,
-    //     //     processing : true,
-    //     //     serverSide : true,
-    //     //     lengthMenu: [
-    //     //         [ 10, 25, 50, -1 ],
-    //     //         [ '10', '25', '50', 'All' ]
-    //     //     ],
-    //     //     language : {
-    //     //         infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-    //     //     },
-    //     //     ajax : {
-    //     //         url : '/datatables/eform-ao',
-    //     //         data : function(d, settings){
-    //     //             var api = new $.fn.dataTable.Api(settings);
-
-    //     //             d.page = Math.min(
-    //     //                 Math.max(0, Math.round(d.start / api.page.len())),
-    //     //                 api.page.info().pages
-    //     //             );
-
-    //     //             d.office_id = $('.offices').val();
-    //     //         }
-    //     //     },
-    //     //     aoColumns : [
-    //     //         {   data: 'ref', name: 'ref', bSortable: false },
-    //     //         {   data: 'customer_name', name: 'customer_name', bSortable: false  },
-    //     //         {   data: 'request_amount', name: 'request_amount', bSortable: false  },
-    //     //         {   data: 'created_at', name: 'created_at' },
-    //     //         {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
-    //     //         {   data: 'prescreening_status', 
-    //     //             name: 'prescreening_status', 
-    //     //             bSortable: false,
-    //     //             mRender: function (data, type, full) {
-    //     //                 if(full.prescreening_status == 'Hijau'){
-    //     //                     color = 'text-success';
-    //     //                     text = 'Hijau';
-    //     //                 }else if(full.prescreening_status == 'Kuning'){
-    //     //                     color = 'text-warning';
-    //     //                     text = 'Kuning';
-    //     //                 }else if(full.prescreening_status == 'Merah'){
-    //     //                     color = 'text-danger';
-    //     //                     text = 'Merah';
-    //     //                 }else {
-    //     //                     color = '';
-    //     //                     text = 'Pengajuan Baru';
-    //     //                 }
-    //     //                 return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-    //     //             },
-    //     //             createdCell:  function (td, cellData, rowData, row, col) {
-    //     //                 $(td).attr('class', 'status'); 
-    //     //             }},
-    //     //         {   data: 'status', name: 'status' },
-    //     //         {   data: 'aging', name: 'aging' },
-    //     //         {   data: 'action', name: 'action', bSortable: false },
-    //     //     ],
-
-    //     // });
-
-    //     //     // table.fnDraw();
-    //     // });
-        
-    // });
-
-    // TableManageButtons.init();
+    }
 </script>

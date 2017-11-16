@@ -358,15 +358,25 @@
             target = 'BASE';
         }
 
-        $('#'+field+'DF').text($( '#'+field+target ).text());
-        $('#'+field).val($( '#'+field+target ).text());
+        if ( String.prototype.trim($("#phoneKM").text()) != "" || target == "BASE" ) {
+            $('#'+field+'DF').text($( '#'+field+target ).text());
+            $('#'+field).val($( '#'+field+target ).text());
+            return true;
+
+        } else {
+            alert("Tidak dapat menyesuaikan dengan data yang tidak tersedia");
+            return false;
+        }
+
+
     }
 
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             var data = $('#data-source');
-            initVerifyData($("#update #field").val(), data.val());
-            $('#update').modal('hide');
+            if ( initVerifyData($("#update #field").val(), data.val()) ) {
+                $('#update').modal('hide');
+            };
        });
 
        $('.btn-change').on('click', function(e) {

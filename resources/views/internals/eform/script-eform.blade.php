@@ -55,6 +55,15 @@
                 $('#price').removeAttr('readonly');
                 $('#home_location').removeAttr('readonly');
                 $('#building_area').removeAttr('readonly');
+                
+                $('#price').attr('readonly', true);
+                $('#home_location').attr('readonly', true);
+                $('#building_area').attr('readonly', true); 
+                $('#property_name').removeAttr('hidden');
+                $('#property_type').removeAttr('hidden');
+                $('#property_unit').removeAttr('hidden');
+                $('#line').removeAttr('hidden');
+                $("div#kpr_type_property").addClass('hide');
             
             }
         });
@@ -183,6 +192,7 @@
                 $('#property_type').removeAttr('hidden');
                 $('#property_unit').removeAttr('hidden');
                 $('#line').removeAttr('hidden');
+                $("div#kpr_type_property").addClass('hide');
                 
             }
 
@@ -518,7 +528,15 @@
                 
             if ( !isNaN(payment) ) {
                 dp.val(Math.round(payment));
-                request_amount.val(static_price - val);
+                total = static_price - val;
+
+                if (total > 0) {
+                    request_amount.val(static_price - val);
+                    
+                } else {
+                    request_amount.val(0);
+
+                }
             }
         });
 

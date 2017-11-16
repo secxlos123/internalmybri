@@ -7,7 +7,7 @@
                     <label class="col-md-4 control-label">Nama Bank *:</label>
                     <div class="col-md-6">
                         <select class="form-control bank" name="mutations[0][bank]">
-                            <option selected="" disabled="">-- Pilih Bank --</option>
+                            <option selected="">-- Pilih Bank --</option>
                             <option value="bni">BNI</option>
                             <option value="mandiri">Bank Mandiri</option>
                         </select>

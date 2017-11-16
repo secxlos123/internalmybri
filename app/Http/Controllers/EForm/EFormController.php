@@ -155,14 +155,14 @@ class EFormController extends Controller
         $data = $this->getUser();
 
         $customerData = Client::setEndpoint('customer')
-                        ->setHeaders([
-                            'Authorization' => $data['token'],
-                            'pn' => $data['pn']
-                        ])
-                        ->setQuery([
-                            'nik' => $request->input('nik')
-                        ])
-                        ->get();
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setQuery([
+                'nik' => $request->input('nik')
+            ])
+            ->get();
 
         $dataCustomer = $customerData['contents']['data'][0];
         $userData = array_merge($dataCustomer, $data);
@@ -180,8 +180,7 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
 
-        if (env('APP_ENV') == 'local')
-        {
+        if (env('APP_ENV') == 'local') {
             $client = new \GuzzleHttp\Client();
             $res = $client->request('GET', 'http://freegeoip.net/json/');
             $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
@@ -208,7 +207,7 @@ class EFormController extends Controller
         $office = [];
 
         if(!empty($offices['contents']['data'])){
-          $office = $offices['contents']['data'][0];
+            $office = $offices['contents']['data'][0];
 
         }
         
@@ -278,7 +277,6 @@ class EFormController extends Controller
     public function store(Request $request)
     {
         $data = $this->getUser();
-// 
         $newForm = $this->eformRequest($request, $data);
         // dd($newForm);
 
@@ -313,6 +311,43 @@ class EFormController extends Controller
                 }
         }
     }
+
+    // /**
+    //  * Get prescreening data.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function getPrescreening(Request $request, $id)
+    // {
+    //     $data = $this->getUser();
+
+    //     $client = Client::setEndpoint('eforms/prescreening')
+    //         ->setHeaders([
+    //             'Authorization' => $data['token'],
+    //             'pn' => $data['pn']
+    //         ])
+    //         ->setBody([
+    //             'id' => $id
+    //         ])
+    //         ->post();
+
+    //     // if ( ($customerData['code']) == 200 ){
+    //     //     $view = (String)view('internals.eform.detail-customer')
+    //     //         ->with('dataCustomer', $dataCustomer)
+    //     //         ->render();
+
+    //     //     return response()->json(['view' => $view]);
+    //     // } else {
+    //     //     $view = (String)view('internals.eform.error')
+    //     //         ->with('dataCustomer', $dataCustomer)
+    //     //         ->render();
+
+    //     //     return response()->json(['view' => $view]);
+    //     //     // return view('internals.eform.detail-customer')
+    //     //     //     ->with('dataCustomer', $dataCustomer);
+    //     // }
+    // }
 
      /**
      * Store a newly created resource in storage.
