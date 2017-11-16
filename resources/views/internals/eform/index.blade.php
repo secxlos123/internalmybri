@@ -245,31 +245,32 @@
                 {   data: 'created_at', name: 'created_at', bSortable: true },
                 // {   data: 'product_type', name: 'product_type' },
                 {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
-                {   data: 'prescreening_status', 
-                    name: 'prescreening_status', 
-                    bSortable: false,
-                    mRender: function (data, type, full) {
-                        if(full.prescreening_status == 'Hijau'){
-                            color = 'text-success';
-                            text = 'Hijau';
-                        }else if(full.prescreening_status == 'Kuning'){
-                            color = 'text-warning';
-                            text = 'Kuning';
-                        }else if(full.prescreening_status == 'Merah'){
-                            color = 'text-danger';
-                            text = 'Merah';
-                        }else {
-                            color = '';
-                            text = 'Pengajuan Baru';
-                        }
-                        return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-                    },
-                    createdCell:  function (td, cellData, rowData, row, col) {
-                        $(td).attr('class', 'status'); 
-                    }},
+                {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                // {   data: 'prescreening_status', 
+                //     name: 'prescreening_status', 
+                //     bSortable: false,
+                //     mRender: function (data, type, full) {
+                //         if(full.prescreening_status == 'Hijau'){
+                //             color = 'text-success';
+                //             text = 'Hijau';
+                //         }else if(full.prescreening_status == 'Kuning'){
+                //             color = 'text-warning';
+                //             text = 'Kuning';
+                //         }else if(full.prescreening_status == 'Merah'){
+                //             color = 'text-danger';
+                //             text = 'Merah';
+                //         }else {
+                //             color = '';
+                //             text = 'Pengajuan Baru';
+                //         }
+                //         return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
+                //     },
+                //     createdCell:  function (td, cellData, rowData, row, col) {
+                //         $(td).attr('class', 'status'); 
+                //     }},
                 {   data: 'ao_name', name: 'ao_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: true },
-                {   data: 'aging', name: 'aging', bSortable: true },
+                {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
       }); 

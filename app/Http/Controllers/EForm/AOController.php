@@ -222,7 +222,11 @@ class AOController extends Controller
                       ->post();
 
         $dataCustomer = $customerData['contents'];
-        // dd($dataCustomer);
+
+        if (count($dataCustomer) == 0) {
+          \Session::flash('danger', 'Data verification tidak ditemukan!');
+          return redirect()->route('eform.index');
+        }
 
         return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer'));
     }

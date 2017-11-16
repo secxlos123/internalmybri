@@ -19,12 +19,25 @@
             }
         });
 
-        $('.status_properties').on('select2:select', function (e) {
+        $('.status_property').on('select2:select', function (e) {
             /*
             kalo baru muncul semua, gak perlu jenis properti
             kalo secondary muncul jenis KPR, jenus properti
             kalo baru + non kerja sama
             */
+           
+            $("select[name='developer']").html("");
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property']").html("");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
 
             if ($(this).val() == "1") {
                 $("div#kpr_type_property").addClass('hide');
@@ -39,6 +52,9 @@
                 $("div#property_name").addClass('hide');
                 $("div#property_type").addClass('hide');
                 $("div#property_unit").addClass('hide');
+                $('#price').removeAttr('readonly');
+                $('#home_location').removeAttr('readonly');
+                $('#building_area').removeAttr('readonly');
             
             }
         });
@@ -54,7 +70,7 @@
                 delay: 250,
                 data: function (params) {
                     return {
-                        name: params.term,
+                        nik: params.term,
                         page: params.page || 1
                     };
                 },
@@ -137,6 +153,18 @@
             var text = $(this).find("option:selected").text();
             $('#new_developer_name').val(text);
 
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property']").html("");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
             if(text == "Non Kerja Sama"){
                 $('#price').removeAttr('readonly');
                 $('#home_location').removeAttr('readonly');
@@ -145,6 +173,7 @@
                 $('#property_unit').attr('hidden',true);
                 $('#property_type').attr('hidden',true);
                 $('#line').attr('hidden',true);
+                $("div#kpr_type_property").removeClass('hide');
                 
             }else{
                 $('#price').attr('readonly', true);
@@ -190,6 +219,16 @@
         $('.property_name').on('change', function () {
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
+
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
             $('#new_property_name').val(text);
 
             $('.property_type').select2({
@@ -221,16 +260,19 @@
             });
         });
 
-        $('.property_item').on('select2:select', function (e) {
-            var price = e.params.data.price;
-            var address = e.params.data.address;
-            $('#price').val(price).trigger('change');
-            $('#home_location').val(address).trigger('change');
-        });
-
         $('.property_type').on('select2:select', function (e) {
             var id = e.params.data.id;
             var luasBangunan = e.params.data.building_area;
+
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
             $('#building_area').val(luasBangunan).trigger('change');
 
             $('.property_item').select2({
@@ -259,6 +301,21 @@
                     cache: true
                 },
             });
+        });
+
+        $('.property_item').on('select2:select', function (e) {
+            var price = e.params.data.price;
+            var address = e.params.data.address;
+
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+            
+            $('#price').val(price).trigger('change');
+            $('#home_location').val(address).trigger('change');
         });
 
         //select2 city
@@ -291,13 +348,13 @@
 
         //search customer detail
         $('#search').on('click', function() {
-           var id = $('#nik').val();
+           var nik = $('#nik').val();
 
            $.ajax({
                 dataType: 'json',
                 type: 'GET',
                 url: '{{route("detailCustomer")}}',
-                data: { id : id } 
+                data: { nik : nik } 
             }).done(function(data){
                 // console.log(data);
                 $('#detail').html(data['view']);
@@ -445,19 +502,26 @@
             request_amount.val(amount);
         });
 
-        // dp.on('keyup', function(e){
-        //     if ($(this).val() < $(this).attr('min') 
-        //         && e.keyCode != 46 // delete
-        //         && e.keyCode != 8 // backspace
-        //        ) {
-        //        $(this).val($(this).attr('min'));
-        //     console.log($(this).attr('min'));
+        down_payment.on('input', function() {
+            var val = $(this).val().replace(',00', '').replace(/\./g, '');
+            var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+            var dp = $('#dp');
 
-        //     }else{
-        //     console.log($(this).attr('min'));
-        //         return true;
-        //     }
-        // });
+            if (parseInt(val) < parseInt(static_price)) {
+                payment = (val / static_price) * 100;
+
+            } else {
+                $(this).val(static_price);
+                payment = 100;            
+
+            }
+                
+            if ( !isNaN(payment) ) {
+                dp.val(Math.round(payment));
+                request_amount.val(static_price - val);
+            }
+        });
+
         var timeoutID = null;
         dp.keyup(function(e) {
             clearTimeout(timeoutID);
@@ -485,6 +549,7 @@
             }
 
         var timeoutID = null;
+
         year.keyup(function(e) {
             clearTimeout(timeoutID);
             //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
@@ -661,11 +726,11 @@
             },
         });
     }
-        $('.offices').on('select2:select', function (e) {
-            var alamat = e.params.data.address;
-            $('#branch_address').val(alamat).trigger('change');
-        });
 
+    $('.offices').on('select2:select', function (e) {
+        var alamat = e.params.data.address;
+        $('#branch_address').val(alamat).trigger('change');
+    });
 
     //showing modal create leads
     $('#btn-leads').on('click', function() {
@@ -689,8 +754,22 @@
             success: function (data) {
                 // console.log(data)
                 // toastr["success"]("Data Berhasil disimpan");
+                $('#divForm').removeClass('alert alert-success');
+                $('#divForm').html("");
+                
                 if ( data.code != 422 ) {
                     $('#leads-modal').modal('toggle');
+                    
+                    nik = $("input[name='nik']").val();
+                    
+                    $("#nik").html('<option value="'+nik+'">'+nik+'</option>');
+                    $("#select2-nik-container").replaceWith('<span class="select2-selection__rendered" id="select2-nik-container" title="'+nik+'"><span class="select2-selection__clear">×</span>'+nik+'</span>');
+                    $("#search").click();
+                    $("a[href='#finish']").click();
+
+                    $('#divForm').addClass('alert alert-success');
+                    $('#divForm').html('Data Berhasil Ditambahkan');
+
                 } else {
                     setTimeout(
                         function(){ 
@@ -704,8 +783,6 @@
                 }
 
                 HoldOn.close();
-                // $('#divForm').addClass('alert alert-success');
-                // $('#divForm').append('Data Berhasil Ditambahkan');
             },
             error: function (response) {
                 // console.log(response)

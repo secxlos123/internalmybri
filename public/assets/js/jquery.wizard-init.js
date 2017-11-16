@@ -64,16 +64,21 @@
                 var year = $('#year').val();
                 var office = $('#branch_id').val();
 
-                var id = $('#nik').val();
+                var nik = $('#nik').val();
 
                 $.ajax({
                     dataType: 'json',
                     type: 'GET',
                     url: '/getData',
-                    data: { id : id },
+                    data: { nik : nik },
                     success: function(result, data) {
+                        var lastName = result.data.last_name;
+                        console.log(result.data.last_name);
+                        if (result.data.last_name == null) {
+                            var lastName = "";
+                        }
                         var nik = result.data.nik;
-                        var full_name = result.data.first_name+' '+result.data.last_name;
+                        var full_name = result.data.first_name+' '+lastName;
                         var email = result.data.email;
                         var birth_place = result.data.birth_place;
                         var birth_date = result.data.birth_date;

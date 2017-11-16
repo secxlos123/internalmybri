@@ -72,7 +72,7 @@ class EFormController extends Controller
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])->setQuery([
-                'nik' => $request->input('name'),
+                'nik' => $request->input('nik'),
                 'page' => $request->input('page')
             ])
             ->get();
@@ -80,7 +80,7 @@ class EFormController extends Controller
         foreach ($customers['contents']['data'] as $key => $cust) {
 
             $cust['text'] = $cust['nik'];
-            $cust['id'] = $cust['id'];
+            $cust['id'] = $cust['nik'];
             $customers['contents']['data'][$key] = $cust;
         }
 
@@ -125,7 +125,7 @@ class EFormController extends Controller
         // $customerData = $this->getCustomer($request);
         // echo json_encode($request->input('id'));die();
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$request->input('id'))
+        $customerData = Client::setEndpoint('customer/'.$request->input('nik'))
                         ->setHeaders([
                             'Authorization' => $data['token'],
                             'pn' => $data['pn']
@@ -153,15 +153,17 @@ class EFormController extends Controller
     public function getData(Request $request)
     {
         $data = $this->getUser();
-        $customerData = $this->getCustomer($request);
 
-         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
                         ->setHeaders([
                             'Authorization' => $data['token'],
                             'pn' => $data['pn']
                         ])
+                        ->setQuery([
+                            'nik' => $request->input('nik')
+                        ])
                         ->get();
+
         $dataCustomer = $customerData['contents']['data'][0];
         $userData = array_merge($dataCustomer, $data);
         // dd($userData);
@@ -254,11 +256,11 @@ class EFormController extends Controller
         $moneyInput = array(
                 [
                     'name'    => 'request_amount',
-                    'contents' => intval(preg_replace('(\D+)', '', $request->request_amount))
+                    'contents' => str_replace(',', '.', str_replace('.', '', $request->request_amount))
                 ],
                 [
                     'name'    => 'price',
-                    'contents' => intval(preg_replace('(\D+)', '', $request->price))
+                    'contents' => str_replace(',', '.', str_replace('.', '', $request->price))
                 ]
             );
 

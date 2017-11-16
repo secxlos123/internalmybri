@@ -6,9 +6,10 @@
                     <h3>Pilih Data</h3>
                     <div class="col-md-12 text-center">
                         <select class="form-control" name="data-source" id="data-source">
-                            <option selected="" disabled="">-- Pilih --</option>
+                            <option value="">-- Pilih --</option>
                             <option value="cif">Data CIF</option>
                             <option value="kemendagri">Data Kemendagri</option>
+                            <option value="base">Data Input</option>
                         </select>
                         <input type="hidden" id="field">
                     </div>

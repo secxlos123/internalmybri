@@ -36,20 +36,24 @@
                                         <div class="form-group {!! $errors->has('status_property') ? 'has-error' : '' !!}" id="status_property">
                                             <label class="control-label col-md-4">Jenis KPR *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('status_property', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up"), old('status_property'), [
-                                                    'class' => 'select2 status_properties ',
+                                                {!! Form::select('status_property', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), old('status_property'), [
+                                                    'class' => 'select2 status_property ',
                                                     'data-placeholder' => 'Pilih Jenis KPR',
                                                     'data-bri' => ''
                                                 ]) !!}
-                                                <input type="hidden" name="status_property" value="new">
+                                                {{-- <input type="hidden" name="status_property" value="new"> --}}
                                                 @if ($errors->has('status_property')) <p class="help-block">{{ $errors->first('status_property') }}</p> @endif
                                             </div>
                                         </div>
                                         
-                                        <div class="form-group hide" id="developer">
+                                        @php ( $className = (old('status_property') == "1" && old('developer') != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                                        @php ( $classNameType = (old('status_property') != "1" || old('developer') == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                                        @php ( $classNameDeveloper = old('developer') ? '' : 'hide' )
+                                        
+                                        <div class="form-group {{ $classNameDeveloper }} {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
                                             <label class="control-label col-md-4">Developer *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('developer', ['' => ''], old('developers'), [
+                                                {!! Form::select('developer', ['' => ''], old('developer'), [
                                                     'class' => 'select2 developers ',
                                                     'data-placeholder' => 'Pilih Developer',
                                                     'data-bri' => ''
@@ -58,7 +62,7 @@
                                             <input type="hidden" name="developer_name" id="new_developer_name">
                                         </div>
                                         
-                                        <div class="form-group hide {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
+                                        <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                                             <label class="control-label col-md-4">Jenis Properti *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('kpr_type_property', array("" => "", "1" => "Rumah Tapak", "2" => "Rumah Susun/Apartment", "3" => "Rumah Toko"), old('kpr_type_property'), [
@@ -70,10 +74,10 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="form-group hide {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
+                                        <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                             <label class="control-label col-md-4">Nama Proyek *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('property', ['' => ''], old('property_name'), [
+                                                {!! Form::select('property', ['' => ''], old('property'), [
                                                     'class' => 'select2 property_name',
                                                     'data-placeholder' => 'Pilih Nama Proyek',
                                                 ]) !!}
@@ -81,7 +85,7 @@
                                             <input type="hidden" name="property_name" id="new_property_name">
                                         </div>
 
-                                        <div class="form-group hide {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
+                                        <div class="form-group {{ $className }} {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
                                             <label class="control-label col-md-4">Tipe Properti *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('property_type', ['' => ''], old('property_type'), [
@@ -90,7 +94,7 @@
                                                 ]) !!}
                                             </div>
                                         </div>
-                                        <div class="form-group hide {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
+                                        <div class="form-group {{ $className }} {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
                                             <label class="control-label col-md-4">Unit Properti *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('property_item', ['' => ''], old('property_item'), [
@@ -148,12 +152,12 @@
                                         <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">KPR Aktif ke *:</label>
                                             <div class="col-md-8">
-                                                <select class="form-control " name="active_kpr" id="active_kpr">
-                                                    <option value="0" selected=""> Pilih </option>
-                                                    <option value="1"> 1 </option>
-                                                    <option value="2"> 2 </option>
-                                                    <option value="3"> > 2 </option>
-                                                </select>
+                                                {!! Form::select('active_kpr', array("" => "", "1" => "1", "2" => "2", "3" => "> 2"), old('active_kpr'), [
+                                                    'class' => 'select2 active_kpr ',
+                                                    'id' => 'active_kpr',
+                                                    'data-placeholder' => 'Pilih KPR Aktif',
+                                                    'data-bri' => ''
+                                                ]) !!}
                                                 @if ($errors->has('active_kpr')) <p class="help-block">{{ $errors->first('active_kpr') }}</p> @endif
                                             </div>
                                         </div>
@@ -162,13 +166,13 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly lovely-input" name="dp" value="{{old('dp')}}" maxlength="2" max="90" placeholder="0" id="dp" >
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="dp" value="{{old('dp')}}" maxlength="2" max="90" placeholder="0" id="dp" >
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
                                                 </div>
@@ -180,7 +184,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{old('request_amount')}}" maxlength="16" id="request_amount" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{ old('request_amount') }}" maxlength="16" id="request_amount" readonly="">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
                                                 </div>

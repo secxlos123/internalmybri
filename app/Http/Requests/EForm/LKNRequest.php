@@ -60,7 +60,7 @@ class LKNRequest extends FormRequest
            'relation_with_seller'       => 'required_if:use_reason,2,18',
 
            'npwp'                       => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
-           'legal_document'             => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
+           //'legal_document'             => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
            'salary_slip'                => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
            'legal_bussiness_document'   => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
            'licence_of_practice'        => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
@@ -109,7 +109,7 @@ class LKNRequest extends FormRequest
             "recommendation.required"    => "Recommendation harus diisi",
 
             "npwp.required"                 => "File NPWP harus berupa gambar .jpg, .png, atau .gif",
-            "legal_document.required"       => "Dokumen Legal Agunan harus berupa gambar .jpg, .png, atau .gif",
+            //"legal_document.required"       => "Dokumen Legal Agunan harus berupa gambar .jpg, .png, atau .gif",
             "salary_slip.required"          => "Slip Gaji harus berupa gambar .jpg, .png, atau .gif",
             "legal_bussiness_document.required"=> "Dokumen Legal Usaha harus berupa gambar .jpg, .png, atau .gif",
             "licence_of_practice.required"  => "Izin Praktek harus berupa gambar .jpg, .png, atau .gif",
