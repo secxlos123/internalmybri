@@ -215,51 +215,8 @@
                                                             <div class="form-group">
                                                                 <label class="col-md-6 control-label">Jenis Pekerjaan :</label>
                                                                 <div class="col-md-6">
-                                                                    <form class="form-horizontal" role="form">
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Jenis Kelamin :</label>
-                                                                            <div class="col-md-7">
-                                                                                <p class="form-control-static">@if(!empty($dataCustomer['personal']['gender'])){{$dataCustomer['personal']['gender']}}@endif</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Kewarganegaraan :</label>
-                                                                            <div class="col-md-7">
-                                                                                <p class="form-control-static">@if(!empty($dataCustomer['personal']['citizenship'])){{$dataCustomer['personal']['citizenship']}}@endif</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Status Pernikahan :</label>
-                                                                            <div class="col-md-7">
-                                                                                <p class="form-control-static">
-                                                                            @if(!empty($dataCustomer['personal']['status']))
-                                                                                @if($dataCustomer['personal']['status'] == 0) Belum Menikah @elseif($dataCustomer['personal']['status'] == 1) Menikah @elseif ($dataCustomer['personal']['status'] == 2) Janda @elseif($dataCustomer['personal']['status'] == 3) Duda @endif
-                                                                            @endif</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Status Tempat Tinggal :</label>
-                                                                            <div class="col-md-7">
-                                                                                <p class="form-control-static">
-                                                                        @if(!empty($dataCustomer['personal']['address_status']))
-                                                                            @if($dataCustomer['personal']['address_status'] == 'menetap') Permanen @else Sementara @endif
-                                                                        @endif</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Email :</label>
-                                                                            <div class="col-md-7">
-                                                                                <p class="form-control-static">@if(!empty($dataCustomer['personal']['email']))
-                                                                                {{$dataCustomer['personal']['email']}}@endif</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
-                                                                            <div class="col-md-7">
-                                                                                <p class="form-control-static">@if(!empty($dataCustomer['personal']['mother_name'])){{$dataCustomer['personal']['mother_name']}}@endif</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </form>
+                                                                    <p class="form-control-static">@if(!empty($dataCustomer['work']['type'])){{$dataCustomer['work']['type']}}@else - @endif
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
