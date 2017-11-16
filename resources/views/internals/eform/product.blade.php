@@ -55,11 +55,13 @@
                                         <div class="form-group" id="developer">
                                             <label class="control-label col-md-4">Developer *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('developer', ['' => ''], old('developers'), [
-                                                    'class' => 'select2 developers ',
-                                                    'data-placeholder' => 'Pilih Developer',
-                                                    'data-bri' => ''
-                                                ]) !!}
+                                                {!! Form::select('developer', 
+                                                    [old('developer') => old('developer_name')], (old('developer')), 
+                                                    ['class' => 'select2 developers ',
+                                                     'data-placeholder' => 'Pilih Developer',
+                                                     'data-bri' => ''
+                                                    ]) 
+                                                !!}
                                             </div>
                                             <input type="hidden" name="developer_name" id="new_developer_name">
                                         </div>
@@ -68,7 +70,11 @@
                                             <label class="control-label col-md-4">Jenis KPR *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control " name="kpr_type" id="kpr_type">
+                                                    @if(old('kpr_type'))
+                                                    <option value="{{old('kpr_type')}}" selected=""> {{old('kpr_type_name')}} </option>
+                                                    @else
                                                     <option value="0" selected=""> Pilih </option>
+                                                    @endif
                                                     <option value="1"> Baru </option>
                                                     <option value="2"> Secondary </option>
                                                     <option value="3"> Refinancing </option>
@@ -79,25 +85,31 @@
                                                 </select>
                                                 @if ($errors->has('kpr_type')) <p class="help-block">{{ $errors->first('kpr_type') }}</p> @endif
                                             </div>
+                                            <input type="hidden" name="kpr_type_name" id="kpr_type_name">
                                         </div>
                                         
                                         <div class="form-group kpr_type_property {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}">
                                             <label class="control-label col-md-4">Jenis Properti *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control " name="kpr_type_property" id="kpr_type_property">
+                                                    @if(old('kpr_type_property'))
+                                                    <option value="{{old('kpr_type_property')}}" selected=""> {{old('kpr_type_property_name')}} </option>
+                                                    @else
                                                     <option value="0" selected=""> Pilih </option>
+                                                    @endif
                                                     <option value="1"> Rumah Tapak </option>
                                                     <option value="2"> Rumah Susun/Apartment </option>
                                                     <option value="3"> Rumah Toko </option>
                                                 </select>
                                                 @if ($errors->has('kpr_type_property')) <p class="help-block">{{ $errors->first('kpr_type_property') }}</p> @endif
                                             </div>
+                                            <input type="hidden" name="kpr_type_property_name" id="kpr_type_property_name">
                                         </div>
                                         
                                         <div class="form-group {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                             <label class="control-label col-md-4">Nama Proyek *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('property', ['' => ''], old('property_name'), [
+                                                {!! Form::select('property', [old('property') => old('property_name')], old('property'), [
                                                     'class' => 'select2 property_name',
                                                     'data-placeholder' => 'Pilih Nama Proyek',
                                                 ]) !!}
@@ -144,20 +156,22 @@
                                         <div class="form-group {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
                                             <label class="control-label col-md-4">Tipe Properti *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('property_type', ['' => ''], old('property_type'), [
+                                                {!! Form::select('property_type', [old('property_type') => old('property_type_name')], (old('property_type')), [
                                                     'class' => 'select2 property_type',
                                                     'data-placeholder' => 'Pilih Nama Properti',
                                                 ]) !!}
                                             </div>
+                                            <input type="hidden" name="property_type_name" id="new_property_type_name">
                                         </div>
                                         <div class="form-group {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
                                             <label class="control-label col-md-4">Unit Properti *:</label>
                                             <div class="col-md-8">
-                                                {!! Form::select('property_item', ['' => ''], old('property_item'), [
+                                                {!! Form::select('property_item', [old('property_item') => old('property_item_name')], old('property_item'), [
                                                     'class' => 'select2 property_item',
                                                     'data-placeholder' => 'Pilih Nama Properti',
                                                 ]) !!}
                                             </div>
+                                            <input type="hidden" name="property_item_name" id="new_property_item_name">
                                         </div>
                                         <hr id="line">
 
@@ -175,13 +189,18 @@
                                             <label class="control-label col-md-4">KPR Aktif ke *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control " name="active_kpr" id="active_kpr">
+                                                    @if(old('active_kpr'))
+                                                    <option value="{{old('active_kpr')}}" selected=""> {{old('active_kpr_name')}} </option>
+                                                    @else
                                                     <option value="0" selected=""> Pilih </option>
+                                                    @endif
                                                     <option value="1"> 1 </option>
                                                     <option value="2"> 2 </option>
                                                     <option value="3"> > 2 </option>
                                                 </select>
                                                 @if ($errors->has('active_kpr')) <p class="help-block">{{ $errors->first('active_kpr') }}</p> @endif
                                             </div>
+                                            <input type="hidden" name="active_kpr_name" id="active_kpr_name">
                                         </div>
 
                                         <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">

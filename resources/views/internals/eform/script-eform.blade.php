@@ -75,9 +75,20 @@
                             }
                         };  
                     }
+
+                    var text = $(this).find("option:selected").text();
+                        // $('#new_developer_name').val(text);
+                        console.log(text);
                 },
                 cache: true
             },
+        });
+
+        $('.nikSelect').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#nik_customer').val(text);
+            // console.log(text);
         });
 
         //select2 developer
@@ -96,7 +107,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.developers.data,
                         pagination: {
@@ -167,7 +177,7 @@
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
             $('#new_property_name').val(text);
-
+            // console.log(text);
             $('.property_type').select2({
                 witdh : '100%',
                 allowClear: true,
@@ -201,6 +211,9 @@
             var price = e.params.data.price;
             var address = e.params.data.address;
             $('#price').val(price).trigger('change');
+            var text = $(this).find("option:selected").text();
+            $('#new_property_item_name').val(text).trigger('change');
+
             $('#home_location').val(address).trigger('change');
         });
 
@@ -208,6 +221,9 @@
             var id = e.params.data.id;
             var luasBangunan = e.params.data.building_area;
             $('#building_area').val(luasBangunan).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_type_name').val(text).trigger('change');
 
             $('.property_item').select2({
                 witdh : '100%',
@@ -235,6 +251,21 @@
                     cache: true
                 },
             });
+        });
+
+        $('#kpr_type').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#kpr_type_name').val(text);
+        });
+
+        $('#kpr_type_property').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#kpr_type_property_name').val(text);
+        });
+
+        $('#active_kpr').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#active_kpr_name').val(text);
         });
 
         //select2 city
