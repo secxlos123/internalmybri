@@ -97,16 +97,12 @@
                                 e.preventDefault();
                         }
                     });
-                    // console.log(data);
-                    if((data.customers.data.length) == 0){
-                        $('#search').addClass('disabled');
-                        $('#btn-leads').removeClass('disabled');
+                    if( (data.customers.data.length) == 0 ){
                         return {
                             results: '',
                         }; 
-                    }else{
-                        $('#search').removeClass('disabled');
-                        $('#btn-leads').addClass('disabled');
+
+                    } else {
                         params.page = params.page || 1;
                         return {
                             results: data.customers.data,
@@ -118,6 +114,16 @@
                 },
                 cache: true
             },
+        });
+
+        $('.nikSelect').on('select2:unselecting', function (e) {
+            $('#search').addClass('disabled');
+            $('#btn-leads').removeClass('disabled');
+        });
+
+        $('.nikSelect').on('select2:select', function (e) {
+            $('#search').removeClass('disabled');
+            $('#btn-leads').addClass('disabled');
         });
 
         //select2 developer
@@ -183,6 +189,7 @@
                 $('#property_type').removeAttr('hidden');
                 $('#property_unit').removeAttr('hidden');
                 $('#line').removeAttr('hidden');
+                $("div#kpr_type_property").addClass('hide');
                 
             }
 
@@ -523,30 +530,30 @@
         });
 
         var timeoutID = null;
-        dp.keyup(function(e) {
-            clearTimeout(timeoutID);
-            //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
-            timeoutID = setTimeout(function(){backIt()}, 500);
-        });
+        // dp.keyup(function(e) {
+        //     clearTimeout(timeoutID);
+        //     //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
+        //     timeoutID = setTimeout(function(){backIt()}, 500);
+        // });
 
-        function backIt(){
-              if(parseInt($(".lovely-input").val().replace( /[^0-9]/g, '' )) < parseInt(dp.attr('min'))){
-                $(".lovely-input").val(dp.attr('min'));
-              }else if($(".lovely-input").val() == ''){
-                $(".lovely-input").val(dp.attr('min'));
-                var val = $(".lovely-input").val();
-                var down_payment = $('#down_payment');
-                var request_amount = $('#request_amount');
-                var price_without_comma = price.val().replace(',00', '');
-                var static_price = price_without_comma.replace(/\./g, '');
-                // console.log('as');
-                payment = (val / 100) * static_price;
-                down_payment.val(payment);
-                amount = static_price - payment;
-                down_payment.val(payment);
-                request_amount.val(amount);
-              }
-            }
+        // function backIt(){
+        //       if(parseInt($(".lovely-input").val().replace( /[^0-9]/g, '' )) < parseInt(dp.attr('min'))){
+        //         $(".lovely-input").val(dp.attr('min'));
+        //       }else if($(".lovely-input").val() == ''){
+        //         $(".lovely-input").val(dp.attr('min'));
+        //         var val = $(".lovely-input").val();
+        //         var down_payment = $('#down_payment');
+        //         var request_amount = $('#request_amount');
+        //         var price_without_comma = price.val().replace(',00', '');
+        //         var static_price = price_without_comma.replace(/\./g, '');
+        //         // console.log('as');
+        //         payment = (val / 100) * static_price;
+        //         down_payment.val(payment);
+        //         amount = static_price - payment;
+        //         down_payment.val(payment);
+        //         request_amount.val(amount);
+        //       }
+        //     }
 
         var timeoutID = null;
 

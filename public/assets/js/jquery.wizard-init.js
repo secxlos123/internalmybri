@@ -144,7 +144,7 @@
                     error: function(result, data){
                         console.log('error');
                     }
-               });
+                });
                 return false;
             }
         });
