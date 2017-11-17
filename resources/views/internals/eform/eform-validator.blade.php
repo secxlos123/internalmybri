@@ -34,29 +34,29 @@
                     url: '/getData',
                     data: { id : id },
                     success: function(result, data) {
-                        var nik = result.data.nik;
-                        var full_name = result.data.first_name+' '+result.data.last_name;
-                        var email = result.data.email;
-                        var birth_place = result.data.birth_place;
-                        var birth_date = result.data.birth_date;
-                        var mother_name = result.data.mother_name;
-                        var mobile_phone = result.data.mobile_phone;
-                        var couple_nik = result.data.couple_nik;
-                        var couple_name = result.data.couple_name;
-                        var couple_birth_place = result.data.couple_birth_place;
-                        var couple_birth_date = result.data.couple_birth_date;
-                        var couple_identity = result.data.couple_identity;
-                        var identity = result.data.identity;
+                        var nik = result.data.personal.nik;
+                        var full_name = (result.data.personal.first_name ? result.data.personal.first_name : '')+' '+(result.data.personal.last_name ? result.data.personal.last_name : '');
+                        var email = result.data.personal.email;
+                        var birth_place = result.data.personal.birth_place;
+                        var birth_date = result.data.personal.birth_date;
+                        var mother_name = result.data.personal.mother_name;
+                        var mobile_phone = result.data.personal.mobile_phone;
+                        var couple_nik = result.data.personal.couple_nik;
+                        var couple_name = result.data.personal.couple_name;
+                        var couple_birth_place = result.data.personal.couple_birth_place;
+                        var couple_birth_date = result.data.personal.couple_birth_date;
+                        var couple_identity = result.data.personal.couple_identity;
+                        var identity = result.data.other.identity;
                         var ao_name = result.data.name;
 
-                        if(result.data.status == 1){
+                        if(result.data.personal.status_id == 1){
                             var status = 'Belum Menikah';
                             $('#view-modal #couple1').hide();
                             $('#view-modal #couple2').hide();
                             $('#view-modal #couple3').hide();
                             $('#view-modal #couple4').hide();
                             $('#view-modal #couple5').hide();
-                        }else if(result.data.status == 2){
+                        }else if(result.data.personal.status_id == 2){
                             var status = 'Menikah';
                             $('#view-modal #couple1').show();
                             $('#view-modal #couple2').show();

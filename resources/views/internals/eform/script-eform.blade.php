@@ -764,7 +764,8 @@
     });
 
     //showing modal create leads
-    $('#btn-leads').on('click', function() {
+    // $('#btn-leads').on('click', function() {
+    $(document).on('click', "#btn-leads", function(){
        $('#leads-modal').modal('show');
     });
 
@@ -783,7 +784,7 @@
             data: formData,
             async: false,
             success: function (data) {
-                // console.log(data)
+                console.log(data)
                 // toastr["success"]("Data Berhasil disimpan");
                 $('#divForm').removeClass('alert alert-success');
                 $('#divForm').html("");
@@ -791,12 +792,14 @@
                 if ( data.code != 422 ) {
                     $('#leads-modal').modal('toggle');
                     
-                    nik = $("input[name='nik']").val();
+                    // nik = $("input[name='nik']").val();
+                    nik = data.data.personal.nik;
+                    nik_id = data.data.personal.user_id;
                     
-                    $("#nik").html('<option value="'+nik+'">'+nik+'</option>');
+                    $("#nik").html('<option value="'+nik_id+'">'+nik+'</option>');
                     $("#select2-nik-container").replaceWith('<span class="select2-selection__rendered" id="select2-nik-container" title="'+nik+'"><span class="select2-selection__clear">×</span>'+nik+'</span>');
                     $("#search").click();
-                    $("a[href='#finish']").click();
+                    // $("a[href='#finish']").click();
 
                     $('#divForm').addClass('alert alert-success');
                     $('#divForm').html('Data Berhasil Ditambahkan');
@@ -838,7 +841,7 @@
     $('#leads-modal #status').on('change', function() {
         if(this.value==2){
             $('#leads-modal #couple_data').show();
-            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d')}}");
+            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-1 day'))}})}}");
         }else{
             $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
             hideCouple();

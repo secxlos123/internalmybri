@@ -106,12 +106,13 @@ class EFormController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-            // dd($officers);
+            // echo json_encode($officers['contents']);exit();
 
         $aoId = $request->input('aoId');
 
+
         foreach ($officers['contents']['data'] as $key => $ao) {
-            if ($ao['id'] != $aoId) {
+            if ($ao['id'] = $aoId) {
                 $ao['text'] = $ao['name'];
                 $officers['contents']['data'][$key] = $ao;
             }
@@ -155,19 +156,17 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
 
-        $customerData = Client::setEndpoint('customer')
-            ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
-            ])
-            ->setQuery([
-                'nik' => $request->input('nik')
-            ])
-            ->get();
+        $customerData = Client::setEndpoint('customer/'.$request->input('id'))
+                        ->setHeaders([
+                            'Authorization' => $data['token'],
+                            'pn' => $data['pn']
+                        ])
+                        ->get();
 
-        $dataCustomer = $customerData['contents']['data'][0];
+        $dataCustomer = $customerData['contents'];
+
         $userData = array_merge($dataCustomer, $data);
-        // dd($userData);
+        // echo json_encode($userData);die();
         
         return response()->json(['data' => $userData]);
     }
