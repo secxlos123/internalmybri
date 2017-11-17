@@ -78,6 +78,13 @@
 		}
 	})
 
+    $("#datepicker-inline").datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        multidate: true,
+        multidateSeparator: ","
+    });
+
 	$('body').on('focus', ".datepicker-mindate", function(){
 	    $(this).datepicker({
 	        format: "yyyy-mm-dd",

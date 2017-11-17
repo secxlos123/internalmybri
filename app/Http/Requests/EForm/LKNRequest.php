@@ -103,7 +103,7 @@ class LKNRequest extends FormRequest
             "project_list.required"      => "Project harus diisi",
             "program_list.required"      => "Program harus diisi",
             "use_reason.required"        => "Tujuan Penggunaan harus diisi",
-            "mutations.required"         => "Harus harus diisi",
+            "mutations.required_if"      => "Harus harus diisi jika sumber penghasilan non fix income",
             "pros.required"              => "Pros harus diisi",
             "cons.required"              => "Cons harus diisi",
             "recommendation.required"    => "Recommendation harus diisi",
