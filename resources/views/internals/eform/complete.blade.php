@@ -1,4 +1,4 @@
-@section('title','My BRI - Lengkapi Data Leads')
+@section('title','My BRI - Lengkapi Data Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -11,13 +11,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Lengkapi Data Leads</h4>
+                                    <h4 class="page-title">Lengkapi Data Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Leads</a>
+                                            <a href="{{route('customers.index')}}">Nasabah</a>
                                         </li>
                                         <li class="active">
-                                            Lengkapi Data Leads
+                                            Lengkapi Data Nasabah
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -527,7 +527,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Leads "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin menambah Nasabah "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>

@@ -7,19 +7,9 @@
 </div>
 
 <div class="hidden">
-	<div id="nameBASE">
-		{{ !empty($dataCustomer) ? $dataCustomer['customer']['name'] : '' }}
-	</div>
-	<div id="addressBASE">
-		{{ !empty($dataCustomer) ? $dataCustomer['customer']['address'] : '' }}
-	</div>
-	<div id="mother_nameBASE">
-		{{ !empty($dataCustomer) ? $dataCustomer['customer']['mother_name'] : '' }}
-	</div>
-	<div id="phoneBASE">
-		{{ !empty($dataCustomer) ? $dataCustomer['customer']['phone'] : 0 }}
-	</div>
-	<div id="mobile_phoneBASE">
-		{{ !empty($dataCustomer) ? $dataCustomer['customer']['mobile_phone'] : 0 }}
-	</div>
+	<div id="nameBASE">{{ !empty($dataCustomer) ? $dataCustomer['customer']['name'] : '' }}</div>
+	<div id="addressBASE">{{ !empty($dataCustomer) ? $dataCustomer['customer']['address'] : '' }}</div>
+	<div id="mother_nameBASE">{{ !empty($dataCustomer) ? $dataCustomer['customer']['mother_name'] : '' }}</div>
+	<div id="phoneBASE">{{ !empty($dataCustomer) ? $dataCustomer['customer']['phone'] : 0 }}</div>
+	<div id="mobile_phoneBASE">{{ !empty($dataCustomer) ? $dataCustomer['customer']['mobile_phone'] : 0 }}</div>
 </div>

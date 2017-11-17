@@ -26,13 +26,13 @@
                 var year = $('#year').val();
                 var office = $('#branch_id').val();
 
-                var id = $('#nik').val();
+                var nik = $('#nik').val();
 
                 $.ajax({
                     dataType: 'json',
                     type: 'GET',
                     url: '/getData',
-                    data: { id : id },
+                    data: { nik : nik },
                     success: function(result, data) {
                         var nik = result.data.nik;
                         var full_name = result.data.first_name+' '+result.data.last_name;

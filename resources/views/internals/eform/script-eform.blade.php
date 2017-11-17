@@ -55,15 +55,6 @@
                 $('#price').removeAttr('readonly');
                 $('#home_location').removeAttr('readonly');
                 $('#building_area').removeAttr('readonly');
-                
-                $('#price').attr('readonly', true);
-                $('#home_location').attr('readonly', true);
-                $('#building_area').attr('readonly', true); 
-                $('#property_name').removeAttr('hidden');
-                $('#property_type').removeAttr('hidden');
-                $('#property_unit').removeAttr('hidden');
-                $('#line').removeAttr('hidden');
-                $("div#kpr_type_property").addClass('hide');
             
             }
         });
@@ -517,7 +508,28 @@
             var request_amount = $('#request_amount');
             var price_without_comma = price.val().replace(',00', '');
             var static_price = price_without_comma.replace(/\./g, '');
+
             // console.log('as');
+            payment = (val / 100) * static_price;
+            down_payment.val(payment);
+            amount = static_price - payment;
+            down_payment.val(payment);
+            request_amount.val(amount);
+        });
+
+        dp.on('blur', function() {
+            var val = $(this).val();
+            var dp_min = dp.attr('min');
+            var down_payment = $('#down_payment');
+            var request_amount = $('#request_amount');
+            var price_without_comma = price.val().replace(',00', '');
+            var static_price = price_without_comma.replace(/\./g, '');
+
+            if (val < dp_min) {
+                val = dp_min;
+                $(this).val(dp_min);
+            }
+
             payment = (val / 100) * static_price;
             down_payment.val(payment);
             amount = static_price - payment;
@@ -529,13 +541,15 @@
             var val = $(this).val().replace(',00', '').replace(/\./g, '');
             var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
             var dp = $('#dp');
+            var dp_min = dp.attr('min');
+            var max = parseInt(static_price) * (90/100);
 
-            if (parseInt(val) < parseInt(static_price)) {
+            if (parseInt(val) < max) {
                 payment = (val / static_price) * 100;
 
             } else {
-                $(this).val(static_price);
-                payment = 100;            
+                $(this).val(max);
+                payment = 90;
 
             }
                 
@@ -547,37 +561,25 @@
                     request_amount.val(static_price - val);
                     
                 } else {
-                    request_amount.val(0);
+                    request_amount.val(static_price - max);
 
                 }
             }
         });
 
-        var timeoutID = null;
-        dp.keyup(function(e) {
-            clearTimeout(timeoutID);
-            //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
-            timeoutID = setTimeout(function(){backIt()}, 500);
-        });
+        down_payment.on('blur', function() {
+            var val = $(this).val().replace(',00', '').replace(/\./g, '');
+            var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+            var dp = $('#dp');
+            var dp_min = dp.attr('min');
+            var min = parseInt(static_price) * (dp_min/100);
 
-        function backIt(){
-              if(parseInt($(".lovely-input").val().replace( /[^0-9]/g, '' )) < parseInt(dp.attr('min'))){
-                $(".lovely-input").val(dp.attr('min'));
-              }else if($(".lovely-input").val() == ''){
-                $(".lovely-input").val(dp.attr('min'));
-                var val = $(".lovely-input").val();
-                var down_payment = $('#down_payment');
-                var request_amount = $('#request_amount');
-                var price_without_comma = price.val().replace(',00', '');
-                var static_price = price_without_comma.replace(/\./g, '');
-                // console.log('as');
-                payment = (val / 100) * static_price;
-                down_payment.val(payment);
-                amount = static_price - payment;
-                down_payment.val(payment);
-                request_amount.val(amount);
-              }
+            if (parseInt(val) < min) {
+                $(this).val(min)
+                dp.val(dp_min);
+                request_amount.val(static_price - min);
             }
+        });
 
         var timeoutID = null;
 
@@ -610,24 +612,6 @@
                 return true;
             }
         });
-
-        //property status
-        $('input[type=radio][name=status_property]').on('change', function() {
-            // console.log(this.value);
-            if (this.value == 'new') {
-                $('#property_name').removeAttr('hidden');
-                $('#property_type').removeAttr('hidden');
-                $('#property_unit').removeAttr('hidden');
-                $('#developer').removeAttr('hidden');
-
-            }else if (this.value == 'second') {
-                $('#property_name').attr('hidden', true);
-                $('#property_type').attr('hidden', true);
-                $('#property_unit').attr('hidden', true);
-                $('#developer').attr('hidden', true);
-            }
-        });
-
 
         //tab pane function
         $( "ul.nav.nav-pills.m-b-30 li" ).click(function() {
@@ -764,9 +748,10 @@
     });
 
     //showing modal create leads
-    $('#btn-leads').on('click', function() {
+    $(document).on('click', '#btn-leads', function(){
+       console.log("salah masuk");
        $('#leads-modal').modal('show');
-    });
+    })
 
     $('#btn-save').on('click', function() {
        HoldOn.open(options);
@@ -855,4 +840,3 @@
 
     $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
 </script>
-<!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->

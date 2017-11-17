@@ -26,17 +26,9 @@
                             @foreach ($arrayField as $field => $label)
                                 <tr>
                                     <td class="align-middle bg-primary">{{ $label }}</td>
-                                    <td class="align-middle">
-                                        <span id="{{ $field }}DF">
-                                            {{ !empty($dataCustomer) ? $dataCustomer['customer'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}
-                                        </span>
-                                    </td>
-                                    <td class="align-middle" id="{{ $field }}CIF">
-                                        {{ !empty($dataCustomer) ? $dataCustomer['cif'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}
-                                    </td>
-                                    <td class="align-middle" id="{{ $field }}KM">
-                                        {{ !empty($dataCustomer) ? $dataCustomer['kemendagri'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}
-                                    </td>
+                                    <td class="align-middle" id="{{ $field }}DF">{{ !empty($dataCustomer) ? $dataCustomer['customer'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
+                                    <td class="align-middle" id="{{ $field }}CIF">{{ !empty($dataCustomer) ? $dataCustomer['cif'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
+                                    <td class="align-middle" id="{{ $field }}KM">{{ !empty($dataCustomer) ? $dataCustomer['kemendagri'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
                                     <td>
                                         <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="{{ $field }}">Sesuaikan</a>
                                     </td>

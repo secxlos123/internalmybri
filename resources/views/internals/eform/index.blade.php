@@ -46,6 +46,13 @@
                                                         <input type="text" class="form-control" id="to" name="end_date">
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nomor Referensi :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" name="ref_number" id="ref_number">
+                                                    </div>
+                                                </div>
                                                 
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label">Status Pengajuan :</label>
@@ -133,7 +140,7 @@
 
     var table1 = $('#datatable').DataTable({
             searching : false,
-            order : [[3, 'desc']],
+            order : [[3, 'asc']],
             "language": {
                 "emptyTable": "No data available in table"
             }
@@ -149,7 +156,7 @@
         table1 = $('#datatable').DataTable({
            processing : true,
            serverSide : true,
-           order : [[3, 'desc']],
+           order : [[3, 'asc']],
            lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]

@@ -416,7 +416,7 @@ class AOController extends Controller
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
             // $form['product_type'] = strtoupper($form['product_type']);
-            $form['request_amount'] = $form['nominal'];
+            $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
             $form['created_at'] = $form['created_at'];
 
             // $verify = $form['customer']['is_verified'];

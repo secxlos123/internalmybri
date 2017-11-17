@@ -1,4 +1,4 @@
-@section('title','My BRI - Edit Leads')
+@section('title','My BRI - Edit Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Edit Leads</h4>
+                                    <h4 class="page-title">Edit Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Leads</a>
+                                            <a href="{{route('customers.index')}}">Nasabah</a>
                                         </li>
                                         <li class="active">
-                                            Edit Leads
+                                            Edit Nasabah
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -354,7 +354,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group images {!! $errors->has('images') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-4 control-label">Foto Leads *:</label>
+                                                        <label class="col-md-4 control-label">Foto Nasabah *:</label>
                                                         <div class="col-md-8">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="@if(!empty($dataCustomer['other']['image'])){{$dataCustomer['other']['image']}}@endif" name="images">
                                                             @if ($errors->has('images')) <p class="help-block">{{ $errors->first('images') }}</p> @endif
@@ -387,7 +387,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin mengubah Leads "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin mengubah Nasabah "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@
                         <!-- <div class="row" @if(!empty($dataCustomer)) @if($dataCustomer['customer']['is_completed'] == true) hidden="" @endif @endif>
                             <div class="col-md-12">
                                 <div class="add-button">
-                                    <p class="col-md-2">Lengkapi Data Leads</p>
+                                    <p class="col-md-2">Lengkapi Data Nasabah</p>
                                     <a @if(!empty($dataCustomer)) href="{{url('eform/verification/'.$id.'/completeData/'.$dataCustomer['customer']['id'])}}" @else href="{{url('eform/verification/'.$id.'/completeData/1')}}" @endif class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-pencil"></i> Lengkapi Data</a>
                                 </div>
                             </div>

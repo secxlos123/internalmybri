@@ -32,7 +32,7 @@ class CustomerRequest extends FormRequest
             // 'city'  => 'required',
             // 'phone' => 'required|numeric|digits_between:1,12',
             // 'citizenship'   => 'required',
-            'status'    => 'required',
+            'status'    => 'required|in:1,2,3',
             'email'    => 'email|required',
             'mother_name'   => 'required',
             'mobile_phone'  => 'required|string|regex:/^08[0-9]+$/|min:9|max:16',

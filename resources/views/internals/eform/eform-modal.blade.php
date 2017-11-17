@@ -87,7 +87,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-color panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Data Leads</h3>
+                                <h3 class="panel-title">Data Nasabah</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="row">

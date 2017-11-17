@@ -54,12 +54,12 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group">
+                                                        {{-- <div class="form-group">
                                                             <label class="col-sm-4 control-label">Nama Customer :</label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control" name="customer_name" id="customer_name">
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Pengajuan :</label>
@@ -100,7 +100,7 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>No. Ref</th>
-                                                <th>Leads</th>
+                                                <th>Nasabah</th>
                                                 <th>Nominal</th>
                                                 <th>Tanggal Pengajuan</th>
                                                 <th>No. HP</th>
@@ -147,7 +147,7 @@
 
     var table1 = $('#datatable').DataTable({
             searching: false,
-            order : [[3, 'desc']],
+            order : [[3, 'asc']],
             "language": {
                 "emptyTable": "No data available in table"
             }
@@ -183,7 +183,7 @@
         table1 = $('#datatable').DataTable({
            processing : true,
            serverSide : true,
-           order : [[3, 'desc']],
+           order : [[3, 'asc']],
            lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]

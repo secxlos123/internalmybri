@@ -357,10 +357,10 @@
         } else {
             target = 'BASE';
         }
-
-        if ( String.prototype.trim($("#phoneKM").text()) != "" || target == "BASE" ) {
-            $('#'+field+'DF').text($( '#'+field+target ).text());
-            $('#'+field).val($( '#'+field+target ).text());
+        
+        if ( $( '#'+field+target ).html() != "" || target == "BASE" ) {
+            $('#'+field+'DF').html($( '#'+field+target ).html());
+            $('#'+field).val($( '#'+field+target ).html());
             return true;
 
         } else {

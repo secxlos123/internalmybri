@@ -77,7 +77,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Leads Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Nasabah Baru</a>
                                             </div>
                                         </div>
                                     </div>
@@ -85,14 +85,14 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
                                             <div class="" id="detail">
-                                                <!-- <h4 class="m-t-0 header-title"><b>Data Leads</b></h4>
+                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
  -->
                                                 <!-- ============================================== -->
-                                                <!-- Space untuk Detail Leads -->
+                                                <!-- Space untuk Detail Nasabah -->
                                                <!--  <p class="text-muted font-13 m-t-20" >
-                                                    <code>Space ini nantinya berisi detail Leads (seperti yang ada di dalam modul Leads / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
+                                                    <code>Space ini nantinya berisi detail Nasabah (seperti yang ada di dalam modul Nasabah / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
                                                 </p> -->
-                                                <!-- End Detail Leads -->
+                                                <!-- End Detail Nasabah -->
                                                 <!-- ============================================== -->
 
                                             </div>
@@ -230,6 +230,6 @@
 @endif
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
-{!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!}
+{{-- {!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!} --}}
 @include('internals.eform.eform-validator')
 
