@@ -108,7 +108,7 @@
                                                 <th>Status</th>
                                                 <th>Aging (hari)</th>            
                                                 <th>Status Data Nasabah</th>
-                                                <th>Catatan Disposisi</th>
+                                                {{-- <th>Catatan Disposisi</th> --}}
                                                 <th style="width: 100px">Aksi</th>
                                             </tr>
                                         </thead>
@@ -236,8 +236,8 @@
                         return text;
                     }
                 },
-                {   data: 'aging', name: 'aging' },
-                {   data: 'action', name: 'action', bSortable: false },
+                //{   data: 'aging', name: 'aging' },
+                {   data: 'action', name: 'action', orderable: false, searchable: false}
             ],
       }); 
     }

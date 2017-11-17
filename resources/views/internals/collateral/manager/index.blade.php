@@ -128,7 +128,7 @@
                 {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
                 {   data: 'staff_name', name: 'staff_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: true },
-                {   data: 'action', name: 'action', bSortable: false },
+                {   data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             }); 
     }
