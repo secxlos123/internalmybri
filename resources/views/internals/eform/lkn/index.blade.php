@@ -48,7 +48,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Data Penghasilan</h3>
+                            <h3 class="panel-title">Data Penghasilan Per-Bulan</h3>
                         </div>
                         @include('internals.eform.lkn._income')
                     </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Data Penghasilan Pasangan</h3>
+                            <h3 class="panel-title">Data Penghasilan Pasangan Per-Bulan</h3>
                         </div>
                         @include('internals.eform.lkn._income-partners')
                     </div>

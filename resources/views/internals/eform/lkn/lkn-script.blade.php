@@ -114,6 +114,16 @@
 
 
 	$(document).ready(function() {
+        $('#datepicker-month').datepicker( {
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'MM yy',
+            onClose: function(dateText, inst) { 
+                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            }
+        });
+
 		$('.kpp_type').select2({
             // width : '100%',
             allowClear: true,

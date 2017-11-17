@@ -23,7 +23,7 @@
 @endif
 
 	@if (isset($dispotition)  && $submited == false && $visited == false)
-		<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.str_replace(' ','-',$dispotition['ref_number']))}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="" data-original-title="Disposisi">
+		<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.str_replace(' ','-',$dispotition['ref_number']))}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="Disposisi" data-original-title="Disposisi">
 			<i class="mdi mdi-loupe"></i>
 		</a>
 	@endif
@@ -42,8 +42,8 @@
 	@endif
 
 	@if (!empty($verified) && $verified == true)
-	<span class="btn btn-icon waves-effect waves-light btn-orange">
-	    Verified
+	<span class="waves-effect waves-light" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;">
+	    <i class="fa fa-check-circle fa-2x" style="color: cadetblue;" aria-hidden="true" title="Verified"></i>
 	</span>
 	@endif
 

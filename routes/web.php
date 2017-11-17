@@ -60,6 +60,8 @@
         Route::resource('developers', 'Developer\DeveloperController');
 
         /* E-Form */
+        
+        // Route::get('eform/prescreening/{id}', ['as'=>'getPrescreening', 'uses'=>'EForm\EFormController@getPrescreening']);
 
         Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
@@ -143,6 +145,8 @@
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
+
+    Route::put('thirdparty/{id}/actived', 'ThirdParty\ThirdPartyController@actived');
 
     Route::put('developers/{developers}/actived', 'Developer\DeveloperController@actived');
 

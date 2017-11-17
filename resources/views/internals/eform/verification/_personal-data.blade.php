@@ -148,6 +148,7 @@
                                 <div class="col-md-7">
                                     {!! Form::select('status', array("" => "", "1" => "Belum Menikah", "2" => "Menikah", "3" => "Janda / Duda"), !empty($dataCustomer) ? $dataCustomer['customer']['status'] : old('status'), [
                                         'class' => 'select2 status ',
+                                        'id' => 'status',
                                         'data-placeholder' => 'Pilih Status Pernikahan',
                                         'data-bri' => ''
                                     ]) !!}

@@ -98,12 +98,12 @@ class ApprovalController extends Controller
                   ])
                   ->setBody($approve)
                   ->post();
-                  // dd($client);
+
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
-            \Session::flash('error', 'EForm gagal diapprove!');
+            \Session::flash('error', 'EForm gagal diapprove! - '.$client['descriptions']);
             return redirect()->back();
         }
 

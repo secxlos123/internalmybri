@@ -52,6 +52,12 @@
                                         <p class="form-control-static">100</p>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-6 control-label"> Keterangan Terkait Risiko</label> 
+                                    <div class="col-md-6">
+                                        <p class="form-control-static">isinya dari sana</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -68,7 +68,7 @@
                 </div>
                 @endif
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Foto Debitur :</label>
+                    <label class="col-md-6 control-label">Foto Debitur * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/png,image/jpg">
                     </div>

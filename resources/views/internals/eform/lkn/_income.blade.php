@@ -2,7 +2,7 @@
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="form-horizontal" role="form">
-                                        <div class="form-group source {!! $errors->has('source') ? 'has-error' : '' !!}">
+                                        <div class="form-group">
                                             <label class="col-md-4 control-label">Sumber *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" name="source" id="source">
@@ -13,7 +13,7 @@
                                                 @if ($errors->has('source')) <p class="help-block">{{ $errors->first('source') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group income {!! $errors->has('income') ? 'has-error' : '' !!}" id="nonfixed-income">
+                                        <div class="form-group" id="nonfixed-income">
                                             <label class="col-md-4 control-label">Penghasilan per-Bulan * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
@@ -24,8 +24,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group income_salary {!! $errors->has('income_salary') ? 'has-error' : '' !!}" id="fixed-salary">
-                                            <label class="col-md-4 control-label">Gaji / THP * :</label>
+                                        <div class="form-group" id="fixed-salary">
+                                            <label class="col-md-4 control-label">Gaji / THP per-Bulan * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -35,7 +35,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group income_allowance {!! $errors->has('income_allowance') ? 'has-error' : '' !!}" id="fixed-allowance">
+                                        <div class="form-group" id="fixed-allowance">
                                             <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
