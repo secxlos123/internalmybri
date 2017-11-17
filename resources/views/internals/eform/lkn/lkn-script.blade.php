@@ -1,8 +1,12 @@
 <script type="text/javascript">
 	function renderForm(index, options) {
-	    // console.log(index);
-	  return index;
-	  }
+        return index;
+    }
+
+    $('.select2').select2({
+        witdh : '100%',
+        allowClear: true,
+    });
 
 		var bank = "0";
 	$(document).on('click', '.add-row', function () {
