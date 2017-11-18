@@ -392,4 +392,25 @@
             $(this).val("11");
         }
     })
+
+    $(document).on('change', '#myCheckBox', function(){
+        checked = $(this).prop("checked");
+        current_address = $("textarea[name='current_address']");
+        address = $("input[name='address']").val();
+
+        current_address.attr('readonly', checked);
+
+        if ( checked ) {
+            current_address.val(address).html(address);
+        }
+    });
+
+    $(document).on('change', "input[name='address']", function(){
+        checked = $('#myCheckBox').prop("checked");
+        address = $(this).val();
+
+        if ( checked ) {
+            current_address.val(address).html(address);
+        }
+    });
 </script>
