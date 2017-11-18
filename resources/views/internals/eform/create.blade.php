@@ -35,22 +35,20 @@
                     @if (\Session::has('error'))
                      <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
-                    @if (\Session::has('success'))
-                     <div class="alert alert-success">{{ \Session::get('success') }}</div>
-                    @endif
+
                     <div class="card-box">
                         <form id="wizard-validation-form"  action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div>
                                 <h3>Produk</h3>
                                 @include('internals.eform.product')
-                                <div id="divForm"></div>
                                 <h3>Customer</h3>
                                 <section>
                                     <h4 class="m-t-0 header-title"><b>Customer</b></h4>
                                     <p class="text-muted m-b-30 font-13">
                                         Cari NIK Customer atau tambah Customer baru
                                     </p>
+                                <div id="divForm"></div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div role="form">
@@ -112,7 +110,7 @@
                                     <input type="hidden" name="unit" id="branch_id" @if(!empty($office)) value="{{$office['unit']}}" @endif>
                                 @endif
                                 </section>
-                                @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
+                            @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
                                 <h3>Penjadwalan</h3>
 
                                 <section>

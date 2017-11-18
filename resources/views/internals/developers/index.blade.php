@@ -251,7 +251,7 @@
                 }
             })
             .done(function (response) {
-                table.fnDraw();
+                reloadData1($('.cities').val(), $('.projects').val());
                 $('#confirm').modal('hide');
             });
         });

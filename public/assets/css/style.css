@@ -3496,7 +3496,7 @@ input[switch="teal"]:checked + label {
   font-family: 'Quicksand', sans-serif;
 }
 .wizard > .steps .number {
-  font-size: 86px;
+  font-size: 60px;
   line-height: 86px;
   /*font-family: 'Hind Madurai', sans-serif;*/
   font-family: 'Quicksand', sans-serif;

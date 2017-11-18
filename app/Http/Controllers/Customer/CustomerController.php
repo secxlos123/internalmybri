@@ -311,7 +311,7 @@ class CustomerController extends Controller
 
         if($codeResponse == 201){
             // session()->put('user', $client);
-            return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);
+            return response()->json(['message' => $codeDescription, 'code' => $codeResponse, 'data' => $client['contents']]);
         }elseif($codeResponse == 422){
             return response()->json($client);
         }elseif($codeResponse == 404){
