@@ -37,7 +37,7 @@
                                                 @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                                             <div class="col-md-8">
@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Jenis Pinjaman *:</label>
+                                            <label class="col-md-4 control-label">Jenis Permohonan *:</label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" name="product_type" maxlength="50" value="{{ strtoupper($eformData['product_type']) }}" readonly="">
                                                 @if ($errors->has('product_type')) <p class="help-block">{{ $errors->first('product_type') }}</p> @endif

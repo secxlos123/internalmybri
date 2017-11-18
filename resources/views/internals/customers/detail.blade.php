@@ -119,7 +119,7 @@
                                                                         @if(!empty($dataCustomer['personal']['status'])){{$dataCustomer['personal']['status']}}@else - @endif
                                                                     </p>
                                                                 </div>
-                                                            </div>                                                
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label class="col-md-6 control-label">Email :</label>
                                                                 <div class="col-md-6">
@@ -168,7 +168,7 @@
                                                                 <div class="col-md-6">
                                                                     <p class="form-control-static">@if(!empty($dataCustomer['personal']['couple_name'])){{$dataCustomer['personal']['couple_name']}}@else - @endif</p>
                                                                 </div>
-                                                            </div>      
+                                                            </div>
                                                         </form>
                                                     </div>
                                                     <div class="col-md-6">
@@ -275,7 +275,7 @@
                                             <div class="panel-heading">
                                                 <h3 class="panel-title">Data Keuangan</h3>
                                             </div>
-                                            <div class="card-box m-t-30">                                    
+                                            <div class="card-box m-t-30">
                                                 <h4 class="m-t-min30 m-b-30 header-title custom-title">Customer</h4>
                                                 <div class="panel-body">
                                                     <div class="row">
@@ -300,7 +300,7 @@
                                                             <form class="form-horizontal" role="form">
 
                                                                 <div class="form-group">
-                                                                    <label class="col-md-6 control-label">Angsuran Pinjaman :</label>
+                                                                    <label class="col-md-6 control-label">Angsuran Permohonan :</label>
                                                                     <div class="col-md-6">
                                                                         <p class="form-control-static">
                                                                             @if(!empty($dataCustomer['financial']['loan_installment'])){{$dataCustomer['financial']['loan_installment']}}@else - @endif
@@ -321,7 +321,7 @@
                                                 </div>
                                             </div>
                                             @if(!empty($dataCustomer['financial']['status_finance'] == "Join Income"))
-                                            <div class="card-box m-t-30">                                    
+                                            <div class="card-box m-t-30">
                                                 <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                                                 <div class="panel-body">
                                                     <div class="row">
@@ -346,12 +346,12 @@
                                                             <form class="form-horizontal" role="form">
 
                                                                 <div class="form-group">
-                                                                    <label class="col-md-6 control-label">Angsuran Pinjaman :</label>
+                                                                    <label class="col-md-6 control-label">Angsuran Permohonan :</label>
                                                                     <div class="col-md-6">
                                                                         <p class="form-control-static">@if(!empty($dataCustomer['financial']['loan_installment_couple'])){{$dataCustomer['financial']['loan_installment_couple']}}@else - @endif
                                                                         </p>
                                                                     </div>
-                                                                </div>                                                 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -442,4 +442,4 @@
         </div>
     </div>
     @include('internals.layouts.footer')
-    @include('internals.layouts.foot')    
+    @include('internals.layouts.foot')

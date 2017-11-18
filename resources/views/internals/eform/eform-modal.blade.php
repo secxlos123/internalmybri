@@ -29,7 +29,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="form-group">
-                                                <label class="col-md-5 control-label">Jumlah Pinjaman :</label>
+                                                <label class="col-md-5 control-label">Jumlah Permohonan :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="request_amount"></p>
                                                 </div>

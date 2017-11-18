@@ -256,7 +256,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-horizontal" role="form">
                                                     <div class="form-group loan_installment {!! $errors->has('loan_installment') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-5 control-label">Angsuran Pinjaman *:</label>
+                                                        <label class="col-md-5 control-label">Angsuran Permohonan *:</label>
                                                         <div class="col-md-7">
                                                             <input type="text" class="form-control numericOnly" value="{{$dataCustomer['financial']['loan_installment']}}" name="loan_installment" maxlength="12">
                                                             @if ($errors->has('loan_installment')) <p class="help-block">{{ $errors->first('loan_installment') }}</p> @endif
@@ -271,7 +271,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -322,7 +322,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -399,7 +399,7 @@
             </div>
         </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {

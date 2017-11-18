@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nama Bank *:</label>
                     <div class="col-md-6">
-                        {!! Form::select('mutation[0][bank]', array("" => "", "bni" => "BNI", "mandiri" => "Mandiri", "bca" => "BCA"), old('mutation_bank'), [
+                        {!! Form::select('mutations[0][bank]', array("" => "", "bni" => "BNI", "mandiri" => "Mandiri", "bca" => "BCA"), old('mutations[0]bank'), [
                             'class' => 'select2 mutation_bank',
                             'data-placeholder' => 'Pilih Nama Bank'
                         ]) !!}
@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-2 pull-right">
             <div class="form-horizontal" role="form">
-                
+
             </div>
         </div>
     </div>
@@ -84,6 +84,6 @@
                   </div>
               </div>
             </div>
-        </div>                    
+        </div>
 </div>
 </div>

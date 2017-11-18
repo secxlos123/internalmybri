@@ -18,7 +18,7 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
+                <label class="col-md-5 control-label">Angsuran Permohonan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">Rp{{($detail['customer']['financial']['loan_installment'])}}</p>
                 </div>

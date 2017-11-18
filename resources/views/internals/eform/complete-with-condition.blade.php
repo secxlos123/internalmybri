@@ -34,7 +34,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pribadi</h3>
                                     </div>
-                                    
+
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -155,7 +155,7 @@
                                                             @if ($errors->has('mother_name')) <p class="help-block">{{ $errors->first('mother_name') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -173,7 +173,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Data Pasangan</h3>
                                     </div>
-                                    
+
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -199,7 +199,7 @@
                                                             @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                                         </div>
                                                     </div> -->
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -225,7 +225,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -370,7 +370,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-horizontal">
                                                     <div class="form-group loan_installment {!! $errors->has('loan_installment') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-5 control-label">Angsuran Pinjaman * :</label>
+                                                        <label class="col-md-5 control-label">Angsuran Permohonan * :</label>
                                                         <div class="col-md-7">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp</span>
@@ -386,10 +386,10 @@
                                                             @if ($errors->has('dependent_amount')) <p class="help-block">{{ $errors->first('dependent_amount') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -440,7 +440,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -539,7 +539,7 @@
             </div>
         </div> -->
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {

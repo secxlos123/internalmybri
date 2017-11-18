@@ -45,9 +45,9 @@ class LKNRequest extends FormRequest
 
            'mutations.*.bank'           => 'required_if:source,nonfixed',
            'mutations.*.number'         => 'required_if:source,nonfixed',
-           'mutations.*.file'           => 'required_if:source,nonfixed|file',
-           'mutations.*.tables'         => 'required_if:source,nonfixed|array',
-           'mutations.*.tables.*.date'  => 'required_if:source,nonfixed|date',
+           'mutations.*.file'           => 'required_if:source,nonfixed',
+           'mutations.*.tables'         => 'required_if:source,nonfixed',
+           'mutations.*.tables.*.date'  => 'required_if:source,nonfixed',
            'mutations.*.tables.*.amount'=> 'required_if:source,nonfixed',
            'mutations.*.tables.*.type'  => 'required_if:source,nonfixed',
            'mutations.*.tables.*.note'  => '',

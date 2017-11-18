@@ -12,7 +12,8 @@ $('#add_account').click(function(){
                                 +'<select class="form-control bank" name="mutations['+index+'][bank]">'
                                    +' <option selected="" disabled="">-- Pilih Bank --</option>'
                                    +' <option value="bni">BNI</option>'
-                                   +' <option value="mandiri">Bank Mandiri</option>'
+                                   +' <option value="mandiri">Mandiri</option>'
+                                   +' <option value="bca">BCA</option>'
                                +' </select>'
                             +'</div>'
                         +'</div>'
@@ -99,7 +100,7 @@ $('#add_account').click(function(){
         htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
         placeholder: "Tidak ada file"
       });
-      
+
       $('.currency-rp').inputmask({ alias : "rupiah" });
   });
 

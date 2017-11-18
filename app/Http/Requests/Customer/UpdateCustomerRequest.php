@@ -93,7 +93,7 @@ class UpdateCustomerRequest extends FormRequest
             "office_address.required"        => "Alamat kantor harus diisi",
             "salary.required"                => "Pendapatan harus diisi",
             "other_salary.required"          => "Pendapatan lain harus diisi",
-            "loan_installment.required"      => "Angsuran pinjaman harus diisi",
+            "loan_installment.required"      => "Angsuran permohonan harus diisi",
             "dependent_amount.required"      => "Jumlah Angsuran harus diisi"
         ];
     }

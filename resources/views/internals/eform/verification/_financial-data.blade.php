@@ -5,7 +5,7 @@
                 <h3 class="panel-title">Data Keuangan</h3>
             </div>
             <div class="col-md-12">
-                <div class="card-box m-t-30">                                    
+                <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Nasabah</h4>
                     <div class="panel-body">
                         <div class="row">
@@ -36,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-md-5 control-label">Angsuran Pinjaman * :</label>
+                                        <label class="col-md-5 control-label">Angsuran Permohonan * :</label>
                                         <div class="col-md-7">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Rp</span>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
 
             <div class="col-md-7" id="join_income">
@@ -68,7 +68,7 @@
 
             <!--Pasangan-->
             <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0) style="display:block;" @else style="display:none;" @endif >
-                <div class="card-box m-t-30">                                    
+                <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                     <div class="panel-body">
                         <div class="row">
@@ -99,7 +99,7 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group ">
-                                        <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
+                                        <label class="col-md-5 control-label">Angsuran Permohonan :</label>
                                         <div class="col-md-7">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Rp</span>
@@ -107,13 +107,13 @@
                                                 @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
                                             </div>
                                         </div>
-                                    </div>                                            
+                                    </div>
                                 </div>
-                            </div>                                    
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>                                 
+        </div>
     </div>
-</div><!--End--> 
+</div><!--End-->

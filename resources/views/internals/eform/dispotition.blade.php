@@ -57,7 +57,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Jumlah Pinjaman :</label>
+                                                        <label class="col-md-5 control-label">Jumlah Permohonan :</label>
                                                         <div class="col-md-7">
                                                             <p class="form-control-static">Rp. {{number_format($detail['nominal'],2,',','.')}}</p>
                                                         </div>
@@ -220,7 +220,7 @@
                                                             <p class="form-control-static"> {{$detail['customer']['personal']['couple_name']}}</p>
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </form>
                                             </div>
                                             <div class="col-md-6">
@@ -315,7 +315,7 @@
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-5 control-label">Angsuran Pinjaman :</label>
+                                                        <label class="col-md-5 control-label">Angsuran Permohonan :</label>
                                                         <div class="col-md-7">
                                                             <p class="form-control-static">Rp{{($detail['customer']['financial']['loan_installment'])}}</p>
                                                         </div>
@@ -347,8 +347,8 @@
                                                             <p class="form-control-static">{{$detail['customer']['contact']['emergency_contact']}}</p>
                                                         </div>
                                                     </div>
-                                                    
-                                                </form>  
+
+                                                </form>
                                             </div>
                                             <div class="col-md-6">
                                                 <form class="form-horizontal" role="form">
@@ -431,7 +431,7 @@
                                             </div>
                                         </form>
                                         <input type="hidden" id="fake-aoid" value="{{ $aoId }}">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -453,7 +453,7 @@
             witdh : '100%',
             allowClear: true,
         });
-        
+
         $('.name').select2({
             witdh : '100%',
             allowClear: true,

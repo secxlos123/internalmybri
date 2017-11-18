@@ -100,7 +100,7 @@
                                 @if($data['role'] == 'ao')
                                     <input type="hidden" class="form-control" name="ao_id" value="{{ $data['pn'] }}">
                                 @endif
-                                
+
                                 @if((($data['uker'] == "KC")||($data['uker'] == "KCP")))
                                     <input type="hidden" class="form-control" id="datepicker-mindate" name="appointment_date" value="{{date('Y-m-d')}}">
                                     <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>
@@ -217,16 +217,20 @@
             </div>
         </div>
     </div>
+
 @include('internals.eform.eform-modal')
 @include('internals.eform.leads-form-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.eform.script-eform')
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 @if(!(($data['uker'] == "KC")||!($data['uker'] == "KCP")))
-<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 @endif
+
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
 {{-- {!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!} --}}
 @include('internals.eform.eform-validator')

@@ -40,7 +40,7 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">No. Referensi Pinjaman :</label>
+                <label class="col-md-5 control-label">No. Referensi Permohonan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['ref_number']}}</p>
                 </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Jenis Pinjaman :</label>
+                <label class="col-md-5 control-label">Jenis Permohonan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{strtoupper($detail['product_type'])}}</p>
                 </div>
