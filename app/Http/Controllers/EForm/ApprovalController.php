@@ -33,7 +33,7 @@ class ApprovalController extends Controller
           return 'image';
         }else{
           return 'not image';
-        } 
+        }
       }
 
     }
@@ -55,14 +55,14 @@ class ApprovalController extends Controller
                           'pn' => $data['pn']
                         ])
                     ->get();
-        
+
         $detail = $formDetail['contents'];
         // dd($detail);
         // foreach ($request->all() as $index) {
         //     $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
         //     $application[] = $this->returnContent( $name, $data, $tableKey );
         //   }
-       
+
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
                         ->setHeaders(['Authorization' => $data['token']])
@@ -92,7 +92,7 @@ class ApprovalController extends Controller
         ];
 
         $client = Client::setEndpoint('eforms/'.$id.'/approve')
-                  ->setHeaders([  
+                  ->setHeaders([
                       'Authorization' => $data['token'],
                       'pn' => $data['pn']
                   ])
@@ -104,7 +104,7 @@ class ApprovalController extends Controller
             return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'EForm gagal diapprove! - '.$client['descriptions']);
-            return redirect()->back();
+            return redirect()->back()->withInput($request->input());
         }
 
     }
