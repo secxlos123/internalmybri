@@ -5561,7 +5561,7 @@ table .checkbox {
   float: right;
 }
 
-.has-bock-print .form-group, 
+.has-bock-print .form-group,
 .has-bock-print .form-group label,
 .has-bock-print .form-group .is-dropdown-select2 {
   display: inline-block;
@@ -5593,8 +5593,8 @@ table .checkbox {
     opacity: 0.1;
 }
 
-.center-steps .wizard > .steps a, 
-.center-steps .wizard > .steps a:hover, 
+.center-steps .wizard > .steps a,
+.center-steps .wizard > .steps a:hover,
 .center-steps .wizard > .steps a:active {
     display: block;
     width: auto;
@@ -5622,12 +5622,25 @@ table .checkbox {
 
 .btn-banning {
   background-color: #e27a7a !important;
-  border: 1px solid #e27a7a !important;  
+  border: 1px solid #e27a7a !important;
 }
 
 /* By Rachmat Ramadhan */
 .inline-block-menu > span {
   display: inline-block;
   width: 100px;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.input-group-addon.nopadding {
+  border: none !important;
+}
+
+.input-group-addon.nopadding .btn {
+  height: 38px;
 }
 /* End */

@@ -46,11 +46,11 @@ class EFormController extends Controller
      */
     public function index()
     {
-        $data = $this->getUser(); 
+        $data = $this->getUser();
         // dd(env('APP_ENV'));
 
         if($data['role'] == 'ao'){
-            return view('internals.eform.index-ao', compact('data'));   
+            return view('internals.eform.index-ao', compact('data'));
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             return view('internals.eform.index', compact('data'));
         } else{
@@ -156,21 +156,21 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
 
-        $customerData = Client::setEndpoint('customer') 
-            ->setHeaders([ 
-                'Authorization' => $data['token'], 
-                'pn' => $data['pn'] 
-            ]) 
-            ->setQuery([ 
-                'nik' => $request->input('nik') 
-            ]) 
-            ->get(); 
+        $customerData = Client::setEndpoint('customer')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setQuery([
+                'nik' => $request->input('nik')
+            ])
+            ->get();
 
         $dataCustomer = $customerData['contents']['data'][0];
 
         $userData = array_merge($dataCustomer, $data);
         // echo json_encode($userData);die();
-        
+
         return response()->json(['data' => $userData]);
     }
 
@@ -206,14 +206,14 @@ class EFormController extends Controller
                 'lat' => $lat
             ])
             ->get();
-            
+
         $office = [];
 
         if(!empty($offices['contents']['data'])){
             $office = $offices['contents']['data'][0];
 
         }
-        
+
         return view('internals.eform.create', compact('data', 'office'));
     }
 
@@ -233,10 +233,10 @@ class EFormController extends Controller
                           'pn' => $data['pn']
                         ])
                     ->get();
-        
+
         $detail = $formDetail['contents'];
         // dd($detail);
-        
+
         return view('internals.eform.dispotition', compact('data', 'id', 'ref_number', 'detail'));
     }
 
@@ -246,7 +246,7 @@ class EFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      */
     public function eformRequest($request, $data)
-    {       
+    {
         $allReq = $request->except(['request_amount', 'price', '_token']);;
         foreach ($allReq as $index => $req) {
             $inputData[] = [
@@ -303,7 +303,7 @@ class EFormController extends Controller
                     ])->setBody($newForm)
                    ->post('multipart');
                 // dd($client);
-                
+
                 if($client['code'] == 201){
                     \Session::flash('success', $client['descriptions']);
                     return redirect()->route('eform.index');
@@ -418,7 +418,7 @@ class EFormController extends Controller
             // $form['product_type'] = strtoupper($form['product_type']);
             // $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_name'];
-        
+
             $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];
 

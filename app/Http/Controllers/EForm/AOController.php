@@ -231,6 +231,31 @@ class AOController extends Controller
         return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer'));
     }
 
+     /**
+     * Search NIK depedencies.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function searchNik(Request $request)
+    {
+        $data = $this->getUser();
+
+        $response = Client::setEndpoint('verification/search-nik')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setBody([
+                'nik' => $request->input('new_nik')
+            ])
+            ->post();
+
+        $data = $response['contents'];
+
+        return response()->json( $data );
+    }
+
     /**
      * Show the form for creating a new resource.
      *

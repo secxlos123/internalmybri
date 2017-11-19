@@ -60,7 +60,7 @@
         Route::resource('developers', 'Developer\DeveloperController');
 
         /* E-Form */
-        
+
         // Route::get('eform/prescreening/{id}', ['as'=>'getPrescreening', 'uses'=>'EForm\EFormController@getPrescreening']);
 
         Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
@@ -74,6 +74,8 @@
         Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
 
         Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
+
+        Route::post('/eform/search-nik', ['as'=>'eform-search-nik', 'uses'=>'EForm\AOController@searchNik']);
 
         Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
 

@@ -37,19 +37,25 @@
                         </tbody>
                     </table>
                 </div>
-                <!--Bundle of text field data pribadi-->                             
+                <!--Bundle of text field data pribadi-->
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <input type="hidden" name="cif_number" value="{{ $dataCustomer['cif']['cif_number'] }}">
-                            
+
                             <div class="form-group">
                                 <label class="col-md-3 control-label">NIK * :</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nik" value="{{ $dataCustomer['customer']['nik'] }}" maxlength="16">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="nik" value="{{ $dataCustomer['customer']['nik'] }}" maxlength="16" readonly>
+                                        <span class="input-group-addon nopadding">
+                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect change-nik">Ubah</a>
+                                        </span>
+                                    </div>
                                 </div>
+
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                 <div class="col-md-9">
@@ -60,8 +66,8 @@
                                         'id' => 'birth_place'
                                     ]) !!}
 
-                                    @if ($errors->has('birth_place')) 
-                                        <p class="help-block">{{ $errors->first('birth_place') }}</p> 
+                                    @if ($errors->has('birth_place'))
+                                        <p class="help-block">{{ $errors->first('birth_place') }}</p>
                                     @endif
                                 </div>
                                 <input type="hidden" id="new_birth_place" value="{{ $dataCustomer['customer']['birth_place'] }}">
@@ -73,7 +79,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" @if(!empty($dataCustomer)) value="{{ $dataCustomer['customer']['birth_date'] }}" @endif>
                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                                        
+
                                         @if ($errors->has('birth_date'))
                                             <p class="help-block">{{ $errors->first('birth_date') }}</p>
                                         @endif
@@ -89,32 +95,32 @@
                                         'data-placeholder' => 'Pilih Kota Tempat Tinggal',
                                         'readonly' => true
                                     ]) !!}
-                                    
+
                                     @if ($errors->has('city_id'))
                                         <p class="help-block">{{ $errors->first('city_id') }}</p>
                                     @endif
                                 </div>
                                 <input type="hidden" id="new_city" value="{{ $dataCustomer['customer']['city'] }}">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-3 control-label">KTP * :</label>
                                 <div class="col-md-9">
                                     <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" id="identity" accept="image/png,image/jpeg,image/gif">
-                                    
+
                                     @if ($errors->has('identity'))
                                         <p class="help-block">{{ $errors->first('identity') }}</p>
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-9">
                                     <img id="preview" src="{{ $dataCustomer['customer']['identity'] }}" width="300">
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                     </div>
 
                     <div class="col-md-6">
@@ -151,7 +157,7 @@
                                 </div>
                                 <input type="hidden" id="new_status" value="{{ $dataCustomer['customer']['status'] }}">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Status Tempat Tinggal * :</label>
                                 <div class="col-md-7">
@@ -209,10 +215,10 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>                                      
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!--End--> 
+    </div> <!--End-->
 </div>

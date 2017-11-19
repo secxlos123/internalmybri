@@ -30,18 +30,18 @@
 
             <form @if(!empty($dataCustomer)) action="{{route('verifyData', $dataCustomer['customer']['id'])}}" @endif method="POST" enctype="multipart/form-data" id="form1">
                 {{ csrf_field() }}
-                {{ method_field('PUT') }} 
-                    <!--Bundle of data pribadi-->                             
+                {{ method_field('PUT') }}
+                    <!--Bundle of data pribadi-->
                     @include('internals.eform.verification._personal-data')
-                    <!--Field texts of data pribadi-->  
+                    <!--Field texts of data pribadi-->
                     @include('internals.eform.verification._hidden-input')
-                    <!--Bundle of data pasangan--> 
+                    <!--Bundle of data pasangan-->
                     @include('internals.eform.verification._couple-data')
-                    <!--Bundle of data pekerjaan--> 
+                    <!--Bundle of data pekerjaan-->
                     @include('internals.eform.verification._work-data')
-                    <!--Bundle of data finansial--> 
+                    <!--Bundle of data finansial-->
                     @include('internals.eform.verification._financial-data')
-                    <!--Bundle of data Emergency contact--> 
+                    <!--Bundle of data Emergency contact-->
                     @include('internals.eform.verification._family-data')
                     <!--Action button-->
                     <div class="row">
@@ -50,7 +50,7 @@
                                 <button type="submit" href="javascript:void(0);" id="save" class="btn btn-orange waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Kirim Verifikasi Data</button>
                             </div>
                         </div>
-                    </div><!--End--> 
+                    </div><!--End-->
                 </form>
             </div>
         </div>
@@ -58,8 +58,9 @@
 
     <!-- Modals update -->
     @include('internals.eform.verification._cif-modal')
+    @include('internals.eform.verification._change-nik-modal')
 
-    <!-- Script --> 
+    <!-- Script -->
     @include('internals.layouts.footer')
-    @include('internals.layouts.foot') 
+    @include('internals.layouts.foot')
     @include('internals.eform.verification.verification-script')

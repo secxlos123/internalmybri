@@ -7,7 +7,7 @@
         witdh : '100%',
         allowClear: true
     });
-    
+
     $(document).ready(function() {
         var options = {
             theme:"sk-bounce",
@@ -357,7 +357,7 @@
         } else {
             target = 'BASE';
         }
-        
+
         if ( $( '#'+field+target ).html() != "" || target == "BASE" ) {
             $('#'+field+'DF').html($( '#'+field+target ).html());
             $('#'+field).val($( '#'+field+target ).html());
@@ -412,5 +412,51 @@
         if ( checked ) {
             current_address.val(address).html(address);
         }
+    });
+
+    $(document).on('input', "input[name=new_nik]", function() {
+        $("#change-nik-save").prop('disabled', !( $(this).val().length == 16 ));
+    });
+
+    $(document).on('click', ".change-nik", function(){
+        $("#change-nik-modal").modal('show');
+    });
+
+    $(document).on('submit', "#change-nik-form", function(){
+        HoldOn.open();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: "/eform/search-nik",
+            type: 'POST',
+            data: formData,
+            async: false,
+            success: function (data) {
+                new_nik = $('input[name=new_nik]').val();
+
+                $('#change-nik-modal').modal('toggle');
+
+                $("#change-nik-save").prop('disabled', true);
+                $('input[name=nik]').val(new_nik);
+                $('input[name=new_nik]').val('');
+                $("input[name=cif_number]").val(data.cif.cif_number);
+
+                $.each(["name", "address", "phone", "mobile_phone", "mother_name"], function(key, field){
+                    initVerifyData(field, 'BASE');
+                    $("#"+field+"CIF").html(data.cif[field]);
+                    $("#"+field+"KM").html(data.kemendagri[field]);
+                });
+
+                HoldOn.close();
+            },
+            error: function (response) {
+                HoldOn.close();
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        return false;
     });
 </script>
