@@ -7,7 +7,7 @@
                     <label class="col-md-4 control-label">Nama Bank *:</label>
                     <div class="col-md-6">
                         {!! Form::select('mutations[0][bank]', array("" => "",
-                          "bri" => "BRI" 
+                          "bri" => "BRI", 
                           "bni" => "BNI", 
                           "mandiri" => "Mandiri", 
                           "bca" => "BCA",
