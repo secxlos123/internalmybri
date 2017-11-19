@@ -50,14 +50,14 @@
                         var identity = result.data.identity;
                         var ao_name = result.data.name;
 
-                        if(result.data.status_id == 1){
+                        if(result.data.status == 1){
                             var status = 'Belum Menikah';
                             $('#view-modal #couple1').hide();
                             $('#view-modal #couple2').hide();
                             $('#view-modal #couple3').hide();
                             $('#view-modal #couple4').hide();
                             $('#view-modal #couple5').hide();
-                        }else if(result.data.status_id == 2){
+                        }else if(result.data.status == 2){
                             var status = 'Menikah';
                             $('#view-modal #couple1').show();
                             $('#view-modal #couple2').show();
