@@ -67,7 +67,7 @@
                                                     </div>
                                                             @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
                                                 </div>
-                                                <input type="hidden" name="nik" id="nik_customer">
+                                                <!-- <input type="hidden" name="nik" id="nik_customer"> -->
                                             </div>
                                         </div>
                                         <div class="col-md-6">

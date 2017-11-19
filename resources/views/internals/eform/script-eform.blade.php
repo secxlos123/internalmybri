@@ -133,7 +133,7 @@
         $('.nikSelect').on('change', function () {
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
-            $('#nik_customer').val(text);
+            // $('#nik_customer').val(text);
             // console.log(text);
         });
 
