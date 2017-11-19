@@ -78,14 +78,14 @@
                                                 <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">No. Telepon *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="phone" value="{{old('phone')}}">
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="phone" value="{{old('phone')}}">
                                                     @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group mobile_phone {!! $errors->has('mobile_phone') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">No. Handphone *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="mobile_phone" value="{{old('mobile_phone')}}">
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="mobile_phone" value="{{old('mobile_phone')}}">
                                                     @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -157,10 +157,10 @@
         </div>
         </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')    
+@include('internals.layouts.foot')
 
 <script type="text/javascript">
-    
+
     $(document).ready(function() {
        $('#btnSave').on('click', function(e) {
             $("#form1").submit();
@@ -177,7 +177,7 @@
 
 <script type="text/javascript">
     var resizefunc = [];
-    $(document).ready(function () {        
+    $(document).ready(function () {
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,

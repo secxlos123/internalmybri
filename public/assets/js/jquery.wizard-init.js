@@ -8,15 +8,15 @@
             headerTag: "h3",
             bodyTag: "section",
             transitionEffect: "slideLeft",
-            onFinishing: function (event, currentIndex) { 
+            onFinishing: function (event, currentIndex) {
                 //NOTE: Here you can do form validation and return true or false based on your validation logic
                 console.log("Form has been validated!");
-                return true; 
-            }, 
+                return true;
+            },
             onFinished: function (event, currentIndex) {
                //NOTE: Submit the form, if all validation passed.
                // alert("Submitted!");
-                console.log("Form can be submitted using submit method. E.g. $('#basic-form').submit()"); 
+                console.log("Form can be submitted using submit method. E.g. $('#basic-form').submit()");
                 $("#basic-form").submit();
 
             }
@@ -120,25 +120,25 @@
                         $("#view-modal #year").html(year+' tahun');
                         $("#view-modal #month").html(year+' bulan');
                         $("#view-modal #office").html(office);
-                        $("#view-modal #appointment_date").html(appointment_date); 
+                        $("#view-modal #appointment_date").html(appointment_date);
                         $("#view-modal #nik").html(nik);
                         $("#view-modal #customer_name").html(full_name);
                         $("#view-modal #customer_fullname").html(full_name);
-                        $("#view-modal #email").html(email); 
+                        $("#view-modal #email").html(email);
                         $("#view-modal #birth_place").html(birth_place);
                         $("#view-modal #birth_date").html(birth_date);
                         $("#view-modal #mother_name").html(mother_name);
                         $("#view-modal #mobile_phone").html(mobile_phone);
-                        $("#view-modal #status").html(status); 
-                        $("#view-modal #couple_nik").html(couple_nik); 
-                        $("#view-modal #couple_name").html(couple_name); 
-                        $("#view-modal #couple_birth_place").html(couple_birth_place); 
-                        $("#view-modal #couple_birth_place").html(couple_birth_place); 
-                        $("#view-modal #couple_identity").html('<img src="'+couple_identity+'" class="img-responsive">'); 
-                        $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">'); 
-                        $("#view-modal #marritalstatus").val(status); 
-                        $("#view-modal #office").val(office); 
-                        $("#view-modal #ao_name").html(ao_name); 
+                        $("#view-modal #status").html(status);
+                        $("#view-modal #couple_nik").html(couple_nik);
+                        $("#view-modal #couple_name").html(couple_name);
+                        $("#view-modal #couple_birth_place").html(couple_birth_place);
+                        $("#view-modal #couple_birth_date").html(couple_birth_date);
+                        $("#view-modal #couple_identity").html('<img src="'+couple_identity+'" class="img-responsive">');
+                        $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">');
+                        $("#view-modal #marritalstatus").val(status);
+                        $("#view-modal #office").val(office);
+                        $("#view-modal #ao_name").html(ao_name);
 
                     },
                     error: function(result, data){
@@ -177,7 +177,7 @@
     $.FormWizard = new FormWizard, $.FormWizard.Constructor = FormWizard
 }(window.jQuery),
 
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.FormWizard.init()

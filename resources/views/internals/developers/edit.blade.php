@@ -58,7 +58,7 @@
                                                 <div class="form-group city_id {!! $errors->has('city_id') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Kota *:</label>
                                                     <div class="col-md-8">
-                                                        @if(!empty($dataDev['company_name'])) 
+                                                        @if(!empty($dataDev['company_name']))
                                                            {!! Form::select('city_id', [$dataDev['city_id'] => $dataDev['city_name']], $dataDev['city_id'], [
                                                                 'class' => 'select2 cities',
                                                                 'id' => 'city_id',
@@ -95,7 +95,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-4 control-label">No. Handphone *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="16" name="mobile_phone" @if(!empty($dataDev['mobile_phone'])) value="{{$dataDev['mobile_phone']}}" @else  value="{{old('mobile_phone')}}" @endif>
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="mobile_phone" @if(!empty($dataDev['mobile_phone'])) value="{{$dataDev['mobile_phone']}}" @else  value="{{old('mobile_phone')}}" @endif>
                                                     @if ($errors->has('mobile_phone')) <p class="help-block">{{ $errors->first('mobile_phone') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -153,7 +153,7 @@
         </div>
         </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')    
+@include('internals.layouts.foot')
 
 <script type="text/javascript">
     var options = {
@@ -179,7 +179,7 @@
 
 <script type="text/javascript">
     var resizefunc = [];
-    $(document).ready(function () {        
+    $(document).ready(function () {
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,

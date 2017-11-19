@@ -7,13 +7,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Gaji/Penghasilan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">Rp{{$detail['customer']['financial']['salary']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Penghasilan Lain :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">Rp{{$detail['customer']['financial']['other_salary']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['other_salary'], 2, ",", ".") }}</p>
                 </div>
             </div>
         </form>
@@ -24,14 +24,14 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Penghasilan Pasangan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">Rp{{$detail['customer']['financial']['salary_couple']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary_couple'], 2, ",", ".") }}</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-md-5 control-label">Penghasilan Lain Pasangan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">Rp{{$detail['customer']['financial']['other_salary_couple']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['other_salary_couple'], 2, ",", ".") }}</p>
                 </div>
             </div>
         </form>

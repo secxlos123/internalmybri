@@ -91,8 +91,8 @@
 @endif -->
 
 @if ((isset($assignment_collateral)))
-	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Lakukan OTS / Penolakan 
-    Penugasan" title="Lakukan OTS / Penolakan 
+	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Lakukan OTS / Penolakan
+    Penugasan" title="Lakukan OTS / Penolakan
     Penugasan">
 	    <i class="fa fa-briefcase" aria-hidden="true"></i>
 	</a>

@@ -36,7 +36,7 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-md-5 control-label">Angsuran Permohonan * :</label>
+                                        <label class="col-md-5 control-label">Angsuran Pinjaman Lain * :</label>
                                         <div class="col-md-7">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Rp</span>
@@ -62,7 +62,7 @@
             <div class="col-md-7" id="join_income">
                 <div class="checkbox checkbox-single checkbox-primary">
                     <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
-                    <label class="header-title custom-title-2"><b>  Joint Income</b></label>
+                    <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
                 </div>
             </div>
 

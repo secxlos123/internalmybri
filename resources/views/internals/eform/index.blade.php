@@ -53,7 +53,7 @@
                                                         <input type="text" class="form-control" name="ref_number" id="ref_number">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label">Status Pengajuan :</label>
                                                     <div class="col-sm-8">
@@ -63,10 +63,9 @@
                                                             <option value="Dispose">Disposisi Pengajuan</option>
                                                             <option value="Initiate">Prakarsa</option>
                                                             <option value="Submit">Proses CLF</option>
-                                                            {{-- <option value="Approval1">Approval 1</option>
-                                                            <option value="Approval2">Approval 2</option> --}}
+                                                            <option value="Approval1">Kredit Disetujui</option>
+                                                            <option value="Approval2">Rekontes Kredit</option>
                                                             <option value="Rejected">Kredit Ditolak</option>
-                                                            <option value="Onprogress">On Progress</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -101,7 +100,7 @@
                                         <th>Status Prescreening</th>
                                         <th>AO</th>
                                         <th>Status</th>
-                                        <th>Aging (hari)</th>                                           
+                                        <th>Aging (hari)</th>
                                         <th style="width: 100px">Aksi</th>
                                     </tr>
                                 </thead>
@@ -114,7 +113,7 @@
         </div>
     </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function(){
 
@@ -192,6 +191,6 @@
                 {   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', orderable: false, searchable: false},
             ],
-      }); 
+      });
       }
 </script>
