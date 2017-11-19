@@ -41,7 +41,7 @@ class EFormRequest extends FormRequest
             'request_amount'    => 'required',
             'kpr_type'          => 'required',
             'kpr_type_property' => 'required',
-            'nik_id'               => 'required',
+            'nik'               => 'required',
             'latitude'          => 'required',
             'longitude'         => 'required',
             'address_location'  => 'required',
@@ -76,7 +76,7 @@ class EFormRequest extends FormRequest
             "longitude.required"       => "Longitude harus dipilih",
             "address.required"         => "Alamat harus diisi",
             // "branch_id.required"       => "Kantor Cabang harus dipilih",
-            "nik_id.required"          => "NIK harus diisi"
+            "nik.required"          => "NIK harus diisi"
         ];
     }
 }

@@ -797,9 +797,7 @@
                 if ( data.code != 422 ) {
                     $('#leads-modal').modal('toggle');
 
-                    // nik = $("input[name='nik']").val();
                     nik = data.data.personal.nik;
-                    //nik_id = data.data.personal.user_id;
 
                     $("#nik").html('<option value="'+nik+'">'+nik+'</option>');
                     $("#select2-nik-container").replaceWith('<span class="select2-selection__rendered" id="select2-nik-container" title="'+nik+'"><span class="select2-selection__clear">×</span>'+nik+'</span>');

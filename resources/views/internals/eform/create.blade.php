@@ -55,7 +55,7 @@
                                                 <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
                                                     <label class="control-label">Cari NIK Customer *</label>
                                                     <div class="input-group">
-                                                        {!! Form::select('nik_id', ['' => ''], old('nik'), [
+                                                        {!! Form::select('nik', ['' => ''], old('nik'), [
                                                                 'class' => 'select2 nikSelect',
                                                                 'data-placeholder' => 'NIK',
                                                                 'id' => 'nik',
