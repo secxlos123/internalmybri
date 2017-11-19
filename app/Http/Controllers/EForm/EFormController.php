@@ -425,7 +425,7 @@ class EFormController extends Controller
             $form['action'] = view('internals.layouts.actions', [
 
                 'dispose' => $form['ao_name'],
-                'submited' => $form['is_approved'],
+                'submited' => ($form['is_approved'] && $verify),
                 'dispotition' => $form,
                 // 'screening' => route('eform.show', $form['id']),
                 'approve' => $form,

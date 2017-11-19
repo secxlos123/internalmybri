@@ -60,7 +60,7 @@
                                                                 <input type="text" class="form-control" name="customer_name" id="customer_name">
                                                             </div>
                                                         </div> --}}
-                                                        
+
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Pengajuan :</label>
                                                             <div class="col-sm-8">
@@ -70,10 +70,9 @@
                                                                     <option value="Dispose">Disposisi Pengajuan</option>
                                                                     <option value="Initiate">Prakarsa</option>
                                                                     <option value="Submit">Proses CLF</option>
-                                                                    {{-- <option value="Approval1">Approval 1</option>
-                                                                    <option value="Approval2">Approval 2</option> --}}
+                                                                    <option value="Approval1">Kredit Disetujui</option>
+                                                                    <option value="Approval2">Rekontes Kredit</option>
                                                                     <option value="Rejected">Kredit Ditolak</option>
-                                                                    <option value="Onprogress">On Progress</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -106,7 +105,7 @@
                                                 <th>No. HP</th>
                                                 <th>Status Prescreening</th>
                                                 <th>Status</th>
-                                                <th>Aging (hari)</th>            
+                                                <th>Aging (hari)</th>
                                                 <th>Status Data Nasabah</th>
                                                 {{-- <th>Catatan Disposisi</th> --}}
                                                 <th style="width: 100px">Aksi</th>
@@ -171,10 +170,10 @@
     //         // console.log(data);
     //         $('#detail').html(data['view']);
     //         $('#result-modal').modal('show');
-        
+
     //     }).fail(function(errors) {
     //         // toastr.error('Data tidak ditemukan')
-        
+
     //     });
     // });
 
@@ -239,6 +238,6 @@
                 //{   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', orderable: false, searchable: false}
             ],
-      }); 
+      });
     }
 </script>

@@ -199,17 +199,20 @@
                                 </div>
                             </div>
 
+
                             <div class="form-group">
                                 <div class="col-md-7 col-md-offset-5">
-                                    <input id="myCheckBox" type="checkbox" />
-                                    <label for="myCheckBox">Alamat Domisili Sesuai Dengan Alamat KTP</label>
+                                    <div class="checkbox checkbox-single checkbox-primary">
+                                        <input type="checkbox" id="myCheckBox" {{ ($dataCustomer['customer']['current_address'] == $dataCustomer['customer']['address']) ? "checked" : "" }}>
+                                        <label class="header-title custom-title-2" for="myCheckBox">Alamat Domisili Sesuai Dengan Alamat KTP</label>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group current_address {!! $errors->has('current_address') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Alamat Domisili * :</label>
                                 <div class="col-md-7">
-                                    <textarea type="current_address" class="form-control" name="current_address"readonly="" value="{{ $dataCustomer['customer']['current_address'] }}">{{ $dataCustomer['customer']['current_address'] }}</textarea>
+                                    <textarea type="current_address" class="form-control" name="current_address" value="{{ $dataCustomer['customer']['current_address'] }}" {{ ($dataCustomer['customer']['current_address'] == $dataCustomer['customer']['address']) ? "readonly" : "" }}>{{ $dataCustomer['customer']['current_address'] }}</textarea>
                                     @if ($errors->has('current_address'))
                                         <p class="help-block">{{ $errors->first('current_address') }}</p>
                                     @endif

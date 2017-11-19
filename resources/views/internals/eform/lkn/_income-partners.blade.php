@@ -13,24 +13,19 @@
                         @if ($errors->has('separated_property_status')) <p class="help-block">{{ $errors->first('separated_property_status') }}</p> @endif
                     </div>
                 </div> -->
+
                 <div class="form-group source_income {!! $errors->has('source_income') ? 'has-error' : '' !!}">
                     <label class="col-md-4 control-label">Sumber *:</label>
                     <div class="col-md-8">
-                        <!-- <select class="form-control" name="source_income" id="source_income">
+                        <select class="form-control" name="source_income" id="source_income">
                             <option selected="" disabled="">-- Pilih --</option>
-                            <option value="single">Single Income</option>
-                            <option value="nonsingle">Join Income</option>
+                            <option value="single" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : 'selected' }}>Single Income</option>
+                            <option value="nonsingle" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? 'selected' : '' }}>Join Income</option>
                         </select>
-                        @if ($errors->has('source_income')) <p class="help-block">{{ $errors->first('source_income') }}</p> @endif -->
-                        <div class="input-group">
-                            <!-- <span class="input-group-addon">Rp</span> -->
-                            <input type="text" class="form-control" name="source_income" maxlength="24" value="Joint Income" readonly="">
-                            <!-- <span class="input-group-addon">,00</span> -->
-                            @if ($errors->has('income_partner')) <p class="help-block">{{ $errors->first('income_partner') }}</p> @endif
-                        </div>
+                        @if ($errors->has('source_income')) <p class="help-block">{{ $errors->first('source_income') }}</p> @endif
                     </div>
                 </div>
-                <div class="form-group" id="income_partner">
+                <div class="form-group" id="income_partner" style="{{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : "display: none;" }}">
                     <label class="col-md-4 control-label">Penghasilan per-Bulan *:</label>
                     <div class="col-md-8">
                         <div class="input-group">
@@ -41,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" id="income_other">
+                <div class="form-group" id="income_other" style="{{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : "display: none;" }}">
                     <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                     <div class="col-md-8">
                         <div class="input-group">
