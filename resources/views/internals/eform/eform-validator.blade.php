@@ -91,7 +91,7 @@
                         $("#view-modal #couple_nik").html(couple_nik);
                         $("#view-modal #couple_name").html(couple_name);
                         $("#view-modal #couple_birth_place").html(couple_birth_place);
-                        $("#view-modal #couple_birth_place").html(couple_birth_place);
+                        $("#view-modal #couple_birth_date").html(couple_birth_date);
                         $("#view-modal #couple_identity").html('<img src="'+couple_identity+'" class="img-responsive">');
                         $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">');
                         $("#view-modal #marritalstatus").val(status);
