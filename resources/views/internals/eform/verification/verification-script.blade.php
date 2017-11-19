@@ -17,7 +17,7 @@
 
         $('#save').on('click', function(e) {
             $("#form1").submit();
-            HoldOn.open(options);
+            // HoldOn.open(options);
         });
 
 
