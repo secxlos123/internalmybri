@@ -6,7 +6,19 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nama Bank *:</label>
                     <div class="col-md-6">
-                        {!! Form::select('mutations[0][bank]', array("" => "", "bni" => "BNI", "mandiri" => "Mandiri", "bca" => "BCA"), old('mutations[0]bank'), [
+                        {!! Form::select('mutations[0][bank]', array("" => "",
+                          "bri" => "BRI" 
+                          "bni" => "BNI", 
+                          "mandiri" => "Mandiri", 
+                          "bca" => "BCA",
+                          "btn"=> "BTN",
+                          "panin"=>"Panin",
+                          "permata"=>"Permata",
+                          "bii"=>"BII",
+                          "danamon" => "Danamon",
+                          "cimb"=>"CIMB",
+                          "other"=>"Lainya"
+                        ), old('mutations[0]bank'), [
                             'class' => 'select2 mutation_bank',
                             'data-placeholder' => 'Pilih Nama Bank'
                         ]) !!}
