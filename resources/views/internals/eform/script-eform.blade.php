@@ -505,119 +505,115 @@
                 // console.log('70');
             }
 
-       });
+        });
 
         //recounting dp
-        dp.on('input', function() {
-            var val = $(this).val();
-            var down_payment = $('#down_payment');
-            var request_amount = $('#request_amount');
-            var price_without_comma = price.val().replace(',00', '');
-            var static_price = price_without_comma.replace(/\./g, '');
+        dp
+            .on('input', function() {
+                change_dp(this);
+            })
+            .on('change', function() {
+                change_dp(this);
+            })
+            .on('blur', function() {
+                var val = $(this).val();
+                var price = $('#price');
+                var dp_min = dp.attr('min');
+                var down_payment = $('#down_payment');
+                var request_amount = $('#request_amount');
+                var price_without_comma = price.val().replace(',00', '');
+                var static_price = price_without_comma.replace(/\./g, '');
 
-            // console.log('as');
-            payment = (val / 100) * static_price;
-            down_payment.val(payment);
-            amount = static_price - payment;
-            down_payment.val(payment);
-            request_amount.val(amount);
-        });
+                if (val < dp_min) {
+                    val = dp_min;
+                    $(this).val(dp_min);
+                }
 
-        dp.on('blur', function() {
-            var val = $(this).val();
-            var dp_min = dp.attr('min');
-            var down_payment = $('#down_payment');
-            var request_amount = $('#request_amount');
-            var price_without_comma = price.val().replace(',00', '');
-            var static_price = price_without_comma.replace(/\./g, '');
+                payment = (val / 100) * static_price;
+                down_payment.val(payment);
+                amount = static_price - payment;
+                down_payment.val(payment);
+                request_amount.val(amount);
+            });
 
-            if (val < dp_min) {
-                val = dp_min;
-                $(this).val(dp_min);
-            }
+        down_payment
+            .on('input', function() {
+                var val = $(this).val().replace(',00', '').replace(/\./g, '');
+                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var request_amount = $('#request_amount');
+                var max = parseInt(static_price) * (90/100);
 
-            payment = (val / 100) * static_price;
-            down_payment.val(payment);
-            amount = static_price - payment;
-            down_payment.val(payment);
-            request_amount.val(amount);
-        });
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
 
-        down_payment.on('input', function() {
-            var val = $(this).val().replace(',00', '').replace(/\./g, '');
-            var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
-            var dp = $('#dp');
-            var dp_min = dp.attr('min');
-            var max = parseInt(static_price) * (90/100);
-
-            if (parseInt(val) < max) {
-                payment = (val / static_price) * 100;
-
-            } else {
-                $(this).val(max);
-                payment = 90;
-
-            }
-
-            if ( !isNaN(payment) ) {
-                dp.val(Math.round(payment));
-                total = static_price - val;
-
-                if (total > 0) {
-                    request_amount.val(static_price - val);
+                if (parseInt(val) < max) {
+                    payment = (val / static_price) * 100;
 
                 } else {
-                    request_amount.val(static_price - max);
+                    $(this).val(max);
+                    payment = 90;
 
                 }
-            }
-        });
 
-        down_payment.on('blur', function() {
-            var val = $(this).val().replace(',00', '').replace(/\./g, '');
-            var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
-            var dp = $('#dp');
-            var dp_min = dp.attr('min');
-            var min = parseInt(static_price) * (dp_min/100);
+                if ( !isNaN(payment) ) {
+                    dp.val(Math.round(payment));
+                    total = static_price - val;
 
-            if (parseInt(val) < min) {
-                $(this).val(min)
-                dp.val(dp_min);
-                request_amount.val(static_price - min);
-            }
-        });
+                    if (total > 0) {
+                        request_amount.val(static_price - val);
 
-        var timeoutID = null;
+                    } else {
+                        request_amount.val(static_price - max);
 
-        year.keyup(function(e) {
-            clearTimeout(timeoutID);
-            //timeoutID = setTimeout(findMember.bind(undefined, e.target.value), 500);
-            timeoutID = setTimeout(function(){timePeriod()}, 1000);
-        });
+                    }
+                }
+            })
+            .on('blur', function() {
+                var val = $(this).val().replace(',00', '').replace(/\./g, '');
+                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var min = parseInt(static_price) * (dp_min/100);
 
-        function timePeriod(){
-            if(parseInt(year.val().replace( /[^0-9]/g, '' )) <= 12){
-                year.val('12');
-            }else if(year.val() >= 240){
-                year.val('240');
-                var val = year.val();
-            }else if(year.val() == ''){
-                year.val('12');
-                var val = year.val();
-            }
-        }
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
 
-        year.on('keyup', function(e){
-            if ($(this).val() > 240
-                && e.keyCode != 46 // delete
-                && e.keyCode != 8 // backspace
-               ) {
-               e.preventDefault();
-               $(this).val('240');
-            }else{
-                return true;
-            }
-        });
+                if (parseInt(val) < min) {
+                    $(this).val(min)
+                    dp.val(dp_min);
+                    request_amount.val(static_price - min);
+                }
+            });
+
+        year.on('change', function () {
+                if ( $(this).val() > 240 ) {
+                    $(this).val(240);
+                    return;
+                }
+
+                if ( $(this).val() < 12) {
+                    $(this).val(12);
+                    return;
+                }
+            })
+            .on('blur', function () {
+                if ( parseInt(year.val().replace( /[^0-9]/g, '' ) ) <= 12 ) {
+                    year.val('12');
+
+                } else if ( year.val() >= 240 ) {
+                    year.val('240');
+                    var val = year.val();
+
+                } else if ( year.val() == '' ){
+                    year.val('12');
+                    var val = year.val();
+
+                }
+            });
 
         //tab pane function
         $( "ul.nav.nav-pills.m-b-30 li" ).click(function() {
@@ -681,13 +677,32 @@
         });
     });
 
+    function change_dp(element) {
+        var val = $(element).val();
+        var down_payment = $('#down_payment');
+        var request_amount = $('#request_amount');
+        var price = $('#price');
+        var price_without_comma = price.val().replace(',00', '');
+        var static_price = price_without_comma.replace(/\./g, '');
+
+        if (parseInt(val) > 90) {
+            val = 90;
+            $(element).val(val);
+
+        }
+
+        payment = (val / 100) * static_price;
+        down_payment.val(payment);
+        amount = static_price - payment;
+        down_payment.val(payment);
+        request_amount.val(amount);
+    }
+
     //showing modal of eform
     $('#view-modal').on('click', '#agree', function() {
            HoldOn.open(options);
        $("#wizard-validation-form").submit();
     });
-
-
 
     $('.cities').on('select2:unselect', function (e) {
         $('.offices').empty().select2({
