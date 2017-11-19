@@ -54,7 +54,7 @@
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <p class="form-control-static">Rp{{$bank['amount']}}</p>
+                                    <p class="form-control-static">Rp. {{ number_format($bank['amount'], 2, ",", ".") }}</p>
                                     <!-- <span class="input-group-addon">,00</span> -->
                                 </div>
                             </td>
@@ -73,7 +73,7 @@
 
                     </div>
                 </div>
-            </div>                    
+            </div>
         </div>
         <div class="col-md-6" align="center">
         <div class="card-box">

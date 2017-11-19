@@ -7,7 +7,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pros :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['visit_report']['pros']}}</p>
+                    <p class="form-control-static" style="word-wrap: break-word;">{{ $detail['visit_report']['pros'] }}</p>
                 </div>
             </div>
         </form>
@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Cons :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['visit_report']['cons']}}</p>
+                    <p class="form-control-static" style="word-wrap: break-word;">{{ $detail['visit_report']['cons'] }}</p>
                 </div>
             </div>
         </form>

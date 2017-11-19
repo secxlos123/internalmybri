@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Jumlah Permohonan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['nominal']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['nominal'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Kantor Cabang :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['branch_id']}}</p>
+                    <p class="form-control-static">{{ isset($detail['branch']) ? $detail['branch'] : '' }}</p>
                 </div>
             </div>
             <div class="form-group">
