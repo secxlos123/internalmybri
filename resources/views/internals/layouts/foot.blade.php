@@ -5,7 +5,7 @@
         <script type="text/javascript">
             function goPrev(){
                 window.history.back();
-            } 
+            }
         </script>
 
         <!-- jQuery  -->
@@ -123,7 +123,7 @@
                 });
             });
 
-           $(".numericOnly").keydown(function (e) {
+           $(document).on('keydown', ".numericOnly", function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
                  // Allow: Ctrl+A
@@ -145,7 +145,7 @@
             }
         });
 
-        $(".alphaOnly").keypress(function (e) {
+        $(document).on('keypress', ".alphaOnly", function (e) {
             if (e.which >= 48 && e.which <= 57 ) {
                 // $("#errmsg").html("Nama Belakang harus diisi hanya menggunakan huruf").show().fadeOut("slow");
                 return false;
