@@ -157,6 +157,12 @@
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
     })
 
+
+    //show modal CRS
+    $(document).on('click', '#btn-prescreening', function(){
+       $('#result-modal').modal('show');
+    })
+
     // $(document).on('click', "#btn-prescreening", function(){
     //     console.log('click');
 
