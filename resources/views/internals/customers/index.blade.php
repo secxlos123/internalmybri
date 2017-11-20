@@ -72,30 +72,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div id="filter" class="collapse m-b-15">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="card-box">
-                                                    <form class="form-horizontal" role="form">
-                                                        
-                                                        <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Jenis Kelamin :</label>
-                                                            <div class="col-sm-8">
-                                                            <select name="gender" class="form-control">
-                                                                <option disabled="" selected="">Pilih Jenis Kelamin</option>
-                                                                <option value="L">Laki-laki</option>
-                                                                <option value="L">Perempuan</option>
-                                                            </select>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    <div class="text-right">
-                                                        <a href="#" class="btn btn-orange waves-light waves-effect w-md">Filter</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <table id="datatable" class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
@@ -221,39 +197,7 @@
 
         // $('#btn-filter').on('click', function () {
         //     table.fnDraw();
-        // });
-        
-        $('.cities').select2({
-            witdh : '100%',
-            allowClear: true,
-            ajax: {
-                url: '/cities',
-                dataType: 'json',
-                delay: 250,
-                data: function (params) {
-                    return {
-                        name: params.term,
-                        page: params.page || 1
-                    };
-                },
-                processResults: function (data, params) {
-                    params.page = params.page || 1;
-
-                    return {
-                        results: data.cities.data,
-                        pagination: {
-                            more: (params.page * data.cities.per_page) < data.cities.total
-                        }
-                    };
-                },
-                cache: true
-            },
         });
-    });
-
-    $('.cities').on('select2:select', function (e) {
-        var citi_id = e.params.data.id;
-    });
 
     // TableManageButtons.init();
 </script>

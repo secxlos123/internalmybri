@@ -1,11 +1,11 @@
         <script>
-            var resizefunc = [];
+          var resizefunc = [];
         </script>
 
         <script type="text/javascript">
-            function goPrev(){
-                window.history.back();
-            }
+          function goPrev(){
+            window.history.back();
+          }
         </script>
 
         <!-- jQuery  -->
@@ -61,51 +61,48 @@
         <script src="{{asset('assets/js/select2.min.js')}}"></script>
         <script src="{{asset('assets/js/HoldOn.min.js')}}"></script>
 
-        {{--init toastr--}}
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> --}}
         <script src="{{asset('assets/js/toastr.min.js')}}"></script>
-
-
+        
         <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
         <script>
-           $(document).ready(function() {
-               $('#logout').on('click', function(e) {
-                   $('#out').attr('action', '{{url("logout")}}');
-                   $('#sign-out').modal('show');
-                   e.preventDefault();
-               });
+         $(document).ready(function() {
+           $('#logout').on('click', function(e) {
+             $('#out').attr('action', '{{url("logout")}}');
+             $('#sign-out').modal('show');
+             e.preventDefault();
            });
-        </script>
+         });
+       </script>
 
-        <script>
-            var options = {
-                 theme:"sk-bounce",
-                 message:'Mohon tunggu sebentar.',
-                 textColor:"white"
-            };
-           $(document).ready(function() {
-               $('#signout').on('click', function(e) {
-                   $('#out').attr('action', '{{url("logout")}}');
-                   $('#sign-out').modal('show');
-                   e.preventDefault();
-               });
+       <script>
+        var options = {
+         theme:"sk-bounce",
+         message:'Mohon tunggu sebentar.',
+         textColor:"white"
+       };
+       $(document).ready(function() {
+         $('#signout').on('click', function(e) {
+           $('#out').attr('action', '{{url("logout")}}');
+           $('#sign-out').modal('show');
+           e.preventDefault();
+         });
 
-               $('#btn-logout').on('click', function() {
-                    HoldOn.open(options);
-               });
+         $('#btn-logout').on('click', function() {
+          HoldOn.open(options);
+        });
 
-               $('#distance1').slider({
-                    formatter: function(value) {
-                        return 'Current value: ' + value;
-                    }
-                });
-           });
+         $('#distance1').slider({
+          formatter: function(value) {
+            return 'Current value: ' + value;
+          }
+        });
+       });
 
 
-           $(document).ready(function() {
-                Inputmask.extendAliases({
-                    rupiah: {
+       $(document).ready(function() {
+        Inputmask.extendAliases({
+          rupiah: {
                         // prefix: "Rp ",
                         radixPoint: ",",
                         groupSeparator: ".",
@@ -116,51 +113,92 @@
                         digitsOptional: !1,
                         clearMaskOnLostFocus: !1,
                         rightAlign: false
-                    }
-                });
-                $(document).ready(function() {
-                    $('.currency-rp').inputmask({ alias : "rupiah" });
-                });
-            });
+                      }
+                    });
+        $(document).ready(function() {
+          $('.currency-rp').inputmask({ alias : "rupiah" });
+        });
+      });
 
-           $(document).on('keydown', ".numericOnly", function (e) {
+       $(document).on('keydown', ".numericOnly", function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
                  // Allow: Ctrl+A
-                (e.keyCode == 65 && e.ctrlKey === true) ||
+                 (e.keyCode == 65 && e.ctrlKey === true) ||
                  // Allow: Ctrl+C
-                (e.keyCode == 67 && e.ctrlKey === true) ||
+                 (e.keyCode == 67 && e.ctrlKey === true) ||
                  // Allow: Ctrl+X
-                (e.keyCode == 88 && e.ctrlKey === true) ||
+                 (e.keyCode == 88 && e.ctrlKey === true) ||
                 // Allow: backspace
                 (e.keyCode === 320 && e.ctrlKey === true) ||
                  // Allow: home, end, left, right
-                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                 (e.keyCode >= 35 && e.keyCode <= 39)) {
                      // let it happen, don't do anything
-                     return;
-            }
+                   return;
+                 }
             // Ensure that it is a number and stop the keypress
-              if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                    e.preventDefault();
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+              e.preventDefault();
             }
-        });
+          });
 
-        $(document).on('keypress', ".alphaOnly", function (e) {
-            if (e.which >= 48 && e.which <= 57 ) {
+       $(document).on('keypress', ".alphaOnly", function (e) {
+        if (e.which >= 48 && e.which <= 57 ) {
                 // $("#errmsg").html("Nama Belakang harus diisi hanya menggunakan huruf").show().fadeOut("slow");
                 return false;
-            }
+              }
+            });
+
+       $('.datepicker-date').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        autoclose: true,
+        endDate: new Date(),
+        todayHighlight: true
+      });
+
+        //init city select2
+        $(document).ready(function () {
+          var lastStatusElement = null;
+          $('.select2').select2({
+            witdh : '100%',
+            allowClear: true,
+          });
+
+          $('.cities').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+              url: '/cities',
+              dataType: 'json',
+              delay: 250,
+              data: function (params) {
+                return {
+                  name: params.term,
+                  page: params.page || 1
+                };
+              },
+              processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                  results: data.cities.data,
+                  pagination: {
+                    more: (params.page * data.cities.per_page) < data.cities.total
+                  }
+                };
+              },
+              cache: true
+            },
+          });
         });
 
-        $('.datepicker-date').datepicker({
-            format: "yyyy-mm-dd",
-            clearBtn: true,
-            autoclose: true,
-            endDate: new Date(),
-            todayHighlight: true
+        $('.cities').on('select2:select', function (e) {
+          var citi_id = e.params.data.id;
         });
-        </script>
-        @stack('scripts')
-        @include('internals.layouts.signout')
+
+      </script>
+      @stack('scripts')
+      @include('internals.layouts.signout')
     </body>
-</html>
+    </html>
