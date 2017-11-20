@@ -84,8 +84,8 @@
         form.find(".row")
             .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Title</label><input class='form-control' type='text' name='title' /></div></div>")
             .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Guest</label><input class='form-control' type='text' name='guest' readonly='' value='John Doe' /></div></div>")
-        // form.find(".row")
-        //     .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
+        form.find(".row")
+            .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
         $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').find('.form').empty().prepend(form);
         $this.$modal.find('.save-event').unbind('click').click(function () {
             form.submit();
@@ -104,6 +104,7 @@
         var form = $this.buildForm(calEvent, 'disabled');
         form.find("input[name='title']").val(calEvent.origin_title);
         form.find("input[name='guest']").val(calEvent.guest_name || '');
+        form.find("textarea[name='description']").html(calEvent.desc);
         initializeDatePicker($('.appointment_date'), calEvent.start.format('YYYY-MM-DD'));
         initializeMapPosition(calEvent);
         $this.$modal.find(".save-event").html("Update Jadwal").attr('type', 'submit');
@@ -113,7 +114,7 @@
           var ending = form.find("input[name='ending']").val();
           var categoryClass = form.find("select[name='category'] option:checked").val();
           var eForm = form.find('select[name="eform-id"]');
-          // var desc = form.find('textarea[name="description"]').val();
+          var desc = form.find('textarea[name="description"]').val();
           var eFormTexts = eForm.find('option:selected').text().split('</span>').map(function(text) {
             return text.replace('<span>', '').replace('<span class="none">', '');
           });
@@ -126,7 +127,7 @@
               // end: end,
               allDay: false,
               eform_id: eForm.val(),
-              // desc: desc,
+              desc: desc,
               ref_number: calEvent.ref_number || undefined,
               guest_id: calEvent.guest_id || undefined,
               guest_name: calEvent.guest_name || undefined,
@@ -147,7 +148,9 @@
                 calEvent.latitude = event.latitude;
                 calEvent.longitude = event.longitude;
                 calEvent.address = event.address;
+                calEvent.desc = event.desc;
                 $this.$calendarObj.fullCalendar('updateEvent', calEvent);
+                // $this.$calendarObj.fullCalendar('refetchEvents');
                 $this.$modal.modal('hide');
               })
               .catch(function(reason) {
@@ -190,8 +193,8 @@
             form.find(".row")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Title</label><input class='form-control' type='text' name='title' /></div></div>")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Guest</label><input class='form-control' type='text' name='guest' readonly='' value='' /></div></div>")
-            // form.find(".row")
-            //     .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
+            form.find(".row")
+                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
             $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').find('.form').empty().prepend(form);
             $this.$modal.find('.save-event').unbind('click').click(function () {
                 form.submit();
@@ -212,7 +215,7 @@
                 var ending = form.find("input[name='ending']").val();
                 var categoryClass = form.find("select[name='category'] option:checked").val();
                 var eForm = form.find('select[name="eform-id"]');
-                // var desc = form.find('textarea[name="description"]').val();
+                var desc = form.find('textarea[name="description"]').val();
                 var eFormTexts = eForm.find('option:selected').text().split('</span>').map(function(text) {
                   return text.replace('<span>', '').replace('<span class="none">', '');
                 });
@@ -223,7 +226,7 @@
                     end: end,
                     allDay: false,
                     eform_id: eForm.val(),
-                    // desc: desc,
+                    desc: desc,
                     ref_number: eFormTexts[0],
                     guest_id: eFormTexts[2],
                     guest_name: eFormTexts[1],
@@ -281,8 +284,9 @@
       toastr.options = {
           timeOut: 0,
           extendedTimeOut: 0,
+          progressBar: true
       };
-      toastr.info('Mengubah....');
+      toastr.info('<i class="fa fa-spinner fa-spin fa-fw"></i> Mengubah....');
       schedule.update(event)
         .then(function(response) {
           toastr.clear();
@@ -322,17 +326,26 @@
                 right: 'month,agendaWeek,agendaDay'
             },
             eventSources: [{
-              url: '/schedule/ao',
-              type: 'GET',
-              beforeSend: function() {
-                _schedule.loader(true);
-              },
-              error: function() {
-                toastr.error('Terjadi Kesalahan Ketika Mengambil Jadwal');
-                _schedule.loader(false);
-              },
-              success: function() {
-                _schedule.loader(false);
+              events: function (start, end, timezone, callback) {
+                $.ajax({
+                  url: '/schedule/ao',
+                  data: {
+                    start: start.add(1, 'months').format('YYYY-MM-DD'),
+                    end: start.add(1, 'months').format('YYYY-MM-DD')
+                  },
+                  type: 'GET',
+                  beforeSend: function(xhr, settings) {
+                    _schedule.loader(true);
+                  },
+                  error: function() {
+                    toastr.error('Terjadi Kesalahan Ketika Mengambil Jadwal');
+                    _schedule.loader(false);
+                  },
+                  success: function(response) {
+                    _schedule.loader(false);
+                    callback(response)
+                  }
+                })
               }
             }],
             editable: true,
