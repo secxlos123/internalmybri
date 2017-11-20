@@ -59,7 +59,8 @@ class ScheduleController extends Controller
 
           throw new \Exception("Error Processing Request", 400);
         } catch (\Exception $e) {
-          throw new \RuntimeException($e->getMessage());
+          info($e->getMessage());
+          throw new \RuntimeException;
         }
     }
 

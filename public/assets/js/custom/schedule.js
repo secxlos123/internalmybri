@@ -68,13 +68,14 @@ Schedule.prototype.store = function (event) {
         appointment_date: event.start.format('YYYY-MM-DD'),
         appointment_date_res: event.start.format('YYYY-MM-DD'),
         user_id: event.guest_id,
-        ao_id: 1,
+        ao_id: aoUserID,
         eform_id: event.eform_id,
         ref_number: event.ref_number,
         address: address.address,
         latitude: address.lat,
         longitude: address.long,
         guest_name: event.guest_name,
+        desc: event.desc,
         status: 'approved'
 
     };
@@ -108,6 +109,7 @@ Schedule.prototype.update = function (event, editMode) {
         address: address.address || event.address || undefined,
         latitude: address.lat || event.latitude || undefined,
         longitude: address.long || event.longitude || undefined,
+        desc: event.desc,
         guest_name: event.guest_name || undefined,
 
     };
