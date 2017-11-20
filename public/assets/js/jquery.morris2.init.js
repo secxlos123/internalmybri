@@ -32,7 +32,7 @@
             { y: 'November', a: 100 },
             { y: 'Desember', a: 100 }
         ];
-        this.createStackedChart('property-bar-stacked', $stckedData, 'y', ['a'], ['Customer Baru'], ['#00529C']);
+        this.createStackedChart('property-bar-stacked', $stckedData, 'y', ['a'], ['Property Baru'], ['#00529C']);
     },
     //init
     $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts
