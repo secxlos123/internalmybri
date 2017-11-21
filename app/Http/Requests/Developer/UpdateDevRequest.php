@@ -30,7 +30,7 @@ class UpdateDevRequest extends FormRequest
             "mobile_phone"      => "required|digits_between:9,13",
             "company_name"      => "required",
             "email"             => "required|email",
-            "phone"             => "required|digits_between:9,13",
+            // "phone"             => "required|digits_between:9,13",
             "summary"           => "required",
         ];
     }
@@ -51,8 +51,8 @@ class UpdateDevRequest extends FormRequest
             "mobile_phone.digits_between"    => "Nomor Handphone harus diisi 12 karakter",
             "company_name.required"          => "Nama Perusahaan harus diisi",
             "email.required"                 => "Email harus diisi",
-            "phone.required"                 => "Nomor Telepon harus diisi",
-            "phone.digits_between"           => "Nomor Telepon harus diisi 12 karakter",
+            // "phone.required"                 => "Nomor Telepon harus diisi",
+            // "phone.digits_between"           => "Nomor Telepon harus diisi 12 karakter",
             "summary"                        => "required",
         ];
     }

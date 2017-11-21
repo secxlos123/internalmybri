@@ -35,7 +35,7 @@ class ApprovalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getViewApprovalDeveloper()
+    public function getViewApprovalDeveloper($id)
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
@@ -61,7 +61,7 @@ class ApprovalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getViewApprovalThirdParty()
+    public function getViewApprovalThirdParty($id)
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
