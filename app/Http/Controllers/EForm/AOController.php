@@ -161,7 +161,7 @@ class AOController extends Controller
       }
 
       if ( in_array($baseName, $excludeImage) ) {
-        if ($values != "down_payment" || $values != "building_tax") {
+        if ($values != "") {
           $return = $this->reformatImage( $field, $values );
         } else {
           $return = null;
@@ -191,17 +191,27 @@ class AOController extends Controller
                   foreach ($value as $tablesIndex => $tables) {
                     foreach ($tables as $tableKey => $data) {
                       $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
-                      $application[] = $this->returnContent( $name, $data, $tableKey );
+
+                      $return = $this->returnContent( $name, $data, $tableKey );
+                      if ($return != null) {
+                        $application[] = $this->returnContent( $name, $data, $tableKey );
+                      }
                     }
                   }
                 } else {
-                  $application[] = $this->returnContent( $baseName, $value, $key );
+                  $return = $this->returnContent( $baseName, $value, $key );
+                  if ($return != null) {
+                    $application[] = $this->returnContent( $baseName, $value, $key );
+                  }
                 }
               }
             }
 
           } else {
-            $application[] = $this->returnContent( $field, $values, $field );
+            $return = $this->returnContent( $field, $values, $field );
+            if ($return != null) {
+              $application[] = $this->returnContent( $field, $values, $field );
+            }
           }
         }
         return $application;
