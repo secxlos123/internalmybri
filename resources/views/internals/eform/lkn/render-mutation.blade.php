@@ -115,7 +115,7 @@ $('#add_account').click(function(){
       $('.currency-rp').inputmask({ alias : "rupiah" });
   });
 
-$('#mutations').on('click', '.delete-account', function () {
+  $('#mutations').on('click', '.delete-account', function () {
       $(this).closest('div.panel-body').remove();
   })
 
