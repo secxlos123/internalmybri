@@ -32,7 +32,7 @@ class DevRequest extends FormRequest
             "summary"           => "required",
             "company_name"      => "required",
             "email"             => "required|email",
-            "phone"             => "required|digits_between:1,12",
+            // "phone"             => "digits_between:1,12",
         ];
     }
 
@@ -57,8 +57,8 @@ class DevRequest extends FormRequest
             "summary.required"               => "Ringkasan harus diisi",
             "company_name.required"          => "Nama Perusahaan harus diisi",
             "email.required"                 => "Email harus diisi",
-            "phone.required"                 => "Nomor Telepon harus diisi",
-            "phone.digits_between"           => "Nomor Telepon harus diisi 12 karakter",
+            // "phone.required"                 => "Nomor Telepon harus diisi",
+            // "phone.digits_between"           => "Nomor Telepon harus diisi 12 karakter",
         ];
     }
 }
