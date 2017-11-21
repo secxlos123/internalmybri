@@ -315,42 +315,28 @@ class EFormController extends Controller
         }
     }
 
-    // /**
-    //  * Get prescreening data.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function getPrescreening(Request $request, $id)
-    // {
-    //     $data = $this->getUser();
+    /**
+     * Get prescreening data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getPrescreening(Request $request)
+    {
+        $data = $this->getUser();
 
-    //     $client = Client::setEndpoint('eforms/prescreening')
-    //         ->setHeaders([
-    //             'Authorization' => $data['token'],
-    //             'pn' => $data['pn']
-    //         ])
-    //         ->setBody([
-    //             'id' => $id
-    //         ])
-    //         ->post();
+        $client = Client::setEndpoint('eforms/prescreening')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setBody([
+                'eform' => $request->input('eform')
+            ])
+            ->post();
 
-    //     // if ( ($customerData['code']) == 200 ){
-    //     //     $view = (String)view('internals.eform.detail-customer')
-    //     //         ->with('dataCustomer', $dataCustomer)
-    //     //         ->render();
-
-    //     //     return response()->json(['view' => $view]);
-    //     // } else {
-    //     //     $view = (String)view('internals.eform.error')
-    //     //         ->with('dataCustomer', $dataCustomer)
-    //     //         ->render();
-
-    //     //     return response()->json(['view' => $view]);
-    //     //     // return view('internals.eform.detail-customer')
-    //     //     //     ->with('dataCustomer', $dataCustomer);
-    //     // }
-    // }
+        return response()->json(['response' => $client]);
+    }
 
      /**
      * Store a newly created resource in storage.
