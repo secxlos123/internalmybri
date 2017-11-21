@@ -161,7 +161,11 @@ class AOController extends Controller
       }
 
       if ( in_array($baseName, $excludeImage) ) {
-        $return = $this->reformatImage( $field, $values );
+        if ($values != "down_payment" || $values != "building_tax") {
+          $return = $this->reformatImage( $field, $values );
+        } else {
+          $return = null;
+        }
       } else {
         $return = $this->reformatContent( $field, $values );
       }
