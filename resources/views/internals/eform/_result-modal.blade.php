@@ -18,19 +18,19 @@
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> NIK Calon Peminjam</label> 
+                                    <label class="col-md-6 control-label"> NIK Calon Peminjam</label>
                                     <div class="col-md-6">
-                                        <p class="form-control-static">8179718616116</p>
+                                        <p class="form-control-static" id="prescreening-nik">8179718616116</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Nama Calon Peminjam</label> 
+                                    <label class="col-md-6 control-label"> Nama Calon Peminjam</label>
                                     <div class="col-md-6">
-                                        <p class="form-control-static">John Doe</p>
+                                        <p class="form-control-static" id="prescreening-name">John Doe</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Dokumen Pefindo</label> 
+                                    <label class="col-md-6 control-label"> Dokumen Pefindo</label>
                                     <div class="col-md-6">
                                         <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive">
                                     </div>
@@ -40,48 +40,48 @@
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Hasil Prescreening</label> 
+                                    <label class="col-md-6 control-label"> Hasil Prescreening</label>
                                     <div class="col-md-6">
-                                        <p class="form-control-static">Hijau</p>
+                                        <p class="form-control-static" id="prescreening-result">Hijau</p>
                                         {{-- salah satunya hijau jdi hijau, salah satu merah jdi merah, sisanya kuning --}}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Score Pefindo</label> 
+                                    <label class="col-md-6 control-label"> Score Pefindo</label>
                                     <div class="col-md-6">
-                                        <p class="form-control-static">100</p>
+                                        <p class="form-control-static" id="prescreening-score">100</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Keterangan Terkait Risiko</label> 
+                                    <label class="col-md-6 control-label"> Keterangan Terkait Risiko</label>
                                     <div class="col-md-6">
-                                        <p class="form-control-static">isinya dari sana</p>
+                                        <p class="form-control-static" id="prescreening-notice">isinya dari sana</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <!--
                 <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil Pre-Scoring</h4>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Score</label> 
+                                    <label class="col-md-6 control-label"> Score</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">100</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Rating </label> 
+                                    <label class="col-md-6 control-label"> Rating </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">4</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Risiko </label> 
+                                    <label class="col-md-6 control-label"> Risiko </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">1</p>
                                     </div>
@@ -100,19 +100,19 @@
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Score</label> 
+                                    <label class="col-md-6 control-label"> Score</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">50</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Rating </label> 
+                                    <label class="col-md-6 control-label"> Rating </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">1</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-6 control-label"> Risiko </label> 
+                                    <label class="col-md-6 control-label"> Risiko </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">1</p>
                                     </div>
@@ -120,14 +120,15 @@
                                 <div class="form-group">
                                     <label class="col-md-12"> Permohonan masuk dalam kategori risiko [risiko scoring] sehingga permohonan kredit Saudara berpotensi untuk mendapat putusan tolak atau perubahan plafond. Pastikan terdapat pertimbangan khusus terkait kemampuan dan kualitas calon debitur.</label>
                                 </div>
-                                <!-- <div class="text-center">
+                                <div class="text-center">
                                     <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20">Ya</a>
                                     <a href="javascript:void(0);" class="btn btn-default waves-light waves-effect w-md m-b-20">Tidak</a>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                 -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tutup</button>

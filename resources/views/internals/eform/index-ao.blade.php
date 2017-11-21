@@ -176,6 +176,14 @@
 
         }).done(function(data){
             console.log(data);
+            // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
+
+            $("#prescreening-nik").html(data.response.contents.eform.nik);
+            $("#prescreening-name").html(data.response.contents.eform.customer_name);
+            $("#prescreening-result").html(data.response.contents.eform.prescreening_status);
+            $("#prescreening-score").html(0);
+            $("#prescreening-notice").html('-');
+
             // $('#detail').html(data['view']);
             $('#result-modal').modal('show');
 
