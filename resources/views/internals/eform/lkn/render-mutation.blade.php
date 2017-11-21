@@ -11,10 +11,21 @@ $('#add_account').click(function(){
                             +'<div class="col-md-6">'
                                 +'<select class="form-control bank" name="mutations['+index+'][bank]">'
                                    +' <option selected="" disabled="">-- Pilih Bank --</option>'
-                                   +' <option value="bni">BNI</option>'
-                                   +' <option value="mandiri">Mandiri</option>'
-                                   +' <option value="bca">BCA</option>'
+                                    +' <option value="bri">BRI</option>'
+                                    +' <option value="bni">BNI</option>'
+                                    +' <option value="bri">BRI</option>'
+                                    +' <option value="bni">BNI</option>'
+                                    +' <option value="mandiri">Mandiri</option>'
+                                    +' <option value="bca">BCA</option>'
+                                    +' <option value="btn">BTN</option>'
+                                    +' <option value="panin">Panin</option>'
+                                    +' <option value="permata">Permata</option>'
+                                    +' <option value="bii">BII</option>'
+                                    +' <option value="danamon">Danamon</option>'
+                                    +' <option value="cimb">CIMB</option>'
+                                    +' <option value="other">Lainya</option>'
                                +' </select>'
+
                             +'</div>'
                         +'</div>'
                     +'</div>'
@@ -104,7 +115,7 @@ $('#add_account').click(function(){
       $('.currency-rp').inputmask({ alias : "rupiah" });
   });
 
-$('#mutations').on('click', '.delete-account', function () {
+  $('#mutations').on('click', '.delete-account', function () {
       $(this).closest('div.panel-body').remove();
   })
 

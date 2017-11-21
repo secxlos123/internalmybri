@@ -73,7 +73,7 @@
               <a href="javascript:void(0)" class="form-control btn btn-info" title="Tambah Row">Tambah Transaksi</a>
             </p>
         </div>
-    </div> 
+    </div>
     <div class="panel-body">
     </div>
     <div class="mutation_form" id="render_form">

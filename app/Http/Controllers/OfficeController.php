@@ -32,7 +32,7 @@ class OfficeController extends Controller
                 'long' => $request->input('long'),
                 'lat' => $request->input('lat'),
                 'page' => $request->input('page'),
-                // 'name' => $request->input('name'),
+                'name' => $request->input('name'),
             ])->get();
             // dd(json_encode($offices));
 
