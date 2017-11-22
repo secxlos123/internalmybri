@@ -144,6 +144,13 @@
 
         /* Collateral Staff*/
         Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
+
+        /* Scoring*/
+        Route::resource('scoring', 'Screening\ScoringController');
+
+        /* Screening*/
+        Route::resource('screening', 'Screening\ScreeningController');
+        Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
@@ -228,5 +235,10 @@
         /* Collateral */
         Route::get('collateral', 'Collateral\CollateralController@datatables');
 
+        /* Staff Collateral */
         Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
+
+        /* Screening*/
+        Route::get('screening', 'Screening\ScreeningController@datatables');
+        Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
     });

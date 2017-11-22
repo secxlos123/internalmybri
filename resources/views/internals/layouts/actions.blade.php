@@ -68,7 +68,16 @@
 
 @if (isset($prescreening_status))
 	<a href="javascript:void(0);" id="btn-prescreening">
-		<p class="text-success">{{$prescreening_result}}</p>
+		@if( $prescreening_result == 'Hijau' )
+			<p class="text-success">{{ $prescreening_result }}</p>
+
+		@elseif( $prescreening_result == 'Kuning' )
+			<p class="text-warning">{{ $prescreening_result }}</p>
+
+		@elseif( $prescreening_result == 'Merah' )
+			<p class="text-danger">{{ $prescreening_result }}</p>
+
+		@endif
 	</a>
 @endif
 
@@ -106,6 +115,12 @@
 
 @if ((isset($detail)))
 	<a href="{!! $detail !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-info" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if ( ( isset($prescreening) ) )
+	<a href="{!! $prescreening !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Prescreening">
 	    <i class="fa fa-info" aria-hidden="true"></i>
 	</a>
 @endif
