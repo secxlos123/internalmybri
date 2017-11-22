@@ -104,6 +104,7 @@
                                                 <th>Tanggal Pengajuan</th>
                                                 <th>No. HP</th>
                                                 <th>Status Prescreening</th>
+                                                <th>id</th>
                                                 <th>Status</th>
                                                 <th>Aging (hari)</th>
                                                 <th>Status Data Nasabah</th>
@@ -159,29 +160,38 @@
 
 
     //show modal CRS
-    $(document).on('click', '#btn-prescreening', function(){
-       $('#result-modal').modal('show');
-    })
+    $(document).on('click', "#btn-prescreening", function(){
+        eformId = $(this).parent().next().html();
 
-    // $(document).on('click', "#btn-prescreening", function(){
-    //     console.log('click');
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("getPrescreening") }}',
+            data: {
+                eform : eformId
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
 
-    //     $.ajax({
-    //         dataType: 'json',
-    //         type: 'GET',
-    //         url: '{{ route("detailCustomer") }}',
-    //         data: { nik : nik }
+        }).done(function(data){
+            console.log(data);
+            // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
 
-    //     }).done(function(data){
-    //         // console.log(data);
-    //         $('#detail').html(data['view']);
-    //         $('#result-modal').modal('show');
+            $("#prescreening-nik").html(data.response.contents.eform.nik);
+            $("#prescreening-name").html(data.response.contents.eform.customer_name);
+            $("#prescreening-result").html(data.response.contents.eform.prescreening_status);
+            $("#prescreening-score").html(0);
+            $("#prescreening-notice").html('-');
 
-    //     }).fail(function(errors) {
-    //         // toastr.error('Data tidak ditemukan')
+            // $('#detail').html(data['view']);
+            $('#result-modal').modal('show');
 
-    //     });
-    // });
+        }).fail(function(errors) {
+            alert("Ada masalah!");
+
+        });
+    });
 
     function reloadData1(from, to, status)
       {
@@ -220,6 +230,7 @@
                 {   data: 'created_at', name: 'created_at' },
                 {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
                 {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
                 {   data: 'status', name: 'created_at', bSortable: false },
                 {   data: 'aging', name: 'aging' },
                 {   data: 'response_status'

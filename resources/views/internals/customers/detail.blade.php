@@ -284,13 +284,13 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-6 control-label">Gaji/Pendapatan :</label>
                                                                     <div class="col-md-6">
-                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['salary'])){{$dataCustomer['financial']['salary']}}@else - @endif</p>
+                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['salary']))Rp{{number_format($dataCustomer['financial']['salary'],2,',','.')}}@else - @endif</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-6 control-label">Pendapatan Lain :</label>
                                                                     <div class="col-md-6">
-                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['other_salary'])){{$dataCustomer['financial']['other_salary']}}@else - @endif</p>
+                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['other_salary']))Rp{{number_format($dataCustomer['financial']['other_salary'],2,',','.')}}@else - @endif</p>
                                                                     </div>
                                                                 </div>
 
@@ -303,7 +303,7 @@
                                                                     <label class="col-md-6 control-label">Angsuran Permohonan :</label>
                                                                     <div class="col-md-6">
                                                                         <p class="form-control-static">
-                                                                            @if(!empty($dataCustomer['financial']['loan_installment'])){{$dataCustomer['financial']['loan_installment']}}@else - @endif
+                                                                            @if(!empty($dataCustomer['financial']['loan_installment']))Rp{{number_format($dataCustomer['financial']['loan_installment'],2,',','.')}}@else - @endif
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -330,13 +330,13 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-6 control-label">Gaji/Pendapatan :</label>
                                                                     <div class="col-md-6">
-                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['salary_couple'])){{$dataCustomer['financial']['salary_couple']}}@else - @endif</p>
+                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['salary_couple']))Rp{{number_format($dataCustomer['financial']['salary_couple'],2,',','.')}}@else - @endif</p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-6 control-label">Pendapatan Lain :</label>
                                                                     <div class="col-md-6">
-                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['other_salary_couple'])){{$dataCustomer['financial']['other_salary_couple']}}@else - @endif</p>
+                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['other_salary_couple']))Rp{{number_format($dataCustomer['financial']['other_salary_couple'],2,',','.')}}@else - @endif</p>
                                                                     </div>
                                                                 </div>
 
@@ -348,7 +348,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-6 control-label">Angsuran Permohonan :</label>
                                                                     <div class="col-md-6">
-                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['loan_installment_couple'])){{$dataCustomer['financial']['loan_installment_couple']}}@else - @endif
+                                                                        <p class="form-control-static">@if(!empty($dataCustomer['financial']['loan_installment_couple']))Rp{{number_format($dataCustomer['financial']['loan_installment_couple'],2,',','.')}}@else - @endif
                                                                         </p>
                                                                     </div>
                                                                 </div>

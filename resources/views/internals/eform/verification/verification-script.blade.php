@@ -1,6 +1,3 @@
-<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
-
 <script type="text/javascript">
     $('.select2').select2({
         maximumInputLength : 16,
@@ -41,6 +38,279 @@
         }else{
             hideCouple();
         }
+
+        $('#status').on('change', function() {
+            if(this.value == 2){
+                $('#marrital_certificate').show();
+                $('#couple_data').show();
+                $('#join_income').show();
+            }else if(this.value == 3){
+                $('#separate_certificate').show();
+                $('#couple_data').hide();
+                $('#join_income').hide();
+            }else{
+                hideCouple();
+            }
+        })
+
+        $('.datepicker-date').datepicker({
+            format: "yyyy-mm-dd",
+            clearBtn: true,
+            autoclose: true,
+            endDate: new Date(),
+            todayHighlight: true
+        });
+
+        $('.cities').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.cities').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_city').val(text);
+        });
+
+        $('.birth_place').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/birth_place',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('#birth_place').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_birth_place').val(text);
+        });
+
+        $('#couple_birth_place').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_couple_birth_place').val(text);
+        });
+
+        $('.gender').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_gender').val(text);
+        });
+
+        $('#status').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_status').val(text);
+        });
+
+        $('.address_status').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_address_status').val(text);
+        });
+
+        $('.work').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/jobs',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.jobs.data,
+                        pagination: {
+                            more: (params.page * data.jobs.per_page) < data.jobs.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.work').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_job').val(text);
+        });
+
+        $('.work_type').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/job_types',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.job_types.data,
+                        pagination: {
+                            more: (params.page * data.job_types.per_page) < data.job_types.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.work_type').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_job_type').val(text);
+        });
+
+        $('.work_field').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/job_fields',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.job_fields.data,
+                        pagination: {
+                            more: (params.page * data.job_fields.per_page) < data.job_fields.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.work_field').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_job_field').val(text);
+        });
+
+        $('.positions').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/positions',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.positions.data,
+                        pagination: {
+                            more: (params.page * data.positions.per_page) < data.positions.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.positions').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_position').val(text);
+        });
+
+        $('.citizenship').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/dropdown/citizenship',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.citizenship.data,
+                        pagination: {
+                            more: (params.page * data.citizenship.per_page) < data.citizenship.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.citizenship').on('change', function () {
+            var text = $(this).find("option:selected").text();
+            $('#new_citizenship').val(text);
+        });
+
+        $("#couple_identity").change(function(){
+            readURLCouple(this);
+        });
+
+        $("#identity").change(function(){
+            readURL(this);
+        });
     });
 
     function hideCouple(){
@@ -51,271 +321,6 @@
 
     }
     hideCouple();
-
-    $('#status').on('change', function() {
-        if(this.value == 2){
-            $('#marrital_certificate').show();
-            $('#couple_data').show();
-            $('#join_income').show();
-        }else if(this.value == 3){
-            $('#separate_certificate').show();
-            $('#couple_data').hide();
-            $('#join_income').hide();
-        }else{
-            hideCouple();
-        }
-    })
-
-    $('.datepicker-date').datepicker({
-        format: "yyyy-mm-dd",
-        clearBtn: true,
-        autoclose: true,
-        endDate: new Date(),
-        todayHighlight: true
-    });
-
-    $('.cities').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/cities',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    name: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.cities.data,
-                    pagination: {
-                        more: (params.page * data.cities.per_page) < data.cities.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-    $('.cities').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_city').val(text);
-    });
-
-    $('.birth_place').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/dropdown/birth_place',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    name: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.cities.data,
-                    pagination: {
-                        more: (params.page * data.cities.per_page) < data.cities.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-
-    $('#birth_place').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_birth_place').val(text);
-    });
-
-    $('#couple_birth_place').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_couple_birth_place').val(text);
-    });
-
-    $('.gender').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_gender').val(text);
-    });
-
-    $('#status').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_status').val(text);
-    });
-
-    $('.address_status').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_address_status').val(text);
-    });
-
-    $('.work').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/dropdown/jobs',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    search: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.jobs.data,
-                    pagination: {
-                        more: (params.page * data.jobs.per_page) < data.jobs.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-
-    $('.work').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_job').val(text);
-    });
-
-    $('.work_type').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/dropdown/job_types',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    search: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.job_types.data,
-                    pagination: {
-                        more: (params.page * data.job_types.per_page) < data.job_types.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-
-    $('.work_type').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_job_type').val(text);
-    });
-
-    $('.work_field').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/dropdown/job_fields',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    search: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.job_fields.data,
-                    pagination: {
-                        more: (params.page * data.job_fields.per_page) < data.job_fields.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-
-    $('.work_field').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_job_field').val(text);
-    });
-
-    $('.positions').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/dropdown/positions',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    search: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.positions.data,
-                    pagination: {
-                        more: (params.page * data.positions.per_page) < data.positions.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-
-    $('.positions').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_position').val(text);
-    });
-
-    $('.citizenship').select2({
-        witdh : '100%',
-        allowClear: true,
-        ajax: {
-            url: '/dropdown/citizenship',
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                    search: params.term,
-                    page: params.page || 1
-                };
-            },
-            processResults: function (data, params) {
-                params.page = params.page || 1;
-
-                return {
-                    results: data.citizenship.data,
-                    pagination: {
-                        more: (params.page * data.citizenship.per_page) < data.citizenship.total
-                    }
-                };
-            },
-            cache: true
-        },
-    });
-
-    $('.citizenship').on('change', function () {
-        var text = $(this).find("option:selected").text();
-        $('#new_citizenship').val(text);
-    });
 
     function readURLCouple(input) {
         if (input.files && input.files[0]) {
@@ -340,14 +345,6 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-
-    $("#couple_identity").change(function(){
-        readURLCouple(this);
-    });
-
-    $("#identity").change(function(){
-        readURL(this);
-    });
 
     function initVerifyData(field, target) {
         if (target == "cif") {
@@ -460,3 +457,6 @@
         return false;
     });
 </script>
+
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
