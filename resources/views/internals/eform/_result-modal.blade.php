@@ -32,7 +32,8 @@
                                 <div class="form-group">
                                     <label class="col-md-6 control-label"> Dokumen Pefindo</label>
                                     <div class="col-md-6">
-                                        <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive">
+                                        <p class="form-control-static">-</p>
+                                        <!-- <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive"> -->
                                     </div>
                                 </div>
                             </div>

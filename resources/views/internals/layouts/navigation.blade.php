@@ -16,14 +16,17 @@
                                 <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
                             </li> -->
                             @endif
-                            
+
                             <li>
                             @if(($data['role']=='ao') || ($data['role']=='other'))
-                            <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+                                <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+
                             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
-                            <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Rekomendasi & Disposisi </span> </a>
+                                <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Rekomendasi & Disposisi </span> </a>
+
                             @endif
                             </li>
+
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
                             <li>
                                 <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
@@ -64,6 +67,12 @@
                             <li>
                                 <a href="{{route('roles.index')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>
                             </li> -->
+                            @if(($data['role']=='prescreening'))
+                                <li>
+                                    <a href="{{ route('screening.index') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Screening </span> </a>
+
+                                </li>
+                            @endif
                             <hr>
                             <li>
                                 <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Keluar </span> </a>
