@@ -238,6 +238,8 @@
             var text = $(this).find("option:selected").text();
 
             $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
             $("select[name='active_kpr']").val("").trigger("change");
             $("input[name='price']").val("");
             $("input[name='building_area']").val("");
