@@ -7,10 +7,10 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Gaji/Penghasilan :</label>
                 <div class="col-md-7">
-                    @if (!$detail['visit_report']['income_salary'] >= 0)
-                        <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income'], 2, ",", ".") }}</p>
+                    @if ($detail['visit_report']['source'] == 'fixed')
+                        <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income_salary'], 2, ",", ".") }}</p>
                     @else
-                    <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income_salary'], 2, ",", ".") }}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income'], 2, ",", ".") }}</p>
                     @endif
                 </div>
             </div>
