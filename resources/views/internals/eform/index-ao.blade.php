@@ -163,6 +163,8 @@
     $(document).on('click', "#btn-prescreening", function(){
         eformId = $(this).parent().next().html();
 
+        HoldOn.open();
+
         $.ajax({
             dataType: 'json',
             type: 'POST',
@@ -176,11 +178,21 @@
 
         }).done(function(data){
             console.log(data);
+            // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
+
+            $("#prescreening-nik").html(data.response.contents.eform.nik);
+            $("#prescreening-name").html(data.response.contents.eform.customer_name);
+            $("#prescreening-result").html(data.response.contents.eform.prescreening_status);
+            $("#prescreening-score").html(data.response.contents.eform.pefindo_score);
+            $("#prescreening-notice").html(data.response.contents.eform.ket_risk);
+
             // $('#detail').html(data['view']);
             $('#result-modal').modal('show');
+            HoldOn.close();
 
         }).fail(function(errors) {
-            alert("Ada masalah!");
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
 
         });
     });

@@ -59,6 +59,12 @@
                             <li>
                                 <a href="{{route('roles.index')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>
                             </li> -->
+                            @if(($data['role']=='prescreening'))
+                                <li>
+                                    <a href="{{ route('screening.index') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Screening </span> </a>
+
+                                </li>
+                            @endif
                             <hr>
                             <li>
                                 <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Log Out </span> </a>
