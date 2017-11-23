@@ -12,32 +12,34 @@
                             <th>Luas Bangunan (m<sup>2</sup>)</th>
                             <th>Luas Tanah (m<sup>2</sup>)</th>
                             <th>Sertifikat</th>
-                            <th>Stok</th>
+                            <!-- <th>Stok</th> -->
                             <th>Foto</th>
                         </tr>
                     </thead>
+                    @foreach($collateral['property']['propertyTypes'] as $propType)
                     <tbody>
                         <tr>
                             <td>
-                                <p class="form-control-static">21 Lux</p>
+                                <p class="form-control-static">{{$propType['name']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">11</p>
+                                <p class="form-control-static">{{$propType['building_area']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">120</p>
+                                <p class="form-control-static">{{$propType['surface_area']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">SHM</p>
+                                <p class="form-control-static">{{$propType['certificate']}}</p>
                             </td>
+                           <!--  <td>
+                                <p class="form-control-static">{{$propType['name']}}</p>
+                            </td> -->
                             <td>
-                                <p class="form-control-static">1</p>
-                            </td>
-                            <td>
-                                <img id="preview" src="{{asset('assets/images/logo_dummy.png')}}" width="200">
+                                <img id="preview" @if(!empty($propType['photos'])) src="{{$propType['photos']['name']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                             </td>
                         </tr>
                     </tbody>
+                    @endforeach
                 </table>
                 <div class="col-md-6">
                     <div class="form-group ">

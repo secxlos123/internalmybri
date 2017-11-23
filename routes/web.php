@@ -96,7 +96,10 @@
 
         Route::get('downloadTracking', ['as'=>'downloadTracking', 'uses'=>'Tracking\TrackingController@downloadTracking']);
 
+        Route::get('collateral/detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);
+
         Route::get('collateral/assignment/{id}', ['as'=>'getAssignment', 'uses'=>'Collateral\CollateralController@assignment']);
+
         Route::get('collateral/approval-collateral/{id}', ['as'=>'getApprovalCollateral', 'uses'=>'Collateral\CollateralController@approval']);
 
         Route::get('staff-collateral/scoring-form/{id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);

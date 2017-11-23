@@ -9,32 +9,32 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Nama Proyek :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">ELWYN GOTTLIEB</p>
+                            <p class="form-control-static">{{$collateral['property']['name']}}</p>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="col-md-5 control-label">Kota :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Bandung</p>
+                            <p class="form-control-static">{{$collateral['property']['city']['name']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Kategori :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rukan</p>
+                            <p class="form-control-static">{{$collateral['property']['category']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Foto :</label>
                         <div class="col-md-7">
-                            <img id="preview" src="{{asset('assets/images/logo_dummy.png')}}" width="300">
+                            <img id="preview" @if(!empty($collateral['property']['photos'])) src="{{$collateral['property']['photos']['name']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="300">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Deskripsi Properti :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Architecto dolorem ut voluptas vitae numquam. Ipsum sequi delectus tempora sit. Nulla dolorum quisquam recusandae eligendi.</p>
+                            <p class="form-control-static">{{$collateral['property']['description']}}</p>
                         </div>
                     </div>
                 </form>
@@ -44,32 +44,32 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Nama PIC Proyek :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Reece Morar</p>
+                            <p class="form-control-static">{{$collateral['property']['pic_name']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Alamat Proyek :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">224 Conn Springs West Donnashire, MS 16200-7219</p>
+                            <p class="form-control-static">{{$collateral['property']['address']}}</p>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="col-md-5 control-label">Nomor PKS :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">871871811</p>
+                            <p class="form-control-static"> @if(!empty($collateral['property']['pks_number'])){{$collateral['property']['pks_number']}}@else - @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">No. HP PIC Project :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">08191777171</p>
+                            <p class="form-control-static">{{$collateral['property']['pic_phone']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Fasilitas :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Kamar Tidur, Kamar Mandi</p>
+                            <p class="form-control-static">{{$collateral['property']['facilities']}}</p>
                         </div>
                     </div>
                 </form>

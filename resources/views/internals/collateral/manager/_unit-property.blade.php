@@ -16,28 +16,30 @@
                             <th>Foto</th>
                         </tr>
                     </thead>
+                    @foreach($collateral['property']['propertyItems'] as $propItem)
                     <tbody>
                         <tr>
                             <td>
-                                <p class="form-control-static">21 Lux</p>
+                                <p class="form-control-static">{{$propItem['property_type_id']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">Jln. Asia Afrika</p>
+                                <p class="form-control-static">{{$propItem['address']}}a</p>
                             </td>
                             <td>
-                                <p class="form-control-static">Rp. 154.215.245</p>
+                                <p class="form-control-static">Rp{{$propItem['price']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">Avaliable</p>
+                                <p class="form-control-static">{{$propItem['is_available']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">Baru</p>
+                                <p class="form-control-static">{{$propItem['status']}}</p>
                             </td>
                             <td>
-                                <img id="preview" src="{{asset('assets/images/logo_dummy.png')}}" width="200">
+                                <img id="preview" @if(!empty($propItem['photos'])) src="{{$propItem['photos']['name']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                             </td>
                         </tr>
                     </tbody>
+                    @endforeach
                 </table>
                 <div class="col-md-6">
                     <div class="form-group ">

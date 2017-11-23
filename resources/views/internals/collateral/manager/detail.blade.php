@@ -36,7 +36,7 @@
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Detail Informasi Approval Collateral Appraisal</b></h5>
                                 <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : 
+                                    No. Contact Agen / Sales : {{$collateral['property']['pic_phone']}}
                                 </p>
                                 @if (\Session::has('error'))
                                  <div class="alert alert-danger">{{ \Session::get('error') }}</div>
@@ -52,7 +52,7 @@
                                 @include('internals.collateral.manager._unit-property')                            
 
                                 <!-- informasi penilaian -->
-                                @include('internals.collateral.manager._collateral-detail')
+                                <!-- @include('internals.collateral.manager._collateral-detail') -->
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
