@@ -44,6 +44,37 @@ class CollateralController extends Controller
     }
 
     /**
+     * Get detail of collateral.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDetail()
+    {
+        $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->get();
+
+        return $detailCollateral['contents'];
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function detail($dev_id, $prop_id)
+    {
+        $data = $this->getUser();
+        $collateral = $this->getDetail();
+        // dd($collateral);
+        return view('internals.collateral.manager.detail', compact('data', 'collateral'));
+    }
+    
+    /**
      * Display a form of assignment to staff appraisal.
      *
      * @return \Illuminate\Http\Response
@@ -51,15 +82,10 @@ class CollateralController extends Controller
     public function assignment($id)
     {
         $data = $this->getUser();
-        $detailCollateral = Client::setEndpoint('collateral/'.$id)
-                        ->setHeaders([
-                            'Authorization' => $data['token'],
-                            'pn' => $data['pn']
-                        ])->get();
-        $dataCollateral = $detailCollateral['contents'][0];
+        $collateral = $this->getDetail();
         // echo json_encode($detailCollateral['contents']);die();
 
-        return view('internals.collateral.manager.assignment-collateral', compact('data', 'dataCollateral'));
+        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral'));
     }
 
     /**
@@ -90,36 +116,24 @@ class CollateralController extends Controller
                     'search'    => $request->input('search.value'),
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'page'      => (int) $request->input('page') + 1,
-                    // 'start_date'=> $request->input('start_date'),
-                    // 'end_date'  => $request->input('end_date'),
                     // 'status'    => $request->input('status'),
                     // 'branch_id' => $data['branch']
                 ])->get();
 
             // dd($collateral);
         foreach ($collateral['contents']['data'] as $key => $form) {
-            $form['prop_name'] = strtoupper($form['prop_name']);
-            // $form['customer_name'] = strtoupper($form['customer_name']);
-            // $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            // // $form['product_type'] = strtoupper($form['product_type']);
-            // $form['branch_id'] = $form['branch_id'];
-            // $form['ao'] = $form['ao_name'];
-        
-            // $verify = $form['customer']['is_verified'];
-            // $visit = $form['is_visited'];
+            $form['prop_name'] = strtoupper($form['property']['name']);
+            $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
+            $form['prop_pic_name'] = strtoupper($form['property']['pic_name']);
+            $form['prop_pic_phone'] = strtoupper($form['property']['pic_phone']);
+            $form['staff_name'] = strtoupper($form['property']['staff_name']);
+            $form['prop_types'] = count($form['property']['propertyTypes']);
+            $form['prop_items'] = count($form['property']['propertyItems']);
 
             $form['action'] = view('internals.layouts.actions', [
-
-                // 'dispose' => $form['ao_name'],
-                // 'submited' => $form['is_approved'],
-                // 'dispotition' => $form,
-                // // 'screening' => route('eform.show', $form['id']),
-                // 'approve' => $form,
-                // // 'verified' => $verify,
-                // 'visited' => $visit,
-                'detail' => route('collateral.show', $form['prop_id']),
-                'dispose_collateral' => route('getAssignment', $form['prop_id']),
-                'approval_collateral' => route('getApproval', $form['prop_id']),
+                'detail' => url('collateral/detail/'.$form['developer']['id'].'/'.$form['property']['id']),
+                'dispose_collateral' => route('getAssignment', $form['property']['id']),
+                'approval_collateral' => route('getApproval', $form['property']['id']),
             ])->render();
             $collateral['contents']['data'][$key] = $form;
         }
@@ -153,17 +167,6 @@ class CollateralController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $data = $this->getUser();
-        return view('internals.collateral.manager.detail', compact('data'));
-    }
 
     /**
      * Show the form for editing the specified resource.
