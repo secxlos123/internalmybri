@@ -393,7 +393,10 @@ class EFormController extends Controller
                     'start_date'=> $request->input('start_date'),
                     'end_date'  => $request->input('end_date'),
                     'status'    => $request->input('status'),
-                    'branch_id' => $data['branch']
+                    'branch_id' => $data['branch'],
+                    'ref_number' => $request->input('ref_number'),
+                    'customer_name' => $request->input('customer_name'),
+                    'prescreening' => $request->input('prescreening')
                 ])->get();
 
             // dd($eforms);

@@ -79,7 +79,7 @@
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Prescreening :</label>
                                                             <div class="col-sm-8">
-                                                                <select class="form-control">
+                                                                <select id="prescreening_filter" class="form-control">
                                                                     <option selected="" value="All"> Semua</option>
                                                                     <option value="1" class="text-success">Hijau</option>
                                                                     <option value="2" class="text-warning">Kuning</option>
@@ -224,6 +224,7 @@
                     d.status = $('#status').val();
                     d.ref_number = $('#ref_number').val();
                     d.customer_name = $('#customer_name').val();
+                    d.prescreening = $('#prescreening_filter').val();
                 }
             },
           aoColumns : [
