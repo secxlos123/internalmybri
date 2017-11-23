@@ -50,7 +50,6 @@
 
                                 <!-- unit -->
                                 @include('internals.collateral.manager._unit-property')                            
-
                                 <!-- informasi penilaian -->
                                 @include('internals.collateral.manager._collateral-detail')
 

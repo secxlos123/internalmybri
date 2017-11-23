@@ -1,4 +1,4 @@
-<script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script>
+<!-- <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script> -->
 <!-- <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->
 <script type="text/javascript">
   function initialize() {
@@ -66,4 +66,29 @@
    document.getElementById('lng').value = lng;
  }
  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script type="text/javascript">
+    $form_container = $('#form-lkn');
+
+    $form_container.children("div").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        onStepChanging: function (event, currentIndex, newIndex) {
+            return currentIndex > newIndex ? true : $form_container.valid();
+        },
+        onStepChanged: function (event, currentIndex, priorIndex) {
+            // reinit gmaps
+            google.maps.event.trigger(map, 'resize');
+        },
+        onFinishing: function (event, currentIndex) {
+            return $form_container.valid();
+        },
+        onFinished: function (event, currentIndex) {
+            $form_container.submit();
+        }
+    });
+
+    $('.select2').select2({width: '100%'});
 </script>
