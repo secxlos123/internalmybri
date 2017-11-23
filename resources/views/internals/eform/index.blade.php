@@ -72,7 +72,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label">Status Prescreening :</label>
                                                     <div class="col-sm-8">
-                                                        <select class="form-control">
+                                                        <select id="prescreening_filter" class="form-control">
                                                             <option selected="" value="All"> Semua</option>
                                                             <option value="1" class="text-success">Hijau</option>
                                                             <option value="2" class="text-warning">Kuning</option>
@@ -176,6 +176,9 @@
                     d.start_date = from;
                     d.end_date = to;
                     d.status = status;
+                    d.ref_number = $('#ref_number').val();
+                    d.customer_name = $('#customer_name').val();
+                    d.prescreening = $('#prescreening_filter').val();
                 }
             },
           aoColumns : [
@@ -193,4 +196,42 @@
             ],
       });
       }
+
+    //show modal CRS
+    $(document).on('click', "#btn-prescreening", function(){
+        eformId = $(this).parent().next().html();
+
+        HoldOn.open();
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("getPrescreening") }}',
+            data: {
+                eform : eformId
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+
+        }).done(function(data){
+            console.log(data);
+            // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
+
+            $("#prescreening-nik").html(data.response.contents.eform.nik);
+            $("#prescreening-name").html(data.response.contents.eform.customer_name);
+            $("#prescreening-result").html(data.response.contents.eform.prescreening_status);
+            $("#prescreening-score").html(data.response.contents.eform.pefindo_score);
+            $("#prescreening-notice").html(data.response.contents.eform.ket_risk);
+
+            // $('#detail').html(data['view']);
+            $('#result-modal').modal('show');
+            HoldOn.close();
+
+        }).fail(function(errors) {
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
+
+        });
+    });
 </script>
