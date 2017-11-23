@@ -408,6 +408,11 @@ class EFormController extends Controller
             $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];
 
+            $form['prescreening_status'] = view('internals.layouts.actions', [
+              'prescreening_status' => route('getLKN', $form['id']),
+              'prescreening_result' => $form['prescreening_status'],
+            ])->render();
+
             $form['action'] = view('internals.layouts.actions', [
 
                 'dispose' => $form['ao_name'],
