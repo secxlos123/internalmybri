@@ -22,11 +22,12 @@
 	</a>
 @endif
 
-	@if (isset($dispotition)  && $submited == false && $visited == false)
-		<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.str_replace(' ','-',$dispotition['ref_number']))}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="Disposisi" data-original-title="Disposisi">
-			<i class="mdi mdi-loupe"></i>
-		</a>
-	@endif
+@if (isset($dispotition)  && $submited == false && $visited == false)
+	@php ( $title = ( $dispotition['ao_id'] == NULL || $dispotition['ao_id'] == '' ) ? 'Disposisi' : 'Re-Disposisi' )
+	<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.str_replace(' ','-',$dispotition['ref_number']))}}" class="btn btn-icon waves-effect waves-light btn-teal" data-toggle="tooltip" data-placement="top" title="{{ $title }}" data-original-title="{{ $title }}">
+		<i class="mdi mdi-loupe"></i>
+	</a>
+@endif
 
 @if (isset($screening))
 	<a href="#" class="btn btn-icon waves-effect waves-light btn-info " data-toggle="tooltip" data-placement="top" title="" data-original-title="Screening">

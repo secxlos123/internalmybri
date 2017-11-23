@@ -393,19 +393,11 @@
                                                 <div class="col-md-10">
                                                     <div class="form-horizontal" role="form">
                                                         <div class="form-group">
-                                                            <label class="col-md-5 control-label">Nama AO * :</label>
+                                                            @php( $name = isset($detail['ao_name']) ? $detail['ao_name'] : "" )
+                                                            @php( $aoId = isset($detail['ao_id']) ? $detail['ao_id'] : "" )
+
+                                                            <label class="col-md-5 control-label">Nama AO {{ $name != "" ? 'Sebelumnya ' : '' }}* :</label>
                                                             <div class="col-md-7">
-
-                                                                @php( $name = "" )
-                                                                @php( $aoId = isset($detail['ao_id']) ? $detail['ao_id'] : "" )
-
-                                                                @foreach($detail['customer']['schedule'] as $schedule)
-                                                                    @if($schedule['ao_name'] != "" && $name == "")
-                                                                        @php( $name = $schedule['ao_name'] )
-                                                                        @break
-                                                                    @endif
-                                                                @endforeach
-
                                                                 {!! Form::select('name', [$aoId => $name], old('name'), [
                                                                     'class' => 'select2 name',
                                                                     'data-placeholder' => 'Pilih Nama AO',
