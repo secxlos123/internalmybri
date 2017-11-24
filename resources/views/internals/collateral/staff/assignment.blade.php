@@ -113,7 +113,7 @@
 
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');
-        HoldOn.open(options);
+        // HoldOn.open(options);
     })
 
     $(document).on('click', "#btn-submit", function(){
