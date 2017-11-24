@@ -45,7 +45,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Fasilitas Umum Lain :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="environment[other_designated]" maxlength="50">
+                                <input type="text" class="form-control" name="environment[other_designated]" maxlength="50" value="{{old('environment[other_designated]')}}">
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Petunjuk Lain :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250"></textarea>
+                            <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250">{{old('environment[other_guide]')}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -79,13 +79,13 @@
         <label class="control-label">Sarana Transportasi :</label>
         <div class="is-input">
             <div class="input-group" style="width:100%">
-                <input type="text" class="form-control" name="environment[transportation]" maxlength="30">
+                <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{old('environment[transportation]')}}">
             </div>
         </div>
         <label class="control-label">Jarak Dari Lokasi</label>
         <div class="is-input">
             <div class="input-group">
-                <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4">
+                <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{old('environment[distance_from_transportation]')}}">
                 <span class="input-group-addon has-ket-input">Meter</span>
             </div>
         </div>
