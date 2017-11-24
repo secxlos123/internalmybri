@@ -5,7 +5,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered accountTable" id="accountTable0">
+                <table class="table table-bordered accountTable" id="datatable-type-property">
                     <thead>
                         <tr>
                             <th>Nama Tipe</th>
@@ -16,8 +16,8 @@
                             <th>Foto</th>
                         </tr>
                     </thead>
-                    @foreach($collateral['property']['propertyTypes'] as $propType)
                     <tbody>
+                    @foreach($collateral['property']['propertyTypes'] as $propType)
                         <tr>
                             <td>
                                 <p class="form-control-static">{{$propType['name']}}</p>
@@ -38,8 +38,8 @@
                                 <img id="preview" @if(!empty($propType['photos'])) src="{{$propType['photos']['name']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                             </td>
                         </tr>
-                    </tbody>
                     @endforeach
+                    </tbody>
                 </table>
                 <div class="col-md-6">
                     <div class="form-group ">

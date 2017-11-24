@@ -232,5 +232,6 @@
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
 {!! JsValidator::formRequest('App\Http\Requests\Customer\CustomerRequest', '#form_data_personal'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\EForm\EFormRequest', '#wizard-validation-form'); !!}
 @include('internals.eform.eform-validator')
 

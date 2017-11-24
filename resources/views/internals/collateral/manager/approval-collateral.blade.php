@@ -35,13 +35,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
-                                <p class="text-muted m-b-30 font-13">
+                               <!--  <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
-                                </p>
-                                @if (\Session::has('error'))
-                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                                @endif
-
+                                </p> -->
                                 <!-- detail properti -->
                                 @include('internals.collateral.manager._detail-property')
 
@@ -56,12 +52,15 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <!-- rekomendasi approval -->
-                                        <form class="form-horizontal" role="form" method="POST" id="form1">
+                                        <form class="form-horizontal" role="form" method="POST" id="form1" action="{{route('postApprovalCollateral', $collateral['id'])}}">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="is_approved" id="is_approved">
+                                            <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
+                                            <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">
                                             <div class="text-center">
                                                 <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
                                                 <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
+                                                <input type="hidden" name="remark" id="remark">
                                                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                             </div>
                                         </form>
@@ -76,9 +75,11 @@
     </div>
 </div>
 
-<!-- informasi penilaian -->                                @include('internals.collateral.manager.detail-information-modal')           @include('internals.collateral._reject-modal')
+@include('internals.collateral.manager.detail-information-modal')
+@include('internals.collateral._reject-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.collateral.script')
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -116,7 +117,18 @@
         });
     });
     $(document).on('click', "#view-detail", function(){
-        $('#detail-collateral-modal').modal('show');
+        var dev_id = $('#dev_id').val();
+        var prop_id = $('#prop_id').val();
+
+        // $.ajax({
+        //         dataType: 'json',
+        //         type: 'GET',
+        //         url: '/detailCollateral',
+        //         data: { dev_id : dev_id, prop_id : prop_id },
+        //         success: function(result, data) {    
+        //         }
+        //     });
+                    $('#detail-collateral-modal').modal('show');
     })
 
     $(document).on('click', "#btn-approve", function(){
@@ -131,6 +143,7 @@
 
     $(document).on('click', "#btn-submit", function(){
         $('#is_approved').attr('value', false);
+        $('#remark').val($('#reject-modal #reason').val());
         $('#form1').submit();
         HoldOn.open(options);
     })

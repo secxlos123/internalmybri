@@ -78,6 +78,7 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') 
+@include('internals.collateral._reject-modal') 
 <script type="text/javascript">
     var table1 = $('#datatable').DataTable({
         searching: false,
@@ -127,7 +128,7 @@
                 {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
                 {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
                 {   data: 'staff_name', name: 'staff_name', bSortable: false },
-                {   data: 'status', name: 'status', bSortable: true },
+                {   data: 'status_label', name: 'status_label', bSortable: true },
                 {   data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
             }); 

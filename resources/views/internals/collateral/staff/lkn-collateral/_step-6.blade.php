@@ -53,7 +53,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Hal-Hal Yang Perlu Diketahui Bank :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4" name="other[things_bank_must_know]"></textarea>
+                            <textarea class="form-control" rows="4" name="other[things_bank_must_know]">{{old('other[things_bank_must_know]')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">

@@ -64,10 +64,11 @@ class CollateralStaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        return view('internals.collateral.staff.detail-property', compact('data'));
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return view('internals.collateral.staff.detail-property', compact('data', 'collateral'));
     }
 
     /**
@@ -80,6 +81,37 @@ class CollateralStaffController extends Controller
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
         return view('internals.collateral.staff.assignment', compact('data', 'collateral'));
+    }
+
+    /**
+     * Reject the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rejectAssignment(Request $request, $id)
+    {
+        $data = $this->getUser();
+        $remark = [
+            'remark' => $request->remark
+        ];
+
+          $client = Client::setEndpoint('collateral/reject/'.$id)
+           ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+           ->setBody($remark)
+           ->post();
+           // dd($client);
+
+        if($client['code'] == 200){
+            \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');
+            return redirect()->route('staff-collateral.index');
+        }else{
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
+        }
     }
 
     /**
@@ -132,25 +164,25 @@ class CollateralStaffController extends Controller
      */
     public function returnContent( $field, $values, $baseName )
     {
-        // dd($baseName);
-      $excludeNumber = ['surface_area', 'distance', 'distance_of_position', 'surface_area_by_letter', 'count', 'spacious', 'north_limit', 'east_limit', 'south_limit', 'west_limit', 'distance_from_transportation'];
-      $excludeImage = ['image_condition_area'];
+        // $excludeNumber = ['surface_area', 'distance', 'distance_of_position', 'surface_area_by_letter', 'count', 'spacious', 'north_limit', 'east_limit', 'south_limit', 'west_limit', 'distance_from_transportation'];
+        $excludeNumber = [];
+        $excludeImage = ['image_condition_area'];
 
-      if ( in_array($baseName, $excludeNumber) ) {
-        $values = str_replace(',', '.', str_replace('.', '', $values));
-      }
-
-      if ( in_array($baseName, $excludeImage) ) {
-        if ($values != "") {
-          $return = $this->reformatImage( $field, $values );
-        } else {
-          $return = null;
+        if ( in_array($baseName, $excludeNumber) ) {
+            $values = str_replace(',', '.', str_replace('.', '', $values));
         }
-      } else {
-        $return = $this->reformatContent( $field, $values );
-      }
 
-      return $return;
+        if ( in_array($baseName, $excludeImage) ) {
+            if ($values != "") {
+                $return = $this->reformatImage( $field, $values );
+            } else {
+            $return = null;
+            }
+        } else {
+            $return = $this->reformatContent( $field, $values );
+        }
+
+        return $return;
     }
 
     /**
@@ -171,13 +203,12 @@ class CollateralStaffController extends Controller
                 }
             }
         }
-
     
         return $application;
     }
 
-     /**
-     * Show the form for creating a new resource.
+    /**
+     * Post the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -185,7 +216,6 @@ class CollateralStaffController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->otsRequest($request);
-        // dd($newForm);
 
           $client = Client::setEndpoint('collateral/ots/'.$id)
            ->setHeaders([
@@ -194,18 +224,15 @@ class CollateralStaffController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
-           // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');
-            return redirect()->route('eform.index');
+            return redirect()->route('staff-collateral.index');
         }else{
             $error = reset($client['contents']);
             \Session::flash('error', $client['descriptions'].' '.$error);
             return redirect()->back()->withInput($request->input());
         }
-
-        return view('internals.eform.lkn', compact('data'));
     }
 
     /**
@@ -237,6 +264,7 @@ class CollateralStaffController extends Controller
             $form['staff_name'] = strtoupper($form['property']['staff_name']);
             $form['prop_types'] = count($form['property']['propertyTypes']);
             $form['prop_items'] = count($form['property']['propertyItems']);
+            $form['status'] = ucwords($form['status']);
 
             $form['action'] = view('internals.layouts.actions', [
                 'status' => $form['status'],

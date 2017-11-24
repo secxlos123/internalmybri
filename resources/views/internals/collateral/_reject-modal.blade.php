@@ -12,11 +12,9 @@
             	<div class="row">
                     <div class="col-md-12 text-center">
 		            	<div class="form-group">
-		                	<label class="col-md-4 control-label"> Alasan Penolakan</label> 
+		                	<label class="col-md-4 control-label"> Alasan Penolakan *</label> 
 		            		<div class="col-md-8">
-		            			<textarea name="reason" placeholder="Alasan Penolakan" class="form-control" rows="3">
-		        					{{old('reason')}}
-		            			</textarea>
+		            			<textarea name="reason" placeholder="Alasan Penolakan" class="form-control" rows="3" id="reason">{{old('reason')}}</textarea>
 		            		</div>
 		            	</div>
 		            </div>

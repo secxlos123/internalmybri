@@ -65,7 +65,7 @@
                             <label class="col-md-4 control-label">Luas Tanah Berdasarkan Surat Tanah :</label>
                             <div class="col-md-8">
                                 <div class="input-group" style="width: 100%;">
-                                    <input type="text" class="form-control numericOnly" placeholder="8" name="letter[surface_area_by_letter]" maxlength="5">
+                                    <input type="text" class="form-control numericOnly" placeholder="8" name="letter[surface_area_by_letter]" maxlength="5" value="{{old('letter[surface_area_by_letter]')}}">
                                     <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                                 </div>
                             </div>
@@ -77,14 +77,14 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">No Surat Tanah :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[number]" maxlength="25">
+                            <input type="text" class="form-control" name="letter[number]" maxlength="25" value="{{old('letter[number]')}}">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Tanggal Surat Tanah :</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="letter[date]">
+                                <input type="text" class="form-control datepicker-autoclose" name="letter[date]" value="{{old('letter[date]')}}">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -92,14 +92,14 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Atas Nama :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[on_behalf_of]" maxlength="25">
+                            <input type="text" class="form-control" name="letter[on_behalf_of]" maxlength="25" value="{{old('letter[on_behalf_of]')}}">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Masa Hak tanah :</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="letter[duration_land_authorization]">
+                                <input type="text" class="form-control datepicker-autoclose" name="letter[duration_land_authorization]" value="{{old('letter[duration_land_authorization]')}}">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Nama Kantor Anggaran/BPN :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[bpn_name]" maxlength="50">
+                            <input type="text" class="form-control" name="letter[bpn_name]" maxlength="50" value="{{old('letter[bpn_name]')}}">
                         </div>
                     </div>
                 </div>
