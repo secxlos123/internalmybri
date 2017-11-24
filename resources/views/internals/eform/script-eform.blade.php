@@ -791,7 +791,7 @@
             data: formData,
             async: false,
             success: function (data) {
-                console.log(data)
+                console.log(data);
                 // toastr["success"]("Data Berhasil disimpan");
                 $('#divForm').removeClass('alert alert-success');
                 $('#divForm').html("");
@@ -804,8 +804,10 @@
                     $("#nik").html('<option value="'+nik+'">'+nik+'</option>');
                     $("#select2-nik-container").replaceWith('<span class="select2-selection__rendered" id="select2-nik-container" title="'+nik+'"><span class="select2-selection__clear">×</span>'+nik+'</span>');
                     $("#search").click();
-                    $('body').addClass('modal-open');
                     $("a[href='#finish']").click();
+                    currentClass = $('body').attr('class');
+                    $('body').attr('class', currentClass+' modal-open');
+                    console.log("pas submit data");
 
                     $('#divForm').addClass('alert alert-success');
                     $('#divForm').html('Data Berhasil Ditambahkan');
