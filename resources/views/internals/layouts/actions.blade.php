@@ -78,6 +78,9 @@
 		@elseif( $prescreening_result == 'Merah' )
 			<p class="text-danger">{{ $prescreening_result }}</p>
 
+		@else
+			<p>{{ $prescreening_result }}</p>
+
 		@endif
 	</a>
 @endif
