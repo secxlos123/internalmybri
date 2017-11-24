@@ -34,7 +34,7 @@
                     url: '/getData',
                     data: { nik : nik },
                     success: function(result, data) {
-                        // console.log(result);
+                        console.log(result);
                         var nik = result.data.nik;
                         var full_name = (result.data.first_name ? result.data.first_name : '')+' '+(result.data.last_name ? result.data.last_name : '');
                         var email = result.data.email;
@@ -74,7 +74,9 @@
                         }
 
                         $('#view-modal').modal('show');
-                        $('body').addClass('modal-open');
+                        currentClass = $('body').attr('class');
+                        $('body').attr('class', currentClass+' modal-open');
+                        console.log("pas validasi data");
                         $("#view-modal #request_amount").html('Rp '+request_amount);
                         $("#view-modal #year").html(year+' tahun');
                         $("#view-modal #month").html(year+' bulan');
