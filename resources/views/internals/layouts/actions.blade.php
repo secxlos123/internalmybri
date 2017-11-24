@@ -85,13 +85,13 @@
 	</a>
 @endif
 
-@if ((isset($dispose_collateral)))
+@if ((isset($dispose_collateral)) && ($status == "baru"))
 	<a href="{!! $dispose_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Penugasan" title="Penugasan">
 	    <i class="fa fa-user-plus" aria-hidden="true"></i>
 	</a>
 @endif
 
-@if ((isset($approval_collateral)))
+@if ((isset($approval_collateral)) && ($status == "menunggu persetujuan"))
 	<a href="{!! $approval_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Approval" title="Approval">
 	    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
 	</a>
@@ -103,7 +103,7 @@
 	</a>
 @endif -->
 
-@if ((isset($assignment_collateral)))
+@if ((isset($assignment_collateral)) && ($status == "sedang di proses"))
 	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Lakukan OTS / Penolakan
     Penugasan" title="Lakukan OTS / Penolakan
     Penugasan">

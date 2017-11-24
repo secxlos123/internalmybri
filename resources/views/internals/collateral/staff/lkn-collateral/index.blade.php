@@ -30,7 +30,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card-box center-steps">
-                        <form id="basic-form" action="#">
+                        <form role="role" method="POST" action="{{route('postLKNAgunan', $collateral['id'])}}" id="form-lkn" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                             <div>
 
                                 <h3>&nbsp;</h3>
@@ -103,6 +104,38 @@
                 },
                 cache: true
             },
+        });
+
+        $('.cities').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+              url: '/cities',
+              dataType: 'json',
+              delay: 250,
+              data: function (params) {
+                return {
+                  name: params.term,
+                  page: params.page || 1
+                };
+              },
+              processResults: function (data, params) {
+                params.page = params.page || 1;
+
+                return {
+                  results: data.cities.data,
+                  pagination: {
+                    more: (params.page * data.cities.per_page) < data.cities.total
+                  }
+                };
+              },
+              cache: true
+            },
+          });
+        });
+
+        $('.cities').on('select2:select', function (e) {
+          var citi_id = e.params.data.id;
         });
     });
 </script>

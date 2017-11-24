@@ -42,24 +42,20 @@ class CollateralStaffController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Get detail of collateral.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function getDetail($dev_id, $prop_id, $data)
     {
-        //
+        $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->get();
+
+        return $detailCollateral['contents'];
     }
 
     /**
@@ -79,16 +75,11 @@ class CollateralStaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAssignmentAgunan($id)
+    public function getAssignmentAgunan($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $detailCollateral = Client::setEndpoint('collateral/'.$id)
-                        ->setHeaders([
-                            'Authorization' => $data['token'],
-                            'pn' => $data['pn']
-                        ])->get();
-        $dataCollateral = $detailCollateral['contents'][0];
-        return view('internals.collateral.staff.assignment', compact('data', 'dataCollateral'));
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return view('internals.collateral.staff.assignment', compact('data', 'collateral'));
     }
 
     /**
@@ -96,44 +87,125 @@ class CollateralStaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLKNAgunan()
+    public function getLKNAgunan($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        return view('internals.collateral.staff.lkn-collateral.index', compact('data'));
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return view('internals.collateral.staff.lkn-collateral.index', compact('data', 'collateral'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Reformat image request
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $image
+     * @param  String  $name
      */
-    public function edit($id)
+    public function reformatImage( $name, $image )
     {
-        //
+      return [
+        'name' => $name
+        , 'contents' => fopen($image->getRealPath(), 'r')
+        , 'filename' => $image->getClientOriginalName()
+        , 'Mime-Type'=> $image->getmimeType()
+      ];
     }
 
     /**
-     * Update the specified resource in storage.
+     * Reformat content request
+     *
+     * @param  \Illuminate\Http\Request  $value
+     * @param  String  $name
+     */
+    public function reformatContent( $name, $value )
+    {
+      return [
+        'name' => $name
+        , 'contents' => $value
+      ];
+    }
+
+    /**
+     * Get return content
+     *
+     * @param  \Illuminate\Http\Request  $value
+     * @param  String  $name
+     */
+    public function returnContent( $field, $values, $baseName )
+    {
+        // dd($baseName);
+      $excludeNumber = ['surface_area', 'distance', 'distance_of_position', 'surface_area_by_letter', 'count', 'spacious', 'north_limit', 'east_limit', 'south_limit', 'west_limit', 'distance_from_transportation'];
+      $excludeImage = ['image_condition_area'];
+
+      if ( in_array($baseName, $excludeNumber) ) {
+        $values = str_replace(',', '.', str_replace('.', '', $values));
+      }
+
+      if ( in_array($baseName, $excludeImage) ) {
+        if ($values != "") {
+          $return = $this->reformatImage( $field, $values );
+        } else {
+          $return = null;
+        }
+      } else {
+        $return = $this->reformatContent( $field, $values );
+      }
+
+      return $return;
+    }
+
+    /**
+     * List of request needed for input to customer
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function otsRequest($request)
     {
-        //
+        $application = [];
+
+        foreach ($request->except('_token') as $field => $value) {
+            foreach ($value as $index => $data) {
+            $baseName = $field . '[' . $index . ']';
+                $return = $this->returnContent( $baseName, $data, $index );
+                    if ($return != null) {
+                    $application[] = $this->returnContent( $baseName, $data, $index );
+                }
+            }
+        }
+
+    
+        return $application;
     }
 
-    /**
-     * Remove the specified resource from storage.
+     /**
+     * Show the form for creating a new resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function postLKNAgunan(Request $request, $id)
     {
-        //
+        $data = $this->getUser();
+        $newForm = $this->otsRequest($request);
+        // dd($newForm);
+
+          $client = Client::setEndpoint('collateral/ots/'.$id)
+           ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+           ->setBody($newForm)
+           ->post('multipart');
+           // dd($client);
+
+        if($client['code'] == 200){
+            \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');
+            return redirect()->route('eform.index');
+        }else{
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
+        }
+
+        return view('internals.eform.lkn', compact('data'));
     }
 
     /**
@@ -145,44 +217,31 @@ class CollateralStaffController extends Controller
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $collateral = Client::setEndpoint('collateral')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setQuery([
-                    'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
-                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'page'      => (int) $request->input('page') + 1,
-                    // 'start_date'=> $request->input('start_date'),
-                    // 'end_date'  => $request->input('end_date'),
-                    // 'status'    => $request->input('status'),
-                    // 'branch_id' => $data['branch']
-                ])->get();
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+                // 'status'    => $request->input('status'),
+                // 'branch_id' => $data['branch']
+            ])->get();
 
-            // dd($collateral);
         foreach ($collateral['contents']['data'] as $key => $form) {
-            $form['prop_name'] = strtoupper($form['prop_name']);
-            // $form['customer_name'] = strtoupper($form['customer_name']);
-            // $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            // // $form['product_type'] = strtoupper($form['product_type']);
-            // $form['branch_id'] = $form['branch_id'];
-            // $form['ao'] = $form['ao_name'];
-        
-            // $verify = $form['customer']['is_verified'];
-            // $visit = $form['is_visited'];
+            $form['prop_name'] = strtoupper($form['property']['name']);
+            $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
+            $form['prop_pic_name'] = strtoupper($form['property']['pic_name']);
+            $form['prop_pic_phone'] = strtoupper($form['property']['pic_phone']);
+            $form['staff_name'] = strtoupper($form['property']['staff_name']);
+            $form['prop_types'] = count($form['property']['propertyTypes']);
+            $form['prop_items'] = count($form['property']['propertyItems']);
 
             $form['action'] = view('internals.layouts.actions', [
-
-                // 'dispose' => $form['ao_name'],
-                // 'submited' => $form['is_approved'],
-                // 'dispotition' => $form,
-                // // 'screening' => route('eform.show', $form['id']),
-                // 'approve' => $form,
-                // // 'verified' => $verify,
-                // 'visited' => $visit,
-                'detail_collateral' => route('staff-collateral.show', $form['prop_id']),
-                'assignment_collateral' => route('getAssignmentAgunan', $form['prop_id']),
-                'lkn_collateral' => route('getLKNAgunan', $form['prop_id']),
+                'status' => $form['status'],
+                'detail_collateral' => url('staff-collateral/get-detail/'.$form['developer']['id'].'/'.$form['property']['id']),
+                'assignment_collateral' => url('staff-collateral/get-assignment/'.$form['developer']['id'].'/'.$form['property']['id']),
             ])->render();
             $collateral['contents']['data'][$key] = $form;
         }

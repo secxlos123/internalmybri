@@ -36,193 +36,18 @@
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Form Penugasan Collateral Appraisal</b></h5>
                                 <p class="text-muted m-b-30 font-13">
-                                    <!-- No. Contact Agen / Sales :  -->
+                                    No. Contact Agen / Sales : 
                                 </p>
-                                @if (\Session::has('error'))
-                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                                @endif
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Data Properti</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nama Proyek :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_name']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Kota :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_city_name']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Kategori :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_city_name']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Foto :</label>
-                                                        <div class="col-md-7">
-                                                            <img id="preview" src="{{asset('assets/images/logo_dummy.png')}}" width="300">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Deskripsi Properti :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">Architecto dolorem ut voluptas vitae numquam. Ipsum sequi delectus tempora sit. Nulla dolorum quisquam recusandae eligendi.</p>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nama PIC Proyek :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_name']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Alamat Proyek :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_name']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nomor PKS :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_name']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">No. HP PIC Project :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$dataCollateral['prop_pic_phone']}}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-5 control-label">Fasilitas :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">Kamar Tidur, Kamar Mandi</p>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- detail properti -->
+                                @include('internals.collateral.manager._detail-property')
+
                                 <!-- tipe -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Tipe Properti</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <table class="table table-bordered accountTable" id="accountTable0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nama Tipe</th>
-                                                            <th>Luas Bangunan (m<sup>2</sup>)</th>
-                                                            <th>Luas Tanah (m<sup>2</sup>)</th>
-                                                            <th>Sertifikat</th>
-                                                            <th>Stok</th>
-                                                            <th>Foto</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <p class="form-control-static">21 Lux</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">11</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">120</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">SHM</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">1</p>
-                                                            </td>
-                                                            <td>
-                                                                <img id="preview" src="{{asset('assets/images/logo_dummy.png')}}" width="200">
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
+                                @include('internals.collateral.manager._type-property')
 
-                                                    </div>
-                                                </div>
-                                            </div>                    
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- unit -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Unit Properti</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <table class="table table-bordered accountTable" id="accountTable0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Tipe Proyek</th>
-                                                            <th>Alamat</th>
-                                                            <th>Harga</th>
-                                                            <th>Available</th>
-                                                            <th>Status</th>
-                                                            <th>Foto</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <p class="form-control-static">21 Lux</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">Jln. Asia Afrika</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">Rp. 154.215.245</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">Avaliable</p>
-                                                            </td>
-                                                            <td>
-                                                                <p class="form-control-static">Baru</p>
-                                                            </td>
-                                                            <td>
-                                                                <img id="preview" src="{{asset('assets/images/logo_dummy.png')}}" width="200">
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="col-md-6">
-                                                    <div class="form-group ">
+                                @include('internals.collateral.manager._unit-property')
 
-                                                    </div>
-                                                </div>
-                                            </div>                    
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- form penugasan -->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -230,7 +55,7 @@
                                     </div>
                                     <div class="panel-body">
                                         <!-- assignment form -->
-                                        <form role="role" method="POST" >
+                                        <form role="role" method="POST" action="{{route('postAssignment', $collateral['id'])}}" id="form-assignment">
                                         {{ csrf_field() }}
                                             <div class="row">
                                                 <div class="col-md-10">
@@ -238,17 +63,18 @@
                                                         <div class="form-group">
                                                             <label class="col-md-5 control-label">Nama Staff * :</label>
                                                             <div class="col-md-7">
-                                                                {!! Form::select('name', ['' => ''], old('name'), [
-                                                                    'class' => 'select2 name',
+                                                                {!! Form::select('staff_id', ['' => ''], old('staff_id'), [
+                                                                    'class' => 'select2 staff_id',
                                                                     'data-placeholder' => 'Pilih Nama Staff',
-                                                                    'id' => 'name'
+                                                                    'id' => 'staff_id'
                                                                 ]) !!}
                                                             </div>
+                                                            <input type="hidden" name="staff_name" id="staff_name">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">Catatan Penugasan * </label>
                                                             <div class="col-md-7">
-                                                                <textarea class="form-control" rows="5"></textarea>
+                                                                <textarea class="form-control" rows="5" name="remark" maxlength="250"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -285,7 +111,7 @@
             allowClear: true,
         });
         
-        $('.name').select2({
+        $('.staff_id').select2({
             witdh : '100%',
             allowClear: true,
             ajax: {
@@ -311,5 +137,13 @@
                 cache: true
             },
         });
+
+        $('.staff_id').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#staff_name').val(text);
+        });
     });
 </script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Collateral\AssignmentRequest', '#form-assignment'); !!}
