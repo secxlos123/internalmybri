@@ -105,17 +105,23 @@
             Route::post('postAssignment/{id}', ['as'=>'postAssignment', 'uses'=>'Collateral\CollateralController@postAssignment']);
 
             Route::get('approval-collateral/{dev_id}/{prop_id}', ['as'=>'getApprovalCollateral', 'uses'=>'Collateral\CollateralController@approval']);
+
+            Route::post('postApprovalCollateral/{id}', ['as'=>'postApprovalCollateral', 'uses'=>'Collateral\CollateralController@postApprovalCollateral']);
+
+            Route::post('reject-approval/{id}', ['as'=>'rejectApprovalCollateral', 'uses'=>'Collateral\CollateralController@rejectApprovalCollateral']);
         });
 
         Route::group(['prefix'=>'staff-collateral'], function () {
 
-            Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralController@getDetail']);
+            Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
             Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
 
             Route::post('post-scoring-form/{id}', ['as'=>'postLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@postLKNAgunan']);
 
             Route::get('get-assignment/{dev_id}/{prop_id}', ['as'=>'getAssignmentAgunan', 'uses'=>'Collateral\CollateralStaffController@getAssignmentAgunan']);
+
+            Route::post('reject-form/{id}', ['as'=>'rejectAssignment', 'uses'=>'Collateral\CollateralStaffController@rejectAssignment']);
         });
 
         Route::group(['prefix'=>'approval-data'], function () {
@@ -246,6 +252,9 @@
         Route::get('eform', 'EForm\EFormController@datatables');
 
         Route::get('eform-ao', ['as'=>'eform-ao', 'uses'=>'EForm\AOController@datatables']);
+
+        /* Detail Tipe Properti Collateral */
+        Route::get('collateral-type-property', 'Collateral\CollateralController@datatableType');
 
         /* Collateral */
         Route::get('collateral', 'Collateral\CollateralController@datatables');

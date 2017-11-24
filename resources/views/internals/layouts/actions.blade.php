@@ -100,7 +100,7 @@
 	</a>
 @endif -->
 
-@if ((isset($assignment_collateral)) && ($status == "sedang di proses"))
+@if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses"))
 	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Lakukan OTS / Penolakan
     Penugasan" title="Lakukan OTS / Penolakan
     Penugasan">
@@ -109,13 +109,13 @@
 @endif
 
 @if ((isset($detail_collateral)))
-	<a href="{!! $detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	<a href="{!! $detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-danger" data-original-title="Detail Informasi" title="Detail Informasi">
 	    <i class="fa fa-info" aria-hidden="true"></i>
 	</a>
 @endif
 
 @if ((isset($detail)))
-	<a href="{!! $detail !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Detail Informasi">
+	<a href="{!! $detail !!}" class="btn btn-icon waves-effect waves-light btn-danger" data-original-title="Detail Informasi" title="Detail Informasi">
 	    <i class="fa fa-info" aria-hidden="true"></i>
 	</a>
 @endif

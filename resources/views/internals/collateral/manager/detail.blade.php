@@ -80,6 +80,7 @@
 <!-- informasi penilaian -->                                @include('internals.collateral.manager.detail-information-modal')           @include('internals.collateral._reject-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.collateral.script')
 
 <script type="text/javascript">
     $(document).ready(function () {

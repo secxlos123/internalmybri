@@ -48,12 +48,13 @@
                                 <!-- fkonfirmasi penugasan -->
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <form class="form-horizontal" role="form" method="POST" id="form1">
+                                        <form class="form-horizontal" role="form" method="POST" id="form1" action="{{route('rejectAssignment', $collateral['id'])}}">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="is_approved" id="is_approved">
                                             <div class="text-center">
                                                 <a type="submit" href="{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Lakukan OTS</a>
-                                                <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Penolakan Penugasan</button>
+                                                <a href="javascript:void(0)" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Penolakan Penugasan</a>
+                                                <input type="hidden" name="remark" id="remark">
                                                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                             </div>
                                         </form>
@@ -69,8 +70,10 @@
 </div>
 
 @include('internals.collateral.manager.detail-information-modal')
+@include('internals.collateral._reject-modal') 
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.collateral.script')
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -110,10 +113,11 @@
 
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');
+        HoldOn.open(options);
     })
 
     $(document).on('click', "#btn-submit", function(){
-        $('#is_approved').attr('value', false);
+        $('#remark').val($('#reject-modal #reason').val());
         $('#form1').submit();
         HoldOn.open(options);
     })

@@ -35,9 +35,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Form Penugasan Collateral Appraisal</b></h5>
-                                <p class="text-muted m-b-30 font-13">
+                                <!-- <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
-                                </p>
+                                </p> -->
 
                                 <!-- detail properti -->
                                 @include('internals.collateral.manager._detail-property')
@@ -77,6 +77,14 @@
                                                                 <textarea class="form-control" rows="5" name="remark" maxlength="250"></textarea>
                                                             </div>
                                                         </div>
+                                                        @if(($collateral['status'] == 'baru')&&(!empty($collateral['remark'])))
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-5">Keterangan : </label>
+                                                            <div class="col-md-7">
+                                                                <p>Penugasan sebelumnya telah ditolak dikarenakan {{$collateral['remark']}}</p>
+                                                            </div>
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,6 +110,7 @@
 
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.collateral.script')
 
 <script type="text/javascript">
     $(document).ready(function () {
