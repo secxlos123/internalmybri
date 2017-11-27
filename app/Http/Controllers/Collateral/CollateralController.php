@@ -18,8 +18,16 @@ class CollateralController extends Controller
         'prop_pic_name',
         'prop_pic_phone',
         'staff_name',
-        'status',
+        'status_label',
         'action',
+    ];
+
+    protected $columnType = [
+        'name',
+        'building',
+        'ground',
+        'certificate',
+        'image',
     ];
 
     public function getUser(){
@@ -103,7 +111,6 @@ class CollateralController extends Controller
         ,   'staff_name' => $request->staff_name
         ,   'remark' => $request->remark
         ];
-        // dd($disposition);
 
         $client = Client::setEndpoint('collateral/disposition/'.$id)
                 ->setHeaders([
@@ -111,7 +118,6 @@ class CollateralController extends Controller
                     'pn' => $data['pn']
                 ])->setBody($disposition)
                 ->post();
-        // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', 'Penugasan Berhasil Dilakukan');
@@ -121,7 +127,6 @@ class CollateralController extends Controller
             \Session::flash('error', $client['descriptions'].' '.$error);
             return redirect()->back()->withInput($request->input());
         }
-
     }
 
     /**
@@ -133,8 +138,70 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        // dd($collateral);
         return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral'));
+    }
+
+    /**
+     * Display a detail collateral 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function detailCollateral(Request $request)
+    {
+        $data = $this->getUser();
+        $dev_id = $request->input('dev_id');
+        $prop_id = $request->input('prop_id');
+
+         /* GET Data */
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
+        if(($collateral['code']) == 200){
+            return response()->json(['data' => $collateral]);
+        } else {
+            return response()->json(['data' => $collateral]);
+        }
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postApprovalCollateral(Request $request, $id)
+    {
+        $data = $this->getUser();
+        
+        $remark = [
+            'remark' => $request->remark
+        ];
+
+        $approve = $request->is_approve;
+        if($approve == 'true'){
+            $client = Client::setEndpoint('collateral/approve/'.$id)
+                    ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])->post();
+            $response = 'Pengajuan Properti Baru telah Disetujui';
+        }else{
+            $client = Client::setEndpoint('collateral/reject/'.$id)
+                    ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])->setBody($remark)
+                    ->post();
+            $response = 'Pengajuan Properti Baru telah Ditolak';
+        }
+
+        if($client['code'] == 200){
+            \Session::flash('success', $response);
+            return redirect()->route('collateral.index');
+        }else{
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
+        }
     }
 
     /**
@@ -158,7 +225,6 @@ class CollateralController extends Controller
                     // 'branch_id' => $data['branch']
                 ])->get();
 
-            // dd($collateral);
         foreach ($collateral['contents']['data'] as $key => $form) {
             $form['prop_name'] = strtoupper($form['property']['name']);
             $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
@@ -167,6 +233,11 @@ class CollateralController extends Controller
             $form['staff_name'] = strtoupper($form['property']['staff_name']);
             $form['prop_types'] = count($form['property']['propertyTypes']);
             $form['prop_items'] = count($form['property']['propertyItems']);
+            if (($form['status'] == 'baru') && (!empty($form['remark']))){
+                $form['status_label'] = ucwords($form['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
+            }else{
+                $form['status_label'] = ucwords($form['status']);
+            }
 
             $form['action'] = view('internals.layouts.actions', [
                 'status' => $form['status'],
@@ -188,103 +259,42 @@ class CollateralController extends Controller
      * Get Datatables
      * @param $request
      */
-    public function datatableItem(Request $request)
+    public function datatableType(Request $request)
     {
         $sort = $request->input('order.0');
         $data = $this->getUser();
-        $collateral = Client::setEndpoint('collateral')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setQuery([
-                    'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
-                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'page'      => (int) $request->input('page') + 1,
-                    // 'status'    => $request->input('status'),
-                    // 'branch_id' => $data['branch']
-                ])->get();
+        $dev_id = $request->dev_id;
+        $prop_id = $request->prop_id;
 
-            // dd($collateral);
-        foreach ($collateral['contents']['data'] as $key => $form) {
-            $form['prop_name'] = strtoupper($form['property']['name']);
-            $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
-            $form['prop_pic_name'] = strtoupper($form['property']['pic_name']);
-            $form['prop_pic_phone'] = strtoupper($form['property']['pic_phone']);
-            $form['staff_name'] = strtoupper($form['property']['staff_name']);
-            $form['prop_types'] = count($form['property']['propertyTypes']);
-            $form['prop_items'] = count($form['property']['propertyItems']);
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
 
-            $form['action'] = view('internals.layouts.actions', [
-                'status' => $form['status'],
-                'detail' => url('collateral/detail/'.$form['developer']['id'].'/'.$form['property']['id']),
-                'dispose_collateral' => url('collateral/assignment/'.$form['developer']['id'].'/'.$form['property']['id']),
-                'approval_collateral' => route('getApproval', $form['property']['id']),
-            ])->render();
-            $collateral['contents']['data'][$key] = $form;
+        // $collateral = Client::setEndpoint('collateral')
+        //         ->setHeaders([
+        //             'Authorization' => $data['token'],
+        //             'pn' => $data['pn']
+        //         ])->setQuery([
+        //             'limit'     => $request->input('length'),
+        //             'search'    => $request->input('search.value'),
+        //             'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+        //             'page'      => (int) $request->input('page') + 1,
+        //             // 'status'    => $request->input('status'),
+        //             // 'branch_id' => $data['branch']
+        //         ])->get();
+        // echo json_encode($collateral['property']['propertyTypes']);exit();
+        foreach ($collateral['property']['propertyTypes'] as $key => $form) {
+            $form['name'] = strtoupper($form['name']);
+            $form['building'] = strtoupper($form['building_area']);
+            $form['ground'] = strtoupper($form['surface_area']);
+            $form['certificate'] = strtoupper($form['certificate']);
+            $form['image'] = strtoupper($form['certificate']);
+    
+            $collateral['property']['propertyTypes'][$key] = $form;
         }
 
-        $collateral['contents']['draw'] = $request->input('draw');
-        $collateral['contents']['recordsTotal'] = $collateral['contents']['total'];
-        $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
+        // $collateral['contents']['draw'] = $request->input('draw');
+        // $collateral['contents']['recordsTotal'] = count($collateral['property']['propertyTypes']);
+        // $collateral['contents']['recordsFiltered'] = count($collateral['property']['propertyTypes']);
 
-        return response()->json($collateral['contents']);
-    }
-      
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json($collateral['property']['propertyTypes']);
     }
 }

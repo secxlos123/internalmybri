@@ -29,6 +29,9 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    @if (\Session::has('error'))
+                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    @endif
                     <div class="card-box center-steps">
                         <form role="role" method="POST" action="{{route('postLKNAgunan', $collateral['id'])}}" id="form-lkn" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -69,8 +72,9 @@
 
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
-
 <script type="text/javascript">
     $(document).ready(function () {
         var lastStatusElement = null;
@@ -132,10 +136,9 @@
               cache: true
             },
           });
-        });
+    });
 
         $('.cities').on('select2:select', function (e) {
           var citi_id = e.params.data.id;
         });
-    });
 </script>

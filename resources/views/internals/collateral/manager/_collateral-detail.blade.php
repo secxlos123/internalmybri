@@ -9,56 +9,56 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Tipe Agunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">ELWYN GOTTLIEB</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['collateral_type']}}</p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-5 control-label">Kota :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Bandung</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['city']['name']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Kecamatan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Cigondewah</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['district']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Kelurahan/Desa :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Melong</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['sub_district']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">RT/RW :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">07/01</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['sub_district']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Jarak :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">10 KM dari pusat Kota</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['distance']}} {{$collateral['ots_in_area']['unit_type'] == 1 ? 'KM' : 'Meter'}} dari {{$collateral['ots_in_area']['sub_district']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Posisi Terhadap Jalan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Langsung menghadap jalan</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['position_from_road']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Bentuk Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Trapesium</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['ground_type']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Jarak Posisi Terhadap Jalan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">10 Meter</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['distance_of_position']}} Meter</p>
                         </div>
                     </div>
                 </form>
@@ -68,44 +68,44 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Batas Utara :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Sungai</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['north_limit']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Batas Timur :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rumah Sakit</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['east_limit']}}</p>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-5 control-label">Batas Barat :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Indomaret</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['west_limit']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Batas Selatan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Danau</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['south_limit']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Keterangan Lain :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Lorem ipsum</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['another_information']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Permukaan Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Tanah Rata</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['ground_level']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">Luas Tanah Sesuai Lapangan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">250 meter persegi</p>
+                            <p class="form-control-static">{{$collateral['ots_in_area']['surface_area']}} meter persegi</p>
                         </div>
                     </div>
                     <div class="form-group">

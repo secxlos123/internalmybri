@@ -74,6 +74,9 @@
                         }
 
                         $('#view-modal').modal('show');
+                        currentClass = $('body').attr('class');
+                        $('body').attr('class', currentClass+' modal-open');
+                        console.log("pas validasi data");
                         $("#view-modal #request_amount").html('Rp '+request_amount);
                         $("#view-modal #year").html(year+' tahun');
                         $("#view-modal #month").html(year+' bulan');

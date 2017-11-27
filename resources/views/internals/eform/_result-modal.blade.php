@@ -17,46 +17,56 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
-                               <div class="form-group">
-                                    <label class="col-md-6 control-label"> NIK Calon Peminjam</label>
+                               <div class="">
+                                    <label class="col-md-6 control-label"> NIK</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static" id="prescreening-nik">8179718616116</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Nama Calon Peminjam</label>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static" id="prescreening-name">John Doe</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Dokumen Pefindo</label>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Hasil Prescreening</label>
+                                    <div class="col-md-6" id="prescreening-result">
+                                        Hijau
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Keterangan Terkait Risiko</label>
                                     <div class="col-md-6">
-                                        <p class="form-control-static">-</p>
-                                        <!-- <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive"> -->
+                                        <p class="form-control-static" id="prescreening-notice">isinya dari sana</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="card-box m-t-30 after-this">
+                    <h4 class="m-t-min30 m-b-30 header-title custom-title">Hasil PEFINDO</h4>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Hasil Prescreening</label>
-                                    <div class="col-md-6">
-                                        <p class="form-control-static" id="prescreening-result">Hijau</p>
-                                        {{-- salah satunya hijau jdi hijau, salah satu merah jdi merah, sisanya kuning --}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Score Pefindo</label>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Score</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static" id="prescreening-score">100</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label"> Keterangan Terkait Risiko</label>
-                                    <div class="col-md-6">
-                                        <p class="form-control-static" id="prescreening-notice">isinya dari sana</p>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Warna</label>
+                                    <div class="col-md-6" id="prescreening-color">
+                                        100
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Dokumen</label>
+                                    <div class="col-md-6" id="prescreening-image">
+                                        <p class="form-control-static">-</p>
+                                        <!-- <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive"> -->
                                     </div>
                                 </div>
                             </div>
@@ -69,25 +79,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
-                               <div class="form-group">
+                               <div class="">
                                     <label class="col-md-6 control-label"> Score</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">100</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <label class="col-md-6 control-label"> Rating </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">4</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <label class="col-md-6 control-label"> Risiko </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">1</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <label class="col-md-12"> Permohonan kredit telah disetujui oleh sistem scoring BRI, pastikan data yang diinput telah sesuai dengan dokumen dan kondisi sebenarnya untuk menghindari putusan Tolak atau perubahan plafond</label>
                                 </div>
                             </div>
@@ -100,25 +110,25 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
-                               <div class="form-group">
+                               <div class="">
                                     <label class="col-md-6 control-label"> Score</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">50</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <label class="col-md-6 control-label"> Rating </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">1</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <label class="col-md-6 control-label"> Risiko </label>
                                     <div class="col-md-6">
                                         <p class="form-control-static">1</p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="">
                                     <label class="col-md-12"> Permohonan masuk dalam kategori risiko [risiko scoring] sehingga permohonan kredit Saudara berpotensi untuk mendapat putusan tolak atau perubahan plafond. Pastikan terdapat pertimbangan khusus terkait kemampuan dan kualitas calon debitur.</label>
                                 </div>
                                 <div class="text-center">

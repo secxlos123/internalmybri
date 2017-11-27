@@ -37,8 +37,8 @@
                                                             <div class="col-sm-8">
                                                                 <select class="form-control" id="is_screening">
                                                                     <option selected="" value="All"> Semua</option>
-                                                                    <option value="0">Sudah</option>
-                                                                    <option value="1">Belum</option>
+                                                                    <option value="1">Sudah</option>
+                                                                    <option value="0">Belum</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -157,7 +157,9 @@
                  {   data: 'is_screening', name: 'is_screening' },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
-      });
+        });
+
+        $(".dataTables_wrapper").addClass('table-responsive');
       }
     // var resizefunc = [];
     // $(document).ready(function () {

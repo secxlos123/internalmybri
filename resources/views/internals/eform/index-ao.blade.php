@@ -178,12 +178,83 @@
         }).done(function(data){
             console.log(data);
             // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
+            contents = data.response.contents;
 
-            $("#prescreening-nik").html(data.response.contents.eform.nik);
-            $("#prescreening-name").html(data.response.contents.eform.customer_name);
-            $("#prescreening-result").html(data.response.contents.eform.prescreening_status);
-            $("#prescreening-score").html(data.response.contents.eform.pefindo_score);
-            $("#prescreening-notice").html(data.response.contents.eform.ket_risk);
+            $('.card-box.m-t-30.remove-class-prescreening').remove();
+
+            if (contents.eform.prescreening_status == "Hijau") {
+                warna = '<p class="text-success form-control-static">Hijau</p>';
+
+            } else if (contents.eform.prescreening_status == "Kuning") {
+                warna = '<p class="text-warning form-control-static">Kuning</p>';
+
+            } else if (contents.eform.prescreening_status == "Merah") {
+                warna = '<p class="text-danger form-control-static">Merah</p>';
+
+            }
+
+            pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+            if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
+                pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
+
+            } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
+                pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
+
+            }
+
+            $("#prescreening-nik").html(contents.eform.nik);
+            $("#prescreening-name").html(contents.eform.customer_name);
+            $("#prescreening-result").html(warna);
+            $("#prescreening-color").html(pefindo_warna);
+            $("#prescreening-score").html(contents.eform.pefindo_score);
+            $("#prescreening-notice").html(contents.eform.ket_risk);
+
+            uploadscore = contents.eform.uploadscore;
+            html = '';
+            assets = "{{asset('assets/images/download.png')}}";
+
+            if ( uploadscore != null || uploadscore != '') {
+                split = uploadscore.split(',');
+                $.each(split, function(key, value) {
+                    if (value != ''){
+                        html += '<a href="'+value+'" target="_blank"><img src="'+assets+'" width="50" class="img-responsive"></a><br/>';
+                    }
+                })
+            } else {
+                html = '<p class="form-control-static">-</p>';
+            }
+            $("#prescreening-image").html(html);
+
+            base = $(".card-box.m-t-30.after-this");
+
+            if (contents.dhn.warna == "Hijau") {
+                warna = '<p class="text-success form-control-static">Hijau</p>';
+
+            } else if (contents.dhn.warna == "Kuning") {
+                warna = '<p class="text-warning form-control-static">Kuning</p>';
+
+            } else if (contents.dhn.warna >= "Merah") {
+                warna = '<p class="text-danger form-control-static">Merah</p>';
+
+            }
+
+            html = '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+
+            $.each(contents.sicd, function(key, sicd) {
+                if (sicd.bikole == 1) {
+                    warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                } else if (sicd.bikole == 2) {
+                    warna = '<p class="text-warning form-control-static">Kuning</p>';
+
+                } else if (sicd.bikole >= 3) {
+                    warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                }
+
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+sicd.bikole+'</p></div></div><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6">'+warna+'</div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6"><p class="form-control-static">'+sicd.status+'</p></div></div></div></div></div>';
+            })
+            $(html).insertAfter(base);
 
             // $('#detail').html(data['view']);
             $('#result-modal').modal('show');
