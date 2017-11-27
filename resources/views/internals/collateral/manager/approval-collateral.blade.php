@@ -80,6 +80,7 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.collateral.script')
+@include('internals.collateral.manager.append-script')
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -116,21 +117,7 @@
             },
         });
     });
-    $(document).on('click', "#view-detail", function(){
-        var dev_id = $('#dev_id').val();
-        var prop_id = $('#prop_id').val();
-
-        // $.ajax({
-        //         dataType: 'json',
-        //         type: 'GET',
-        //         url: '/detailCollateral',
-        //         data: { dev_id : dev_id, prop_id : prop_id },
-        //         success: function(result, data) {    
-        //         }
-        //     });
-                    $('#detail-collateral-modal').modal('show');
-    })
-
+    
     $(document).on('click', "#btn-approve", function(){
         $('#is_approved').attr('value', true);
         $('#form1').submit();

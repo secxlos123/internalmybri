@@ -38,8 +38,11 @@
                                                 <div class="col-sm-8">
                                                     <select class="form-control" id="status">
                                                         <option selected="" value="All"> Semua</option>
-                                                        <option value="1">Approved</option>
-                                                        <option value="2">Not Approved</option>
+                                                        <option value="1">Baru</option>
+                                                        <option value="2">Sedang Di Proses</option>
+                                                        <option value="3">Menunggu Persetujuan</option>
+                                                        <option value="4">Disetujui</option>
+                                                        <option value="5">Ditolak</option>
                                                     </select>
                                                 </div>
                                             </div>

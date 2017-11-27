@@ -107,10 +107,11 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $disposition = [
-            'staff_id' => $request->staff_id
-        ,   'staff_name' => $request->staff_name
+            'staff_id' => ($request->has('staff_id') ? $request->staff_id : $request->ao_id)
+        ,   'staff_name' => ($request->has('staff_id') ? $request->staff_name : $request->ao_name)
         ,   'remark' => $request->remark
         ];
+        // dd($disposition);
 
         $client = Client::setEndpoint('collateral/disposition/'.$id)
                 ->setHeaders([
@@ -154,12 +155,7 @@ class CollateralController extends Controller
 
          /* GET Data */
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
-
-        if(($collateral['code']) == 200){
-            return response()->json(['data' => $collateral]);
-        } else {
-            return response()->json(['data' => $collateral]);
-        }
+        return response()->json(['data' => $collateral]);
     }
 
     /**

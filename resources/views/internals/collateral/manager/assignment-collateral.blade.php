@@ -60,7 +60,7 @@
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="form-horizontal" role="form">
-                                                        <div class="form-group">
+                                                        <div class="form-group" id="staff_select">
                                                             <label class="col-md-5 control-label">Nama Staff * :</label>
                                                             <div class="col-md-7">
                                                                 {!! Form::select('staff_id', ['' => ''], old('staff_id'), [
@@ -70,6 +70,31 @@
                                                                 ]) !!}
                                                             </div>
                                                             <input type="hidden" name="staff_name" id="staff_name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-5">AO Cabang * </label>
+                                                            <div class="col-md-7">
+                                                                <input type="checkbox" name="ao_select" class="checkbox checkbox-single checkbox-primary" id="ao_select">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" hidden="" id="office">
+                                                            <label class="col-md-5 control-label">Pilih Kantor Cabang * :</label>
+                                                            <div class="col-md-7">
+                                                                {!! Form::select('offices', ['' => ''], old('offices'), [
+                                                                    'class' => 'select2 offices',
+                                                                    'data-placeholder' => 'Pilih Kantor Cabang'
+                                                                ]) !!}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" hidden="" id="ao_id">
+                                                            <label class="col-md-5 control-label">Nama AO * :</label>
+                                                            <div class="col-md-7">
+                                                                {!! Form::select('ao_id', ['' => ''], old('ao_id'), [
+                                                                    'class' => 'select2 ao_id',
+                                                                    'data-placeholder' => 'Pilih Nama AO'
+                                                                ]) !!}
+                                                            </div>
+                                                            <input type="hidden" name="ao_name" id="ao_name">
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">Catatan Penugasan * </label>
@@ -119,6 +144,7 @@
             witdh : '100%',
             allowClear: true,
         });
+        get_offices();
         
         $('.staff_id').select2({
             witdh : '100%',
@@ -151,6 +177,89 @@
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
             $('#staff_name').val(text);
+        });
+
+        $('#ao_select').on('change', function () {
+            if(this.checked){
+                $('#office').removeAttr('hidden');
+                $('#ao_id').removeAttr('hidden');
+                $('#staff_select').attr('hidden', true);
+                $('#staff_id').attr('disable', true);
+                $('.offices').attr('disable', true);
+                $('.ao_id').removeAttr('disable');
+            }else{
+                $('#office').attr('hidden', true);
+                $('#ao_id').attr('hidden', true);
+                $('#staff_select').removeAttr('hidden');
+                $('#staff_id').removeAttr('disable');
+                $('.offices').removeAttr('disable');
+                $('.ao_id').attr('disable', true);
+            }
+        });
+        //get offices
+        function get_offices() {
+            $('.offices').empty().select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: `/offices`,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            name: params.term,
+                            page: params.page || 1,
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.offices.data,
+                            pagination: {
+                                more: (params.page * data.offices.per_page) < data.offices.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        }
+
+        //select2 ao_name
+        $('.offices').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+
+            $('#ao_name').val(text);
+            // console.log(text);
+            $('.ao_id').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/getAO',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            branch_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.officers.data,
+                            pagination: {
+                                more: (params.page * data.officers.per_page) < data.officers.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
         });
     });
 </script>

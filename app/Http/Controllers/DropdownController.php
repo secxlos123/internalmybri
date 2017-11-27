@@ -349,4 +349,37 @@ class DropdownController extends Controller
 
         return response()->json(['useReason' => $useReason['contents']]);
     }
+
+    /**
+     * Get Staff Collateral
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getStaff(Request $request)
+    {
+        $data = $this->getUser();
+
+        $officers = Client::setEndpoint('account-officers')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+        $aoId = $request->input('aoId');
+
+
+        foreach ($officers['contents']['data'] as $key => $ao) {
+            if ($ao['id'] != $aoId) {
+                $ao['text'] = $ao['name'];
+                $officers['contents']['data'][$key] = $ao;
+            }
+        }
+
+        return response()->json(['officers' => $officers['contents']]);
+    }
 }
