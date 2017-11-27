@@ -49,13 +49,7 @@ class ScreeningController extends Controller
         $data = $this->getUser();
         // dd(env('APP_ENV'));
 
-        if($data['role'] == 'ao'){
-            return view('internals.screening.index-ao', compact('data'));
-        } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
-            return view('internals.screening.index', compact('data'));
-        } else{
-            return view('internals.eform.create', compact('data'));
-        }
+        return view('internals.screening.index-ao', compact('data'));
     }
 
     /**
