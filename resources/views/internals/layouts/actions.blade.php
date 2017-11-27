@@ -124,7 +124,7 @@
 @endif
 
 @if ( ( isset($prescreening) ) )
-	<a href="{!! $prescreening !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Detail Informasi" title="Prescreening">
-	    <i class="fa fa-info" aria-hidden="true"></i>
+	<a href="{!! $prescreening !!}" class="btn btn-icon btn-{{ $prescreening_color }} waves-effect waves-light" data-original-title="Prescreening" title="Prescreening">
+		<i class="fa fa-{{ $prescreening_icon }}" aria-hidden="true"></i>
 	</a>
 @endif

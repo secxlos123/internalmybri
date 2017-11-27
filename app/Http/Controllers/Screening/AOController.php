@@ -196,8 +196,12 @@ class AOController extends Controller
 			$form['branch_id'] = $form['branch_id'];
 		if($form['is_screening']=='0' || $form['is_screening']==''){
 			$form['is_screening']='Belum';
-		}elseif($form['is_screening']=='1'){
-			$form['is_screening']='Sudah';
+      $prescreening_icon = 'send';
+      $prescreening_color = 'success';
+    }elseif($form['is_screening']=='1'){
+      $form['is_screening']='Sudah';
+      $prescreening_icon = 'check';
+      $prescreening_color = 'info';
 		}
 
 					// 	$offices = Client::setEndpoint('offices')
@@ -227,6 +231,8 @@ class AOController extends Controller
             $form['action'] = view('internals.layouts.actions', [
 
               'prescreening' => route('getscore', $form['id']),
+              'prescreening_icon' => $prescreening_icon,
+              'prescreening_color' => $prescreening_color
             ])->render();
 		}else{
 			$form['branchs'] = '';
