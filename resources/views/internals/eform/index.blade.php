@@ -280,7 +280,7 @@
             html = '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
 
             $.each(contents.sicd, function(key, sicd) {
-                if (sicd.bikole == 1) {
+                if (sicd.bikole == 1 || sicd.bikole == '-') {
                     warna = '<p class="text-success form-control-static">Hijau</p>';
 
                 } else if (sicd.bikole == 2) {
@@ -291,7 +291,7 @@
 
                 }
 
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+sicd.bikole+'</p></div></div><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6">'+warna+'</div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6"><p class="form-control-static">'+sicd.status+'</p></div></div></div></div></div>';
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+sicd.bikole+'</p></div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6">'+sicd.status+'</div></div><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6"><p class="form-control-static">'+warna+'</p></div></div></div></div></div>';
             })
             $(html).insertAfter(base);
 
