@@ -98,6 +98,7 @@
                                         <!-- <th>Jenis Produk</th> -->
                                         <th>KC BRI Terdekat</th>
                                         <th>Status Prescreening</th>
+                                        <th>id</th>
                                         <th>AO</th>
                                         <th>Status</th>
                                         <th>Aging (hari)</th>
@@ -189,6 +190,7 @@
                 // {   data: 'product_type', name: 'product_type' },
                 {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
                 {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
                 {   data: 'ao_name', name: 'ao_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: false },
                 {   data: 'aging', name: 'aging' },
@@ -216,6 +218,7 @@
 
         }).done(function(data){
             console.log(data);
+            console.log("dari index");
             // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
             contents = data.response.contents;
 
@@ -277,7 +280,7 @@
 
             }
 
-            html = '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+            html = '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
 
             $.each(contents.sicd, function(key, sicd) {
                 if (sicd.bikole == 1 || sicd.bikole == '-') {
@@ -291,7 +294,7 @@
 
                 }
 
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+sicd.bikole+'</p></div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6">'+sicd.status+'</div></div><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6"><p class="form-control-static">'+warna+'</p></div></div></div></div></div>';
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+sicd.bikole+'</p></div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6"><p class="form-control-static">'+sicd.status+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div>';
             })
             $(html).insertAfter(base);
 
