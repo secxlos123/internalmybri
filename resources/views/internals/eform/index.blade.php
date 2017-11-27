@@ -113,6 +113,7 @@
             </div>
         </div>
     </div>
+@include('internals.eform._result-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
