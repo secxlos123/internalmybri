@@ -117,9 +117,9 @@
             },
         });
     });
-    $(document).on('click', "#view-detail", function(){
-        $('#detail-collateral-modal').modal('show');
-    })
+    // $(document).on('click', "#view-detail", function(){
+    //     $('#detail-collateral-modal').modal('show');
+    // })
 
     $(document).on('click', "#btn-approve", function(){
         $('#is_approved').attr('value', true);

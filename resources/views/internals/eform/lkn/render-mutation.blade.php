@@ -36,7 +36,7 @@ $('#add_account').click(function(){
                        +' <div class="form-group">'
                            +' <label class="col-md-4 control-label">No. Rekening *:</label>'
                            +' <div class="col-md-6">'
-                                +'<input type="text" class="form-control numericOnly" name="mutations['+index+'][number]" maxlength="12">'
+                                +'<input type="text" class="form-control numericOnly" name="mutations['+index+'][number]" maxlength="15">'
                             +'</div>'
                         +'</div>'
                     +'</div>'

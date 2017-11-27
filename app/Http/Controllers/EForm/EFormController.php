@@ -103,7 +103,8 @@ class EFormController extends Controller
             ])
             ->setQuery([
                 'name' => $request->input('name'),
-                'page' => $request->input('page')
+                'page' => $request->input('page'),
+                'branch_id' => $request->input('offices'),
             ])
             ->get();
             // echo json_encode($officers['contents']);exit();

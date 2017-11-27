@@ -106,6 +106,8 @@
 
             Route::get('approval-collateral/{dev_id}/{prop_id}', ['as'=>'getApprovalCollateral', 'uses'=>'Collateral\CollateralController@approval']);
 
+            Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
+
             Route::post('postApprovalCollateral/{id}', ['as'=>'postApprovalCollateral', 'uses'=>'Collateral\CollateralController@postApprovalCollateral']);
 
             Route::post('reject-approval/{id}', ['as'=>'rejectApprovalCollateral', 'uses'=>'Collateral\CollateralController@rejectApprovalCollateral']);
@@ -213,6 +215,8 @@
     Route::get('dropdown/programlist', 'DropdownController@programList');
 
     Route::get('dropdown/usereason', 'DropdownController@useReason');
+
+    Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getDeveloper', ['as'=>'getDeveloper', 'uses'=>'Developer\DeveloperController@getDeveloper']);
 

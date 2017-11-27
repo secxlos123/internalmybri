@@ -12,7 +12,7 @@
                 <div class="form-group m-t-20">
                     <div class="col-md-6">
                         <label class="control-label">Lokasi</label>
-                        <textarea name="area[location]" id="location" class="form-control" readonly="" name="ground_location" rows="3">{{old('area[location]')}}</textarea>
+                        <textarea name="area[location]" id="location" class="form-control" readonly="" name="ground_location" rows="3">South Jakarta, South Jakarta City, Jakarta, Indonesia</textarea>
                     </div>
                     @if ($errors->has('area[location]')) <p class="help-block">{{ $errors->first('area[location]') }}</p> @endif
                     <div class="col-md-3">
