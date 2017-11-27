@@ -1,6 +1,7 @@
 <script type="text/javascript">
 $('#add_account').click(function(){
   var index = $('.bank').length;
+  index++;
     $('#mutations').append(
         '<div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">'
             +'<div class="row">'
