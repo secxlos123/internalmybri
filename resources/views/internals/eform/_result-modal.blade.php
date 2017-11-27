@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="">
                                     <label class="col-md-6 control-label"> Hasil Prescreening</label>
-                                    <div class="col-md-6">
-                                        <p class="form-control-static" id="prescreening-result">Hijau</p>
+                                    <div class="col-md-6" id="prescreening-result">
+                                        Hijau
                                     </div>
                                 </div>
                                 <div class="">
@@ -51,13 +51,19 @@
                         <div class="col-md-6">
                             <div class="form-horizontal" role="form">
                                 <div class="">
-                                    <label class="col-md-6 control-label"> Score Pefindo</label>
+                                    <label class="col-md-6 control-label"> Score</label>
                                     <div class="col-md-6">
                                         <p class="form-control-static" id="prescreening-score">100</p>
                                     </div>
                                 </div>
                                 <div class="">
-                                    <label class="col-md-6 control-label"> Dokumen Pefindo</label>
+                                    <label class="col-md-6 control-label"> Warna</label>
+                                    <div class="col-md-6" id="prescreening-color">
+                                        100
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <label class="col-md-6 control-label"> Dokumen</label>
                                     <div class="col-md-6" id="prescreening-image">
                                         <p class="form-control-static">-</p>
                                         <!-- <img src="{{asset('assets/images/download.png')}}" width="50" class="img-responsive"> -->

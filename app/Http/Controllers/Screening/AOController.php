@@ -108,7 +108,13 @@ class AOController extends Controller
     public function getScore($id)
     {
         $data = $this->getUser();
-        return view('internals.screening.getscore', compact('data','id'));
+        $eform = Client::setEndpoint('eforms/'.$id)
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->get();
+        $eform = $eform['contents'];
+        return view('internals.screening.getscore', compact('data','id','eform'));
     }
 
     // uses regex that accepts any word character or hyphen in last name

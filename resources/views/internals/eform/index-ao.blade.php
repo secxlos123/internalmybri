@@ -193,9 +193,19 @@
 
             }
 
+            pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+            if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
+                pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
+
+            } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
+                pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
+
+            }
+
             $("#prescreening-nik").html(contents.eform.nik);
             $("#prescreening-name").html(contents.eform.customer_name);
             $("#prescreening-result").html(warna);
+            $("#prescreening-color").html(pefindo_warna);
             $("#prescreening-score").html(contents.eform.pefindo_score);
             $("#prescreening-notice").html(contents.eform.ket_risk);
 
@@ -242,7 +252,7 @@
 
                 }
 
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6">'+warna+'</div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6"><p class="form-control-static">'+sicd.status+'</p></div></div></div></div></div></div>';
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">Hasil SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+sicd.nama_debitur+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+sicd.no_identitas+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+sicd.tgl_lahir+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+sicd.bikole+'</p></div></div><div class=""><label class="col-md-6 control-label"> Warna </label><div class="col-md-6">'+warna+'</div></div><div class=""><label class="col-md-6 control-label"> Status </label><div class="col-md-6"><p class="form-control-static">'+sicd.status+'</p></div></div></div></div></div>';
             })
             $(html).insertAfter(base);
 
