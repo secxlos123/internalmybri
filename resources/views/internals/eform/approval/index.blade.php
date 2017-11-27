@@ -2,6 +2,12 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style type="text/css">
+    .card-box > img {
+        height: 350px;
+        width: 100%;
+    }
+</style>
 <div class="content-page">
     <div class="content">
         <div class="container">
