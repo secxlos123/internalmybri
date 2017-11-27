@@ -56,8 +56,8 @@
                       <td>
                         <select class="form-control" name="transaction_type">
                             <option selected="" disabled="">-- Pilih --</option>
-                            <option value="1">Transaksi Tidak Terkait Usaha</option>
-                            <option value="2">Transaksi Overbooking</option>
+                            <option value="Transaksi Tidak Terkait Usaha">Transaksi Tidak Terkait Usaha</option>
+                            <option value="Transaksi Overbooking">Transaksi Overbooking</option>
                         </select>
                       </td>
                       <td>
