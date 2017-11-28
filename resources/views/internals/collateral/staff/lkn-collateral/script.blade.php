@@ -181,7 +181,7 @@
             $("#detail-collateral-modal #distance").html(distance+' '+unit_type+' dari '+distance_from);
             $("#detail-collateral-modal #position_from_road").html(position_from_road);   
             $("#detail-collateral-modal #ground_type").html(ground_type);    
-            $("#detail-collateral-modal #distance_of_position").html(distance_of_position+' '+meter);
+            $("#detail-collateral-modal #distance_of_position").html(distance_of_position+' meter');
             $("#detail-collateral-modal #north_limit").html(north_limit); 
             $("#detail-collateral-modal #south_limit").html(south_limit); 
             $("#detail-collateral-modal #east_limit").html(east_limit);        

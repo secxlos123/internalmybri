@@ -137,7 +137,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Batas Timur :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="east_limit">80</p>
+                                                                        <p class="form-control-static" id="east_limit"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
