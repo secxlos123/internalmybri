@@ -40,13 +40,13 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Score Pefindo :</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control numericOnly required" id="pefindo_score" name="pefindo_score" maxlength="3" value="{{ $eform['pefindo_score'] }}" required>
+                                                    <input type="text" class="form-control numericOnly required" id="pefindo_score" name="pefindo_score" maxlength="3" value="{{ isset($eform['pefindo_score']) ? $eform['pefindo_score'] : '' }}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Keterangan Resiko :</label>
                                                 <div class="col-sm-8">
-                                                    <textarea id="ket_risk" name="ket_risk"  class="form-control required" rows="8" value="{{ $eform['ket_risk'] }}" required/>{{ $eform['ket_risk'] }}</textarea>
+                                                    <textarea id="ket_risk" name="ket_risk"  class="form-control required" rows="8" value="{{ isset($eform['ket_risk']) ? $eform['ket_risk'] : '' }}" required/>{{ isset($eform['ket_risk']) ? $eform['ket_risk'] : '' }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
