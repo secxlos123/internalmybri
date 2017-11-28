@@ -344,20 +344,20 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Batas Timur :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id=""></p><p class="form-control-static" id="building_east_limit">10 Meter dari </p><p class="form-control-static" id="building_east_limit_from">Bangunan SMP 2 Bandung</p>
+                                                                       <p class="form-control-static" id="building_east_limit"></p>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Batas Selatan :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_south_limit">40 Meter dari </p><p class="form-control-static" id="building_south_limit_from">Bangunan Apartemen A</p>
+                                                                        <p class="form-control-static" id="building_south_limit"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Batas Barat :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_west_limit">8 Meter dari </p><p class="form-control-static" id="building_west_limit_from">Bangunan Skywalk</p>
+                                                                        <p class="form-control-static" id="building_west_limit"></p>
                                                                     </div>
                                                                 </div>
                                                                 

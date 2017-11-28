@@ -107,6 +107,7 @@
             var west_limit = $('#west_limit').val();
             var another_information = $('#another_information').val();
             var ground_level = $('.ground_level').find("option:selected").text();
+            var surface_area = $('#surface_area').val();
              //step2
             var letter_type = $('.letter_type').find("option:selected").text();
             var letter_authorization = $('.letter_authorization').find("option:selected").text();
@@ -118,6 +119,7 @@
             var letter_on_behalf_on = $('#letter_on_behalf_on').val();
             var letter_duration = $('#letter_duration').val();
             var letter_bpn_name = $('#letter_bpn_name').val();
+            var letter_number = $('#letter_number').val();
 
              //step3
             var building_permit_number = $('#building_permit_number').val();
@@ -188,6 +190,7 @@
             $("#detail-collateral-modal #west_limit").html(west_limit); 
             $("#detail-collateral-modal #another_information").html(another_information); 
             $("#detail-collateral-modal #ground_level").html(ground_level); 
+            $("#detail-collateral-modal #surface_area").html(surface_area); 
 
             //step2
             $("#detail-collateral-modal #letter_type").html(letter_type); 
@@ -200,6 +203,7 @@
             $("#detail-collateral-modal #letter_on_behalf_on").html(letter_on_behalf_on);        
             $("#detail-collateral-modal #letter_duration").html(letter_duration); 
             $("#detail-collateral-modal #letter_bpn_name").html(letter_bpn_name); 
+            $("#detail-collateral-modal #letter_number").html(letter_number); 
 
             //step3
             $("#detail-collateral-modal #building_permit_number").html(building_permit_number); 

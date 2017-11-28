@@ -63,7 +63,7 @@
                                 "Bangunan Perumahan Penduduk" => "Bangunan Perumahan Penduduk", 
                                 "Lain-Lain" => "Lain-Lain"), 
                                 old('environment[nearest_location]'), [
-                                'class' => 'select2  transportation ',
+                                'class' => 'select2  nearest_location ',
                                 'data-placeholder' => '-- Pilih --'
                             ]) !!}
                         </div>
