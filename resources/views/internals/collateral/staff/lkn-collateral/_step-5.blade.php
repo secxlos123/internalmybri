@@ -17,7 +17,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Tanah</th>
+                                <th>Tanah *</th>
                                 <td>
                                     <div class="input-group">
                                         <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_land_date]" value="{{old('valuation[scoring_land_date]')}}" id="scoring_land_date">
@@ -50,7 +50,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Bangunan</th>
+                                <th>Bangunan *</th>
                                 <td>
                                     <div class="input-group">
                                         <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_building_date]" value="{{old('valuation[scoring_building_date]')}}" id="scoring_building_date">
@@ -83,7 +83,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>Tanah dan Bangunan</th>
+                                <th>Tanah dan Bangunan *</th>
                                 <td>
                                     <div class="input-group">
                                         <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_all_date]" value="{{old('valuation[scoring_all_date]')}}" id="scoring_all_date">
