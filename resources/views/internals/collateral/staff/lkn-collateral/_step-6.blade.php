@@ -8,32 +8,38 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Jenis Ikatan :</label>
                             <div class="col-md-8">
-                                <select class="form-control" name="other[bond_type]">
-                                    <option>-- Pilih --</option>
-                                    <option>Akta Pembebanan Hak</option>
-                                    <option>Fiducia Bangunan</option>
-                                    <option>Lain-lain</option>
-                                </select>
+                                {!! Form::select('other[bond_type]', array("" => "", 
+                                    "Akta Pembebanan Hak" => "Akta Pembebanan Hak", 
+                                    "Fiducia Bangunan" => "Fiducia Bangunan", 
+                                    "Lain-lain" => "Lain-lain"), 
+                                    old('other[bond_type]'), [
+                                    'class' => 'select2 bond_type ',
+                                    'data-placeholder' => '-- Pilih --'
+                                ]) !!}
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Penggunaan Bangunan Sesuai Fungsinya :</label>
                             <div class="col-md-8">
-                                <select class="form-control" name="other[use_of_building_function]">
-                                    <option>-- Pilih --</option>
-                                    <option>Sesuai</option>
-                                    <option>Tidak</option>
-                                </select>
+                                {!! Form::select('other[use_of_building_function]', array("" => "", 
+                                    "Sesuai" => "Sesuai", 
+                                    "Tidak" => "Tidak"), 
+                                    old('other[use_of_building_function]'), [
+                                    'class' => 'select2 use_of_building_function ',
+                                    'data-placeholder' => '-- Pilih --'
+                                ]) !!}
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Penggunaan Bangunan Secara Optimal :</label>
                             <div class="col-md-8">
-                                <select class="form-control" name="other[optimal_building_use]">
-                                    <option>-- Pilih --</option>
-                                    <option>Sesuai</option>
-                                    <option>Tidak</option>
-                                </select>
+                                {!! Form::select('other[optimal_building_use]', array("" => "", 
+                                    "Sesuai" => "Sesuai", 
+                                    "Tidak" => "Tidak"), 
+                                    old('other[optimal_building_use]'), [
+                                    'class' => 'select2 optimal_building_use ',
+                                    'data-placeholder' => '-- Pilih --'
+                                ]) !!}
                             </div>
                         </div>
                     </form>
@@ -42,18 +48,20 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Pertukaran Bangunan :</label>
                         <div class="col-md-8">
-                            <select class="form-control" name="other[building_exchange]">
-                                <option>-- Pilih --</option>
-                                <option>Akta Pembebanan Hak</option>
-                                <option>Fiducia Bangunan</option>
-                                <option>Lain-lain</option>
-                            </select>
+                            {!! Form::select('other[building_exchange]', array("" => "", 
+                                "Akta Pembebanan Hak" => "Akta Pembebanan Hak", 
+                                "Fiducia Bangunan" => "Fiducia Bangunan", 
+                                "Lain-lain" => "Lain-lain"), 
+                                old('other[building_exchange]'), [
+                                'class' => 'select2 building_exchange ',
+                                'data-placeholder' => '-- Pilih --'
+                            ]) !!}
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Hal-Hal Yang Perlu Diketahui Bank :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4" name="other[things_bank_must_know]">{{old('other[things_bank_must_know]')}}</textarea>
+                            <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know">{{old('other[things_bank_must_know]')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">

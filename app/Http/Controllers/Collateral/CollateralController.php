@@ -220,7 +220,7 @@ class CollateralController extends Controller
                     // 'status'    => $request->input('status'),
                     // 'branch_id' => $data['branch']
                 ])->get();
-
+                // echo json_encode($collateral);exit();
         foreach ($collateral['contents']['data'] as $key => $form) {
             $form['prop_name'] = strtoupper($form['property']['name']);
             $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
