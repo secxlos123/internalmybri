@@ -37,7 +37,7 @@
 
 @if(isset($verified))
 	@if ((isset($verification) && ($verified == false) && ($response_status != 'approve' || $response_status != 'unverified')))
-	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Verification">
+	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified')) ? 'pointer-events: none;cursor: default;' : ''}}">
 	    <i class="fa fa-check-square-o" aria-hidden="true"></i>
 	</a>
 	@endif
@@ -56,9 +56,17 @@
 @endif
 
 @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
-<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
-    <i class="mdi mdi-check"></i>
-</a>
+	@if(!empty($status))
+		@if($status == 'Rejected')
+			Rejected
+		@else
+			Approved
+		#endif
+	@else
+		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
+		    <i class="mdi mdi-check"></i>
+		</a>
+	@endif
 @endif
 
 @if (!empty($submited) && $submited == true)
