@@ -59,9 +59,7 @@
 	@if(!empty($status))
 		@if($status == 'Rejected')
 			Rejected
-		@else
-			Approved
-		#endif
+		@endif
 	@else
 		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
 		    <i class="mdi mdi-check"></i>
