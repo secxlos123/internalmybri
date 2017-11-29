@@ -44,4 +44,35 @@ class OfficeController extends Controller
 
         return response()->json(['offices' => $offices['contents']]);
     }
+
+    /**
+     * Get Staff Collateral
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getKanwil(Request $request)
+    {
+        $data = $this->getUser();
+
+        $kanwil = \Client::setEndpoint('kanwil-list')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+
+        foreach ($kanwil['contents']['data'] as $key => $region) {
+            if ($region['id'] = $region['region_id']) {
+                $region['text'] = $region['region_name'];
+                $kanwil['contents']['data'][$key] = $region;
+            }
+        }
+
+        return response()->json(['kanwil' => $kanwil['contents']]);
+    }
 }

@@ -566,20 +566,20 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Jenis Ikatan :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="bond_type">Fiducia Pembangunan</p>
+                                                                        <p class="form-control-static" id="bond_type"></p>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Penggunaan Bangunan Sesuai Fungsinya :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="use_of_building_function">Sesuai</p>
+                                                                        <p class="form-control-static" id="use_of_building_function"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Penggunaan Bangunan Secara Optimal :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="optimal_building_use">Sesuai</p>
+                                                                        <p class="form-control-static" id="optimal_building_use"></p>
                                                                     </div>
                                                                 </div> 
                                                             </form>
@@ -589,13 +589,13 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Pertukaran Bangunan :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_exchange">Fiducia Bangunan</p>
+                                                                        <p class="form-control-static" id="building_exchange"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Hal-Hal Yang Perlu Diketahui Bank :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="things_bank_must_know">Lorem ipsum</p>
+                                                                        <p class="form-control-static" id="things_bank_must_know"></p>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -612,7 +612,7 @@
                                 <div class="col-md-12">
                                     <div class="pull-right">
                                         <a href="#" data-dismiss="modal" class="btn btn-default waves-light waves-effect w-md m-b-20">Tutup</a>
-                                        <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a>
+                                        <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Ajukan</a>
                                         <!-- <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button> -->
                                     </div>
                                 </div>

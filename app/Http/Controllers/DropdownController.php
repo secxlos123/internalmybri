@@ -359,27 +359,25 @@ class DropdownController extends Controller
     {
         $data = $this->getUser();
 
-        $officers = Client::setEndpoint('account-officers')
+        $staffs = Client::setEndpoint('staff-list')
             ->setHeaders([
                 'Authorization' => $data['token'],
                 'pn' => $data['pn']
             ])
             ->setQuery([
                 'name' => $request->input('name'),
-                'page' => $request->input('page')
+                'page' => $request->input('page'),
+                'region_id' => $request->input('region_id')
             ])
             ->get();
 
-        $aoId = $request->input('aoId');
-
-
-        foreach ($officers['contents']['data'] as $key => $ao) {
-            if ($ao['id'] != $aoId) {
-                $ao['text'] = $ao['name'];
-                $officers['contents']['data'][$key] = $ao;
+        foreach ($staffs['contents']['data'] as $key => $staff) {
+            if ($staff['id'] = $staff['id']) {
+                $staff['text'] = $staff['name'];
+                $staffs['contents']['data'][$key] = $staff;
             }
         }
 
-        return response()->json(['officers' => $officers['contents']]);
+        return response()->json(['staffs' => $staffs['contents']]);
     }
 }

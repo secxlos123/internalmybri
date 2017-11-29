@@ -60,6 +60,16 @@
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="form-horizontal" role="form">
+                                                        <!-- <div class="form-group" id="kanwil_select">
+                                                            <label class="col-md-5 control-label">Pilih Kantor Wilayah * :</label>
+                                                            <div class="col-md-7">
+                                                                {!! Form::select('kanwil', ['' => ''], old('kanwil'), [
+                                                                    'class' => 'select2 kanwil',
+                                                                    'data-placeholder' => 'Pilih Kantor Wilayah'
+                                                                ]) !!}
+                                                            </div>
+                                                        </div> -->
+                                                             <input type="hidden" name="kanwil" id="kanwil" value="Q">
                                                         <div class="form-group" id="staff_select">
                                                             <label class="col-md-5 control-label">Nama Staff * :</label>
                                                             <div class="col-md-7">
@@ -74,10 +84,10 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">AO Cabang * </label>
                                                             <div class="col-md-7">
-                                                                <input type="checkbox" name="ao_select" class="checkbox checkbox-single checkbox-primary" id="ao_select">
+                                                                <input type="checkbox" name="ao_select" class="checkbox checkbox-single checkbox-primary" value="0" id="ao_select">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group" hidden="" id="office">
+                                                        <div class="form-group" id="office" hidden="">
                                                             <label class="col-md-5 control-label">Pilih Kantor Cabang * :</label>
                                                             <div class="col-md-7">
                                                                 {!! Form::select('offices', ['' => ''], old('offices'), [
@@ -184,16 +194,12 @@
                 $('#office').removeAttr('hidden');
                 $('#ao_id').removeAttr('hidden');
                 $('#staff_select').attr('hidden', true);
-                $('#staff_id').attr('disable', true);
-                $('.offices').attr('disable', true);
-                $('.ao_id').removeAttr('disable');
+                $('#kanwil_select').attr('hidden', true);
             }else{
                 $('#office').attr('hidden', true);
                 $('#ao_id').attr('hidden', true);
                 $('#staff_select').removeAttr('hidden');
-                $('#staff_id').removeAttr('disable');
-                $('.offices').removeAttr('disable');
-                $('.ao_id').attr('disable', true);
+                $('#kanwil_select').removeAttr('hidden');
             }
         });
         //get offices
@@ -242,7 +248,7 @@
                     delay: 250,
                     data: function (params) {
                         return {
-                            branch_id : id,
+                            offices : id,
                             name: params.term,
                             page: params.page || 1
                         };
@@ -261,7 +267,65 @@
                 },
             });
         });
-    });
+
+        // $('.kanwil').select2({
+        //     witdh : '100%',
+        //     allowClear: true,
+        //     ajax: {
+        //         url: '{{route("getKanwil")}}',
+        //         dataType: 'json',
+        //         delay: 250,
+        //         data: function (params) {
+        //             return {
+        //                 name: params.term,
+        //                 page: params.page || 1
+        //             };
+        //         },
+        //         processResults: function (data, params) {
+        //             params.page = params.page || 1;
+        //             // console.log(data);
+        //             return {
+        //                 results: data.kanwil.data,
+        //                 pagination: {
+        //                     more: (params.page * data.kanwil.per_page) < data.kanwil.total
+        //                 }
+        //             };
+        //         },
+        //         cache: true
+        //     },
+        // });
+
+        // $('.kanwil').on('change', function () {
+            var id = $('#kanwil').val();
+            $('.staff_id').select2({
+                    witdh : '100%',
+                    allowClear: true,
+                    ajax: {
+                        url: '/getStaff',
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                region_id : id,
+                                name: params.term,
+                                page: params.page || 1
+                            };
+                        },
+                        processResults: function (data, params) {
+                            params.page = params.page || 1;
+                            // console.log(data);
+                            return {
+                                results: data.staffs.data,
+                                pagination: {
+                                    more: (params.page * data.staffs.per_page) < data.staffs.total
+                                }
+                            };
+                        },
+                        cache: true
+                    },
+            });
+        });
+    // });
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Collateral\AssignmentRequest', '#form-assignment'); !!}
