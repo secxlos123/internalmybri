@@ -58,7 +58,7 @@
                                             <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
                                             <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">
                                             <div class="text-center">
-                                                <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
+                                                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</a>
                                                 <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
                                                 <input type="hidden" name="remark" id="remark">
                                                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
@@ -120,6 +120,7 @@
     
     $(document).on('click', "#btn-approve", function(){
         $('#is_approved').attr('value', true);
+        console.log($('#is_approved').val());
         $('#form1').submit();
         HoldOn.open(options);
     })

@@ -7,58 +7,64 @@
             <div class="col-md-6">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Tipe Agunan :</label>
+                        <label class="col-md-5 control-label">Tanggal Penilaian NPW Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['collateral_type']}}</p>
+                            <p class="form-control-static">{{$collateral['ots_valuation']['scoring_land_date']}}</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Kota :</label>
+                        <label class="col-md-5 control-label">NPW Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['city']['name']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['npw_land'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Kecamatan :</label>
+                        <label class="col-md-5 control-label">NL Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['district']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['nl_land'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Kelurahan/Desa :</label>
+                        <label class="col-md-5 control-label">PNPW Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['sub_district']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['pnpw_land'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">RT/RW :</label>
+                        <label class="col-md-5 control-label">PNL Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['sub_district']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['pnl_land'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Jarak :</label>
+                        <label class="col-md-5 control-label">Tanggal Penilaian NPW Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['distance']}} {{$collateral['ots_in_area']['unit_type'] == 1 ? 'KM' : 'Meter'}} dari {{$collateral['ots_in_area']['sub_district']}}</p>
+                            <p class="form-control-static">{{$collateral['ots_valuation']['scoring_building_date']}} </p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Posisi Terhadap Jalan :</label>
+                        <label class="col-md-5 control-label">NPW Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['position_from_road']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['npw_building'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Bentuk Tanah :</label>
+                        <label class="col-md-5 control-label">NL Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['ground_type']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['nl_building'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Jarak Posisi Terhadap Jalan :</label>
+                        <label class="col-md-5 control-label">PNPW Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['distance_of_position']}} Meter</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['pnpw_building'], 2, ",", ".")}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-5 control-label">PNL Bangunan :</label>
+                        <div class="col-md-7">
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['pnl_building'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                 </form>
@@ -66,46 +72,33 @@
             <div class="col-md-6">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Batas Utara :</label>
+                        <label class="col-md-5 control-label">Tanggal Penilaian NPW Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['north_limit']}}</p>
+                            <p class="form-control-static">{{$collateral['ots_valuation']['scoring_all_date']}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Batas Timur :</label>
+                        <label class="col-md-5 control-label">NPW Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['east_limit']}}</p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-5 control-label">Batas Barat :</label>
-                        <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['west_limit']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['npw_all'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Batas Selatan :</label>
+                        <label class="col-md-5 control-label">NL Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['south_limit']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['nl_all'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Keterangan Lain :</label>
+                        <label class="col-md-5 control-label">PNPW Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['another_information']}}</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['pnpw_all'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Permukaan Tanah :</label>
+                        <label class="col-md-5 control-label">PNL Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['ground_level']}}</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-5 control-label">Luas Tanah Sesuai Lapangan :</label>
-                        <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['ots_in_area']['surface_area']}} meter persegi</p>
+                            <p class="form-control-static">Rp{{number_format($collateral['ots_valuation']['pnl_all'], 2, ",", ".")}}</p>
                         </div>
                     </div>
                     <div class="form-group">

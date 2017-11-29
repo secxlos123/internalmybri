@@ -92,6 +92,7 @@ class CollateralController extends Controller
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
         // echo json_encode($collateral);die();
+        // dd($collateral);
 
         return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral'));
     }
@@ -107,9 +108,10 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $disposition = [
-            'staff_id' => ($request->has('staff_id') ? $request->staff_id : $request->ao_id)
-        ,   'staff_name' => ($request->has('staff_id') ? $request->staff_name : $request->ao_name)
+            'staff_id' => (isset($request->ao_select) ? $request->ao_id : $request->staff_id)
+        ,   'staff_name' => (isset($request->ao_select) ? $request->ao_name : $request->staff_name)
         ,   'remark' => $request->remark
+        ,   'is_staff' => (isset($request->ao_select) ? 0 : 1)
         ];
         // dd($disposition);
 
@@ -139,6 +141,7 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        // dd($collateral);
         return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral'));
     }
 
@@ -168,24 +171,27 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         
-        $remark = [
+        $reqs = [
             'remark' => $request->remark
+            , 'approved_by' => $data['pn']
         ];
 
-        $approve = $request->is_approve;
+        $approve = $request->is_approved;
+        // dd($request->all());
         if($approve == 'true'){
             $client = Client::setEndpoint('collateral/approve/'.$id)
                     ->setHeaders([
                         'Authorization' => $data['token'],
                         'pn' => $data['pn']
-                    ])->post();
+                    ])->setBody($reqs)
+                    ->post();
             $response = 'Pengajuan Properti Baru telah Disetujui';
         }else{
             $client = Client::setEndpoint('collateral/reject/'.$id)
                     ->setHeaders([
                         'Authorization' => $data['token'],
                         'pn' => $data['pn']
-                    ])->setBody($remark)
+                    ])->setBody($reqs)
                     ->post();
             $response = 'Pengajuan Properti Baru telah Ditolak';
         }
