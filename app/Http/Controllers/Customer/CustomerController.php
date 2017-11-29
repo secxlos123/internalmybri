@@ -125,17 +125,6 @@ class CustomerController extends Controller
                   'contents' => fopen( $npwp_path, 'r' ),
                 ];
 
-        $legal_documentReq = $request->legal_document;
-          $legal_document_path = $npwpReq->getPathname();
-            $legal_document_mime = $npwpReq->getmimeType();
-            $legal_document_name = $npwpReq->getClientOriginalName();
-            $legal_document[] = [
-                  'name'     => 'legal_document',
-                  'filename' => $legal_document_name,
-                  'Mime-Type'=> $legal_document_mime,
-                  'contents' => fopen( $legal_document_path, 'r' ),
-                ];
-
         $salary_slipReq = $request->salary_slip;
           $salary_slip_path = $npwpReq->getPathname();
             $salary_slip_mime = $npwpReq->getmimeType();
@@ -191,16 +180,16 @@ class CustomerController extends Controller
                     'Mime-Type'=> $image_mime,
                     'contents' => fopen( $image_path, 'r' ),
                     ];
-          $allReq = $request->except(['npwp', '_token', 'diforce_certificate', 'legal_document', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate', 'salary', 'other_salary', 'loan_installment']);
+          $allReq = $request->except(['npwp', '_token', 'diforce_certificate', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate', 'salary', 'other_salary', 'loan_installment']);
             foreach ($allReq as $index => $req) {
               $inputData[] = [
                         'name'     => $index,
                         'contents' => $req
                       ];
             }
-            $newCustomer = array_merge($npwp, $inputData, $legal_document, $bank_statement, $family_card, $marrital_certificate, $diforce_certificate, $name, $salary_slip);
+            $newCustomer = array_merge($npwp, $inputData, $bank_statement, $family_card, $marrital_certificate, $diforce_certificate, $name, $salary_slip);
         }else{
-          $allReq = $request->except(['npwp', '_token', 'legal_document', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate', '_token', 'full_name', 'salary', 'other_salary', 'loan_installment']);
+          $allReq = $request->except(['npwp', '_token', 'salary_slip', 'bank_statement', 'family_card', 'marrital_certificate', 'diforce_certificate', '_token', 'full_name', 'salary', 'other_salary', 'loan_installment']);
             foreach ($allReq as $index => $req) {
               $inputData[] = [
                         'name'     => $index,
@@ -208,7 +197,7 @@ class CustomerController extends Controller
                       ];
             }
 
-            $newCustomer = array_merge($npwp, $inputData, $bank_statement, $legal_document, $family_card, $marrital_certificate, $name, $moneyInput, $salary_slip);
+            $newCustomer = array_merge($npwp, $inputData, $bank_statement, $family_card, $marrital_certificate, $name, $moneyInput, $salary_slip);
         }
         return $newCustomer;
     }

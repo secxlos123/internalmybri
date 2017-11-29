@@ -49,7 +49,6 @@
 	})
 
 	$('#nonfixed-income').hide();
-    $('#legal_document').hide();
     $('#legal_bussiness_document').hide();
 
 	$('#source').on('change', function () {
@@ -59,7 +58,6 @@
             $('#nonfixed-income').hide();
             $('#salary_slip').show();
             $('#work_letter').show();
-            $('#legal_document').hide();
             $('#legal_bussiness_document').hide();
 	    }else{
 	    	$('#fixed-salary').hide();
@@ -67,7 +65,6 @@
 	    	$('#nonfixed-income').show();
             $('#salary_slip').hide();
             $('#work_letter').hide();
-            $('#legal_document').show();
             $('#legal_bussiness_document').show();
 	    }
 	});
@@ -123,7 +120,7 @@
             changeYear: true,
             showButtonPanel: true,
             dateFormat: 'MM yy',
-            onClose: function(dateText, inst) { 
+            onClose: function(dateText, inst) {
                 $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
             }
         });

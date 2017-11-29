@@ -8,13 +8,6 @@
             <p>NPWP</p>
         </div>
     </div>
-    
-    <div class="col-md-6" align="center">
-        <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['legal_document'])){{$detail['visit_report']['legal_document']}}@endif" class="img-responsive">
-            <p>Dokumen Legal Agunan</p>
-        </div>
-    </div>
 
     <div class="col-md-6" align="center">
         <div class="card-box">
@@ -105,7 +98,7 @@
         </div>
     </div>
     @endif
-    
+
     <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="@if(!empty($detail['visit_report']['building_tax'])){{$detail['visit_report']['building_tax']}}@endif" class="img-responsive">
