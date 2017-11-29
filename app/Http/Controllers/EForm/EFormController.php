@@ -397,7 +397,8 @@ class EFormController extends Controller
                     'branch_id' => $data['branch'],
                     'ref_number' => $request->input('ref_number'),
                     'customer_name' => $request->input('customer_name'),
-                    'prescreening' => $request->input('prescreening')
+                    'prescreening' => $request->input('prescreening'),
+                    'product' => $request->input('product')
                 ])->get();
 
             // dd($eforms);

@@ -54,12 +54,12 @@
                                                             </div>
                                                         </div>
 
-                                                        {{-- <div class="form-group">
+                                                        <div class="form-group">
                                                             <label class="col-sm-4 control-label">Nama Customer :</label>
                                                             <div class="col-sm-8">
                                                                 <input type="text" class="form-control" name="customer_name" id="customer_name">
                                                             </div>
-                                                        </div> --}}
+                                                        </div>
 
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Pengajuan :</label>
@@ -76,6 +76,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Status Prescreening :</label>
                                                             <div class="col-sm-8">
@@ -84,6 +85,17 @@
                                                                     <option value="1" class="text-success">Hijau</option>
                                                                     <option value="2" class="text-warning">Kuning</option>
                                                                     <option value="3" class="text-danger">Merah</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Jenis Produk :</label>
+                                                            <div class="col-sm-8">
+                                                                <select id="product_filter" class="form-control">
+                                                                    <option selected="" value="All"> Semua</option>
+                                                                    <option value="kpr">KPR</option>
+                                                                    <option value="briguna">BRIGUNA</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -301,6 +313,7 @@
                     d.ref_number = $('#ref_number').val();
                     d.customer_name = $('#customer_name').val();
                     d.prescreening = $('#prescreening_filter').val();
+                    d.product = $('#product_filter').val();
                 }
             },
           aoColumns : [

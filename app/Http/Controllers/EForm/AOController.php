@@ -447,7 +447,8 @@ class AOController extends Controller
                   'ref_number'=> $request->input('ref_number'),
                   'customer_name'=> ucwords($request->input('customer_name')),
                   'branch_id' => $data['branch'],
-                  'prescreening' => $request->input('prescreening')
+                  'prescreening' => $request->input('prescreening'),
+                  'product' => $request->input('product')
                 ])->get();
                 // echo json_encode($request->input('customer_name'));exit();
 
