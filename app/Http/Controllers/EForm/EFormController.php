@@ -427,6 +427,7 @@ class EFormController extends Controller
                 'approve' => $form,
                 // 'verified' => $verify,
                 'visited' => $visit,
+                'status' => $form['status_eform'],
                 // 'verification' => route('getVerification', $form['user_id']),
                 // 'lkn' => route('getLKN', $form['id']),
             ])->render();

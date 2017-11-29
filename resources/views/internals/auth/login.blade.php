@@ -58,7 +58,7 @@
                             </div>
                             <div class="row m-t-50">
                                 <div class="col-sm-12 text-center">
-                                    <p class="text-muted">Untuk bantuan email ke <a href="#" class="text-primary m-l-5"><b>mail@bri.co.id</b></a></p>
+                                    <p class="text-muted">Untuk bantuan email ke <a href="#" class="text-primary m-l-5"><b>consumer.support@corp.bri.co.id</b></a></p>
                                 </div>
                             </div>
                         </div>
