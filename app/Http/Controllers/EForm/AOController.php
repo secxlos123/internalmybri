@@ -242,7 +242,7 @@ class AOController extends Controller
           return redirect()->route('eform.index');
         }
 
-        $tyoe = 'fill';
+        $type = 'fill';
 
         return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
@@ -516,7 +516,7 @@ class AOController extends Controller
           return redirect()->route('eform.index');
         }
 
-        $tyoe = 'preview';
+        $type = 'preview';
 
         return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
