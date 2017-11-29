@@ -458,12 +458,6 @@
                                             <div class="col-md-8">
                                                 <div class="form-horizontal" role="form">
                                                     <div class="form-group">
-                                                        <label class="col-md-6 control-label">Dokumen Legal Agunan *:</label>
-                                                        <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="legal_document">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
                                                         <label class="col-md-6 control-label">Slip Gaji / Dokumen Legal Usaha / Izin Praktek *:</label>
                                                         <div class="col-md-6">
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="salary_slip">

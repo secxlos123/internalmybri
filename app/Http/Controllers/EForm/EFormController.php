@@ -397,7 +397,8 @@ class EFormController extends Controller
                     'branch_id' => $data['branch'],
                     'ref_number' => $request->input('ref_number'),
                     'customer_name' => $request->input('customer_name'),
-                    'prescreening' => $request->input('prescreening')
+                    'prescreening' => $request->input('prescreening'),
+                    'product' => $request->input('product')
                 ])->get();
 
             // dd($eforms);
@@ -426,6 +427,7 @@ class EFormController extends Controller
                 'approve' => $form,
                 // 'verified' => $verify,
                 'visited' => $visit,
+                'status' => $form['status_eform'],
                 // 'verification' => route('getVerification', $form['user_id']),
                 // 'lkn' => route('getLKN', $form['id']),
             ])->render();

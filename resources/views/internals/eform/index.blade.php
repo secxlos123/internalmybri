@@ -55,6 +55,13 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Nasabah :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="customer_name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label class="col-sm-4 control-label">Status Pengajuan :</label>
                                                     <div class="col-sm-8">
                                                         <select class="form-control" id="status">
@@ -69,6 +76,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label">Status Prescreening :</label>
                                                     <div class="col-sm-8">
@@ -80,6 +88,18 @@
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Jenis Produk :</label>
+                                                    <div class="col-sm-8">
+                                                        <select id="product_filter" class="form-control">
+                                                            <option selected="" value="All"> Semua</option>
+                                                            <option value="kpr">KPR</option>
+                                                            <option value="briguna">BRIGUNA</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                             </form>
                                             <div class="text-right">
                                                 <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
@@ -181,6 +201,7 @@
                     d.ref_number = $('#ref_number').val();
                     d.customer_name = $('#customer_name').val();
                     d.prescreening = $('#prescreening_filter').val();
+                    d.product = $('#product_filter').val();
                 }
             },
           aoColumns : [

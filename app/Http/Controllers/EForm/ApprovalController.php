@@ -24,7 +24,7 @@ class ApprovalController extends Controller
      * @return \Illuminate\Http\Response
      */
     function urlImage($index){
-      $includeImage = ['npwp', 'legal_document', 'salary_slip', 'legal_bussiness_document','licence_of_practice', 'work_letter', 'family_card', 'marrital_certificate', 'divorce_certificate', 'offering_letter', 'down_payment', 'building_tax', 'photo_with_customer', 'building_permit', 'proprietary'];
+      $includeImage = ['npwp', 'salary_slip', 'legal_bussiness_document','licence_of_practice', 'work_letter', 'family_card', 'marrital_certificate', 'divorce_certificate', 'offering_letter', 'down_payment', 'building_tax', 'photo_with_customer', 'building_permit', 'proprietary'];
 
       if ( in_array($index, $includeImage) ) {
         $value = pathinfo($detail['visit_report']["'".$index."'"], PATHINFO_EXTENSION);

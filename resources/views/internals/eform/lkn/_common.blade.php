@@ -9,12 +9,6 @@
                         @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
                     </div>
                 </div>
-                <div class="form-group" id="legal_document">
-                    <label class="col-md-6 control-label">Dokumen Legal Agunan * :</label>
-                    <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="legal_document">
-                    </div>
-                </div>
                 <div class="form-group" id="salary_slip">
                     <label class="col-md-6 control-label">Slip Gaji * :</label>
                     <div class="col-md-6">
