@@ -72,6 +72,7 @@
 
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.collateral.staff.lkn-collateral._modal-detail')
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
@@ -140,5 +141,11 @@
 
         $('.cities').on('select2:select', function (e) {
           var citi_id = e.params.data.id;
+        });
+
+        $('#detail-collateral-modal #btn-save').on('click', function() {
+            HoldOn.open(options);
+            $('#form-lkn').submit();
+            HoldOn.close();
         });
 </script>

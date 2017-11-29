@@ -123,7 +123,15 @@ class CollateralStaffController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return view('internals.collateral.staff.lkn-collateral.index', compact('data', 'collateral'));
+        if($collateral['property']['category'] == 0){
+            $category_name = 'Rumah Tapak';
+        }elseif($collateral['property']['category'] == 1){
+            $category_name = 'Rumah Susun/Apartment';
+        }else{
+            $category_name = 'Rumah Toko';
+        }
+        // dd($collateral['property']['category']);
+        return view('internals.collateral.staff.lkn-collateral.index', compact('data', 'collateral', 'category_name'));
     }
 
     /**
@@ -164,8 +172,8 @@ class CollateralStaffController extends Controller
      */
     public function returnContent( $field, $values, $baseName )
     {
-        // $excludeNumber = ['surface_area', 'distance', 'distance_of_position', 'surface_area_by_letter', 'count', 'spacious', 'north_limit', 'east_limit', 'south_limit', 'west_limit', 'distance_from_transportation'];
-        $excludeNumber = [];
+        $excludeNumber = ['npw_land', 'nl_land', 'pnpw_land', 'pnl_land', 'npw_building', 'nl_building', 'pnpw_building', 'pnl_building', 'npw_all', 'nl_all', 'pnpw_all', 'pnl_all'];
+        // $excludeNumber = [];
         $excludeImage = ['image_condition_area'];
 
         if ( in_array($baseName, $excludeNumber) ) {
@@ -194,17 +202,29 @@ class CollateralStaffController extends Controller
     {
         $application = [];
 
-        foreach ($request->except('_token') as $field => $value) {
+        $pln = ($request->designated_pln ? $request->designated_pln.',' : '');
+        $phone = ($request->designated_phone ? $request->designated_phone.',' : '');
+        $pam = ($request->designated_pam ? $request->designated_pam.',' : '');
+        $telex = ($request->designated_telex ? $request->designated_telex : '');
+        $designated[] = [
+            'name' => 'environment[designated]'
+            , 'contents' => $pln.''.$phone.''.$pam.''.$telex
+        ];
+
+        foreach ($request->except('_token', 'designated_pln', 'designated_phone', 'designated_pam', 'designated_telex') as $field => $value) {
             foreach ($value as $index => $data) {
             $baseName = $field . '[' . $index . ']';
                 $return = $this->returnContent( $baseName, $data, $index );
                     if ($return != null) {
                     $application[] = $this->returnContent( $baseName, $data, $index );
                 }
+
             }
         }
+
+            $reqs = array_merge($application, $designated);
     
-        return $application;
+        return $reqs;
     }
 
     /**
@@ -216,6 +236,7 @@ class CollateralStaffController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->otsRequest($request);
+        // dd($newForm);
 
           $client = Client::setEndpoint('collateral/ots/'.$id)
            ->setHeaders([
@@ -224,6 +245,7 @@ class CollateralStaffController extends Controller
             ])
            ->setBody($newForm)
            ->post('multipart');
+           // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');

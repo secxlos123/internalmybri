@@ -56,7 +56,7 @@
                             </li>
                             @endif
 
-                            @if(($data['role']=='staff-collateral'))
+                            @if(($data['role']=='collateral-appraisal'))
                             <li>
                                 <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Collateral Management </span> </a>
                             </li>
