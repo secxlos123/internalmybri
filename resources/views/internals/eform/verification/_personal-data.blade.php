@@ -47,10 +47,14 @@
                                 <label class="col-md-3 control-label">NIK * :</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
+                                        @if ($type != 'preview')
                                         <input type="text" class="form-control" name="nik" value="{{ $dataCustomer['customer']['nik'] }}" maxlength="16" readonly>
                                         <span class="input-group-addon nopadding">
                                             <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect change-nik">Ubah</a>
                                         </span>
+                                        @else
+                                            <p>{{@$dataCustomer['customer']['nik']}}</p>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -59,12 +63,16 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                 <div class="col-md-9">
-                                    {!! Form::select('birth_place_id', [$dataCustomer['customer']['birth_place_id'] => $dataCustomer['customer']['birth_place']], old('birth_place'), [
-                                        'class' => 'select2 birth_place',
-                                        'data-placeholder' => 'Pilih Kota Tempat Lahir',
-                                        'readonly' => true,
-                                        'id' => 'birth_place'
-                                    ]) !!}
+                                    @if ($type != 'preview')
+                                        {!! Form::select('birth_place_id', [$dataCustomer['customer']['birth_place_id'] => $dataCustomer['customer']['birth_place']], old('birth_place'), [
+                                            'class' => 'select2 birth_place',
+                                            'data-placeholder' => 'Pilih Kota Tempat Lahir',
+                                            'readonly' => true,
+                                            'id' => 'birth_place'
+                                        ]) !!}
+                                    @else
+                                        <p>{{@$dataCustomer['customer']['birth_place']}}</p>
+                                    @endif
 
                                     @if ($errors->has('birth_place'))
                                         <p class="help-block">{{ $errors->first('birth_place') }}</p>
@@ -77,8 +85,12 @@
                                 <label class="col-md-3 control-label">Tanggal Lahir * :</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
+                                    @if ($type != 'preview')
                                         <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" @if(!empty($dataCustomer)) value="{{ $dataCustomer['customer']['birth_date'] }}" @endif>
                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
+                                    @else
+                                        <p>{{ @$dataCustomer['customer']['birth_date'] }}</p>
+                                    @endif
 
                                         @if ($errors->has('birth_date'))
                                             <p class="help-block">{{ $errors->first('birth_date') }}</p>
@@ -90,11 +102,15 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Kota * :</label>
                                 <div class="col-md-9">
+                                @if ($type != 'preview')
                                     {!! Form::select('city_id', [$dataCustomer['customer']['city_id'] => $dataCustomer['customer']['city']], old('city_id'), [
                                         'class' => 'select2 cities',
                                         'data-placeholder' => 'Pilih Kota Tempat Tinggal',
                                         'readonly' => true
                                     ]) !!}
+                                @else
+                                    <p>{{$dataCustomer['customer']['city']}}</p>
+                                @endif
 
                                     @if ($errors->has('city_id'))
                                         <p class="help-block">{{ $errors->first('city_id') }}</p>
@@ -103,6 +119,7 @@
                                 <input type="hidden" id="new_city" value="{{ $dataCustomer['customer']['city'] }}">
                             </div>
 
+                            @if ($type != 'preview')
                             <div class="form-group">
                                 <label class="col-md-3 control-label">KTP * :</label>
                                 <div class="col-md-9">
@@ -113,6 +130,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @endif
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
@@ -128,11 +146,15 @@
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Jenis Kelamin * :</label>
                                 <div class="col-md-7">
+                                @if ($type != 'preview')
                                     {!! Form::select('gender', array("" => "", "L" => "Laki-laki", "P" => "Perempuan"), !empty($dataCustomer) ? substr($dataCustomer['customer']['gender'], 0, 1) : old('gender'), [
                                         'class' => 'select2 gender ',
                                         'data-placeholder' => 'Pilih Jenis Kelamin',
                                         'data-bri' => ''
                                     ]) !!}
+                                @else
+                                    <p>{{ isset($dataCustomer['customer']['gender']) &&($dataCustomer['customer']['gender'] == 'L') ? 'Laki-laki' : 'Perempuan'}}</p>
+                                @endif
 
                                     @if ($errors->has('gender'))
                                         <p class="help-block">{{ $errors->first('gender') }}</p>
@@ -144,12 +166,16 @@
                             <div class="form-group status {!! $errors->has('status') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Status Pernikahan * :</label>
                                 <div class="col-md-7">
+                                @if ($type != 'preview')
                                     {!! Form::select('status', array("" => "", "1" => "Belum Menikah", "2" => "Menikah", "3" => "Janda / Duda"), !empty($dataCustomer) ? $dataCustomer['customer']['status'] : old('status'), [
                                         'class' => 'select2 status ',
                                         'id' => 'status',
                                         'data-placeholder' => 'Pilih Status Pernikahan',
                                         'data-bri' => ''
                                     ]) !!}
+                                @else
+                                    <p>{{ @$dataCustomer['customer']['status'] }}</p>
+                                @endif
 
                                     @if ($errors->has('status'))
                                         <p class="help-block">{{ $errors->first('status') }}</p>
@@ -161,11 +187,15 @@
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Status Tempat Tinggal * :</label>
                                 <div class="col-md-7">
+                                @if ($type != 'preview')
                                     {!! Form::select('address_status', array("" => "", "0" => "Milik Sendiri", "1" => "Orang Tua / Mertua / Rumah Dinas", "3" => "Rumah Kontrakan"), !empty($dataCustomer) ? $dataCustomer['customer']['address_status'] : old('address_status'), [
                                         'class' => 'select2 address_status ',
                                         'data-placeholder' => 'Pilih Status Tempat Tinggal',
                                         'data-bri' => ''
                                     ]) !!}
+                                @else
+                                    <p>{{ @$dataCustomer['customer']['address'] }}</p>
+                                @endif
 
                                     @if ($errors->has('address_status'))
                                         <p class="help-block">{{ $errors->first('address_status') }}</p>
@@ -177,11 +207,15 @@
                             <div class="form-group">
                                 <label class="col-md-5 control-label">Kewarganegaraan * :</label>
                                 <div class="col-md-7">
+                                @if ($type != 'preview')
                                     {!! Form::select('citizenship_id', [$dataCustomer['customer']['citizenship_id'] => $dataCustomer['customer']['citizenship_name']], old('citizenship'), [
                                         'class' => 'select2 citizenship',
                                         'data-placeholder' => 'Pilih Kewarganegaraan',
                                         'readonly' => true
                                     ]) !!}
+                                @else
+                                    <p>{{ @$dataCustomer['customer']['citizenship_name']}}</p>
+                                @endif
                                     @if ($errors->has('citizenship'))
                                         <p class="help-block">{{ $errors->first('citizenship') }}</p>
                                     @endif
@@ -192,14 +226,18 @@
                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Email * :</label>
                                 <div class="col-md-7">
+                                @if ($type != 'preview')
                                     <input type="email" class="form-control" name="email"  maxlength="50" readonly="" value="{{ $dataCustomer['customer']['email'] }}">
+                                @else
+                                    <p>{{ @$dataCustomer['customer']['email']}}</p>
+                                @endif
                                     @if ($errors->has('email'))
                                         <p class="help-block">{{ $errors->first('email') }}</p>
                                     @endif
                                 </div>
                             </div>
 
-
+                            @if ($type != 'preview')
                             <div class="form-group">
                                 <div class="col-md-7 col-md-offset-5">
                                     <div class="checkbox checkbox-single checkbox-primary">
@@ -208,11 +246,15 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @endif
                             <div class="form-group current_address {!! $errors->has('current_address') ? 'has-error' : '' !!}">
                                 <label class="col-md-5 control-label">Alamat Domisili * :</label>
                                 <div class="col-md-7">
+                                @if ($type != 'preview')
                                     <textarea type="current_address" class="form-control" name="current_address" value="{{ $dataCustomer['customer']['current_address'] }}" {{ ($dataCustomer['customer']['current_address'] == $dataCustomer['customer']['address']) ? "readonly" : "" }}>{{ $dataCustomer['customer']['current_address'] }}</textarea>
+                                @else
+                                    <p>{{@$dataCustomer['customer']['current_address']}}</p>
+                                @endif
                                     @if ($errors->has('current_address'))
                                         <p class="help-block">{{ $errors->first('current_address') }}</p>
                                     @endif

@@ -242,7 +242,9 @@ class AOController extends Controller
           return redirect()->route('eform.index');
         }
 
-        return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer'));
+        $tyoe = 'fill';
+
+        return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
 
      /**
@@ -476,6 +478,7 @@ class AOController extends Controller
               'response_status' => $status,
 
               'verification' => route('getVerification', $form['id']),
+              'preview' => route('getDetail', $form['id']),
               'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
@@ -486,5 +489,35 @@ class AOController extends Controller
         $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
 
         return response()->json($eforms['contents']);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPreview($id)
+    {
+        $data = $this->getUser();
+        // dd($id);
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
+                      ->setQuery(['limit' => 100])
+                      ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                      ])
+                      ->post();
+
+        $dataCustomer = $customerData['contents'];
+
+        if (count($dataCustomer) == 0) {
+          \Session::flash('danger', 'Data verification tidak ditemukan!');
+          return redirect()->route('eform.index');
+        }
+
+        $tyoe = 'preview';
+
+        return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
 }
