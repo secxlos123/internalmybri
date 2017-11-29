@@ -175,6 +175,7 @@
     function reloadData1(from, to, status)
       {
         table1 = $('#datatable').DataTable({
+           searching : false,
            processing : true,
            serverSide : true,
            order : [[3, 'asc']],
