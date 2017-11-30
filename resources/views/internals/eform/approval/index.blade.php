@@ -135,7 +135,7 @@
 </div>
 
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 <script type="text/javascript">
 
 // $(function(){
@@ -143,7 +143,7 @@
 //               function() { $(this).animate({width: "100%"}, 500)},
 //                function() { $(this).animate({width: "50px"}, 500); }
 //         );
-//   }); 
+//   });
 
     var options = {
         theme:"sk-bounce",
@@ -164,9 +164,9 @@
         HoldOn.close();
     })
 
-    $('#form1').on('keyup keypress', function(e) { 
-        var keyCode = e.keyCode || e.which; 
-        if (keyCode === 13) { e.preventDefault(); return false; } 
+    $('#form1').on('keyup keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { e.preventDefault(); return false; }
     });
 
 </script>

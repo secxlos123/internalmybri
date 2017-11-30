@@ -30,7 +30,9 @@
                                     <td class="align-middle" id="{{ $field }}CIF">{{ !empty($dataCustomer) ? $dataCustomer['cif'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
                                     <td class="align-middle" id="{{ $field }}KM">{{ !empty($dataCustomer) ? $dataCustomer['kemendagri'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
                                     <td>
+                                        @if ($type != 'preview')
                                         <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="{{ $field }}">Sesuaikan</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -88,6 +88,7 @@
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
+        Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
 
         Route::post('/eform/approve/{id}',
             ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
