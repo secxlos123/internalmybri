@@ -211,7 +211,8 @@ class CollateralStaffController extends Controller
             , 'contents' => $pln.''.$phone.''.$pam.''.$telex
         ];
 
-        foreach ($request->except('_token', 'designated_pln', 'designated_phone', 'designated_pam', 'designated_telex') as $field => $value) {
+        \Log::info($request->all());
+        foreach ($request->except('_token', 'designated_pln', 'designated_phone', 'designated_pam', 'designated_telex', 'collateral_type') as $field => $value) {
             foreach ($value as $index => $data) {
             $baseName = $field . '[' . $index . ']';
                 $return = $this->returnContent( $baseName, $data, $index );
