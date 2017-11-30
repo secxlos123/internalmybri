@@ -781,10 +781,33 @@
     });
 
     //storing leads
-    $("#form_data_personal").submit(function(){
-
+    $("#form_data_personal").submit(function(e){
         var formData = new FormData(this);
+        var status = $("select[name='status']").val();
+        // console.log(status);
+        // console.log($("input[name='birth_date']").val());
+        // console.log(formData);
 
+        var dob = new Date($("input[name='birth_date']").val());
+        var today = new Date();
+        var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+        // console.log(age);
+        doSomething = 1;
+        console.log(status);
+        if (status == 1) {
+            if (age < 21) {
+                // console.log('abussss ajiggggg');
+                $(".birth_date").addClass("has-error");
+                $(".birth_date div.col-md-9").append("<span id=\"birth_date-error\" class=\"help-block error-help-block\">Umur harus lebih dari 21 tahun.</span>");
+                // HoldOn.close();
+                doSomething = 2;
+            } else {
+
+            }
+        }
+
+        if (doSomething == 1) {
+        console.log('ajax');
         $.ajax({
             url: "/customers",
             type: 'POST',
@@ -835,6 +858,10 @@
             contentType: false,
             processData: false
         });
+        }else{
+            console.log('not ajax');
+            HoldOn.close();
+        }
 
         return false;
     });
@@ -847,22 +874,28 @@
     hideCouple();
 
     $('#leads-modal #status').on('change', function() {
+        $('#leads-modal #datepicker-date').datepicker("destroy");
         if(this.value==2){
             $('#leads-modal #couple_data').show();
-            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-1 day'))}})}}");
+            $('#leads-modal #datepicker-date').datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
         }else{
-            $('#leads-modal #datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
+            $('#leads-modal #datepicker-date').datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+                endDate: "-21y"
+            });
             hideCouple();
         }
-    })
+        $('#leads-modal #datepicker-date').datepicker("refresh");
+    });
 
     $('#datepicker-date').datepicker({
         format: "yyyy-mm-dd",
-        clearBtn: true,
         autoclose: true,
-        endDate: new Date(),
-        todayHighlight: true
     });
 
-    $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
+    // $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
 </script>
