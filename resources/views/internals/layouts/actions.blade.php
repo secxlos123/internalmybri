@@ -61,11 +61,17 @@
 @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
 	@if(!empty($status))
 		@if($status == 'Rejected')
-			Rejected
+			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval" style="{{($response_status == 'unverified' || $response_status == 'approve') ? 'pointer-events: none;cursor: default;' : ''}}">
+			    <i class="mdi mdi-check"></i>
+			</a>
+		@else
+			<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
+			    <i class="mdi mdi-check"></i>
+			</a>
 		@endif
 	@else
 		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
-		    <i class="mdi mdi-check"></i>
+		    <i class="mdi mdi-eye"></i>
 		</a>
 	@endif
 @endif
