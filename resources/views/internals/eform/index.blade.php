@@ -120,8 +120,8 @@
                                         <th>Status Prescreening</th>
                                         <th>id</th>
                                         <th>AO</th>
-                                        <th>Status</th>
-                                        <th>Aging (hari)</th>
+                                        <th>Status Pengajuan</th>
+                                        <th>Umur Pengajuan</th>
                                         <th style="width: 100px">Aksi</th>
                                     </tr>
                                 </thead>
