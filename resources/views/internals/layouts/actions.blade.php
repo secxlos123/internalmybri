@@ -46,7 +46,7 @@
 	<span class="waves-effect waves-light" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;">
 	    <i class="fa fa-check-circle fa-2x" style="color: cadetblue;" aria-hidden="true" title="Verified"></i>
 	</span>
-	<a href="{!! $preview !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Verification">
+	<a href="{!! $preview !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Detail Verification">
 	    <i class="fa fa-eye" aria-hidden="true"></i>
 	</a>
 	@endif
@@ -70,7 +70,7 @@
 			</a>
 		@endif
 	@else
-		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
+		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Detail Approval" title="Approval">
 		    <i class="mdi mdi-eye"></i>
 		</a>
 	@endif
