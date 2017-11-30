@@ -11,8 +11,8 @@
                                 <th>Tanggal Penilaian</th>
                                 <th>NPW</th>
                                 <th>PNPW</th>
-                                <th>NPL</th>
-                                <th>PNPL</th>
+                                <th>NL</th>
+                                <th>PNL</th>
                             </tr>
                         </thead>
                         <tbody>
