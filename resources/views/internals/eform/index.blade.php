@@ -120,8 +120,8 @@
                                         <th>Status Prescreening</th>
                                         <th>id</th>
                                         <th>AO</th>
-                                        <th>Status</th>
-                                        <th>Aging (hari)</th>
+                                        <th>Status Pengajuan</th>
+                                        <th>Umur Pengajuan</th>
                                         <th style="width: 100px">Aksi</th>
                                     </tr>
                                 </thead>
@@ -310,7 +310,7 @@
             })
 
             $.each(contents.sicd, function(key, sicd) {
-                if (sicd.bikole == 1 || sicd.bikole == '-') {
+                if (sicd.bikole == 1 || sicd.bikole == '-' || sicd.bikole == null || sicd.bikole == '') {
                     warna = '<p class="text-success form-control-static">Hijau</p>';
 
                 } else if (sicd.bikole == 2) {

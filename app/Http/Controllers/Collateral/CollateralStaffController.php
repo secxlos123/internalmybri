@@ -283,7 +283,7 @@ class CollateralStaffController extends Controller
             $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
             $form['prop_pic_name'] = strtoupper($form['property']['pic_name']);
             $form['prop_pic_phone'] = strtoupper($form['property']['pic_phone']);
-            $form['staff_name'] = strtoupper($form['property']['staff_name']);
+            $form['staff_name'] = strtoupper($form['staff_name']);
             $form['prop_types'] = count($form['property']['propertyTypes']);
             $form['prop_items'] = count($form['property']['propertyItems']);
             $form['status'] = ucwords($form['status']);

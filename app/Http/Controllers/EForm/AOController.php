@@ -62,15 +62,19 @@ class AOController extends Controller
                     'pn' => $data['pn']
                 ])->get();
         $eformData = $eforms['contents'];
-        // $ext = pathinfo($eformData['visit_report']['npwp'], PATHINFO_EXTENSION);
-        // dd($ext);
-        // $typeFinanced = Client::setEndpoint('use-reasons')
-        //         ->setHeaders([
-        //             'Authorization' => $data['token'],
-        //             'pn' => $data['pn']
-        //         ])
-        //         ->get();
-        // dd($eforms);
+
+        $client = new \GuzzleHttp\Client();
+        try {
+            $res = $client->request('GET', 'http://freegeoip.net/json/');
+
+            $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
+            $eformData['longitude'] = $getIP->longitude;
+            $eformData['latitude'] = $getIP->latitude;
+
+        } catch (\Exception $e) {
+            \Log::info($e);
+
+        }
 
         return view('internals.eform.lkn.index', compact('data', 'id', 'eformData'));
     }

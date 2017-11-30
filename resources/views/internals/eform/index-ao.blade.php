@@ -107,26 +107,28 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table id="datatable" class="table table-bordered">
-                                        <thead class="bg-primary">
-                                            <tr>
-                                                <th>No. Ref</th>
-                                                <th>Nasabah</th>
-                                                <th>Nominal</th>
-                                                <th>Tanggal Pengajuan</th>
-                                                <th>No. HP</th>
-                                                <th>Status Prescreening</th>
-                                                <th>id</th>
-                                                <th>Status</th>
-                                                <th>Aging (hari)</th>
-                                                <th>Status Data Nasabah</th>
-                                                {{-- <th>Catatan Disposisi</th> --}}
-                                                <th style="width: 100px">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table id="datatable" class="table table-bordered">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <th>No. Ref</th>
+                                                    <th>Nasabah</th>
+                                                    <th>Nominal</th>
+                                                    <th>Tanggal Pengajuan</th>
+                                                    <th>No. HP</th>
+                                                    <th>Status Prescreening</th>
+                                                    <th>id</th>
+                                                    <th>Status Pengajuan</th>
+                                                    <th>Umur Pengajuan</th>
+                                                    <th>Janji Temu</th>
+                                                    <th>Status Data Nasabah</th>
+                                                    <th style="width: 100px">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -258,7 +260,7 @@
             })
 
             $.each(contents.sicd, function(key, sicd) {
-                if (sicd.bikole == 1 || sicd.bikole == '-') {
+                if (sicd.bikole == 1 || sicd.bikole == '-' || sicd.bikole == null || sicd.bikole == '') {
                     warna = '<p class="text-success form-control-static">Hijau</p>';
 
                 } else if (sicd.bikole == 2) {
@@ -321,12 +323,25 @@
                 {   data: 'ref_number', name: 'ref_number', bSortable: false },
                 {   data: 'customer_name', name: 'customer_name', bSortable: false  },
                 {   data: 'request_amount', name: 'request_amount', bSortable: false  },
-                {   data: 'created_at', name: 'created_at' },
+                {   data: 'created_at', name: 'created_at', className: 'hidden' },
                 {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
                 {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
                 {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
                 {   data: 'status', name: 'created_at', bSortable: false },
                 {   data: 'aging', name: 'aging' },
+                {   data: 'appointment_date'
+                    , name: 'appointment_date'
+                    , bSortable: false
+                    , mRender: function (data, type, full) {
+                        return '<p style="font-size: .8em;">'
+                                + 'Tanggal: '
+                                + full.appointment_date
+                                + '<br/><br/>'
+                                + 'Di: <br/>'
+                                + full.address
+                            + '<p>';
+                    }
+                },
                 {   data: 'response_status'
                     , name: 'response_status'
                     , bSortable: false

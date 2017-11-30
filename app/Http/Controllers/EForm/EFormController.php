@@ -184,16 +184,20 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
 
-        if (env('APP_ENV') == 'local') {
-            $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client();
+        try {
             $res = $client->request('GET', 'http://freegeoip.net/json/');
+
             $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
             $long = $getIP->longitude;
             $lat = $getIP->latitude;
-        }else {
+
+        } catch (\Exception $e) {
+            \Log::info($e);
             $getIP = null;
             $long = 106.813880;
             $lat = -6.217458;
+
         }
 
         $offices = Client::setEndpoint('offices')
