@@ -2,6 +2,30 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style>
+td.details1-control {
+    background: url('assets/images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details1-control {
+    background: url('assets/images/details_close.png') no-repeat center center;
+}
+td.details2-control {
+    background: url('assets/images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details2-control {
+    background: url('assets/images/details_close.png') no-repeat center center;
+}
+
+td.details3-control {
+    background: url('assets/images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details3-control {
+    background: url('assets/images/details_close.png') no-repeat center center;
+}
+</style>
             <div class="content-page">
                 <div class="content">
                     <div class="container">
@@ -37,8 +61,8 @@
                                                             <div class="col-sm-8">
                                                                 <select class="form-control" id="is_screening">
                                                                     <option selected="" value="All"> Semua</option>
-                                                                    <option value="1">Sudah</option>
-                                                                    <option value="0">Belum</option>
+                                                                    <option value="0">Sudah</option>
+                                                                    <option value="1">Belum</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -50,25 +74,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table id="datatable" class="table table-bordered">
-                                        <thead class="bg-primary">
-                                            <tr>
-                                                <th>Cabang</th>
-											    <th>Jenis Produk</th>
-                                                <th>No. Ref</th>
-                                                <th>NIK</th>
-                                                <th>Nama Nasabah</th>
-                                                <th>Tgl Lahir</th>
-                                                <th>Plafond</th>
+                                        <table id="datatable" class="table table-bordered">
+                                    <thead class="bg-primary">
+                                        <tr><th>Cabang</th>
+                                                <th>Jenis Produk</th>
+                                                <th>Nama AO</th>
+                                                <th>Data Nasabah</th>
+                                                <th>plafond</th>
                                                 <th>Tanggal Pengajuan</th>
-                                                <th>Aging(hari)</th>
-                                                <th>Status Prescreening</th>
+                                                <th>Status prescreening</th>
+                                                <th>Status Nasabah</th>
                                                 <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
+                                        </tr>
+                                    </thead>
+                                </table>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +130,71 @@
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
       })
 
+  function nasabah_couple(d) {
+    // `d` is the original data object for the row
+    var status = d['customer']['personal']['status_id'];
+    var m = '';
+    if(status=='2'){
+    m = '<table width="1000px" cellpadding="2" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td width="30%">Status</td>'+
+            '<td width="70%">:  '+d['customer']['personal']['status']+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td width="30%">NIK pasangan</td>'+
+            '<td width="70%">:  '+d['customer']['personal']['couple_nik']+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td width="30%">Nama Pasangan:</td>'+
+            '<td width="70%">:  '+d['customer']['personal']['couple_name']+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td width="30%">Tanggal Lahir:</td>'+
+            '<td width="70%">:  '+d['customer']['personal']['couple_birth_date']+'</td>'+
+        '</tr>'+
+    '</table>'+'<img src="'+d['customer']['personal']['couple_identity']+'">';
+    }else{
+     m =   '<table width="1000px" cellpadding="2" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td width="30%">Status</td>'+
+            '<td width="70%">:  '+d['customer']['personal']['status']+'</td>'+
+        '</tr>'+
+        '</table>';
+    }
+    return m;
+}
+function nasabah(d) {
+    // `d` is the original data object for the row
+    return '<table width="1000px" cellpadding="2" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td width="50%">Reff Number</td>'+
+            '<td width="50%">:  '+d.ref_number+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td width="50%">NIK</td>'+
+            '<td width="50%">:  '+d.nik+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td width="50%">Nama Nasabah</td>'+
+            '<td width="50%">:  '+d['customer']['personal']['first_name']+' '+d['customer']['personal']['last_name']+'</td>'+
+        '</tr>'+
+    '</table>'+
+            '<img src="'+d['customer']['other']['identity']+'">';
+}
+  function date_pengajuan(d) {
+    // `d` is the original data object for the row
+    return '<table width="1000px" cellpadding="0" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td width="50%">Tanggal Pengajuan</td>'+
+            '<td width="50%">:  '+d.created_at+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td width="50%">Aging</td>'+
+            '<td width="50%">:  '+d.aging+'</td>'+
+        '</tr>'+
+    '</table>';
+}
+
     function reloadData1(from, to, status)
       {
         table1 = $('#datatable').DataTable({
@@ -142,24 +226,87 @@
           aoColumns : [
 
 
-
-                {   data: 'branchs', name: 'branchs', bSortable: false },
+                {   data: 'branch', name: 'branch', bSortable: false },
                 {   data: 'product_type', name: 'product_type', bSortable: false  },
-                {   data: 'ref_number', name: 'ref_number', bSortable: false  },
-                {   data: 'nik', name: 'nik', bSortable: false  },
-                {   data: 'customer_name', name: 'customer_name' },
-                {   data: 'birth_date', name: 'birth_date', bSortable: false  },
+                {   data: 'ao_name', name: 'ao_name', bSortable: false  },
+                {
+                "className":      'details1-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+                },
                 {   data: 'request_amount', name: 'request_amount', bSortable: false  },
 
-                {   data: 'created_at', name: 'created_at', bSortable: false  },
-                {   data: 'aging', name: 'aging' },
+                {
+                "className":      'details2-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+                },
+                {   data: 'is_screening', name: 'is_screening', bSortable: false  },
+//                {   data: 'ref_number', name: 'ref_number', bSortable: false  },
+ //               {   data: 'nik', name: 'nik', bSortable: false  },
+//                {   data: 'customer_name', name: 'customer_name' },
 
-                 {   data: 'is_screening', name: 'is_screening' },
+
+                {
+                "className":      'details3-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+                },
                 {   data: 'action', name: 'action', bSortable: false },
             ],
-        });
+      });
 
-        $(".dataTables_wrapper").addClass('table-responsive');
+          $('#datatable tbody').on('click', 'td.details1-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table1.row(tr);
+        var data = table1.row().data();
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(nasabah(row.data())).show();
+            tr.addClass('shown');
+        }
+    } );
+
+          $('#datatable tbody').on('click', 'td.details2-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table1.row(tr);
+        var data = table1.row().data();
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(date_pengajuan(row.data())).show();
+            tr.addClass('shown');
+        }
+    } );
+
+          $('#datatable tbody').on('click', 'td.details3-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table1.row(tr);
+        var data = table1.row().data();
+
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child(nasabah_couple(row.data())).show();
+            tr.addClass('shown');
+        }
+    } );
       }
     // var resizefunc = [];
     // $(document).ready(function () {
