@@ -40,11 +40,13 @@
                                     'data-placeholder' => '-- Pilih Tipe --',
                                     'id' => 'collateral_type'
                                 ]) !!} -->
-                                {!! Form::select('area[collateral_type]', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), old('area[collateral_type]'), [
-                                    'class' => 'select2 area[collateral_type] ',
+                                {!! Form::select('collateral_type', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), old('area[collateral_type]'), [
+                                    'class' => 'select2 collateral_type ',
                                     'data-placeholder' => '-- Pilih Jenis KPR --',
                                     'id' => 'collateral_type'
                                 ]) !!}
+
+                                <input type="hidden" name="area[collateral_type]" id="area_collateral_type" class="form-control">
                             </div>
                             @if ($errors->has('area[collateral_type]')) <p class="help-block">{{ $errors->first('area[collateral_type]') }}</p> @endif
                         </div>
