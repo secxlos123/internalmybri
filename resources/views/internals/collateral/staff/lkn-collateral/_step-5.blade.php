@@ -20,7 +20,7 @@
                                 <th>Tanah *</th>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_land_date]" value="{{old('valuation[scoring_land_date]')}}" id="scoring_land_date">
+                                        <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_land_date]" value="{{date('Y-m-d')}}" id="scoring_land_date">
                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                     </div>
                                 </td>
@@ -53,7 +53,7 @@
                                 <th>Bangunan *</th>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_building_date]" value="{{old('valuation[scoring_building_date]')}}" id="scoring_building_date">
+                                        <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_building_date]" value="{{date('Y-m-d')}}" id="scoring_building_date">
                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                     </div>
                                 </td>
@@ -86,7 +86,7 @@
                                 <th>Tanah dan Bangunan *</th>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_all_date]" value="{{old('valuation[scoring_all_date]')}}" id="scoring_all_date">
+                                        <input type="text" class="form-control datepicker-autoclose" name="valuation[scoring_all_date]" value="{{date('Y-m-d')}}" id="scoring_all_date">
                                         <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                     </div>
                                 </td>

@@ -402,7 +402,11 @@
     function counting(element, val1, all) {
       var val = parseInt($(element).val().replace(',00', '').replace(/\./g, ''));      
       npw_all = (val1) + (val);
-      all.val(npw_all);
+      if(isNaN(parseInt(npw_all))){
+        all.val(val);
+      }else{
+        all.val(npw_all);
+      }
     }
 
     $('.collateral_type').on('change', function () {
