@@ -83,6 +83,7 @@
                         $("#view-modal #office").html(office);
                         $("#view-modal #appointment_date").html(appointment_date);
                         $("#view-modal #nik").html(nik);
+                        $("#view-modal #birth_date").html(birth_date);
                         $("#view-modal #customer_name").html(full_name);
                         $("#view-modal #customer_fullname").html(full_name);
                         $("#view-modal #email").html(email);

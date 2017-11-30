@@ -142,6 +142,10 @@
 
         Route::resource('eform', 'EForm\EFormController');
 
+        /*ADK*/
+        Route::resource('adk', 'EForm\ADKController');
+
+
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
@@ -238,6 +242,8 @@
     /* Datatables */
 
     Route::group(['prefix'=>'datatables'], function () {
+        /*ADK*/
+        Route::get('adk-list', 'EForm\ADKController@datatables');
 
         /* Roles */
         Route::get('roles', 'User\RoleController@datatables');

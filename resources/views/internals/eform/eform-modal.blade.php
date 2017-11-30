@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-5 control-label">Pengaju :</label>
+                                                <label class="col-md-5 control-label">Nama RM :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="ao_name">
                                                     </p>
@@ -103,6 +103,12 @@
                                                 <label class="col-md-5 control-label">Nama Lengkap :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="customer_fullname"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Tanggal Lahir :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="birth_date"></p>
                                                 </div>
                                             </div>
                                             <div class="form-group">

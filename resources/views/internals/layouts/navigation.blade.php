@@ -31,6 +31,9 @@
                             <li>
                                 <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                             </li>
+                            <li>
+                                <a href="{{route('adk.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Verification </span> </a>
+                            </li>
                             <!-- <li>
                                 <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
                             </li> -->
