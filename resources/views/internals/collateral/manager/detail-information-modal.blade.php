@@ -564,46 +564,45 @@
                                                         <div class="col-md-6">
                                                             <form class="form-horizontal" role="form">
                                                                 <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Jenis Ikatan :</label>
-                                                                    <div class="col-md-7">
+                                                                    <label class="col-md-6 control-label">Jenis Ikatan :</label>
+                                                                    <div class="col-md-6">
                                                                         <p class="form-control-static" id="bond_type"></p>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Penggunaan Bangunan Sesuai Fungsinya :</label>
-                                                                    <div class="col-md-7">
+                                                                    <label class="col-md-6 control-label">Penggunaan Bangunan Sesuai Fungsinya :</label>
+                                                                    <div class="col-md-6">
                                                                         <p class="form-control-static" id="use_of_building_function"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Penggunaan Bangunan Secara Optimal :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="optimal_building_use"></p>
+                                                                    <label class="col-md-6 control-label">Foto :</label>
+                                                                    <div class="col-md-6" id="image_condition_area"> 
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <form class="form-horizontal" role="form">
                                                                 <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Pertukaran Bangunan :</label>
-                                                                    <div class="col-md-7">
+                                                                    <label class="col-md-6 control-label">Pertukaran Bangunan :</label>
+                                                                    <div class="col-md-6">
                                                                         <p class="form-control-static" id="building_exchange"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Hal-Hal Yang Perlu Diketahui Bank :</label>
-                                                                    <div class="col-md-7">
+                                                                    <label class="col-md-6 control-label">Hal-Hal Yang Perlu Diketahui Bank :</label>
+                                                                    <div class="col-md-6">
                                                                         <p class="form-control-static" id="things_bank_must_know"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Foto :</label>
-                                                                    <div class="col-md-7" id="image_condition_area">
-                                                                        
+                                                                    <label class="col-md-6 control-label">Penggunaan Bangunan Secara Optimal :</label>
+                                                                    <div class="col-md-6">
+                                                                        <p class="form-control-static" id="optimal_building_use"></p>
                                                                     </div>
-                                                                </div>
+                                                                </div> 
                                                             </form>
                                                         </div>
                                                     </div>
