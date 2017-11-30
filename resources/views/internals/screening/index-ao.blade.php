@@ -61,8 +61,8 @@ tr.shown td.details3-control {
                                                             <div class="col-sm-8">
                                                                 <select class="form-control" id="is_screening">
                                                                     <option selected="" value="All"> Semua</option>
-                                                                    <option value="0">Sudah</option>
-                                                                    <option value="1">Belum</option>
+                                                                    <option value="1">Sudah</option>
+                                                                    <option value="0">Belum</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -176,7 +176,7 @@ function nasabah(d) {
         '</tr>'+
         '<tr>'+
             '<td width="50%">Nama Nasabah</td>'+
-            '<td width="50%">:  '+d['customer']['personal']['first_name']+' '+d['customer']['personal']['last_name']+'</td>'+
+            '<td width="50%">:  '+d['customer']['personal']['first_name']+' '+(d['customer']['personal']['last_name']==null ? '' : d['customer']['personal']['last_name'])+'</td>'+
         '</tr>'+
     '</table>'+
             '<img src="'+d['customer']['other']['identity']+'">';

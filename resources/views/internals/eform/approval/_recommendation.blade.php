@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-md-12">
+        @if ($type != 'preview')
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Rekomendasi</h3>
@@ -36,10 +37,13 @@
                 </div>
             </div>
         </div>
+        @endif
         <hr>
             <div class="text-center">
+            @if ($type != 'preview')
                 <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
                 <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
+            @endif
                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
             </div>
     </div>
