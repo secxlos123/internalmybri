@@ -33,13 +33,13 @@
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[nl_land]" maxlength="50" value="{{old('valuation[nl_land]')}}" id="nl_land">
+                                        <input type="text" class="form-control currency-rp" name="valuation[pnpw_land]" maxlength="50" value="{{old('valuation[pnpw_land]')}}" id="pnpw_land">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[pnpw_land]" maxlength="50" value="{{old('valuation[pnpw_land]')}}" id="pnpw_land">
+                                        <input type="text" class="form-control currency-rp" name="valuation[nl_land]" maxlength="50" value="{{old('valuation[nl_land]')}}" id="nl_land">
                                     </div>
                                 </td>
                                 <td>
@@ -66,13 +66,13 @@
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[nl_building]" maxlength="50" value="{{old('valuation[nl_building]')}}" id="nl_building">
+                                        <input type="text" class="form-control currency-rp" name="valuation[pnpw_building]" maxlength="50" value="{{old('valuation[pnpw_building]')}}" id="pnpw_building">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[pnpw_building]" maxlength="50" value="{{old('valuation[pnpw_building]')}}" id="pnpw_building">
+                                        <input type="text" class="form-control currency-rp" name="valuation[nl_building]" maxlength="50" value="{{old('valuation[nl_building]')}}" id="nl_building">
                                     </div>
                                 </td>
                                 <td> 
@@ -93,25 +93,25 @@
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[npw_all]" maxlength="50" value="{{old('valuation[npw_all]')}}" id="npw_all">
+                                        <input type="text" class="form-control currency-rp" name="valuation[npw_all]" maxlength="50" value="{{old('valuation[npw_all]')}}" id="npw_all" readonly="">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[nl_all]" maxlength="50" value="{{old('valuation[nl_all]')}}" id="nl_all">
+                                        <input type="text" class="form-control currency-rp" name="valuation[pnpw_all]" maxlength="50" value="{{old('valuation[pnpw_all]')}}" id="pnpw_all" readonly="">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[pnpw_all]" maxlength="50" value="{{old('valuation[pnpw_all]')}}" id="pnpw_all">
+                                        <input type="text" class="form-control currency-rp" name="valuation[nl_all]" maxlength="50" value="{{old('valuation[nl_all]')}}" id="nl_all" readonly="">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group">
                                         <span class="input-group-addon b-0">Rp</i></span>
-                                        <input type="text" class="form-control currency-rp" name="valuation[pnl_all]" maxlength="50" value="{{old('valuation[pnl_all]')}}" id="pnl_all">
+                                        <input type="text" class="form-control currency-rp" name="valuation[pnl_all]" maxlength="50" value="{{old('valuation[pnl_all]')}}" id="pnl_all" readonly="">
                                     </div>
                                 </td>
                             </tr>
