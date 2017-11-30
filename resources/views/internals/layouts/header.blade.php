@@ -22,7 +22,7 @@
                             </li>
                             
                             <li class="hidden-xs">
-                                <p>Selamat Datang di Aplikasi Dashboard My BRI. Untuk Bantuan Hubungi 012345678.</p>
+                                <p>Selamat Datang di Aplikasi My BRI. Untuk Bantuan Hubungi <b>consumer.support@corp.bri.co.id</b>.</p>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

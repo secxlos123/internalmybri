@@ -50,9 +50,10 @@
 
                                 <!-- unit -->
                                 @include('internals.collateral.manager._unit-property')                            
-
+                                @if($collateral['status'] == 'disetujui')
                                 <!-- informasi penilaian -->
-                                <!-- @include('internals.collateral.manager._collateral-detail') -->
+                                @include('internals.collateral.manager._collateral-detail')
+                                @endif
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
@@ -60,6 +61,8 @@
                                         <form class="form-horizontal" role="form" method="POST" id="form1">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="is_approved" id="is_approved">
+                                            <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
+                                            <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">
                                             <div class="text-center">
                                                 <!-- <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
                                                 <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a> -->
@@ -81,6 +84,7 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.collateral.script')
+@include('internals.collateral.manager.append-script')
 
 <script type="text/javascript">
     $(document).ready(function () {

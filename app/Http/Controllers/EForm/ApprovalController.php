@@ -70,8 +70,9 @@ class ApprovalController extends Controller
 
         $customer = $customerData['contents'];
         // dd($detail);
+        $type = 'fill';
 
-        return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id'));
+        return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id', 'type'));
     }
     /**
      * Store a newly created resource in storage.
@@ -107,5 +108,42 @@ class ApprovalController extends Controller
             return redirect()->back()->withInput($request->input());
         }
 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getPreview($id)
+    {
+        $data = $this->getUser();
+
+         /* GET Form Data */
+        $formDetail = Client::setEndpoint('eforms/'.$id)
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->get();
+
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        // foreach ($request->all() as $index) {
+        //     $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
+        //     $application[] = $this->returnContent( $name, $data, $tableKey );
+        //   }
+
+        /*GET DETAIL CUST*/
+        $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
+                        ->setHeaders(['Authorization' => $data['token']])
+                        ->get();
+
+        $customer = $customerData['contents'];
+        // dd($detail);
+        $type = 'preview';
+
+        return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id', 'type'));
     }
 }
