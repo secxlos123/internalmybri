@@ -52,13 +52,13 @@
 
                             @if(($data['role']=='collateral'))
                             <li>
-                                <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Collateral Management </span> </a>
+                                <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Penilaian Agunan </span> </a>
                             </li>
                             @endif
 
                             @if(($data['role']=='collateral-appraisal'))
                             <li>
-                                <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Collateral Management </span> </a>
+                                <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
                             </li>
                             @endif
                             <!-- <li>
