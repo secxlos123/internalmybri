@@ -26,7 +26,7 @@
                                 <p class="form-control-static">{{$propItem['address']}}a</p>
                             </td>
                             <td>
-                                <p class="form-control-static">Rp{{$propItem['price']}}</p>
+                                <p class="form-control-static">Rp {{number_format($propItem['price'], 2, ",", ".")}}</p>
                             </td>
                             <td>
                                 <p class="form-control-static">{{($propItem['is_available'] == 1 ? 'Tersedia' : 'Tidak Tersedia')}}</p>

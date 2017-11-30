@@ -47,6 +47,11 @@
                                 <!-- unit -->
                                 @include('internals.collateral.manager._unit-property')
 
+                                @if($collateral['status'] == 'disetujui')
+                                <!-- informasi penilaian -->
+                                @include('internals.collateral.manager._collateral-detail')
+                                @endif
+
                                 <!-- fkonfirmasi penugasan -->
                                 <div class="panel panel-default">
                                     <div class="panel-body">
@@ -74,6 +79,7 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.collateral.script')
+@include('internals.collateral.manager.append-script')
 
 <script type="text/javascript">
     $(document).ready(function () {

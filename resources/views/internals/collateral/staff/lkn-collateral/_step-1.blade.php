@@ -33,11 +33,16 @@
                 <div class="col-md-6">
                     <div class="form-horizontal" role="form">
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Tipe Anggunan *:</label>
+                            <label class="col-md-4 control-label">Tipe KPR *:</label>
                             <div class="col-md-8">
-                                {!! Form::select('area[collateral_type]', array("" => "", "Independent" => "Independent", "Proyek" => "Proyek"), old('area[collateral_type]'), [
+                                <!-- {!! Form::select('area[collateral_type]', array("" => "", "Independent" => "Independent", "Proyek" => "Proyek"), old('area[collateral_type]'), [
                                     'class' => 'select2 area[collateral_type] ',
                                     'data-placeholder' => '-- Pilih Tipe --',
+                                    'id' => 'collateral_type'
+                                ]) !!} -->
+                                {!! Form::select('area[collateral_type]', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), old('area[collateral_type]'), [
+                                    'class' => 'select2 area[collateral_type] ',
+                                    'data-placeholder' => '-- Pilih Jenis KPR --',
                                     'id' => 'collateral_type'
                                 ]) !!}
                             </div>
