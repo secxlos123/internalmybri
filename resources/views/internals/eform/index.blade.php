@@ -310,7 +310,7 @@
             })
 
             $.each(contents.sicd, function(key, sicd) {
-                if (sicd.bikole == 1 || sicd.bikole == '-') {
+                if (sicd.bikole == 1 || sicd.bikole == '-' || sicd.bikole == null || sicd.bikole == '') {
                     warna = '<p class="text-success form-control-static">Hijau</p>';
 
                 } else if (sicd.bikole == 2) {

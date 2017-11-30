@@ -116,7 +116,7 @@ class ApprovalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getApproval($id)
+    public function getPreview($id)
     {
         $data = $this->getUser();
 
