@@ -24,6 +24,9 @@
                             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
                                 <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Rekomendasi & Disposisi </span> </a>
 
+                            @elseif(($data['role']=='staff'))
+                                <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Aplikasi </span> </a>
+
                             @endif
                             </li>
 
