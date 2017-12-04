@@ -451,7 +451,7 @@ class AOController extends Controller
                   'end_date'  => $request->input('end_date'),
                   'status'    => $request->input('status'),
                   'ref_number'=> $request->input('ref_number'),
-                  'customer_name'=> ucwords($request->input('customer_name')),
+                  'customer_name'=> $request->input('customer_name'),
                   'branch_id' => $data['branch'],
                   'prescreening' => $request->input('prescreening'),
                   'product' => $request->input('product')
