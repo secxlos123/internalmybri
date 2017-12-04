@@ -259,6 +259,17 @@ class CollateralStaffController extends Controller
     }
 
     /**
+     * Get View UploadDoc
+     *
+     */
+    public function getUploadDoc($dev_id, $prop_id)
+    {
+        $data = $this->getUser();
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return view('internals.collateral.staff.upload-doc', compact('data', 'collateral'));
+    }
+
+    /**
      * Get Datatables
      * @param $request
      */
