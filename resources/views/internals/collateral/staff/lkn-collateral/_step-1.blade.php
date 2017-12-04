@@ -78,11 +78,11 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">RT/ RW *:</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control numericOnly" placeholder="RT" name="area[rt]" maxlength="2" value="{{old('area[rt]')}}" id="rt">
+                                <input type="text" class="form-control numericOnly" placeholder="RT" name="area[rt]" maxlength="3" value="{{old('area[rt]')}}" id="rt">
                             </div>
                             @if ($errors->has('area[rt]')) <p class="help-block">{{ $errors->first('area[rt]') }}</p> @endif
                             <div class="col-md-2">
-                                <input type="text" class="form-control numericOnly" placeholder="RW" name="area[rw]" maxlength="2" value="{{old('area[rw]')}}" id="rw">
+                                <input type="text" class="form-control numericOnly" placeholder="RW" name="area[rw]" maxlength="3" value="{{old('area[rw]')}}" id="rw">
                             </div>
                             @if ($errors->has('area[rw]')) <p class="help-block">{{ $errors->first('area[rw]') }}</p> @endif
                             <div class="col-md-4">
@@ -94,7 +94,7 @@
                             <label class="col-md-4 control-label">Jarak *:</label>
                             <div class="col-md-8">
                                 <div class="bottom10">
-                                    <input type="text" class="form-control numericOnly" placeholder="1800" name="area[distance]" maxlength="5" value="{{old('area[distance]')}}" id="distance">
+                                    <input type="text" class="form-control numericOnly" name="area[distance]" maxlength="5" value="{{old('area[distance]')}}" id="distance">
                                 </div>
                                 @if ($errors->has('area[distance]')) <p class="help-block">{{ $errors->first('area[distance]') }}</p> @endif
                                 <div class="row">
@@ -154,7 +154,7 @@
                         <label class="col-md-5 control-label">Jarak Posisi Terhadap Jalan *:</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" maxlength="4" placeholder="8" name="area[distance_of_position]" value="{{old('area[distance_of_position]')}}" id="distance_of_position">
+                                <input type="text" class="form-control numericOnly" maxlength="4" name="area[distance_of_position]" value="{{old('area[distance_of_position]')}}" id="distance_of_position">
                                 <span class="input-group-addon has-ket-input">M</span>
                             </div>
                         </div>
@@ -206,7 +206,7 @@
                         <label class="col-md-5 control-label">Luas Tanah Sesuai Lapang *:</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" maxlength="4" placeholder="8" name="area[surface_area]" value="{{old('area[surface_area]')}}" id="surface_area">
+                                <input type="text" class="form-control numericOnly" maxlength="4" name="area[surface_area]" value="{{old('area[surface_area]')}}" id="surface_area">
                                 <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                             </div>
                         </div>

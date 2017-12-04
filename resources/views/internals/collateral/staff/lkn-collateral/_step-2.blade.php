@@ -24,11 +24,10 @@
                             <label class="col-md-4 control-label">Hak Atas Tanah *:</label>
                             <div class="col-md-8">
                                 {!! Form::select('letter[authorization_land]', array("" => "", 
-                                    "Milik" => "Milik", 
-                                    "Guna Bangunan" => "Guna Bangunan", 
-                                    "Guna Usaha" => "Guna Usaha",
-                                    "Sewa" => "Sewa", 
-                                    "Pakai" => "Pakai"), 
+                                    "Sertifikat Hak Milik" => "Sertifikat Hak Milik", 
+                                    "Sertifikat Hak Guna Bangunan" => "Sertifikat Hak Guna Bangunan", 
+                                    "Sertifikat Hak Guna Usaha" => "Sertifikat Hak Guna Usaha",
+                                    "Sertifikat Hak Pakai" => "Sertifikat Hak Pakai"), 
                                     old('letter[authorization_land]'), [
                                     'class' => 'select2 letter_authorization',
                                     'data-placeholder' => '-- Pilih --'
@@ -75,7 +74,7 @@
                             <label class="col-md-4 control-label">Luas Tanah Berdasarkan Surat Tanah *:</label>
                             <div class="col-md-8">
                                 <div class="input-group" style="width: 100%;">
-                                    <input type="text" class="form-control numericOnly" placeholder="8" name="letter[surface_area_by_letter]" maxlength="5" value="{{old('letter[surface_area_by_letter]')}}" id="surface_area_by_letter">
+                                    <input type="text" class="form-control numericOnly" name="letter[surface_area_by_letter]" maxlength="5" value="{{old('letter[surface_area_by_letter]')}}" id="surface_area_by_letter">
                                     <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                                 </div>
                             </div>

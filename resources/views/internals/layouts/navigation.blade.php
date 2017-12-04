@@ -38,7 +38,7 @@
                                 <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
                             </li> -->
                             @endif
-                            @if(($data['role']=='adk')
+                            @if(($data['role']=='adk'))
                                 <li>
                                     <a href="{{route('adk.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Verifikasi ADK </span> </a>
                                 </li>
