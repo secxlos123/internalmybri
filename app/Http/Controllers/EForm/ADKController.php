@@ -44,9 +44,14 @@ class ADKController extends Controller
         // dd(env('APP_ENV'));
 
         if($data['role'] == 'ao'){
-            return view('internals.eform.adk.index', compact('data'));
-        } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
-            return view('internals.eform.index', compact('data'));
+            // return view('internals.eform.adk.index', compact('data'));
+            return view('internals.eform.adk.detail-adk', compact('data'));
+        }
+    }
+
+    public function approve() {
+        if (($data['role'] == 'ao') || ($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
+            return view('internals.eform.adk.detail-adk', compact('data'));
         } else{
             return view('internals.eform.create', compact('data'));
         }
