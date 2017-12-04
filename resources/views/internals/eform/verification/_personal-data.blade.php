@@ -17,7 +17,9 @@
                                 <th>Data Nasabah</th>
                                 <th>Data CIF {{$dataCustomer['cif']['cif_number']}}</th>
                                 <th>Data Kemendagri</th>
+                                @if ($type != 'preview')
                                 <th class="m-w-210">Aksi</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -29,11 +31,11 @@
                                     <td class="align-middle" id="{{ $field }}DF">{{ !empty($dataCustomer) ? $dataCustomer['customer'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
                                     <td class="align-middle" id="{{ $field }}CIF">{{ !empty($dataCustomer) ? $dataCustomer['cif'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
                                     <td class="align-middle" id="{{ $field }}KM">{{ !empty($dataCustomer) ? $dataCustomer['kemendagri'][$field] : (in_array(array('phone', 'mobile_phone'), $field) ? 0 : '' ) }}</td>
+                                    @if ($type != 'preview')
                                     <td>
-                                        @if ($type != 'preview')
                                         <a href="javascript:void(0);" class="btn waves-effect waves-light btn-default btn-change" data-field="{{ $field }}">Sesuaikan</a>
-                                        @endif
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
