@@ -119,12 +119,12 @@
                 data: formData,
                 async: false,
                 success: function (data) {
-                    // HoldOn.close();
+                    HoldOn.close();
                     alert(data['message']);
                     window.location.href = "/screening";
                 },
                 error: function (response) {
-                    // HoldOn.close();
+                    HoldOn.close();
                     alert('gagal');
                 },
                 cache: false,
@@ -135,6 +135,6 @@
         });
 
         $('#btn-save').on('click', function() {
-            // HoldOn.open(options);
+            HoldOn.open(options);
         });
     </script>

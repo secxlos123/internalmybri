@@ -14,8 +14,6 @@ $('#add_account').click(function(){
                                    +' <option selected="" disabled="">-- Pilih Bank --</option>'
                                     +' <option value="bri">BRI</option>'
                                     +' <option value="bni">BNI</option>'
-                                    +' <option value="bri">BRI</option>'
-                                    +' <option value="bni">BNI</option>'
                                     +' <option value="mandiri">Mandiri</option>'
                                     +' <option value="bca">BCA</option>'
                                     +' <option value="btn">BTN</option>'

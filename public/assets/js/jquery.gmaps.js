@@ -47,7 +47,7 @@ function initialize(longBase, latBase) {
     var geocoder = new google.maps.Geocoder();
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
-    var infowindow = new google.maps.InfoWindow();   
+    var infowindow = new google.maps.InfoWindow();
     autocomplete.addListener('place_changed', function() {
         infowindow.close();
         marker.setVisible(false);
@@ -66,18 +66,18 @@ if (place.geometry.viewport) {
 }
 
 marker.setPosition(place.geometry.location);
-marker.setVisible(true);          
+marker.setVisible(true);
 
 bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng());
 infowindow.setContent(place.formatted_address);
 infowindow.open(map, marker);
 
 });
-// this function will work on marker move event into map 
+// this function will work on marker move event into map
 google.maps.event.addListener(marker, 'dragend', function() {
     geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            if (results[0]) {        
+            if (results[0]) {
                 bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
                 infowindow.setContent(results[0].formatted_address);
                 infowindow.open(map, marker);

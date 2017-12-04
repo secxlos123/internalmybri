@@ -14,7 +14,7 @@
 
         $('#save').on('click', function(e) {
             $("#form1").submit();
-            // HoldOn.open(options);
+            HoldOn.open(options);
         });
 
 
@@ -456,6 +456,10 @@
 
         return false;
     });
+
+    function printPage() {
+        window.print();
+    }
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

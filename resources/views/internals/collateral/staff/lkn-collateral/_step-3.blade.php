@@ -49,7 +49,7 @@
                         <label class="col-md-5 control-label">Jumlah Bangunan *:</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" placeholder="Jumlah Bangunan" name="building[count]" maxlength="4" value="{{old('building[count]')}}" id="building_count">
+                                <input type="text" class="form-control numericOnly" name="building[count]" maxlength="4" value="{{old('building[count]')}}" id="building_count">
                                 <span class="input-group-addon has-ket-input">Buah</span>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         <label class="col-md-5 control-label">Luas Bangunan *:</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" placeholder="Luas Bangunan" name="building[spacious]" maxlength="5" value="{{old('building[spacious]')}}" id="building_spacious">
+                                <input type="text" class="form-control numericOnly" name="building[spacious]" maxlength="5" value="{{old('building[spacious]')}}" id="building_spacious">
                                 <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
             <label class="control-label">Batas Utara *:</label>
             <div class="is-input">
                 <div class="input-group">
-                    <input type="text" class="form-control numericOnly" maxlength="4" placeholder="8" name="building[north_limit]" value="{{old('building[north_limit]')}}" id="building_north_limit">
+                    <input type="text" class="form-control numericOnly" maxlength="4" name="building[north_limit]" value="{{old('building[north_limit]')}}" id="building_north_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
@@ -100,7 +100,7 @@
             <label class="control-label">Batas Timur *</label>
             <div class="is-input">
                 <div class="input-group">
-                    <input type="text" class="form-control numericOnly" maxlength="4" placeholder="8" name="building[east_limit]" value="{{old('building[east_limit]')}}" id="building_east_limit">
+                    <input type="text" class="form-control numericOnly" maxlength="4" name="building[east_limit]" value="{{old('building[east_limit]')}}" id="building_east_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
@@ -116,7 +116,7 @@
             <label class="control-label">Batas Selatan *</label>
             <div class="is-input">
                 <div class="input-group">
-                    <input type="text" class="form-control numericOnly" placeholder="8" maxlength="4" name="building[south_limit]" value="{{old('building[south_limit]')}}" id="building_south_limit">
+                    <input type="text" class="form-control numericOnly" maxlength="4" name="building[south_limit]" value="{{old('building[south_limit]')}}" id="building_south_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
@@ -132,7 +132,7 @@
             <label class="control-label">Batas Barat *</label>
             <div class="is-input">
                 <div class="input-group">
-                    <input type="text" class="form-control numericOnly" placeholder="8" maxlength="4" name="building[west_limit]" value="{{old('building[west_limit]')}}" id="building_west_limit">
+                    <input type="text" class="form-control numericOnly" maxlength="4" name="building[west_limit]" value="{{old('building[west_limit]')}}" id="building_west_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>

@@ -59,29 +59,31 @@
 
 @endif
 
-@if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
-	@if(!empty($status))
-		@if($status == 'Rejected')
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;">
-			    <i class="mdi mdi-check"></i>
-			</a>
-		@else
-			<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
-			    <i class="mdi mdi-check"></i>
-			</a>
-		@endif
-	@else
-		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Detail Approval" title="Approval">
-		    <i class="mdi mdi-eye"></i>
-		</a>
-	@endif
-@endif
-
 @if (!empty($submited) && $submited == true)
 	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Proses CLF
 	</span>
+	<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
+	    <i class="mdi mdi-eye"></i>
+	</a>
 @endif
+@if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
+	@if(!empty($status))
+		@if($status == 'Rejected')
+			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
+			    <i class="fa fa-times"></i>
+			</a>
+			<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
+			    <i class="mdi mdi-eye"></i>
+			</a>
+		@endif
+	@else
+		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Detail Approval" title="Approval">
+		    <i class="mdi mdi-check"></i>
+		</a>
+	@endif
+@endif
+
 
 @if (isset($prescreening_status))
 	<a href="javascript:void(0);" id="btn-prescreening">

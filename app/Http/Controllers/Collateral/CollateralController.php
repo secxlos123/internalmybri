@@ -207,6 +207,17 @@ class CollateralController extends Controller
     }
 
     /**
+     * Get View Monitoring
+     *
+     */
+    public function getMonitoring($dev_id, $prop_id)
+    {
+        $data = $this->getUser();
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return view('internals.collateral.manager.monitoring', compact('data', 'collateral'));
+    }
+
+    /**
      * Get Datatables
      * @param $request
      */
