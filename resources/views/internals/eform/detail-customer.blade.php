@@ -45,7 +45,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">NIK :</label>
                                                     <div class="col-md-6">
@@ -78,10 +78,10 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Jenis Kelamin :</label>
                                                     <div class="col-md-6">
@@ -115,7 +115,7 @@
                                                         <p class="form-control-static">@if(!empty($dataCustomer['personal']['mobile_phone'])){{$dataCustomer['personal']['mobile_phone']}}@else - @endif</p>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">NIK :</label>
                                                     <div class="col-md-6">
@@ -145,10 +145,10 @@
                                                         <p class="form-control-static">@if(!empty($dataCustomer['personal']['couple_name'])){{$dataCustomer['personal']['couple_name']}}@else - @endif</p>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Tempat Lahir :</label>
                                                     <div class="col-md-6">
@@ -161,7 +161,7 @@
                                                         <p class="form-control-static">@if(!empty($dataCustomer['personal']['couple_birth_date'])){{$dataCustomer['personal']['couple_birth_date']}}@else - @endif</p>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Bidang Pekerjaan :</label>
                                                     <div class="col-md-6">
@@ -207,10 +207,10 @@
                                                     </div>
                                                 </div>
 
-                                            </form>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
 
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Jabatan :</label>
@@ -234,7 +234,7 @@
                                                     </div>
                                                 </div>
 
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +255,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-6">
@@ -269,10 +269,10 @@
                                                         </div>
                                                     </div>
 
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
 
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Angsuran Permohonan :</label>
@@ -290,7 +290,7 @@
                                                         </div>
                                                     </div>
 
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -301,7 +301,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Gaji/Pendapatan :</label>
                                                         <div class="col-md-6">
@@ -315,10 +315,10 @@
                                                         </div>
                                                     </div>
 
-                                                </form>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <form class="form-horizontal" role="form">
+                                                <div class="form-horizontal" role="form">
 
                                                     <div class="form-group">
                                                         <label class="col-md-6 control-label">Angsuran Permohonan :</label>
@@ -328,7 +328,7 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -349,7 +349,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Nama :</label>
                                                     <div class="col-md-6">
@@ -362,10 +362,10 @@
                                                         <p class="form-control-static">@if(!empty($dataCustomer['contact']['emergency_contact'])){{$dataCustomer['contact']['emergency_contact']}}@else - @endif</p>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <form class="form-horizontal" role="form">
+                                            <div class="form-horizontal" role="form">
                                                 <div class="form-group">
                                                     <label class="col-md-6 control-label">Hubungan :</label>
                                                     <div class="col-md-6">
@@ -373,7 +373,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

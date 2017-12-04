@@ -8,10 +8,10 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Verification</h4>
+                        <h4 class="page-title">Verifikasi ADK</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li><a href="{{url('/')}}">Dashboard</a></li>
-                            <li class="active">Verification</li>
+                            <li class="active">Verifikasi ADK</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -51,7 +51,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Nama Customer :</label>
+                                                <label class="col-sm-4 control-label">Nasabah :</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" name="customer_name" id="customer_name">
                                                 </div>
@@ -106,15 +106,14 @@
                         <table id="datatable" class="table table-bordered">
                             <thead class="bg-primary">
                                 <tr>
-                                    <th>No. Ref</th>
-                                    <th>Nasabah</th>
+                                    <th>No. Ref Aplikasi</th>
+                                    <th>Nama Nasabah</th>
                                     <th>Nominal</th>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>No. HP</th>
-                                    <th>id</th>
+                                    <th>Tanggal Pertemuan</th>
+                                    <th>Status Prescreening</th>
+                                    <th>AO</th>
                                     <th>Status</th>
                                     <th>Aging (hari)</th>
-                                    <th>Status Data Nasabah</th>
                                     <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>
