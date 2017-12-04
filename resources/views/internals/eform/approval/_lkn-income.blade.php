@@ -5,21 +5,25 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">Gaji/Penghasilan :</label>
+                @if ($detail['visit_report']['source'] == 'fixed')
+                <label class="col-md-5 control-label">Gaji / THP per-Bulan :</label>
                 <div class="col-md-7">
-                    @if ($detail['visit_report']['source'] == 'fixed')
-                        <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income_salary'], 2, ",", ".") }}</p>
-                    @else
-                    <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income'], 2, ",", ".") }}</p>
-                    @endif
+                <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income_salary'], 2, ",", ".") }}</p>
+                @else
+                <label class="col-md-5 control-label">Penghasilan per-Bulan :</label>
+                <div class="col-md-7">
+                <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income'], 2, ",", ".") }}</p>
+                @endif
                 </div>
             </div>
+            @if ($detail['visit_report']['source'] == 'fixed')
             <div class="form-group">
-                <label class="col-md-5 control-label">Penghasilan Lain :</label>
+                <label class="col-md-5 control-label">Tunjangan / Insentif Lain :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">Rp. {{ number_format($detail['visit_report']['income_allowance'], 2, ",", ".") }}</p>
                 </div>
             </div>
+            @endif
         </form>
     </div>
     @if($detail['customer']['personal']['status_id'] == 2)

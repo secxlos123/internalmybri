@@ -114,6 +114,8 @@
             Route::post('postApprovalCollateral/{id}', ['as'=>'postApprovalCollateral', 'uses'=>'Collateral\CollateralController@postApprovalCollateral']);
 
             Route::post('reject-approval/{id}', ['as'=>'rejectApprovalCollateral', 'uses'=>'Collateral\CollateralController@rejectApprovalCollateral']);
+
+            Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
         Route::group(['prefix'=>'staff-collateral'], function () {
@@ -127,6 +129,8 @@
             Route::get('get-assignment/{dev_id}/{prop_id}', ['as'=>'getAssignmentAgunan', 'uses'=>'Collateral\CollateralStaffController@getAssignmentAgunan']);
 
             Route::post('reject-form/{id}', ['as'=>'rejectAssignment', 'uses'=>'Collateral\CollateralStaffController@rejectAssignment']);
+
+            Route::get('upload-doc/{dev_id}/{prop_id}', ['as'=>'getUploadDoc', 'uses'=>'Collateral\CollateralStaffController@getUploadDoc']);
         });
 
         Route::group(['prefix'=>'approval-data'], function () {
