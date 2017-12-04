@@ -117,19 +117,6 @@
                                                     <p class="form-control-static" id="mobile_phone"></p>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="form-group" id="couple1">
-                                                <label class="col-md-5 control-label">NIK Pasangan :</label>
-                                                <div class="col-md-7">
-                                                    <p class="form-control-static" id="couple_nik"></p>
-                                                </div>
-                                            </div>
-                                            <div class="form-group" id="couple2">
-                                                <label class="col-md-5 control-label">Nama Lengkap Pasangan :</label>
-                                                <div class="col-md-7">
-                                                    <p class="form-control-static" id="couple_name"></p>
-                                                </div>
-                                            </div>
                                         </form>
                                     </div>
                                     <div class="col-md-6">
@@ -153,6 +140,31 @@
                                                     </p>
                                                 </div>
                                             </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <hr>
+                                            <div class="form-group" id="couple1">
+                                                <label class="col-md-5 control-label">NIK Pasangan :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="couple_nik"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="couple2">
+                                                <label class="col-md-5 control-label">Nama Lengkap Pasangan :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="couple_name"></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
                                             <hr>
                                             <div class="form-group" id="couple3">
                                                 <label class="col-md-5 control-label">Tempat Lahir Pasangan :</label>
