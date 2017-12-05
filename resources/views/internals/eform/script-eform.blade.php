@@ -338,6 +338,9 @@
 
             $('#price').val(price).trigger('change');
             $('#home_location').val(address).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_item_name').val(text).trigger('change');
         });
 
         //select2 city

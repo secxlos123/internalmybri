@@ -112,6 +112,8 @@
                                                 @if ($errors->has('property_item'))
                                                  <p class="help-block">{{ $errors->first('property_item') }}</p> 
                                                 @endif
+
+                                                <input type="hidden" name="property_item_name" id="new_property_item_name">
                                             </div>
                                         </div>
                                     </div>
