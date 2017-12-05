@@ -9,9 +9,9 @@
                     <div class="col-md-6">
                         <div class="form-horizontal" role="form">
                             <input type="hidden" name="eform_id" value="{{$dataCustomer['kpr']['id']}}">
-                            @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" && $dataCustomer['kpr']['status_property'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
-                            @php ( $classNameType = ($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
-                            @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                            @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" && $dataCustomer['kpr']['developer_id'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                            @php ( $classNameType = ($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                            @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameDeveloper = $dataCustomer['kpr']['status_property'] ? '' : 'hide' )
                             <div class="form-group {!! $errors->has('status_property') ? 'has-error' : '' !!}" id="status_property">
                                 <label class="control-label col-md-4">Jenis KPR *:</label>
@@ -41,7 +41,6 @@
                                 <input type="hidden" name="developer_name" id="new_developer_name">
                             </div>
                             
-                            @if(($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)))
                             <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                                 <label class="control-label col-md-4">Jenis Properti *:</label>
                                 <div class="col-md-8">
@@ -55,7 +54,7 @@
                                     @endif
                                 </div>
                             </div>
-                            @endif
+
                             <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                 <label class="control-label col-md-4">Nama Proyek *:</label>
                                 <div class="col-md-8">

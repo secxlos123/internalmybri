@@ -3,6 +3,11 @@
         <div class="col-md-6">
             <div class="form-horizontal" role="form">
                 <div class="form-group {!! $errors->has('status_property') ? 'has-error' : '' !!}" id="status_property">
+                    @php ( $className = ($eformData['kpr']['status_property'] == "1" && $eformData['kpr']['developer_id'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                    @php ( $classNameType = ($eformData['kpr']['status_property'] != "1" || $eformData['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                    @php ( $classKPRType = ($eformData['kpr']['status_property'] != "1" && $eformData['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                    @php ( $classNameDeveloper = $eformData['kpr']['status_property'] ? '' : 'hide' )
+
                     <label class="control-label col-md-4">Jenis KPR *:</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="@if($eformData['kpr']['status_property'] == 1) Baru
@@ -17,7 +22,7 @@
                     </div>
                 </div>
 
-                <div class="form-group {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
+                <div class="form-group {{ $classNameDeveloper }} {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
                     <label class="control-label col-md-4">Developer *:</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="{{$eformData['kpr']['developer_name']}}" maxlength="19" readonly="">
@@ -25,30 +30,31 @@
                     <input type="hidden" name="developer_name" id="new_developer_name">
                 </div>
 
-                @if(($eformData['kpr']['kpr_type_property'] == "null"))
-                <div class="form-group {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
+                <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                     <label class="control-label col-md-4">Jenis Properti *:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" value="{{$eformData['kpr']['kpr_type_property']}}" maxlength="19" readonly="">
+                        <input type="text" class="form-control" value="@if($eformData['kpr']['kpr_type_property'] == 1) Rumah Tapak
+                        @elseif($eformData['kpr']['kpr_type_property'] == 2)Rumah Susun/Apartment
+                        @elseif($eformData['kpr']['kpr_type_property'] == 3)Rumah Toko
+                        @endif" maxlength="19" readonly="">
                     </div>
                     <input type="hidden" name="kpr_type_property_name" id="kpr_type_property_name">
                 </div>
-                @endif
 
-                <div class="form-group {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
+                <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                     <label class="control-label col-md-4">Nama Proyek *:</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="{{$eformData['kpr']['property_name']}}" maxlength="19" readonly="">
                     </div>
                 </div>
 
-                <div class="form-group {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
+                <div class="form-group {{ $className }} {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
                     <label class="control-label col-md-4">Tipe Properti *:</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="{{ $eformData['kpr']['property_type_name'] }}" maxlength="19" readonly="">
                     </div>
                 </div>
-                <div class="form-group {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
+                <div class="form-group {{ $className }} {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
                     <label class="control-label col-md-4">Unit Properti *:</label>
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="{{ $eformData['kpr']['property_item_name'] }}" maxlength="19" readonly="">
