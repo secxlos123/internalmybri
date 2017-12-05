@@ -87,7 +87,7 @@
                 <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
                     <label class="control-label col-md-4">Lokasi Rumah *:</label>
                     <div class="col-md-8">
-                        <textarea class="form-control required" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah" id="home_location" readonly="">{{$eformData['kpr']['home_location']}}</textarea>
+                        <textarea class="form-control required" rows="3" maxlength="255" placeholder="Lokasi Rumah" id="home_location" readonly="">{{$eformData['kpr']['home_location']}}</textarea>
                     </div>
                 </div>
                 <div class="form-group year {!! $errors->has('year') ? 'has-error' : '' !!}">
@@ -110,7 +110,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{($eformData['kpr']['request_amount'] / 100) * $eformData['kpr']['dp']}}" maxlength="19" id="down_payment" readonly="">
+                            <input type="text" class="form-control numericOnly currency-rp" value="{{($eformData['kpr']['request_amount'] / 100) * $eformData['kpr']['dp']}}" maxlength="19" id="down_payment" readonly="">
                             <!-- <span class="input-group-addon">,00</span> -->
                         </div><br>
                         <div class="input-group">
