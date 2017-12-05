@@ -141,7 +141,6 @@
                                                     <span class="input-group-addon">m<sup>2</sup></span>
                                                     @if ($errors->has('building_area')) <p class="help-block">{{ $errors->first('building_area') }}</p> @endif
                                                 </div>
-                                            <input type="hidden" name="property_item_name" id="new_property_item_name">
                                             </div>
                                         </div>
 

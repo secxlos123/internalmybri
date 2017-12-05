@@ -286,7 +286,7 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->eformRequest($request, $data);
-        // dd($newForm);
+        dd($newForm);
 
         // $validator = $this->generalRules($request->all());
         // if ($validator->fails()) {
