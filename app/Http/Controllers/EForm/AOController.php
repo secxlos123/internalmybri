@@ -62,6 +62,7 @@ class AOController extends Controller
                     'pn' => $data['pn']
                 ])->get();
         $eformData = $eforms['contents'];
+        // dd($eformData);
 
         $client = new \GuzzleHttp\Client();
         try {
@@ -240,6 +241,7 @@ class AOController extends Controller
                       ->post();
 
         $dataCustomer = $customerData['contents'];
+        // dd($dataCustomer);
 
         if (count($dataCustomer) == 0) {
           \Session::flash('danger', 'Data verification tidak ditemukan!');
