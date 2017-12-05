@@ -72,9 +72,7 @@
                 {data: 'request_amount', name: 'request_amount', bSortable: false},
                 {data: 'created_at', name: 'created_at' },
                 {data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
-                {data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden'},
                 {data: 'status', name: 'created_at', bSortable: false },
-                {data: 'aging', name: 'aging' },
                 {data: 'response_status', name: 'response_status', bSortable: false, mRender: function (data, type, full) {
                         text = '-';
                         if (full.response_status == 'approve') {
@@ -87,6 +85,7 @@
                         return text;
                     }
                 },
+                {data: 'aging', name: 'aging' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
       });

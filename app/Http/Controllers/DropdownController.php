@@ -83,7 +83,8 @@ class DropdownController extends Controller
             ->setQuery([
                 'property_type_id' => $request->input('prop_type_id'),
                 'search' => $request->input('name'),
-                'page'   => $request->input('page')
+                'page'   => $request->input('page'),
+                'is_available' => true
             ])
             ->get();
 
