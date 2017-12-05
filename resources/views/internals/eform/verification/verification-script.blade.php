@@ -304,6 +304,251 @@
             $('#new_citizenship').val(text);
         });
 
+        $('.status_property').on('select2:select', function (e) {
+            /*
+            kalo baru muncul semua, gak perlu jenis properti
+            kalo secondary muncul jenis KPR, jenus properti
+            kalo baru + non kerja sama
+            */
+
+            $("select[name='developer']").html("");
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property']").html("");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+            if ($(this).val() == "1") {
+                $("div#kpr_type_property").addClass('hide');
+                $("div#developer").removeClass('hide');
+                $("div#property_name").removeClass('hide');
+                $("div#property_type").removeClass('hide');
+                $("div#property_unit").removeClass('hide');
+
+            } else {
+                $("div#kpr_type_property").removeClass('hide');
+                $("div#developer").addClass('hide');
+                $("div#property_name").addClass('hide');
+                $("div#property_type").addClass('hide');
+                $("div#property_unit").addClass('hide');
+                $('#price').removeAttr('readonly');
+                $('#home_location').removeAttr('readonly');
+                $('#building_area').removeAttr('readonly');
+
+            }
+        });
+
+        //select2 developer
+        $('.developers').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getDeveloper")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.developers.data,
+                        pagination: {
+                            more: (params.page * data.developers.per_page) < data.developers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.developers').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#new_developer_name').val(text);
+
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property']").html("");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            if(text == "Non Kerja Sama"){
+                $('#price').removeAttr('readonly');
+                $('#home_location').removeAttr('readonly');
+                $('#building_area').removeAttr('readonly');
+                $('#property_name').attr('hidden',true);
+                $('#property_unit').attr('hidden',true);
+                $('#property_type').attr('hidden',true);
+                $('#line').attr('hidden',true);
+                $("div#kpr_type_property").removeClass('hide');
+
+            }else{
+                $('#price').attr('readonly', true);
+                $('#home_location').attr('readonly', true);
+                $('#building_area').attr('readonly', true);
+                $('#property_name').removeAttr('hidden');
+                $('#property_type').removeAttr('hidden');
+                $('#property_unit').removeAttr('hidden');
+                $('#line').removeAttr('hidden');
+                $("div#kpr_type_property").addClass('hide');
+
+            }
+
+            $('.property_name').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/properties',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            dev_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.properties.data,
+                            pagination: {
+                                more: (params.page * data.properties.per_page) < data.properties.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        //select2 properti
+        $('.property_name').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            $('#new_property_name').val(text);
+            // console.log(text);
+            $('.property_type').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/types',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            prop_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.types.data,
+                            pagination: {
+                                more: (params.page * data.types.per_page) < data.types.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        $('.property_type').on('select2:select', function (e) {
+            var id = e.params.data.id;
+            var luasBangunan = e.params.data.building_area;
+
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            $('#building_area').val(luasBangunan).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_type_name').val(text).trigger('change');
+
+            $('.property_item').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/units',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            prop_type_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.units.data,
+                            pagination: {
+                                more: (params.page * data.units.per_page) < data.units.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        $('.property_item').on('select2:select', function (e) {
+            var price = e.params.data.price;
+            var address = e.params.data.address;
+
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            $('#price').val(price).trigger('change');
+            $('#home_location').val(address).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_item_name').val(text).trigger('change');
+        });
+
         $("#couple_identity").change(function(){
             readURLCouple(this);
         });
