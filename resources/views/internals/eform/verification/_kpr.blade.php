@@ -42,7 +42,7 @@
                             </div>
                             
                             @if(($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)))
-                            <div class="form-group {{ $classKPRType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
+                            <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                                 <label class="control-label col-md-4">Jenis Properti *:</label>
                                 <div class="col-md-8">
                                     {!! Form::select('kpr_type_property', array("" => "", "1" => "Rumah Tapak", "2" => "Rumah Susun/Apartment", "3" => "Rumah Toko"), !empty($dataCustomer) ? $dataCustomer['kpr']['kpr_type_property'] : old('kpr_type_property'), [
