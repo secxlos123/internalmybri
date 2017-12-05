@@ -9,8 +9,9 @@
                     <div class="col-md-6">
                         <div class="form-horizontal" role="form">
                             <!-- <input type="hidden" name="eform_id" value="{{$dataCustomer['kpr']['id']}}"> -->
-                            @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" && $dataCustomer['kpr']['status_property'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                            @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" || $dataCustomer['kpr']['status_property'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameType = ($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                            @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameDeveloper = $dataCustomer['kpr']['status_property'] ? '' : 'hide' )
                             <div class="form-group {!! $errors->has('status_property') ? 'has-error' : '' !!}" id="status_property">
                                 <label class="control-label col-md-4">Jenis KPR *:</label>
@@ -27,8 +28,21 @@
                             </div>
 
                             
-                            @if(($dataCustomer)['kpr']['kpr_type_property'] != 1)
-                            <div class="form-group {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
+
+                            <div class="form-group {{ $classNameDeveloper }} {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
+                                <label class="control-label col-md-4">Developer *:</label>
+                                <div class="col-md-8">
+                                    {!! Form::select('developer', array($dataCustomer['kpr']['developer_id'] => $dataCustomer['kpr']['developer_name']), !empty($dataCustomer) ? $dataCustomer['kpr']['developer_id'] : old('developer'), [
+                                        'class' => 'select2 developers ',
+                                        'data-placeholder' => 'Pilih Developer',
+                                        'data-bri' => ''
+                                    ]) !!}
+                                </div>
+                                <input type="hidden" name="developer_name" id="new_developer_name">
+                            </div>
+                            
+                            @if(($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)))
+                            <div class="form-group {{ $classKPRType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                                 <label class="control-label col-md-4">Jenis Properti *:</label>
                                 <div class="col-md-8">
                                     {!! Form::select('kpr_type_property', array("" => "", "1" => "Rumah Tapak", "2" => "Rumah Susun/Apartment", "3" => "Rumah Toko"), !empty($dataCustomer) ? $dataCustomer['kpr']['kpr_type_property'] : old('kpr_type_property'), [
@@ -43,19 +57,6 @@
                                     <input type="hidden" name="kpr_type_property_name" id="kpr_type_property_name">
                             </div>
                             @endif
-
-                            <div class="form-group {{ $classNameDeveloper }} {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
-                                <label class="control-label col-md-4">Developer *:</label>
-                                <div class="col-md-8">
-                                    {!! Form::select('developer', array($dataCustomer['kpr']['developer_id'] => $dataCustomer['kpr']['developer_name']), !empty($dataCustomer) ? $dataCustomer['kpr']['developer_id'] : old('developer'), [
-                                        'class' => 'select2 developers ',
-                                        'data-placeholder' => 'Pilih Developer',
-                                        'data-bri' => ''
-                                    ]) !!}
-                                </div>
-                                <input type="hidden" name="developer_name" id="new_developer_name">
-                            </div>
-                            
                             <div class="form-group {{ $classNameType }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                 <label class="control-label col-md-4">Nama Proyek *:</label>
                                 <div class="col-md-8">
