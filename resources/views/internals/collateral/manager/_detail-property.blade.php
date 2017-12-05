@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Deskripsi Properti :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['property']['description']}}</p>
+                            <p class="form-control-static">{!! strip_tags($collateral['property']['description'], "<a><br><i><ul><li><ol>") !!}</p>
                         </div>
                     </div>
                 </form>
@@ -69,7 +69,7 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Fasilitas :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['property']['facilities']}}</p>
+                            <p class="form-control-static">{!! strip_tags($collateral['property']['facilities'], "<a><br><i><ul><li><ol>") !!}</p>
                         </div>
                     </div>
                 </form>
