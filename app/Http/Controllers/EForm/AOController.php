@@ -378,7 +378,7 @@ class AOController extends Controller
           ],
         );
 
-        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity']);
+        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount']);
           foreach ($allReq as $index => $req) {
             $inputData[] = [
               'name'     => $index,
@@ -398,6 +398,8 @@ class AOController extends Controller
           , $this->parseNumber( $request->couple_salary, 'couple_salary' )
           , $this->parseNumber( $request->couple_other_salary, 'couple_other_salary' )
           , $this->parseNumber( $request->couple_loan_installment, 'couple_loan_installment' )
+          , $this->parseNumber( $request->price, 'price' )
+          , $this->parseNumber( $request->request_amount, 'request_amount' )
         );
     }
 

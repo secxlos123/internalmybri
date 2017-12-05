@@ -304,6 +304,251 @@
             $('#new_citizenship').val(text);
         });
 
+        $('.status_property').on('select2:select', function (e) {
+            /*
+            kalo baru muncul semua, gak perlu jenis properti
+            kalo secondary muncul jenis KPR, jenus properti
+            kalo baru + non kerja sama
+            */
+
+            $("select[name='developer']").html("");
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property']").html("");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+            if ($(this).val() == "1") {
+                $("div#kpr_type_property").addClass('hide');
+                $("div#developer").removeClass('hide');
+                $("div#property_name").removeClass('hide');
+                $("div#property_type").removeClass('hide');
+                $("div#property_unit").removeClass('hide');
+
+            } else {
+                $("div#kpr_type_property").removeClass('hide');
+                $("div#developer").addClass('hide');
+                $("div#property_name").addClass('hide');
+                $("div#property_type").addClass('hide');
+                $("div#property_unit").addClass('hide');
+                $('#price').removeAttr('readonly');
+                $('#home_location').removeAttr('readonly');
+                $('#building_area').removeAttr('readonly');
+
+            }
+        });
+
+        //select2 developer
+        $('.developers').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getDeveloper")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.developers.data,
+                        pagination: {
+                            more: (params.page * data.developers.per_page) < data.developers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.developers').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#new_developer_name').val(text);
+
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property']").html("");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            if(text == "Non Kerja Sama"){
+                $('#price').removeAttr('readonly');
+                $('#home_location').removeAttr('readonly');
+                $('#building_area').removeAttr('readonly');
+                $('#property_name').attr('hidden',true);
+                $('#property_unit').attr('hidden',true);
+                $('#property_type').attr('hidden',true);
+                $('#line').attr('hidden',true);
+                $("div#kpr_type_property").removeClass('hide');
+
+            }else{
+                $('#price').attr('readonly', true);
+                $('#home_location').attr('readonly', true);
+                $('#building_area').attr('readonly', true);
+                $('#property_name').removeAttr('hidden');
+                $('#property_type').removeAttr('hidden');
+                $('#property_unit').removeAttr('hidden');
+                $('#line').removeAttr('hidden');
+                $("div#kpr_type_property").addClass('hide');
+
+            }
+
+            $('.property_name').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/properties',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            dev_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.properties.data,
+                            pagination: {
+                                more: (params.page * data.properties.per_page) < data.properties.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        //select2 properti
+        $('.property_name').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+
+            $("select[name='kpr_type_property']").val("").trigger("change");
+            $("select[name='property_type']").html("");
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            $('#new_property_name').val(text);
+            // console.log(text);
+            $('.property_type').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/types',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            prop_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        // console.log(data);
+                        return {
+                            results: data.types.data,
+                            pagination: {
+                                more: (params.page * data.types.per_page) < data.types.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        $('.property_type').on('select2:select', function (e) {
+            var id = e.params.data.id;
+            var luasBangunan = e.params.data.building_area;
+
+            $("select[name='property_item']").html("");
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='building_area']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            $('#building_area').val(luasBangunan).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_type_name').val(text).trigger('change');
+
+            $('.property_item').select2({
+                witdh : '100%',
+                allowClear: true,
+                ajax: {
+                    url: '/dropdown/units',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            prop_type_id : id,
+                            name: params.term,
+                            page: params.page || 1
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.units.data,
+                            pagination: {
+                                more: (params.page * data.units.per_page) < data.units.total
+                            }
+                        };
+                    },
+                    cache: true
+                },
+            });
+        });
+
+        $('.property_item').on('select2:select', function (e) {
+            var price = e.params.data.price;
+            var address = e.params.data.address;
+
+            $("select[name='active_kpr']").val("").trigger("change");
+            $("input[name='price']").val("");
+            $("input[name='dp']").val(0);
+            $("input[name='down_payment']").val(0);
+            $("input[name='request_amount']").val(0);
+            $("textarea[name='home_location']").val("").html("");
+
+            $('#price').val(price).trigger('change');
+            $('#home_location').val(address).trigger('change');
+
+            var text = $(this).find("option:selected").text();
+            $('#new_property_item_name').val(text).trigger('change');
+        });
+
         $("#couple_identity").change(function(){
             readURLCouple(this);
         });
@@ -459,6 +704,258 @@
 
     function printPage() {
         window.print();
+    }
+
+    //disable select kpr
+        var price = $('#price');
+        var building_area = $('#building_area');
+        var active_kpr = $('#active_kpr');
+        var dp = $('#dp');
+        var year = $('#year');
+        var down_payment = $('#down_payment');
+        var request_amount = $('#request_amount');
+        var price_without_comma = price.val().replace(',00', '');
+        var static_price = price_without_comma.replace(/\./g, '');
+
+        building_area.on('input', function() {
+            if((price !== null) && (building_area !== null)){
+                active_kpr.removeAttr('disabled');
+                dp.removeAttr('disabled');
+            }else{
+                active_kpr.attr('disabled', true);
+                dp.attr('disabled', true);
+
+            }
+        });
+
+        //count dp
+        active_kpr.on('change', function() {
+            var val = $(this).val();
+            var down_payment = $('#down_payment');
+            var request_amount = $('#request_amount');
+            var price_without_comma = price.val().replace(',00', '');
+            var static_price = price_without_comma.replace(/\./g, '');
+
+            if(building_area.val() < 21){
+                switch (val) {
+                    case '1':
+                        dp.val('0');
+                        dp.attr('min', '0');
+                        payment = (0 / 100) * static_price;
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '2':
+                        dp.val('0');
+                        dp.attr('min', '0');
+                        payment = (0 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '3':
+                        dp.val('15');
+                        dp.attr('min', '15');
+                        payment = (15 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                }
+                // console.log('22');
+            }if((building_area.val() >= 22) || (building_area <= 70)){
+                switch (val) {
+                    case '1':
+                        dp.val('0');
+                        dp.attr('min', '0');
+                        payment = (0 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '2':
+                        dp.val('15');
+                        dp.attr('min', '15');
+                        payment = (15 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '3':
+                        dp.val('20');
+                        dp.attr('min', '20');
+                        payment = (20 / 100) * static_price;
+                        down_payment.val(payment);
+                        break;
+                }
+                // console.log('23');
+            }if(building_area.val() > 70){
+                switch (val) {
+                    case '1':
+                        dp.val('15');
+                        dp.attr('min', '15');
+                        payment = (15 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '2':
+                        dp.val('20');
+                        dp.attr('min', '20');
+                        payment = (20 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '3':
+                        dp.val('25');
+                        dp.attr('min', '25');
+                        payment = (25 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                }
+                // console.log('70');
+            }
+
+        });
+
+        //recounting dp
+        dp
+            .on('input', function() {
+                change_dp(this);
+            })
+            .on('change', function() {
+                change_dp(this);
+            })
+            .on('blur', function() {
+                var val = $(this).val();
+                var price = $('#price');
+                var dp_min = dp.attr('min');
+                var down_payment = $('#down_payment');
+                var request_amount = $('#request_amount');
+                var price_without_comma = price.val().replace(',00', '');
+                var static_price = price_without_comma.replace(/\./g, '');
+
+                if (val < dp_min) {
+                    val = dp_min;
+                    $(this).val(dp_min);
+                }
+
+                payment = (val / 100) * static_price;
+                down_payment.val(payment);
+                amount = static_price - payment;
+                down_payment.val(payment);
+                request_amount.val(amount);
+            });
+
+        down_payment
+            .on('input', function() {
+                var val = $(this).val().replace(',00', '').replace(/\./g, '');
+                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var request_amount = $('#request_amount');
+                var max = parseInt(static_price) * (90/100);
+
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
+
+                if (parseInt(val) < max) {
+                    payment = (val / static_price) * 100;
+
+                } else {
+                    $(this).val(max);
+                    payment = 90;
+
+                }
+
+                if ( !isNaN(payment) ) {
+                    dp.val(Math.round(payment));
+                    total = static_price - val;
+
+                    if (total > 0) {
+                        request_amount.val(static_price - val);
+
+                    } else {
+                        request_amount.val(static_price - max);
+
+                    }
+                }
+            })
+            .on('blur', function() {
+                var val = $(this).val().replace(',00', '').replace(/\./g, '');
+                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var min = parseInt(static_price) * (dp_min/100);
+
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
+
+                if (parseInt(val) < min) {
+                    $(this).val(min)
+                    dp.val(dp_min);
+                    request_amount.val(static_price - min);
+                }
+            });
+
+        year.on('change', function () {
+                if ( $(this).val() > 240 ) {
+                    $(this).val(240);
+                    return;
+                }
+
+                if ( $(this).val() < 12) {
+                    $(this).val(12);
+                    return;
+                }
+            })
+            .on('blur', function () {
+                if ( parseInt(year.val().replace( /[^0-9]/g, '' ) ) <= 12 ) {
+                    year.val('12');
+
+                } else if ( year.val() >= 240 ) {
+                    year.val('240');
+                    var val = year.val();
+
+                } else if ( year.val() == '' ){
+                    year.val('12');
+                    var val = year.val();
+
+                }
+            });
+
+    function change_dp(element) {
+        var val = $(element).val();
+        var down_payment = $('#down_payment');
+        var request_amount = $('#request_amount');
+        var price = $('#price');
+        var price_without_comma = price.val().replace(',00', '');
+        var static_price = price_without_comma.replace(/\./g, '');
+
+        if (parseInt(val) > 90) {
+            val = 90;
+            $(element).val(val);
+
+        }
+
+        payment = (val / 100) * static_price;
+        down_payment.val(payment);
+        amount = static_price - payment;
+        down_payment.val(payment);
+        request_amount.val(amount);
     }
 </script>
 

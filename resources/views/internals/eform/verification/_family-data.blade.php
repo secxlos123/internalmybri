@@ -23,7 +23,7 @@
                                 <label class="col-md-4 control-label">No. Handphone * :</label>
                                 <div class="col-md-8">
                                 @if ($type != 'preview')
-                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{$dataCustomer['customer']['emergency_contact']}}" maxlength="16">
+                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{$dataCustomer['customer']['emergency_contact']}}" maxlength="12">
                                 @else
                                     <p>{{ @$dataCustomer['customer']['emergency_contact'] }}</p>
                                 @endif
