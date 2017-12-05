@@ -705,6 +705,258 @@
     function printPage() {
         window.print();
     }
+
+    //disable select kpr
+        var price = $('#price');
+        var building_area = $('#building_area');
+        var active_kpr = $('#active_kpr');
+        var dp = $('#dp');
+        var year = $('#year');
+        var down_payment = $('#down_payment');
+        var request_amount = $('#request_amount');
+        var price_without_comma = price.val().replace(',00', '');
+        var static_price = price_without_comma.replace(/\./g, '');
+
+        building_area.on('input', function() {
+            if((price !== null) && (building_area !== null)){
+                active_kpr.removeAttr('disabled');
+                dp.removeAttr('disabled');
+            }else{
+                active_kpr.attr('disabled', true);
+                dp.attr('disabled', true);
+
+            }
+        });
+
+        //count dp
+        active_kpr.on('change', function() {
+            var val = $(this).val();
+            var down_payment = $('#down_payment');
+            var request_amount = $('#request_amount');
+            var price_without_comma = price.val().replace(',00', '');
+            var static_price = price_without_comma.replace(/\./g, '');
+
+            if(building_area.val() < 21){
+                switch (val) {
+                    case '1':
+                        dp.val('0');
+                        dp.attr('min', '0');
+                        payment = (0 / 100) * static_price;
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '2':
+                        dp.val('0');
+                        dp.attr('min', '0');
+                        payment = (0 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '3':
+                        dp.val('15');
+                        dp.attr('min', '15');
+                        payment = (15 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                }
+                // console.log('22');
+            }if((building_area.val() >= 22) || (building_area <= 70)){
+                switch (val) {
+                    case '1':
+                        dp.val('0');
+                        dp.attr('min', '0');
+                        payment = (0 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '2':
+                        dp.val('15');
+                        dp.attr('min', '15');
+                        payment = (15 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '3':
+                        dp.val('20');
+                        dp.attr('min', '20');
+                        payment = (20 / 100) * static_price;
+                        down_payment.val(payment);
+                        break;
+                }
+                // console.log('23');
+            }if(building_area.val() > 70){
+                switch (val) {
+                    case '1':
+                        dp.val('15');
+                        dp.attr('min', '15');
+                        payment = (15 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '2':
+                        dp.val('20');
+                        dp.attr('min', '20');
+                        payment = (20 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                    case '3':
+                        dp.val('25');
+                        dp.attr('min', '25');
+                        payment = (25 / 100) * static_price;
+                        down_payment.val(payment);
+                        amount = static_price - payment;
+                        down_payment.val(payment);
+                        request_amount.val(amount);
+                        break;
+                }
+                // console.log('70');
+            }
+
+        });
+
+        //recounting dp
+        dp
+            .on('input', function() {
+                change_dp(this);
+            })
+            .on('change', function() {
+                change_dp(this);
+            })
+            .on('blur', function() {
+                var val = $(this).val();
+                var price = $('#price');
+                var dp_min = dp.attr('min');
+                var down_payment = $('#down_payment');
+                var request_amount = $('#request_amount');
+                var price_without_comma = price.val().replace(',00', '');
+                var static_price = price_without_comma.replace(/\./g, '');
+
+                if (val < dp_min) {
+                    val = dp_min;
+                    $(this).val(dp_min);
+                }
+
+                payment = (val / 100) * static_price;
+                down_payment.val(payment);
+                amount = static_price - payment;
+                down_payment.val(payment);
+                request_amount.val(amount);
+            });
+
+        down_payment
+            .on('input', function() {
+                var val = $(this).val().replace(',00', '').replace(/\./g, '');
+                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var request_amount = $('#request_amount');
+                var max = parseInt(static_price) * (90/100);
+
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
+
+                if (parseInt(val) < max) {
+                    payment = (val / static_price) * 100;
+
+                } else {
+                    $(this).val(max);
+                    payment = 90;
+
+                }
+
+                if ( !isNaN(payment) ) {
+                    dp.val(Math.round(payment));
+                    total = static_price - val;
+
+                    if (total > 0) {
+                        request_amount.val(static_price - val);
+
+                    } else {
+                        request_amount.val(static_price - max);
+
+                    }
+                }
+            })
+            .on('blur', function() {
+                var val = $(this).val().replace(',00', '').replace(/\./g, '');
+                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var min = parseInt(static_price) * (dp_min/100);
+
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
+
+                if (parseInt(val) < min) {
+                    $(this).val(min)
+                    dp.val(dp_min);
+                    request_amount.val(static_price - min);
+                }
+            });
+
+        year.on('change', function () {
+                if ( $(this).val() > 240 ) {
+                    $(this).val(240);
+                    return;
+                }
+
+                if ( $(this).val() < 12) {
+                    $(this).val(12);
+                    return;
+                }
+            })
+            .on('blur', function () {
+                if ( parseInt(year.val().replace( /[^0-9]/g, '' ) ) <= 12 ) {
+                    year.val('12');
+
+                } else if ( year.val() >= 240 ) {
+                    year.val('240');
+                    var val = year.val();
+
+                } else if ( year.val() == '' ){
+                    year.val('12');
+                    var val = year.val();
+
+                }
+            });
+
+    function change_dp(element) {
+        var val = $(element).val();
+        var down_payment = $('#down_payment');
+        var request_amount = $('#request_amount');
+        var price = $('#price');
+        var price_without_comma = price.val().replace(',00', '');
+        var static_price = price_without_comma.replace(/\./g, '');
+
+        if (parseInt(val) > 90) {
+            val = 90;
+            $(element).val(val);
+
+        }
+
+        payment = (val / 100) * static_price;
+        down_payment.val(payment);
+        amount = static_price - payment;
+        down_payment.val(payment);
+        request_amount.val(amount);
+    }
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

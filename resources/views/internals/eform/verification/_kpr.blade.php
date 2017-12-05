@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-horizontal" role="form">
-                            <!-- <input type="hidden" name="eform_id" value="{{$dataCustomer['kpr']['id']}}"> -->
+                            <input type="hidden" name="eform_id" value="{{$dataCustomer['kpr']['id']}}">
                             @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" || $dataCustomer['kpr']['status_property'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameType = ($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
@@ -54,7 +54,6 @@
                                      <p class="help-block">{{ $errors->first('kpr_type_property') }}</p> 
                                     @endif
                                 </div>
-                                    <input type="hidden" name="kpr_type_property_name" id="kpr_type_property_name">
                             </div>
                             @endif
                             <div class="form-group {{ $classNameType }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
@@ -150,7 +149,6 @@
                                     ]) !!}
                                     @if ($errors->has('active_kpr')) <p class="help-block">{{ $errors->first('active_kpr') }}</p> @endif
                                 </div>
-                                <input type="hidden" name="active_kpr_name" id="active_kpr_name">
                             </div>
                             <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
                                 <label class="control-label col-md-4">Uang Muka *:</label>
