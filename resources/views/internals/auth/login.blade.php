@@ -74,33 +74,31 @@
          textColor:"white"
     };
 
-    $('#loginButton').click(function(){
-        HoldOn.open(options);   
-    })
     $("#loginForm").submit(function (e) {
-            e.preventDefault();
-            // var $btn = $('#loginButton').button('loading');
+        e.preventDefault();
+        HoldOn.open(options);
+        // var $btn = $('#loginButton').button('loading');
 
-            $.ajax({
-                    url: "{!! route('postLogin') !!}",
-                    type: 'POST',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                       // $btn.button('reset');
-                       HoldOn.close();
-                       // console.log(data);
-                       if(data.code >= 400){
-                        $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
-                       }else{
-                            window.location = data.url;
-                       }
-                    },
-                    error: function(response){
-                        // $btn.button('reset');
-                        HoldOn.close();
-                    }
-                });
+        $.ajax({
+            url: "{!! route('postLogin') !!}",
+            type: 'POST',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function (data) {
+               // $btn.button('reset');
+               HoldOn.close();
+               // console.log(data);
+               if(data.code >= 400){
+                $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
+               }else{
+                    window.location = data.url;
+               }
+            },
+            error: function(response){
+                // $btn.button('reset');
+                HoldOn.close();
+            }
         });
+    });
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
