@@ -12,7 +12,7 @@
                             @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" && $dataCustomer['kpr']['developer_id'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameType = ($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
-                            @php ( $classNameDeveloper = $dataCustomer['kpr']['status_property'] ? '' : 'hide' )
+                            @php ( $classNameDeveloper = ($dataCustomer['kpr']['status_property'] == "1") ? '' : 'hide' )
                             <div class="form-group {!! $errors->has('status_property') ? 'has-error' : '' !!}" id="status_property">
                                 <label class="control-label col-md-4">Jenis KPR *:</label>
                                 <div class="col-md-8">

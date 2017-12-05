@@ -6,7 +6,7 @@
                     @php ( $className = ($eformData['kpr']['status_property'] == "1" && $eformData['kpr']['developer_id'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                     @php ( $classNameType = ($eformData['kpr']['status_property'] != "1" || $eformData['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                     @php ( $classKPRType = ($eformData['kpr']['status_property'] != "1" && $eformData['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
-                    @php ( $classNameDeveloper = $eformData['kpr']['status_property'] ? '' : 'hide' )
+                    @php ( $classNameDeveloper = ($eformData['kpr']['status_property'] == "1") ? '' : 'hide' )
 
                     <label class="control-label col-md-4">Jenis KPR *:</label>
                     <div class="col-md-8">
