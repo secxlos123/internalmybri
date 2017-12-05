@@ -241,7 +241,7 @@ class AOController extends Controller
                       ->post();
 
         $dataCustomer = $customerData['contents'];
-        // dd($dataCustomer);
+        // dd ($dataCustomer);
 
         if (count($dataCustomer) == 0) {
           \Session::flash('danger', 'Data verification tidak ditemukan!');

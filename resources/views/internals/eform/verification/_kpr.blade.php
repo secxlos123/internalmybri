@@ -9,7 +9,7 @@
                     <div class="col-md-6">
                         <div class="form-horizontal" role="form">
                             <input type="hidden" name="eform_id" value="{{$dataCustomer['kpr']['id']}}">
-                            @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" || $dataCustomer['kpr']['status_property'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+                            @php ( $className = ($dataCustomer['kpr']['status_property'] == "1" && $dataCustomer['kpr']['status_property'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameType = ($dataCustomer['kpr']['status_property'] != "1" || $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['status_property'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameDeveloper = $dataCustomer['kpr']['status_property'] ? '' : 'hide' )
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                             @endif
-                            <div class="form-group {{ $classNameType }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
+                            <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                                 <label class="control-label col-md-4">Nama Proyek *:</label>
                                 <div class="col-md-8">
                                     {!! Form::select('property', [$dataCustomer['kpr']['property_id'] => $dataCustomer['kpr']['property_name']], old('property'), [

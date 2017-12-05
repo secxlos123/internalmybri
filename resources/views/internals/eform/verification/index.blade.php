@@ -24,8 +24,8 @@
                     </div>
                 </div>
             </div>
-            @if (\Session::has('success'))
-            <div class="alert alert-success">{{ \Session::get('success') }}</div>
+            @if (\Session::has('error'))
+            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
             @endif
 
             <form @if(!empty($dataCustomer)) action="{{route('verifyData', $dataCustomer['customer']['id'])}}" @endif method="POST" enctype="multipart/form-data" id="form1">
