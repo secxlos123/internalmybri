@@ -257,7 +257,7 @@
             $("#formLKN").submit();
             HoldOn.close();
        });
-
+       // $('.status_property')..select2('readonly',true);
        npwp_masking($('#npwp_number'));
    });
 
