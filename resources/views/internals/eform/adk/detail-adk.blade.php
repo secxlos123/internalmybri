@@ -42,7 +42,7 @@
                         </div>
                         <!-- data pengajuan-->
                         <div class="panel-body">
-                            <!-- @include('internals.eform.approval._eform-data') -->
+                            @include('internals.eform.approval._eform-data')
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             @include('internals.eform.approval._customer-personal')
                             <hr>
 
-                            <!-- @if($detail['customer']['personal']['status_id'] == 2) -->
+                            @if($detail['customer']['personal']['status_id'] == 2)
                             <!--pasangan-->
                             @include('internals.eform.approval._customer-couple')
                             <hr>
@@ -122,8 +122,6 @@
                 </div>
             </div>
 
-
-
             <!-- rekomendasi approval -->
             <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                 {{ csrf_field() }}
@@ -160,6 +158,10 @@
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) { e.preventDefault(); return false; }
     });
+
+    function printPage() {
+        window.print();
+    }
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

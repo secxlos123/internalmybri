@@ -43,15 +43,35 @@ class ADKController extends Controller
         // print_r($data);exit();
         // dd(env('APP_ENV'));
 
-        if($data['role'] == 'ao'){
-            // return view('internals.eform.adk.index', compact('data'));
-            return view('internals.eform.adk.detail-adk', compact('data'));
+        if ($data['role'] == 'ao') {
+            return view('internals.eform.adk.index', compact('data'));
         }
     }
 
-    public function approve() {
+    public function getApprove($id) {
+        $data = $this->getUser();
+
+         /* GET Form Data */
+        $formDetail = Client::setEndpoint('eforms/'.$id)
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->get();
+
+        $detail = $formDetail['contents'];
+        print_r($detail);exit();
+        /*GET DETAIL CUST*/
+        $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
+                        ->setHeaders(['Authorization' => $data['token']])
+                        ->get();
+
+        $customer = $customerData['contents'];
+        // dd($detail);
+        $type = 'fill';
+
         if (($data['role'] == 'ao') || ($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
-            return view('internals.eform.adk.detail-adk', compact('data'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','product','customer','id','type'));
         } else{
             return view('internals.eform.create', compact('data'));
         }
