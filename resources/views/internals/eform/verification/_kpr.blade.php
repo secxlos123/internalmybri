@@ -146,7 +146,7 @@
                                         @if ($errors->has('building_area')) <p class="help-block">{{ $errors->first('building_area') }}</p> @endif
                                     </div>
                                     @else
-                                    <p>{{$dataCustomer['kpr']['building_area']}} Meter</p>
+                                    <p>{{$dataCustomer['kpr']['building_area']}} m<sup>2</sup></p>
                                     @endif
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                                     @if ($type != 'preview')
                                     <textarea class="form-control required" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah" id="home_location" readonly="">{{$dataCustomer['kpr']['home_location']}}</textarea>
                                     @else
-                                    <p>{{$dataCustomer['kpr']['home_location']}} Meter</p>
+                                    <p>{{$dataCustomer['kpr']['home_location']}}</p>
                                     @endif
                                 </div>
                             </div>
@@ -171,7 +171,7 @@
                                         @if ($errors->has('year')) <p class="help-block">{{ $errors->first('year') }}</p> @endif
                                     </div>
                                     @else
-                                    <p>{{$dataCustomer['kpr']['year']}} Meter</p>
+                                    <p>{{$dataCustomer['kpr']['year']}} Bulan</p>
                                     @endif
                                 </div>
                             </div>
@@ -186,7 +186,10 @@
                                         'data-bri' => ''
                                     ]) !!}
                                     @else
-                                    <p>{{$dataCustomer['kpr']['active_kpr']}} Meter</p>
+                                    <p>@if($dataCustomer['kpr']['active_kpr'] == 1) 1
+                                        @elseif($dataCustomer['kpr']['active_kpr'] == 2) 2
+                                        @elseif($dataCustomer['kpr']['active_kpr'] == 3) > 2
+                                        @endif</p>
                                     @endif
                                 </div>
                             </div>
