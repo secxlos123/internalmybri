@@ -176,7 +176,10 @@
                                         'data-bri' => ''
                                     ]) !!}
                                 @else
-                                    <p>{{ @$dataCustomer['customer']['status'] }}</p>
+                                    <p>@if($dataCustomer['customer']['status'] == 1) Belum Menikah
+                                        @elseif($dataCustomer['customer']['status'] == 2)Menikah
+                                        @elseif($dataCustomer['customer']['status'] == 3)Janda / Duda
+                                        @endif</p>
                                 @endif
 
                                     @if ($errors->has('status'))
@@ -196,7 +199,10 @@
                                         'data-bri' => ''
                                     ]) !!}
                                 @else
-                                    <p>{{ @$dataCustomer['customer']['address_status'] }}</p>
+                                    <p>@if($dataCustomer['customer']['address_status'] == 0) Milik Sendiri
+                                        @elseif($dataCustomer['customer']['address_status'] == 1)Orang Tua / Mertua / Rumah Dinas
+                                        @elseif($dataCustomer['customer']['address_status'] == 3)Rumah Kontrakan
+                                        @endif</p>
                                 @endif
 
                                     @if ($errors->has('address_status'))
