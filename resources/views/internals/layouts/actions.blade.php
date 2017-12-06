@@ -86,7 +86,7 @@
 
 
 @if (isset($prescreening_status))
-	<a href="javascript:void(0);" id="btn-prescreening">
+	<a href="javascript:void(0);" id="{{ ( $prescreening_result == 'Hijau' || $prescreening_result == 'Kuning' || $prescreening_result == 'Merah' ) ? 'btn-prescreening' : '' }}">
 		@if( $prescreening_result == 'Hijau' )
 			<p class="text-success">{{ $prescreening_result }}</p>
 
