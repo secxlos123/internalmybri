@@ -115,6 +115,12 @@
 	</a>
 @endif
 
+@if ((isset($monitoring)) && ($status == "menunggu persetujuan"))
+	<a href="{!! $monitoring !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Monitoring Collateral" title="Monitoring Collateral">
+	    <i class="fa fa-list-ul" aria-hidden="true"></i>
+	</a>
+@endif
+
 <!-- @if ((isset($lkn_collateral)))
 	<a href="{!! $lkn_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Form LKN" title="Form LKN">
 	    <i class="fa fa-file-text" aria-hidden="true"></i>
@@ -129,8 +135,8 @@
 	</a>
 @endif
 
-@if ((isset($upload_doc)) && ($status == "menunggu persetujuan"))
-	<a href="{!! $upload-doc !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Upload Dokumen" title="Upload Dokumen">
+@if ((isset($upload_doc)) && ($status == "Menunggu Persetujuan"))
+	<a href="{!! $upload_doc !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Upload Dokumen" title="Upload Dokumen">
 	    <i class="fa fa-upload" aria-hidden="true"></i>
 	</a>
 @endif

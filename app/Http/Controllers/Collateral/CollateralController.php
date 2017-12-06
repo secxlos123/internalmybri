@@ -257,6 +257,7 @@ class CollateralController extends Controller
                 'detail' => url('collateral/detail/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'dispose_collateral' => url('collateral/assignment/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'approval_collateral' => url('collateral/approval-collateral/'.$form['developer']['id'].'/'.$form['property']['id']),
+                'monitoring' => url('collateral/monitoring/'.$form['developer']['id'].'/'.$form['property']['id']),
             ])->render();
             $collateral['contents']['data'][$key] = $form;
         }
