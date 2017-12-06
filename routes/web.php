@@ -63,6 +63,8 @@
 
         Route::post('eform/prescreening', ['as'=>'getPrescreening', 'uses'=>'EForm\EFormController@getPrescreening']);
 
+        Route::post('eform/submit-prescreening', ['as'=>'postPrescreening', 'uses'=>'EForm\EFormController@postPrescreening']);
+
         Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
         Route::post('/eform/dispotition/{id}',

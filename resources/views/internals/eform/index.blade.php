@@ -240,8 +240,7 @@
             }
 
         }).done(function(data){
-            console.log(data);
-            console.log("dari index");
+            $("#result-modal .modal-body").html($('.modal-body-base').html());
             // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
             contents = data.response.contents;
 
@@ -267,12 +266,13 @@
 
             }
 
-            $("#prescreening-nik").html(contents.eform.nik);
-            $("#prescreening-name").html(contents.eform.customer_name);
-            $("#prescreening-result").html(warna);
-            $("#prescreening-color").html(pefindo_warna);
-            $("#prescreening-score").html(contents.eform.pefindo_score);
-            $("#prescreening-notice").html(contents.eform.ket_risk);
+            $("#result-modal .modal-body #prescreening-id").html(contents.eform.id);
+            $("#result-modal .modal-body #prescreening-nik").html(contents.eform.nik);
+            $("#result-modal .modal-body #prescreening-name").html(contents.eform.customer_name);
+            $("#result-modal .modal-body #prescreening-result").html(warna);
+            $("#result-modal .modal-body #prescreening-color").html(pefindo_warna);
+            $("#result-modal .modal-body #prescreening-score").html(contents.eform.pefindo_score);
+            $("#result-modal .modal-body #prescreening-notice").html(contents.eform.ket_risk);
 
             uploadscore = contents.eform.uploadscore;
             html = '';
@@ -288,13 +288,12 @@
             } else {
                 html = '<p class="form-control-static">-</p>';
             }
-            $("#prescreening-image").html(html);
+            $("#result-modal .modal-body #prescreening-image").html(html);
 
-            base = $(".card-box.m-t-30.after-this");
+            base = $("#result-modal .modal-body .card-box.m-t-30.after-this");
 
             html = '';
             $.each(contents.dhn, function(key, dhn) {
-                console.log(dhn);
                 if (dhn.warna == "Hijau") {
                     warna = '<p class="text-success form-control-static">Hijau</p>';
 
@@ -306,7 +305,7 @@
 
                 }
 
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
             })
 
             $.each(contents.sicd, function(key, sicd) {
@@ -321,9 +320,11 @@
 
                 }
 
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">SICD</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div>';
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"> <label for="sicd'+key+'">SICD<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
             })
             $(html).insertAfter(base);
+
+            $("input[name=select_sicd]").eq(contents.eform.selected_sicd).prop('checked', true);
 
             // $('#detail').html(data['view']);
             $('#result-modal').modal('show');
@@ -335,4 +336,48 @@
 
         });
     });
+
+    $(document).on('click', '#btn-update-sicd', function(){
+        input = $("input[name=select_sicd]:checked");
+        selectedSICD = input.val();
+        sicd = input.parent()
+            .next()
+                .children('div')
+                    .children('div')
+                        .children('div')
+                            .last()
+                                .find('p').html();
+        dhn = $('.dhn-color').children('p').html();
+        pefindo = $("#prescreening-color").children('p').html();
+        eformId = $("#prescreening-id").html();
+
+        HoldOn.open();
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("postPrescreening") }}',
+            data: {
+                eform_id : eformId
+                , selected_sicd : selectedSICD
+                , sicd : sicd
+                , dhn : dhn
+                , pefindo : pefindo
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+
+        }).done(function(data){
+            $('#result-modal').modal('hide');
+            $("#btn-filter").click();
+            alert(data.response.descriptions);
+            HoldOn.close();
+
+        }).fail(function(errors) {
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
+
+        });
+    })
 </script>

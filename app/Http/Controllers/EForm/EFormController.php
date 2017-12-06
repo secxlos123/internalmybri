@@ -342,6 +342,33 @@ class EFormController extends Controller
         return response()->json(['response' => $client]);
     }
 
+    /**
+     * Post prescreening data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postPrescreening(Request $request)
+    {
+        $data = $this->getUser();
+
+        $client = Client::setEndpoint('eforms/submit-screening')
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])
+            ->setBody([
+                'eform_id' => $request->input('eform_id')
+                , 'selected_sicd' => $request->input('selected_sicd')
+                , 'sicd' => $request->input('sicd')
+                , 'dhn' => $request->input('dhn')
+                , 'pefindo' => $request->input('pefindo')
+            ])
+            ->post();
+
+        return response()->json(['response' => $client]);
+    }
+
      /**
      * Store a newly created resource in storage.
      *
