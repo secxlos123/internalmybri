@@ -100,8 +100,10 @@ class ApprovalController extends Controller
                   ->setBody($approve)
                   ->post();
 
+        $color = $request->is_approved == 'true' ? 'success' : 'error';
+
         if($client['code'] == 201){
-            \Session::flash('success', $client['descriptions']);
+            \Session::flash($color, $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
             \Session::flash('error', 'EForm gagal diapprove! - '.$client['descriptions']);
