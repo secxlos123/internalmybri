@@ -202,17 +202,17 @@ class CollateralStaffController extends Controller
     {
         $application = [];
 
-        $pln = ($request->designated_pln ? $request->designated_pln.',' : '');
-        $phone = ($request->designated_phone ? $request->designated_phone.',' : '');
-        $pam = ($request->designated_pam ? $request->designated_pam.',' : '');
-        $telex = ($request->designated_telex ? $request->designated_telex : '');
-        $designated[] = [
-            'name' => 'environment[designated]'
-            , 'contents' => $pln.''.$phone.''.$pam.''.$telex
-        ];
+        // $pln = ($request->designated_pln ? $request->designated_pln.',' : '');
+        // $phone = ($request->designated_phone ? $request->designated_phone.',' : '');
+        // $pam = ($request->designated_pam ? $request->designated_pam.',' : '');
+        // $telex = ($request->designated_telex ? $request->designated_telex : '');
+        // $designated[] = [
+        //     'name' => 'environment[designated]'
+        //     , 'contents' => $pln.''.$phone.''.$pam.''.$telex
+        // ];
 
         \Log::info($request->all());
-        foreach ($request->except('_token', 'designated_pln', 'designated_phone', 'designated_pam', 'designated_telex', 'collateral_type') as $field => $value) {
+        foreach ($request->except('_token', 'collateral_type') as $field => $value) {
             foreach ($value as $index => $data) {
             $baseName = $field . '[' . $index . ']';
                 $return = $this->returnContent( $baseName, $data, $index );
@@ -223,7 +223,7 @@ class CollateralStaffController extends Controller
             }
         }
 
-            $reqs = array_merge($application, $designated);
+            $reqs = array_merge($application);
     
         return $reqs;
     }
@@ -304,6 +304,7 @@ class CollateralStaffController extends Controller
                 'status' => $form['status'],
                 'detail_collateral' => url('staff-collateral/get-detail/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'assignment_collateral' => url('staff-collateral/get-assignment/'.$form['developer']['id'].'/'.$form['property']['id']),
+                'upload_doc' => url('staff-collateral/upload-doc/'.$form['developer']['id'].'/'.$form['property']['id']),
             ])->render();
             $collateral['contents']['data'][$key] = $form;
         }
