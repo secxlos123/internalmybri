@@ -51,7 +51,7 @@
                                     <p>{{$dataCustomer['kpr']['developer_name']}}</p>
                                     @endif
                                 </div>
-                                <input type="hidden" name="developer_name" id="new_developer_name">
+                                <input type="hidden" name="developer_name" id="new_developer_name" value="{{$dataCustomer['kpr']['developer_name']}}">
                             </div>
                             
                             <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
@@ -84,7 +84,7 @@
                                     <p>{{$dataCustomer['kpr']['property_name']}}</p>
                                     @endif
                                 </div>
-                                    <input type="hidden" name="property_name" id="new_property_name">
+                                    <input type="hidden" name="property_name" id="new_property_name" value="{{$dataCustomer['kpr']['property_name']}}">
                             </div>
 
                             <div class="form-group {{ $className }} {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
@@ -95,7 +95,7 @@
                                         'class' => 'select2 property_type',
                                         'data-placeholder' => 'Pilih Nama Properti',
                                     ]) !!}
-                                    <input type="hidden" name="property_type_name" id="new_property_type_name">
+                                    <input type="hidden" name="property_type_name" id="new_property_type_name" value="{{$dataCustomer['kpr']['property_type_name']}}">
                                     @else
                                     <p>{{$dataCustomer['kpr']['property_type_name']}}</p>
                                     @endif
@@ -109,6 +109,7 @@
                                         'class' => 'select2 property_item',
                                         'data-placeholder' => 'Pilih Nama Properti',
                                     ]) !!}
+                                    <input type="hidden" name="property_item_name" value="{{$dataCustomer['kpr']['property_item_name']}}">
                                     @else
                                     <p>{{$dataCustomer['kpr']['property_item_name']}}</p>
                                     @endif
@@ -147,7 +148,6 @@
                                     @else
                                     <p>{{$dataCustomer['kpr']['building_area']}} Meter</p>
                                     @endif
-                                <input type="hidden" name="property_item_name" id="new_property_item_name">
                                 </div>
                             </div>
 

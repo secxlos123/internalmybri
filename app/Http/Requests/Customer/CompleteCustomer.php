@@ -62,6 +62,23 @@ class CompleteCustomer extends FormRequest
             'couple_name' => 'required_if:status,2',
             'couple_birth_date' => 'required_if:status,2',
             'couple_birth_place' => 'required_if:status,2',
+            // 'developer'         => 'required',
+            // 'property'          => 'required',
+            // 'property_type'     => 'required_if:developer,1',
+            // 'property_item'     => 'required_if:developer,1',
+            'price'             => 'required',
+            'building_area'     => 'required',
+            'home_location'     => 'required',
+            'year'              => 'required',
+            'active_kpr'        => 'required',
+            'dp'                => 'required',
+            // 'category'          => 'required',
+            // 'product_type'      => 'required',
+            // 'status_property'   => 'required',
+            // 'appointment_date'  => 'required',
+            'request_amount'    => 'required',
+            // 'kpr_type'          => 'required',
+            // 'kpr_type_property' => 'required',
             // 'couple_identity'  => 'required_if:status,2|mimes:jpeg,jpg,png,gif|max:10000'
         ];
     }
