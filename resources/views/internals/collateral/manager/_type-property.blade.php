@@ -35,7 +35,7 @@
                                 <p class="form-control-static">{{$propType['name']}}</p>
                             </td> -->
                             <td>
-                                <img id="preview" @if(!empty($propType['photos'])) src="{{$propType['photos']['name']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                <img id="preview" @if(!empty($propType['photos'])) src="{{asset('assets/images/no-image.jpg')}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                             </td>
                         </tr>
                     @endforeach
