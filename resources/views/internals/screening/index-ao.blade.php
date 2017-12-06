@@ -64,11 +64,11 @@ tr.shown td.details1-control {
                                         <tr><th>Cabang</th>
                                                 <th>Jenis Produk</th>
                                                 <th>Nama AO</th>
-                                                <th>Data Nasabah</th>
+                                                <th>Nama Nasabah</th>
                                                 <th>plafond</th>
                                                 <th>Tanggal Pengajuan</th>
                                                 <th>Status prescreening</th>
-                                                <th>Status Nasabah</th>
+                                                <th>Status Pernikahan</th>
                                                 <th>Aksi</th>
                                                 <th>Detail</th>
                                         </tr>
