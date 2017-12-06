@@ -31,8 +31,10 @@
             <form @if(!empty($dataCustomer)) action="{{route('verifyData', $dataCustomer['customer']['id'])}}" @endif method="POST" enctype="multipart/form-data" id="form1">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
+                    @if (isset($dataCustomer['kpr']))
                     <!--Bundle of data eform-->
                     @include('internals.eform.verification._kpr')
+                    @endif
                     <!--Bundle of data pribadi-->
                     @include('internals.eform.verification._personal-data')
                     <!--Field texts of data pribadi-->

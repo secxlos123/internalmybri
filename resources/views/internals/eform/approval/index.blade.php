@@ -7,6 +7,11 @@
         height: 350px;
         width: 100%;
     }
+    @media print {
+        body, html, #wrapper {
+            width: 100%;
+        }
+    }
 </style>
 <div class="content-page">
     <div class="content">
@@ -101,9 +106,11 @@
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-kpp')
                         </div>
+                        @if (isset($detail['visit_report']['mutation']))
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-mutation')
                         </div>
+                        @endif
                         @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-investigate')
