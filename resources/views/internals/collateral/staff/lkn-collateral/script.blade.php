@@ -395,7 +395,7 @@
       })
       .on('blur', function() {
         var val1 = parseInt($('#pnl_land').val().replace(',00', '').replace(/\./g, ''));
-        var all = $('#pnpw_all');
+        var all = $('#pnl_all');
         counting(this, val1, all);
       });
 

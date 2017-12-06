@@ -238,7 +238,7 @@ class CollateralStaffController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->otsRequest($request);
-        // dd($newForm);
+        dd($newForm);
 
           $client = Client::setEndpoint('collateral/ots/'.$id)
            ->setHeaders([

@@ -23,7 +23,7 @@
                                 <p class="form-control-static">{{$propItem['property_type_id']}}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">{{$propItem['address']}}a</p>
+                                <p class="form-control-static">{{$propItem['address']}}</p>
                             </td>
                             <td>
                                 <p class="form-control-static">Rp {{number_format($propItem['price'], 2, ",", ".")}}</p>
