@@ -82,7 +82,7 @@
                                                             <input type="hidden" name="staff_name" id="staff_name">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-5">AO Cabang * </label>
+                                                            <label class="control-label col-md-5">AO Cabang </label>
                                                             <div class="col-md-7">
                                                                 <input type="checkbox" name="ao_select" class="checkbox checkbox-single checkbox-primary" value="0" id="ao_select">
                                                             </div>
