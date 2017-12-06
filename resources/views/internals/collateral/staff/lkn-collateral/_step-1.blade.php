@@ -71,22 +71,22 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Kelurahan/Desa *:</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="area[sub_district]" maxlength="30" value="{{old('area[sub_district]')}}">
+                                <input type="text" class="form-control" name="area[sub_district]" maxlength="30" value="{{old('area.sub_district')}}">
                             </div>
                             @if ($errors->has('area[sub_district]')) <p class="help-block">{{ $errors->first('area[sub_district]') }}</p> @endif
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">RT/ RW *:</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control numericOnly" placeholder="RT" name="area[rt]" maxlength="3" value="{{old('area[rt]')}}" id="rt">
+                                <input type="text" class="form-control numericOnly" placeholder="RT" name="area[rt]" maxlength="3" value="{{old('area.rt')}}" id="rt">
                             </div>
                             @if ($errors->has('area[rt]')) <p class="help-block">{{ $errors->first('area[rt]') }}</p> @endif
                             <div class="col-md-2">
-                                <input type="text" class="form-control numericOnly" placeholder="RW" name="area[rw]" maxlength="3" value="{{old('area[rw]')}}" id="rw">
+                                <input type="text" class="form-control numericOnly" placeholder="RW" name="area[rw]" maxlength="3" value="{{old('area.rw')}}" id="rw">
                             </div>
                             @if ($errors->has('area[rw]')) <p class="help-block">{{ $errors->first('area[rw]') }}</p> @endif
                             <div class="col-md-4">
-                                <input type="text" class="form-control numericOnly" placeholder="Kode Pos" name="area[zip_code]" maxlength="6" value="{{old('area[zip_code]')}}" id="zip_code">
+                                <input type="text" class="form-control numericOnly" placeholder="Kode Pos" name="area[zip_code]" maxlength="6" value="{{old('area.zip_code')}}" id="zip_code">
                             </div>
                             @if ($errors->has('area[zip_code]')) <p class="help-block">{{ $errors->first('area[zip_code]') }}</p> @endif
                         </div>

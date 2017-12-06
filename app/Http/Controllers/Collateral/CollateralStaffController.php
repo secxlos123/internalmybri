@@ -123,6 +123,7 @@ class CollateralStaffController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        // dd($collateral);
         if($collateral['property']['category'] == 0){
             $category_name = 'Rumah Tapak';
         }elseif($collateral['property']['category'] == 1){

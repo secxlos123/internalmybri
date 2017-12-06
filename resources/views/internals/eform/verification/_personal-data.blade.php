@@ -196,7 +196,7 @@
                                         'data-bri' => ''
                                     ]) !!}
                                 @else
-                                    <p>{{ @$dataCustomer['customer']['address'] }}</p>
+                                    <p>{{ @$dataCustomer['customer']['address_status'] }}</p>
                                 @endif
 
                                     @if ($errors->has('address_status'))
