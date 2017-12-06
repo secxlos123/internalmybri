@@ -117,6 +117,7 @@ tr.shown td.details1-control {
       })
 
 function detail(d){
+alert('tester');
     var m = '';
     m = '<table width="1000px" cellpadding="2" cellspacing="0" border="0" style="padding-left:50px;">'+
 		'<tr>'+
