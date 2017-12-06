@@ -194,6 +194,7 @@ class AOController extends Controller
             $form['request_amount'] = $form['nominal'];
             $form['created_at'] = $form['created_at'];
 			$form['branch_id'] = $form['branch_id'];
+			$form['status_pernikahan'] = $form['customer']['personal']['status'];
 		if($form['is_screening']=='0' || $form['is_screening']==''){
 			$form['is_screening']='Belum';
       $prescreening_icon = 'send';
