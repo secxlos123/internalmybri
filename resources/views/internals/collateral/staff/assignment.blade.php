@@ -70,7 +70,7 @@
 </div>
 
 @include('internals.collateral.manager.detail-information-modal')
-@include('internals.collateral._reject-modal') 
+@include('internals.collateral._reject-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.collateral.script')
@@ -82,7 +82,7 @@
             witdh : '100%',
             allowClear: true,
         });
-        
+
         $('.name').select2({
             witdh : '100%',
             allowClear: true,
@@ -113,7 +113,7 @@
 
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');
-        // HoldOn.open(options);
+        HoldOn.open(options);
     })
 
     $(document).on('click', "#btn-submit", function(){
