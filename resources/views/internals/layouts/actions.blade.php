@@ -129,6 +129,12 @@
 	</a>
 @endif
 
+@if ((isset($upload_doc)) && ($status == "menunggu persetujuan"))
+	<a href="{!! $upload-doc !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Upload Dokumen" title="Upload Dokumen">
+	    <i class="fa fa-upload" aria-hidden="true"></i>
+	</a>
+@endif
+
 @if ((isset($detail_collateral)))
 	<a href="{!! $detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-danger" data-original-title="Detail Informasi" title="Detail Informasi">
 	    <i class="fa fa-info" aria-hidden="true"></i>

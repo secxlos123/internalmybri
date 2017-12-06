@@ -391,20 +391,21 @@
                 $('#price').removeAttr('readonly');
                 $('#home_location').removeAttr('readonly');
                 $('#building_area').removeAttr('readonly');
-                $('#property_name').attr('hidden',true);
-                $('#property_unit').attr('hidden',true);
-                $('#property_type').attr('hidden',true);
-                $('#line').attr('hidden',true);
+                $('#property_name').addClass('hide');
+                $('#property_unit').addClass('hide');
+                $('#property_type').addClass('hide');
+                $('#line').attr('hide',true);
                 $("div#kpr_type_property").removeClass('hide');
 
             }else{
+                // console.log('sini');
                 $('#price').attr('readonly', true);
                 $('#home_location').attr('readonly', true);
                 $('#building_area').attr('readonly', true);
-                $('#property_name').removeAttr('hidden');
-                $('#property_type').removeAttr('hidden');
-                $('#property_unit').removeAttr('hidden');
-                $('#line').removeAttr('hidden');
+                $('#property_name').removeClass('hide');
+                $('#property_type').removeClass('hide');
+                $('#property_unit').removeClass('hide');
+                $('#line').removeAttr('hide');
                 $("div#kpr_type_property").addClass('hide');
 
             }

@@ -24,19 +24,19 @@
                             <label class="col-md-4 control-label">Fasilitas Umum Yang Ada *:</label>
                             <div class="col-md-8">
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" id="pln" value="pln" name="designated_pln">
+                                    <input type="checkbox" value="1" name="environment[designated_pln]">
                                     <label for="pln"> PLN </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" id="telepon" value="telepon" name="designated_phone">
+                                    <input type="checkbox" value="1" name="environment[designated_phone]">
                                     <label for="telepon"> Telepon </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" id="pam" value="pam" name="designated_pam">
+                                    <input type="checkbox" value="1" name="environment[designated_pam]">
                                     <label for="pam"> PAM </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" id="telex" value="telex" name="designated_telex">
+                                    <input type="checkbox" value="1" name="environment[designated_telex]">
                                     <label for="telex"> Telex </label>
                                 </div>
                                 <div id="other-input" style="display: none;">
