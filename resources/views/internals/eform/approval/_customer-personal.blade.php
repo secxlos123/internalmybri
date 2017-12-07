@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">No. Telepon :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['phone']}}</p>
+                    <p class="form-control-static">{{(isset($detail['customer']['personal']['phone']) ? $detail['customer']['personal']['phone'] : '-' )}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -43,7 +43,12 @@
                     <p class="form-control-static">{{$detail['customer']['personal']['mobile_phone']}}</p>
                 </div>
             </div>
-        </form>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Pendidikan Terakhir :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{ get_title($detail['visit_report']['title']) }}</p>
+                </div>
+            </div>
         </form>
     </div>
     <div class="col-md-6">
@@ -82,6 +87,18 @@
                 <label class="col-md-5 control-label">Nama Gadis Ibu Kandung :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['customer']['personal']['mother_name']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Agama :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{ get_religion($detail['visit_report']['religion']) }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{ get_loan_history($detail['visit_report']['loan_history_accounts']) }}</p>
                 </div>
             </div>
         </form>

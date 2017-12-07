@@ -99,7 +99,7 @@
                                 @if ($errors->has('area[distance]')) <p class="help-block">{{ $errors->first('area[distance]') }}</p> @endif
                                 <div class="row">
                                     <div class="col-md-5">
-                                        {!! Form::select('area[unit_type]', array("" => "", "1" => "Kilometer", "2" => "Meter"), old('area[unit_type]'), [
+                                        {!! Form::select('area[unit_type]', array("" => "", "Kilometer" => "Kilometer", "Meter" => "Meter"), old('area[unit_type]'), [
                                             'class' => 'select2 unit_type ',
                                             'data-placeholder' => '-- Satuan --'
                                         ]) !!}

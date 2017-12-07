@@ -76,9 +76,20 @@
             </div>
 
             <div class="col-md-7" id="join_income">
-                <div class="checkbox checkbox-single checkbox-primary">
-                    <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
-                    <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
+                @if ($type != 'preview')
+                    <div class="checkbox checkbox-single checkbox-primary">
+                        <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
+                        <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
+                    @else
+                    <div>
+                        <label class="header-title custom-title-2" for="join_check"><b>
+                        @if (($dataCustomer['customer']['couple_salary']) > 0)
+                        <i class="fa fa-check-square"></i>
+                        @else
+                        <i class="fa fa-square"></i>
+                        @endif
+                        Joint Income</b></label>
+                    @endif
                 </div>
             </div>
 
@@ -94,8 +105,12 @@
                                         <label title ="Take Home Pay Per Bulan" class="col-md-4 control-label">Gaji/Pendapatan * :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
+                                            @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_salary'])) value="{{$dataCustomer['customer']['couple_salary']}}" @else value="{{ old('couple_salary') }}" @endif>
+                                            @else
+                                                <p>{{@number_format($dataCustomer['customer']['couple_salary'],2)}}</p>
+                                            @endif
                                                 @if ($errors->has('couple_salary')) <p class="help-block">{{ $errors->first('couple_salary') }}</p> @endif
                                             </div>
                                         </div>
@@ -104,8 +119,12 @@
                                         <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
+                                            @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_other_salary'])) value="{{$dataCustomer['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
+                                            @else
+                                                <p>{{@number_format($dataCustomer['customer']['couple_other_salary'],2)}}</p>
+                                            @endif
                                                 @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                                             </div>
                                         </div>
@@ -118,8 +137,12 @@
                                         <label class="col-md-5 control-label">Angsuran Permohonan :</label>
                                         <div class="col-md-7">
                                             <div class="input-group">
+                                            @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer['customer']['couple_loan_installment'])) value="{{$dataCustomer['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
+                                            @else
+                                                <p>{{@number_format($dataCustomer['customer']['couple_loan_installment'],2)}}</p>
+                                            @endif
                                                 @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
                                             </div>
                                         </div>

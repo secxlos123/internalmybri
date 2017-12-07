@@ -486,6 +486,7 @@ class AOController extends Controller
               'response_status' => $status,
 
               'verification' => route('getVerification', $form['id']),
+              'approval' => $form['is_approved'],
               'preview' => route('getDetail', $form['id']),
               'lkn' => route('getLKN', $form['id']),
             ])->render();

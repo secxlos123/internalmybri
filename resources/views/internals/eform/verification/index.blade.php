@@ -2,6 +2,41 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style type="text/css">
+    /*body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }*/
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    @media print {
+        html, body {
+            width: 210mm;
+        }
+        /*.page {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }*/
+        .no-print, .no-print *
+        {
+            display: none !important;
+        }
+    }
+</style>
 <div class="content-page">
     <div class="content">
         <div class="container">
@@ -48,7 +83,7 @@
                     <!--Bundle of data Emergency contact-->
                     @include('internals.eform.verification._family-data')
                     <!--Action button-->
-                    <div class="row">
+                    <div class="row no-print">
                         <div class="col-md-12">
                             <div class="pull-right">
                                 @if ($type != 'preview')

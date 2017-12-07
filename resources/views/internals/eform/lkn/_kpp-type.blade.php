@@ -46,7 +46,7 @@
                             'data-placeholder' => 'Pilih Project',
                         ]) !!}
                     </div>
-                    <input type="hidden" name="project_list_name" id="new_project_list">
+                    <input type="hidden" name="project_list_name" id="new_project_list" value="{{$eformData['kpr']['property_name']}}">
                 </div>
                 <div class="form-group {!! $errors->has('program_list') ? 'has-error' : '' !!}" id="program_list">
                     <label class="col-md-4 control-label">Program *:</label>
