@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nama Bank *:</label>
                         <div class="col-md-6">
-                            <p class="form-control-static">{{$mutation['bank']}}</p>
+                            <p class="form-control-static">{{strtoupper($mutation['bank'])}}</p>
                         </div>
                     </div>
                 </div>
