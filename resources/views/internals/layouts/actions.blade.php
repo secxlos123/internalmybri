@@ -67,6 +67,7 @@
 	    <i class="mdi mdi-eye"></i>
 	</a>
 @endif
+
 @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
 	@if(!empty($status))
 		@if($status == 'Rejected')
@@ -84,6 +85,11 @@
 	@endif
 @endif
 
+@if (isset($approval) && $approval == false)
+	<a href="#" class="btn btn-icon waves-effect waves-light btn-danger " data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
+	    <i class="mdi mdi-delete"></i>
+	</a>
+@endif
 
 @if (isset($prescreening_status))
 	<a href="javascript:void(0);" id="{{ ( $prescreening_result == 'Hijau' || $prescreening_result == 'Kuning' || $prescreening_result == 'Merah' ) ? 'btn-prescreening' : '' }}">
