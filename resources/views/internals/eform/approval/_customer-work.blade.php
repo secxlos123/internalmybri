@@ -69,7 +69,7 @@
                 <label class="col-md-5 control-label">Usia MPP :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                         {{ get_employment($detail['visit_report']['age_of_mpp']) }}
+                         {{ $detail['visit_report']['age_of_mpp'] }}
                     </p>
                 </div>
             </div>
