@@ -20,7 +20,7 @@
                         <select class="form-control" name="source_income" id="source_income">
                             <option selected="" disabled="">-- Pilih --</option>
                             <option value="single" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : 'selected' }}>Single Income</option>
-                            <option value="nonsingle" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? 'selected' : '' }}>Join Income</option>
+                            <option value="joint" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? 'selected' : '' }}>Join Income</option>
                         </select>
                         @if ($errors->has('source_income')) <p class="help-block">{{ $errors->first('source_income') }}</p> @endif
                     </div>
