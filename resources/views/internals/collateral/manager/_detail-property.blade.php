@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Foto :</label>
                         <div class="col-md-7">
-                            <img id="preview" @if(isset($collateral['property']['photos'])) src="{{$collateral['property']['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="300">
+                            <img id="preview" @if(!empty($collateral['property']['photos'])) src="{{$collateral['property']['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="300">
                         </div>
                     </div>
                     <div class="form-group">
