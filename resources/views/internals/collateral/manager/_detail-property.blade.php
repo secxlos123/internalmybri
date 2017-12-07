@@ -22,7 +22,11 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">Kategori :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">{{$collateral['property']['category']}}</p>
+                            <p class="form-control-static">
+                                @if($collateral['property']['category'] == 1) Rumah Tapak
+                                @elseif($collateral['property']['category'] == 2)Rumah Susun/Apartment
+                                @elseif($collateral['property']['category'] == 3)Rumah Toko
+                                @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
