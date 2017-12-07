@@ -103,7 +103,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label"></label>
-                        <a href="javascript:void(0);" id="view-detail" style="{cursor: pointer;}"><label class="col-md-7 control-label">+ Lihat informasi lain</label></a>
+                        <a href="javascript:void(0);" id="view-detail"><label class="col-md-7 control-label" style="cursor: pointer;">+ Lihat informasi lain</label></a>
                     </div>
                 </form>
             </div>
