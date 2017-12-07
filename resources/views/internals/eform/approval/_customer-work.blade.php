@@ -25,6 +25,14 @@
                     <p class="form-control-static"> {{$detail['customer']['work']['work_field']}}</p>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">No Telp Kantor / Tempat Usaha :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                         {{ $detail['visit_report']['office_phone'] }}
+                    </p>
+                </div>
+            </div>
         </form>
     </div>
     <div class="col-md-6">
@@ -46,6 +54,22 @@
                 <div class="col-md-7">
                     <p class="form-control-static">
                          {{$detail['customer']['work']['office_address']}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Status Kepegawaian :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                         {{ get_employment($detail['visit_report']['employment_status']) }}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Usia MPP :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                         {{ get_employment($detail['visit_report']['age_of_mpp']) }}
                     </p>
                 </div>
             </div>

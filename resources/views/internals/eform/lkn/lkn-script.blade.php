@@ -113,6 +113,13 @@
         }
 	});
 
+    $(document).on('blur', '.age-of-mpp', function() {
+        var val = $(this).val();
+
+        if ( val > 99) {
+            $(this).val(99);
+        }
+    });
 
 	$(document).ready(function() {
         $('#datepicker-month').datepicker( {
