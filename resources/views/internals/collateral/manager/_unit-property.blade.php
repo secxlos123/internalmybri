@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($collateral['property']['propertyItems'] as $propItem)
+                    @foreach($collateral['property']['propertyItems'] as $index => $propItem)
                         <tr>
                             <td>
                                 <p class="form-control-static">{{$propItem['property_type_id']}}</p>
@@ -35,7 +35,7 @@
                                 <p class="form-control-static">{{ucwords($propItem['status'])}}</p>
                             </td>
                             <td>
-                                <img id="preview" @if(!empty($propItem['photos'])) src="{{asset('assets/images/no-image.jpg')}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                <img id="preview" @if(!empty($propItem['photos'])) src="{{$propItem['photos'][$index]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                             </td>
                         </tr>
                     @endforeach
