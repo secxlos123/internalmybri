@@ -7,9 +7,17 @@
         height: 350px;
         width: 100%;
     }
+    @page {
+        size: A4;
+        margin: 0;
+    }
     @media print {
-        body, html, #wrapper {
-            width: 100%;
+        html, body {
+            width: 210mm;
+        }
+        .no-print, .no-print *
+        {
+            display: none !important;
         }
     }
 </style>
@@ -132,11 +140,13 @@
 
 
             <!-- rekomendasi approval -->
+            <div class="no-print">
             <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                 {{ csrf_field() }}
                 <input type="hidden" name="is_approved" id="is_approved">
                 @include('internals.eform.approval._recommendation')
             </form>
+            </div>
         </div>
     </div>
 </div>
