@@ -46,9 +46,6 @@
             <div class="row">
                 <input type="hidden" name="id" value="{{$id}}">
                 <div class="col-md-12">
-                    @if (\Session::has('error'))
-                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                    @endif
                     <div class="panel panel-color panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">Data Kunjungan</h3>

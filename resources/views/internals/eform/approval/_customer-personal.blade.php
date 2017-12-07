@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">No. Telepon :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['phone']}}</p>
+                    <p class="form-control-static">{{(isset($detail['customer']['personal']['phone']) ? $detail['customer']['personal']['phone'] : '-' )}}</p>
                 </div>
             </div>
             <div class="form-group">

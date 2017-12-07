@@ -179,7 +179,7 @@
                                 <label class="control-label col-md-4">KPR Aktif ke *:</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
-                                    {!! Form::select('active_kpr', array($dataCustomer['kpr']['active_kpr'] => $dataCustomer['kpr']['active_kpr'], "1" => "1", "2" => "2", "3" => "> 2"), old('active_kpr'), [
+                                    {!! Form::select('active_kpr', array("" => "", "1" => "1", "2" => "2", "3" => "> 2"), $dataCustomer['kpr']['active_kpr'], [
                                         'class' => 'select2 active_kpr ',
                                         'id' => 'active_kpr',
                                         'data-placeholder' => 'Pilih KPR Aktif',
