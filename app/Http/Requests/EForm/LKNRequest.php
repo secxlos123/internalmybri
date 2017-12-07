@@ -74,11 +74,11 @@ class LKNRequest extends FormRequest
            'building_permit'            => 'required_if:use_reason,2,18|mimes:jpg,png,gif,svg,rar,pdf,zip',
            'proprietary'                => 'required_if:use_reason,2,18|mimes:jpg,png,gif,svg,rar,pdf,zip',
 
-           'title'                      => 'required|number',
-           'employment_status'          => 'required|number',
-           'age_of_mpp'                 => 'required|number',
-           'loan_history_accounts'      => 'required|number',
-           'religion'                   => 'required|number',
+           'title'                      => 'required',
+           'employment_status'          => 'required',
+           'age_of_mpp'                 => 'required',
+           'loan_history_accounts'      => 'required',
+           'religion'                   => 'required',
            'office_phone'               => 'required|string|regex:/^[0-9]+$/|min:9|max:12',
 
            'pros'                       => 'required',
