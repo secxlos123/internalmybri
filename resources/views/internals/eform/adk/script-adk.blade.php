@@ -70,9 +70,8 @@
                 {data: 'ref_number', name: 'ref_number', bSortable: false},
                 {data: 'customer_name', name: 'customer_name', bSortable: false},
                 {data: 'request_amount', name: 'request_amount', bSortable: false},
-                {data: 'created_at', name: 'created_at' },
-                {data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
-                {data: 'status', name: 'created_at', bSortable: false },
+                {data: 'appointment_date', name: 'appointment_date' },
+                {data: 'prescreening_status', name: 'prescreening_status', bSortable: false  },
                 {data: 'response_status', name: 'response_status', bSortable: false, mRender: function (data, type, full) {
                         text = '-';
                         if (full.response_status == 'approve') {
@@ -85,6 +84,7 @@
                         return text;
                     }
                 },
+                {data: 'status', name: 'created_at', bSortable: false },
                 {data: 'aging', name: 'aging' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]

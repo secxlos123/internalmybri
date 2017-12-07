@@ -50,7 +50,8 @@ class ADKController extends Controller
 
     public function getApprove($id) {
         $data = $this->getUser();
-
+        print_r($id);
+        print_r($data);exit();
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
                     ->setHeaders(
@@ -101,17 +102,16 @@ class ADKController extends Controller
                     'product'       => $request->input('product')
                 ])->get();
 
-            dd($eforms);
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
             // $form['product_type'] = strtoupper($form['product_type']);
             // $form['branch_id'] = $form['branch_id'];
-            $form['ao'] = $form['ao_name'];
+            $form['ao'] = $form['ao_id'];
 
             $verify = $form['customer']['is_verified'];
-            $visit = $form['is_visited'];
+            $visit  = $form['is_visited'];
 
             $form['prescreening_status'] = view('internals.layouts.actions', [
               'prescreening_status' => route('getLKN', $form['id']),
@@ -119,7 +119,7 @@ class ADKController extends Controller
             ])->render();
 
             $form['action'] = view('internals.layouts.actions', [
-                'dispose' => $form['ao_name'],
+                'dispose' => $form['ao_id'],
                 'submited' => ($form['is_approved'] && $verify),
                 'dispotition' => $form,
                 // 'screening' => route('eform.show', $form['id']),
@@ -132,7 +132,7 @@ class ADKController extends Controller
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
-
+        print_r($eforms);exit();
         $eforms['contents']['draw'] = $request->input('draw');
         $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
         $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
