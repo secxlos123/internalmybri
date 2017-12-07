@@ -86,7 +86,7 @@
 @endif
 
 @if (isset($approval) && $approval == false)
-	<a href="#" class="btn btn-icon waves-effect waves-light btn-danger " data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
+	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete" data-id="{{$eform_id}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
 	    <i class="mdi mdi-delete"></i>
 	</a>
 @endif

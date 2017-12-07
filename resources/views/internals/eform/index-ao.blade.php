@@ -135,6 +135,7 @@
                     </div>
                 </div>
 @include('internals.eform._result-modal')
+@include('internals.eform._delete-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
@@ -416,4 +417,39 @@
 
         });
     })
+
+    //show modal Delete
+    $(document).on('click', ".btn-delete", function(){
+        eformId = $(this).data('id');
+        $('#delete-modal').modal('show');
+        $('#delete-modal #id').val(eformId);
+    });
+
+     //post Delete
+    $(document).on('click', "#btn-delete-this", function(){
+        eformId = $('#delete-modal #id').val();
+        // console.log(eformId);
+        HoldOn.open();
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("delete-eform") }}',
+            data: {
+                id : eformId
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+
+        }).done(function(data){
+            $('#btn-filter').click();
+            HoldOn.close();
+
+        }).fail(function(errors) {
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
+
+        });
+    });
 </script>

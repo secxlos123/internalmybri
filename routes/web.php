@@ -90,10 +90,14 @@
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
+
         Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
 
         Route::post('/eform/approve/{id}',
             ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
+
+        Route::post('/eform/delete',
+            ['as'=>'delete-eform', 'uses'=>'EForm\EFormController@delete']);
 
         Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
