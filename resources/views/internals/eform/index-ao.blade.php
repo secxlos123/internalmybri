@@ -443,7 +443,9 @@
             }
 
         }).done(function(data){
+            $('#delete-modal').modal('hide');
             $('#btn-filter').click();
+            alert(data.response.descriptions);
             HoldOn.close();
 
         }).fail(function(errors) {

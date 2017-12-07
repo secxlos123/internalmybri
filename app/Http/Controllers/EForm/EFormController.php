@@ -487,23 +487,14 @@ class EFormController extends Controller
         ];
         // return ($eform_id);
 
-        $client = Client::setEndpoint('eforms/delete/'.$id)
+        $client = Client::setEndpoint('eforms/'.$request->id.'/delete')
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn' => $data['pn']
                 ])->setBody($eform_id)
                 ->post();
         // dd($client);
-
-        if($client['code'] == 200){
-            \Session::flash('success', $client['code']);
-            return redirect()->route('eform.index');
-        }else{
-            $error = reset($client['contents']);
-            \Session::flash('error', $client['descriptions'].' '.$error);
-            return redirect()->back()->withInput($request->input());
-        }
-
+         return response()->json(['response' => $client]);
     }
 
      /**
