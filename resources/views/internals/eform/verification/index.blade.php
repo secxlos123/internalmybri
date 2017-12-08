@@ -20,6 +20,7 @@
     @media print {
         html, body {
             width: 210mm;
+            height: 1000mm;
         }
         /*.page {
             margin: 0;
