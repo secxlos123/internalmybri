@@ -173,7 +173,7 @@
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
-      })
+    })
 
     function reloadData1(from, to, status)
       {
@@ -192,6 +192,7 @@
            ajax : {
                 url : '/datatables/eform',
                 data : function(d, settings){
+                    console.log(d);
                     var api = new $.fn.dataTable.Api(settings);
 
                     d.page = Math.min(

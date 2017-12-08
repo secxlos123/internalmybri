@@ -5644,3 +5644,15 @@ table .checkbox {
   height: 38px;
 }
 /* End */
+
+.notify-list>li>a.user-list-item {
+    background-color: #f5f5f5;
+}
+
+.notify-list>li>a.user-list-item:focus,
+.notify-list>li>a.user-list-item:hover
+ {
+    color: #262626;
+    text-decoration: none;
+    background-color: #fff !important;
+}
