@@ -129,6 +129,9 @@ if (! function_exists('getNotification')) {
                 \Log::info(Psr7\str($e->getResponse()));
             }
         }
+    }
+}
+
 if (! function_exists('get_religion')) {
 
     /**
