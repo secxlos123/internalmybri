@@ -425,15 +425,14 @@
                         dp.val('0');
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
-                        amount = static_price - payment;
                         down_payment.val(payment);
+                        amount = static_price - payment;
                         request_amount.val(amount);
                         break;
                     case '2':
                         dp.val('0');
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
@@ -442,7 +441,6 @@
                         dp.val('15');
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
@@ -455,7 +453,6 @@
                         dp.val('0');
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
@@ -464,7 +461,6 @@
                         dp.val('15');
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
@@ -473,7 +469,9 @@
                         dp.val('20');
                         dp.attr('min', '20');
                         payment = (20 / 100) * static_price;
+                        amount = static_price - payment;
                         down_payment.val(payment);
+                        request_amount.val(amount);
                         break;
                 }
                 // console.log('23');
@@ -483,7 +481,6 @@
                         dp.val('15');
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
@@ -492,7 +489,6 @@
                         dp.val('20');
                         dp.attr('min', '20');
                         payment = (20 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
@@ -501,7 +497,6 @@
                         dp.val('25');
                         dp.attr('min', '25');
                         payment = (25 / 100) * static_price;
-                        down_payment.val(payment);
                         amount = static_price - payment;
                         down_payment.val(payment);
                         request_amount.val(amount);
