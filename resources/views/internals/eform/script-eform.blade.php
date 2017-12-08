@@ -716,18 +716,18 @@
         get_offices(citi_id);
     });
 
-    $('#changeDistance').on('click', function (e) {
+    $(document).on('click', '#changeDistance', function (e) {
+        console.log("reset office");
         $('.offices').empty().select2({
             witdh : '100%',
             allowClear: true,
         });
-    });
 
-    $('#changeDistance').on('click', function (e) {
-        // console.log('success');
+        console.log("get params");
         var distance = $('#distance1').val();
         var long = $('#lng').val();
         var lat = $('#lat').val();
+        console.log("get office");
         get_offices(distance, long, lat);
     });
 
