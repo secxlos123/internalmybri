@@ -32,7 +32,8 @@ class HomeController extends Controller
     	foreach ($users as $user) {
     		$data = $user;
     	}
-        // dd($data);
-        return view('internals.home.index', compact('data'));
+        $branchs = checkRolesInternal($data['branch']);
+        // dd( getNotification()  );
+        return view('internals.home.index', compact('data','branchs'));
     }
 }
