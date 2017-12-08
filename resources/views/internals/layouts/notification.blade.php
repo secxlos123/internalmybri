@@ -33,14 +33,3 @@
         </li>
     </ul>
 </li>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.ref_number').css("display","none");
-
-    })    
-    $(document).on('click', "#btn-filter", function(){
-        table1.destroy();
-        reloadData1($('#from').val(), $('#to').val(), $('#status').val());
-    })    
-
-</script>    
