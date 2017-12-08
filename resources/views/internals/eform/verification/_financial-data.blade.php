@@ -26,7 +26,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain * :</label>
+                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')
