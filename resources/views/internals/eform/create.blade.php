@@ -225,9 +225,7 @@
 @include('internals.eform.script-eform')
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
-@if(!(($data['uker'] == "KC")||!($data['uker'] == "KCP")))
-    <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
-@endif
+<script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 

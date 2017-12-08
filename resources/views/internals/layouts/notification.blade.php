@@ -1,7 +1,7 @@
 <li style="display: none;">
     <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
         <i class="mdi mdi-bell"></i>
-        <span class="badge up bg-success"> 
+        <span class="badge up bg-success">
                 @if(branchs()['role'] == 'pinca')
                     {{ count( getNotification() ) }}
                 @endif
@@ -21,26 +21,26 @@
                         <div class="user-desc">
                             <span class="title"><strong>{{ $value['subject'] }}</strong></span>
                             <span class="name">{{ $value['data']['user_name'] }}<span class="ref_number" style="display: none;">{{ $value['data']['ref_number'] }}</span></span>
-                            <span class="time">{{ $value['created_at'] }}</span>                            
+                            <span class="time">{{ $value['created_at'] }}</span>
                         </div>
                     </a>
                 </li>
             @endif
         @endforeach
-        
+
         <li class="all-msgs text-center">
             <p class="m-0"><a href="#">Lihat Semua Notifikasi</a></p>
         </li>
     </ul>
 </li>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.ref_number').css("display","none");
+    // $(document).ready(function(){
+    //     $('.ref_number').css("display","none");
 
-    })    
-    $(document).on('click', "#btn-filter", function(){
-        table1.destroy();
-        reloadData1($('#from').val(), $('#to').val(), $('#status').val());
-    })    
+    // })
+    // $(document).on('click', "#btn-filter", function(){
+    //     table1.destroy();
+    //     reloadData1($('#from').val(), $('#to').val(), $('#status').val());
+    // })
 
-</script>    
+</script>
