@@ -22,10 +22,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
-                                @if (\Session::has('success'))
-                                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
-                                @endif
+                            <div class="col-sm-12" >
+                                <div id="alert-delete">
+                                    @if (\Session::has('success'))
+                                        <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                                    @endif
+                                </div>
                                 <div class="card-box">
                                     <div class="add-button">
                                         <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
@@ -445,12 +447,20 @@
         }).done(function(data){
             $('#delete-modal').modal('hide');
             $('#btn-filter').click();
-            alert(data.response.descriptions);
+            // alert(data.response.descriptions);
             HoldOn.close();
+            var body = $("html, body");
+                body.stop().animate({scrollTop:0}, 100, 'swing', function() {
+                $('#alert-delete').html('<div class="alert alert-success">'+data.response.descriptions+'</div')
+                });
 
         }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
+            // alert("Gagal Terhubung ke Server");
             HoldOn.close();
+            var body = $("html, body");
+                body.stop().animate({scrollTop:0}, 100, 'swing', function() {
+                $('#alert-delete').html('<div class="alert alert-danger">Gagal Terhubung ke Server</div')
+                });
 
         });
     });
