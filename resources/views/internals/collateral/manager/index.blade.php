@@ -146,6 +146,8 @@
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
+        table2.destroy();
+        reloadData2($('#from').val(), $('#to').val(), $('#status').val());
     })
 
     var table1 = $('#datatable').DataTable({
@@ -215,7 +217,7 @@
             infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
         },
         ajax : {
-            url : '/datatables/collateral',
+            url : '/datatables/collateral/nonindex',
             data : function(d, settings){
                 var api = new $.fn.dataTable.Api(settings);
 
@@ -226,12 +228,12 @@
             }
         },
         aoColumns : [
-        {   data: 'prop_name', name: 'prop_name', bSortable: false  },
-        {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
-        {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
+        {   data: 'first_name', name: 'first_name', bSortable: false  },
+        {   data: 'home_location', name: 'home_location',  bSortable: false  },
+        {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
         // {   data: 'product_type', name: 'product_type' },
-        {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
-        {   data: 'status_label', name: 'status_label', bSortable: true },
+        {   data: 'staff_name', name: 'staff_name', bSortable: false },
+        {   data: 'status', name: 'status', bSortable: false },
         {   data: 'action', name: 'action', orderable: false, searchable: false}
         ],
     }); 

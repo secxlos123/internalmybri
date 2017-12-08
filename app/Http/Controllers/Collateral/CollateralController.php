@@ -22,6 +22,15 @@ class CollateralController extends Controller
         'action',
     ];
 
+    protected $columnNonIndex = [
+        'first_name',
+        'home_location',
+        'mobile_phone',
+        'staff_name',
+        'status',
+        'action',
+    ];
+
     protected $columnType = [
         'name',
         'building',
@@ -258,6 +267,55 @@ class CollateralController extends Controller
                 'dispose_collateral' => url('collateral/assignment/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'approval_collateral' => url('collateral/approval-collateral/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'monitoring' => url('collateral/monitoring/'.$form['developer']['id'].'/'.$form['property']['id']),
+            ])->render();
+            $collateral['contents']['data'][$key] = $form;
+        }
+
+        $collateral['contents']['draw'] = $request->input('draw');
+        $collateral['contents']['recordsTotal'] = $collateral['contents']['total'];
+        $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
+
+        return response()->json($collateral['contents']);
+    }
+
+    /**
+     * Get Datatables
+     * @param $request
+     */
+    public function datatableNonIndex(Request $request)
+    {
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+        $collateral = Client::setEndpoint('collateral/nonindex')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
+                    'page'      => (int) $request->input('page') + 1,
+                    // 'status'    => $request->input('status'),
+                    // 'branch_id' => $data['branch']
+                ])->get();
+                // echo json_encode($collateral);exit();
+        foreach ($collateral['contents']['data'] as $key => $form) {
+            $form['first_name'] = strtoupper($form['first_name'].' '.$form['last_name']);
+            $form['home_location'] = strtoupper($form['home_location']);
+            $form['mobile_phone'] = strtoupper($form['mobile_phone']);
+            $form['staff_name'] = strtoupper($form['staff_name']);
+            if (($form['status'] == 'baru') && (!empty($form['remark']))){
+                $form['status'] = ucwords($form['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
+            }else{
+                $form['status'] = ucwords($form['status']);
+            }
+
+            $form['action'] = view('internals.layouts.actions', [
+                'status' => $form['status'],
+                'detail' => url('collateral/detail/'.$form['developer_id'].'/'.$form['property_id']),
+                'dispose_collateral' => url('collateral/assignment/'.$form['developer_id'].'/'.$form['property_id']),
+                'approval_collateral' => url('collateral/approval-collateral/'.$form['developer_id'].'/'.$form['property_id']),
+                'monitoring' => url('collateral/monitoring/'.$form['developer_id'].'/'.$form['property_id']),
             ])->render();
             $collateral['contents']['data'][$key] = $form;
         }

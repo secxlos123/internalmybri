@@ -285,6 +285,8 @@
         /* Collateral */
         Route::get('collateral', 'Collateral\CollateralController@datatables');
 
+        Route::get('collateral/nonindex', 'Collateral\CollateralController@datatableNonIndex');
+
         /* Staff Collateral */
         Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
 
