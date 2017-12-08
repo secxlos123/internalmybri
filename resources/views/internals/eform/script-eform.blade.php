@@ -799,8 +799,8 @@
         console.log(status);
         if (status == 1) {
             if (age < 21) {
-                $(".birth_date").addClass("has-error");
-                $(".birth_date div.col-md-9").append("<span id=\"birth_date-error\" class=\"help-block error-help-block\">Umur harus lebih dari 21 tahun.</span>");
+                $("#leads-modal .birth_date").addClass("has-error");
+                $("#leads-modal .birth_date div.col-md-9").append("<span id=\"birth_date-error\" class=\"help-block error-help-block\">Umur harus lebih dari 21 tahun.</span>");
                 HoldOn.close();
                 doSomething = 2;
             } else {

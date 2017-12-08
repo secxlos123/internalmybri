@@ -37,7 +37,51 @@
                             @if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Pendidikan Terakhir *:</label>
+                        <div class="col-md-8">
+                            {!! Form::select( 'title'
+                                , get_title('all')
+                                , old('title')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Pendidikan Terakhir'
+                                ]
+                            ) !!}
 
+                            @if ($errors->has('title')) <p class="help-block">{{ $errors->first('title') }}</p> @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Agama *:</label>
+                        <div class="col-md-8">
+                            {!! Form::select( 'religion'
+                                , get_religion('all')
+                                , old('religion')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Agama'
+                                ]
+                            ) !!}
+
+                            @if ($errors->has('religion')) <p class="help-block">{{ $errors->first('religion') }}</p> @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Riwayat Kepemilikan Rekening Pinjaman *:</label>
+                        <div class="col-md-8">
+                            {!! Form::select( 'loan_history_accounts'
+                                , get_loan_history('all')
+                                , old('loan_history_accounts')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Riwayat Kepemilikan Rekening Pinjaman'
+                                ]
+                            ) !!}
+
+                            @if ($errors->has('loan_history_accounts')) <p class="help-block">{{ $errors->first('loan_history_accounts') }}</p> @endif
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                         <div class="col-md-8">
@@ -48,8 +92,37 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">No Telp Kantor / Tempat Usaha *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly" name="phone" maxlength="12" value="{{ $eformData['mobile_phone'] }}" readonly="">
-                            @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
+                            <input type="text" class="form-control numericOnly" name="office_phone" maxlength="12" value="{{ old('office_phone') }}">
+                            @if ($errors->has('office_phone')) <p class="help-block">{{ $errors->first('office_phone') }}</p> @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Status Kepegawaian *:</label>
+                        <div class="col-md-8">
+                            {!! Form::select( 'employment_status'
+                                , get_employment('all')
+                                , old('employment_status')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Status Kepegawaian'
+                                ]
+                            ) !!}
+
+                            @if ($errors->has('employment_status')) <p class="help-block">{{ $errors->first('employment_status') }}</p> @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Usia MPP *:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control numericOnly age-of-mpp" name="age_of_mpp" maxlength="2" value="{{ old('age_of_mpp') }}">
+                            @if ($errors->has('age_of_mpp')) <p class="help-block">{{ $errors->first('age_of_mpp') }}</p> @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Nomor NPWP *:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="{{old('npwp_number')}}" id="npwp_number">
+                            @if ($errors->has('npwp_number')) <p class="help-block">{{ $errors->first('npwp_number') }}</p> @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,13 +147,6 @@
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="product_type" maxlength="50" value="{{ strtoupper($eformData['product_type']) }}" readonly="">
                             @if ($errors->has('product_type')) <p class="help-block">{{ $errors->first('product_type') }}</p> @endif
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">Nomor NPWP *:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="{{old('npwp_number')}}" id="npwp_number">
-                            @if ($errors->has('npwp_number')) <p class="help-block">{{ $errors->first('npwp_number') }}</p> @endif
                         </div>
                     </div>
                     <div class="form-group">

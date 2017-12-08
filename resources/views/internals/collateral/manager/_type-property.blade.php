@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($collateral['property']['propertyTypes'] as $propType)
+                    @foreach($collateral['property']['propertyTypes'] as $index => $propType)
                         <tr>
                             <td>
                                 <p class="form-control-static">{{$propType['name']}}</p>
@@ -35,7 +35,7 @@
                                 <p class="form-control-static">{{$propType['name']}}</p>
                             </td> -->
                             <td>
-                                <img id="preview" @if(!empty($propType['photos'])) src="{{asset('assets/images/no-image.jpg')}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                <img id="preview" @if(!empty($propType['photos'])) src="{{$propType['photos'][$index]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                             </td>
                         </tr>
                     @endforeach

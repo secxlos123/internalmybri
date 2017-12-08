@@ -472,6 +472,31 @@ class EFormController extends Controller
         return response()->json($eforms['contents']);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request)
+    {
+        $data = $this->getUser();
+
+        $eform_id = [
+            'eform_id' => $request->id,
+        ];
+        // return ($eform_id);
+
+        $client = Client::setEndpoint('eforms/'.$request->id.'/delete')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setBody($eform_id)
+                ->post();
+        // dd($client);
+         return response()->json(['response' => $client]);
+    }
+
      /**
      * Validation general
      * @param $request

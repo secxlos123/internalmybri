@@ -486,6 +486,8 @@ class AOController extends Controller
               'response_status' => $status,
 
               'verification' => route('getVerification', $form['id']),
+              'approval' => $form['is_approved'],
+              'eform_id' => $form['id'],
               'preview' => route('getDetail', $form['id']),
               'lkn' => route('getLKN', $form['id']),
             ])->render();
@@ -529,4 +531,5 @@ class AOController extends Controller
 
         return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
+
 }

@@ -27,7 +27,6 @@
                     <div class="col-md-8">
                         <input type="text" class="form-control" value="{{$eformData['kpr']['developer_name']}}" maxlength="19" readonly="">
                     </div>
-                    <input type="hidden" name="developer_name" id="new_developer_name">
                 </div>
 
                 <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
@@ -38,7 +37,6 @@
                         @elseif($eformData['kpr']['kpr_type_property'] == 3)Rumah Toko
                         @endif" maxlength="19" readonly="">
                     </div>
-                    <input type="hidden" name="kpr_type_property_name" id="kpr_type_property_name">
                 </div>
 
                 <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
