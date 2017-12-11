@@ -290,6 +290,8 @@
         /* Staff Collateral */
         Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
 
+        Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
+
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);

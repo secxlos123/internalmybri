@@ -161,13 +161,13 @@
     function reloadData1(from, to, status)
     {
         table1 = $('#datatable').DataTable({
-           processing : true,
-           serverSide : true,
-           lengthMenu: [
-           [ 10, 25, 50, -1 ],
-           [ '10', '25', '50', 'All' ]
-           ],
-           language : {
+         processing : true,
+         serverSide : true,
+         lengthMenu: [
+         [ 10, 25, 50, -1 ],
+         [ '10', '25', '50', 'All' ]
+         ],
+         language : {
             infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
         },
         ajax : {
@@ -207,35 +207,35 @@
     function reloadData2(from, to, status)
     {
         table2 = $('#datatable-independent').DataTable({
-           processing : true,
-           serverSide : true,
-           lengthMenu: [
-           [ 10, 25, 50, -1 ],
-           [ '10', '25', '50', 'All' ]
-           ],
-           language : {
-            infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-        },
-        ajax : {
-            url : '/datatables/collateral/nonindex',
-            data : function(d, settings){
-                var api = new $.fn.dataTable.Api(settings);
+            processing : true,
+            serverSide : true,
+            lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10', '25', '50', 'All' ]
+            ],
+            language : {
+                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+            },
+            ajax : {
+                url : '/datatables/collateral/nonindex',
+                data : function(d, settings){
+                    var api = new $.fn.dataTable.Api(settings);
 
-                d.page = Math.min(
-                    Math.max(0, Math.round(d.start / api.page.len())),
-                    api.page.info().pages
-                    );
-            }
-        },
-        aoColumns : [
-        {   data: 'first_name', name: 'first_name', bSortable: false  },
-        {   data: 'home_location', name: 'home_location',  bSortable: false  },
-        {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
-        // {   data: 'product_type', name: 'product_type' },
-        {   data: 'staff_name', name: 'staff_name', bSortable: false },
-        {   data: 'status', name: 'status', bSortable: false },
-        {   data: 'action', name: 'action', orderable: false, searchable: false}
-        ],
-    }); 
+                    d.page = Math.min(
+                        Math.max(0, Math.round(d.start / api.page.len())),
+                        api.page.info().pages
+                        );
+                }
+            },
+            aoColumns : [
+            {   data: 'first_name', name: 'first_name', bSortable: false  },
+            {   data: 'home_location', name: 'home_location',  bSortable: false  },
+            {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
+            // {   data: 'product_type', name: 'product_type' },
+            {   data: 'staff_name', name: 'staff_name', bSortable: false },
+            {   data: 'status_label', name: 'status_label', bSortable: false },
+            {   data: 'action', name: 'action', orderable: false, searchable: false}
+            ],
+        }); 
     }
 </script>
