@@ -71,7 +71,8 @@
                 data: function (params) {
                     return {
                         nik: params.term,
-                        page: params.page || 1
+                        page: params.page || 1,
+                        eform: false
                     };
                 },
                 processResults: function (data, params) {
