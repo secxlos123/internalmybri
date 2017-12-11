@@ -3265,8 +3265,7 @@ input[switch="teal"]:checked + label {
 .select2-container .select2-selection--single .select2-selection__arrow {
   height: 34px;
   width: 34px;
-  /*right: 3px;*/
-  right: 30px;
+  right: 3px;
 }
 .select2-container .select2-selection--single .select2-selection__arrow b {
   border-color: #999 transparent transparent transparent;
@@ -3496,7 +3495,7 @@ input[switch="teal"]:checked + label {
   font-family: 'Quicksand', sans-serif;
 }
 .wizard > .steps .number {
-  font-size: 60px;
+  font-size: 86px;
   line-height: 86px;
   /*font-family: 'Hind Madurai', sans-serif;*/
   font-family: 'Quicksand', sans-serif;
@@ -5561,7 +5560,7 @@ table .checkbox {
   float: right;
 }
 
-.has-bock-print .form-group,
+.has-bock-print .form-group, 
 .has-bock-print .form-group label,
 .has-bock-print .form-group .is-dropdown-select2 {
   display: inline-block;
@@ -5593,8 +5592,8 @@ table .checkbox {
     opacity: 0.1;
 }
 
-.center-steps .wizard > .steps a,
-.center-steps .wizard > .steps a:hover,
+.center-steps .wizard > .steps a, 
+.center-steps .wizard > .steps a:hover, 
 .center-steps .wizard > .steps a:active {
     display: block;
     width: auto;
@@ -5622,37 +5621,55 @@ table .checkbox {
 
 .btn-banning {
   background-color: #e27a7a !important;
-  border: 1px solid #e27a7a !important;
+  border: 1px solid #e27a7a !important;  
 }
 
-/* By Rachmat Ramadhan */
-.inline-block-menu > span {
-  display: inline-block;
-  width: 100px;
+
+.wrapper-page.csm-has-404 {
+    margin: 4% auto;
+    position: relative;
+    max-width: 500px;
 }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
+.tracking-widget .tracking-card {
+    display: inline-block;
 }
 
-.input-group-addon.nopadding {
-  border: none !important;
+.tracking-widget.cms-tracking-widget {
+  font-size: 0;
+    display: table;
+    width: 100%;
 }
 
-.input-group-addon.nopadding .btn {
-  height: 38px;
-}
-/* End */
 
-.notify-list>li>a.user-list-item {
-    background-color: #f5f5f5;
+.tracking-widget.cms-tracking-widget .tracking-card {
+    display: table-cell;
+    box-sizing: border-box;
+    width: 10%;
+    font-size: 14px;
+    /* margin: 0 5px; */
 }
 
-.notify-list>li>a.user-list-item:focus,
-.notify-list>li>a.user-list-item:hover
- {
-    color: #262626;
-    text-decoration: none;
-    background-color: #fff !important;
+.cms-tracking-widget .card-box {
+  width: auto;
+  margin: 0 5px;
+  height: 147px;
 }
+
+.cms-tracking-widget .card-box  .bg-icon {
+  display: block;
+  margin: auto !important;
+  width: 45px;
+  height: 45px;
+}
+
+.cms-tracking-widget .card-box  .bg-icon i {
+  line-height: 45px;
+    font-size: 20px;
+}
+
+
+.cms-tracking-widget .card-box  .text-center {
+  display: block;
+}
+
