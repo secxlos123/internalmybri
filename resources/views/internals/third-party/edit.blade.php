@@ -65,7 +65,7 @@
                                                 <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Email *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="email" class="form-control" required="" maxlength="50" value="{{$datas['email']}}">
+                                                        <input type="email" class="form-control" required="" maxlength="50" value="{{$datas['email']}}" readonly="">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                     </div>
                                                 </div>
