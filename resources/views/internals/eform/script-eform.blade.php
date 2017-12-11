@@ -732,6 +732,14 @@
         get_offices(distance, long, lat);
     });
 
+    $(document).ready(function(){
+        $('.offices').on('select2:select', function (e) {
+            console.log(e.params.data);
+            var alamat = e.params.data.address;
+            $('#branch_address').val(alamat).html(alamat).trigger('change');
+        });
+    });
+
     function get_offices(distance, long, lat) {
         $('.offices').empty().select2({
             witdh : '100%',
@@ -763,11 +771,6 @@
             },
         });
     }
-
-    $('.offices').on('select2:select', function (e) {
-        var alamat = e.params.data.address;
-        $('#branch_address').val(alamat).trigger('change');
-    });
 
     //showing modal create leads
     $(document).on('click', '#btn-leads', function(){
