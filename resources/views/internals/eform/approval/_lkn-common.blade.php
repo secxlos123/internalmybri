@@ -1,3 +1,4 @@
+
 <div class="row">
      <div class="panel-heading">
         <h4 class="panel-title">Dokumen Pendukung</h4>
@@ -16,7 +17,7 @@
         </div>
     </div>
 
-    <div class="col-md-6" align="center">
+    <!-- <div class="col-md-6" align="center">
         <div class="card-box">
             @if((pathinfo(strtolower($detail['visit_report']['legal_bussiness_document']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($detail['visit_report']['legal_bussiness_document']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($detail['visit_report']['legal_bussiness_document'])), PATHINFO_EXTENSION) == 'jpeg'))
             <img src="{{$detail['visit_report']['legal_bussiness_document']}}" class="img-responsive">
@@ -25,14 +26,14 @@
             @endif
             <p>Dokumen Legal Usaha</p>
         </div>
-    </div>
+    </div> -->
 
-    <div class="col-md-6" align="center">
+    <!-- <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="@if(!empty($detail['visit_report']['license_of_practice'])){{$detail['visit_report']['license_of_practice']}}@endif" class="img-responsive">
             <p>Izin Praktek</p>
         </div>
-    </div>
+    </div> -->
 
     <div class="col-md-6" align="center">
         <div class="card-box">
@@ -54,13 +55,14 @@
             <p>Akta Nikah/Cerai</p>
         </div>
     </div>
-
+@if(!empty($detail['customer']['personal']['status_id'] == 3))
     <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="@if(!empty($detail['visit_report']['divorce_certificate'])){{$detail['visit_report']['divorce_certificate']}}@endif" class="img-responsive">
             <p>Akta Pisah Harta</p>
         </div>
     </div>
+@endif
 
     <div class="col-md-6" align="center">
         <div class="card-box">

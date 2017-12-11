@@ -42,7 +42,6 @@ class ADKController extends Controller
         $data = $this->getUser();
         // print_r($data);exit();
         // dd(env('APP_ENV'));
-
         if ($data['role'] == 'ao') {
             return view('internals.eform.adk.index', compact('data'));
         }
@@ -51,7 +50,7 @@ class ADKController extends Controller
     public function getApprove($id) {
         $data = $this->getUser();
         print_r($id);
-        print_r($data);exit();
+        
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
                     ->setHeaders(
@@ -61,12 +60,13 @@ class ADKController extends Controller
                     ->get();
 
         $detail = $formDetail['contents'];
-        print_r($detail);exit();
+        
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
                         ->setHeaders(['Authorization' => $data['token']])
                         ->get();
-
+        print_r($customerData);exit();
+        
         $customer = $customerData['contents'];
         // dd($detail);
         $type = 'fill';
@@ -78,8 +78,7 @@ class ADKController extends Controller
         }
     }
 
-    public function datatables(Request $request)
-    {
+    public function datatables(Request $request) {
         // print_r($request->input());exit();
         $sort = $request->input('order.0');
         $data = $this->getUser();
@@ -101,15 +100,25 @@ class ADKController extends Controller
                     'prescreening'  => $request->input('prescreening'),
                     'product'       => $request->input('product')
                 ])->get();
-
+        // masih progress
+        // get data inquiry putusan untuk diputus Pemutus
+        $debitur = Client::setEndpoint('api_las/index')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn'            => $data['pn']
+                ])->setBody([
+                    'requestMethod' => 'inquiryListPutusan',
+                    'requestData'   => '00062498'
+                ])->post('form_params');
+        if ($debitur['code'] == '01') {
+            \Log::info("masuk");
+        }
+        // print_r($debitur);exit();
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
-            $form['customer_name'] = strtoupper($form['customer_name']);
+            $form['customer_name']  = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            // $form['product_type'] = strtoupper($form['product_type']);
-            // $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_id'];
-
             $verify = $form['customer']['is_verified'];
             $visit  = $form['is_visited'];
 
@@ -132,7 +141,7 @@ class ADKController extends Controller
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
-        print_r($eforms);exit();
+        // print_r($eforms);exit();
         $eforms['contents']['draw'] = $request->input('draw');
         $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
         $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];

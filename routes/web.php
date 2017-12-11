@@ -79,6 +79,8 @@
 
         Route::get('/eform/verification/preview/{id}', ['as'=>'getDetail', 'uses'=>'EForm\AOController@getPreview']);
 
+        Route::get('/eform/verification/print/{id}', ['as'=>'getPrint', 'uses'=>'EForm\AOController@getPrint']);
+
         Route::post('/eform/search-nik', ['as'=>'eform-search-nik', 'uses'=>'EForm\AOController@searchNik']);
 
         Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
@@ -286,8 +288,12 @@
         /* Collateral */
         Route::get('collateral', 'Collateral\CollateralController@datatables');
 
+        Route::get('collateral/nonindex', 'Collateral\CollateralController@datatableNonIndex');
+
         /* Staff Collateral */
         Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
+
+        Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
 
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');

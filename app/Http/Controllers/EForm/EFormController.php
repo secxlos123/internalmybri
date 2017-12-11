@@ -122,7 +122,8 @@ class EFormController extends Controller
                 'pn' => $data['pn']
             ])->setQuery([
                 'nik' => $request->input('nik'),
-                'page' => $request->input('page')
+                'page' => $request->input('page'),
+                'eform' => $request->has('eform') ? $request->input('eform') : true
             ])
             ->get();
 

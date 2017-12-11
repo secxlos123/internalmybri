@@ -65,7 +65,7 @@
                                                 <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Email *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="email" class="form-control" required="" maxlength="50" value="{{$datas['email']}}">
+                                                        <input type="email" class="form-control" required="" maxlength="50" value="{{$datas['email']}}" readonly="">
                                                     @if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -103,7 +103,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Pihak Ketiga dengan nama : "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin mengubah Pihak Ketiga dengan nama : "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>

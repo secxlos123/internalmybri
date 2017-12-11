@@ -89,7 +89,7 @@
               <div class="form-group mutation_file {!! $errors->has('mutation_file') ? 'has-error' : '' !!}">
                   <label class="col-md-4 control-label">Unggah File Mutasi *</label>
                   <div class="col-md-8">
-                      <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" accept="image/png,image/jpg,application/pdf,application/docx">
+                      <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" >
                       @if ($errors->has('mutation_file')) <p class="help-block">{{ $errors->first('mutation_file') }}</p> @endif
                   </div>
               </div>

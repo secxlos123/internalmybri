@@ -20,13 +20,13 @@
                                                 <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24" value="{{$dataCustomer['customer']['salary']}}">
                                                 @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                             @else
-                                                <p>Rp. {{ number_format($dataCustomer['customer']['salary'],2) }}</p>
+                                                <p>Rp {{ number_format($dataCustomer['customer']['salary'], 2, ",", ".") }}</p>
                                             @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain * :</label>
+                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')
@@ -34,7 +34,7 @@
                                                 <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" value="{{$dataCustomer['customer']['other_salary']}}">
                                                 @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                             @else
-                                                <p>Rp. {{ number_format($dataCustomer['customer']['other_salary']) }}</p>
+                                                <p>Rp {{ number_format($dataCustomer['customer']['other_salary'], 2, ",", ".") }}</p>
                                             @endif
                                             </div>
                                         </div>
@@ -51,7 +51,7 @@
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24" value="{{$dataCustomer['customer']['loan_installment']}}">
                                             @else
-                                                <p>Rp. {{ number_format($dataCustomer['customer']['loan_installment'])}}</p>
+                                                <p>Rp {{ number_format($dataCustomer['customer']['loan_installment'], 2, ",", ".")}}</p>
                                             @endif
                                                 @if ($errors->has('loan_installment')) <p class="help-block">{{ $errors->first('loan_installment') }}</p> @endif
                                             </div>
@@ -109,7 +109,7 @@
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_salary'])) value="{{$dataCustomer['customer']['couple_salary']}}" @else value="{{ old('couple_salary') }}" @endif>
                                             @else
-                                                <p>{{@number_format($dataCustomer['customer']['couple_salary'],2)}}</p>
+                                                <p>Rp {{@number_format($dataCustomer['customer']['couple_salary'], 2, ",", ".")}}</p>
                                             @endif
                                                 @if ($errors->has('couple_salary')) <p class="help-block">{{ $errors->first('couple_salary') }}</p> @endif
                                             </div>
@@ -123,7 +123,7 @@
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_other_salary'])) value="{{$dataCustomer['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
                                             @else
-                                                <p>{{@number_format($dataCustomer['customer']['couple_other_salary'],2)}}</p>
+                                                <p>Rp {{@number_format($dataCustomer['customer']['couple_other_salary'], 2, ",", ".")}}</p>
                                             @endif
                                                 @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                                             </div>
@@ -141,7 +141,7 @@
                                                 <span class="input-group-addon">Rp</span>
                                                 <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer['customer']['couple_loan_installment'])) value="{{$dataCustomer['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
                                             @else
-                                                <p>{{@number_format($dataCustomer['customer']['couple_loan_installment'],2)}}</p>
+                                                <p>Rp {{@number_format($dataCustomer['customer']['couple_loan_installment'], 2, ",", ".")}}</p>
                                             @endif
                                                 @if ($errors->has('couple_loan_installment')) <p class="help-block">{{ $errors->first('couple_loan_installment') }}</p> @endif
                                             </div>

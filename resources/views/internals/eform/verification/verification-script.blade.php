@@ -13,8 +13,9 @@
         };
 
         $('#save').on('click', function(e) {
-            $("#form1").submit();
             HoldOn.open(options);
+            $("#form1").submit();
+            HoldOn.close();
         });
 
 
@@ -703,9 +704,10 @@
         return false;
     });
 
-    function printPage() {
-        window.print();
-    }
+    // function printPage() {
+    //     // window.print();
+        
+    // }
 
     //disable select kpr
         var price = $('#price');
@@ -958,6 +960,38 @@
         down_payment.val(payment);
         request_amount.val(amount);
     }
+
+       //search customer detail
+    $('#print').on('click', function() {
+       var nik = $('#nik').val();
+
+       $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '{{url("eform/verification/print/6")}}',
+            // data: { nik : nik }
+        }).done(function(data){
+            console.log(data);
+            // $('#detail').html(data['view']);
+            var frame1 = $('<iframe />');
+               frame1[0].name = "frame1";
+               frame1.css({ "position": "absolute", "top": "-1000000px" });
+               $("body").append(frame1);
+               var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+               frameDoc.document.open();
+               frameDoc.document.write(data['view']);
+               frameDoc.document.close();
+               setTimeout(function () {
+                   window.frames["frame1"].focus();
+                   window.frames["frame1"].print();
+                   frame1.remove();
+               }, 500);
+        }).fail(function(errors) {
+            console.log(errors);
+            // toastr.error('Data tidak ditemukan')
+        });
+
+    });
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
