@@ -100,7 +100,10 @@
                 <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
                     <label class="control-label col-md-4">KPR Aktif ke *:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" value="{{$eformData['kpr']['active_kpr']}}" maxlength="19" readonly="">
+                        <input type="text" class="form-control" value="@if($eformData['kpr']['active_kpr'] == 1) 1
+                        @elseif($eformData['kpr']['active_kpr'] == 2) 2
+                        @elseif($eformData['kpr']['active_kpr'] == 3) > 2
+                        @endif" maxlength="19" readonly="">
                     </div>
                 </div>
                 <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
