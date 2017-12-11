@@ -37,7 +37,7 @@
 
 @if(isset($verified))
 	@if ((isset($verification) && ($verified == false)))
-	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified') ? 'pointer-events: none;cursor: default;' : ''}}">
+	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info {{($response_status == 'unverified') ? 'disabled' : ''}}" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified') ? 'pointer-events: none;cursor: default;' : ''}}">
 	    <i class="fa fa-check-square-o" aria-hidden="true"></i>
 	</a>
 	@endif
