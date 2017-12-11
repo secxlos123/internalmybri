@@ -27,7 +27,7 @@ class CollateralController extends Controller
         'home_location',
         'mobile_phone',
         'staff_name',
-        'status',
+        'status_label',
         'action',
     ];
 
@@ -305,9 +305,9 @@ class CollateralController extends Controller
             $form['mobile_phone'] = strtoupper($form['mobile_phone']);
             $form['staff_name'] = strtoupper($form['staff_name']);
             if (($form['status'] == 'baru') && (!empty($form['remark']))){
-                $form['status'] = ucwords($form['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
+                $form['status_label'] = ucwords($form['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
             }else{
-                $form['status'] = ucwords($form['status']);
+                $form['status_label'] = ucwords($form['status']);
             }
 
             $form['action'] = view('internals.layouts.actions', [
