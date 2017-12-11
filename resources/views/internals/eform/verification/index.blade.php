@@ -22,7 +22,7 @@
             width: 210mm;
             height: 1000mm;
         }
-        /*.page {
+        .page {
             margin: 0;
             border: initial;
             border-radius: initial;
@@ -31,7 +31,7 @@
             box-shadow: initial;
             background: initial;
             page-break-after: always;
-        }*/
+        }
         .no-print, .no-print *
         {
             display: none !important;
@@ -90,7 +90,7 @@
                                 @if ($type != 'preview')
                                 <button type="submit" href="javascript:void(0);" id="save" class="btn btn-orange waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Kirim Verifikasi Data</button>
                                 @else
-                                <button type="button" onclick="printPage()" class="btn waves-light waves-effect w-md m-b-20"><i class="fa fa-print"></i> Print</button>
+                                <button type="button" class="btn waves-light waves-effect w-md m-b-20" id="print"><i class="fa fa-print"></i> Print</button>
                                 <a href="{{ url('eform') }}"><button type="button" class="btn waves-light waves-effect w-md m-b-20"> Kembali</button></a>
                                 @endif
                             </div>

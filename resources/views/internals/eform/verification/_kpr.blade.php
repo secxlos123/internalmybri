@@ -127,12 +127,12 @@
                                     @if ($type != 'preview')
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
-                                        <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{$dataCustomer['kpr']['price']}}" maxlength="19" id="price" readonly="">
+                                        <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{$dataCustomer['kpr']['price']}}" maxlength="19" readonly="">
                                         <!-- <span class="input-group-addon">,00</span> -->
                                         @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                     </div>
                                     @else
-                                    <p>Rp {{number_format($dataCustomer['kpr']['price'], 2, ",", ".")}}</p>
+                                    <p id="price">Rp {{number_format($dataCustomer['kpr']['price'], 2, ",", ".")}}</p>
                                     @endif
                                 </div>
                             </div>
