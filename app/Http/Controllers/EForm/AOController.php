@@ -532,4 +532,40 @@ class AOController extends Controller
         return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPrint($id)
+    {
+        $data = $this->getUser();
+        // dd($id);
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
+                      ->setQuery(['limit' => 100])
+                      ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                      ])
+                      ->post();
+
+        $dataCustomer = $customerData['contents'];
+        // dd($dataCustomer);
+        if(($customerData['code'])==200){
+            $view = (String)view('internals.eform.verification._print-verification')
+                ->with('dataCustomer', $dataCustomer)
+                ->render();
+
+            return response()->json(['view' => $view]);
+        } 
+
+        // if (count($dataCustomer) == 0) {
+        //   \Session::flash('danger', 'Data verification tidak ditemukan!');
+        //   return redirect()->route('eform.index');
+        // }
+
+        // return view('internals.eform.verification._print-verification', compact('data', 'id', 'dataCustomer'));
+    }
+
 }
