@@ -103,7 +103,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Pihak Ketiga dengan nama : "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin mengubah Pihak Ketiga dengan nama : "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>
