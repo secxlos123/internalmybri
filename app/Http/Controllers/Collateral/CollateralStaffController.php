@@ -21,6 +21,15 @@ class CollateralStaffController extends Controller
         'action',
     ];
 
+    protected $columnNonIndex = [
+        'first_name',
+        'home_location',
+        'mobile_phone',
+        'staff_name',
+        'status',
+        'action',
+    ];
+
     /* GET UserLogin Data */
     public function getUser(){
         $users = session()->get('user');
@@ -238,7 +247,7 @@ class CollateralStaffController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->otsRequest($request);
-        dd($newForm);
+        // dd($newForm);
 
           $client = Client::setEndpoint('collateral/ots/'.$id)
            ->setHeaders([
@@ -306,6 +315,55 @@ class CollateralStaffController extends Controller
                 'detail_collateral' => url('staff-collateral/get-detail/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'assignment_collateral' => url('staff-collateral/get-assignment/'.$form['developer']['id'].'/'.$form['property']['id']),
                 'upload_doc' => url('staff-collateral/upload-doc/'.$form['developer']['id'].'/'.$form['property']['id']),
+            ])->render();
+            $collateral['contents']['data'][$key] = $form;
+        }
+
+        $collateral['contents']['draw'] = $request->input('draw');
+        $collateral['contents']['recordsTotal'] = $collateral['contents']['total'];
+        $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
+
+        return response()->json($collateral['contents']);
+    }
+
+    /**
+     * Get Datatables Non Kerjasama
+     * @param $request
+     */
+    public function datatableNonIndex(Request $request)
+    {
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+        $collateral = Client::setEndpoint('collateral/nonindex')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
+                    'page'      => (int) $request->input('page') + 1,
+                    // 'status'    => $request->input('status'),
+                    // 'branch_id' => $data['branch']
+                ])->get();
+                // echo json_encode($collateral);exit();
+        foreach ($collateral['contents']['data'] as $key => $form) {
+            $form['first_name'] = strtoupper($form['first_name'].' '.$form['last_name']);
+            $form['home_location'] = strtoupper($form['home_location']);
+            $form['mobile_phone'] = strtoupper($form['mobile_phone']);
+            $form['staff_name'] = strtoupper($form['staff_name']);
+            $form['status'] = ucwords($form['status']);
+            // if (($form['status'] == 'baru') && (!empty($form['remark']))){
+            //     $form['status_label'] = ucwords($form['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
+            // }else{
+            //     $form['status_label'] = ucwords($form['status']);
+            // }
+
+            $form['action'] = view('internals.layouts.actions', [
+                'status' => $form['status'],
+                'detail_collateral' => url('staff-collateral/get-detail/'.$form['developer_id'].'/'.$form['property_id']),
+                'assignment_collateral' => url('staff-collateral/get-assignment/'.$form['developer_id'].'/'.$form['property_id']),
+                'upload_doc' => url('staff-collateral/upload-doc/'.$form['developer_id'].'/'.$form['property_id']),
             ])->render();
             $collateral['contents']['data'][$key] = $form;
         }
