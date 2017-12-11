@@ -151,6 +151,7 @@
         });
 
         Route::resource('eform', 'EForm\EFormController');
+        // Route::get('eform/{ref}', ['as'=>'eform.index', 'uses'=>'EForm\EFormController@index']);
 
         /*ADK*/
         Route::resource('adk', 'EForm\ADKController');

@@ -116,12 +116,41 @@ if (! function_exists('getNotification')) {
             
             session()->put('notifications', $Arrnotification);
 
-            /*$get_unread = $client
-                ->request('GET', 'user/notification/unread');
+        } catch (ClientException $e) {
+            \Log::info(Psr7\str($e->getRequest()));
+            if ($e->hasResponse()) {
+                \Log::info(Psr7\str($e->getResponse()));
+            }
+        }
+    }
+}
 
-            $unread_notifications = json_decode($get_unread->getBody()->getContents());
+if (! function_exists('notificationsUnread')) {
+    /**
+     * Get logged user info.
+     *
+     * @param  integer $value
+     * @return mixed
+     */
+    function notificationsUnread()
+    {
+        $users = session()->get('user');
+        foreach ($users as $user) {
+            $data = $user;
+        }
+        // var_dump(substr($data['branch'],-3) );
+        try {
+            $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
+                          ->setHeaders([
+                              'Authorization' => $data['token'],
+                              'pn' => $data['pn'],
+                              'branch_id' => $data['branch'],
+                              'role' => $data['role'],
+                          ])->get();
 
-            session()->put('unread_notifications', $unread_notifications->data);*/
+            return $ArrnotificationUnread = $NotificationDataUnread['contents'];
+            
+            session()->put('notificationsUnread', $ArrnotificationUnread);
             
         } catch (ClientException $e) {
             \Log::info(Psr7\str($e->getRequest()));
