@@ -13,8 +13,9 @@
         };
 
         $('#save').on('click', function(e) {
-            $("#form1").submit();
             HoldOn.open(options);
+            $("#form1").submit();
+            HoldOn.close();
         });
 
 
