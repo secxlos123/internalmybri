@@ -41,15 +41,21 @@
                                 @if (\Session::has('error'))
                                  <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                                 @endif -->
+                                @if($type != 'nonindex')
+                                    <!-- detail properti -->
+                                    @include('internals.collateral.manager._detail-property')
 
-                                <!-- detail properti -->
-                                @include('internals.collateral.manager._detail-property')
+                                    <!-- tipe -->
+                                    @include('internals.collateral.manager._type-property')
 
-                                <!-- tipe -->
-                                @include('internals.collateral.manager._type-property')
+                                    <!-- unit -->
+                                    @include('internals.collateral.manager._unit-property') 
 
-                                <!-- unit -->
-                                @include('internals.collateral.manager._unit-property')                            
+                                @else
+                                    <!-- detail properti -->
+                                    @include('internals.collateral.manager._detail-collateral-nonindex')
+                                @endif
+
                                 @if($collateral['status'] == 'disetujui')
                                 <!-- informasi penilaian -->
                                 @include('internals.collateral.manager._collateral-detail')
