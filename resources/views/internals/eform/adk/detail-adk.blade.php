@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Approval Pengajuan')
+@section('title','My BRI - Form Approval Pengajuan ADK')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -14,17 +14,11 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Approval Pengajuan</h4>
+                        <h4 class="page-title">Approval Pengajuan ADK</h4>
                         <ol class="breadcrumb p-0 m-0">
-                            <li>
-                                <a href="{{url('/')}}">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="{{route('eform.index')}}">E-Form</a>
-                            </li>
-                            <li class="active">
-                                Pengajuan
-                            </li>
+                            <li><a href="{{url('/')}}">Dashboard</a></li>
+                            <li><a href="{{route('eform.index')}}">E-Form</a></li>
+                            <li class="active">Pengajuan</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -33,16 +27,13 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    @if (\Session::has('error'))
-                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                    @endif
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Data Pengajuan</h3>
+                            <h3 class="panel-title">Data Exsummary</h3>
                         </div>
-                        <!-- data pengajuan-->
+                        <!-- data exsummary -->
                         <div class="panel-body">
-                            @include('internals.eform.approval._eform-data')
+                            @include('internals.eform.adk._cus-exsummary')
                         </div>
                     </div>
                 </div>
@@ -52,34 +43,60 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Data Nasabah</h3>
+                            <h3 class="panel-title">Data Prescoring</h3>
                         </div>
-                        <!-- data nasabah -->
+                        <!-- data prescoring -->
                         <div class="panel-body">
-                            @include('internals.eform.approval._customer-personal')
+                            @include('internals.eform.adk._cus-prescoring')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Debitur</h3>
+                        </div>
+                        <!-- data debitur -->
+                        <div class="panel-body">
+                            @include('internals.eform.adk._cus-debitur')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Kredit</h3>
+                        </div>
+                        <!-- data kredit -->
+                        <div class="panel-body">
+                            @include('internals.eform.adk._cus-data_kredit')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Pribadi</h3>
+                        </div>
+                        <!-- data pribadi -->
+                        <div class="panel-body">
+                            @include('internals.eform.adk._cus-personal')
                             <hr>
 
                             @if($detail['customer']['personal']['status_id'] == 2)
                             <!--pasangan-->
-                            @include('internals.eform.approval._customer-couple')
+                            @include('internals.eform.adk._cus-couple')
                             <hr>
                             @endif
-
-                            <!--pekerjaan-->
-                            @include('internals.eform.approval._customer-work')
-                            <hr>
-
-                            <!-- finansial -->
-                            @include('internals.eform.approval._customer-financial')
-                            <hr>
-
-                            <!-- family -->
-                            @include('internals.eform.approval._customer-family')
-                            <hr>
-
-                            <!-- identity -->
-                            @include('internals.eform.approval._customer-identity')
-                            <hr>
                         </div>
                     </div>
                 </div>
@@ -89,34 +106,53 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Data Kunjungan LKN</h3>
-                        </div>
-                        <!-- data lkn -->
-                        <div class="panel-body">
-                            @include('internals.eform.approval._lkn-visit')
+                            <h3 class="panel-title">Data Pekerjaan</h3>
                         </div>
                         <div class="panel-body">
-                            @include('internals.eform.approval._lkn-income')
+                            <!--pekerjaan-->
+                            @include('internals.eform.adk._cus-work')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Finansial</h3>
                         </div>
                         <div class="panel-body">
-                            @include('internals.eform.approval._lkn-kpp')
+                            <!-- finansial -->
+                            @include('internals.eform.adk._cus-financial')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Keluarga</h3>
                         </div>
                         <div class="panel-body">
-                            @include('internals.eform.approval._lkn-mutation')
+                            <!-- family -->
+                            @include('internals.eform.adk._cus-family')
                         </div>
-                        @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
-                        <div class="panel-body">
-                            @include('internals.eform.approval._lkn-investigate')
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Briguna Dokumen</h3>
                         </div>
-                        @endif
                         <div class="panel-body">
-                            @include('internals.eform.approval._lkn-analist')
-                        </div>
-                        <div class="panel-body">
-                            @include('internals.eform.approval._lkn-recommend')
-                        </div>
-                        <div class="panel-body">
-                            @include('internals.eform.approval._lkn-common')
+                            <!-- identity -->
+                            @include('internals.eform.adk._cus-identity')
                         </div>
                     </div>
                 </div>

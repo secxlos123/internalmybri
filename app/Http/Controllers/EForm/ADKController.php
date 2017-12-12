@@ -49,7 +49,17 @@ class ADKController extends Controller
 
     public function getApprove($id) {
         $data = $this->getUser();
-        print_r($id);
+        $loginLas = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'inquiryUserLAS',
+                    'requestData'   => $data['pn']
+                ])
+                ->post('form_params');
+        // print_r($loginLas);exit();
         
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
@@ -60,17 +70,20 @@ class ADKController extends Controller
                     ->get();
 
         $detail = $formDetail['contents'];
-        
+        // print_r($detail['user_id']);
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
-                        ->setHeaders(['Authorization' => $data['token']])
+                        ->setHeaders([
+                            'Authorization' => $data['token'],
+                            'pn' => $data['pn']
+                        ])
                         ->get();
-        print_r($customerData);exit();
+        // print_r($customerData);exit();
         
         $customer = $customerData['contents'];
         // dd($detail);
         $type = 'fill';
-
+        // ao harusnya ganti adk
         if (($data['role'] == 'ao') || ($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             return view('internals.eform.adk.detail-adk', compact('data','detail','product','customer','id','type'));
         } else{
