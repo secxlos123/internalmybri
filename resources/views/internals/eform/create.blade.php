@@ -36,6 +36,10 @@
                      <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
 
+                    @if (\Session::has('success'))
+                     <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                    @endif
+
                     <div class="card-box">
                         <form id="wizard-validation-form"  action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
