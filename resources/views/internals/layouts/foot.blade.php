@@ -24,6 +24,7 @@
         <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
         <script src="{{asset('assets/js/jquery.datatables.init.js')}}"></script>
+        <script src="{{asset('assets/js/dataTables.responsive.min.js')}}"></script>
 
         <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
@@ -62,7 +63,7 @@
         <script src="{{asset('assets/js/HoldOn.min.js')}}"></script>
 
         <script src="{{asset('assets/js/toastr.min.js')}}"></script>
-        
+
         <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
         <script>
@@ -142,12 +143,16 @@
             }
           });
 
-       $(document).on('keypress', ".alphaOnly", function (e) {
-        if (e.which >= 48 && e.which <= 57 ) {
-                // $("#errmsg").html("Nama Belakang harus diisi hanya menggunakan huruf").show().fadeOut("slow");
-                return false;
-              }
-            });
+        $(document).on('keypress', ".alphaOnly", function (e) {
+          var regex = new RegExp("^[a-zA-Z ]+$");
+          var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+          if (regex.test(str)) {
+              return true;
+          }
+
+          e.preventDefault();
+          return false;
+        });
 
        $('.datepicker-date').datepicker({
         format: "yyyy-mm-dd",

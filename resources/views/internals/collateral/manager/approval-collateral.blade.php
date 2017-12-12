@@ -38,14 +38,17 @@
                                <!--  <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
                                 </p> -->
-                                <!-- detail properti -->
-                                @include('internals.collateral.manager._detail-property')
-
-                                <!-- tipe -->
-                                @include('internals.collateral.manager._type-property')
-
-                                <!-- unit -->
-                                @include('internals.collateral.manager._unit-property')                            
+                                @if($type != 'nonindex')
+                                    <!-- detail properti -->
+                                    @include('internals.collateral.manager._detail-property')
+                                    <!-- tipe -->
+                                    @include('internals.collateral.manager._type-property')
+                                    <!-- unit -->
+                                    @include('internals.collateral.manager._unit-property')
+                                @else
+                                    <!-- detail property -->
+                                    @include('internals.collateral.manager._detail-collateral-nonindex')
+                                @endif                            
                                 <!-- informasi penilaian -->
                                 @include('internals.collateral.manager._collateral-detail')
 

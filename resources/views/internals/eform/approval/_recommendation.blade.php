@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="radio radio-pink radio-inline">
                                     <input type="radio" id="no" value="no" name="recommended">
-                                    <label for="no"> Tidak </label>
+                                    <label for="no">Tidak</label>
                                 </div>
                             </div>
                         </div>

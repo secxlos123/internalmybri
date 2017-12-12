@@ -7,7 +7,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                
+
                                 <div class="page-title-box">
                                     <h4 class="page-title">Daftar Approval Perubahan Data Pihak Ke-3</h4>
                                     <ol class="breadcrumb p-0 m-0">
@@ -50,7 +50,7 @@
                                                             ]) !!}
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </form>
                                                     <div class="text-right">
                                                         <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
@@ -59,8 +59,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <table id="datatable" class="table table-bordered">
+
+                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>Nama Perusahaan</th>
@@ -134,7 +134,7 @@
             witdh : '100%',
             allowClear: true,
         });
-        
+
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,

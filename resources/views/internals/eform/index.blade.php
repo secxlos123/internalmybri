@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             @If(count($form_notif) > 0)
-                                <table id="datatable" class="table table-bordered responsive">
+                                <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>No. Ref Aplikasi</th>
@@ -142,10 +142,10 @@
                                             <td> {{ $form_notif['aging'] }} </td>
                                             <td> {!! $form_notif['action'] !!} </td>
                                         </tr>
-                                    </tbody>                                
+                                    </tbody>
                                 </table>
                                 @Else
-                                    <table id="datatable" class="table table-bordered">
+                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>No. Ref Aplikasi</th>

@@ -87,8 +87,10 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
+        $type = ($dev_id == 1 ? 'nonindex' : '');
         // dd($collateral);
-        return view('internals.collateral.manager.detail', compact('data', 'collateral'));
+        return view('internals.collateral.manager.detail', compact('data', 'collateral', 'type'));
     }
     
     /**
@@ -102,8 +104,9 @@ class CollateralController extends Controller
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
         // echo json_encode($collateral);die();
         // dd($collateral);
+        $type = ($dev_id == 1 ? 'nonindex' : '');
 
-        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral'));
+        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral', 'type'));
     }
 
     /**
@@ -150,8 +153,10 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
+        $type = ($dev_id == 1 ? 'nonindex' : '');
         // dd($collateral);
-        return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral'));
+        return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral', 'type'));
     }
 
     /**
