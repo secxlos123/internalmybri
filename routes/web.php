@@ -111,6 +111,8 @@
 
             Route::get('detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);
 
+            Route::get('detail-nonindex/{dev_id}/{prop_id}', ['as'=>'collateralDetailNonIndex', 'uses'=>'Collateral\CollateralController@detailNonIndex']);
+
             Route::get('assignment/{dev_id}/{prop_id}', ['as'=>'getAssignment', 'uses'=>'Collateral\CollateralController@assignment']);
 
             Route::post('postAssignment/{id}', ['as'=>'postAssignment', 'uses'=>'Collateral\CollateralController@postAssignment']);

@@ -90,6 +90,20 @@ class CollateralController extends Controller
         // dd($collateral);
         return view('internals.collateral.manager.detail', compact('data', 'collateral'));
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function detailNonIndex($dev_id, $prop_id)
+    {
+        $data = $this->getUser();
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        // dd($collateral);
+        return view('internals.collateral.manager.detail-nonindex', compact('data', 'collateral'));
+    }
     
     /**
      * Display a form of assignment to staff appraisal.
@@ -312,7 +326,7 @@ class CollateralController extends Controller
 
             $form['action'] = view('internals.layouts.actions', [
                 'status' => $form['status'],
-                'detail' => url('collateral/detail/'.$form['developer_id'].'/'.$form['property_id']),
+                'detail' => url('collateral/detail-nonindex/'.$form['developer_id'].'/'.$form['property_id']),
                 'dispose_collateral' => url('collateral/assignment/'.$form['developer_id'].'/'.$form['property_id']),
                 'approval_collateral' => url('collateral/approval-collateral/'.$form['developer_id'].'/'.$form['property_id']),
                 'monitoring' => url('collateral/monitoring/'.$form['developer_id'].'/'.$form['property_id']),
