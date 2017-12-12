@@ -191,6 +191,20 @@
         window.print();
     }
 
+    $('#no').on('change',function(){
+        // console.log('sini');
+        if ($(this).is(':checked')) {
+            $('#btn-approve').hide();
+        }
+    });
+
+    $('#yes').on('change',function(){
+        // console.log('sini');
+        if ($(this).is(':checked')) {
+            $('#btn-approve').show();
+        }
+    });
+
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
