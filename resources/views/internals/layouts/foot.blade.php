@@ -142,12 +142,16 @@
             }
           });
 
-       $(document).on('keypress', ".alphaOnly", function (e) {
-        if (e.which >= 48 && e.which <= 57 ) {
-                // $("#errmsg").html("Nama Belakang harus diisi hanya menggunakan huruf").show().fadeOut("slow");
-                return false;
-              }
-            });
+        $(document).on('keypress', ".alphaOnly", function (e) {
+          var regex = new RegExp("^[a-zA-Z ]+$");
+          var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+          if (regex.test(str)) {
+              return true;
+          }
+
+          e.preventDefault();
+          return false;
+        });
 
        $('.datepicker-date').datepicker({
         format: "yyyy-mm-dd",
