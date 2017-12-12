@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table id="datatable" class="table table-bordered">
+                        <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                             <thead class="bg-primary">
                                 <tr>
                                     <!-- <th>Nama Pihak Ketiga</th> -->
@@ -147,15 +147,15 @@
                     { data: 'phone_number', name: 'phone_number' },
                     { data: 'email', name: 'email' },
                     {
-                       data: 'is_actived', 
-                       name: 'is_actived', 
+                       data: 'is_actived',
+                       name: 'is_actived',
                        bSortable: false,
                        mRender: function (data, type, full) {
                             var checked = full.is_actived ? 'checked' : '';
                             return `<input type="checkbox" data-third="${full.name}" id="${full.user_id}" class="status" switch="success" ${checked}><label for="${full.user_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
                        },
                        createdCell:  function (td, cellData, rowData, row, col) {
-                            $(td).attr('class', 'status'); 
+                            $(td).attr('class', 'status');
                        }
                     },
                     { data: 'action', name: 'action', bSortable: false },
@@ -195,7 +195,7 @@
                 $('#confirm').modal('hide');
             });
         });
-        
+
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,

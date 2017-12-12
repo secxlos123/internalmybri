@@ -10,6 +10,8 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.dataTables.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap.min.css')}}"/>
 
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.dataTables.min.css')}}"/>
+
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.steps.css')}}" />
 
         <!--date range picker -->
@@ -22,7 +24,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/HoldOn.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-slider.min.css')}}">
-        
+
         <!--calendar css-->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fullcalendar.min.css')}}">
 
@@ -41,5 +43,5 @@
         <![endif]-->
 
         <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
-        
+
     </head>

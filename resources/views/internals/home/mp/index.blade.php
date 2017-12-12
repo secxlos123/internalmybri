@@ -58,7 +58,7 @@
               <div class="col-sm-2">
                 <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
               </div>
-            </div>   
+            </div>
           </div>
           <div class="col-md-12">
             <div class="form-horizontal">
@@ -72,7 +72,7 @@
                 </div>
               </div>
             </div>
-            <table id="datatable" class="table table-bordered">
+            <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
               <thead class="bg-primary">
                 <tr>
                   <th>No. Ref Aplikasi</th>

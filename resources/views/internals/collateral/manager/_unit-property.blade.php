@@ -5,7 +5,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered accountTable" id="datatable-item-property">
+                <table class="table table-bordered accountTable display responsive nowrap dataTable no-footer dtr-inline collapsed" id="datatable-item-property">
                     <thead>
                         <tr>
                             <th>Tipe Proyek</th>
@@ -46,7 +46,7 @@
 
                     </div>
                 </div>
-            </div>                    
+            </div>
         </div>
     </div>
 </div>

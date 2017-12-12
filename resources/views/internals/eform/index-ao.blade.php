@@ -110,7 +110,7 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table table-bordered table-responsive">
+                                        <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                             <thead class="bg-primary">
                                                 <tr>
                                                     <th>No. Ref</th>

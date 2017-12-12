@@ -83,7 +83,7 @@
                                                                 <p class="form-control-static">{{$dataDev['city_name']}}</p>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </form>
                                                 </div>
                                                 <div class="col-md-6">
@@ -112,7 +112,7 @@
                                                                 <p class="form-control-static">{{$dataDev['summary']}}</p>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -203,7 +203,7 @@
                                             </div>
 
                                             <!-- Data properties of developer -->
-                                            <table id="datatable-properties" class="table table-bordered">
+                                            <table id="datatable-properties" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th>Nama Proyek</th>
@@ -291,4 +291,4 @@
             });
         });
 
-    </script>    
+    </script>

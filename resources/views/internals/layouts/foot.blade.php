@@ -24,6 +24,7 @@
         <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
         <script src="{{asset('assets/js/jquery.datatables.init.js')}}"></script>
+        <script src="{{asset('assets/js/dataTables.responsive.min.js')}}"></script>
 
         <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
@@ -62,7 +63,7 @@
         <script src="{{asset('assets/js/HoldOn.min.js')}}"></script>
 
         <script src="{{asset('assets/js/toastr.min.js')}}"></script>
-        
+
         <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
         <script>

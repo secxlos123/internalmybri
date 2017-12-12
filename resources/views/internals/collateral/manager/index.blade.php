@@ -46,7 +46,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+
                                         </form>
                                         <div class="text-right">
                                             <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
@@ -81,7 +81,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable" class="table table-bordered">
+                                                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                                                         <thead class="bg-primary">
                                                                             <tr>
                                                                                 <th>Nama Proyek</th>
@@ -91,7 +91,7 @@
                                                                                 <th>PIC</th>
                                                                                 <th>Telepon</th>
                                                                                 <th>Staff Penilai</th>
-                                                                                <th>Status Approval</th> 
+                                                                                <th>Status Approval</th>
                                                                                 <th style="width: 150px">Aksi</th>
                                                                             </tr>
                                                                         </thead>
@@ -110,14 +110,14 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable-independent" class="table table-bordered">
+                                                                    <table id="datatable-independent display responsive nowrap dataTable no-footer dtr-inline collapsed" class="table table-bordered">
                                                                         <thead class="bg-primary">
                                                                             <tr>
                                                                                 <th>Nama Pengaju</th>
                                                                                 <th>Kota</th>
                                                                                 <th>Telepon</th>
                                                                                 <th>Staff Penilai</th>
-                                                                                <th>Status Approval</th> 
+                                                                                <th>Status Approval</th>
                                                                                 <th style="width: 150px">Aksi</th>
                                                                             </tr>
                                                                         </thead>
@@ -140,8 +140,8 @@
     </div>
 </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
-@include('internals.collateral._reject-modal') 
+@include('internals.layouts.foot')
+@include('internals.collateral._reject-modal')
 <script type="text/javascript">
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
@@ -193,7 +193,7 @@
                 {   data: 'status_label', name: 'status_label', bSortable: true },
                 {   data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
-            }); 
+            });
     }
 
     var table2 = $('#datatable-independent').DataTable({
@@ -236,6 +236,6 @@
             {   data: 'status_label', name: 'status_label', bSortable: false },
             {   data: 'action', name: 'action', orderable: false, searchable: false}
             ],
-        }); 
+        });
     }
 </script>
