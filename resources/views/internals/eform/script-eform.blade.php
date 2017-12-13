@@ -590,6 +590,8 @@
                     request_amount.val(static_price - min);
 
                 } else {
+                    $(this).val(real);
+                    dp.val(val);
                     request_amount.val(static_price - real);
 
                 }
