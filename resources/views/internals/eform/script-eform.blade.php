@@ -582,7 +582,7 @@
                 if ( isNaN(parseInt(val)) ) {
                     val = 0;
                 }
-                var real = parseInt(static_price) * (val/100);
+                var real = parseInt(static_price) * (dp.val()/100);
 
                 if (parseInt(val) < min) {
                     $(this).val(min)
@@ -591,7 +591,6 @@
 
                 } else {
                     $(this).val(real);
-                    dp.val(val);
                     request_amount.val(static_price - real);
 
                 }
