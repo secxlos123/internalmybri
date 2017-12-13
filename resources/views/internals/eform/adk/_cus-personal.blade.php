@@ -40,13 +40,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">No. Handphone :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['mobile_phone']}}</p>
+                    <p class="form-control-static">{{(isset($detail['customer']['personal']['mobile_phone']) ? $detail['customer']['personal']['mobile_phone'] : '-' )}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Pendidikan Terakhir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ get_title($detail['visit_report']['title']) }}</p>
+                    <p class="form-control-static">{{ $detail['customer']['personal']['pendidikan_terakhir'] }}</p>
                 </div>
             </div>
         </form>

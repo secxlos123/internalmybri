@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Approval Pengajuan ADK')
+@section('title','My BRI - Approval Pengajuan ADK')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -205,7 +205,7 @@
             </div>
 
             <!-- rekomendasi approval -->
-            <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
+            <form class="form-horizontal" role="form" action="{{route('post_adk', $id)}}" method="POST" id="form1">
                 {{ csrf_field() }}
                 <input type="hidden" name="is_approved" id="is_approved">
                 <div class="text-center">
