@@ -9,8 +9,8 @@
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Bidang Pekerjaan * :</label>
-                                <div class="col-md-8">
+                                <label class="col-md-3 control-label">Bidang Pekerjaan * :</label>
+                                <div class="col-md-9">
                                 @if ($type != 'preview')
                                     {!! Form::select('job_field_id', [$dataCustomer['customer']['job_field_id'] => $dataCustomer['customer']['job_field_name']], old('work_field'), [
                                     'class' => 'select2 work_field',
@@ -24,8 +24,8 @@
                                 <input type="hidden" name="job_field_name" id="new_job_field" value="{{$dataCustomer['customer']['job_field_name']}}">
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Jenis Pekerjaan * :</label>
-                                <div class="col-md-8">
+                                <label class="col-md-3 control-label">Jenis Pekerjaan * :</label>
+                                <div class="col-md-9">
                                 @if ($type != 'preview')
                                     {!! Form::select('job_type_id', [$dataCustomer['customer']['job_type_id'] => $dataCustomer['customer']['job_type_name']], old('work_type'), [
                                     'class' => 'select2 work_type',
@@ -40,8 +40,8 @@
                                 <input type="hidden" name="job_type_name" id="new_job_type" value="{{$dataCustomer['customer']['job_type_name']}}">
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Pekerjaan * :</label>
-                                <div class="col-md-8">
+                                <label class="col-md-3 control-label">Pekerjaan * :</label>
+                                <div class="col-md-9">
                                 @if ($type != 'preview')
                                     {!! Form::select('job_id', [$dataCustomer['customer']['job_id'] => $dataCustomer['customer']['job_name']], old('work'), [
                                     'class' => 'select2 work',
@@ -56,8 +56,8 @@
                                 <input type="hidden" name="job_name" id="new_job" value="{{$dataCustomer['customer']['job_name']}}">
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Nama Perusahaan * :</label>
-                                <div class="col-md-8">
+                                <label class="col-md-3 control-label">Nama Perusahaan * :</label>
+                                <div class="col-md-9">
                                 @if ($type != 'preview')
                                     <input type="text" class="form-control" name="company_name" maxlength="50" value="{{$dataCustomer['customer']['company_name']}}">
                                 @else
