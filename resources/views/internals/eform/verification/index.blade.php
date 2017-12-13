@@ -36,6 +36,13 @@
         {
             display: none !important;
         }
+
+        .nik-btn{
+            padding: 3px 1px;
+            background-color: #eee0;
+            outline: none !important;
+            box-sizing: border-box;
+        }
     }
 </style>
 <div class="content-page">

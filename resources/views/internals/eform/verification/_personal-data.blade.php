@@ -51,9 +51,10 @@
                                     <div class="input-group">
                                         @if ($type != 'preview')
                                         <input type="text" class="form-control" name="nik" value="{{ $dataCustomer['customer']['nik'] }}" maxlength="16" readonly>
-                                        <span class="input-group-addon nopadding">
-                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect change-nik">Ubah</a>
+                                        <span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;">
+                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect change-nik" style="outline: none !important;box-sizing: border-box;border: 3px;border: 3px solid #ff9800 !important;">Ubah</a>
                                         </span>
+
                                         @else
                                             <p>{{@$dataCustomer['customer']['nik']}}</p>
                                         @endif
