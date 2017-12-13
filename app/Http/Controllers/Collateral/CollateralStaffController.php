@@ -68,6 +68,23 @@ class CollateralStaffController extends Controller
     }
 
     /**
+     * Get detail of collateral.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDetailNonIndex($dev_id, $prop_id, $data)
+    {
+        $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->get();
+
+        return $detailCollateral['contents'];
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -76,8 +93,15 @@ class CollateralStaffController extends Controller
     public function show($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return view('internals.collateral.staff.detail-property', compact('data', 'collateral'));
+        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
+        return view('internals.collateral.staff.detail-property', compact('data', 'collateral', 'type'));
     }
 
     /**
@@ -88,8 +112,15 @@ class CollateralStaffController extends Controller
     public function getAssignmentAgunan($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return view('internals.collateral.staff.assignment', compact('data', 'collateral'));
+        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
+        return view('internals.collateral.staff.assignment', compact('data', 'collateral', 'type'));
     }
 
     /**
@@ -131,17 +162,24 @@ class CollateralStaffController extends Controller
     public function getLKNAgunan($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        // dd($collateral);
-        if($collateral['property']['category'] == 0){
-            $category_name = 'Rumah Tapak';
-        }elseif($collateral['property']['category'] == 1){
-            $category_name = 'Rumah Susun/Apartment';
+
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
         }else{
-            $category_name = 'Rumah Toko';
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+            // dd($collateral);
         }
+            if($collateral['property']['category'] == 0){
+                $category_name = 'Rumah Tapak';
+            }elseif($collateral['property']['category'] == 1){
+                $category_name = 'Rumah Susun/Apartment';
+            }else{
+                $category_name = 'Rumah Toko';
+            }
         // dd($collateral['property']['category']);
-        return view('internals.collateral.staff.lkn-collateral.index', compact('data', 'collateral', 'category_name'));
+        return view('internals.collateral.staff.lkn-collateral.index', compact('data', 'collateral', 'category_name', 'type'));
     }
 
     /**

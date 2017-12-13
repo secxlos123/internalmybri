@@ -58,7 +58,7 @@
                         <label class="col-md-5 control-label">Luas Bangunan *:</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" name="building[spacious]" maxlength="5" value="{{old('building[spacious]')}}" id="building_spacious">
+                                <input type="text" class="form-control numericOnly" name="building[spacious]" maxlength="5" value="{{ $type == 'nonindex' ? $collateral['building_area'] : old('building[spacious]')}}" id="building_spacious">
                                 <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                             </div>
                         </div>
