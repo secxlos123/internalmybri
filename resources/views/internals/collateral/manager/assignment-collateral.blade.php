@@ -270,6 +270,13 @@
             });
         });
 
+        $('.ao_id').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+
+            $('#ao_name').val(text);
+        });
+
         // $('.kanwil').select2({
         //     witdh : '100%',
         //     allowClear: true,

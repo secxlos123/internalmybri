@@ -110,7 +110,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable-independent display responsive nowrap dataTable no-footer dtr-inline collapsed" class="table table-bordered">
+                                                                    <table id="datatable-independent" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                                                         <thead class="bg-primary">
                                                                             <tr>
                                                                                 <th>Nama Pengaju</th>
