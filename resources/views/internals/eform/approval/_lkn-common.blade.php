@@ -48,13 +48,14 @@
             <p>Kartu Keluarga</p>
         </div>
     </div>
-
+@if(!empty($detail['customer']['personal']['status_id'] > 1))
     <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
             <p>Akta Nikah/Cerai</p>
         </div>
     </div>
+@endif
 @if(!empty($detail['customer']['personal']['status_id'] == 3))
     <div class="col-md-6" align="center">
         <div class="card-box">
