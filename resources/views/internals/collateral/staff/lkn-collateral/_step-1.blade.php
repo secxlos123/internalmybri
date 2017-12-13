@@ -12,7 +12,7 @@
                 <div class="form-group m-t-20">
                     <div class="col-md-6">
                         <label class="control-label">Lokasi *</label>
-                        <textarea name="area[location]" id="location" class="form-control" name="ground_location" rows="3"></textarea>
+                        <textarea name="area[location]" id="location" class="form-control" rows="3">{{ $type == 'nonindex' ? $collateral['home_location'] : old('area.location')}}</textarea>
                     </div>
                     @if ($errors->has('area[location]')) <p class="help-block">{{ $errors->first('area[location]') }}</p> @endif
                     <div class="col-md-3">
@@ -40,13 +40,13 @@
                                     'data-placeholder' => '-- Pilih Tipe --',
                                     'id' => 'collateral_type'
                                 ]) !!} -->
-                                {!! Form::select('collateral_type', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), old('area[collateral_type]'), [
+                                {!! Form::select('collateral_type', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), $type == 'nonindex' ? $collateral['kpr_type_property'] : old('area[collateral_type]'), [
                                     'class' => 'select2 collateral_type ',
                                     'data-placeholder' => '-- Pilih Jenis KPR --',
                                     'id' => 'collateral_type'
                                 ]) !!}
 
-                                <input type="hidden" name="area[collateral_type]" id="area_collateral_type" class="form-control">
+                                <input type="hidden" name="area[collateral_type]" id="area_collateral_type" class="form-control" value="{{$type == 'nonindex' ? $collateral['kpr_type_property'] : '1'}}">
                             </div>
                             @if ($errors->has('area[collateral_type]')) <p class="help-block">{{ $errors->first('area[collateral_type]') }}</p> @endif
                         </div>
@@ -99,7 +99,7 @@
                                 @if ($errors->has('area[distance]')) <p class="help-block">{{ $errors->first('area[distance]') }}</p> @endif
                                 <div class="row">
                                     <div class="col-md-5">
-                                        {!! Form::select('area[unit_type]', array("0" => "", "1" => "Kilometer", "2" => "Meter"), old('area[unit_type]'), [
+                                        {!! Form::select('area[unit_type]', array("" => "", "1" => "Kilometer", "2" => "Meter"), old('area[unit_type]'), [
                                             'class' => 'select2 unit_type ',
                                             'data-placeholder' => '-- Satuan --'
                                         ]) !!}
