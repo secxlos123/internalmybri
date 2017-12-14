@@ -37,20 +37,28 @@ class ADKController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $data = $this->getUser();
+    public function index() {
+        $data     = $this->getUser();
         // print_r($data);exit();
-        // dd(env('APP_ENV'));
-        if ($data['role'] == 'ao') {
+        // hanya adk yg bisa melakukan fungsi ini
+        if ($data['role'] == 'adk' || $data['role'] == 'ao') {
             return view('internals.eform.adk.index', compact('data'));
         }
     }
 
     public function getApprove($id) {
-        $data = $this->getUser();
-        print_r($id);
-        
+        $data     = $this->getUser();
+        $loginLas = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'inquiryUserLAS',
+                    'requestData'   => $data['pn']
+                ])
+                ->post('form_params');
+        // print_r($loginLas);exit();
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
                     ->setHeaders(
@@ -58,24 +66,88 @@ class ADKController extends Controller
                           'pn' => $data['pn']
                         ])
                     ->get();
-
+                    // dd($formDetail);
         $detail = $formDetail['contents'];
+        // print_r($detail['nik']);
+        $data_briguna = Client::setEndpoint('api_las/briguna')
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->setBody(['id' => $id])
+                    ->post();
+        // dd($briguna);
+        $briguna = $data_briguna['contents'];
+        /*$conten = [
+            'nik'           => !isset($detail['nik']) ? '' : $detail['nik'],
+            'tp_produk'     => '1',
+            'uid_pemrakarsa'=> '00509'
+        ];
+        // GET Form Data Debitur
+        $debitur = Client::setEndpoint('api_las/index')
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->setBody([
+                        'requestMethod' => 'inquiryHistoryDebiturPerorangan',
+                        'requestData'   => $conten
+                    ])
+                    ->post();*/
         
-        /*GET DETAIL CUST*/
-        $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
-                        ->setHeaders(['Authorization' => $data['token']])
+        // dd($formDetail);
+        // GET DETAIL CUST
+        /*$customerData = Client::setEndpoint('customer/'.$detail['user_id'])
+                        ->setHeaders([
+                            'Authorization' => $data['token'],
+                            'pn' => $data['pn']
+                        ])
                         ->get();
-        print_r($customerData);exit();
+        // print_r($customerData);exit();
         
-        $customer = $customerData['contents'];
+        $customer = $customerData['contents'];*/
         // dd($detail);
         $type = 'fill';
-
-        if (($data['role'] == 'ao') || ($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','product','customer','id','type'));
+        // ao harusnya ganti adk
+        if (($data['role'] == 'ao') || ($data['role'] == 'adk') || ($data['role'] == 'pinca')) {
+            return view('internals.eform.adk.detail-adk', compact('data','detail','product','customer','id','type','briguna'));
         } else{
             return view('internals.eform.create', compact('data'));
         }
+    }
+
+    public function postApprove(Request $request) {
+        $data     = $this->getUser();
+        $loginLas = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'inquiryUserLAS',
+                    'requestData'   => $data['pn']
+                ])
+                ->post('form_params');
+
+        $conten_putusan = [
+            "id_aplikasi" => $request['id_aplikasi'],
+            "uid"         => $uid,
+            "flag_putusan"=> $request['flag_putusan'],
+            "catatan"     => $request['catatan']
+        ];
+
+        $putusan = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'putusSepakat',
+                    'requestData'   => $conten_putusan
+                ])
+                ->post('form_params');
+        // ao harusnya ganti adk
+        return view('internals.eform.adk.index', compact('data'));
     }
 
     public function datatables(Request $request) {
@@ -100,6 +172,17 @@ class ADKController extends Controller
                     'prescreening'  => $request->input('prescreening'),
                     'product'       => $request->input('product')
                 ])->get();
+
+        $loginLas = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'inquiryUserLAS',
+                    'requestData'   => $data['pn']
+                ])
+                ->post('form_params');
         // masih progress
         // get data inquiry putusan untuk diputus Pemutus
         $debitur = Client::setEndpoint('api_las/index')
@@ -107,8 +190,7 @@ class ADKController extends Controller
                     'Authorization' => $data['token'],
                     'pn'            => $data['pn']
                 ])->setBody([
-                    'requestMethod' => 'inquiryListPutusan',
-                    'requestData'   => '00062498'
+                    'requestMethod' => 'inquiryListVerputADK'
                 ])->post('form_params');
         if ($debitur['code'] == '01') {
             \Log::info("masuk");

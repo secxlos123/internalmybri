@@ -38,14 +38,18 @@
                                <!--  <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
                                 </p> -->
-                                <!-- detail properti -->
-                                @include('internals.collateral.manager._detail-property')
+                                @if($type != 'nonindex')
+                                    <!-- detail properti -->
+                                    @include('internals.collateral.manager._detail-property')
+                                    <!-- tipe -->
+                                    @include('internals.collateral.manager._type-property')
+                                    <!-- unit -->
+                                    @include('internals.collateral.manager._unit-property')
+                                @else
+                                    <!-- detail property -->
+                                    @include('internals.collateral.manager._detail-collateral-nonindex')
 
-                                <!-- tipe -->
-                                @include('internals.collateral.manager._type-property')
-
-                                <!-- unit -->
-                                @include('internals.collateral.manager._unit-property')                            
+                                @endif                            
                                 <!-- informasi penilaian -->
                                 @include('internals.collateral.manager._collateral-detail')
 
@@ -54,6 +58,9 @@
                                         <!-- rekomendasi approval -->
                                         <form class="form-horizontal" role="form" method="POST" id="form1" action="{{route('postApprovalCollateral', $collateral['id'])}}">
                                             {{ csrf_field() }}
+                                            @if($type == 'nonindex')
+                                                <input type="hidden" name="eform_id" value="{{$collateral['eform_id']}}">
+                                            @endif
                                             <input type="hidden" name="is_approved" id="is_approved">
                                             <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
                                             <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">

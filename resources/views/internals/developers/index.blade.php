@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table id="datatable" class="table table-bordered">
+                        <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                             <thead class="bg-primary">
                                 <tr>
                                     <!-- <th>Nama Developer</th> -->
@@ -153,15 +153,15 @@
                 { data: 'city_name', name: 'city_name' },
                 { data: 'project', name: 'project' },
                 {
-                   data: 'is_actived', 
-                   name: 'is_actived', 
+                   data: 'is_actived',
+                   name: 'is_actived',
                    bSortable: false,
                    mRender: function (data, type, full) {
                         var checked = full.is_actived ? 'checked' : '';
                         return `<input type="checkbox" data-developer="${full.name}" id="${full.dev_id}" class="status" switch="success" ${checked}><label for="${full.dev_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
                    },
                    createdCell:  function (td, cellData, rowData, row, col) {
-                        $(td).attr('class', 'status'); 
+                        $(td).attr('class', 'status');
                    }
                 },
                 { data: 'action', name: 'action', bSortable: false },
@@ -209,15 +209,15 @@
         //         { data: 'city_name', name: 'city_name' },
         //         { data: 'project', name: 'project' },
         //         {
-        //            data: 'is_actived', 
-        //            name: 'is_actived', 
+        //            data: 'is_actived',
+        //            name: 'is_actived',
         //            bSortable: false,
         //            mRender: function (data, type, full) {
         //                 var checked = full.is_actived ? 'checked' : '';
         //                 return `<input type="checkbox" data-developer="${full.name}" id="${full.dev_id}" class="status" switch="success" ${checked}><label for="${full.dev_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
         //            },
         //            createdCell:  function (td, cellData, rowData, row, col) {
-        //                 $(td).attr('class', 'status'); 
+        //                 $(td).attr('class', 'status');
         //            }
         //         },
         //         { data: 'action', name: 'action', bSortable: false },
@@ -255,7 +255,7 @@
                 $('#confirm').modal('hide');
             });
         });
-        
+
         $('.cities').select2({
             witdh : '100%',
             allowClear: true,

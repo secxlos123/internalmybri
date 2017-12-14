@@ -40,11 +40,19 @@
                 <div class="form-group {!! $errors->has('project_list') ? 'has-error' : '' !!}" id="project_list">
                     <label class="col-md-4 control-label">Project *:</label>
                     <div class="col-md-8">
-                        {!! Form::select('project_list', [$eformData['kpr']['property_id'] => $eformData['kpr']['property_name']], old('project_list'), [
-                            'class' => 'select2 project_list',
-                            'data-option' => 1,
-                            'data-placeholder' => 'Pilih Project',
-                        ]) !!}
+                        @if($eformData['kpr']['developer_id'] == 1)
+                            {!! Form::select('project_list', ["1" => "TIDAK MENGIKUTI PROJECT"], !empty($eformData) ? $eformData['kpr']['developer_id'] : old('project_list'), [
+                                'class' => 'select2 project_list',
+                                'data-option' => 1,
+                                'data-placeholder' => 'Pilih Project',
+                            ]) !!}
+                        @else
+                            {!! Form::select('project_list', [$eformData['kpr']['property_id'] => $eformData['kpr']['property_name']], old('project_list'), [
+                                'class' => 'select2 project_list',
+                                'data-option' => 1,
+                                'data-placeholder' => 'Pilih Project',
+                            ]) !!}
+                        @endif
                     </div>
                     <input type="hidden" name="project_list_name" id="new_project_list" value="{{$eformData['kpr']['property_name']}}">
                 </div>

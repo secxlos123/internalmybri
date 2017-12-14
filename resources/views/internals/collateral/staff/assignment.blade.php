@@ -37,14 +37,17 @@
                                 @if (\Session::has('error'))
                                  <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                                 @endif
-                                <!-- detail properti -->
-                                @include('internals.collateral.manager._detail-property')
-
-                                <!-- tipe -->
-                                @include('internals.collateral.manager._type-property')
-
-                                <!-- unit -->
-                                @include('internals.collateral.manager._unit-property')
+                                @if($type != 'nonindex')
+                                    <!-- detail properti -->
+                                    @include('internals.collateral.manager._detail-property')
+                                    <!-- tipe -->
+                                    @include('internals.collateral.manager._type-property')
+                                    <!-- unit -->
+                                    @include('internals.collateral.manager._unit-property')
+                                @else
+                                    <!-- detail property -->
+                                    @include('internals.collateral.manager._detail-collateral-nonindex')
+                                @endif
                                 <!-- fkonfirmasi penugasan -->
                                 <div class="panel panel-default">
                                     <div class="panel-body">

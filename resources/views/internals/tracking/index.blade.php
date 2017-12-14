@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table id="datatable" class="table table-bordered">
+                        <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                             <thead class="bg-primary">
                                 <tr>
                                     <th>Nomor Referensi</th>

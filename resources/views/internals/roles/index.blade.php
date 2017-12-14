@@ -27,7 +27,7 @@
                                     <div class="add-button">
                                         <a href="{{url('/roles/create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Role</a>
                                     </div>
-                                    <table id="datatable" class="table table-bordered">
+                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>Nama Role</th>
@@ -42,9 +42,9 @@
                     </div>
                 </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')  
-@include('internals.layouts.delete-modal') 
-@include('internals.roles.detail-modal') 
+@include('internals.layouts.foot')
+@include('internals.layouts.delete-modal')
+@include('internals.roles.detail-modal')
 <script type="text/javascript">
     $(document).ready(function () {
         var table = $('#datatable').dataTable({
@@ -75,7 +75,7 @@
                 { data: 'slug', name: 'slug' },
                 { data: 'action', name: 'action', bSortable: false },
             ],
-        });   
+        });
 
         $('#datatable').on('click','.btn-delete', function(e) {
             $('#destroy').attr('action', $(this).data('url'));
@@ -86,7 +86,7 @@
         $('#datatable').on('click', '.btn-view', function(e) {
             var id = $(this).attr('data-id');
             var name = $(this).attr('data-name');
-            var slug = $(this).attr('data-slug');   
+            var slug = $(this).attr('data-slug');
 
             $.ajax({
                 url: '{{ url("detailRole")}}/'+id,
@@ -109,11 +109,11 @@
                     $('#view-modal').modal('show');
                     $("#view-modal #name").html(name);
                     $("#view-modal #slug").html(slug);
-                }, 
+                },
                 error: function(result){
                     console.log('error');
-                }  
-            });   
+                }
+            });
         });
     });
     TableManageButtons.init();

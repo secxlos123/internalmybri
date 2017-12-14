@@ -78,6 +78,23 @@ class CollateralController extends Controller
     }
 
     /**
+     * Get detail of collateral.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDetailNonIndex($dev_id, $prop_id, $data)
+    {
+        $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn']
+            ])->get();
+
+        return $detailCollateral['contents'];
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -87,8 +104,16 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
         // dd($collateral);
-        return view('internals.collateral.manager.detail', compact('data', 'collateral'));
+        return view('internals.collateral.manager.detail', compact('data', 'collateral', 'type'));
     }
     
     /**
@@ -99,11 +124,18 @@ class CollateralController extends Controller
     public function assignment($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
         // echo json_encode($collateral);die();
+        // $type = ($dev_id == 1 ? 'nonindex' : '');
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
         // dd($collateral);
 
-        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral'));
+        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral', 'type'));
     }
 
     /**
@@ -150,8 +182,17 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
+        // $type = ($dev_id == 1 ? 'nonindex' : '');
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
         // dd($collateral);
-        return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral'));
+        return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral', 'type'));
     }
 
     /**

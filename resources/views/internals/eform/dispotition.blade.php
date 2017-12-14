@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Disposisi Pengajuan</h4>
+                        <h4 class="page-title">{{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} Pengajuan</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dasboard</a>
@@ -18,7 +18,7 @@
                                 <a href="{{route('eform.index')}}">Pengajuan</a>
                             </li>
                             <li class="active">
-                                Disposisi
+                                {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}}
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -34,7 +34,7 @@
                     <div class="card-box">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="m-t-0 header-title"><b>Form Disposisi Pengajuan</b></h5>
+                                <h5 class="m-t-0 header-title"><b>Form {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} Pengajuan</b></h5>
                                 <p class="text-muted m-b-30 font-13">
                                     No. Referensi Pengajuan : {{$ref_number}}
                                 </p>
@@ -384,7 +384,7 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Disposisi Pengajuan</h3>
+                                        <h3 class="panel-title">{{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} Pengajuan</h3>
                                     </div>
                                     <div class="panel-body">
                                         <!-- dispose form -->
@@ -407,7 +407,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-5">Catatan Disposisi * </label>
+                                                            <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * </label>
                                                             <div class="col-md-7">
                                                                 <textarea class="form-control" rows="5"></textarea>
                                                             </div>
@@ -418,7 +418,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group pull-right">
-                                                        <button class="btn btn-orange waves-effect waves-light" type="submit">Disposisi</button>
+                                                        <button class="btn btn-orange waves-effect waves-light" type="submit">{{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}}</button>
                                                     </div>
                                                 </div>
                                             </div>

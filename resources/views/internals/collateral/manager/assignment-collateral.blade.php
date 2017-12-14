@@ -38,15 +38,17 @@
                                 <!-- <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
                                 </p> -->
-
-                                <!-- detail properti -->
-                                @include('internals.collateral.manager._detail-property')
-
-                                <!-- tipe -->
-                                @include('internals.collateral.manager._type-property')
-
-                                <!-- unit -->
-                                @include('internals.collateral.manager._unit-property')
+                                @if($type != 'nonindex')
+                                    <!-- detail properti -->
+                                    @include('internals.collateral.manager._detail-property')
+                                    <!-- tipe -->
+                                    @include('internals.collateral.manager._type-property')
+                                    <!-- unit -->
+                                    @include('internals.collateral.manager._unit-property')
+                                @else
+                                    <!-- detail property -->
+                                    @include('internals.collateral.manager._detail-collateral-nonindex')
+                                @endif
 
                                 <!-- form penugasan -->
                                 <div class="panel panel-default">
@@ -266,6 +268,13 @@
                     cache: true
                 },
             });
+        });
+
+        $('.ao_id').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+
+            $('#ao_name').val(text);
         });
 
         // $('.kanwil').select2({
