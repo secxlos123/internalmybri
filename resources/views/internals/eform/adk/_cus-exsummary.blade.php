@@ -28,13 +28,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">-</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Baru/Suplesi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['baru_atau_perpanjang']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -50,7 +50,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Instansi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['mitra']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -63,13 +63,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Instansi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['npl_instansi']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['npl_unitkerja']}}</p>
                 </div>
             </div>
             <div class="form-group">

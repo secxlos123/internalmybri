@@ -135,7 +135,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Gimmick :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['gimmick']}}</p>
                 </div>
             </div>
             <div class="form-group">

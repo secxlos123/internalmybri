@@ -16,13 +16,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">NPWP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['NPWP_nasabah']}}</p>
+                    <p class="form-control-static">{{$briguna['no_npwp']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">No. dan Tgl. Kenaikan SK Pangkat Terakhir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['SK_KENAIKAN_PANGKAT_TERAKHIR']}}</p>
+                    <p class="form-control-static">{{$briguna['no_dan_tanggal_sk_akhir']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">No. dan Tgl. SK Peningkatan Pegawai Pertama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['SK_PENGANGKATAN_PEGAWAI_PERTAMA']}}</p>
+                    <p class="form-control-static">{{$briguna['no_dan_tanggal_sk_awal']}}</p>
                 </div>
             </div>
             <div class="form-group">

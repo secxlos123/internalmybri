@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Baru/Perpanjangan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['baru_atau_perpanjang']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Program Asuransi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['program_asuransi']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -82,13 +82,19 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['pemrakarsa_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Instansi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['npl_instansi']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Kredit Take Over :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['kredit_take_over']}}</p>
                 </div>
             </div>
         </form>  
@@ -110,7 +116,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Total Eksposure Group Debitur Selain Debitur :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['total_exposure']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -123,12 +129,6 @@
                 <label class="col-md-5 control-label">Pinalty :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$briguna['Penalty']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Kredit Take Over :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
                 </div>
             </div>
             <div class="form-group">
@@ -182,13 +182,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Uker Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['pemrakarsa_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['npl_unitkerja']}}</p>
                 </div>
             </div>
         </form>
