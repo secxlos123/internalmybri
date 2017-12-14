@@ -1,4 +1,4 @@
-<li style="display: none;>
+<li style="display: none;">
     <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
         <i class="mdi mdi-bell"></i>
         <span class="badge up bg-success"> 
