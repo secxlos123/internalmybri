@@ -4,7 +4,7 @@
             <h4 class="m-t-0 header-title bottom20"><b>Step 6 Lain-lain</b></h4>
             <div class="row">
                 <div class="col-md-6">
-                    <form class="form-horizontal" role="form">
+                    <div class="form-horizontal" role="form">
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Jenis Ikatan *:</label>
                             <div class="col-md-8">
@@ -42,16 +42,15 @@
                                 ]) !!}
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Pertukaran Bangunan *:</label>
+                        <label class="col-md-4 control-label">Peruntukan Bangunan *:</label>
                         <div class="col-md-8">
                             {!! Form::select('other[building_exchange]', array("" => "", 
-                                "Akta Pembebanan Hak" => "Akta Pembebanan Hak", 
-                                "Fiducia Bangunan" => "Fiducia Bangunan", 
-                                "Lain-lain" => "Lain-lain"), 
+                                "Disewakan" => "Disewakan", 
+                                "Digunakan" => "Digunakan"), 
                                 old('other[building_exchange]'), [
                                 'class' => 'select2 building_exchange ',
                                 'data-placeholder' => '-- Pilih --'

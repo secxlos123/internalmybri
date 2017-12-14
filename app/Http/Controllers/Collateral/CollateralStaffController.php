@@ -178,7 +178,7 @@ class CollateralStaffController extends Controller
             }else{
                 $category_name = 'Rumah Toko';
             }
-        // dd($collateral['property']['category']);
+        // dd($collateral);
         return view('internals.collateral.staff.lkn-collateral.index', compact('data', 'collateral', 'category_name', 'type'));
     }
 
