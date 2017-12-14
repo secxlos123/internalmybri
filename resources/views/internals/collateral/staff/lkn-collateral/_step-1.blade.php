@@ -12,7 +12,7 @@
                 <div class="form-group m-t-20">
                     <div class="col-md-6">
                         <label class="control-label">Lokasi *</label>
-                        <textarea name="area[location]" id="location" class="form-control" rows="3">{{ $type == 'nonindex' ? $collateral['home_location'] : old('area.location')}}</textarea>
+                        <textarea name="area[location]" id="location" class="form-control" rows="3">{{ $type == 'nonindex' ? $collateral['home_location'] : $collateral['property']['address']}}</textarea>
                     </div>
                     @if ($errors->has('area[location]')) <p class="help-block">{{ $errors->first('area[location]') }}</p> @endif
                     <div class="col-md-3">

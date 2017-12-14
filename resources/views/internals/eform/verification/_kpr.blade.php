@@ -14,8 +14,8 @@
                             @php ( $classKPRType = ($dataCustomer['kpr']['status_property'] != "1" && $dataCustomer['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                             @php ( $classNameDeveloper = ($dataCustomer['kpr']['status_property'] == "1") ? '' : 'hide' )
                             <div class="form-group {!! $errors->has('status_property') ? 'has-error' : '' !!}" id="status_property">
-                                <label class="control-label col-md-4">Jenis KPR *:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-3">Jenis KPR * :</label>
+                                <div class="col-md-9">
                                     @if ($type != 'preview')
                                     {!! Form::select('status_property', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), !empty($dataCustomer) ? $dataCustomer['kpr']['status_property'] : old('status_property'), [
                                         'class' => 'select2 status_property ',
@@ -39,8 +39,8 @@
                             
 
                             <div class="form-group {{ $classNameDeveloper }} {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
-                                <label class="control-label col-md-4">Developer *:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-3">Developer * :</label>
+                                <div class="col-md-9">
                                     @if ($type != 'preview')
                                     {!! Form::select('developer', array($dataCustomer['kpr']['developer_id'] => $dataCustomer['kpr']['developer_name']), !empty($dataCustomer) ? $dataCustomer['kpr']['developer_id'] : old('developer'), [
                                         'class' => 'select2 developers ',
@@ -55,8 +55,8 @@
                             </div>
                             
                             <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
-                                <label class="control-label col-md-4">Jenis Properti *:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-3">Jenis Properti * :</label>
+                                <div class="col-md-9">
                                     @if ($type != 'preview')
                                     {!! Form::select('kpr_type_property', array("" => "", "1" => "Rumah Tapak", "2" => "Rumah Susun/Apartment", "3" => "Rumah Toko"), !empty($dataCustomer) ? $dataCustomer['kpr']['kpr_type_property'] : old('kpr_type_property'), [
                                         'class' => 'select2 kpr_type_properties ',
@@ -73,8 +73,8 @@
                             </div>
 
                             <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
-                                <label class="control-label col-md-4">Nama Proyek *:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-3">Nama Proyek * :</label>
+                                <div class="col-md-9">
                                     @if ($type != 'preview')
                                     {!! Form::select('property', [$dataCustomer['kpr']['property_id'] => $dataCustomer['kpr']['property_name']], old('property'), [
                                         'class' => 'select2 property_name',
@@ -88,8 +88,8 @@
                             </div>
 
                             <div class="form-group {{ $className }} {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
-                                <label class="control-label col-md-4">Tipe Properti *:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-3">Tipe Properti * :</label>
+                                <div class="col-md-9">
                                     @if ($type != 'preview')
                                     {!! Form::select('property_type', [$dataCustomer['kpr']['property_type'] => $dataCustomer['kpr']['property_type_name']], !empty($dataCustomer) ? $dataCustomer['kpr']['property_type'] : old('property_type'), [
                                         'class' => 'select2 property_type',
@@ -102,8 +102,8 @@
                                 </div>
                             </div>
                             <div class="form-group {{ $className }} {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
-                                <label class="control-label col-md-4">Unit Properti *:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-3">Unit Properti * :</label>
+                                <div class="col-md-9">
                                     @if ($type != 'preview')
                                     {!! Form::select('property_item', [$dataCustomer['kpr']['property_item'] => $dataCustomer['kpr']['property_item_name']], !empty($dataCustomer) ? $dataCustomer['kpr']['property_item'] : old('property_item'), [
                                         'class' => 'select2 property_item',
@@ -122,7 +122,7 @@
                     <div class="col-md-6">
                         <div class="form-horizontal" role="form">
                             <div class="form-group price {!! $errors->has('price') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">Harga Rumah *:</label>
+                                <label class="control-label col-md-4">Harga Rumah * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     <div class="input-group">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="form-group building_area {!! $errors->has('building_area') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">Luas Bangunan *:</label>
+                                <label class="control-label col-md-4">Luas Bangunan * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     <div class="input-group">
@@ -152,7 +152,7 @@
                             </div>
 
                             <div class="form-group home_location {!! $errors->has('home_location') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">Lokasi Rumah *:</label>
+                                <label class="control-label col-md-4">Lokasi Rumah * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     <textarea class="form-control required" rows="3" maxlength="255" name="home_location" placeholder="Lokasi Rumah" id="home_location" readonly="">{{$dataCustomer['kpr']['home_location']}}</textarea>
@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                             <div class="form-group year {!! $errors->has('year') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">Jangka Waktu *:</label>
+                                <label class="control-label col-md-4">Jangka Waktu * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     <div class="input-group">
@@ -176,7 +176,7 @@
                                 </div>
                             </div>
                             <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">KPR Aktif ke *:</label>
+                                <label class="control-label col-md-4">KPR Aktif ke * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     {!! Form::select('active_kpr', array("" => "", "1" => "1", "2" => "2", "3" => "> 2"), $dataCustomer['kpr']['active_kpr'], [
@@ -194,7 +194,7 @@
                                 </div>
                             </div>
                             <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">Uang Muka *:</label>
+                                <label class="control-label col-md-4">Uang Muka * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     <div class="input-group">
@@ -218,7 +218,7 @@
                             </div>
 
                             <div class="form-group request_amount {!! $errors->has('request_amount') ? 'has-error' : '' !!}">
-                                <label class="control-label col-md-4">Jumlah Permohonan *:</label>
+                                <label class="control-label col-md-4">Jumlah Permohonan * :</label>
                                 <div class="col-md-8">
                                     @if ($type != 'preview')
                                     <div class="input-group">

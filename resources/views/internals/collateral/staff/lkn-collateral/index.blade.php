@@ -3,6 +3,11 @@
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
+<style>
+    .center-steps .wizard > .steps > ul > li {
+        width: 10%;
+    }
+</style>
 
 <div class="content-page">
     <div class="content">
@@ -61,6 +66,22 @@
                                 <!-- step 6 -->                            
                                 @include('internals.collateral.staff.lkn-collateral._step-6')
 
+                                <h3>&nbsp;</h3>
+                                <!-- step 7 -->                            
+                                @include('internals.collateral.staff.lkn-collateral._step-7')
+
+                                <h3>&nbsp;</h3>
+                                <!-- step 7 -->                            
+                                @include('internals.collateral.staff.lkn-collateral._step-8')
+
+                                <h3>&nbsp;</h3>
+                                <!-- step 7 -->                            
+                                @include('internals.collateral.staff.lkn-collateral._step-9')
+
+                                <h3>&nbsp;</h3>
+                                <!-- step 7 -->                            
+                                @include('internals.collateral.staff.lkn-collateral._step-10')
+
                             </div>
                         </form>
                     </div>
@@ -74,7 +95,7 @@
 @include('internals.layouts.foot')
 @include('internals.collateral.staff.lkn-collateral._modal-detail')
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
+<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {

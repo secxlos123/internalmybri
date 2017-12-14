@@ -12,8 +12,8 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label title ="Take Home Pay Per Bulan" class="col-md-4 control-label">Gaji/Pendapatan * :</label>
-                                        <div class="col-md-8">
+                                        <label title ="Take Home Pay Per Bulan" class="col-md-3 control-label">Gaji/Pendapatan * :</label>
+                                        <div class="col-md-9">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
@@ -26,8 +26,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain :</label>
-                                        <div class="col-md-8">
+                                        <label title ="Rata-Rata Per Bulan" class="col-md-3 control-label">Pendapatan Lain :</label>
+                                        <div class="col-md-9">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
@@ -44,8 +44,8 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-md-5 control-label">Angsuran Pinjaman Lain * :</label>
-                                        <div class="col-md-7">
+                                        <label class="col-md-4 control-label">Angsuran Pinjaman Lain * :</label>
+                                        <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
@@ -58,8 +58,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Anak Dalam Tanggungan" class="col-md-5 control-label">Jumlah Tanggungan :</label>
-                                        <div class="col-md-7">
+                                        <label title ="Anak Dalam Tanggungan" class="col-md-4 control-label">Jumlah Tanggungan :</label>
+                                        <div class="col-md-8">
                                         @if ($type != 'preview')
                                             <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" value="{{$dataCustomer['customer']['dependent_amount']}}">
                                         @else
@@ -134,8 +134,8 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group ">
-                                        <label class="col-md-5 control-label">Angsuran Permohonan :</label>
-                                        <div class="col-md-7">
+                                        <label class="col-md-4 control-label">Angsuran Permohonan :</label>
+                                        <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>

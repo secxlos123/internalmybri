@@ -48,7 +48,10 @@
             <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                 <label class="control-label col-md-5">Jenis Properti :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['kpr']['kpr_type_property']}} </p>
+                    <p class="form-control-static">@if($detail['kpr']['kpr_type_property'] == 1) Rumah Tapak
+                    @elseif($detail['kpr']['kpr_type_property'] == 2)Rumah Susun/Apartment
+                    @elseif($detail['kpr']['kpr_type_property'] == 3)Rumah Toko
+                    @endif </p>
                 </div>
             </div>
 

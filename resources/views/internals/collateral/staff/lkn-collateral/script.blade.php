@@ -414,4 +414,24 @@
       var text = $(this).find("option:selected").text();
       $('#area_collateral_type').val(text);
     })
+
+    $('#appraisal_by').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Lembaga Penilai'){
+          $('#independent').removeAttr('hidden');
+        }else{
+          $('#independent').attr('hidden', true);
+        }
+    })
+
+    $('#certificate_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt').removeAttr('hidden');
+        }else{
+          $('#date_receipt').attr('hidden', true);
+        }
+    })
 </script>
