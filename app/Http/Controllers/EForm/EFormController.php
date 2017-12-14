@@ -50,11 +50,77 @@ class EFormController extends Controller
         $data = $this->getUser();
         // dd(env('APP_ENV'));
         if($data['role'] == 'ao'){
-            return view('internals.eform.index-ao', compact('data'));
+            $form_notif = [];
+            if(@$request->get('ref_number') && @$request->get('ids')){                
+                /*
+                * redirect to eform with id and ref_number
+                */                    
+                $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
+                    ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])->setQuery([
+                        'ref_number' => $request->get('ref_number'),
+                        'ids' => $request->get('ids'),
+                    ])->get();
+                $form_notif = $eforms['contents'];
+                $form_notif['ref_number'] = strtoupper($form_notif['ref_number']);
+                $form_notif['customer_name'] = strtoupper($form_notif['customer_name']);
+                $form_notif['created_at'] = date_format(date_create($form_notif['created_at']),"Y-m-d");
+                // $form_notif['product_type'] = strtoupper($form_notif['product_type']);
+                $form_notif['request_amount'] = 'Rp '.number_format($form_notif['nominal'], 2, ",", ".");
+                $form_notif['created_at'] = $form_notif['created_at'];
+                $form_notif['appointment_date'] = '<p style="font-size: .8em;">Tanggal: '.$form_notif['created_at'].'<br/><br/>Di: <br/>'.$form_notif['address'].'<p>';
+
+                // $verify = $form_notif['customer']['is_verified'];
+                $verify = $form_notif['response_status'] == 'approve' ? true : false;
+                $visit = $form_notif['is_visited'];
+                $status = $form_notif['response_status'];
+                    $text = '-';
+                    if ($status == 'approve') {
+                        $text = 'Telah Disetujui';
+
+                    } else if($status == 'reject') {
+                        $text = 'Belum Disetujui';
+
+                    } else if($status == 'unverified') {
+                        $text = 'Dalam Proses';
+                    }
+
+                $form_notif['respon_statused'] = $text;
+                
+                $form_notif['prescreening_status'] = view('internals.layouts.actions', [
+                  'prescreening_status' => route('getLKN', $form_notif['id']),
+                  'prescreening_result' => $form_notif['prescreening_status'],
+                ])->render();
+
+                $form_notif['action'] = view('internals.layouts.actions', [
+                                                      'verified' => $verify,
+                                                      'visited' => $visit,
+                                                      'response_status' => $status,
+                                                      'verification' => route('getVerification', $form_notif['id']),
+                                                      'approval' => $form_notif['is_approved'],
+                                                      'eform_id' => $form_notif['id'],
+                                                      'preview' => route('getDetail', $form_notif['id']),
+                                                      'lkn' => route('getLKN', $form_notif['id']),
+                                                    ])->render();
+                /*
+                * mark read the notification
+                */
+                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('ids').' ')
+                          ->setHeaders([
+                              'Authorization' => $data['token'],
+                              'pn' => $data['pn'],
+                              'branch_id' => $data['branch']
+                          ])->get();
+                // dd($reads)
+            }
+            
+            return view('internals.eform.index-ao', compact('data','form_notif'));
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){
-                /*
+            if(@$request->get('ref_number') && @$request->get('ids')){                
+               /*
                 * redirect to eform with id and ref_number
                 */                    
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
@@ -80,15 +146,13 @@ class EFormController extends Controller
                 ])->render();
 
                 $form_notif['action'] = view('internals.layouts.actions', [
-
-                    'dispose' => $form_notif['ao_name'],
-                    'submited' => ($form_notif['is_approved'] && $verify),
-                    'dispotition' => $form_notif,
-                    'approve' => $form_notif,
-                    'visited' => $visit,
-                    'status' => $form_notif['status_eform'],
-                ])->render();
-                
+                                                    'dispose' => $form_notif['ao_name'],
+                                                    'submited' => ($form_notif['is_approved'] && $verify),
+                                                    'dispotition' => $form_notif,
+                                                    'approve' => $form_notif,
+                                                    'visited' => $visit,
+                                                    'status' => $form_notif['status_eform'],
+                                                ])->render();
                 /*
                 * mark read the notification
                 */
@@ -98,7 +162,6 @@ class EFormController extends Controller
                               'pn' => $data['pn'],
                               'branch_id' => $data['branch']
                           ])->get();
-
             }
             
             return view('internals.eform.index', compact('data','form_notif'));
@@ -112,6 +175,7 @@ class EFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function getCustomer(Request $request)
     {
         $data = $this->getUser();
@@ -438,7 +502,9 @@ class EFormController extends Controller
         $client = Client::setEndpoint('eforms/'.$id.'/disposition')
                 ->setHeaders([
                     'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'pn' => $data['pn'],
+                    'branch_id' => $data['branch'],
+                    'role' => $data['role'],
                 ])->setBody($dispotition)
                 ->post();
         // dd($client);

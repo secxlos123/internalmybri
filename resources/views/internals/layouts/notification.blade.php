@@ -1,12 +1,8 @@
-<li style="display: none;">
+<li style="display: none;>
     <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
         <i class="mdi mdi-bell"></i>
         <span class="badge up bg-success"> 
-                @if( Session::get('user')['contents']['role'] == 'pinca')
-                    {{ count( notificationsUnread() ) }}
-                @else
-                    0
-                @endif
+            {{ count( notificationsUnread() ) }}
         </span>
     </a>
     <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right dropdown-lg user-list notify-list" >

@@ -138,7 +138,6 @@ if (! function_exists('notificationsUnread')) {
         foreach ($users as $user) {
             $data = $user;
         }
-        // var_dump(substr($data['branch'],-3) );
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
                           ->setHeaders([
@@ -147,7 +146,7 @@ if (! function_exists('notificationsUnread')) {
                               'branch_id' => $data['branch'],
                               'role' => $data['role'],
                           ])->get();
-
+            \Log::info($NotificationDataUnread);
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
             
             session()->put('notificationsUnread', $ArrnotificationUnread);
