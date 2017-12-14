@@ -177,6 +177,12 @@
                     <p class="form-control-static">{{$briguna['definisi']}}</p>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Scoring Mitra :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['scoring_mitra']}}</p>
+                </div>
+            </div>
         </form>
     </div>
 </div>
