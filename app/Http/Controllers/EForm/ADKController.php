@@ -47,9 +47,8 @@ class ADKController extends Controller
     }
 
     public function getApprove($id) {
-        $data     = $this->getUser();
+        $data = $this->getUser();
         // GET DETAIL CUST with Form Data
-        // print_r($id);
         // print_r($data['pn']);
         $formDetail = Client::setEndpoint('eforms/'.$id)
                     ->setHeaders(
@@ -67,7 +66,6 @@ class ADKController extends Controller
                         ])
                     ->setBody(['id' => $id])
                     ->post();
-        
         $briguna = $data_briguna['contents'];
         // dd($briguna);
         $conten = [
@@ -92,7 +90,7 @@ class ADKController extends Controller
         
         // dd($detail);
         // ao harusnya ganti adk
-        if (($data['role'] == 'ao') || ($data['role'] == 'adk')) {
+        if ($data['role'] == 'adk') {
             return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','briguna'));
         } else{
             return view('internals.eform.adk.index', compact('data'));

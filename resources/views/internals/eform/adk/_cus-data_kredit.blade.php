@@ -92,9 +92,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Kredit Take Over :</label>
+                <label class="col-md-5 control-label">Jumlah Pekerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['kredit_take_over']}}</p>
+                    <p class="form-control-static">{{$briguna['jumlah_pekerja']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Jumlah Debitur :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['jumlah_debitur']}}</p>
                 </div>
             </div>
         </form>  
@@ -189,6 +195,12 @@
                 <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$briguna['npl_unitkerja']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Kredit Take Over :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['kredit_take_over']}}</p>
                 </div>
             </div>
         </form>
