@@ -16,13 +16,13 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Plafond Briguna Eksisting :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{number_format($briguna['Plafond_briguna_existing'], 2, ",", ".")}}</p>
+                    <p class="form-control-static">Rp. {{number_format($briguna['Plafond_briguna_existing'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Suku Bunga :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Suku_bunga']}}</p>
+                    <p class="form-control-static">{{$briguna['Suku_bunga']}} % pertahun</p>
                 </div>
             </div>
             <div class="form-group">
@@ -40,14 +40,15 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Pendapatan Profesi :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Pendapatan_profesi']}} % pertahun</p>
+                    <p class="form-control-static">Rp. 
+                        {{number_format($briguna['Pendapatan_profesi'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Maksimum Angsuran Perbulan :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. 
-                        {{number_format($briguna['Maksimum'], 2, ",", ".")}}{{$briguna['Maksimum_angsuran']}}</p>
+                        {{number_format($briguna['Maksimum_angsuran'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -91,20 +92,26 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Angsuran Briguna Eksisting :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">
+                    <p class="form-control-static">Rp. 
                     {{number_format($briguna['Angsuran_briguna_existing'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Jangka Waktu :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Jangka_waktu']}}</p>
+                    <p class="form-control-static">{{$briguna['Jangka_waktu']}} bulan</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Riwayat_pinjaman']}}</p>
+                    <p class="form-control-static">
+                        @if($briguna['Riwayat_pinjaman'] == '0')
+                            Pembayaran angsuran selalu ditepati dan tidak pernah menunggak
+                        @else
+                            Pembayaran bermasalah
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

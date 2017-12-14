@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -56,7 +56,8 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Plafond :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Plafond_usulan']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($briguna['Plafond_usulan'], 2, ",", ".") }}
+                    </p>
                 </div>
             </div>
             <div class="form-group">

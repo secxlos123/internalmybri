@@ -10,13 +10,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Lengkap :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Tempat Lahir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['birth_place']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['birth_place_id']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pendidikan Terakhir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ $detail['customer']['personal']['pendidikan_terakhir'] }}</p>
+                    <p class="form-control-static">{{ $debitur['PENDIDIKAN_TERAKHIR'] }}</p>
                 </div>
             </div>
         </form>
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Kewarganegaraan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['citizenship']}}</p>
+                    <p class="form-control-static">{{$debitur['KEWARGANEGARAAN_NEGARA_ASAL']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -92,13 +92,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Agama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ get_religion($detail['visit_report']['religion']) }}</p>
+                    <p class="form-control-static">belum(-)</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ get_loan_history($detail['visit_report']['loan_history_accounts']) }}</p>
+                    <p class="form-control-static">{{$debitur['APAKAH_PERNAH_PINJAM_DI_BANK_LAIN']}}</p>
                 </div>
             </div>
         </form>

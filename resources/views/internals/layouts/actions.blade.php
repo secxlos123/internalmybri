@@ -59,8 +59,8 @@
 
 @endif
 
-@if (!empty($submited) && $submited == true)
-	<a href="{{route('getApprove', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="Approval-ADK">
+@if (!empty($approve_adk))
+	<a href="{{route('getApprove', $approve_adk['eform_id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="Verifikasi-ADK">
 	    <i class="mdi mdi-eye"></i>
 	</a>
 @endif

@@ -1,4 +1,4 @@
-@section('title','My BRI - Verification')
+@section('title','My BRI - Verifikasi ADK')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -22,13 +22,16 @@
                     @if (\Session::has('success'))
                         <div class="alert alert-success">{{ \Session::get('success') }}</div>
                     @endif
+                    @if (\Session::has('error'))
+                        <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    @endif
                     <div class="card-box">
                         <!-- <div class="add-button"> -->
                             <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                             <!-- <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a> -->
                             <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                         <!-- </div> -->
-                        <div id="filter" class="m-b-15">
+                        <!-- <div id="filter" class="m-b-15">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="card-box">
@@ -102,18 +105,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <table id="datatable" class="table table-bordered">
                             <thead class="bg-primary">
                                 <tr>
-                                    <th>No. Ref Aplikasi</th>
-                                    <th>Nama Nasabah</th>
-                                    <th>Nominal</th>
-                                    <th>Tanggal Pertemuan</th>
-                                    <th>Status Prescreening</th>
-                                    <th>AO</th>
+                                    <th>ID Aplikasi</th>
+                                    <th>Produk</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Nama Debitur</th>
+                                    <th>Plafond</th>
                                     <th>Status</th>
-                                    <th>Aging (hari)</th>
                                     <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>

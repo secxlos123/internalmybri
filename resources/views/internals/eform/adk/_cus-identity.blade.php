@@ -2,6 +2,10 @@
     <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">
+            <p>Foto KTP</p>
+        </div>
+        <div class="card-box">
+            <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">
             <p>NPWP</p>
         </div>
         <div class="card-box">
@@ -17,7 +21,7 @@
             <p>SK Pertama</p>
         </div>
     </div>
-    @if( ($detail['customer']['personal']['status_id']) == 2 )
+    @if( ($detail['customer']['personal']['status']) == 2 )
     <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">

@@ -1,4 +1,4 @@
-@section('title','My BRI - Approval Pengajuan ADK')
+@section('title','My BRI - Verifikasi ADK')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Approval Pengajuan ADK</h4>
+                        <h4 class="page-title">Verifikasi ADK</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li><a href="{{url('/')}}">Dashboard</a></li>
                             <li><a href="{{route('eform.index')}}">E-Form</a></li>
@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <ul class="nav nav-pills m-b-30">
                         <li class="active">
-                            <a href="#exsummary" data-toggle="tab" aria-expanded="true">Data Exsummary</a>
+                            <a href="#exsummary" data-toggle="tab" aria-expanded="true">Data Eksumary</a>
                         </li>
                         <li>
                             <a href="#prescoring" data-toggle="tab" aria-expanded="true">Data Prescoring</a>
@@ -65,7 +65,7 @@
                         <div class="col-md-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Data Exsummary</h3>
+                                    <h3 class="panel-title">Data Eksumary</h3>
                                 </div>
                                 <!-- data exsummary -->
                                 <div class="panel-body">
@@ -132,7 +132,7 @@
                                     @include('internals.eform.adk._cus-personal')
                                     <hr>
 
-                                    @if($detail['customer']['personal']['status_id'] == 2)
+                                    @if($detail['customer']['personal']['status'] == 2)
                                     <!--pasangan-->
                                     @include('internals.eform.adk._cus-couple')
                                     <hr>
@@ -205,17 +205,19 @@
             </div>
 
             <!-- rekomendasi approval -->
-            <form class="form-horizontal" role="form" action="{{route('post_adk', $id)}}" method="POST" id="form1">
+            <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
                 {{ csrf_field() }}
-                <input type="hidden" name="is_approved" id="is_approved">
+                
                 <div class="text-center">
-                    @if ($type != 'preview')
-                        <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
-                        <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
-                    @else
-                        <button type="button" onclick="printPage()" class="btn waves-light waves-effect w-md m-b-20"><i class="fa fa-print"></i> Print</button>
-                    @endif
-                        <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                    <input type="hidden" name="id_aplikasi" value="{{$briguna['id_aplikasi']}}">
+                    <input type="hidden" name="uid" value="{{$briguna['uid']}}">
+                    <h3 class="panel-title">catatan :</h3>
+                    <hr> 
+                    <input type="text" name="catatan" class="form-control">
+                    <hr>
+                    <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                    <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Verifikasi</button>
+                    <!-- <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button> -->
                 </div>
             </form>
         </div>
@@ -237,12 +239,12 @@
         HoldOn.close();
     })
 
-    $('#btn-reject').on('click', function(){
+    /*$('#btn-reject').on('click', function(){
         $('#is_approved').attr('value', false);
         HoldOn.open(options);
         $('#form1').submit();
         HoldOn.close();
-    })
+    })*/
 
     $('#form1').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;

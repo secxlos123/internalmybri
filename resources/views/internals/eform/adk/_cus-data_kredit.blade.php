@@ -22,13 +22,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Baru/Perpanjangan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                    <p class="form-control-static">belum(-)</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Biaya Administrasi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Biaya_administrasi']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($briguna['Biaya_administrasi'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -40,7 +40,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pengadilan Terdekat :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Pengadilan_terdekat']}} % pertahun</p>
+                    <p class="form-control-static">{{$briguna['Pengadilan_terdekat']}}</p>
                 </div>
             </div>
             <div class="form-group">
