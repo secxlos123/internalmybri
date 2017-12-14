@@ -158,6 +158,7 @@
         /*ADK*/
         Route::resource('adk', 'EForm\ADKController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
+        Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
 
 
         /* Pihak Ke -3 (Third Party) */

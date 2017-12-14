@@ -60,10 +60,16 @@
 @endif
 
 @if (!empty($submited) && $submited == true)
+	<a href="{{route('getApprove', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="Approval-ADK">
+	    <i class="mdi mdi-eye"></i>
+	</a>
+@endif
+
+@if (!empty($submited) && $submited == true)
 	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Proses CLF
 	</span>
-	<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="View">
+	<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="Approval">
 	    <i class="mdi mdi-eye"></i>
 	</a>
 @endif

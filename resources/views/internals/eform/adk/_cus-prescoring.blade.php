@@ -2,69 +2,74 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">Tanggal Perkiraan Pensiun :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Tanggal Perkiraan Pensiun :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Tgl_perkiraan_pensiun']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Briguna Profesi :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
+                <label class="col-md-6 control-label">Briguna Profesi :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($briguna['Briguna_profesi'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Plafond Briguna Eksisting :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Plafond Briguna Eksisting :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{number_format($briguna['Plafond_briguna_existing'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Suku Bunga :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Suku Bunga :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Suku_bunga']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Memiliki Rekening Simpanan BRI :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Memiliki Rekening Simpanan BRI :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Rek_simpanan_bri']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Penguasaan CashFlow:</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Penguasaan CashFlow :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Penguasaan_cashflow']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Pendapatan Profesi :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}} % pertahun</p>
+                <label class="col-md-6 control-label">Pendapatan Profesi :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Pendapatan_profesi']}} % pertahun</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Maksimum Angsuran Perbulan:</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Maksimum Angsuran Perbulan :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. 
+                        {{number_format($briguna['Maksimum'], 2, ",", ".")}}{{$briguna['Maksimum_angsuran']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Maksimum Plafond:</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Maksimum Plafond :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp.
+                        {{number_format($briguna['maksimum_plafond'], 2, ",", ".")}}
+                    </p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Baki Debet:</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Baki Debet :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Baki_debet']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Angsuran Sesuai Plafond Kredit yang di Usulkan:</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Angsuran Sesuai Plafond Kredit yang di Usulkan :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. 
+                        {{number_format($briguna['angsuran_usulan'], 2, ",", ".")}}
+                    </p>
                 </div>
             </div>
         </form>  
@@ -72,89 +77,99 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">Briguna dengan Bunga :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_relation']}}</p>
+                <label class="col-md-6 control-label">Briguna dengan Bunga :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Sifat_suku_bunga']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Potongan(Perbulan) :</label>
-                <div class="col-md-7">
+                <label class="col-md-6 control-label">Potongan(Perbulan) :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($briguna['Potongan_per_bulan'], 2, ",", ".") }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Angsuran Briguna Eksisting :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                    {{number_format($briguna['Angsuran_briguna_existing'], 2, ",", ".")}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Jangka Waktu :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Jangka_waktu']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['Riwayat_pinjaman']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Status Payroll :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">
+                    @if($briguna['Payroll'] == '1')
+                        Payroll Bank BRI
+                    @else
+                        Payroll Non BRI
+                    @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Gaji Bersih(Perbulan) :</label>
+                <div class="col-md-6">
                     <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Angsuran Briguna Eksisting :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_relation']}}</p>
+                <label class="col-md-6 control-label">Gimmick :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">belum(-)</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Jangka Waktu :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_relation']}}</p>
+                <label class="col-md-6 control-label">Jumlah Permohonan Kredit :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($briguna['request_amount'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_relation']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Status Payroll :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Gaji Bersih(Perbulan) :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Gimmick :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Jumlah Permohonan Kredit :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Jumlah Plafond Kredit Yang Diusulkan :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['contact']['emergency_name']}}</p>
+                <label class="col-md-6 control-label">Jumlah Plafond Kredit Yang Diusulkan :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($briguna['Plafond_usulan'], 2, ",", ".") }}</p>
                 </div>
             </div>
         </form>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
         <form class="form-horizontal" role="form">
-            Hasil CRS
-            <table>
-                <tr>
-                    <td>Skor Penilaian Risiko Kredit</td>
-                    <td>:</td>
-                    <td>{{$detail['customer']['contact']['emergency_relation']}}</td>
-                </tr>
-                <tr>
-                    <td>Grade</td>
-                    <td>:</td>
-                    <td>{{$detail['customer']['contact']['emergency_relation']}}</td>
-                </tr>
-                <tr>
-                    <td>Definisi</td>
-                    <td>:</td>
-                    <td>{{$detail['customer']['contact']['emergency_relation']}}</td>
-                </tr>
-            </table>
+            <div class="form-group">
+                <h3 align="center">Hasil CRS</h3>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Skor Penilaian Risiko Kredit :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['score']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Grade :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['grade']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Definisi :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['definisi']}}</p>
+                </div>
+            </div>
         </form>
     </div>
 </div>
