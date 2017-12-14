@@ -144,26 +144,26 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                @Else
-                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-                                        <thead class="bg-primary">
-                                            <tr>
-                                                <th>No. Ref Aplikasi</th>
-                                                <th>Nama Nasabah</th>
-                                                <th>Nominal</th>
-                                                <th>Tanggal Pertemuan</th>
-                                                <th>KC BRI Terdekat</th>
-                                                <th>Status Prescreening</th>
-                                                <th>id</th>
-                                                <th>AO</th>
-                                                <th>Status Pengajuan</th>
-                                                <th>Umur Pengajuan</th>
-                                                <th style="width: 100px">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                @EndIf
+                            @Else
+                                <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
+                                    <thead class="bg-primary">
+                                        <tr>
+                                            <th>No. Ref Aplikasi</th>
+                                            <th>Nama Nasabah</th>
+                                            <th>Nominal</th>
+                                            <th>Tanggal Pertemuan</th>
+                                            <th>KC BRI Terdekat</th>
+                                            <th>Status Prescreening</th>
+                                            <th>id</th>
+                                            <th>AO</th>
+                                            <th>Status Pengajuan</th>
+                                            <th>Umur Pengajuan</th>
+                                            <th style="width: 100px">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            @EndIf
                         </div>
                     </div>
                 </div>
