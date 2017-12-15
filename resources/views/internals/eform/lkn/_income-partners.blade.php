@@ -19,13 +19,13 @@
                     <div class="col-md-8">
                         <select class="form-control" name="source_income" id="source_income">
                             <option selected="" disabled="">-- Pilih --</option>
-                            <option value="single" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : 'selected' }}>Single Income</option>
-                            <option value="joint" {{ $eformData['customer']['financial']['salary_couple'] > 0 ? 'selected' : '' }}>Join Income</option>
+                            <option value="single" {{ $eformData['customer']['financial']['status_finance'] != 'Join Income' || $eformData['customer']['personal']['status_id'] != 2 ? 'selected' : '' }}>Single Income</option>
+                            <option value="joint" {{ $eformData['customer']['financial']['status_finance'] == 'Join Income' && $eformData['customer']['personal']['status_id'] == 2 ? 'selected' : '' }}>Join Income</option>
                         </select>
                         @if ($errors->has('source_income')) <p class="help-block">{{ $errors->first('source_income') }}</p> @endif
                     </div>
                 </div>
-                <div class="form-group" id="income_partner" style="{{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : "display: none;" }}">
+                <div class="form-group" id="income_partner" style="{{ $eformData['customer']['financial']['status_finance'] == 'Join Income' && $eformData['customer']['personal']['status_id'] == 2 ? '' : "display: none;" }}">
                     <label class="col-md-4 control-label">Penghasilan per-Bulan *:</label>
                     <div class="col-md-8">
                         <div class="input-group">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group" id="income_other" style="{{ $eformData['customer']['financial']['salary_couple'] > 0 ? '' : "display: none;" }}">
+                <div class="form-group" id="income_other" style="{{ $eformData['customer']['financial']['status_finance'] == 'Join Income' && $eformData['customer']['personal']['status_id'] == 2 ? '' : "display: none;" }}">
                     <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                     <div class="col-md-8">
                         <div class="input-group">

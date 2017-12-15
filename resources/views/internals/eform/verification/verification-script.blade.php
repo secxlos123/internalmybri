@@ -22,8 +22,10 @@
         $('#join_check').on('change', function() {
             if(this.checked){
                 $('#couple_financial').show();
+                $('#join_val').val('join_income');
             }else{
                 $('#couple_financial').hide();
+                $('#join_val').val('single_income');
             }
         });
            // console.log($('#status').val());
@@ -45,10 +47,12 @@
                 $('#marrital_certificate').show();
                 $('#couple_data').show();
                 $('#join_income').show();
+                // $('#couple_financial').show();
             }else if(this.value == 3){
                 $('#separate_certificate').show();
                 $('#couple_data').hide();
                 $('#join_income').hide();
+                $('#couple_financial').hide();
             }else{
                 hideCouple();
             }
