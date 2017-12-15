@@ -22,7 +22,7 @@
                                 <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
 
                             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
-                                <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Rekomendasi & Disposisi </span> </a>
+                                <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
 
                             @elseif(($data['role']=='staff'))
                                 <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Aplikasi </span> </a>
