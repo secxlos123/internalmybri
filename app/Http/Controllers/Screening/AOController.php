@@ -188,7 +188,7 @@ class AOController extends Controller
 			$form['product_type'] = strtoupper($form['product_type']);
             $form['ref_number'] = strtoupper($form['ref_number']);
             $form['nik'] = strtoupper($form['nik']);
-            $form['customer_name'] = strtoupper($form['customer']['personal']['first_name']).strtoupper($form['customer']['personal']['last_name']);
+            $form['customer_name'] = strtoupper($form['customer']['personal']['first_name']).' '.strtoupper($form['customer']['personal']['last_name']);
               $form['birth_date'] = $form['customer']['personal']['birth_date'];
             $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
             $form['request_amount'] = $form['nominal'];
