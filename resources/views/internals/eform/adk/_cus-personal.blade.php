@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Lengkap :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pendidikan Terakhir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ $detail['customer']['personal']['pendidikan_terakhir'] }}</p>
+                    <p class="form-control-static">{{ $debitur['PENDIDIKAN_TERAKHIR'] }}</p>
                 </div>
             </div>
         </form>
@@ -56,13 +56,25 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Jenis Kelamin :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['gender']}}</p>
+                    <p class="form-control-static">
+                    @if($detail['customer']['personal']['gender'] == 'L' || $detail['customer']['personal']['gender'] == 'l')
+                        Laki - Laki
+                    @else
+                        Perempuan
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Kewarganegaraan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['citizenship']}}</p>
+                    <p class="form-control-static">
+                    @if($debitur['KEWARGANEGARAAN_NEGARA_ASAL'] == 'ID')
+                        Indonesia
+                    @else
+                        {{$debitur['KEWARGANEGARAAN_NEGARA_ASAL']}}
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -92,13 +104,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Agama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ get_religion($detail['visit_report']['religion']) }}</p>
+                    <p class="form-control-static">{{$briguna['agama']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ get_loan_history($detail['visit_report']['loan_history_accounts']) }}</p>
+                    <p class="form-control-static">{{$debitur['APAKAH_PERNAH_PINJAM_DI_BANK_LAIN']}}</p>
                 </div>
             </div>
         </form>

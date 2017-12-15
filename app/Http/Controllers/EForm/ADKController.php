@@ -41,25 +41,15 @@ class ADKController extends Controller
         $data     = $this->getUser();
         // print_r($data);exit();
         // hanya adk yg bisa melakukan fungsi ini
-        if ($data['role'] == 'adk' || $data['role'] == 'ao') {
+        if ($data['role'] == 'adk') {
             return view('internals.eform.adk.index', compact('data'));
         }
     }
 
     public function getApprove($id) {
-        $data     = $this->getUser();
-        $loginLas = Client::setEndpoint('api_las/index')
-                ->setHeaders(
-                    [ 'Authorization' => $data['token'],
-                      'pn' => $data['pn']
-                    ])
-                ->setBody([
-                    'requestMethod' => 'inquiryUserLAS',
-                    'requestData'   => $data['pn']
-                ])
-                ->post('form_params');
-        // print_r($loginLas);exit();
-         /* GET Form Data */
+        $data = $this->getUser();
+        // GET DETAIL CUST with Form Data
+        // print_r($data['pn']);
         $formDetail = Client::setEndpoint('eforms/'.$id)
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
@@ -68,7 +58,7 @@ class ADKController extends Controller
                     ->get();
                     // dd($formDetail);
         $detail = $formDetail['contents'];
-        // print_r($detail['nik']);
+        // dd($detail);
         $data_briguna = Client::setEndpoint('api_las/briguna')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
@@ -76,15 +66,16 @@ class ADKController extends Controller
                         ])
                     ->setBody(['id' => $id])
                     ->post();
-        // dd($briguna);
         $briguna = $data_briguna['contents'];
-        /*$conten = [
-            'nik'           => !isset($detail['nik']) ? '' : $detail['nik'],
-            'tp_produk'     => '1',
-            'uid_pemrakarsa'=> '00509'
+        // dd($briguna);
+        $conten = [
+            'nik'           => $briguna['nik'],
+            'tp_produk'     => $briguna['tp_produk'],
+            'uid_pemrakarsa'=> $briguna['uid_pemrakarsa']
         ];
+
         // GET Form Data Debitur
-        $debitur = Client::setEndpoint('api_las/index')
+        $data_debitur = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
@@ -93,49 +84,34 @@ class ADKController extends Controller
                         'requestMethod' => 'inquiryHistoryDebiturPerorangan',
                         'requestData'   => $conten
                     ])
-                    ->post();*/
+                    ->post();
+                    // print_r($data_debitur);exit();
+        if ($data_debitur['code'] == '01') {
+            $debitur = $data_debitur['contents']['data'][0];
+        }
         
-        // dd($formDetail);
-        // GET DETAIL CUST
-        /*$customerData = Client::setEndpoint('customer/'.$detail['user_id'])
-                        ->setHeaders([
-                            'Authorization' => $data['token'],
-                            'pn' => $data['pn']
-                        ])
-                        ->get();
-        // print_r($customerData);exit();
+        // dd($debitur);
         
-        $customer = $customerData['contents'];*/
         // dd($detail);
-        $type = 'fill';
         // ao harusnya ganti adk
-        if (($data['role'] == 'ao') || ($data['role'] == 'adk') || ($data['role'] == 'pinca')) {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','product','customer','id','type','briguna'));
+        if ($data['role'] == 'adk') {
+            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','briguna'));
         } else{
-            return view('internals.eform.create', compact('data'));
+            return view('internals.eform.adk.index', compact('data'));
         }
     }
 
     public function postApprove(Request $request) {
-        $data     = $this->getUser();
-        $loginLas = Client::setEndpoint('api_las/index')
-                ->setHeaders(
-                    [ 'Authorization' => $data['token'],
-                      'pn' => $data['pn']
-                    ])
-                ->setBody([
-                    'requestMethod' => 'inquiryUserLAS',
-                    'requestData'   => $data['pn']
-                ])
-                ->post('form_params');
-
+        $data = $this->getUser();
+        // print_r($request->all());exit();
+        $response = $request->all();
         $conten_putusan = [
-            "id_aplikasi" => $request['id_aplikasi'],
-            "uid"         => $uid,
-            "flag_putusan"=> $request['flag_putusan'],
-            "catatan"     => $request['catatan']
+            "id_aplikasi" => $response['id_aplikasi'],
+            "uid"         => $response['uid'],
+            "flag_putusan"=> '7',
+            "catatan"     => $response['catatan']
         ];
-
+        // print_r($conten_putusan);exit();
         $putusan = Client::setEndpoint('api_las/index')
                 ->setHeaders(
                     [ 'Authorization' => $data['token'],
@@ -146,57 +122,74 @@ class ADKController extends Controller
                     'requestData'   => $conten_putusan
                 ])
                 ->post('form_params');
-        // ao harusnya ganti adk
-        return view('internals.eform.adk.index', compact('data'));
+
+        if ($putusan['statusCode'] == '01') {
+            \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
+            return redirect()->route('adk.index');
+        } else {
+            \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+            return redirect()->route('adk.index');
+        }
     }
 
     public function datatables(Request $request) {
-        // print_r($request->input());exit();
-        $sort = $request->input('order.0');
         $data = $this->getUser();
-        $eforms = Client::setEndpoint('eforms')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn'            => $data['pn']
-                ])->setQuery([
-                    'limit'         => $request->input('length'),
-                    'search'        => $request->input('search.value'),
-                    'sort'          => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'page'          => (int) $request->input('page') + 1,
-                    'start_date'    => $request->input('start_date'),
-                    'end_date'      => $request->input('end_date'),
-                    'status'        => $request->input('status'),
-                    'branch_id'     => $data['branch'],
-                    'ref_number'    => $request->input('ref_number'),
-                    'customer_name' => $request->input('customer_name'),
-                    'prescreening'  => $request->input('prescreening'),
-                    'product'       => $request->input('product')
-                ])->get();
-
-        $loginLas = Client::setEndpoint('api_las/index')
-                ->setHeaders(
-                    [ 'Authorization' => $data['token'],
-                      'pn' => $data['pn']
-                    ])
-                ->setBody([
-                    'requestMethod' => 'inquiryUserLAS',
-                    'requestData'   => $data['pn']
-                ])
-                ->post('form_params');
-        // masih progress
-        // get data inquiry putusan untuk diputus Pemutus
-        $debitur = Client::setEndpoint('api_las/index')
+        // print_r($data);exit();
+        $customer = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn'            => $data['pn']
                 ])->setBody([
-                    'requestMethod' => 'inquiryListVerputADK'
-                ])->post('form_params');
-        if ($debitur['code'] == '01') {
-            \Log::info("masuk");
+                    'requestMethod' => 'eformBriguna'
+                ])->post();
+        
+        if (!empty($customer)) {
+            $debitur = Client::setEndpoint('api_las/index')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn'            => $data['pn']
+                ])->setBody([
+                    'requestMethod' => 'inquiryListVerputADK',
+                    'requestData'   => $data['branch']
+                ])->post();
+
+            // print_r($debitur);exit();
+            if ($debitur['code'] == '01') {
+                \Log::info("masuk");
+                $listVerADK = $debitur['contents']['data'];
+                $form = array();
+                foreach ($customer as $index => $value) {
+                    // print_r($value);exit();
+                    foreach ($listVerADK as $key => $form) {
+                        // print_r($debitur);
+                        // print_r($form);exit();
+                        if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
+                            $form['eform_id'] = $value['eform_id'];
+                            $form['request_amount'] = 'Rp '.number_format($form['plafond'], 2, ",", ".");
+                            if ($form['fid_tp_produk'] == '1') {
+                                $form['fid_tp_produk'] = 'Briguna Karya';
+                            } else {
+                                $form['fid_tp_produk'] = 'Lainnya';
+                            }
+                            $form['action'] = view('internals.layouts.actions', [
+                                'approve_adk' => $form
+                            ])->render();
+                            $eforms['contents']['data'][$key] = $form;
+                            $count = count($form);
+                        }
+                    }
+                }
+
+                $eforms['contents']['total'] = $count;
+                $eforms['contents']['draw'] = $request->input('draw');
+                $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
+                $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+                return response()->json($eforms['contents']);
+            }
         }
-        // print_r($debitur);exit();
-        foreach ($eforms['contents']['data'] as $key => $form) {
+        
+        // print_r($eforms);exit();
+        /*foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name']  = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
@@ -222,12 +215,21 @@ class ADKController extends Controller
                 // 'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
-        }
-        // print_r($eforms);exit();
+        }*/
+        
         $eforms['contents']['draw'] = $request->input('draw');
-        $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-        $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-
+        $eforms['contents']['recordsTotal'] = '0';
+        $eforms['contents']['recordsFiltered'] = '0';
+        $eforms['contents']['data'][] = [
+            'id_aplikasi'   => '-',
+            'fid_tp_produk' => '-',
+            'nama_pegawai'  => '-',
+            'namadeb'       => '-',
+            'request_amount'=> '-',
+            'STATUS'        => '-',
+            'action'        => '-'
+        ];
+        // print_r($eforms);exit();
         return response()->json($eforms['contents']);
     }
 }

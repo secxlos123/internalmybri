@@ -59,8 +59,8 @@
 
 @endif
 
-@if (!empty($submited) && $submited == true)
-	<a href="{{route('getApprove', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="Approval-ADK">
+@if (!empty($approve_adk))
+	<a href="{{route('getApprove', $approve_adk['eform_id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="View" title="Verifikasi-ADK">
 	    <i class="mdi mdi-eye"></i>
 	</a>
 @endif
@@ -100,19 +100,18 @@
 @if (isset($prescreening_status))
 	<a href="javascript:void(0);" id="{{ ( $prescreening_result == 'Hijau' || $prescreening_result == 'Kuning' || $prescreening_result == 'Merah' ) ? 'btn-prescreening' : '' }}">
 		@if( $prescreening_result == 'Hijau' )
-			<p class="text-success">{{ $prescreening_result }}</p>
-
+			<span class="btn btn-success col-md-6">{{ $prescreening_result }}</span>
+		</a><small class="col-md-6">(klik disini)</small>
 		@elseif( $prescreening_result == 'Kuning' )
-			<p class="text-warning">{{ $prescreening_result }}</p>
-
+			<span class="btn btn-warning col-md-6">{{ $prescreening_result }}</span>
+		</a><small class="col-md-6">(klik disini)</small>
 		@elseif( $prescreening_result == 'Merah' )
-			<p class="text-danger">{{ $prescreening_result }}</p>
-
+			<span class="btn btn-danger col-md-6">{{ $prescreening_result }}</span>
+		</a><small class="col-md-6">(klik disini)</small>
 		@else
 			<p>{{ $prescreening_result }}</p>
-
+		</a>
 		@endif
-	</a>
 @endif
 
 @if ((isset($dispose_collateral)) && ($status == "baru"))

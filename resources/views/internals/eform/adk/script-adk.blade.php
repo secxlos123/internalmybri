@@ -18,9 +18,10 @@
                 $('#from').datepicker('setEndDate', maxDate);
         });
 
+        reloadData1();
     });
 
-    var table1 = $('#datatable').DataTable({
+    /*var table1 = $('#datatable').DataTable({
             searching: false,
             order : [[3, 'asc']],
             "language": {
@@ -31,14 +32,14 @@
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
         reloadData1($('#from').val(), $('#to').val(), $('#status').val());
-    })
+    })*/
 
-    function reloadData1(from, to, status)
+    function reloadData1()
     {
         table1 = $('#datatable').DataTable({
-            searching : false,
-            processing : true,
-            serverSide : true,
+            searching : true,
+            processing : false,
+            serverSide : false,
             order : [[3, 'asc']],
             lengthMenu: [
                 [ 10, 25, 50, -1 ],
@@ -49,43 +50,22 @@
             },
             ajax : {
                 url : '/datatables/adk-list',
-                data : function(d, settings){
-                    var api = new $.fn.dataTable.Api(settings);
+                // data : function(d, settings){
+                //     var api = new $.fn.dataTable.Api(settings);
 
-                    d.page = Math.min(
-                        Math.max(0, Math.round(d.start / api.page.len())),
-                        api.page.info().pages
-                    );
-
-                    d.start_date = $('#from').val();
-                    d.end_date = $('#to').val();
-                    d.status = $('#status').val();
-                    d.ref_number = $('#ref_number').val();
-                    d.customer_name = $('#customer_name').val();
-                    d.prescreening = $('#prescreening_filter').val();
-                    d.product = $('#product_filter').val();
-                }
+                //     d.page = Math.min(
+                //         Math.max(0, Math.round(d.start / api.page.len())),
+                //         api.page.info().pages
+                //     );
+                // }
             },
             aoColumns : [
-                {data: 'ref_number', name: 'ref_number', bSortable: false},
-                {data: 'customer_name', name: 'customer_name', bSortable: false},
-                {data: 'request_amount', name: 'request_amount', bSortable: false},
-                {data: 'appointment_date', name: 'appointment_date' },
-                {data: 'prescreening_status', name: 'prescreening_status', bSortable: false  },
-                {data: 'response_status', name: 'response_status', bSortable: false, mRender: function (data, type, full) {
-                        text = '-';
-                        if (full.response_status == 'approve') {
-                            text = 'Telah Disetujui';
-                        } else if(full.response_status == 'reject') {
-                            text = 'Belum Disetujui';
-                        } else if(full.response_status == 'unverified') {
-                            text = 'Dalam Proses';
-                        }
-                        return text;
-                    }
-                },
-                {data: 'status', name: 'created_at', bSortable: false },
-                {data: 'aging', name: 'aging' },
+                {data: 'id_aplikasi', name: 'id_aplikasi', bSortable: true},
+                {data: 'fid_tp_produk', name: 'fid_tp_produk', bSortable: true},
+                {data: 'nama_pegawai', name: 'nama_pegawai', bSortable: true},
+                {data: 'namadeb', name: 'namadeb', bSortable: true},
+                {data: 'request_amount', name: 'request_amount', bSortable: true},
+                {data: 'STATUS', name: 'STATUS', bSortable: true },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
       });

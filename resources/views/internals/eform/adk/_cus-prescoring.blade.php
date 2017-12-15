@@ -16,38 +16,53 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Plafond Briguna Eksisting :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{number_format($briguna['Plafond_briguna_existing'], 2, ",", ".")}}</p>
+                    <p class="form-control-static">Rp. {{number_format($briguna['Plafond_briguna_existing'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Suku Bunga :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Suku_bunga']}}</p>
+                    <p class="form-control-static">{{$briguna['Suku_bunga']}} % pertahun</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Memiliki Rekening Simpanan BRI :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Rek_simpanan_bri']}}</p>
+                    <p class="form-control-static">
+                    @if($briguna['Rek_simpanan_bri'] == '1')
+                        Ya
+                    @else
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Penguasaan CashFlow :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Penguasaan_cashflow']}}</p>
+                    <p class="form-control-static">
+                    @if($briguna['Penguasaan_cashflow'] == '0')
+                        Pembayaran gaji dilakukan sendiri
+                    @elseif($briguna['Penguasaan_cashflow'] == '1')
+                        Pembayaran gaji dilakukan melalui bendahara
+                    @else
+                        Debet rekening melalui BRI
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Pendapatan Profesi :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Pendapatan_profesi']}} % pertahun</p>
+                    <p class="form-control-static">Rp. 
+                        {{number_format($briguna['Pendapatan_profesi'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Maksimum Angsuran Perbulan :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. 
-                        {{number_format($briguna['Maksimum'], 2, ",", ".")}}{{$briguna['Maksimum_angsuran']}}</p>
+                        {{number_format($briguna['Maksimum_angsuran'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -91,20 +106,30 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Angsuran Briguna Eksisting :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">
+                    <p class="form-control-static">Rp. 
                     {{number_format($briguna['Angsuran_briguna_existing'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Jangka Waktu :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Jangka_waktu']}}</p>
+                    <p class="form-control-static">{{$briguna['Jangka_waktu']}} bulan</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Riwayat Kepemilikan Rekening Pinjaman :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Riwayat_pinjaman']}}</p>
+                    <p class="form-control-static">
+                        @if($briguna['Riwayat_pinjaman'] == '0')
+                            Pembayaran angsuran selalu ditepati dan tidak pernah menunggak
+                        @elseif($briguna['Riwayat_pinjaman'] == '1')
+                            Debitur Baru
+                        @elseif($briguna['Riwayat_pinjaman'] == '2')
+                            Pernah menunggak namun tunggakan angsuran sudah dilunasi
+                        @else
+                            Masih ada tunggakan
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -128,7 +153,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Gimmick :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['gimmick']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -168,6 +193,12 @@
                 <label class="col-md-6 control-label">Definisi :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">{{$briguna['definisi']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Scoring Mitra :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$briguna['scoring_mitra']}}</p>
                 </div>
             </div>
         </form>

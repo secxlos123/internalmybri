@@ -9,8 +9,8 @@
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group ">
-                                <label class="col-md-4 control-label">Nama * :</label>
-                                <div class="col-md-8">
+                                <label class="col-md-3 control-label">Nama * :</label>
+                                <div class="col-md-9">
                                 @if ($type != 'preview')
                                     <input type="text" class="form-control" name="emergency_name" value="{{$dataCustomer['customer']['emergency_name']}}" maxlength="50">
                                 @else
@@ -20,8 +20,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">No. Handphone * :</label>
-                                <div class="col-md-8">
+                                <label class="col-md-3 control-label">No. Handphone * :</label>
+                                <div class="col-md-9">
                                 @if ($type != 'preview')
                                     <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{$dataCustomer['customer']['emergency_contact']}}" maxlength="12">
                                 @else

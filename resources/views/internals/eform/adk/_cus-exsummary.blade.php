@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -28,13 +28,19 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['scoring_mitra']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Baru/Suplesi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">
+                    @if($briguna['baru_atau_perpanjang'] == '0')
+                        Kredit Baru
+                    @else
+                        Kredit Suplesi / Perpanjangan
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -50,25 +56,26 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Instansi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['mitra']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Plafond :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Plafond_usulan']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($briguna['Plafond_usulan'], 2, ",", ".") }}
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Instansi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['npl_instansi']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">belum(-)</p>
+                    <p class="form-control-static">{{$briguna['npl_unitkerja']}}</p>
                 </div>
             </div>
             <div class="form-group">

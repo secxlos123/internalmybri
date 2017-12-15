@@ -12,8 +12,8 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label title ="Take Home Pay Per Bulan" class="col-md-4 control-label">Gaji/Pendapatan * :</label>
-                                        <div class="col-md-8">
+                                        <label title ="Take Home Pay Per Bulan" class="col-md-3 control-label">Gaji/Pendapatan * :</label>
+                                        <div class="col-md-9">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
@@ -26,8 +26,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Rata-Rata Per Bulan" class="col-md-4 control-label">Pendapatan Lain :</label>
-                                        <div class="col-md-8">
+                                        <label title ="Rata-Rata Per Bulan" class="col-md-3 control-label">Pendapatan Lain :</label>
+                                        <div class="col-md-9">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
@@ -44,8 +44,8 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-md-5 control-label">Angsuran Pinjaman Lain * :</label>
-                                        <div class="col-md-7">
+                                        <label class="col-md-4 control-label">Angsuran Pinjaman Lain * :</label>
+                                        <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
@@ -58,8 +58,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Anak Dalam Tanggungan" class="col-md-5 control-label">Jumlah Tanggungan :</label>
-                                        <div class="col-md-7">
+                                        <label title ="Anak Dalam Tanggungan" class="col-md-4 control-label">Jumlah Tanggungan :</label>
+                                        <div class="col-md-8">
                                         @if ($type != 'preview')
                                             <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" value="{{$dataCustomer['customer']['dependent_amount']}}">
                                         @else
@@ -78,8 +78,9 @@
             <div class="col-md-7" id="join_income">
                 @if ($type != 'preview')
                     <div class="checkbox checkbox-single checkbox-primary">
-                        <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
+                        <input type="checkbox" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
                         <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
+                        <input type="hidden" name="join_income" id="join_val">
                     @else
                     <div>
                         <label class="header-title custom-title-2" for="join_check"><b>
@@ -94,7 +95,7 @@
             </div>
 
             <!--Pasangan-->
-            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0) style="display:block;" @else style="display:none;" @endif >
+            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0 && ($dataCustomer['customer']['status']) == 2) style="display:block;" @else style="display:none;" @endif >
                 <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                     <div class="panel-body">
@@ -134,8 +135,8 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group ">
-                                        <label class="col-md-5 control-label">Angsuran Permohonan :</label>
-                                        <div class="col-md-7">
+                                        <label class="col-md-4 control-label">Angsuran Permohonan :</label>
+                                        <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>

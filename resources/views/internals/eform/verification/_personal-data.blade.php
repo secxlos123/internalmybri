@@ -147,8 +147,8 @@
                     <div class="col-md-6">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-md-5 control-label">Jenis Kelamin * :</label>
-                                <div class="col-md-7">
+                                <label class="col-md-4 control-label">Jenis Kelamin * :</label>
+                                <div class="col-md-8">
                                 @if ($type != 'preview')
                                     {!! Form::select('gender', array("" => "", "L" => "Laki-laki", "P" => "Perempuan"), !empty($dataCustomer) ? substr($dataCustomer['customer']['gender'], 0, 1) : old('gender'), [
                                         'class' => 'select2 gender ',
@@ -167,8 +167,8 @@
                             </div>
 
                             <div class="form-group status {!! $errors->has('status') ? 'has-error' : '' !!}">
-                                <label class="col-md-5 control-label">Status Pernikahan * :</label>
-                                <div class="col-md-7">
+                                <label class="col-md-4 control-label">Status Pernikahan * :</label>
+                                <div class="col-md-8">
                                 @if ($type != 'preview')
                                     {!! Form::select('status', array("" => "", "1" => "Belum Menikah", "2" => "Menikah", "3" => "Janda / Duda"), !empty($dataCustomer) ? $dataCustomer['customer']['status'] : old('status'), [
                                         'class' => 'select2 status ',
@@ -181,6 +181,7 @@
                                         @elseif($dataCustomer['customer']['status'] == 2)Menikah
                                         @elseif($dataCustomer['customer']['status'] == 3)Janda / Duda
                                         @endif</p>
+                                        <input type="hidden" id="status" value="{{$dataCustomer['customer']['status']}}">
                                 @endif
 
                                     @if ($errors->has('status'))
@@ -191,8 +192,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-5 control-label">Status Tempat Tinggal * :</label>
-                                <div class="col-md-7">
+                                <label class="col-md-4 control-label">Status Tempat Tinggal * :</label>
+                                <div class="col-md-8">
                                 @if ($type != 'preview')
                                     {!! Form::select('address_status', array("" => "", "0" => "Milik Sendiri", "1" => "Orang Tua / Mertua / Rumah Dinas", "3" => "Rumah Kontrakan"), !empty($dataCustomer) ? $dataCustomer['customer']['address_status'] : old('address_status'), [
                                         'class' => 'select2 address_status ',
@@ -214,8 +215,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-5 control-label">Kewarganegaraan * :</label>
-                                <div class="col-md-7">
+                                <label class="col-md-4 control-label">Kewarganegaraan * :</label>
+                                <div class="col-md-8">
                                 @if ($type != 'preview')
                                     {!! Form::select('citizenship_id', [$dataCustomer['customer']['citizenship_id'] => $dataCustomer['customer']['citizenship_name']], old('citizenship'), [
                                         'class' => 'select2 citizenship',
@@ -233,8 +234,8 @@
                             </div>
 
                             <div class="form-group email {!! $errors->has('email') ? 'has-error' : '' !!}">
-                                <label class="col-md-5 control-label">Email * :</label>
-                                <div class="col-md-7">
+                                <label class="col-md-4 control-label">Email * :</label>
+                                <div class="col-md-8">
                                 @if ($type != 'preview')
                                     <input type="email" class="form-control" name="email"  maxlength="50" readonly="" value="{{ $dataCustomer['customer']['email'] }}">
                                 @else
@@ -248,7 +249,7 @@
 
                             @if ($type != 'preview')
                             <div class="form-group">
-                                <div class="col-md-7 col-md-offset-5">
+                                <div class="col-md-8 col-md-offset-4">
                                     <div class="checkbox checkbox-single checkbox-primary">
                                         <input type="checkbox" id="myCheckBox" {{ ($dataCustomer['customer']['current_address'] == $dataCustomer['customer']['address']) ? "checked" : "" }}>
                                         <label class="header-title custom-title-2" for="myCheckBox">Alamat Domisili Sesuai Dengan Alamat KTP</label>
@@ -257,8 +258,8 @@
                             </div>
                             @endif
                             <div class="form-group current_address {!! $errors->has('current_address') ? 'has-error' : '' !!}">
-                                <label class="col-md-5 control-label">Alamat Domisili * :</label>
-                                <div class="col-md-7">
+                                <label class="col-md-4 control-label">Alamat Domisili * :</label>
+                                <div class="col-md-8">
                                 @if ($type != 'preview')
                                     <textarea type="current_address" class="form-control" name="current_address" value="{{ $dataCustomer['customer']['current_address'] }}" {{ ($dataCustomer['customer']['current_address'] == $dataCustomer['customer']['address']) ? "readonly" : "" }}>{{ $dataCustomer['customer']['current_address'] }}</textarea>
                                 @else

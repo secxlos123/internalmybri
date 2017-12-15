@@ -7,6 +7,12 @@
         height: 350px;
         width: 100%;
     }
+
+    .card-box > a {
+        height: 350px;
+        width: 100%;
+        padding-top: 50px;
+    }
     @page {
         size: A4;
         margin: 0;
