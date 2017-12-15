@@ -78,8 +78,9 @@
             <div class="col-md-7" id="join_income">
                 @if ($type != 'preview')
                     <div class="checkbox checkbox-single checkbox-primary">
-                        <input type="checkbox" name="join_income" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
+                        <input type="checkbox" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
                         <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
+                        <input type="hidden" name="join_income" id="join_val">
                     @else
                     <div>
                         <label class="header-title custom-title-2" for="join_check"><b>

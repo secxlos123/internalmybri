@@ -77,8 +77,13 @@
         </div>
         <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="{{$mutation['file']}}" class="img-responsive">
-            <p>File Mutasi</p>
+            @if((pathinfo(strtolower($mutation['file']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($mutation['file']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($mutation['file'])), PATHINFO_EXTENSION) == 'jpeg'))
+                <img src="@if(!empty($mutation['file'])){{$mutation['file']}}@endif" class="img-responsive">
+                <p>File Mutasi</p>
+            @else
+                <a href="@if(!empty($mutation['file'])){{$mutation['file']}}@endif" target="_blank"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                <p>Klik Untuk Lihat PBB Terakhir</p>
+            @endif
         </div>
     </div>
     </div>
