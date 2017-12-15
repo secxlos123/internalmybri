@@ -32,11 +32,7 @@
         </div>
     </div>
     @if( ($detail['customer']['personal']['status']) == 2 )
-    <div class="col-md-12" align="center">
-        <div class="card-box">
-            <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">
-            <p>Foto KTP</p>
-        </div>
+    <div class="col-md-6" align="center">
         <div class="card-box">
             <img src="{{$detail['customer']['personal']['couple_identity']}}" class="img-responsive">
             <p>Foto KTP Pasangan</p>

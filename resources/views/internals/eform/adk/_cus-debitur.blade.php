@@ -2,6 +2,18 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
+                <label class="col-md-5 control-label">Nama Mitra :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['mitra']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">NIP :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['NIP']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-5 control-label">Usia MPP :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$debitur['USIA_MPP']}} tahun</p>
@@ -46,21 +58,47 @@
                         @if($debitur['TRANSAKSI_NORMAL_HARIAN'] == '1')
                             0 s.d 10jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '2')
-                            Lebih dari 10jt s.d 50jt
+                            > 10jt s.d 50jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '3')
-                            Lebih dari 50jt s.d 100jt
+                            > 50jt s.d 100jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '4')
-                            Lebih dari 100jt s.d 1M
+                            > 100jt s.d 1M
                         @else
-                            Lebih dari 1M
+                            > 1M
                         @endif
                     </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Domisili / Lama Menetap :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$debitur['DOMISILI']}} tahun</p>
                 </div>
             </div>
         </form>
     </div>
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Nama Kantor Cabang :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$briguna['branch']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Status Pekerjaan :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                    @if($briguna['Status_Pekerjaan'] == '0')
+                        TETAP
+                    @elseif($briguna['Status_Pekerjaan'] == '1')
+                        TETAP
+                    @else
+                        PENSIUNAN
+                    @endif
+                    </p>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Mulai Bekerja :</label>
                 <div class="col-md-7">
@@ -82,7 +120,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Resident Flag :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['RESIDENT_FLAG']}}</p>
+                    <p class="form-control-static">
+                    @if($debitur['RESIDENT_FLAG'] == 'Y')
+                        Ya
+                    @else
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

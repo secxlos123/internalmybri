@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">CRS :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['score']}}</p>
+                    <p class="form-control-static">{{$briguna['score']}} (DITERIMA)</p>
                 </div>
             </div>
             <div class="form-group">
@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['scoring_mitra']}}</p>
+                    <p class="form-control-static">{{$briguna['scoring_mitra']}} (DITERIMA)</p>
                 </div>
             </div>
             <div class="form-group">
@@ -54,7 +54,7 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-md-5 control-label">Instansi :</label>
+                <label class="col-md-5 control-label">Mitra Kerjasama :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$briguna['mitra']}}</p>
                 </div>
@@ -67,9 +67,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">NPL Instansi :</label>
+                <label class="col-md-5 control-label">NPL Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['npl_instansi']}}</p>
+                    <p class="form-control-static">{{$briguna['npl_instansi']}} %</p>
                 </div>
             </div>
             <div class="form-group">

@@ -4,7 +4,15 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Tanggal Perkiraan Pensiun :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Tgl_perkiraan_pensiun']}}</p>
+                    <p class="form-control-static">
+                    <?php 
+                        if (!empty($briguna['Tgl_perkiraan_pensiun'])) {
+                            echo date('d-m-Y',strtotime($briguna['Tgl_perkiraan_pensiun']));
+                        } else {
+                            echo "-";
+                        }
+                    ?>
+                    </p>
                 </div>
             </div>
             <div class="form-group">
