@@ -46,15 +46,15 @@ class EFormController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         $data = $this->getUser();
         // dd(env('APP_ENV'));
         if($data['role'] == 'ao'){
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){                
+            if(@$request->get('ref_number') && @$request->get('ids')){
                 /*
                 * redirect to eform with id and ref_number
-                */                    
+                */
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
                         'Authorization' => $data['token'],
@@ -88,7 +88,7 @@ class EFormController extends Controller
                     }
 
                 $form_notif['respon_statused'] = $text;
-                
+
                 $form_notif['prescreening_status'] = view('internals.layouts.actions', [
                   'prescreening_status' => route('getLKN', $form_notif['id']),
                   'prescreening_result' => $form_notif['prescreening_status'],
@@ -115,14 +115,14 @@ class EFormController extends Controller
                           ])->get();
                 // dd($reads)
             }
-            
+
             return view('internals.eform.index-ao', compact('data','form_notif'));
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){                
+            if(@$request->get('ref_number') && @$request->get('ids')){
                /*
                 * redirect to eform with id and ref_number
-                */                    
+                */
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
                         'Authorization' => $data['token'],
@@ -163,7 +163,7 @@ class EFormController extends Controller
                               'branch_id' => $data['branch']
                           ])->get();
             }
-            
+
             return view('internals.eform.index', compact('data','form_notif'));
         } else{
             return view('internals.eform.create', compact('data'));
@@ -309,8 +309,8 @@ class EFormController extends Controller
         } catch (\Exception $e) {
             \Log::info($e);
             $getIP = null;
-            $long = 106.813880;
-            $lat = -6.217458;
+            $long = 106.81350;
+            $lat = -6.21670;
 
         }
 
