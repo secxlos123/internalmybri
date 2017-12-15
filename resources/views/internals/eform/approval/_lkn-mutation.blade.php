@@ -82,7 +82,7 @@
                 <p>File Mutasi</p>
             @else
                 <a href="@if(!empty($mutation['file'])){{$mutation['file']}}@endif" target="_blank"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
-                <p>Klik Untuk Lihat PBB Terakhir</p>
+                <p>Klik Untuk Lihat File Mutasi</p>
             @endif
         </div>
     </div>
