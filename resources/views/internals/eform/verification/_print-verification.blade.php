@@ -325,7 +325,7 @@
                         </div> <!--End-->
                     </div>
                     <!--Bundle of data pasangan-->
-                    <div class="row" id="couple_data">
+                    <div class="row" id="couple_data" @if(($dataCustomer['customer']['couple_salary']) > 0 && ($dataCustomer['customer']['status']) == 2)) style="display:block;" @else style="display:none;" @endif >
                         <div class="col-md-12">
                             <div class="panel panel-color panel-primary">
                                 <div class="panel-heading">
@@ -505,20 +505,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-7" id="join_income">
-                                    <div>
-                                        <label class="header-title custom-title-2" for="join_check"><b>
-                                        @if (($dataCustomer['customer']['couple_salary']) > 0)
-                                        <i class="fa fa-check-square"></i>
-                                        @else
-                                        <i class="fa fa-square"></i>
-                                        @endif
-                                        Joint Income</b></label>
-                                    </div>
-                                </div>
-
                                 <!--Pasangan-->
-                                <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0) style="display:block;" @else style="display:none;" @endif >
+                                <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0 && ($dataCustomer['customer']['status']) == 2)) style="display:block;" @else style="display:none;" @endif >
                                     <div class="card-box m-t-30">
                                         <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                                         <div class="panel-body">

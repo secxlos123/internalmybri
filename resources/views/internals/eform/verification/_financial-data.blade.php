@@ -95,7 +95,7 @@
             </div>
 
             <!--Pasangan-->
-            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0) style="display:block;" @else style="display:none;" @endif >
+            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0 && ($dataCustomer['customer']['status']) == 2) style="display:block;" @else style="display:none;" @endif >
                 <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                     <div class="panel-body">
