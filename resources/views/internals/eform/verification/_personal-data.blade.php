@@ -181,6 +181,7 @@
                                         @elseif($dataCustomer['customer']['status'] == 2)Menikah
                                         @elseif($dataCustomer['customer']['status'] == 3)Janda / Duda
                                         @endif</p>
+                                        <input type="hidden" id="status" value="{{$dataCustomer['customer']['status']}}">
                                 @endif
 
                                     @if ($errors->has('status'))
