@@ -34,7 +34,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Baru/Suplesi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['baru_atau_perpanjang']}}</p>
+                    <p class="form-control-static">
+                    @if($briguna['baru_atau_perpanjang'] == '0')
+                        Kredit Baru
+                    @else
+                        Kredit Suplesi / Perpanjangan
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

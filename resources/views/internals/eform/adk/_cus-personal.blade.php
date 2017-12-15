@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Tempat Lahir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['birth_place_id']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['birth_place']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -56,13 +56,25 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Jenis Kelamin :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['gender']}}</p>
+                    <p class="form-control-static">
+                    @if($detail['customer']['personal']['gender'] == 'L' || $detail['customer']['personal']['gender'] == 'l')
+                        Laki - Laki
+                    @else
+                        Perempuan
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Kewarganegaraan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['KEWARGANEGARAAN_NEGARA_ASAL']}}</p>
+                    <p class="form-control-static">
+                    @if($debitur['KEWARGANEGARAAN_NEGARA_ASAL'] == 'ID')
+                        Indonesia
+                    @else
+                        {{$debitur['KEWARGANEGARAAN_NEGARA_ASAL']}}
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

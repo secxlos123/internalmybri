@@ -22,7 +22,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Baru/Perpanjangan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['baru_atau_perpanjang']}}</p>
+                    <p class="form-control-static">
+                    @if($briguna['baru_atau_perpanjang'] == '0')
+                        Kredit Baru
+                    @else
+                        Kredit Suplesi / Perpanjangan
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -82,7 +88,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['pemrakarsa_name']}}</p>
+                    <p class="form-control-static">{{$detail['branch_id']}}</p>
                 </div>
             </div>
             <div class="form-group">

@@ -85,7 +85,11 @@ class ADKController extends Controller
                         'requestData'   => $conten
                     ])
                     ->post();
-        $debitur = $data_debitur['contents']['data'][0];
+                    // print_r($data_debitur);exit();
+        if ($data_debitur['code'] == '01') {
+            $debitur = $data_debitur['contents']['data'][0];
+        }
+        
         // dd($debitur);
         
         // dd($detail);

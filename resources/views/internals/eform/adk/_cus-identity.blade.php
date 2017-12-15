@@ -13,7 +13,7 @@
             <p>SK Pertama</p>
         </div>
         <div class="card-box">
-            <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">
+            <img src="{{$briguna['Url'].'/'.$briguna['SKPG']}}" class="img-responsive">
             <p>SKPG</p>
         </div>
     </div>
@@ -38,7 +38,7 @@
             <p>Foto KTP</p>
         </div>
         <div class="card-box">
-            <img src="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" class="img-responsive">
+            <img src="{{$detail['customer']['personal']['couple_identity']}}" class="img-responsive">
             <p>Foto KTP Pasangan</p>
         </div>
     </div>

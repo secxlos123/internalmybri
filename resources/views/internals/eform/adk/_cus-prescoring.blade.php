@@ -28,13 +28,27 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Memiliki Rekening Simpanan BRI :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Rek_simpanan_bri']}}</p>
+                    <p class="form-control-static">
+                    @if($briguna['Rek_simpanan_bri'] == '1')
+                        Ya
+                    @else
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Penguasaan CashFlow :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$briguna['Penguasaan_cashflow']}}</p>
+                    <p class="form-control-static">
+                    @if($briguna['Penguasaan_cashflow'] == '0')
+                        Pembayaran gaji dilakukan sendiri
+                    @elseif($briguna['Penguasaan_cashflow'] == '1')
+                        Pembayaran gaji dilakukan melalui bendahara
+                    @else
+                        Debet rekening melalui BRI
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -108,8 +122,12 @@
                     <p class="form-control-static">
                         @if($briguna['Riwayat_pinjaman'] == '0')
                             Pembayaran angsuran selalu ditepati dan tidak pernah menunggak
+                        @elseif($briguna['Riwayat_pinjaman'] == '1')
+                            Debitur Baru
+                        @elseif($briguna['Riwayat_pinjaman'] == '2')
+                            Pernah menunggak namun tunggakan angsuran sudah dilunasi
                         @else
-                            Pembayaran bermasalah
+                            Masih ada tunggakan
                         @endif
                     </p>
                 </div>
