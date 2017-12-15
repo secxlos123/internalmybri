@@ -178,8 +178,13 @@ class ADKController extends Controller
                             $count = count($form);
                         }
                     }
-                }                
+                }
+
                 $eforms['contents']['total'] = $count;
+                $eforms['contents']['draw'] = $request->input('draw');
+                $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
+                $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+                return response()->json($eforms['contents']);
             }
         }
         
@@ -211,10 +216,20 @@ class ADKController extends Controller
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }*/
-        // print_r($eforms);exit();
+        
         $eforms['contents']['draw'] = $request->input('draw');
-        $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-        $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+        $eforms['contents']['recordsTotal'] = '0';
+        $eforms['contents']['recordsFiltered'] = '0';
+        $eforms['contents']['data'][] = [
+            'id_aplikasi'   => '-',
+            'fid_tp_produk' => '-',
+            'nama_pegawai'  => '-',
+            'namadeb'       => '-',
+            'request_amount'=> '-',
+            'STATUS'        => '-',
+            'action'        => '-'
+        ];
+        // print_r($eforms);exit();
         return response()->json($eforms['contents']);
     }
 }
