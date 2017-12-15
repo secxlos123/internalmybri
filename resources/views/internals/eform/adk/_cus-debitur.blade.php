@@ -102,7 +102,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Mulai Bekerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['TANGGAL_MULAI_BEKERJA']}}</p>
+                    <p class="form-control-static">{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], 0, 2) }}-{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], 2, 2) }}-{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], -4) }}</p>
                 </div>
             </div>
             <div class="form-group">

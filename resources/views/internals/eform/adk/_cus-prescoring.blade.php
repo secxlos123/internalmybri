@@ -5,13 +5,7 @@
                 <label class="col-md-6 control-label">Tanggal Perkiraan Pensiun :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">
-                    <?php 
-                        if (!empty($briguna['Tgl_perkiraan_pensiun'])) {
-                            echo date('d-m-Y',strtotime($briguna['Tgl_perkiraan_pensiun']));
-                        } else {
-                            echo "-";
-                        }
-                    ?>
+                    {{ substr($briguna['Tgl_perkiraan_pensiun'], 0, 2) }}-{{ substr($briguna['Tgl_perkiraan_pensiun'], 2, 2) }}-{{ substr($briguna['Tgl_perkiraan_pensiun'], -4) }}
                     </p>
                 </div>
             </div>

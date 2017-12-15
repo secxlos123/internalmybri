@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Agribisnis :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Agribisnis']}}
+                    <p class="form-control-static">
                     @if($briguna['Agribisnis'] == 'N')
                         Tidak
                     @else

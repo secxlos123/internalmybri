@@ -69,7 +69,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['npl_instansi']}} %</p>
+                    <p class="form-control-static">{{$briguna['npl_instansi']}}</p>
                 </div>
             </div>
             <div class="form-group">

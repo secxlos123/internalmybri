@@ -22,7 +22,9 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Lahir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['birth_date']}}</p>
+                    <p class="form-control-static">
+                    {{ substr($detail['customer']['personal']['birth_date'], -2) }}-{{ substr($detail['customer']['personal']['birth_date'], 5, 2) }}-{{ substr($detail['customer']['personal']['birth_date'], 0, 4) }}
+                    </p>
                 </div>
             </div>
             <div class="form-group">
