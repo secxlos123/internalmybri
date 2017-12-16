@@ -92,7 +92,7 @@
                     @if($briguna['Status_Pekerjaan'] == '0')
                         TETAP
                     @elseif($briguna['Status_Pekerjaan'] == '1')
-                        TETAP
+                        KONTRAK
                     @else
                         PENSIUNAN
                     @endif
