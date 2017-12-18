@@ -191,7 +191,9 @@ class ThirdPartyController extends Controller
         // echo json_encode($request->all());die();
 
         $thirdpartys = Client::setEndpoint("thirdparty/{$id}/actived")
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']])
                 ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
                 ->put();
 

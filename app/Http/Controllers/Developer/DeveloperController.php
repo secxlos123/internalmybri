@@ -273,7 +273,10 @@ class DeveloperController extends Controller
         $data = $this->getUser();
 
         $developers = Client::setEndpoint("developer/{$id}/actived")
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                        ])
                 ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
                 ->put();
 
