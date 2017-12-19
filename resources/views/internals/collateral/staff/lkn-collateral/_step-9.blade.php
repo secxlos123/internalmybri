@@ -7,7 +7,7 @@
                     <div class="form-horizontal" role="form">
                         <h5>Pemecahan Sertifikat</h5>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Status *:</label>
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 {!! Form::select('nine[certificate_status]', array("" => "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="form-group clearfix" id="date_receipt" hidden="">
-                            <label class="col-md-4 control-label">Tanggal Penelitian *:</label>
+                            <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date]" value="{{old('nine[receipt_date]')}}" id="receipt_date">
@@ -29,14 +29,14 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Keterangan *:</label>
+                            <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
                                 <textarea class="form-control" rows="4" name="nine[information]" id="information">{{old('nine[information]')}}</textarea>
                             </div>
                         </div>
                         <h5>Dokumen Notaris Developer :</h5>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Status *:</label>
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 {!! Form::select('nine[notary_status]', array("" => "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
@@ -49,7 +49,7 @@
                         </div>
                         <h5>Dokumen Take Over :</h5>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Status *:</label>
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 
                                 {!! Form::select('nine[takeover_status]', array("" => "", 
@@ -67,7 +67,7 @@
                     <div class="form-horizontal" role="form">
                         <h5>Perjanjian Kredit</h5>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Status *:</label>
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 {!! Form::select('nine[credit_status]', array("" => "", 
                                         "Sudah Diberikan" => "Sudah Diberikan", 
@@ -78,9 +78,9 @@
                                     ]) !!}
                             </div>
                         </div>
-                        <div class="form-group clearfix">
                         <h5>SKMHT</h5>
-                            <label class="col-md-4 control-label">Status *:</label>
+                        <div class="form-group clearfix">
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 {!! Form::select('nine[skmht_status]', array("" => "", 
                                         "Sudah Diberikan" => "Sudah Diberikan", 
@@ -93,7 +93,7 @@
                         </div>
                         <h5>IMB</h5>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Status *:</label>
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 {!! Form::select('nine[imb_status]', array("" => "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
@@ -106,7 +106,7 @@
                         </div>
                         <h5>SHGB</h5>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Status *:</label>
+                            <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 {!! Form::select('nine[shgb_status]', array("" => "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
