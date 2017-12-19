@@ -366,7 +366,7 @@ class EFormController extends Controller
      */
     public function eformRequest($request, $data)
     {
-        $allReq = $request->except(['request_amount', 'price', '_token']);;
+        $allReq = $request->except(['request_amount', 'price', '_token', 'dp', 'down_payment']);;
         foreach ($allReq as $index => $req) {
             $inputData[] = [
                       'name'     => $index,
@@ -382,6 +382,14 @@ class EFormController extends Controller
                 [
                     'name'    => 'price',
                     'contents' => str_replace(',', '.', str_replace('.', '', $request->price))
+                ],
+                [
+                    'name'    => 'dp',
+                    'contents' => str_replace(',', '.', str_replace('.', '', $request->dp))
+                ],
+                [
+                    'name'    => 'down_payment',
+                    'contents' => str_replace(',', '.', str_replace('.', '', $request->down_payment))
                 ]
             );
 
@@ -400,7 +408,7 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->eformRequest($request, $data);
-        // dd(json_encode($newForm));
+        dd(json_encode($newForm));
 
         // $validator = $this->generalRules($request->all());
         // if ($validator->fails()) {
