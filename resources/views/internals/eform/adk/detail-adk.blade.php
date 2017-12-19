@@ -205,21 +205,58 @@
             </div>
 
             <!-- rekomendasi approval -->
-            <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
-                {{ csrf_field() }}
-                
+            @if($briguna['is_send'] == '0')                    
                 <div class="text-center">
-                    <input type="hidden" name="id_aplikasi" value="{{$briguna['id_aplikasi']}}">
-                    <input type="hidden" name="uid" value="{{$briguna['uid']}}">
-                    <h3 class="panel-title">catatan :</h3>
-                    <hr> 
-                    <input type="text" name="catatan" class="form-control">
-                    <hr>
-                    <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                    <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Verifikasi</button>
-                    <!-- <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button> -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Data Debitur :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_pdf',['download'=>'pdf','eform_id'=>$briguna['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Data Instansi :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_pdf', $briguna['eform_id'])}}" class="btn btn-info waves-light waves-effect w-md m-b-20">Cetak</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
+                    {{ csrf_field() }}
+                        <input type="hidden" name="id_aplikasi" value="{{$briguna['id_aplikasi']}}">
+                        <input type="hidden" name="eform_id" value="{{$briguna['eform_id']}}">
+                        <input type="hidden" name="uid" value="{{$briguna['uid']}}">
+                        <h3 class="panel-title">catatan :</h3>
+                        <hr> 
+                        <input type="text" name="catatan" class="form-control">
+                        <hr>
+                        <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Verifikasi</button>
+                    </form>
                 </div>
-            </form>
+            @else
+                <div class="text-center">
+                    <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-cetak">Cetak</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>
