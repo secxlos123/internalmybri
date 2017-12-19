@@ -75,21 +75,33 @@
                 </div>
             </div>
 
-            <div class="col-md-7" id="join_income">
+            <div class="form-group source_income {!! $errors->has('source_income') ? 'has-error' : '' !!}">
+                <label class="col-md-4 control-label">Sumber *:</label>
+                <div class="col-md-8">
+                    <select class="form-control" name="source_income" id="source_income">
+                        <option selected="" disabled="">-- Pilih --</option>
+                        <option value="single" {{ $eformData['customer']['financial']['status_finance'] != 'Join Income' || $eformData['customer']['personal']['status_id'] != 2 ? 'selected' : '' }}>Single Income</option>
+                        <option value="joint" {{ $eformData['customer']['financial']['status_finance'] == 'Join Income' && $eformData['customer']['personal']['status_id'] == 2 ? 'selected' : '' }}>Join Income</option>
+                    </select>
+                    @if ($errors->has('source_income')) <p class="help-block">{{ $errors->first('source_income') }}</p> @endif
+                </div>
+            </div>
+
+            <div class="col-md-7 source" id="join_income">
                 @if ($type != 'preview')
                     <div class="checkbox checkbox-single checkbox-primary">
-                        <input type="checkbox" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
-                        <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
-                        <input type="hidden" name="join_income" id="join_val">
+                        <input type="checkbox" {{ !empty($dataCustomer) ? ($dataCustomer['financial']['source_income'] == 'joint' ? 'checked' : '' ) : '' }} value="join_income" id="join_check">
+                        <label class="header-title custom-title-2" for="join_check">
+                            <b>  Joint Income</b>
+                        </label>
+                        <input type="hidden" name="source_income" id="join_val">
                     @else
                     <div>
-                        <label class="header-title custom-title-2" for="join_check"><b>
-                        @if (($dataCustomer['customer']['couple_salary']) > 0)
-                        <i class="fa fa-check-square"></i>
-                        @else
-                        <i class="fa fa-square"></i>
-                        @endif
-                        Joint Income</b></label>
+                        <label class="header-title custom-title-2" for="join_check">
+                            <b>
+                                <i class="fa fa{{ $dataCustomer['financial']['source_income'] == 'joint' ? '-check' : ''  }}-square"></i> Joint Income
+                            </b>
+                        </label>
                     @endif
                 </div>
             </div>

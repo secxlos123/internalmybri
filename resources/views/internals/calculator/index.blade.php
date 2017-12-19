@@ -28,12 +28,12 @@
                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                    @endif
                    <div class="card-box">
-                        <form class="form-horizontal" role="form" id="form1" enctype="multipart/form-data">
+                        <form class="form-horizontal" role="form" id="form-calculator" enctype="multipart/form-data" action="{{route('postCalculate')}}" method="POST">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="col-md-4 control-label">KPR Aktif *:</label>
                                             <div class="col-md-8">
                                                 <select class="form-control " name="active_kpr" id="active_kpr">
@@ -43,13 +43,13 @@
                                                     <option value="3"> > 2 </option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Harga Rumah *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price">
+                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16">
                                                 </div>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Jenis Suku Bunga *:</label>
                                             <div class="col-md-8">
-                                                <select class="form-control " name="interest" id="interest_rate_type">
+                                                <select class="form-control " name="interest_rate_type" id="interest_rate_type">
                                                     <option value="0" selected="" disabled=""> Pilih </option>
                                                     <option value="1"> FLAT </option>
                                                     <option value="2"> EFEKTIF </option>
@@ -86,7 +86,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price">
+                                                    <input type="text" class="form-control numericOnly currency-rp " id="price_platform" name="price_platform" value="{{old('price_platform')}}" maxlength="16">
                                                 </div>
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="time_period" value="{{old('time_period')}}" maxlength="3" placeholder="0" id="time_period">
                                                     <span class="input-group-addon">Bulan</span>
                                                 </div>
                                             </div>
@@ -103,7 +103,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu Total *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="time_period_total" value="{{old('time_period_total')}}" maxlength="3" placeholder="0" id="time_period_total">
                                                     <span class="input-group-addon">Bulan</span>
                                                 </div>
                                             </div>
@@ -112,7 +112,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu Fixed *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="time_period_fixed" value="{{old('time_period_fixed')}}" maxlength="3" placeholder="0" id="time_period_fixed">
                                                     <span class="input-group-addon">Bulan</span>
                                                 </div>
                                             </div>
@@ -121,7 +121,7 @@
                                             <label class="control-label col-md-4">Jangka Waktu Floor *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="year" value="{{old('year')}}" maxlength="2" placeholder="0" id="year" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="time_period_floor" value="{{old('time_period_floor')}}" maxlength="2" placeholder="0" id="time_period_floor">
                                                     <span class="input-group-addon">Bulan</span>
                                                 </div>
                                             </div>
@@ -130,7 +130,7 @@
                                             <label class="control-label col-md-4">Suku Bunga *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="interest_rate" value="{{old('interest_rate')}}" maxlength="2" placeholder="0" id="interest_rate" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="rate" value="{{old('rate')}}" maxlength="5" placeholder="0" id="rate">
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>
@@ -139,7 +139,7 @@
                                             <label class="control-label col-md-4">Suku Bunga Float *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="interest_rate" value="{{old('interest_rate')}}" maxlength="2" placeholder="0" id="interest_rate_float" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="interest_rate_float" value="{{old('interest_rate_float')}}" maxlength="5" placeholder="0" id="interest_rate_float">
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>
@@ -148,7 +148,7 @@
                                             <label class="control-label col-md-4">Suku Bunga Fixed *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="interest_rate" value="{{old('interest_rate')}}" maxlength="2" placeholder="0" id="interest_rate_efektif" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="interest_rate_fixed" value="{{old('interest_rate_fixed')}}" maxlength="5" placeholder="0" id="interest_rate_efektif">
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>
@@ -157,7 +157,7 @@
                                             <label class="control-label col-md-4">Suku Bunga Floor *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control numericOnly required " name="interest_rate" value="{{old('interest_rate')}}" maxlength="2" placeholder="0" id="interest_rate_floor" max="20">
+                                                    <input type="text" class="form-control numericOnly required " name="interest_rate_floor" value="{{old('interest_rate_floor')}}" maxlength="5" placeholder="0" id="interest_rate_floor">
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>

@@ -1,6 +1,6 @@
 <style type="text/css">
 .modal-dialog-custom {
-    width: 1500px;
+    width: 1000px;
     margin: 50px auto;
 }
 </style>

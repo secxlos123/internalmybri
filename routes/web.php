@@ -107,6 +107,11 @@
 
         Route::get('downloadTracking', ['as'=>'downloadTracking', 'uses'=>'Tracking\TrackingController@downloadTracking']);
 
+        // Calculator
+
+        Route::post('/calculator/calculate/',
+            ['as'=>'postCalculate', 'uses'=>'Calculator\CalculatorController@postCalculate']);
+
         Route::group(['prefix'=>'collateral'], function () {
 
             Route::get('detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);

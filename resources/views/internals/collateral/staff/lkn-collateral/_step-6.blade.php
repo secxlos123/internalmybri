@@ -6,7 +6,7 @@
                 <div class="col-md-6">
                     <div class="form-horizontal" role="form">
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Jenis Ikatan *:</label>
+                            <label class="col-md-4 control-label">Jenis Ikatan * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('other[bond_type]', array("" => "", 
                                     "Akta Pembebanan Hak" => "Akta Pembebanan Hak", 
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Penggunaan Bangunan Sesuai Fungsinya *:</label>
+                            <label class="col-md-4 control-label">Penggunaan Bangunan Sesuai Fungsinya * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('other[use_of_building_function]', array("" => "", 
                                     "Sesuai" => "Sesuai", 
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Penggunaan Bangunan Secara Optimal *:</label>
+                            <label class="col-md-4 control-label">Penggunaan Bangunan Secara Optimal * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('other[optimal_building_use]', array("" => "", 
                                     "Sesuai" => "Sesuai", 
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Peruntukan Bangunan *:</label>
+                        <label class="col-md-4 control-label">Peruntukan Bangunan * :</label>
                         <div class="col-md-8">
                             {!! Form::select('other[building_exchange]', array("" => "", 
                                 "Disewakan" => "Disewakan", 
@@ -58,13 +58,13 @@
                         </div>
                     </div>
                     <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Hal-Hal Yang Perlu Diketahui Bank *:</label>
+                        <label class="col-md-4 control-label">Hal-Hal Yang Perlu Diketahui Bank * :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know">{{old('other[things_bank_must_know]')}}</textarea>
+                            <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know" maxlength="250">{{old('other[things_bank_must_know]')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Foto Situasi Lapangan *:</label>
+                        <label class="col-md-4 control-label">Foto Situasi Lapangan * :</label>
                         <div class="col-md-8">
                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);" name="other[image_condition_area]">
                         </div>

@@ -6,7 +6,7 @@
                 <div class="col-md-6">
                     <div class="form-horizontal" role="form">
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Peruntukan Tanah *:</label>
+                            <label class="col-md-4 control-label">Peruntukan Tanah * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('environment[designated_land]', array("" => "", 
                                     "Bangunan Industri" => "Bangunan Industri", 
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Fasilitas Umum Yang Ada *:</label>
+                            <label class="col-md-4 control-label">Fasilitas Umum Yang Ada * :</label>
                             <div class="col-md-8">
                                 <div class="checkbox checkbox-primary">
                                     <input type="checkbox" value="1" name="environment[designated_pln]">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Fasilitas Umum Lain *:</label>
+                            <label class="col-md-4 control-label">Fasilitas Umum Lain * :</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" name="environment[other_designated]" maxlength="50" value="{{old('environment[other_designated]')}}" id="other_designated">
                             </div>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Lingkungan Terdekat Dari Lokasi Sebagian Besar *:</label>
+                        <label class="col-md-4 control-label">Lingkungan Terdekat Dari Lokasi Sebagian Besar * :</label>
                         <div class="col-md-8">
                             {!! Form::select('environment[nearest_location]', array("" => "", 
                                 "Bangunan Industri" => "Bangunan Industri", 
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Petunjuk Lain *:</label>
+                        <label class="col-md-4 control-label">Petunjuk Lain * :</label>
                         <div class="col-md-8">
                             <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250" id="other_guide">{{old('environment[other_guide]')}}</textarea>
                         </div>
@@ -80,13 +80,13 @@
     </div>
     <hr>
     <div class="form-group clearfix text-center horizontal-input">
-        <label class="control-label">Sarana Transportasi *:</label>
+        <label class="control-label">Sarana Transportasi * :</label>
         <div class="is-input">
             <div class="input-group" style="width:100%">
                 <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{old('environment[transportation]')}}" id="transportation">
             </div>
         </div>
-        <label class="control-label">Jarak Dari Lokasi *</label>
+        <label class="control-label">Jarak Dari Lokasi * </label>
         <div class="is-input">
             <div class="input-group">
                 <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{old('environment[distance_from_transportation]')}}" id="distance_from_transportation">

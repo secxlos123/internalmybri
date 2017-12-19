@@ -27,68 +27,89 @@ class CalculatorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Calculate
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+
+    public function postCalculate(Request $request){
+        // dd($request->all());
+      $data = $this->getUser();
+      $calculate = $request->except('_token');
+      $interest_rate_type = $calculate['interest_rate_type'];
+      if($interest_rate_type==1){
+          $type = 'generateFlat';
+      }elseif ($interest_rate_type==2) {
+          $type ='generateEfektif';
+      }elseif ($interest_rate_type==3) {
+          $type ='generateEfektifFixedFloat';
+      }elseif ($interest_rate_type == 4) {
+          $type ='generateEfektifFixedFloorFloat';
+      }else{
+          dd('type not found');
+      }
+      $price = $calculate['price'];
+      $term = $calculate['time_period'];
+      $rate = $this->convertCommatoPoint($calculate['rate']);
+      $downPayment = $calculate['dp'];
+      $priceNumber = str_replace(".", "", $price);
+      $fxflterm = $calculate['time_period_total'];
+      $fxterm =  $calculate['time_period_fixed'];
+      $fxrate =  $this->convertCommatoPoint($calculate['interest_rate_fixed']);
+      $flrate =  $this->convertCommatoPoint($calculate['interest_rate_float']);
+      if($interest_rate_type== 1 || $interest_rate_type ==2){
+          $calculateSend = array(
+               'type' => $type,
+               'price' => $priceNumber,
+               'term' => $term,
+               'rate' => $rate,
+               'downPayment' => $downPayment
+          );
+      }
+      else if ($interest_rate_type== 3){
+          $calculateSend = array(
+                'type' => $type,
+                'price' => $priceNumber,
+                'fxflterm' => $fxflterm,
+                'fxterm'    => $fxterm,
+                'fxrate'   => $fxrate,    
+                'flrate'   => $flrate,
+               'downPayment' => $downPayment
+          );
+      } 
+      else if($interest_rate_type== 4){
+          $fflterm = $calculate['time_period_floor'];
+          $ffloatlrate = $this->convertCommatoPoint($calculate['interest_rate_floor']);
+          $calculateSend = array(
+              'type' => $type,
+              'price' => $priceNumber,
+              'fxflflterm' => $fxflterm,
+              'ffxterm' => $fxterm,
+              'fflterm' => $fflterm,
+              'ffxrate' => $fxrate,
+              'ffloorrate' => $flrate,
+              'ffloatlrate' => $ffloatlrate, 
+              'downPayment' => $downPayment
+          );
+      }
+      $response = Client::setBase('common')->setEndpoint('calculator')->setBody($calculateSend)->post(); 
+      // dd($response);
+      $rincian_pinjaman =  $response['contents']['rincian_pinjaman'];
+      $detail_angsuran =   $response['contents']['detail_angsuran']; 
+      return view('internals.calculator.detail', compact('rincian_pinjaman','detail_angsuran','interest_rate_type', 'data'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * getResult
+     * 
      */
-    public function store(Request $request)
-    {
-        //
+    public function getCalculate(Request $request){
+        $rincian_pinjaman =  null;
+        $detail_angsuran =   null;
+        return view('home.calculator.property_simulasi', compact('rincian_pinjaman','detail_angsuran'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function convertCommatoPoint($value){
+       $result = floatval(str_replace(',', '.', str_replace('.', '', $value)));
+       return $result;
     }
 }

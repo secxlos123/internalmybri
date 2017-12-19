@@ -31,6 +31,9 @@ class LKNRequest extends FormRequest
           ->merge($this->valuationRules())
           ->merge($this->otherRules())
           ->merge($this->environmentRules())
+          ->merge($this->sevenRules())
+          ->merge($this->eightRules())
+          ->merge($this->tenRules())
           ->toArray();
     }
 
@@ -169,6 +172,60 @@ class LKNRequest extends FormRequest
         'environment.other_guide' => 'required',
         'environment.transportation' => 'required',
         'environment.distance_from_transportation' => 'required|regex:/^[\d.]+$/'
+      ];
+    }
+
+    /**
+     * seven rules
+     * @return array
+     */
+    private function sevenRules()
+    {
+      return [
+        'seven.collateral_status' => 'required',
+        'seven.on_behalf_of' => 'required',
+        'seven.ownership_number' => 'required',
+        'seven.address_collateral' => 'required',
+        'seven.ownership_status' => 'required',
+        'seven.date_evidence' => 'required',
+        'seven.village' => 'required',
+        'seven.districts' => 'required'
+      ];
+    }
+
+    /**
+     * eight rules
+     * @return array
+     */
+    private function eightRules()
+    {
+      return [
+        'eight.liquidation_realization' => 'required',
+        'eight.fair_market' => 'required',
+        'eight.liquidation' => 'required',
+        'eight.fair_market_projection' => 'required',
+        'eight.liquidation_projection' => 'required',
+        'eight.njop' => 'required',
+        'eight.appraisal_by' => 'required',
+        'eight.type_binding' => 'required',
+        'eight.binding_number' => 'required',
+        'eight.binding_value' => 'required'
+      ];
+    }
+
+    /**
+     * ten rules
+     * @return array
+     */
+    private function tenRules()
+    {
+      return [
+        'ten.paripasu' => 'required',
+        'ten.paripasu_bank' => 'required',
+        'ten.insurance' => 'required',
+        'ten.insurance_company' => 'required',
+        'ten.insurance_value' => 'required',
+        'ten.eligibility' => 'required'
       ];
     }
 }
