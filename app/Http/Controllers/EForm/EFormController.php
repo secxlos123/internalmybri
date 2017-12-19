@@ -309,8 +309,8 @@ class EFormController extends Controller
         } catch (\Exception $e) {
             \Log::info($e);
             $getIP = null;
-            $long = 106.81350;
-            $lat = -6.21670;
+            $long = env('DEF_LONG', '106.81350');
+            $lat = env('DEF_LAT', '-6.21670');
 
         }
 

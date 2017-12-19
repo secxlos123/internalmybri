@@ -17,12 +17,12 @@
                     @if ($errors->has('area[location]')) <p class="help-block">{{ $errors->first('area[location]') }}</p> @endif
                     <div class="col-md-3">
                         <!-- <label class="control-label">Latitude</label> -->
-                        <input type="hidden" name="area[latitude]" id="lat" class="form-control" readonly="" name="ground_lat" value="-6.3026755">
+                        <input type="hidden" name="area[latitude]" id="lat" class="form-control" readonly="" name="ground_lat" value="{{ env('DEF_LAT', '-6.21670') }}">
                     </div>
                     @if ($errors->has('area[latitude]')) <p class="help-block">{{ $errors->first('area[latitude]') }}</p> @endif
                     <div class="col-md-3">
                         <!-- <label class="control-label">Longitude</label> -->
-                        <input type="hidden" name="area[longtitude]" id="lng" class="form-control" readonly="" name="ground_long" value="106.82168409999997">
+                        <input type="hidden" name="area[longtitude]" id="lng" class="form-control" readonly="" name="ground_long" value="{{ env('DEF_LONG', '106.81350') }}">
                     </div>
                     @if ($errors->has('area[longtitude]')) <p class="help-block">{{ $errors->first('area[longtitude]') }}</p> @endif
                 </div>
@@ -123,10 +123,10 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Posisi Terhadap Jalan *:</label>
                             <div class="col-md-8">
-                                {!! Form::select('area[position_from_road]', array("" => "", 
-                                    "Langsung Menghadap Jalan" => "Langsung Menghadap Jalan", 
-                                    "Tidak Menghadap ke jalan tetapi mempunyai jalan masuk" => "Tidak Menghadap ke jalan tetapi mempunyai jalan masuk", 
-                                    "Untuk mencapai tanah tersebut harus melewati orang lain" => "Untuk mencapai tanah tersebut harus melewati orang lain"), 
+                                {!! Form::select('area[position_from_road]', array("" => "",
+                                    "Langsung Menghadap Jalan" => "Langsung Menghadap Jalan",
+                                    "Tidak Menghadap ke jalan tetapi mempunyai jalan masuk" => "Tidak Menghadap ke jalan tetapi mempunyai jalan masuk",
+                                    "Untuk mencapai tanah tersebut harus melewati orang lain" => "Untuk mencapai tanah tersebut harus melewati orang lain"),
                                     old('area[position_from_road]'), [
                                     'class' => 'select2 position_from_road',
                                     'data-placeholder' => '-- Pilih --'
@@ -136,17 +136,17 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Bentuk Tanah *:</label>
                             <div class="col-md-8">
-                                {!! Form::select('area[ground_type]', array("" => "", 
-                                    "Segi Tiga" => "Segi Tiga", 
-                                    "Segi Empat" => "Segi Empat", 
+                                {!! Form::select('area[ground_type]', array("" => "",
+                                    "Segi Tiga" => "Segi Tiga",
+                                    "Segi Empat" => "Segi Empat",
                                     "Trapesium" => "Trapesium",
-                                    "Tidak Beraturan" => "Tidak Beraturan"), 
+                                    "Tidak Beraturan" => "Tidak Beraturan"),
                                     old('area[ground_type]'), [
                                     'class' => 'select2 ground_type ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -192,10 +192,10 @@
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Permukaan Tanah *:</label>
                         <div class="col-md-7">
-                            {!! Form::select('area[ground_level]', array("" => "", 
-                                "Tanah Rata" => "Tanah Rata", 
-                                "Bergelombang" => "Bergelombang", 
-                                "Landai" => "Landai"), 
+                            {!! Form::select('area[ground_level]', array("" => "",
+                                "Tanah Rata" => "Tanah Rata",
+                                "Bergelombang" => "Bergelombang",
+                                "Landai" => "Landai"),
                                 old('area[ground_level]'), [
                                 'class' => 'select2 ground_level',
                                 'data-placeholder' => '-- Pilih --'
