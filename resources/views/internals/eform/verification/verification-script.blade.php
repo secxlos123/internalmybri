@@ -22,10 +22,10 @@
         $('#join_check').on('change', function() {
             if(this.checked){
                 $('#couple_financial').show();
-                $('#join_val').val('join_income');
+                $('#join_val').val('joint');
             }else{
                 $('#couple_financial').hide();
-                $('#join_val').val('single_income');
+                $('#join_val').val('single');
             }
         });
            // console.log($('#status').val());
@@ -710,7 +710,7 @@
 
     // function printPage() {
     //     // window.print();
-        
+
     // }
 
     //disable select kpr
