@@ -22,7 +22,9 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Lahir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['birth_date']}}</p>
+                    <p class="form-control-static">
+                    {{ substr($detail['customer']['personal']['birth_date'], -2) }}-{{ substr($detail['customer']['personal']['birth_date'], 5, 2) }}-{{ substr($detail['customer']['personal']['birth_date'], 0, 4) }}
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -32,6 +34,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-md-5 control-label">Kota :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['customer']['personal']['birth_place']}}</p>
+                </div>
+            </div>
+            <!-- <div class="form-group">
                 <label class="col-md-5 control-label">No. Telepon :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{(isset($detail['customer']['personal']['phone']) ? $detail['customer']['personal']['phone'] : '-' )}}</p>
@@ -42,13 +50,7 @@
                 <div class="col-md-7">
                     <p class="form-control-static">{{(isset($detail['customer']['personal']['mobile_phone']) ? $detail['customer']['personal']['mobile_phone'] : '-' )}}</p>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Pendidikan Terakhir :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{ $debitur['PENDIDIKAN_TERAKHIR'] }}</p>
-                </div>
-            </div>
+            </div> -->
         </form>
     </div>
     <div class="col-md-6">
@@ -80,13 +82,30 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Status Pernikahan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['status']}}</p>
+                    <p class="form-control-static">
+                    @if($detail['customer']['personal']['status'] == '0')
+                        Lajang
+                    @elseif($detail['customer']['personal']['status'] == '1')
+                        Menikah
+                    @else
+                        Janda / Duda
+                    @endif
+                    </p>
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Status Tempat Tinggal :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['address_status']}}</p>
+                    <p class="form-control-static">
+                    @if($detail['customer']['personal']['address_status'] == '0')
+                        Milik Sendiri
+                    @elseif($detail['customer']['personal']['status'] == '1')
+                        Milik Orang Tua
+                    @else
+                        Tinggal Di Rumah Sewa
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -101,10 +120,10 @@
                     <p class="form-control-static">{{$detail['customer']['personal']['mother_name']}}</p>
                 </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="col-md-5 control-label">Agama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['agama']}}</p>
+                    <p class="form-control-static">{{$detail['agama']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -112,7 +131,7 @@
                 <div class="col-md-7">
                     <p class="form-control-static">{{$debitur['APAKAH_PERNAH_PINJAM_DI_BANK_LAIN']}}</p>
                 </div>
-            </div>
+            </div> -->
         </form>
     </div>
 </div>

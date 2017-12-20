@@ -212,8 +212,8 @@ class AOController extends Controller
 					// 	])->setQuery([
 					// 		'branch' => $form['branch_id'],
 					// 		'distance' => 1,
-					// 		'long' => 106.820788,
-					// 		'lat' => -6.301752
+					// 		'long' => 106.81350,
+					// 		'lat' => -6.21670
 					// 	])
 					// 	->get();
 					// $office = [];

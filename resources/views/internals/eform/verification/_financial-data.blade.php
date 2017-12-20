@@ -75,27 +75,27 @@
                 </div>
             </div>
 
-            <div class="col-md-7" id="join_income">
+            <div class="col-md-7 source" id="join_income">
                 @if ($type != 'preview')
                     <div class="checkbox checkbox-single checkbox-primary">
-                        <input type="checkbox" @if(!empty($dataCustomer)) @if(($dataCustomer['customer']['couple_salary']) > 0) ? checked="" @endif @endif value="join_income" id="join_check">
-                        <label class="header-title custom-title-2" for="join_check"><b>  Joint Income</b></label>
-                        <input type="hidden" name="join_income" id="join_val">
+                        <input type="checkbox" {{ !empty($dataCustomer) ? ($dataCustomer['customer']['source_income'] == 'joint' ? 'checked' : '' ) : '' }} value="join_income" id="join_check">
+                        <label class="header-title custom-title-2" for="join_check">
+                            <b>  Joint Income</b>
+                        </label>
+                        <input type="hidden" name="source_income" id="join_val">
                     @else
                     <div>
-                        <label class="header-title custom-title-2" for="join_check"><b>
-                        @if (($dataCustomer['customer']['couple_salary']) > 0)
-                        <i class="fa fa-check-square"></i>
-                        @else
-                        <i class="fa fa-square"></i>
-                        @endif
-                        Joint Income</b></label>
+                        <label class="header-title custom-title-2" for="join_check">
+                            <b>
+                                <i class="fa fa{{ $dataCustomer['customer']['source_income'] == 'joint' ? '-check' : ''  }}-square"></i> Joint Income
+                            </b>
+                        </label>
                     @endif
                 </div>
             </div>
 
             <!--Pasangan-->
-            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0 && ($dataCustomer['customer']['status']) == 2) style="display:block;" @else style="display:none;" @endif >
+            <div class="col-md-12" id="couple_financial" style="display: {{ !empty($dataCustomer) ? ($dataCustomer['customer']['source_income'] == 'joint' ? 'block' : 'none' ) : 'none' }}">
                 <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                     <div class="panel-body">

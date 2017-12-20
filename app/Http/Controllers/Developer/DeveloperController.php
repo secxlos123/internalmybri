@@ -273,7 +273,10 @@ class DeveloperController extends Controller
         $data = $this->getUser();
 
         $developers = Client::setEndpoint("developer/{$id}/actived")
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                        ])
                 ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
                 ->put();
 
@@ -334,7 +337,8 @@ class DeveloperController extends Controller
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'city_id'   => $request->input('city_id'),
                     'project'   => $request->input('project'),
-                    'page'      => (int) $request->input('page') + 1
+                    'page'      => (int) $request->input('page') + 1,
+                    'without_independent' => true
                 ])->get();
         // dd($developers);
 

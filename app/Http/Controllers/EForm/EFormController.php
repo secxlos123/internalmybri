@@ -46,15 +46,15 @@ class EFormController extends Controller
      */
     public function index(Request $request)
     {
-        
+
         $data = $this->getUser();
         // dd(env('APP_ENV'));
         if($data['role'] == 'ao'){
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){                
+            if(@$request->get('ref_number') && @$request->get('ids')){
                 /*
                 * redirect to eform with id and ref_number
-                */                    
+                */
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
                         'Authorization' => $data['token'],
@@ -88,7 +88,7 @@ class EFormController extends Controller
                     }
 
                 $form_notif['respon_statused'] = $text;
-                
+
                 $form_notif['prescreening_status'] = view('internals.layouts.actions', [
                   'prescreening_status' => route('getLKN', $form_notif['id']),
                   'prescreening_result' => $form_notif['prescreening_status'],
@@ -115,14 +115,14 @@ class EFormController extends Controller
                           ])->get();
                 // dd($reads)
             }
-            
+
             return view('internals.eform.index-ao', compact('data','form_notif'));
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){                
+            if(@$request->get('ref_number') && @$request->get('ids')){
                /*
                 * redirect to eform with id and ref_number
-                */                    
+                */
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
                         'Authorization' => $data['token'],
@@ -163,7 +163,7 @@ class EFormController extends Controller
                               'branch_id' => $data['branch']
                           ])->get();
             }
-            
+
             return view('internals.eform.index', compact('data','form_notif'));
         } else{
             return view('internals.eform.create', compact('data'));
@@ -309,8 +309,8 @@ class EFormController extends Controller
         } catch (\Exception $e) {
             \Log::info($e);
             $getIP = null;
-            $long = 106.813880;
-            $lat = -6.217458;
+            $long = env('DEF_LONG', '106.81350');
+            $lat = env('DEF_LAT', '-6.21670');
 
         }
 
@@ -366,7 +366,7 @@ class EFormController extends Controller
      */
     public function eformRequest($request, $data)
     {
-        $allReq = $request->except(['request_amount', 'price', '_token']);;
+        $allReq = $request->except(['request_amount', 'price', '_token', 'dp', 'down_payment']);;
         foreach ($allReq as $index => $req) {
             $inputData[] = [
                       'name'     => $index,
@@ -382,6 +382,14 @@ class EFormController extends Controller
                 [
                     'name'    => 'price',
                     'contents' => str_replace(',', '.', str_replace('.', '', $request->price))
+                ],
+                [
+                    'name'    => 'dp',
+                    'contents' => str_replace(',', '.', str_replace('.', '', $request->dp))
+                ],
+                [
+                    'name'    => 'down_payment',
+                    'contents' => str_replace(',', '.', str_replace('.', '', $request->down_payment))
                 ]
             );
 

@@ -191,8 +191,9 @@
                 }
             })
             .done(function (response) {
-                table.fnDraw();
+               //table.fnDraw();
                 $('#confirm').modal('hide');
+                $("#btn-filter").click();
             });
         });
 

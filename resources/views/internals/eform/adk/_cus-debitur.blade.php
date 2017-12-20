@@ -2,6 +2,18 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
+                <label class="col-md-5 control-label">Nama Mitra :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['mitra']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">NIP :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['NIP']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-5 control-label">Usia MPP :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$debitur['USIA_MPP']}} tahun</p>
@@ -10,19 +22,19 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Atasan Langsung :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Nama_atasan_Langsung']}}</p>
+                    <p class="form-control-static">{{$detail['Nama_atasan_Langsung']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPWP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['no_npwp']}}</p>
+                    <p class="form-control-static">{{$detail['no_npwp']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">No. dan Tgl. Kenaikan SK Pangkat Terakhir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['no_dan_tanggal_sk_akhir']}}</p>
+                    <p class="form-control-static">{{$detail['no_dan_tanggal_sk_akhir']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -46,15 +58,21 @@
                         @if($debitur['TRANSAKSI_NORMAL_HARIAN'] == '1')
                             0 s.d 10jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '2')
-                            Lebih dari 10jt s.d 50jt
+                            > 10jt s.d 50jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '3')
-                            Lebih dari 50jt s.d 100jt
+                            > 50jt s.d 100jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '4')
-                            Lebih dari 100jt s.d 1M
+                            > 100jt s.d 1M
                         @else
-                            Lebih dari 1M
+                            > 1M
                         @endif
                     </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Domisili / Lama Menetap :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$debitur['DOMISILI']}} tahun</p>
                 </div>
             </div>
         </form>
@@ -62,27 +80,53 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
+                <label class="col-md-5 control-label">Nama Kantor Cabang :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['branch']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Status Pekerjaan :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                    @if($detail['Status_Pekerjaan'] == '0')
+                        TETAP
+                    @elseif($detail['Status_Pekerjaan'] == '1')
+                        KONTRAK
+                    @else
+                        PENSIUNAN
+                    @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Mulai Bekerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['TANGGAL_MULAI_BEKERJA']}}</p>
+                    <p class="form-control-static">{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], 0, 2) }}-{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], 2, 2) }}-{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], -4) }}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Jabatan Atasan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Jabatan_atasan']}}</p>
+                    <p class="form-control-static">{{$detail['Jabatan_atasan']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">No. dan Tgl. SK Peningkatan Pegawai Pertama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['no_dan_tanggal_sk_awal']}}</p>
+                    <p class="form-control-static">{{$detail['no_dan_tanggal_sk_awal']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Resident Flag :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['RESIDENT_FLAG']}}</p>
+                    <p class="form-control-static">
+                    @if($debitur['RESIDENT_FLAG'] == 'Y')
+                        Ya
+                    @else
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
