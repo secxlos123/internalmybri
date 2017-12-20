@@ -49,8 +49,7 @@ class ADKController extends Controller
 
     public function getApprove($id) {
         $data = $this->getUser();
-        // GET DETAIL CUST with Form Data
-        // print_r($data['pn']);
+        // GET DETAIL CUST with Form Data briguna
         $formDetail = Client::setEndpoint('eforms/'.$id)
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
@@ -60,19 +59,10 @@ class ADKController extends Controller
                     // dd($formDetail);
         $detail = $formDetail['contents'];
         // dd($detail);
-        $data_briguna = Client::setEndpoint('api_las/briguna')
-                    ->setHeaders(
-                        [ 'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                        ])
-                    ->setBody(['id' => $id])
-                    ->post();
-        $briguna = $data_briguna['contents'];
-        // dd($briguna);
         $conten = [
-            'nik'           => $briguna['nik'],
-            'tp_produk'     => $briguna['tp_produk'],
-            'uid_pemrakarsa'=> $briguna['uid_pemrakarsa']
+            'nik'           => $detail['nik'],
+            'tp_produk'     => $detail['tp_produk'],
+            'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
         ];
 
         // GET Form Data Debitur
@@ -92,13 +82,9 @@ class ADKController extends Controller
         }
         
         // dd($debitur);
-        
-        // dd($detail);
         // ao harusnya ganti adk
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','briguna'));
-        } else{
-            return view('internals.eform.adk.index', compact('data'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id'));
         }
     }
 
@@ -277,23 +263,28 @@ class ADKController extends Controller
         // print_r($request->all());exit();
         $data = $this->getUser();
         $response = $request->all();
-        $data_briguna = Client::setEndpoint('api_las/briguna')
+        $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
                         ])
-                    ->setBody(['id' => $response['eform_id']])
-                    ->post();
-        $briguna = $data_briguna['contents'];
-        // dd($briguna);
-        // foreach ($briguna as $key => $value) {
-        //     $result = $value;
-        // }
-        // dd($result);
+                    ->get();
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        if (!empty($detail)) {
+            $detail_debitur = [
+                'nama_debitur' => $detail['customer']['personal']['first_name'],
+                'alamat'       => $detail['customer']['personal']['address'],
+                'tgl_skpp'     => $debitur['TANGGAL_MULAI_SEBAGAI_DEBITUR'],
+                'perusahaan'   => $detail['customer']['work']['company_name'],
+                ''
+            ];
 
-        // lempar data ke view blade
-        view()->share('data_debitur',$briguna);
-        $pdf = PDF::loadView('internals.eform.adk._ptk_ipk');
-        return $pdf->download('ptk_ipk.pdf');
+            // lempar data ke view blade
+            view()->share('data_debitur',$detail_debitur);
+            $pdf = PDF::loadView('internals.eform.adk._ptk_ipk');
+            return $pdf->download('ptk_ipk.pdf');
+        }
+        // dd($briguna);
     }
 }

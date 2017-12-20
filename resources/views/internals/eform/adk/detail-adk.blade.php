@@ -205,7 +205,7 @@
             </div>
 
             <!-- rekomendasi approval -->
-            @if($briguna['is_send'] == '0')                    
+            @if($detail['is_send'] == '0')                    
                 <div class="text-center">
                     <div class="row">
                         <div class="col-md-6">
@@ -217,7 +217,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label">Cetak Data Debitur :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_pdf',['download'=>'pdf','eform_id'=>$briguna['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK</a>
+                                                        <a href="{{route('post_pdf',['download'=>'pdf','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -229,7 +229,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label">Cetak Data Instansi :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_pdf', $briguna['eform_id'])}}" class="btn btn-info waves-light waves-effect w-md m-b-20">Cetak</a>
+                                                        <a href="{{route('post_pdf', $detail['eform_id'])}}" class="btn btn-info waves-light waves-effect w-md m-b-20">Cetak</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -241,9 +241,9 @@
                     </div>
                     <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
                     {{ csrf_field() }}
-                        <input type="hidden" name="id_aplikasi" value="{{$briguna['id_aplikasi']}}">
-                        <input type="hidden" name="eform_id" value="{{$briguna['eform_id']}}">
-                        <input type="hidden" name="uid" value="{{$briguna['uid']}}">
+                        <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">
+                        <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
+                        <input type="hidden" name="uid" value="{{$detail['uid']}}">
                         <h3 class="panel-title">catatan :</h3>
                         <hr> 
                         <input type="text" name="catatan" class="form-control">

@@ -7,22 +7,22 @@
     <tr>
       <td>Nama Debitur</td>
       <td>:</td>
-      <td>{{$data_debitur['Nama_atasan_Langsung']}}</td>
+      <td>{{$data_debitur['nama_debitur']}}</td>
     </tr>
     <tr>
       <td>Alamat</td>
       <td>:</td>
-      <td>{{$data_debitur['Nama_atasan_Langsung']}}</td>
+      <td>{{$data_debitur['alamat']}}</td>
     </tr>
     <tr>
       <td>No/Tgl SKPP</td>
       <td>:</td>
-      <td>{{$data_debitur['mitra']}}</td>
+      <td>{{$data_debitur['tgl_skpp']}}</td>
     </tr>
     <tr>
       <td>Instansi/Perusahaan</td>
       <td>:</td>
-      <td>{{$data_debitur['mitra']}}</td>
+      <td>{{$data_debitur['perusahaan']}}</td>
     </tr>
     <tr>
       <td>No Putusan</td>
