@@ -408,7 +408,7 @@ class EFormController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->eformRequest($request, $data);
-        dd(json_encode($newForm));
+        // dd(json_encode($newForm));
 
         // $validator = $this->generalRules($request->all());
         // if ($validator->fails()) {
