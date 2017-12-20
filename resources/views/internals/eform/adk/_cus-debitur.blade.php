@@ -4,13 +4,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['mitra']}}</p>
+                    <p class="form-control-static">{{$detail['mitra']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NIP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['NIP']}}</p>
+                    <p class="form-control-static">{{$detail['NIP']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -22,19 +22,19 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Atasan Langsung :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Nama_atasan_Langsung']}}</p>
+                    <p class="form-control-static">{{$detail['Nama_atasan_Langsung']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPWP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['no_npwp']}}</p>
+                    <p class="form-control-static">{{$detail['no_npwp']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">No. dan Tgl. Kenaikan SK Pangkat Terakhir :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['no_dan_tanggal_sk_akhir']}}</p>
+                    <p class="form-control-static">{{$detail['no_dan_tanggal_sk_akhir']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -82,16 +82,16 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Kantor Cabang :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['branch']}}</p>
+                    <p class="form-control-static">{{$detail['branch']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Status Pekerjaan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($briguna['Status_Pekerjaan'] == '0')
+                    @if($detail['Status_Pekerjaan'] == '0')
                         TETAP
-                    @elseif($briguna['Status_Pekerjaan'] == '1')
+                    @elseif($detail['Status_Pekerjaan'] == '1')
                         KONTRAK
                     @else
                         PENSIUNAN
@@ -108,13 +108,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Jabatan Atasan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['Jabatan_atasan']}}</p>
+                    <p class="form-control-static">{{$detail['Jabatan_atasan']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">No. dan Tgl. SK Peningkatan Pegawai Pertama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$briguna['no_dan_tanggal_sk_awal']}}</p>
+                    <p class="form-control-static">{{$detail['no_dan_tanggal_sk_awal']}}</p>
                 </div>
             </div>
             <div class="form-group">
