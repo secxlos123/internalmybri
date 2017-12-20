@@ -283,6 +283,9 @@
         /* Tracking */
         Route::get('tracking', 'Tracking\TrackingController@datatables');
 
+        /* Debitur */
+        Route::get('debiturs', 'Debitur\DebiturController@datatables');
+
         /* EForms */
         Route::get('eform', 'EForm\EFormController@datatables');
 
