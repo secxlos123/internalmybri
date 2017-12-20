@@ -75,22 +75,10 @@
                 </div>
             </div>
 
-            <div class="form-group source_income {!! $errors->has('source_income') ? 'has-error' : '' !!}">
-                <label class="col-md-4 control-label">Sumber *:</label>
-                <div class="col-md-8">
-                    <select class="form-control" name="source_income" id="source_income">
-                        <option selected="" disabled="">-- Pilih --</option>
-                        <option value="single" {{ $eformData['customer']['financial']['status_finance'] != 'Join Income' || $eformData['customer']['personal']['status_id'] != 2 ? 'selected' : '' }}>Single Income</option>
-                        <option value="joint" {{ $eformData['customer']['financial']['status_finance'] == 'Join Income' && $eformData['customer']['personal']['status_id'] == 2 ? 'selected' : '' }}>Join Income</option>
-                    </select>
-                    @if ($errors->has('source_income')) <p class="help-block">{{ $errors->first('source_income') }}</p> @endif
-                </div>
-            </div>
-
             <div class="col-md-7 source" id="join_income">
                 @if ($type != 'preview')
                     <div class="checkbox checkbox-single checkbox-primary">
-                        <input type="checkbox" {{ !empty($dataCustomer) ? ($dataCustomer['financial']['source_income'] == 'joint' ? 'checked' : '' ) : '' }} value="join_income" id="join_check">
+                        <input type="checkbox" {{ !empty($dataCustomer) ? ($dataCustomer['customer']['source_income'] == 'joint' ? 'checked' : '' ) : '' }} value="join_income" id="join_check">
                         <label class="header-title custom-title-2" for="join_check">
                             <b>  Joint Income</b>
                         </label>
@@ -99,7 +87,7 @@
                     <div>
                         <label class="header-title custom-title-2" for="join_check">
                             <b>
-                                <i class="fa fa{{ $dataCustomer['financial']['source_income'] == 'joint' ? '-check' : ''  }}-square"></i> Joint Income
+                                <i class="fa fa{{ $dataCustomer['customer']['source_income'] == 'joint' ? '-check' : ''  }}-square"></i> Joint Income
                             </b>
                         </label>
                     @endif
@@ -107,7 +95,7 @@
             </div>
 
             <!--Pasangan-->
-            <div class="col-md-12" id="couple_financial"@if(($dataCustomer['customer']['couple_salary']) > 0 && ($dataCustomer['customer']['status']) == 2) style="display:block;" @else style="display:none;" @endif >
+            <div class="col-md-12" id="couple_financial" style="display: {{ !empty($dataCustomer) ? ($dataCustomer['customer']['source_income'] == 'joint' ? 'block' : 'none' ) : 'none' }}">
                 <div class="card-box m-t-30">
                     <h4 class="m-t-min30 m-b-30 header-title custom-title">Pasangan</h4>
                     <div class="panel-body">

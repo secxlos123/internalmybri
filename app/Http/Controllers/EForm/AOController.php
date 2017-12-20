@@ -558,7 +558,7 @@ class AOController extends Controller
                 ->render();
 
             return response()->json(['view' => $view]);
-        } 
+        }
 
         // if (count($dataCustomer) == 0) {
         //   \Session::flash('danger', 'Data verification tidak ditemukan!');
