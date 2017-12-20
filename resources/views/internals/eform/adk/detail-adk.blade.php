@@ -215,9 +215,9 @@
                                         <div class="col-md-12">
                                             <form class="form-horizontal" role="form">
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data Debitur :</label>
+                                                    <label class="col-md-5 control-label">Cetak Data Kredit :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_pdf',['download'=>'pdf','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK</a>
+                                                        <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -229,7 +229,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label">Cetak Data Instansi :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_pdf', $detail['eform_id'])}}" class="btn btn-info waves-light waves-effect w-md m-b-20">Cetak</a>
+                                                        <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download SPH</a>
                                                     </div>
                                                 </div>
                                             </form>
