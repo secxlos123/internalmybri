@@ -113,7 +113,7 @@
             "serverSide": true,
             "searching": false,
             "ajax" : {
-                url : '/datatables/customers',
+                url : '/datatables/debiturs',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 
