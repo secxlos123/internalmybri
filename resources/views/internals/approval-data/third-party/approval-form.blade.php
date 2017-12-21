@@ -48,21 +48,21 @@
                                                     <p class="form-control-static">Nama Pihak Ketiga</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">PT. ABC</p>
+                                                    <p class="form-control-static">{{$detail['old']['first_name']}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">PT. EFG</p>
+                                                    <p class="form-control-static">{{$detail['new']['related']['name']}}</p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p class="form-control-static">Alamat Perusahaan</p>
+                                                    <p class="form-control-static">Alamat</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">Jalan Pegangsaan Timur</p>
+                                                    <p class="form-control-static">{{$detail['old']['thirdparty']['address']}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">Jalan Gatot Soebroto</p>
+                                                    <p class="form-control-static">{{$detail['new']['address']}}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -70,10 +70,10 @@
                                                     <p class="form-control-static">Kota</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">Jakarta Barat</p>
+                                                    <p class="form-control-static">{{$detail['old']['thirdparty']['city']['name']}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">Jakarta Timur</p>
+                                                    <p class="form-control-static">{{$detail['new']['city']['name']}}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -81,10 +81,10 @@
                                                     <p class="form-control-static">Nomor Telepon</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">081987188888</p>
+                                                    <p class="form-control-static">{{$detail['old']['thirdparty']['phone_number']}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">0221717171</p>
+                                                    <p class="form-control-static">{{$detail['new']['related']['phone_number']}}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -92,10 +92,10 @@
                                                     <p class="form-control-static">Email</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">lorem@ipsum.com</p>
+                                                    <p class="form-control-static">{{$detail['old']['thirdparty']['email']}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">lorem@ipsum.com</p>
+                                                    <p class="form-control-static">{{$detail['new']['related']['email']}}</p>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -103,10 +103,10 @@
                                                     <p class="form-control-static">Nomor Handphone</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">08188711771</p>
+                                                    <p class="form-control-static">{{$detail['old']['mobile_phone']}}</p>
                                                 </td>
                                                 <td>
-                                                    <p class="form-control-static">08128782888</p>
+                                                    <p class="form-control-static">{{$detail['new']['mobile_phone']}}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -117,9 +117,10 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <!-- rekomendasi approval -->
-                                <form class="form-horizontal" role="form" method="POST" id="form1">
+                                <form class="form-horizontal" role="form" method="POST" id="form1" method="post" action="{{route('postApprovalDataThirdParty')}}">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="is_approved" id="is_approved">
+                                    <input type="hidden" name="id" id="id" value="{{$detail['new']['id']}}">
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
                                         <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
@@ -136,3 +137,19 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+
+<script type="text/javascript">
+    $('#btn-approve').on('click', function(){
+        $('#is_approved').attr('value', true);
+        HoldOn.open(options);
+        $('#form1').submit();
+        HoldOn.close();
+    })
+
+    $('#btn-reject').on('click', function(){
+        $('#is_approved').attr('value', false);
+        HoldOn.open(options);
+        $('#form1').submit();
+        HoldOn.close();
+    })
+</script>
