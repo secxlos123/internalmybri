@@ -337,7 +337,8 @@ class DeveloperController extends Controller
                     'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'city_id'   => $request->input('city_id'),
                     'project'   => $request->input('project'),
-                    'page'      => (int) $request->input('page') + 1
+                    'page'      => (int) $request->input('page') + 1,
+                    'without_independent' => true
                 ])->get();
         // dd($developers);
 

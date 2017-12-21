@@ -182,7 +182,8 @@ class ADKController extends Controller
             if ($debitur['code'] == '01') {
                 \Log::info("masuk");
                 $listVerADK = $debitur['contents']['data'];
-                $form = array();
+                $form  = array();
+                $count = 0;
                 foreach ($customer as $index => $value) {
                     // print_r($value);exit();
                     foreach ($listVerADK as $key => $form) {
@@ -205,6 +206,22 @@ class ADKController extends Controller
                     }
                 }
 
+                if (intval($count) == 0) {
+                    $eforms['contents']['draw'] = $request->input('draw');
+                    $eforms['contents']['recordsTotal'] = '0';
+                    $eforms['contents']['recordsFiltered'] = '0';
+                    $eforms['contents']['data'][] = [
+                        'id_aplikasi'   => '-',
+                        'fid_tp_produk' => '-',
+                        'nama_pegawai'  => '-',
+                        'namadeb'       => '-',
+                        'request_amount'=> '-',
+                        'STATUS'        => '-',
+                        'action'        => '-'
+                    ];
+                    
+                    return response()->json($eforms['contents']);
+                }
                 $eforms['contents']['total'] = $count;
                 $eforms['contents']['draw'] = $request->input('draw');
                 $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
@@ -260,8 +277,8 @@ class ADKController extends Controller
     }
 
     public function exportPDF(Request $request) {
-        // print_r($request->all());exit();
         $data = $this->getUser();
+        // print_r($data);exit();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
                     ->setHeaders(
@@ -273,17 +290,72 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $detail_debitur = [
+                'name_adk'     => $data['name'],
+                'jabatan_adk'  => $data['position'],
                 'nama_debitur' => $detail['customer']['personal']['first_name'],
                 'alamat'       => $detail['customer']['personal']['address'],
-                'tgl_skpp'     => $debitur['TANGGAL_MULAI_SEBAGAI_DEBITUR'],
+                'tgl_skpp'     => '',
                 'perusahaan'   => $detail['customer']['work']['company_name'],
-                ''
+                'no_putusan'   => '',
+                'scoring'      => $detail['score'],
+                'jumlah_kredit'=> $detail['request_amount'],
+                'jangka_waktu' => $detail['Jangka_waktu'],
+                'suku_bunga'   => ($detail['Suku_bunga'] / 12),
+                'provisi'      => $detail['Provisi_kredit'],
+                'biaya_adm'    => $detail['Biaya_administrasi'],
+                'penalty'      => $detail['Penalty'],
+                'angsuran'     => $detail['angsuran_usulan'],
+                'asuransi'     => $detail['Premi_asuransi_jiwa'],
+                'beban_debitur'=> $detail['Premi_beban_debitur'],
+                'beban_bri'    => $detail['Premi_beban_bri']
             ];
 
             // lempar data ke view blade
             view()->share('data_debitur',$detail_debitur);
             $pdf = PDF::loadView('internals.eform.adk._ptk_ipk');
             return $pdf->download('ptk_ipk.pdf');
+        }
+        // dd($briguna);
+    }
+
+    public function exportSPH(Request $request) {
+        $data = $this->getUser();
+        // print_r($data);exit();
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->get();
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        if (!empty($detail)) {
+            $detail_debitur = [
+                'name_adk'     => $data['name'],
+                'jabatan_adk'  => $data['position'],
+                'nama_debitur' => $detail['customer']['personal']['first_name'],
+                'alamat'       => $detail['customer']['personal']['address'],
+                'tgl_skpp'     => '',
+                'perusahaan'   => $detail['customer']['work']['company_name'],
+                'no_putusan'   => '',
+                'scoring'      => $detail['score'],
+                'jumlah_kredit'=> $detail['request_amount'],
+                'jangka_waktu' => $detail['Jangka_waktu'],
+                'suku_bunga'   => ($detail['Suku_bunga'] / 12),
+                'provisi'      => $detail['Provisi_kredit'],
+                'biaya_adm'    => $detail['Biaya_administrasi'],
+                'penalty'      => $detail['Penalty'],
+                'angsuran'     => $detail['angsuran_usulan'],
+                'asuransi'     => $detail['Premi_asuransi_jiwa'],
+                'beban_debitur'=> $detail['Premi_beban_debitur'],
+                'beban_bri'    => $detail['Premi_beban_bri']
+            ];
+
+            // lempar data ke view blade
+            view()->share('data_debitur',$detail_debitur);
+            $pdf = PDF::loadView('internals.eform.adk._sph');
+            return $pdf->download('sph.pdf');
         }
         // dd($briguna);
     }

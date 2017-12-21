@@ -1,42 +1,37 @@
-<!-- <img src="/public/assets/images/favicon.png"> --><h3>PT BANK RAKYAT INDONESIA (PERSERO) Tbk.</h3>
-<h3 align="center">FORMULIR PUTUSAN DAN PENCAIRAN KRETAP</h3>
+<h3>PT BANK RAKYAT INDONESIA (PERSERO) Tbk.</h3>
 <hr>
 <p align="justify">
-  SETUJU PEMBERIAN KREDIT KEPADA DEBITUR DIBAWAH INI :
   <table>
     <tr>
-      <td>Nama Debitur</td>
+      <td>KANTOR CABANG</td>
       <td>:</td>
       <td>{{$data_debitur['nama_debitur']}}</td>
     </tr>
     <tr>
-      <td>Alamat</td>
+      <td>KANCAPEM/UNIT</td>
       <td>:</td>
       <td>{{$data_debitur['alamat']}}</td>
     </tr>
+  </table>
+  <hr>
+  <table>
     <tr>
-      <td>No/Tgl SKPP</td>
+      <td>No. SKPP</td>
       <td>:</td>
       <td>{{$data_debitur['tgl_skpp']}}</td>
     </tr>
     <tr>
-      <td>Instansi/Perusahaan</td>
+      <td>No. Pangkal / CIF</td>
       <td>:</td>
       <td>{{$data_debitur['perusahaan']}}</td>
     </tr>
-    <tr>
-      <td>No Putusan</td>
-      <td>:</td>
-      <td>{{$data_debitur['no_putusan']}}</td>
-    </tr>
-    <tr>
-      <td>Scoring</td>
-      <td>:</td>
-      <td>{{$data_debitur['scoring']}}</td>
-    </tr>
   </table>
-  <hr>
-  Dengan struktur, tipe dan syarat kredit sebagai berikut
+</p>
+<br>
+<p align="justify">
+  <h3 align="center">SURAT PENGAKUAN HUTANG</h3>
+  <h5 align="center">Nomor : </h5>
+  Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai badan hukum.
 </p>
 <table border="1" width="100%">
   <tr>
@@ -105,9 +100,6 @@
     <td></td>
   </tr>
 </table>
-<p align="justify">
-  Setelah melakukan verifikasi dan penelitian terhadap kelengkapan dokumen dan persyaratan kredit, kami menyatakan bahwa dokumen telah lengkap dan sesuai dengan persyaratan yang ditetapkan, maka setuju untuk dilakukan pencairan kredit.
-</p>
 <table border="1" width="100%">
   <tr>
     <td colspan="2" align="center">ADMINISTRASI KREDIT</td>
