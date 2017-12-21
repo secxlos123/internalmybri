@@ -249,7 +249,7 @@
                         <input type="text" name="catatan" class="form-control">
                         <hr>
                         <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Verifikasi</button>
+                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
                     </form>
                 </div>
             @else
