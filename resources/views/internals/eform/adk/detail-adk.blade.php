@@ -205,7 +205,7 @@
             </div>
 
             <!-- rekomendasi approval -->
-            @if($detail['is_send'] == '0')                    
+            @if($detail['is_send'] == '0' && $detail['is_verified'] == '1')                    
                 <div class="text-center">
                     <div class="row">
                         <div class="col-md-6">
@@ -249,12 +249,12 @@
                         <input type="text" name="catatan" class="form-control">
                         <hr>
                         <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Verifikasi</button>
+                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
                     </form>
                 </div>
             @else
                 <div class="text-center">
-                    <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-cetak">Cetak</a>
+                    <a href="{{route('adk.index')}}" class="btn btn-default">Kembali</a>
                 </div>
             @endif
         </div>
@@ -276,12 +276,15 @@
         HoldOn.close();
     })
 
-    /*$('#btn-reject').on('click', function(){
-        $('#is_approved').attr('value', false);
-        HoldOn.open(options);
-        $('#form1').submit();
-        HoldOn.close();
-    })*/
+    $('#btn-verifikasi').on('click', function(){
+        // alert('tes verifikasi');
+        $('#verifikasi').val('1');
+    })
+
+    $('#btn-tunda').on('click', function(){
+        // alert('tes tunda');
+        $('#verifikasi').val('0');
+    })
 
     $('#form1').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
