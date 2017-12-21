@@ -155,6 +155,10 @@
             Route::get('third-party', ['as'=>'approveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalThirdParty']);
 
             Route::get('third-party/approve/{id}', ['as'=>'getApproveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@getViewApprovalThirdParty']);
+
+            Route::post('approve-data-developer', ['as'=>'postApprovalDataDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataDeveloper']);
+
+            Route::post('approve-data-thirdparty', ['as'=>'postApprovalDataThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataThirdParty']);
         });
 
         Route::resource('eform', 'EForm\EFormController');
@@ -305,6 +309,11 @@
         Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
 
         Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
+
+        // ApprovalData
+        Route::get('approval-developer', 'ApprovalData\ApprovalDataController@datatableDeveloper');
+
+        Route::get('approval-third-party', 'ApprovalData\ApprovalDataController@datatableThirdParty');
 
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');
