@@ -45,6 +45,17 @@
                                         <tbody>
                                             <tr>
                                                 <td>
+                                                    <p class="form-control-static">Nama PIC</p>
+                                                </td>
+                                                <td>
+                                                    <p class="form-control-static">{{$detail['old']['first_name']}} {{$detail['old']['last_name']}}</p>
+                                                </td>
+                                                <td>
+                                                    <p class="form-control-static">{{$detail['new']['first_name']}} {{$detail['new']['last_name']}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
                                                     <p class="form-control-static">Nama Perusahaan</p>
                                                 </td>
                                                 <td>
@@ -133,8 +144,10 @@
                                     <input type="hidden" name="is_approved" id="is_approved">
                                     <input type="hidden" name="id" id="id" value="{{$detail['new']['id']}}">
                                     <div class="text-center">
+                                    @if($detail['new']['status'] != 'approved')
                                         <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
                                         <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
+                                    @endif
                                         <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                     </div>
                                 </form>

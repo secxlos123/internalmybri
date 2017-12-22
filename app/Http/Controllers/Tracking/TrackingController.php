@@ -73,7 +73,8 @@ class TrackingController extends Controller
                                 ])
                     ->get();
 
-        $datas = $userData['contents']['0'];
+        $datas = $userData['contents'];
+        // dd($datas);
 
         return view('internals.tracking.detail', compact('data', 'datas'));
     }
@@ -135,14 +136,14 @@ class TrackingController extends Controller
 
         foreach ($eforms['contents']['data'] as $key => $form) {
             // dd($form['kpr']['developer_id']);
-            $form['ref_number'] = strtoupper($form['no_ref']);
+            $form['ref_number'] = strtoupper($form['ref_number']);
             $form['appointment_date'] = '2017-10-03';
             $form['developer_id'] = strtoupper($form['developer_name']);
             $form['property_id'] = $form['property_name'];
             $form['status'] = $form['status'];
 
             $form['action'] = view('internals.layouts.actions', [
-                'show' => route('tracking.show', 1),
+                'show' => route('tracking.show', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }

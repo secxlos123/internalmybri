@@ -117,13 +117,15 @@ class ApprovalDataController extends Controller
                                   'pn' => $data['pn']
                                 ])
                     ->post();
-                    dd($detailData);
+                    // dd($detailData);
 
         if($detailData['code'] == 200){
-            \Session::flash('success', 'Data berhasil diapprove!');
+            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
+            $color = ($detailData['contents']['status'] == 'approved') ? 'success' : 'error';
+            \Session::flash($color, $message);
             return redirect()->route('approveDeveloper');
         }else{
-            \Session::flash('error', 'Data gagal diapprove! - '.$detailData['descriptions']);
+            \Session::flash('error', $detailData['descriptions']);
             return redirect()->back()->withInput($request->input());
         }
     }
@@ -145,7 +147,9 @@ class ApprovalDataController extends Controller
                     ->post();
 
         if($detailData['code'] == 200){
-            \Session::flash('success', 'Data berhasil diapprove!');
+            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
+            $color = ($detailData['contents']['status'] == 'approved') ? 'success' : 'error';
+            \Session::flash($color, $message);
             return redirect()->route('approveThirdParty');
         }else{
             \Session::flash('error', 'Data gagal diapprove! - '.$detailData['descriptions']);
