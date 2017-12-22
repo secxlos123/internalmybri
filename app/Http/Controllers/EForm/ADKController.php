@@ -88,6 +88,362 @@ class ADKController extends Controller
         }
     }
 
+    public function postKeterangan(Request $request) {
+        $data = $this->getUser();
+        $response = $request->all();
+        // print_r($response);exit();
+        /*$update_data = [
+            'is_verified' => 0,
+            'eform_id'    => $response['eform']
+        ];*/
+
+        switch ($response['type']) {
+            case 'ktp':
+                $catatan_ktp = '';
+                if (!empty($response['catatan_ktp'])) {
+                    $catatan_ktp = $response['catatan_ktp'];
+                    // array_push($update_data, $catatan_ktp);
+                }
+
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_ktp' => $catatan_ktp
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+            
+            case 'npwp':
+                $catatan_npwp = '';
+                if (!empty($response['catatan_npwp'])) {
+                    $catatan_npwp = $response['catatan_npwp'];
+                    // array_push($update_data, $catatan_npwp);
+                }
+                $update_data = [
+                    'is_verified'  => 0,
+                    'eform_id'     => $response['eform'],
+                    'catatan_npwp' => $catatan_npwp
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            case 'gaji':
+                $catatan_gaji = '';
+                if (!empty($response['catatan_gaji'])) {
+                    $catatan_gaji = $response['catatan_gaji'];
+                    // array_push($update_data, $catatan_npwp);
+                }
+                $update_data = [
+                    'is_verified'  => 0,
+                    'eform_id'     => $response['eform'],
+                    'catatan_gaji' => $catatan_gaji
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+
+            case 'kk':
+                $catatan_kk = '';
+                if (!empty($response['catatan_kk'])) {
+                    $catatan_kk = $response['catatan_kk'];
+                }
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_kk'  => $catatan_kk
+                ];
+
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            case 'sk_awal':
+                $catatan_sk_awal = '';
+                if (!empty($response['catatan_sk_awal'])) {
+                    $catatan_sk_awal = $response['catatan_sk_awal'];
+                }
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_sk_awal'  => $catatan_sk_awal
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            case 'sk_akhir':
+                $catatan_sk_akhir = '';
+                if (!empty($response['catatan_sk_akhir'])) {
+                    $catatan_sk_akhir = $response['catatan_sk_akhir'];
+                }
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_sk_akhir'  => $catatan_sk_akhir
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            case 'rekomendasi':
+                $catatan_rekomendasi = '';
+                if (!empty($response['catatan_rekomendasi'])) {
+                    $catatan_rekomendasi = $response['catatan_rekomendasi'];
+                }
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_rekomendasi'  => $catatan_rekomendasi
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            case 'skpu':
+                $catatan_skpu = '';
+                if (!empty($response['catatan_skpu'])) {
+                    $catatan_skpu = $response['catatan_skpu'];
+                }
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_skpu'  => $catatan_skpu
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            case 'couple_ktp':
+                $catatan_couple_ktp = '';
+                if (!empty($response['catatan_couple_ktp'])) {
+                    $catatan_couple_ktp = $response['catatan_couple_ktp'];
+                }
+                $update_data = [
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform'],
+                    'catatan_couple_ktp'  => $catatan_couple_ktp
+                ];
+
+                // print_r($update_data);exit();
+                $update_briguna = Client::setEndpoint('api_las/update')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody($update_data)
+                                ->post();
+                // print_r($update_briguna);exit();
+                if ($update_briguna['code'] == '200') {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 200,
+                        'message'  => 'Catatan berhasil di update',
+                        'response' => $update_briguna
+                    ]);
+                } else {
+                    // return redirect()->route('adk.index');
+                    return response()->json([
+                        'code'     => 400,
+                        'message'  => 'Catatan gagal di update',
+                        'response' => $update_briguna
+                    ]);
+                }
+                break;
+
+            default:
+                return response()->json([
+                    'code'     => 400,
+                    'message'  => 'Catatan gagal di update',
+                    'response' => ''
+                ]);
+                break;
+        }
+    }
+
     public function postVerifikasi(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
@@ -141,15 +497,6 @@ class ADKController extends Controller
         $update_data = [
             'is_verified'      => $response['is_verified'],
             'eform_id'         => $response['eform_id'],
-            'catatan_kk'       => $response['catatan_kk'],
-            'catatan_ktp'      => $response['catatan_ktp'],
-            'catatan_couple_ktp'=> $response['catatan_couple_ktp'],
-            'catatan_npwp'     => $response['catatan_npwp'],
-            'catatan_sk_awal'  => $response['catatan_sk_awal'],
-            'catatan_sk_akhir' => $response['catatan_sk_akhir'],
-            'catatan_skpu'     => $response['catatan_skpu'],
-            'catatan_rekomendasi'=> $response['catatan_rekomendasi'],
-            'catatan_gaji'     => $response['catatan_gaji'],
             'flag_kk'          => $kk,
             'flag_ktp'         => $ktp,
             'flag_couple_ktp'  => $ktp_pasangan,
@@ -196,7 +543,7 @@ class ADKController extends Controller
         ];
         // print_r($conten_putusan);exit();
         // flag putusan kirim ke brinets
-        /*$putusan = Client::setEndpoint('api_las/index')
+        $putusan = Client::setEndpoint('api_las/index')
                 ->setHeaders(
                     [ 'Authorization' => $data['token'],
                       'pn' => $data['pn']
@@ -205,31 +552,31 @@ class ADKController extends Controller
                     'requestMethod' => 'putusSepakat',
                     'requestData'   => $conten_putusan
                 ])
-                ->post('form_params');*/
+                ->post('form_params');
 
-        $putusan['statusCode'] = '01';
-        $putusan['statusDesc'] = 'berhasil';
+        // $putusan['statusCode'] = '01';
+        // $putusan['statusDesc'] = 'berhasil';
         if ($putusan['statusCode'] == '01') {
             // get status interface yang sudah dikirim ke brinets
-            // $getBrinets = Client::setEndpoint('api_las/index')
-            //     ->setHeaders(
-            //         [ 'Authorization' => $data['token'],
-            //           'pn' => $data['pn']
-            //         ])
-            //     ->setBody([
-            //         'requestMethod' => 'getStatusInterface',
-            //         'requestData'   => '45096'//$response['id_aplikasi']
-            //     ])
-            //     ->post('form_params');
+            $getBrinets = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'getStatusInterface',
+                    'requestData'   => $response['id_aplikasi']
+                ])
+                ->post('form_params');
             // dd($getBrinets);
-            $getBrinets['statusCode'] = '01';
+            // $getBrinets['statusCode'] = '01';
             if ($getBrinets['statusCode'] == '01') {
                 $update_data = [
                     'eform_id'    => $response['eform_id'],
                     'is_send'     => 1,
-                    // 'cif'         => $getBrinets['items'][0]['CIF'],
-                    // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                    // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                    'cif'         => $getBrinets['items'][0]['CIF'],
+                    'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                    'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
                 ];
 
                 $update_briguna = Client::setEndpoint('api_las/update')
@@ -345,7 +692,7 @@ class ADKController extends Controller
         }
     }
 
-    public function exportPDF(Request $request) {
+    public function exportPTK(Request $request) {
         $data = $this->getUser();
         // print_r($data);exit();
         $response = $request->all();
