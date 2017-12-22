@@ -482,10 +482,11 @@ class EFormController extends Controller
             ])
             ->setBody([
                 'eform_id' => $request->input('eform_id')
-                , 'selected_sicd' => $request->input('selected_sicd')
                 , 'sicd' => $request->input('sicd')
                 , 'dhn' => $request->input('dhn')
                 , 'pefindo' => $request->input('pefindo')
+                , 'selected_dhn' => $request->input('selected_dhn')
+                , 'selected_sicd' => $request->input('selected_sicd')
             ])
             ->post();
 

@@ -297,7 +297,12 @@
 
                 }
 
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success">DHN</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
+                selected = '';
+                if (contents.eform.selected_dhn == key) {
+                    selected = ' Dipilih';
+                }
+
+                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"> DHN'+selected+'</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
             })
 
             $.each(contents.sicd, function(key, sicd) {
@@ -322,6 +327,7 @@
             $(html).insertAfter(base);
 
             $("input[name=select_sicd]").eq(contents.eform.selected_sicd).prop('checked', true);
+            $("input[name=select_dhn]").eq(contents.eform.selected_dhn).prop('checked', true);
 
             // $('#detail').html(data['view']);
             $('#result-modal').modal('show');
@@ -425,7 +431,16 @@
                         .children('div')
                             .last()
                                 .find('p').html();
-        dhn = $('.dhn-color').children('p').html();
+
+        input = $("input[name=select_dhn]:checked");
+        selectedDHN = input.val();
+        dhn = input.parent()
+            .next()
+                .children('div')
+                    .children('div')
+                        .children('div')
+                                .find('.dhn-color').html();
+
         pefindo = $("#prescreening-color").children('p').html();
         eformId = $("#prescreening-id").html();
 
@@ -438,6 +453,7 @@
             data: {
                 eform_id : eformId
                 , selected_sicd : selectedSICD
+                , selected_dhn : selectedDHN
                 , sicd : sicd
                 , dhn : dhn
                 , pefindo : pefindo
