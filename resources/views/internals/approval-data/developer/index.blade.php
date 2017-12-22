@@ -64,11 +64,9 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>Nama Perusahaan</th>
-                                                <th>Nama PIC</th>
                                                 <th>Alamat Perusahaan</th>
                                                 <th>Kota</th>
                                                 <th>Handphone</th>
-                                                <th>Email</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -93,16 +91,16 @@
 
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
-        reloadData1($('#nik').val(), $('#customer_name').val(), $('.cities').val());
+        reloadData1($('.cities').val());
     })
 
-    function reloadData1(nik, customer_name, city_id){
+    function reloadData1(city_id){
         table1 = $('#datatable').DataTable({
             "processing": true,
             "serverSide": true,
             "searching": false,
             "ajax" : {
-                url : '/datatables/customers',
+                url : '/datatables/approval-developer',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 
@@ -112,17 +110,13 @@
                     );
 
                     d.city_id = city_id;
-                    d.nik = nik;
-                    d.name = customer_name;
                 }
             },
-            "aoColumns" : [
-                { data: "nik", name: 'nik' },
-                { data: "name", name: 'name' },
-                { data: "email", name: 'email' },
+            "columns" : [
+                { data: "company_name", name: 'company_name' },
+                { data: "address", name: 'address' },
                 { data: "city_id", name: 'city_id' },
-                { data: "phone", name: 'phone' },
-                { data: "gender", name: 'gender' },
+                { data: "mobile_phone", name: 'mobile_phone' },
                 { data: "action", name: 'action', bSortable: false },
             ],
         });
