@@ -80,7 +80,7 @@ class ADKController extends Controller
         if ($data_debitur['code'] == '01') {
             $debitur = $data_debitur['contents']['data'][0];
         }
-        
+
         // dd($debitur);
         // ao harusnya ganti adk
         if ($data['role'] == 'adk') {
@@ -136,7 +136,7 @@ class ADKController extends Controller
                     ]);
                 }
                 break;
-            
+
             case 'npwp':
                 $catatan_npwp = '';
                 if (!empty($response['catatan_npwp'])) {
@@ -524,7 +524,7 @@ class ADKController extends Controller
                 \Session::flash('error', 'Pengajuan ditunda, karena dokumen verifikasi belum lengkap');
                 return redirect()->route('adk.index');
             }
-            
+
         } else {
             \Session::flash('error', 'Pengajuan gagal di Verifikasi');
             return redirect()->route('adk.index');
@@ -610,7 +610,7 @@ class ADKController extends Controller
                 ])->setBody([
                     'requestMethod' => 'eformBriguna'
                 ])->post();
-        
+
         if (!empty($customer)) {
             $debitur = Client::setEndpoint('api_las/index')
                 ->setHeaders([
@@ -664,7 +664,7 @@ class ADKController extends Controller
                         'STATUS'        => '-',
                         'action'        => '-'
                     ];
-                    
+
                     return response()->json($eforms['contents']);
                 }
                 $eforms['contents']['total'] = $count;
@@ -687,7 +687,7 @@ class ADKController extends Controller
                 'STATUS'        => '-',
                 'action'        => '-'
             ];
-            
+
             return response()->json($eforms['contents']);
         }
     }

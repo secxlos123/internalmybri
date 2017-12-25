@@ -26,8 +26,11 @@ class DropdownController extends Controller
 
         $properties = Client::setEndpoint('dropdown/properties')
         	->setHeaders([
-	        	'Authorization' => $data['token'],
-	        	'pn' => $data['pn']
+	        	'Authorization' => $data['token']
+	        	, 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
             ->setQuery([
                 'dev_id' => $request->input('dev_id'),
@@ -52,8 +55,11 @@ class DropdownController extends Controller
 
         $types = Client::setEndpoint('dropdown/types')
         	->setHeaders([
-	        	'Authorization' => $data['token'],
-	        	'pn' => $data['pn']
+	        	'Authorization' => $data['token']
+	        	, 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
             ->setQuery([
                 'property_id' => $request->input('prop_id'),
@@ -77,8 +83,11 @@ class DropdownController extends Controller
 
         $units = Client::setEndpoint('dropdown/units')
         	->setHeaders([
-	        	'Authorization' => $data['token'],
-	        	'pn' => $data['pn']
+	        	'Authorization' => $data['token']
+	        	, 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
             ->setQuery([
                 'property_type_id' => $request->input('prop_type_id'),
@@ -102,8 +111,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $cities = \Client::setEndpoint('cities')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'name' => $request->input('name'),
                 'page' => $request->input('page')
@@ -124,8 +136,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $jobs = \Client::setEndpoint('job-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -145,8 +160,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $job_types = \Client::setEndpoint('job-type-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -166,8 +184,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $job_fields = \Client::setEndpoint('job-field-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -187,8 +208,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $positions = \Client::setEndpoint('positions')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -208,8 +232,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $citizenship = \Client::setEndpoint('citizenship-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -229,8 +256,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $kppType = \Client::setEndpoint('kpp-type-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -250,8 +280,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $typeFinanced = \Client::setEndpoint('list-jenis-dibiayai')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -271,8 +304,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $economySector = \Client::setEndpoint('economy-sectors')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page'),
@@ -293,8 +329,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $projectList = \Client::setEndpoint('project-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -314,8 +353,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $programList = \Client::setEndpoint('program-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -335,8 +377,11 @@ class DropdownController extends Controller
         $data = $this->getUser();
         $useReason = \Client::setEndpoint('use-reasons')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'search' => $request->input('search'),
                 'page' => $request->input('page')
@@ -362,8 +407,11 @@ class DropdownController extends Controller
 
         $staffs = Client::setEndpoint('staff-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setQuery([
                 'name' => $request->input('name'),

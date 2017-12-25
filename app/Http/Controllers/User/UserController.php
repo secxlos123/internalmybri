@@ -57,11 +57,23 @@ class UserController extends Controller
 
          /* GET Role Data */
         $roles = Client::setEndpoint('role')
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->get();
         /* GET Office Data */
         $offices = Client::setEndpoint('offices')
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->get();
 
         return view('internals.users.create', compact('data', 'roles', 'offices'));
@@ -150,10 +162,16 @@ class UserController extends Controller
         $newUser = $this->userRequest(array_merge($request,$imgReq));
 
         $client = Client::setEndpoint('user')
-           ->setHeaders(['Authorization' => $data['token']])
+           ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
            ->setBody($newUser)
            ->post('multipart');
-        
+
         if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil disimpan.');
             return redirect()->route('users.index');
@@ -174,8 +192,17 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-        
+        $userData = Client::setEndpoint('user/'.$id)
+            ->setQuery(['limit' => 100])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
+
         $dataUser = $userData['contents'];
 
         return view('internals.users.detail', compact('data', 'dataUser'));
@@ -192,18 +219,39 @@ class UserController extends Controller
         $data = $this->getUser();
 
          /* GET User Data */
-        $userData = Client::setEndpoint('user/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-        
+        $userData = Client::setEndpoint('user/'.$id)
+            ->setQuery(['limit' => 100])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
+
         $dataUser = $userData['contents'];
 
          /* GET Role Data */
         $roles = Client::setEndpoint('role')
-                ->setHeaders(['Authorization' => $data['token']])
-                ->get();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
         /* GET Office Data */
         $offices = Client::setEndpoint('offices')
-                ->setHeaders(['Authorization' => $data['token']])
-                ->get();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
 
         return view('internals.users.edit', compact('data', 'dataUser', 'roles', 'offices'));
     }
@@ -223,7 +271,13 @@ class UserController extends Controller
         // dd($newUser);
 
         $client = Client::setEndpoint('user/'.$id)
-           ->setHeaders(['Authorization' => $data['token']])
+           ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
            ->setBody($newUser)
            ->put('multipart');
 
@@ -252,7 +306,13 @@ class UserController extends Controller
     {
         $data = $this->getUser();
         $users = Client::setEndpoint("user/{$id}/actived")
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
                 ->put();
 
@@ -264,7 +324,13 @@ class UserController extends Controller
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $users = Client::setEndpoint('user')
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),

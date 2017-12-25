@@ -68,9 +68,13 @@ class TrackingController extends Controller
         // dd($user);
          /* GET Detail Data */
         $userData = Client::setEndpoint('tracking/'.$id)
-                    ->setHeaders(['Authorization' => $data['token'],
-                                    'pn' => $data['pn']
-                                ])
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])
                     ->get();
 
         $datas = $userData['contents'];
@@ -124,8 +128,11 @@ class TrackingController extends Controller
         $data = $this->getUser();
         $eforms = Client::setEndpoint('tracking')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
@@ -202,17 +209,20 @@ class TrackingController extends Controller
             // Get Data Cell
             $trackings = Client::setEndpoint('tracking')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
 
                 $arr = array();
                 foreach($trackings['contents']['data'] as $index => $track) {
                         $fields =  array(
                             $track['no_ref'],
-                            '2017-10-03', 
-                            $track['developer_name'], 
-                            $track['property_name'],  
+                            '2017-10-03',
+                            $track['developer_name'],
+                            $track['property_name'],
                             $track['status']
                             );
                         array_push($arr, $fields);

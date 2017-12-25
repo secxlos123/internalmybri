@@ -44,8 +44,11 @@ class ScoringController extends Controller
         $customerData = Client::setEndpoint('customer')
                       ->setQuery(['limit' => 100])
                       ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
+                          'Authorization' => $data['token']
+                          , 'pn' => $data['pn']
+                          // , 'auditaction' => 'action name'
+                          // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                          // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                       ])->get();
         $dataCustomer = $customerData['contents']['data'];
         // dd($dataCustomer);
@@ -207,8 +210,11 @@ class ScoringController extends Controller
     // dd($newCustomer);
         $client = Client::setEndpoint('scorings')
          ->setHeaders([
-              'Authorization' => $data['token'],
-              'pn' => $data['pn']
+              'Authorization' => $data['token']
+              , 'pn' => $data['pn']
+              // , 'auditaction' => 'action name'
+              , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+              , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->setBody($newCustomer)
          ->post('multipart');
 
@@ -237,8 +243,11 @@ class ScoringController extends Controller
 
         $customers = Client::setEndpoint('customer')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),

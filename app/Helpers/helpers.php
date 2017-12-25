@@ -126,11 +126,14 @@ if (! function_exists('getNotification')) {
 
         try {
             $NotificationData = Client::setEndpoint('users/notification')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch']
-                          ])->get();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->get();
             return $Arrnotification = $NotificationData['contents'];
 
             session()->put('notifications', $Arrnotification);
@@ -159,12 +162,15 @@ if (! function_exists('notificationsUnread')) {
         }
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch'],
-                              'role' => $data['role'],
-                          ])->get();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    , 'role' => $data['role']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->get();
             \Log::info($NotificationDataUnread);
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 

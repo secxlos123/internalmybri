@@ -116,20 +116,23 @@ class DeveloperController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(DevRequest $request)
-    {   
+    {
         $data = $this->getUser();
         $newDev = $this->devRequest($request, $data);
         // dd($newDev);
-        
+
         $client = Client::setEndpoint('developer')
            ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
            ->setBody($newDev)
            ->post('multipart');
            // dd($client);
-        
+
         if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah disimpan.');
             return redirect()->route('developers.index');
@@ -141,7 +144,7 @@ class DeveloperController extends Controller
             \Session::flash('error', $client['descriptions'].' '.$error);
             return redirect()->back()->withInput($request->input());
         }
-        
+
         return view('internals.developers.index', compact('data'));
     }
 
@@ -158,11 +161,15 @@ class DeveloperController extends Controller
          /* GET User Data */
         $userData = Client::setEndpoint('developer/'.$id)
                     ->setQuery(['limit' => 100])
-                    ->setHeaders(['Authorization' => $data['token'],
-                                    'pn' => $data['pn']
-                                ])
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])
                     ->get();
-        
+
         $dataDev = $userData['contents'];
 
         return view('internals.developers.detail', compact('data', 'dataDev'));
@@ -174,8 +181,11 @@ class DeveloperController extends Controller
         $data = $this->getUser();
         $developers = Client::setEndpoint("developer/{$id}/properties")
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'  => $request->input('length'),
                     'prop_city_id' => $request->input('city_id'),
@@ -203,7 +213,7 @@ class DeveloperController extends Controller
 
          /* GET User Data */
         // $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-        
+
         // $dataDev = $userData['contents'];
 
         return view('internals.developers.property-detail', compact('data', 'dataDev', 'id'));
@@ -221,9 +231,15 @@ class DeveloperController extends Controller
 
          /* GET User Data */
         $userData = Client::setEndpoint("developer/{$id}")
-            ->setHeaders([ 'Authorization' => $data['token'], 'pn' => $data['pn'] ])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
             ->get();
-        
+
         $dataDev = $userData['contents'];
 
         return view('internals.developers.edit', compact('data', 'dataDev', 'id'));
@@ -240,11 +256,15 @@ class DeveloperController extends Controller
     {
         $data = $this->getUser();
         $newDev = $this->devRequest($request, $data);
-        
+
         $client = Client::setEndpoint('developer/'.$id)
-           ->setHeaders(['Authorization' => $data['token'],
-                         'pn' => $data['pn']
-                        ])
+           ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
            ->setBody($newDev)
            ->put('multipart');
 
@@ -257,7 +277,7 @@ class DeveloperController extends Controller
             \Session::flash('error', $client['descriptions'].' '.$error);
             return redirect()->back()->withInput($request->input());
         }
-        
+
         return view('internals.developers.index', compact('data'));
     }
 
@@ -274,9 +294,12 @@ class DeveloperController extends Controller
 
         $developers = Client::setEndpoint("developer/{$id}/actived")
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                        ])
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->setBody(['is_actived' => filter_var($request->input('is_actived'), FILTER_VALIDATE_BOOLEAN)])
                 ->put();
 
@@ -295,8 +318,11 @@ class DeveloperController extends Controller
         $data = $this->getUser();
         $developers = \Client::setEndpoint('developer')
             ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
             ->setQuery([
                 'search' => $request->input('name'),
@@ -329,8 +355,11 @@ class DeveloperController extends Controller
         $data = $this->getUser();
         $developers = Client::setEndpoint('developer')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),

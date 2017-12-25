@@ -57,11 +57,15 @@ class ApprovalDataController extends Controller
         $data = $this->getUser();
 
         $detailData = Client::setEndpoint('approval-data-change/developer/'.$id)
-                        ->setQuery(['limit' => 100])
-                        ->setHeaders(['Authorization' => $data['token'],
-                                      'pn' => $data['pn']
-                                    ])
-                        ->get();
+            ->setQuery(['limit' => 100])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
 
         $detail = $detailData['contents'];
         // dd($detail);
@@ -90,11 +94,15 @@ class ApprovalDataController extends Controller
     {
         $data = $this->getUser();
         $detailData = Client::setEndpoint('approval-data-change/thirdparty/'.$id)
-                        ->setQuery(['limit' => 100])
-                        ->setHeaders(['Authorization' => $data['token'],
-                                      'pn' => $data['pn']
-                                    ])
-                        ->get();
+            ->setQuery(['limit' => 100])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
 
         $detail = $detailData['contents'];
         // dd($detail);
@@ -113,11 +121,15 @@ class ApprovalDataController extends Controller
 
         $data = $this->getUser();
         $detailData = Client::setEndpoint('approval-data-change/developer/'.$status.'/'.$request->id)
-                    ->setHeaders(['Authorization' => $data['token'],
-                                  'pn' => $data['pn']
-                                ])
-                    ->post();
-                    // dd($detailData);
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->post();
+            // dd($detailData);
 
         if($detailData['code'] == 200){
             $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
@@ -138,13 +150,17 @@ class ApprovalDataController extends Controller
     public function postApprovalDataThirdParty(Request $request)
     {
         $status = ($request->is_approved == 'true') ? 'approve' : 'reject';
-        
+
         $data = $this->getUser();
         $detailData = Client::setEndpoint('approval-data-change/thirdparty/'.$status.'/'.$request->id)
-                    ->setHeaders(['Authorization' => $data['token'],
-                                  'pn' => $data['pn']
-                                ])
-                    ->post();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->post();
 
         if($detailData['code'] == 200){
             $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
@@ -168,15 +184,19 @@ class ApprovalDataController extends Controller
         $data = $this->getUser();
 
         $approvals = Client::setEndpoint('approval-data-change/developer')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setQuery([
-                    'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
-                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'page'      => (int) $request->input('page') + 1,
-                ])->get();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+            ])->get();
+
         foreach ($approvals['contents']['data'] as $key => $approval) {
             $approval['city_id'] = $approval['city']['name'];
             $approval['address'] = $approval['address'];
@@ -206,15 +226,19 @@ class ApprovalDataController extends Controller
         $data = $this->getUser();
 
         $approvals = Client::setEndpoint('approval-data-change/third-party')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setQuery([
-                    'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
-                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'page'      => (int) $request->input('page') + 1,
-                ])->get();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+            ])->get();
+
         foreach ($approvals['contents']['data'] as $key => $approval) {
             $approval['city_id'] = $approval['city']['name'];
             $approval['address'] = $approval['address'];
