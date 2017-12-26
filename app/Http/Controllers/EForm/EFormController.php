@@ -113,7 +113,7 @@ class EFormController extends Controller
                               'pn' => $data['pn'],
                               'branch_id' => $data['branch']
                           ])->get();
-                // dd($reads)
+                // dd($reads);
             }
 
             return view('internals.eform.index-ao', compact('data','form_notif'));
