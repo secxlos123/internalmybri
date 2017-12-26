@@ -19,6 +19,25 @@ if (! function_exists('name_separator')) {
     }
 }
 
+if (! function_exists('getUser')) {
+
+    /**
+     * GET UserLogin Data.
+     *
+     * @return object
+     */
+    function getUser(){
+        /*  */
+        $users = session()->get('user');
+
+        foreach ($users as $user) {
+            $data = $user;
+        }
+
+        return $data;
+    }
+}
+
 if (! function_exists('checkRolesInternal')) {
 
     /**
@@ -68,7 +87,7 @@ if (! function_exists('getUsers')) {
             foreach ($users as $user) {
                 $data = $user;
             }
-        return $data; 
+        return $data;
     }
 }
 
@@ -86,7 +105,7 @@ if (! function_exists('branchs')) {
                 $data = $user;
             }
         $branchs = checkRolesInternal($data['branch']);
-        return $branchs; 
+        return $branchs;
     }
 }
 
@@ -104,16 +123,19 @@ if (! function_exists('getNotification')) {
         foreach ($users as $user) {
             $data = $user;
         }
-        
+
         try {
             $NotificationData = Client::setEndpoint('users/notification')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch']
-                          ])->get();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->get();
             return $Arrnotification = $NotificationData['contents'];
-            
+
             session()->put('notifications', $Arrnotification);
 
         } catch (ClientException $e) {
@@ -140,17 +162,20 @@ if (! function_exists('notificationsUnread')) {
         }
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch'],
-                              'role' => $data['role'],
-                          ])->get();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    , 'role' => $data['role']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->get();
             \Log::info($NotificationDataUnread);
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
-            
+
             session()->put('notificationsUnread', $ArrnotificationUnread);
-            
+
         } catch (ClientException $e) {
             \Log::info(Psr7\str($e->getRequest()));
             if ($e->hasResponse()) {
@@ -203,16 +228,13 @@ if (! function_exists('get_title')) {
     function get_title($key)
     {
         $data = array(
-            "1" => "SDTT"
-            , "2" => "SD"
-            , "3" => "SMP"
-            , "4" => "SMA"
-            , "5" => "Diploma 1"
-            , "6" => "Diploma 2"
-            , "7" => "Diploma 3"
-            , "8" => "S-1"
-            , "9" => "S-2"
-            , "10" => "S-3"
+            "S1" => "Sarjana"
+            , "S2" => "Master"
+            , "S3" => "Doktor"
+            , "SD" => "SD"
+            , "SM" => "SMP"
+            , "SU" => "SMU/SMK"
+            , "ZZ" => "Lainnya"
         );
 
         if ( $key != 'all' ) {

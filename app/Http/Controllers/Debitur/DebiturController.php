@@ -38,17 +38,17 @@ class DebiturController extends Controller
         $data = $this->getUser();
         // dd(session()->get('user.contents'));
 
-        /* GET Role Data */
-        $customerData = Client::setEndpoint('customer')
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                      ])->get();
-        $dataCustomer = $customerData['contents']['data'];
-        // dd($dataCustomer);
+        // /* GET Role Data */
+        // $debiturData = Client::setEndpoint('debitur-list')
+        //               ->setQuery(['limit' => 100])
+        //               ->setHeaders([
+        //                   'Authorization' => $data['token'],
+        //                   'pn' => $data['pn']
+        //               ])->get();
+        // $dataDebitur = $debiturData['contents']['data'];
+        // // dd($dataCustomer);
 
-        return view('internals.debitur.index', compact('data', 'dataCustomer'));
+        return view('internals.debitur.index', compact('data', 'dataDebitur'));
     }
 
     /**
@@ -83,49 +83,62 @@ class DebiturController extends Controller
         $data = $this->getUser();
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$id)
-                        ->setQuery(['limit' => 100])
-                        ->setHeaders(['Authorization' => $data['token'],
-                                      'pn' => $data['pn']
-                                    ])
+        $customerData = Client::setEndpoint('debitur-detail')
+                        ->setQuery(['limit' => 100, 'user_id' => $id])
+                        ->setHeaders([
+                            'Authorization' => $data['token']
+                            , 'pn' => $data['pn']
+                            // , 'auditaction' => 'action name'
+                            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])
                         ->get();
 
-        $dataCustomer = $customerData['contents'];
+        $dataCustomer = $customerData['contents'][0];
+        // dd($dataCustomer);
 
         return view('internals.debitur.detail', compact('data', 'dataCustomer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function datatables(Request $request)
     {
-        //
-    }
+      // dd($request->input('city_id'));
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $debiturs = Client::setEndpoint('debitur-list')
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->setQuery([
+                    'limit'     => $request->input('length'),
+                    'search'    => $request->input('search.value'),
+                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                    'name'      => $request->input('name'),
+                    'nik'      => $request->input('nik'),
+                    'city_id'   => $request->input('city_id'),
+                    'page'      => (int) $request->input('page') + 1,
+                ])->get();
+        foreach ($debiturs['contents']['data'] as $key => $debitur) {
+            $debitur['name'] = $debitur['user']['first_name'].' '.$debitur['user']['last_name'];
+            $debitur['city_id'] = $debitur['city']['name'];
+            $debitur['email'] = $debitur['user']['email'];
+            $debitur['phone'] = $debitur['user']['mobile_phone'];
+            $debitur['gender'] = $debitur['user']['gender'];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            $debitur['action'] = view('internals.layouts.actions', [
+                'show' => route('debitur.show', $debitur['user_id']),
+            ])->render();
+            $debiturs['contents']['data'][$key] = $debitur;
+        }
+
+        $debiturs['contents']['draw'] = $request->input('draw');
+        $debiturs['contents']['recordsTotal'] = $debiturs['contents']['total'];
+        $debiturs['contents']['recordsFiltered'] = $debiturs['contents']['total'];
+
+        return response()->json($debiturs['contents']);
     }
 }

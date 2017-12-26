@@ -70,8 +70,11 @@ class CollateralController extends Controller
     {
         $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
 
         return $detailCollateral['contents'];
@@ -87,8 +90,11 @@ class CollateralController extends Controller
     {
         $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
 
         return $detailCollateral['contents'];
@@ -115,7 +121,7 @@ class CollateralController extends Controller
         // dd($collateral);
         return view('internals.collateral.manager.detail', compact('data', 'collateral', 'type'));
     }
-    
+
     /**
      * Display a form of assignment to staff appraisal.
      *
@@ -157,11 +163,14 @@ class CollateralController extends Controller
         // dd($disposition);
 
         $client = Client::setEndpoint('collateral/disposition/'.$id)
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setBody($disposition)
-                ->post();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setBody($disposition)
+            ->post();
 
         if($client['code'] == 200){
             \Session::flash('success', 'Penugasan Berhasil Dilakukan');
@@ -196,7 +205,7 @@ class CollateralController extends Controller
     }
 
     /**
-     * Display a detail collateral 
+     * Display a detail collateral
      *
      * @return \Illuminate\Http\Response
      */
@@ -220,7 +229,7 @@ class CollateralController extends Controller
     public function postApprovalCollateral(Request $request, $id)
     {
         $data = $this->getUser();
-        
+
         $reqs = [
             'eform_id' => $request->has('eform_id')?$request->eform_id : false,
             'remark' => $request->remark
@@ -231,20 +240,28 @@ class CollateralController extends Controller
         // dd($request->all());
         if($approve == 'true'){
             $client = Client::setEndpoint('collateral/approve/'.$id)
-                    ->setHeaders([
-                        'Authorization' => $data['token'],
-                        'pn' => $data['pn']
-                    ])->setBody($reqs)
-                    ->post();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->setBody($reqs)
+                ->post();
             $response = 'Pengajuan Properti Baru telah Disetujui';
-        }else{
+
+        } else {
             $client = Client::setEndpoint('collateral/reject/'.$id)
-                    ->setHeaders([
-                        'Authorization' => $data['token'],
-                        'pn' => $data['pn']
-                    ])->setBody($reqs)
-                    ->post();
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->setBody($reqs)
+                ->post();
             $response = 'Pengajuan Properti Baru telah Ditolak';
+
         }
 
         if($client['code'] == 200){
@@ -277,18 +294,22 @@ class CollateralController extends Controller
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $collateral = Client::setEndpoint('collateral')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setQuery([
-                    'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
-                    'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                    'page'      => (int) $request->input('page') + 1,
-                    // 'status'    => $request->input('status'),
-                    // 'branch_id' => $data['branch']
-                ])->get();
-                // echo json_encode($collateral);exit();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+                // 'status'    => $request->input('status'),
+                // 'branch_id' => $data['branch']
+            ])->get();
+            // echo json_encode($collateral);exit();
+
         foreach ($collateral['contents']['data'] as $key => $form) {
             $form['prop_name'] = strtoupper($form['property']['name']);
             $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
@@ -329,18 +350,22 @@ class CollateralController extends Controller
         $sort = $request->input('order.0');
         $data = $this->getUser();
         $collateral = Client::setEndpoint('collateral/nonindex')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])->setQuery([
-                    'limit'     => $request->input('length'),
-                    'search'    => $request->input('search.value'),
-                    'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
-                    'page'      => (int) $request->input('page') + 1,
-                    // 'status'    => $request->input('status'),
-                    // 'branch_id' => $data['branch']
-                ])->get();
-                // echo json_encode($collateral);exit();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+                // 'status'    => $request->input('status'),
+                // 'branch_id' => $data['branch']
+            ])->get();
+            // echo json_encode($collateral);exit();
+
         foreach ($collateral['contents']['data'] as $key => $form) {
             $form['first_name'] = strtoupper($form['first_name'].' '.$form['last_name']);
             $form['home_location'] = strtoupper($form['home_location']);
@@ -384,8 +409,11 @@ class CollateralController extends Controller
 
         // $collateral = Client::setEndpoint('collateral')
         //         ->setHeaders([
-        //             'Authorization' => $data['token'],
-        //             'pn' => $data['pn']
+        //             'Authorization' => $data['token']
+        //             , 'pn' => $data['pn']
+        //             // , 'auditaction' => 'action name'
+        //             , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+        //             , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         //         ])->setQuery([
         //             'limit'     => $request->input('length'),
         //             'search'    => $request->input('search.value'),
@@ -401,7 +429,7 @@ class CollateralController extends Controller
             $form['ground'] = strtoupper($form['surface_area']);
             $form['certificate'] = strtoupper($form['certificate']);
             $form['image'] = strtoupper($form['certificate']);
-    
+
             $collateral['property']['propertyTypes'][$key] = $form;
         }
 

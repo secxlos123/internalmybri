@@ -26,12 +26,12 @@
             @endif
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="card-box table-responsive">
-                        <div class="add-button">
+                    <div class="card-box ">
+                        <!-- <div class="add-button">
                             <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
                             <a href="{{route('downloadTracking')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
-                        </div>
-                        <div id="filter" class="collapse m-b-15">
+                        </div> -->
+                        <div id="filter">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card-box">
@@ -101,27 +101,45 @@
             allowClear: true,
         });
 
-        var table = $('#datatable').dataTable({
-            processing : true,
-            serverSide : true,
-            lengthMenu: [
-                [ 10, 25, 50, -1 ],
-                [ '10', '25', '50', 'All' ]
-            ],
-            language : {
-                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-            },
-            ajax : {
-                url : '/datatables/tracking',
-                data : function(d, settings){
-                    var api = new $.fn.dataTable.Api(settings);
+    });
 
-                    d.page = Math.min(
-                        Math.max(0, Math.round(d.start / api.page.len())),
-                        api.page.info().pages
-                    );
-                }
-            },
+    var table1 = $('#datatable').DataTable({
+            searching: false,
+            "language": {
+                "emptyTable": "No data available in table"
+            }
+        });
+
+        $(document).on('click', "#btn-filter", function(){
+            table1.destroy();
+            // console.log($('.cities').val());
+            reloadData1( $('.cities').val());
+        })
+
+        function reloadData1(city_id){
+            table1 = $('#datatable').DataTable({
+                processing : true,
+                serverSide : true,
+                lengthMenu: [
+                    [ 10, 25, 50, -1 ],
+                    [ '10', '25', '50', 'All' ]
+                ],
+                language : {
+                    infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+                },
+                ajax : {
+                    url : '/datatables/tracking',
+                    data : function(d, settings){
+                        var api = new $.fn.dataTable.Api(settings);
+
+                        d.page = Math.min(
+                            Math.max(0, Math.round(d.start / api.page.len())),
+                            api.page.info().pages
+                        );
+
+                        d.city_id = city_id;
+                    }
+                },
             aoColumns : [
                 { data: 'ref_number', name: 'ref_number' },
                 { data: 'appointment_date', name: 'appointment_date' },
@@ -131,11 +149,5 @@
                 { data: 'action', name: 'action', bSortable: false },
             ],
         });
-
-        $('#btn-filter').on('click', function () {
-            table.fnDraw();
-        });
-    });
-
-    TableManageButtons.init();
+    };
 </script>

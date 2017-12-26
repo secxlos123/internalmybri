@@ -30,13 +30,13 @@
                             @endif
                             </li>
 
-                            @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
+                            @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca'))
                             <li>
                                 <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                             </li>
-                            <!-- <li>
+                            <li>
                                 <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
-                            </li> -->
+                            </li>
                             @endif
                             @if($data['role']=='adk')
                                 <li>
@@ -47,13 +47,13 @@
                                 <li>
                                     <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
                                 </li>
+                                <li>
+                                    <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
+                                </li>
                             @endif
                             <li>
                                 <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
                             </li>
-                            <!-- <li>
-                                <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
-                            </li> -->
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
                             <li>
                                 <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
@@ -69,6 +69,20 @@
                             @if(($data['role']=='collateral-appraisal'))
                             <li>
                                 <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
+                            </li>
+                            @endif
+
+                            @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
+                            <li class="treeview">
+                                <a href="#" class="waves-effect"><i class="mdi mdi-check"></i> <span > Approval Perubahan </span> </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="{{route('approveDeveloper')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('approveThirdParty')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ke-3 </span> </a>
+                                    </li>
+                                </ul>
                             </li>
                             @endif
                             <!-- <li>

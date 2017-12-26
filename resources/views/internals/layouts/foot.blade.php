@@ -106,6 +106,14 @@
         }
     });
 
+    // handling serialize
+    $.ajaxPrefilter(function(options, originalData, xhr){
+        if (options.data) {
+            options.data += "&long="+$('input[name="hidden-long"]').val();
+            options.data += "&lat="+$('input[name="hidden-lat"]').val();
+        }
+    });
+
 </script>
 
 <script>

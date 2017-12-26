@@ -25,6 +25,9 @@
                         @if (\Session::has('success'))
                             <div class="alert alert-success">{{ \Session::get('success') }}</div>
                         @endif
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                        @endif
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
@@ -63,12 +66,10 @@
                                     <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>Nama Perusahaan</th>
-                                                <th>Nama PIC</th>
-                                                <th>Alamat Perusahaan</th>
+                                                <th>Nama</th>
+                                                <th>Alamat</th>
                                                 <th>Kota</th>
                                                 <th>Handphone</th>
-                                                <th>Email</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -93,7 +94,7 @@
 
     $(document).on('click', "#btn-filter", function(){
         table1.destroy();
-        reloadData1($('#nik').val(), $('#customer_name').val(), $('.cities').val());
+        reloadData1($('.cities').val());
     })
 
     function reloadData1(nik, customer_name, city_id){
@@ -102,7 +103,7 @@
             "serverSide": true,
             "searching": false,
             "ajax" : {
-                url : '/datatables/customers',
+                url : '/datatables/approval-third-party',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 
@@ -112,17 +113,13 @@
                     );
 
                     d.city_id = city_id;
-                    d.nik = nik;
-                    d.name = customer_name;
                 }
             },
-            "aoColumns" : [
-                { data: "nik", name: 'nik' },
-                { data: "name", name: 'name' },
-                { data: "email", name: 'email' },
+            "columns" : [
+                { data: "company_name", name: 'company_name' },
+                { data: "address", name: 'address' },
                 { data: "city_id", name: 'city_id' },
-                { data: "phone", name: 'phone' },
-                { data: "gender", name: 'gender' },
+                { data: "mobile_phone", name: 'mobile_phone' },
                 { data: "action", name: 'action', bSortable: false },
             ],
         });

@@ -7,32 +7,32 @@
     <tr>
       <td>Nama Debitur</td>
       <td>:</td>
-      <td>{{$data_debitur['nama_debitur']}}</td>
+      <td>&nbsp;{{$data_debitur['nama_debitur']}}</td>
     </tr>
     <tr>
       <td>Alamat</td>
       <td>:</td>
-      <td>{{$data_debitur['alamat']}}</td>
+      <td>&nbsp;{{$data_debitur['alamat']}}</td>
     </tr>
     <tr>
       <td>No/Tgl SKPP</td>
       <td>:</td>
-      <td>{{$data_debitur['tgl_skpp']}}</td>
+      <td>&nbsp;{{$data_debitur['tgl_skpp']}}</td>
     </tr>
     <tr>
       <td>Instansi/Perusahaan</td>
       <td>:</td>
-      <td>{{$data_debitur['perusahaan']}}</td>
+      <td>&nbsp;{{$data_debitur['perusahaan']}}</td>
     </tr>
     <tr>
       <td>No Putusan</td>
       <td>:</td>
-      <td>{{$data_debitur['no_putusan']}}</td>
+      <td>&nbsp;{{$data_debitur['no_putusan']}}</td>
     </tr>
     <tr>
       <td>Scoring</td>
       <td>:</td>
-      <td>{{$data_debitur['scoring']}}</td>
+      <td>&nbsp;{{$data_debitur['scoring']}}</td>
     </tr>
   </table>
   <hr>
@@ -42,67 +42,67 @@
   <tr>
     <td width="40%">- Jumlah Kredit</td>
     <td width="2%" align="center">:</td>
-    <td>Rp. {{number_format($data_debitur['jumlah_kredit'], 2, ",", ".")}}</td>
+    <td>&nbsp;Rp. {{number_format($data_debitur['jumlah_kredit'], 2, ",", ".")}}</td>
   </tr>
   <tr>
     <td>- Jangka Waktu Kredit</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['jangka_waktu']}} perbulan</td>
+    <td>&nbsp;{{$data_debitur['jangka_waktu']}} bulan</td>
   </tr>
   <tr>
     <td>- Suku bunga Kredit</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['suku_bunga']}} % perbulan</td>
+    <td>&nbsp;{{$data_debitur['suku_bunga']}} % perbulan</td>
   </tr>
   <tr>
     <td>- Provisi Kredit</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['provisi']}} % dari plafon kredit</td>
+    <td>&nbsp;{{$data_debitur['provisi']}} % dari plafon kredit</td>
   </tr>
   <tr>
     <td>- Biaya Administrasi</td>
     <td align="center">:</td>
-    <td>Rp. {{number_format($data_debitur['biaya_adm'], 2, ",", ".")}}</td>
+    <td>&nbsp;Rp. {{number_format($data_debitur['biaya_adm'], 2, ",", ".")}}</td>
   </tr>
   <tr>
     <td>- Penalty</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['penalty']}} % dari suku bunga yang berlaku atas tunggakan Pokok dan atau Bunga</td>
+    <td>&nbsp;{{$data_debitur['penalty']}} % dari suku bunga yang berlaku atas tunggakan Pokok dan atau Bunga</td>
   </tr>
   <tr>
     <td>- Jumlah Angsuran</td>
     <td align="center">:</td>
-    <td>Rp. {{number_format($data_debitur['angsuran'], 2, ",", ".")}}</td>
+    <td>&nbsp;Rp. {{number_format($data_debitur['angsuran'], 2, ",", ".")}}</td>
   </tr>
   <tr>
     <td>- Asuransi Jiwa Kredit</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['asuransi']}}</td>
+    <td>&nbsp;{{$data_debitur['asuransi']}}</td>
   </tr>
   <tr>
     <td>   - Premi Beban BRI</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['beban_bri']}}</td>
+    <td>&nbsp;{{$data_debitur['beban_bri']}}</td>
   </tr>
   <tr>
     <td>   - Premi Beban Debitur</td>
     <td align="center">:</td>
-    <td>{{$data_debitur['beban_debitur']}}</td>
+    <td>&nbsp;{{$data_debitur['beban_debitur']}}</td>
   </tr>
   <tr>
     <td>- Syarat-syarat lainnya</td>
     <td align="center">:</td>
-    <td></td>
+    <td>&nbsp;</td>
   </tr>
   <tr>
     <td>Pejabat Pemrakarsa</td>
     <td align="center">:</td>
-    <td></td>
+    <td>&nbsp;</td>
   </tr>
   <tr>
     <td>Pejabat Pemutus</td>
     <td align="center">:</td>
-    <td></td>
+    <td>&nbsp;</td>
   </tr>
 </table>
 <p align="justify">
@@ -120,16 +120,16 @@
     </td>
   </tr>
   <tr>
-    <td>Nama : {{$data_debitur['name_adk']}}</td>
-    <td>Nama : </td>
+    <td>Nama &nbsp;&nbsp; : &nbsp; {{$data_debitur['name_adk']}}</td>
+    <td>Nama &nbsp;&nbsp; : &nbsp;</td>
   </tr>
   <tr>
-    <td>Jabatan : {{$data_debitur['jabatan_adk']}}</td>
-    <td>Jabatan : </td>
+    <td>Jabatan &nbsp; : &nbsp;{{$data_debitur['jabatan_adk']}}</td>
+    <td>Jabatan &nbsp; : &nbsp;</td>
   </tr>
   <tr>
-    <td>Tanggal : <?php echo date('d/m/Y')?></td>
-    <td>Tanggal : </td>
+    <td>Tanggal &nbsp; : &nbsp;<?php echo date('d/m/Y')?></td>
+    <td>Tanggal &nbsp; : &nbsp;</td>
   </tr>
 </table>
 <p align="center">

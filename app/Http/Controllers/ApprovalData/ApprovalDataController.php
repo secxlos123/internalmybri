@@ -8,6 +8,22 @@ use Client;
 
 class ApprovalDataController extends Controller
 {
+    protected $columns = [
+        'company_name',
+        'address',
+        'city_id',
+        'mobile_phone',
+        'action',
+    ];
+
+    protected $thirdcolumns = [
+        'name',
+        'address',
+        'city_id',
+        'mobile_phone',
+        'action',
+    ];
+
     public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');
@@ -40,7 +56,20 @@ class ApprovalDataController extends Controller
         /* GET UserLogin Data */
         $data = $this->getUser();
 
-        return view('internals.approval-data.developer.approval-form', compact('data'));
+        $detailData = Client::setEndpoint('approval-data-change/developer/'.$id)
+            ->setQuery(['limit' => 100])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
+
+        $detail = $detailData['contents'];
+        // dd($detail);
+        return view('internals.approval-data.developer.approval-form', compact('data', 'detail'));
     }
 
     /**
@@ -63,75 +92,169 @@ class ApprovalDataController extends Controller
      */
     public function getViewApprovalThirdParty($id)
     {
-        /* GET UserLogin Data */
+        $data = $this->getUser();
+        $detailData = Client::setEndpoint('approval-data-change/thirdparty/'.$id)
+            ->setQuery(['limit' => 100])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
+
+        $detail = $detailData['contents'];
+        // dd($detail);
+
+        return view('internals.approval-data.third-party.approval-form', compact('data', 'detail'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function postApprovalDataDeveloper(Request $request)
+    {
+        $status = ($request->is_approved == 'true') ? 'approve' : 'reject';
+
+        $data = $this->getUser();
+        $detailData = Client::setEndpoint('approval-data-change/developer/'.$status.'/'.$request->id)
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->post();
+            // dd($detailData);
+
+        if($detailData['code'] == 200){
+            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
+            $color = ($detailData['contents']['status'] == 'approved') ? 'success' : 'error';
+            \Session::flash($color, $message);
+            return redirect()->route('approveDeveloper');
+        }else{
+            \Session::flash('error', $detailData['descriptions']);
+            return redirect()->back()->withInput($request->input());
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function postApprovalDataThirdParty(Request $request)
+    {
+        $status = ($request->is_approved == 'true') ? 'approve' : 'reject';
+
+        $data = $this->getUser();
+        $detailData = Client::setEndpoint('approval-data-change/thirdparty/'.$status.'/'.$request->id)
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->post();
+
+        if($detailData['code'] == 200){
+            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
+            $color = ($detailData['contents']['status'] == 'approved') ? 'success' : 'error';
+            \Session::flash($color, $message);
+            return redirect()->route('approveThirdParty');
+        }else{
+            \Session::flash('error', 'Data gagal diapprove! - '.$detailData['descriptions']);
+            return redirect()->back()->withInput($request->input());
+        }
+    }
+
+    /**
+     * Display a listing of the resource developer.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function datatableDeveloper(Request $request)
+    {
+        $sort = $request->input('order.0');
         $data = $this->getUser();
 
-        return view('internals.approval-data.third-party.approval-form', compact('data'));
+        $approvals = Client::setEndpoint('approval-data-change/developer')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+            ])->get();
+
+        foreach ($approvals['contents']['data'] as $key => $approval) {
+            $approval['city_id'] = $approval['city']['name'];
+            $approval['address'] = $approval['address'];
+            $approval['mobile_phone'] = $approval['mobile_phone'];
+
+            $approval['action'] = view('internals.layouts.actions', [
+                'show' => route('getApproveDeveloper', $approval['id']),
+            ])->render();
+            $approvals['contents']['data'][$key] = $approval;
+        }
+
+        $approvals['contents']['draw'] = $request->input('draw');
+        $approvals['contents']['recordsTotal'] = $approvals['contents']['total'];
+        $approvals['contents']['recordsFiltered'] = $approvals['contents']['total'];
+
+        return response()->json($approvals['contents']);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource third-party.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function datatableThirdParty(Request $request)
     {
-        //
-    }
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $approvals = Client::setEndpoint('approval-data-change/third-party')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setQuery([
+                'limit'     => $request->input('length'),
+                'search'    => $request->input('search.value'),
+                'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                'page'      => (int) $request->input('page') + 1,
+            ])->get();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        foreach ($approvals['contents']['data'] as $key => $approval) {
+            $approval['city_id'] = $approval['city']['name'];
+            $approval['address'] = $approval['address'];
+            $approval['mobile_phone'] = $approval['related']['phone_number'];
+            $approval['company_name'] = $approval['related']['name'];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            $approval['action'] = view('internals.layouts.actions', [
+                'show' => route('getApproveThirdParty', $approval['id']),
+            ])->render();
+            $approvals['contents']['data'][$key] = $approval;
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $approvals['contents']['draw'] = $request->input('draw');
+        $approvals['contents']['recordsTotal'] = $approvals['contents']['total'];
+        $approvals['contents']['recordsFiltered'] = $approvals['contents']['total'];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json($approvals['contents']);
     }
 }

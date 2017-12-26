@@ -1,118 +1,193 @@
-<!-- <div class="row">
-    <div class="col-md-6" align="center">
-        <div class="card-box">
-            <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">
-            <p>Foto KTP</p>
-        </div>
-        <div class="card-box">
-            <img src="{{$detail['Url'].'/'.$detail['NPWP_nasabah']}}" class="img-responsive">
-            <p>NPWP</p>
-        </div>
-        <div class="card-box">
-            <img src="{{$detail['Url'].'/'.$detail['SK_AWAL']}}" class="img-responsive">
-            <p>SK Pertama</p>
-        </div>
-        <div class="card-box">
-            <img src="{{$detail['Url'].'/'.$detail['SKPG']}}" class="img-responsive">
-            <p>SKPG</p>
-        </div>
-    </div>
-    <div class="col-md-6" align="center">
-        <div class="card-box">
-            <img src="{{$detail['Url'].'/'.$detail['KK']}}" class="img-responsive">
-            <p>KK</p>
-        </div>
-        <div class="card-box">
-            <img src="{{$detail['Url'].'/'.$detail['SLIP_GAJI']}}" class="img-responsive">
-            <p>Slip Gaji</p>
-        </div>
-        <div class="card-box">
-            <img src="{{$detail['Url'].'/'.$detail['SK_AKHIR']}}" class="img-responsive">
-            <p>SK Terakhir</p>
-        </div>
-    </div>
-    @if( ($detail['customer']['personal']['status']) == 2 )
-    <div class="col-md-6" align="center">
-        <div class="card-box">
-            <img src="{{$detail['customer']['personal']['couple_identity']}}" class="img-responsive">
-            <p>Foto KTP Pasangan</p>
-        </div>
-    </div>
-    @endif
-</div> -->
-
 <div class="row">
     <div class="col-md-12" align="center">
         <div class="card-box">
-            <table class="table table-bordered">
-                <thead class="bg-primary">
-                    <tr align="center">
-                        <th>No</th>
-                        <th>Dokumen Produk</th>
-                        <th>MYBRI</th>
-                        <th>Dokumen</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>KK</td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>KTP</td>
-                        <td><input type="checkbox" name="ktp" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>NPWP</td>
-                        <td><input type="checkbox" name="npwp" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Slip Gaji</td>
-                        <td><input type="checkbox" name="slip_gaji" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>SK Pertama</td>
-                        <td><input type="checkbox" name="sk_awal" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>SK Terakhir</td>
-                        <td><input type="checkbox" name="sk_akhir" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>SKPU</td>
-                        <td><input type="checkbox" name="skpu" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>Surat Rekomendasi</td>
-                        <td><input type="checkbox" name="surat_rekomendasi" class="form-control"></td>
-                        <td><input type="checkbox" name="kk" class="form-control"></td>
-                        <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <form class="form-horizontal" role="form" action="{{route('verifikasi')}}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}" id="eform_id">
+                <input type="hidden" name="is_verified" id="verifikasi">
+                <table class="table table-bordered">
+                    <thead class="bg-primary">
+                        <tr align="center">
+                            <th>Nomor</th>
+                            <th>Dokumen</th>
+                            <th>MYBRI</th>
+                            <th>Dokumen Fisik</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Kartu Tanda Penduduk</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_ktp'] == 1){ ?>
+                                    <input type="checkbox" name="ktp" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="ktp" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_ktp']?>&nbsp;
+                                <a href="javascript:void(0);" id="btn-ktp" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Nomor Pokok Wajib Pajak</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['NPWP_nasabah']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_npwp'] == 1){ ?>
+                                    <input type="checkbox" name="npwp" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="npwp" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_npwp']?>&nbsp;
+                                <a href="#" id="btn-npwp" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Slip Gaji</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['SLIP_GAJI']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_slip_gaji'] == 1){ ?>
+                                    <input type="checkbox" name="slip_gaji" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="slip_gaji" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_gaji']?>&nbsp;
+                                <a href="#" id="btn-gaji" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Kartu Keluarga</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['KK']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_kk'] == 1){ ?>
+                                    <input type="checkbox" name="kk" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="kk" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_kk']?>&nbsp;
+                                <a href="#" id="btn-kk" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>SK Pertama</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['SK_AWAL']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_sk_awal'] == 1){ ?>
+                                    <input type="checkbox" name="sk_awal" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="sk_awal" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_sk_awal']?>&nbsp;
+                                <a href="#" id="btn-sk_awal" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>SK Terakhir</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['SK_AKHIR']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_sk_akhir'] == 1){ ?>
+                                    <input type="checkbox" name="sk_akhir" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="sk_akhir" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_sk_akhir']?>&nbsp;
+                                <a href="#" id="btn-sk_akhir" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Surat Rekomendasi</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['REKOMENDASI']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_rekomendasi'] == 1){ ?>
+                                    <input type="checkbox" name="surat_rekomendasi" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="surat_rekomendasi" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_rekomendasi']?>&nbsp;
+                                <a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                    <?php 
+                    if($detail['Payroll'] == '1') {
+                        if ($detail['customer']['personal']['status'] != '1') {
+                    ?>
+                        <tr>
+                            <td>8</td>
+                            <td>KTP Pasangan</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_couple_ktp'] == 1){ ?>
+                                    <input type="checkbox" name="ktp_pasangan" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="ktp_pasangan" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_couple_ktp']?>&nbsp;
+                                <a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>SKPU</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['SKPG']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_skpu'] == 1){ ?>
+                                    <input type="checkbox" name="skpu" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="skpu" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_skpu']?>&nbsp;
+                                <a href="#" id="btn-skpu" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                    <?php   
+                        } else {
+                    ?>
+                        <tr>
+                            <td>8</td>
+                            <td>SKPU</td>
+                            <td><img src="<?php echo $detail['Url'].'/'.$detail['SKPG']; ?>" width="100" height="100"></td>
+                            <td>
+                                <?php if($detail['flag_skpu'] == 1){ ?>
+                                    <input type="checkbox" name="skpu" class="form-control" value="1" checked="true">
+                                <?php } else { ?>
+                                    <input type="checkbox" name="skpu" class="form-control">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo $detail['catatan_skpu']?>&nbsp;
+                                <a href="#" id="btn-skpu" class="btn btn-success">Update</a>
+                            </td>
+                        </tr>
+                    <?php
+                        } 
+                    }
+                    ?> 
+                        <tr>
+                            <td colspan="4"></td>
+                            <td>
+                                <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
+                                <input type="submit" value="Verifikasi" class="btn btn-primary" id="btn-verifikasi">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>
+@include('internals.eform.adk._modal_catatan')

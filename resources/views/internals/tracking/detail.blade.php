@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Tracking')
+@section('title','My BRI - Detail Tracking')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -22,11 +22,11 @@
                 </div>
             </div>
 
-            <div class="row tracking-widget">
+            <!-- <div class="row tracking-widget">
                 <div class="col-md-3">
                     <div class="card-box widget-box-three active">
                         <div class="bg-icon pull-left">
-                            <i class="ti-check-box"></i>
+                            <i class="fa fa-envelope"></i>
                         </div>
                         <div class="text-right">
                             <p class="m-t-5 text-uppercase font-600 font-secondary">Aplikasi Telah Diterima</p>
@@ -37,10 +37,21 @@
                 <div class="col-md-3">
                     <div class="card-box widget-box-three">
                         <div class="bg-icon pull-left">
-                            <i class="ti-target"></i>
+                            <i class="fa fa-file"></i>
                         </div>
                         <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Sedang Dalam Analisis</p>
+                            <p class="m-t-5 text-uppercase font-600 font-secondary">Disposisi Pengajuan</p>
+                        </div>
+                    </div>
+                    <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                </div>
+                <div class="col-md-3">
+                    <div class="card-box widget-box-three">
+                        <div class="bg-icon pull-left">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="text-right">
+                            <p class="m-t-5 text-uppercase font-600 font-secondary">Proses Prakarsa Pengajuan</p>
                         </div>
                     </div>
                     <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
@@ -51,7 +62,7 @@
                             <i class="ti-archive"></i>
                         </div>
                         <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Sedang Proses Pemberkasan</p>
+                            <p class="m-t-5 text-uppercase font-600 font-secondary">Proses CLF</p>
                         </div>
                     </div>
                     <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
@@ -59,50 +70,237 @@
                 <div class="col-md-3">
                     <div class="card-box widget-box-three">
                         <div class="bg-icon pull-left">
-                            <i class="ti-wallet"></i>
+                            <i class="fa fa-file"></i>
                         </div>
                         <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Proses Pencairan Dana</p>
+                            <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-md-3">
+                    <div class="card-box widget-box-three">
+                        <div class="bg-icon pull-left">
+                            <i class="fa fa-usd"></i>
+                        </div>
+                        <div class="text-right">
+                            <p class="m-t-5 text-uppercase font-600 font-secondary">Pencairan</p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div>
+                        <div class="tracking-widget cms-tracking-widget">
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three @if($datas['status']=='Pengajuan Kredit') active @endif">
+                                    <div class="bg-icon">
+                    
+                                        <i class="fa fa-envelope"></i> 
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Telah Diterima</p>
+                                    </div>
+                                </div>
+                                <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                            </div>
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three @if($datas['status']=='Disposisi Pengajuan') active @endif">
+                                    <div class="bg-icon">
+                                        <i class="fa fa-file"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Disposisi Pengajuan</p>
+                                    </div>
+                                </div>
+                                <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                            </div>
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three @if($datas['status']=='Prakarsa') active @endif">
+                                    <div class="bg-icon">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Prakarsa</p>
+                                    </div>
+                                </div>
+                                <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                            </div>
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three @if($datas['status']=='Proses CLF') active @endif">
+                                    <div class="bg-icon">
+                                        <i class="ti-archive"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Proses CLF</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @endif">
+                                    <div class="bg-icon">
+                                        <i class="ti-wallet"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @if($datas['status']=='Rekontes Kredit') 
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three active">
+                                    <div class="bg-icon">
+                                        <i class="ti-wallet"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Rekontes Kredit</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                             @if($datas['status']=='Kredit Ditolak') 
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three active">
+                                    <div class="bg-icon">
+                                        <i class="ti-wallet"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Kredit Ditolak</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="tracking-card">
+                                <div class="card-box widget-box-three">
+                                    <div class="bg-icon">
+                                        <i class="fa fa-usd"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Pencairan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
             <div class="row m-t-10">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card-box w-80">
                         <h4 class="m-t-0 m-b-30 header-title"><b>Detail Informasi</b></h4>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <form class="form-horizontal" role="form">
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">No. Ref :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">{{$datas['no_ref']}}</p>
+                                            <p class="form-control-static">{{$datas['ref_number']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Tanggal Pengajuan :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['appointment_date']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Jenis KPR :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">@if($datas['kpr']['status_property'] == 1) Baru
+                                            @elseif($datas['kpr']['status_property'] == 2)Secondary
+                                            @elseif($datas['kpr']['status_property'] == 3)Refinancing
+                                            @elseif($datas['kpr']['status_property'] == 4)Renovasi
+                                            @elseif($datas['kpr']['status_property'] == 5)Top Up
+                                            @elseif($datas['kpr']['status_property'] == 6)Take Over
+                                            @elseif($datas['kpr']['status_property'] == 7)Take Over Top Up
+                                            @elseif($datas['kpr']['status_property'] == 8)Take Over Account In House (Cash Bertahap)
+                                            @endif</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Nama Developer :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['developer_name']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Nama Proyek :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['property_name']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Tipe Properti :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['property_type_name']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Unit Properti :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['property_item_name']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Harga Rumah :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">Rp {{number_format($datas['kpr']['price'],2)}}</p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Luas Bangunan :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['building_area']}} M<sup>2</sup></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Lokasi Rumah :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['home_location']}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Jangka Waktu :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['year']}} Bulan</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">KPR Aktif ke- :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">@if($datas['kpr']['active_kpr'] <= 3){{$datas['kpr']['active_kpr']}} @else >2 @endif </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Uang Muka :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">Rp {{number_format($datas['kpr']['down_payment'],2)}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Nama Pemohon :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">{{$datas['nama_pemohon']}}</p>
+                                            <p class="form-control-static">{{$datas['customer_name']}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Jumlah Pengajuan :</label>
+                                        <label class="col-md-4 control-label">Jumlah Permohonan :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">Rp{{number_format($datas['jumlah_pengajuan'])}},00</p>
+                                            <p class="form-control-static">Rp {{number_format($datas['nominal'],2)}},00</p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="col-md-4 control-label">Nama AO / Officer :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">{{$datas['ao']}}</p>
+                                            <p class="form-control-static">{{$datas['ao_name']}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Kantor Cabang :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">{{$datas['wacab']}}</p>
+                                            <p class="form-control-static">{{$datas['branch']}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -110,7 +308,7 @@
                                         <div class="col-md-8">
                                             <p class="form-control-static"><mark>{{$datas['status']}}</mark></p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </form>
                             </div>
                         </div>

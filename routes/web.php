@@ -13,26 +13,26 @@
 /* Backend */
 
     /* Auth */
-        Route::post('/login',
-            ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
+    Route::post('/login',
+        ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
 
-        Route::get('/login',
-            ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
+    Route::get('/login',
+        ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
 
-        Route::get('/forgot-password',
-            ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
+    Route::get('/forgot-password',
+        ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
 
-        Route::post('/post-email',
-            ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
+    Route::post('/post-email',
+        ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
 
-        Route::get('/email-sent', function () {
-            return view('internals.auth.email-sent');
-        });
+    Route::get('/email-sent', function () {
+        return view('internals.auth.email-sent');
+    });
 
-        Route::get('detailRole/{id}',
-            ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
+    Route::get('detailRole/{id}',
+        ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
 
-        Route::delete('logout', 'User\LoginController@logout');
+    Route::delete('logout', 'User\LoginController@logout');
 
     Route::group(['middleware'=> [ 'auth', 'check-token']], function () {
 
@@ -155,6 +155,10 @@
             Route::get('third-party', ['as'=>'approveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalThirdParty']);
 
             Route::get('third-party/approve/{id}', ['as'=>'getApproveThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@getViewApprovalThirdParty']);
+
+            Route::post('approve-data-developer', ['as'=>'postApprovalDataDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataDeveloper']);
+
+            Route::post('approve-data-thirdparty', ['as'=>'postApprovalDataThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataThirdParty']);
         });
 
         Route::resource('eform', 'EForm\EFormController');
@@ -164,7 +168,9 @@
         Route::resource('adk', 'EForm\ADKController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
         Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
-        Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPDF']);
+        Route::post('verifikasi', ['as'=>'verifikasi', 'uses'=>'EForm\ADKController@postVerifikasi']);
+        Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
+        Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPTK']);
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
 
 
@@ -203,6 +209,9 @@
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
+
+        /* Auditrail */
+        // Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
@@ -262,7 +271,6 @@
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
     /* Datatables */
-
     Route::group(['prefix'=>'datatables'], function () {
         /*ADK*/
         Route::get('adk-list', 'EForm\ADKController@datatables');
@@ -306,7 +314,15 @@
 
         Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
 
+        // ApprovalData
+        Route::get('approval-developer', 'ApprovalData\ApprovalDataController@datatableDeveloper');
+
+        Route::get('approval-third-party', 'ApprovalData\ApprovalDataController@datatableThirdParty');
+
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
+
+        /*Auditrail*/
+        // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
     });

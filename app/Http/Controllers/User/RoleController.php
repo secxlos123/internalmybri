@@ -75,7 +75,7 @@ class RoleController extends Controller
                 "pihak-ke-3" => isset($request->pihak3) ? true : false,
                 "manajemen-user" => isset($request->user) ? true : false,
                 "manajemen-role"=> isset($request->roles) ? true : false
-            ]            
+            ]
         ];
 
         return $newRole;
@@ -94,7 +94,13 @@ class RoleController extends Controller
         $newRole = $this->roleRequest($request);
 
         $client = Client::setEndpoint('role')
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->setBody($newRole)
                 ->post();
 
@@ -119,7 +125,13 @@ class RoleController extends Controller
 
         /* GET Role Data */
         $roleData = Client::setEndpoint('role/'.$id)
-                    ->setHeaders(['Authorization' => $data['token']])
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])
                     ->get();
 
         $dataRole = $roleData['contents']['permissions'];
@@ -139,7 +151,13 @@ class RoleController extends Controller
 
         /* GET Role Data */
         $roleData = Client::setEndpoint('role/'.$id)
-                    ->setHeaders(['Authorization' => $data['token']])
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])
                     ->get();
 
         $dataRole = $roleData['contents'];
@@ -161,7 +179,13 @@ class RoleController extends Controller
         $newRole = $this->roleRequest($request);
 
         $client = Client::setEndpoint('role/'.$id)
-                ->setHeaders(['Authorization' => $data['token']])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->setBody($newRole)
                 ->put();
 
@@ -183,7 +207,13 @@ class RoleController extends Controller
     {
         $data = $this->getUser();
 
-        $client = Client::setEndpoint('role/'.$id)->setHeaders(['Authorization' => $data['token']])->deleted();
+        $client = Client::setEndpoint('role/'.$id)->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+        ])->deleted();
 
         return redirect()->route('roles.index');
     }
@@ -193,7 +223,13 @@ class RoleController extends Controller
         $sort = $request->input('order.0');
         $user = session('user.data');
         $roles = Client::setEndpoint('role')
-                ->setHeaders(['Authorization' => $user['token']])
+                ->setHeaders([
+                    'Authorization' => $user['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])
                 ->setQuery([
                     'limit' => $request->input('length'),
                     'name'  => $request->input('search.value'),

@@ -47,11 +47,14 @@ class CustomerController extends Controller
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                      ])->get();
+          ->setQuery(['limit' => 100])
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])->get();
         $dataCustomer = $customerData['contents']['data'];
         // dd($dataCustomer);
 
@@ -282,8 +285,11 @@ class CustomerController extends Controller
         // dd($newCustomer);
         $client = Client::setEndpoint('customer')
          ->setHeaders([
-              'Authorization' => $data['token'],
-              'pn' => $data['pn']
+              'Authorization' => $data['token']
+              , 'pn' => $data['pn']
+              // , 'auditaction' => 'action name'
+              , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+              , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->setBody($newCustomer)
          ->post('multipart');
          // dd($client);
@@ -348,7 +354,15 @@ class CustomerController extends Controller
         $data = $this->getUser();
 
          /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
+        $customerData = Client::setEndpoint('customer/'.$id)
+          ->setQuery(['limit' => 100])
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])->get();
 
         $dataCustomer = $customerData['data'];
         return view('internals.customers.edit', compact('data', 'dataCustomer', 'id'));
@@ -369,8 +383,11 @@ class CustomerController extends Controller
 
         $client = Client::setEndpoint('customer/'.$id)
           ->setHeaders([
-              'Authorization' => $data['token'],
-              'pn' => $data['pn']
+              'Authorization' => $data['token']
+              , 'pn' => $data['pn']
+              // , 'auditaction' => 'action name'
+              , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+              , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->setBody($newCustomer)
           ->put('multipart');
 
@@ -400,8 +417,11 @@ class CustomerController extends Controller
 
         $client = Client::setEndpoint('customer/'.$customer_id)
          ->setHeaders([
-              'Authorization' => $data['token'],
-              'pn' => $data['pn']
+              'Authorization' => $data['token']
+              , 'pn' => $data['pn']
+              // , 'auditaction' => 'action name'
+              , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+              , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])
          ->setBody($newCustomer)
          ->put('multipart');
@@ -424,8 +444,11 @@ class CustomerController extends Controller
 
         $customers = Client::setEndpoint('customer')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),

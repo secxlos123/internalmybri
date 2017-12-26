@@ -50,11 +50,14 @@ class ApprovalController extends Controller
 
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
-                    ->setHeaders(
-                        [ 'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                        ])
-                    ->get();
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])
+          ->get();
 
         $detail = $formDetail['contents'];
         // dd($detail);
@@ -65,8 +68,14 @@ class ApprovalController extends Controller
 
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
-                        ->setHeaders(['Authorization' => $data['token']])
-                        ->get();
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])
+          ->get();
 
         $customer = $customerData['contents'];
         // dd($detail);
@@ -94,8 +103,11 @@ class ApprovalController extends Controller
 
         $client = Client::setEndpoint('eforms/'.$id.'/approve')
                   ->setHeaders([
-                      'Authorization' => $data['token'],
-                      'pn' => $data['pn']
+                      'Authorization' => $data['token']
+                      , 'pn' => $data['pn']
+                      // , 'auditaction' => 'action name'
+                      , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                      , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                   ])
                   ->setBody($approve)
                   ->post();
@@ -124,10 +136,13 @@ class ApprovalController extends Controller
 
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
-                    ->setHeaders(
-                        [ 'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                        ])
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                      ])
                     ->get();
 
         $detail = $formDetail['contents'];
@@ -139,7 +154,13 @@ class ApprovalController extends Controller
 
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
-                        ->setHeaders(['Authorization' => $data['token']])
+                        ->setHeaders([
+                          'Authorization' => $data['token']
+                          , 'pn' => $data['pn']
+                          // , 'auditaction' => 'action name'
+                          // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                          // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])
                         ->get();
 
         $customer = $customerData['contents'];
