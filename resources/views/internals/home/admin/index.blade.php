@@ -61,21 +61,23 @@
                 </div>
               </div>
             </div>
-            <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-              <thead class="bg-primary">
-                <tr>
-                  <th>NIK</th>
-                  <th>Nama Profil Customer</th>
-                  <th>Email</th>
-                  <th>Kota Tempat Tinggal</th>
-                  <th>Handphone</th>
-                  <th>Jenis Kelamin</th>
-                  <!-- <th>Status</th> -->
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+            <div class="tab-scroll">
+              <table id="datatable" class="table table-bordered ">
+                <thead class="bg-primary">
+                  <tr>
+                    <th>NIK</th>
+                    <th>Nama Profil Customer</th>
+                    <th>Email</th>
+                    <th>Kota Tempat Tinggal</th>
+                    <th>Handphone</th>
+                    <th>Jenis Kelamin</th>
+                    <!-- <th>Status</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -134,17 +136,17 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-                <label class="col-sm-2">Pilih Kota : </label>
-                <div class="col-sm-6">
+              <label class="col-sm-2">Pilih Kota : </label>
+              <div class="col-sm-6">
                 {!! Form::select('cities', ['' => ''], old('cities'), [
-                    'class' => 'select2 cities',
-                    'data-placeholder' => 'Pilih Kota',
-                    'id' => 'city'
+                'class' => 'select2 cities',
+                'data-placeholder' => 'Pilih Kota',
+                'id' => 'city'
                 ]) !!}
-                </div>
-                <div class="col-sm-4">
-                  <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
-                </div>
+              </div>
+              <div class="col-sm-4">
+                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+              </div>
             </div>
           </div>
           <div class="col-md-12">
