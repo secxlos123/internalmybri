@@ -19,21 +19,32 @@
     },
     MorrisCharts.prototype.init = function() {
         //creating Stacked chart
-        var $stckedData  = [
-        { y: 'Januari', a: 45 },
-        { y: 'Februari', a: 75, },
-        { y: 'Maret', a: 100 },
-        { y: 'April', a: 75, },
-        { y: 'Mei', a: 100 },
-        { y: 'Juni', a: 75, },
-        { y: 'Juli', a: 50, },
-        { y: 'Agustus', a: 75, },
-        { y: 'September', a: 50, },
-        { y: 'Oktober', a: 75, },
-        { y: 'November', a: 100 },
-        { y: 'Desember', a: 100 }
-        ];
-        this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Pengajuan Baru'], ['#00529C']);
+        // var $stckedData  = [
+        // { y: 'Januari', a: 45 },
+        // { y: 'Februari', a: 75, },
+        // { y: 'Maret', a: 100 },
+        // { y: 'April', a: 75, },
+        // { y: 'Mei', a: 100 },
+        // { y: 'Juni', a: 75, },
+        // { y: 'Juli', a: 50, },
+        // { y: 'Agustus', a: 75, },
+        // { y: 'September', a: 50, },
+        // { y: 'Oktober', a: 75, },
+        // { y: 'November', a: 100 },
+        // { y: 'Desember', a: 100 }
+        // ];
+        // this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Pengajuan Baru'], ['#00529C']);
+
+        $.ajax({
+            url: "{{url('chartEform')}}",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var $stckedData = data;
+
+                MorrisCharts.prototype.createStackedChart('morris-bar-stacked', $stckedData, 'month', ['value'], ['Pengajuan Baru'], ['#00529C']);
+            },
+        })
     },
     //init
     $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts

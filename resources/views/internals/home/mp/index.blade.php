@@ -72,25 +72,27 @@
                 </div>
               </div>
             </div>
-            <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-              <thead class="bg-primary">
-                <tr>
-                  <th>No. Ref Aplikasi</th>
-                  <th>Nama Nasabah</th>
-                  <th>Nominal</th>
-                  <th>Tanggal Pertemuan</th>
-                  <!-- <th>Jenis Produk</th> -->
-                  <!-- <th>KC BRI Terdekat</th> -->
-                  <th>Status Prescreening</th>
-                  <th>AO</th>
-                  <th>Status</th>
-                  <th>Aging (hari)</th>
-                  <th style="width: 100px">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+            <div class="tab-scroll">
+              <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
+                <thead class="bg-primary">
+                  <tr>
+                    <th>No. Ref Aplikasi</th>
+                    <th>Nama Nasabah</th>
+                    <th>Nominal</th>
+                    <th>Tanggal Pertemuan</th>
+                    <!-- <th>Jenis Produk</th> -->
+                    <!-- <th>KC BRI Terdekat</th> -->
+                    <th>Status Prescreening</th>
+                    <th>AO</th>
+                    <th>Status</th>
+                    <th>Aging (hari)</th>
+                    <th style="width: 100px">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
