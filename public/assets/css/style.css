@@ -5687,6 +5687,14 @@ table .checkbox {
     text-decoration: none;
     background-color: #fff !important;
 }
+
+
+@media only screen
+and (max-device-width : 1192px) {
+    .tab-scroll{
+      overflow-x: scroll;
+    }
+}
 /*
 * ended
 */
