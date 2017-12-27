@@ -24,10 +24,15 @@
                             <p>Selamat Datang di Aplikasi My BRI. Untuk Bantuan Hubungi <b>consumer.support@corp.bri.co.id</b>.</p>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right notification">
-                    
-                        @include('internals.layouts.notification')  
-
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" onclick="openSide()" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-bell"></i>
+                                <span class="badge up bg-success"> 
+                                    {{ count( notificationsUnread() ) }}
+                                </span>
+                            </a>
+                        </li>
                         <li class="dropdown user-box">
                             <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
                                 <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="user-img" class="img-circle user-img">
@@ -45,6 +50,7 @@
                             </ul>
                         </li>
                     </ul>
+                    @include('internals.layouts.notification')  
                 </div>
             </div>
         </div>
