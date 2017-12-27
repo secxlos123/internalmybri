@@ -109,8 +109,10 @@
     // handling serialize
     $.ajaxPrefilter(function(options, originalData, xhr){
         if (options.data) {
-            options.data += "&long="+$('input[name="hidden-long"]').val();
-            options.data += "&lat="+$('input[name="hidden-lat"]').val();
+            if (typeof(options.data) == 'string') {
+                options.data += "&long="+$('input[name="hidden-long"]').val();
+                options.data += "&lat="+$('input[name="hidden-lat"]').val();
+            }
         }
     });
 
@@ -252,6 +254,29 @@
     $('.cities').on('select2:select', function (e) {
         var citi_id = e.params.data.id;
     });
+
+    function openSide() {
+        document.getElementById("rightSide").style.width = "300px";
+    }
+
+    function closeSide() {
+        document.getElementById("rightSide").style.width = "0px";
+
+    }
+
+    $( window ).resize( function() {
+        var rightsidebar_height = $( '.rightSide' ).height(),
+            rightsidebar_notif  = $( '.rightSide .notif-head').height(),
+            rightsidebar_item   = $( '.rightSide li' ).not( '.notif-head' );
+
+        rightsidebar_item.css( 'height', parseFloat( rightsidebar_height - rightsidebar_notif ) + 'px' );
+    } );
+
+    var rightsidebar_height = $( '.rightSide' ).height(),
+        rightsidebar_notif  = $( '.rightSide .notif-head').height(),
+        rightsidebar_item   = $( '.rightSide li' ).not( '.notif-head' );
+
+    rightsidebar_item.css( 'height', parseFloat( rightsidebar_height - rightsidebar_notif ) + 'px' );
 
 </script>
 
