@@ -44,6 +44,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // 404 page when a page not found
+        if(env('APP_ENV') == 'local'){
+            if ($exception instanceof Exception) {
+                return response()->view('errors.404', [], 404);
+            }
+
+            // 500 page when a page not found
+            if ($exception instanceof \ErrorException) {
+                return response()->view('errors.500', [], 500);
+            } else {
+                return parent::render($request, $exception);
+            }
+        }
+
         return parent::render($request, $exception);
     }
 
