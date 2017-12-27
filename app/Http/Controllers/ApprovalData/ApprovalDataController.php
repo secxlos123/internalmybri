@@ -51,7 +51,7 @@ class ApprovalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getViewApprovalDeveloper($id)
+    public function getViewApprovalDeveloper(Request $request, $id)
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
@@ -90,7 +90,7 @@ class ApprovalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getViewApprovalThirdParty($id)
+    public function getViewApprovalThirdParty(Request $request, $id)
     {
         $data = $this->getUser();
         $detailData = Client::setEndpoint('approval-data-change/thirdparty/'.$id)
