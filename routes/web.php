@@ -214,6 +214,13 @@
         // Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
 
+    /* Chart */
+    Route::get('chartEform', 'Home\HomeController@chartEform');
+
+    Route::get('chartCustomer', 'Home\HomeController@chartCustomer');
+
+    Route::get('chartProperty', 'Home\HomeController@chartProperty');
+
     Route::put('users/{users}/actived', 'User\UserController@actived');
 
     Route::put('thirdparty/{id}/actived', 'ThirdParty\ThirdPartyController@actived');
