@@ -1,7 +1,7 @@
 <section>
     <div class="row">
         <div class="col-md-12">
-            <h4 class="m-t-0 header-title bottom20"><b>Step 10 Agunan Tanah & Rumah Tinggal</b></h4>
+            <h4 class="m-t-0 header-title bottom20"><b>Step 10 Paripasu</b></h4>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-horizontal" role="form">

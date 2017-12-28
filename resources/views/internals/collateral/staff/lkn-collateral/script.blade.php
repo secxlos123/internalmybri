@@ -172,6 +172,51 @@
             var building_exchange = $('.building_exchange').find("option:selected").text();
             var things_bank_must_know = $('#things_bank_must_know').val();
 
+            //step7
+            var collateral_status = $('.collateral_status_').find("option:selected").text();
+            var on_behalf_of = $('#on_behalf_of').val();
+            var ownership_number = $('#ownership_number').val();
+            var location = $('#location').val();
+            var address_collateral = $('#address_collateral').val();
+            var description = $('#description').val();
+            var ownership_status = $('.ownership_status').find("option:selected").text();
+            var date_evidence = $('#date_evidence').val();
+            var village = $('#village').val();
+            var districts = $('#districts').val();
+
+            //step8
+            var liquidation_realization = $('#liquidation_realization').val();
+            var fair_market = $('#fair_market').val();
+            var liquidation = $('#liquidation').val();
+            var fair_market_projection = $('#fair_market_projection').val();
+            var liquidation_projection = $('#liquidation_projection').val();
+            var njop = $('#njop').val();
+            var appraisal_by = $('.appraisal_by').find("option:selected").text();
+            var independent_appraiser = $('.independent_appraiser').find("option:selected").text();
+            var date_assessment = $('#date_assessment').val();
+            var type_binding = $('.type_binding').find("option:selected").text();
+            var binding_number = $('#binding_number').val();
+            var binding_value = $('#binding_value').val();
+
+            //step9
+            var certificate_status = $('.certificate_status').find("option:selected").text();
+            var receipt_date = $('#receipt_date').val();
+            var information = $('#information').val();
+            var notary_status = $('.notary_status').find("option:selected").text();
+            var takeover_status = $('.takeover_status').find("option:selected").text();
+            var credit_status = $('.credit_status').find("option:selected").text();
+            var skmht_status = $('.skmht_status').find("option:selected").text();
+            var imb_status = $('.imb_status').find("option:selected").text();
+            var shgb_status = $('.shgb_status').find("option:selected").text();
+
+            //step10
+            var paripasu = $('.paripasu').find("option:selected").text();
+            var paripasu_bank = $('#paripasu_bank').val();
+            var insurance = $('.insurance').find("option:selected").text();
+            var insurance_company = $('.insurance_company').find("option:selected").text();
+            var insurance_value =$('#insurance_value').val();
+            var eligibility = $('.eligibility').find("option:selected").text();
+
             //step1
             $('#detail-collateral-modal').modal('show');
             $("#detail-collateral-modal #location").html(location);
@@ -231,6 +276,7 @@
             $("#detail-collateral-modal #nearest_location").html(nearest_location); 
             $("#detail-collateral-modal #other_guide").html(other_guide); 
             $("#detail-collateral-modal #distance_from_transportation").html(distance_from_transportation); 
+
             //step5
             $("#detail-collateral-modal #scoring_land_date").html(scoring_land_date); 
             $("#detail-collateral-modal #npw_land").html('Rp'+npw_land); 
@@ -254,6 +300,55 @@
             $("#detail-collateral-modal #optimal_building_use").html(optimal_building_use); 
             $("#detail-collateral-modal #building_exchange").html(building_exchange); 
             $("#detail-collateral-modal #things_bank_must_know").html(things_bank_must_know);
+
+            //step7
+            $("#detail-collateral-modal #collateral_status").html(collateral_status); 
+            $("#detail-collateral-modal #on_behalf_of").html(on_behalf_of);
+            $("#detail-collateral-modal #ownership_number").html(ownership_number); 
+            $("#detail-collateral-modal #location").html(location); 
+            $("#detail-collateral-modal #address_collateral").html(address_collateral);
+            $("#detail-collateral-modal #description").html(description); 
+            $("#detail-collateral-modal #ownership_status").html(ownership_status);
+            $("#detail-collateral-modal #date_evidence").html(date_evidence); 
+            $("#detail-collateral-modal #village").html(village); 
+            $("#detail-collateral-modal #districts").html(districts);
+
+            //step8
+            $("#detail-collateral-modal #liquidation_realization").html(liquidation_realization); 
+            $("#detail-collateral-modal #fair_market").html(fair_market);
+            $("#detail-collateral-modal #liquidation").html(liquidation); 
+            $("#detail-collateral-modal #fair_market_projection").html(fair_market_projection); 
+            $("#detail-collateral-modal #liquidation_projection").html(liquidation_projection);
+            $("#detail-collateral-modal #njop").html(njop); 
+            $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
+            if(appraisal_by != "Bank"){
+              $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser); 
+            }else{
+              $("#detail-collateral-modal .independent_appraiser").hide(); 
+            }
+            $("#detail-collateral-modal #date_assessment").html(date_assessment); 
+            $("#detail-collateral-modal #type_binding").html(type_binding);
+            $("#detail-collateral-modal #binding_number").html(binding_number);
+            $("#detail-collateral-modal #binding_value").html(binding_value);
+
+            //step9
+            $("#detail-collateral-modal #certificate_status").html(certificate_status); 
+            $("#detail-collateral-modal #receipt_date").html(receipt_date);
+            $("#detail-collateral-modal #information").html(information); 
+            $("#detail-collateral-modal #notary_status").html(notary_status); 
+            $("#detail-collateral-modal #takeover_status").html(takeover_status);
+            $("#detail-collateral-modal #credit_status").html(credit_status); 
+            $("#detail-collateral-modal #skmht_status").html(skmht_status);
+            $("#detail-collateral-modal #imb_status").html(imb_status); 
+            $("#detail-collateral-modal #shgb_status").html(shgb_status); 
+
+            //step10
+            $("#detail-collateral-modal #paripasu").html(paripasu); 
+            $("#detail-collateral-modal #paripasu_bank").html(paripasu_bank);
+            $("#detail-collateral-modal #insurance").html(insurance); 
+            $("#detail-collateral-modal #insurance_company").html(insurance_company); 
+            $("#detail-collateral-modal #insurance_value").html(insurance_value);
+            $("#detail-collateral-modal #eligibility").html(eligibility); 
           }
         });
 
