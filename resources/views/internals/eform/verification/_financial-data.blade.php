@@ -82,7 +82,7 @@
                         <label class="header-title custom-title-2" for="join_check">
                             <b>  Joint Income</b>
                         </label>
-                        <input type="hidden" name="source_income" id="join_val">
+                        <input type="hidden" name="source_income" id="join_val" value="{{ !empty($dataCustomer) ? $dataCustomer['customer']['source_income'] : 'single' }}">
                     @else
                     <div>
                         <label class="header-title custom-title-2" for="join_check">

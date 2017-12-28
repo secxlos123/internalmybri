@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
     {
         // 404 page when a page not found
         // if(env('APP_ENV') == 'production'){
-            if ($exception instanceof Exception) {
+            if ($exception instanceof CustomException) {
                 return response()->view('errors.404', [], 404);
             }
 
