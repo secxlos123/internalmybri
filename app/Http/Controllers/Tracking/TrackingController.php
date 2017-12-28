@@ -10,9 +10,9 @@ class TrackingController extends Controller
 {
     protected $columns = [
         'ref_number',
-        'appoinment_date',
-        'developer_id',
-        'property_id',
+        'nama_pemohon',
+        'developer_name',
+        'property_name',
         'status',
         'action',
     ];
@@ -140,13 +140,13 @@ class TrackingController extends Controller
                     'page'      => (int) $request->input('page') + 1,
                     'status'    => $request->input('status')
                 ])->get();
-
+                \Log::info($eforms);
         foreach ($eforms['contents']['data'] as $key => $form) {
             // dd($form['kpr']['developer_id']);
             $form['ref_number'] = strtoupper($form['ref_number']);
-            $form['appointment_date'] = '2017-10-03';
-            $form['developer_id'] = strtoupper($form['developer_name']);
-            $form['property_id'] = $form['property_name'];
+            $form['nama_pemohon'] = $form['nama_pemohon'];
+            $form['developer_name'] = strtoupper($form['developer_name']);
+            $form['property_name'] = $form['property_name'];
             $form['status'] = $form['status'];
 
             $form['action'] = view('internals.layouts.actions', [
