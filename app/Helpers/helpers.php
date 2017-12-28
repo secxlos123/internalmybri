@@ -49,25 +49,25 @@ if (! function_exists('checkRolesInternal')) {
      *
      * @return array
      */
-    function checkRolesInternal($branch_id)
+    function checkRolesInternal($hilfm ,$posisi)
     {
-        if( in_array( intval($branch_id), [ 37, 38, 39, 41, 42, 43 ] ) ) {
-            $ArrRole = ['role' =>'ao','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [ 21, 49, 50, 51 ] ) ) {
-            $ArrRole = ['role' =>'mp','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [ 5, 11, 12, 14, 19 ] ) ) {
-            $ArrRole = ['role' =>'pinca','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [ 59 ] ) ) {
-            $ArrRole = ['role' =>'prescreening','branch_id' => $branch_id ];
-            if( in_array( strtolower($data[ 'posisi' ]), [ 'collateral appraisal', 'collateral manager' ] ) ){
-                $role = str_replace(' ', '-', strtolower($data[ 'posisi' ]));
+        if( in_array( intval($hilfm), [ 37, 38, 39, 41, 42, 43 ] ) ) {
+            $ArrRole = ['role' =>'ao','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [ 21, 49, 50, 51 ] ) ) {
+            $ArrRole = ['role' =>'mp','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [ 5, 11, 12, 14, 19 ] ) ) {
+            $ArrRole = ['role' =>'pinca','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [ 59 ] ) ) {
+            $ArrRole = ['role' =>'prescreening','branch_id' => $hilfm ];
+            if( in_array( strtolower($posisi), [ 'collateral appraisal', 'collateral manager' ] ) ){
+                $role = str_replace(' ', '-', strtolower($posisi));
             }
-        } else if( in_array( intval($branch_id), [26] ) ) {
-            $ArrRole = ['role' =>'staff','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [18] ) ) {
-            $ArrRole = ['role' =>'collateral','branch_id' => $branch_id ];
+        } else if( in_array( intval($hilfm), [26] ) ) {
+            $ArrRole = ['role' =>'staff','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [18] ) ) {
+            $ArrRole = ['role' =>'collateral','branch_id' => $hilfm ];
         } else {
-            $ArrRole = ['role' =>'null','branch_id' => $branch_id ];
+            $ArrRole = ['role' =>'null','branch_id' => $hilfm ];
         }
 
         return $ArrRole;
