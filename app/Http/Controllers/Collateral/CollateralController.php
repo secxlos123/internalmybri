@@ -249,7 +249,6 @@ class CollateralController extends Controller
                 ])->setBody($reqs)
                 ->post();
             $response = 'Pengajuan Properti Baru telah Disetujui';
-
         } else {
             $client = Client::setEndpoint('collateral/reject/'.$id)
                 ->setHeaders([
@@ -261,11 +260,18 @@ class CollateralController extends Controller
                 ])->setBody($reqs)
                 ->post();
             $response = 'Pengajuan Properti Baru telah Ditolak';
-
+        }
+        
+        if(($client['contents']['status'] == 'disetujui')){
+            $color = 'success';
+        }elseif($client['contents']['status'] == 'ditolak'){
+            $color = 'success';
+        }else{
+            $color = 'error';
         }
 
         if($client['code'] == 200){
-            \Session::flash('success', $response);
+            \Session::flash($color, $response);
             return redirect()->route('collateral.index');
         }else{
             $error = reset($client['contents']);
