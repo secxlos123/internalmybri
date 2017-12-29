@@ -5,12 +5,12 @@
     <tr>
       <td>KANTOR CABANG</td>
       <td>:</td>
-      <td>{{$data_debitur['nama_debitur']}}</td>
+      <td>&nbsp;{{$data_debitur['nama_debitur']}}</td>
     </tr>
     <tr>
       <td>KANCAPEM/UNIT</td>
       <td>:</td>
-      <td>{{$data_debitur['alamat']}}</td>
+      <td>&nbsp;{{$data_debitur['alamat']}}</td>
     </tr>
   </table>
   <hr>
@@ -18,12 +18,12 @@
     <tr>
       <td>No. SKPP</td>
       <td>:</td>
-      <td>{{$data_debitur['tgl_skpp']}}</td>
+      <td>&nbsp;{{$data_debitur['tgl_skpp']}}</td>
     </tr>
     <tr>
       <td>No. Pangkal / CIF</td>
       <td>:</td>
-      <td>{{$data_debitur['perusahaan']}}</td>
+      <td>&nbsp;{{$data_debitur['perusahaan']}}</td>
     </tr>
   </table>
 </p>
@@ -31,97 +31,57 @@
 <p align="justify">
   <h3 align="center">SURAT PENGAKUAN HUTANG</h3>
   <h5 align="center">Nomor : </h5>
-  Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai badan hukum.
+  <br>
+  Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai Badan Hukum yang berkedudukan di Jakarta berdasarkan Anggaran Dasar Perseroan yang dimuat dalam Akta Nomor 51 tanggal 26 Mei 2008 yang dibuat dihadapan Fathiah Helmi, SH Notaris di Jakarta dan telah diumumkan dalam Berita Negara RI Nomor 68 tanggal 25 Agustus 2009, Tambahan Nomor 23079, yang telah beberapa kali diubah, perubahan Anggaran Dasar terakhir dimuat dalam Akta No. 1 tanggal 1 April 2015 yang dibuat dihadapan Fathiah Helmi, S.H.
 </p>
-<table border="1" width="100%">
+<table width="100%">
   <tr>
-    <td width="40%">- Jumlah Kredit</td>
+    <td width="5%">1.</td>
+    <td width="15%">Nama</td>
     <td width="2%" align="center">:</td>
-    <td>Rp. {{number_format($data_debitur['jumlah_kredit'], 2, ",", ".")}}</td>
+    <td>&nbsp;Rp. {{number_format($data_debitur['jumlah_kredit'], 2, ",", ".")}}</td>
   </tr>
   <tr>
-    <td>- Jangka Waktu Kredit</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['jangka_waktu']}} perbulan</td>
-  </tr>
-  <tr>
-    <td>- Suku bunga Kredit</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['suku_bunga']}} % perbulan</td>
-  </tr>
-  <tr>
-    <td>- Provisi Kredit</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['provisi']}} % dari plafon kredit</td>
-  </tr>
-  <tr>
-    <td>- Biaya Administrasi</td>
-    <td align="center">:</td>
-    <td>Rp. {{number_format($data_debitur['biaya_adm'], 2, ",", ".")}}</td>
-  </tr>
-  <tr>
-    <td>- Penalty</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['penalty']}} % dari suku bunga yang berlaku atas tunggakan Pokok dan atau Bunga</td>
-  </tr>
-  <tr>
-    <td>- Jumlah Angsuran</td>
-    <td align="center">:</td>
-    <td>Rp. {{number_format($data_debitur['angsuran'], 2, ",", ".")}}</td>
-  </tr>
-  <tr>
-    <td>- Asuransi Jiwa Kredit</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['asuransi']}}</td>
-  </tr>
-  <tr>
-    <td>   - Premi Beban BRI</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['beban_bri']}}</td>
-  </tr>
-  <tr>
-    <td>   - Premi Beban Debitur</td>
-    <td align="center">:</td>
-    <td>{{$data_debitur['beban_debitur']}}</td>
-  </tr>
-  <tr>
-    <td>- Syarat-syarat lainnya</td>
-    <td align="center">:</td>
     <td></td>
-  </tr>
-  <tr>
-    <td>Pejabat Pemrakarsa</td>
+    <td>Pemegang KTP No.</td>
     <td align="center">:</td>
-    <td></td>
+    <td>&nbsp;{{$data_debitur['jangka_waktu']}}</td>
   </tr>
   <tr>
-    <td>Pejabat Pemutus</td>
+    <td></td>
+    <td>Pekerjaan</td>
     <td align="center">:</td>
+    <td>&nbsp;{{$data_debitur['suku_bunga']}}</td>
+  </tr>
+  <tr>
     <td></td>
-  </tr>
-</table>
-<table border="1" width="100%">
-  <tr>
-    <td colspan="2" align="center">ADMINISTRASI KREDIT</td>
+    <td>Alamat</td>
+    <td align="center">:</td>
+    <td>&nbsp;{{$data_debitur['provisi']}}</td>
   </tr>
   <tr>
-    <td width="50%" align="center">(MAKER)</td>
-    <td align="center">
-      (CHECKER/SIGNER)<br>
-      Tanda tangan
-    </td>
+    <td>2.</td>
+    <td>Nama</td>
+    <td align="center">:</td>
+    <td>&nbsp;-</td>
   </tr>
   <tr>
-    <td>Nama : {{$data_debitur['name_adk']}}</td>
-    <td>Nama : </td>
+    <td></td>
+    <td>Pemegang KTP No.</td>
+    <td align="center">:</td>
+    <td>&nbsp;-</td>
   </tr>
   <tr>
-    <td>Jabatan : {{$data_debitur['jabatan_adk']}}</td>
-    <td>Jabatan : </td>
+    <td></td>
+    <td>Pekerjaan</td>
+    <td align="center">:</td>
+    <td>&nbsp;-</td>
   </tr>
   <tr>
-    <td>Tanggal : <?php echo date('d/m/Y')?></td>
-    <td>Tanggal : </td>
+    <td></td>
+    <td>Alamat</td>
+    <td align="center">:</td>
+    <td>&nbsp;-</td>
   </tr>
 </table>
 <p align="center">
