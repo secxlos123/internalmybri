@@ -97,3 +97,10 @@
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 <script src="{{ asset('assets/js/custom/schedule.js')  }}"></script>
+<script type="text/javascript">
+    var address = {
+        address: 'undefined',
+        lat: "{{ env('DEF_LAT', '-6.21670') }}",
+        long: "{{ env('DEF_LONG', '106.81350') }}",
+    };
+</script>
