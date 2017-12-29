@@ -287,7 +287,17 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return view('internals.collateral.manager.monitoring', compact('data', 'collateral'));
+        $detailCollateral = Client::setEndpoint('collateral/otsdoc/'.$collateral['id'])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->get();
+            // dd($detailCollateral);
+
+        return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral'));
     }
 
     /**
