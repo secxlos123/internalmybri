@@ -144,6 +144,8 @@
             Route::post('reject-form/{id}', ['as'=>'rejectAssignment', 'uses'=>'Collateral\CollateralStaffController@rejectAssignment']);
 
             Route::get('upload-doc/{dev_id}/{prop_id}', ['as'=>'getUploadDoc', 'uses'=>'Collateral\CollateralStaffController@getUploadDoc']);
+
+            Route::post('post-upload-doc/{id}', ['as'=>'postUploadDoc', 'uses'=>'Collateral\CollateralStaffController@postUploadDoc']);
         });
 
         Route::group(['prefix'=>'approval-data'], function () {
