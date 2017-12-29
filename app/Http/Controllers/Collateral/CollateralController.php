@@ -231,13 +231,12 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $reqs = [
-            'eform_id' => $request->has('eform_id')?$request->eform_id : false,
-            'remark' => $request->remark
+            'eform_id' => $request->has('eform_id')? $request->eform_id : false
+            , 'remark' => $request->input('remark')
             , 'approved_by' => $data['pn']
         ];
 
         $approve = $request->is_approved;
-        // dd($request->all());
         if($approve == 'true'){
             $client = Client::setEndpoint('collateral/approve/'.$id)
                 ->setHeaders([
