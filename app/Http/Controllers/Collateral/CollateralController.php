@@ -295,9 +295,24 @@ class CollateralController extends Controller
                 // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
-            // dd($detailCollateral);
 
-        return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral'));
+            //count percentage
+            $keys = 0 ;
+            $findme   = 'noimage.jpg';
+             foreach ($detailCollateral['contents']['ots_doc'] as $key => $value) {
+                 $found = strpos($value, $findme);
+                 if ($found) {
+                     $keys++;
+                 }else{
+                    continue;
+                 }
+             }
+            $all =  13-$keys;
+            $percent = ($all/13)*100;
+            
+
+
+        return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral','percent'));
     }
 
     /**

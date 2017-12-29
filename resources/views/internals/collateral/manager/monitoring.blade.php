@@ -121,7 +121,7 @@
                                     <label class="distance"></label>
                                     <div class="form-horizontal" role="form">
                                         <h4><b>Presentase</b></h4>
-                                        <h1>%</h1>
+                                        <h1>{{$percent}}%</h1>
                                     </div>
                                 </div>
                             </div>
