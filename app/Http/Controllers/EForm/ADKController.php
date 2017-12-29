@@ -496,7 +496,7 @@ class ADKController extends Controller
 
     public function postApprove(Request $request) {
         $data = $this->getUser();
-        print_r($request->all());exit();
+        // print_r($request->all());exit();
         $response = $request->all();
         $conten_putusan = [
             "id_aplikasi" => $response['id_aplikasi'],
@@ -541,13 +541,15 @@ class ADKController extends Controller
                     'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
                     'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
                 ];
-
+                // print_r($response['eform_id']);
+                // print_r($update_data);
+                // exit();
                 $update_briguna = Client::setEndpoint('api_las/update')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
                         ])
-                    ->setBody(json_encode($update_data))
+                    ->setBody($update_data)
                     ->post();
                 // dd($update_briguna);
 
@@ -736,6 +738,76 @@ class ADKController extends Controller
         } else {
             \Session::flash('error', 'Dokumen SPH gagal disimpan');
             return redirect()->route('adk.index');
+        }
+    }
+
+    public function datatablesBackup(Request $request) {
+        $data = $this->getUser();
+        // print_r($data);exit();
+        $customer = Client::setEndpoint('api_las/index')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn'            => $data['pn']
+                ])->setBody([
+                    'requestMethod' => 'eformBriguna'
+                ])->post();
+        // print_r($customer);exit();
+        if (!empty($customer)) {
+            \Log::info("masuk");
+            $form  = array();
+            $count = 0;
+            foreach ($customer as $index => $value) {
+                print_r($value);exit();
+                $form['eform_id'] = $value['eform_id'];
+                $form['request_amount'] = 'Rp '.number_format($value['plafond'], 2, ",", ".");
+                if ($value['tp_produk'] == '1') {
+                    $form['tp_produk'] = 'Briguna Karya';
+                } elseif ($value['tp_produk'] == '10') {
+                    $form['tp_produk'] = 'Briguna Micro';
+                } else {
+                    $form['tp_produk'] = 'Lainnya';
+                }
+                $form['action'] = view('internals.layouts.actions', [
+                    'approve_adk' => $form
+                ])->render();
+                $eforms['contents']['data'][] = $form;
+                $count = count($form);
+            }
+
+            if (intval($count) == 0) {
+                $eforms['contents']['draw'] = $request->input('draw');
+                $eforms['contents']['recordsTotal'] = '0';
+                $eforms['contents']['recordsFiltered'] = '0';
+                $eforms['contents']['data'][] = [
+                    'id_aplikasi'   => '-',
+                    'fid_tp_produk' => '-',
+                    'nama_pegawai'  => '-',
+                    'namadeb'       => '-',
+                    'request_amount'=> '-',
+                    'STATUS'        => '-',
+                    'action'        => '-'
+                ];
+                return response()->json($eforms['contents']);
+            }
+            $eforms['contents']['total'] = $count;
+            $eforms['contents']['draw'] = $request->input('draw');
+            $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
+            $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+            return response()->json($eforms['contents']);   
+        } else {
+            $eforms['contents']['draw'] = $request->input('draw');
+            $eforms['contents']['recordsTotal'] = '0';
+            $eforms['contents']['recordsFiltered'] = '0';
+            $eforms['contents']['data'][] = [
+                'id_aplikasi'   => '-',
+                'fid_tp_produk' => '-',
+                'nama_pegawai'  => '-',
+                'namadeb'       => '-',
+                'request_amount'=> '-',
+                'STATUS'        => '-',
+                'action'        => '-'
+            ];
+            return response()->json($eforms['contents']);
         }
     }
 }

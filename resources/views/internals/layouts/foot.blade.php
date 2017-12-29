@@ -71,6 +71,10 @@
 
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
+<script src="{{asset('assets/js/jquery.viewbox.min.js')}}"></script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
 <script type="text/javascript">
