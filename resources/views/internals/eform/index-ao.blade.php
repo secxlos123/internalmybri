@@ -112,7 +112,8 @@
                         </div>
                         <div class="table-responsive">
                             @If(count($form_notif) > 0)
-                                <table id="datatable" class="table table-bordered responsive">
+                            <div class="tab-scroll">
+                                <table id="datatable" class="table table-bordered">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>No. Ref</th>
@@ -147,7 +148,7 @@
                                     </tbody>
                                 </table>
                             @Else
-                                <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
+                                <table id="datatable" class="table table-bordered">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>No. Ref</th>
@@ -166,6 +167,7 @@
                                     </thead>
                                     <tbody></tbody>
                                 </table>
+                            </div>
                             @EndIf
                         </div>
                     </div>

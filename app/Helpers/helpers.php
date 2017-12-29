@@ -49,25 +49,25 @@ if (! function_exists('checkRolesInternal')) {
      *
      * @return array
      */
-    function checkRolesInternal($branch_id)
+    function checkRolesInternal($hilfm ,$posisi)
     {
-        if( in_array( intval($branch_id), [ 37, 38, 39, 41, 42, 43 ] ) ) {
-            $ArrRole = ['role' =>'ao','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [ 21, 49, 50, 51 ] ) ) {
-            $ArrRole = ['role' =>'mp','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [ 5, 11, 12, 14, 19 ] ) ) {
-            $ArrRole = ['role' =>'pinca','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [ 59 ] ) ) {
-            $ArrRole = ['role' =>'prescreening','branch_id' => $branch_id ];
-            if( in_array( strtolower($data[ 'posisi' ]), [ 'collateral appraisal', 'collateral manager' ] ) ){
-                $role = str_replace(' ', '-', strtolower($data[ 'posisi' ]));
+        if( in_array( intval($hilfm), [ 37, 38, 39, 41, 42, 43 ] ) ) {
+            $ArrRole = ['role' =>'ao','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [ 21, 49, 50, 51 ] ) ) {
+            $ArrRole = ['role' =>'mp','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [ 5, 11, 12, 14, 19 ] ) ) {
+            $ArrRole = ['role' =>'pinca','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [ 59 ] ) ) {
+            $ArrRole = ['role' =>'prescreening','branch_id' => $hilfm ];
+            if( in_array( strtolower($posisi), [ 'collateral appraisal', 'collateral manager' ] ) ){
+                $role = str_replace(' ', '-', strtolower($posisi));
             }
-        } else if( in_array( intval($branch_id), [26] ) ) {
-            $ArrRole = ['role' =>'staff','branch_id' => $branch_id ];
-        } else if( in_array( intval($branch_id), [18] ) ) {
-            $ArrRole = ['role' =>'collateral','branch_id' => $branch_id ];
+        } else if( in_array( intval($hilfm), [26] ) ) {
+            $ArrRole = ['role' =>'staff','branch_id' => $hilfm ];
+        } else if( in_array( intval($hilfm), [18] ) ) {
+            $ArrRole = ['role' =>'collateral','branch_id' => $hilfm ];
         } else {
-            $ArrRole = ['role' =>'null','branch_id' => $branch_id ];
+            $ArrRole = ['role' =>'null','branch_id' => $hilfm ];
         }
 
         return $ArrRole;
@@ -126,11 +126,14 @@ if (! function_exists('getNotification')) {
 
         try {
             $NotificationData = Client::setEndpoint('users/notification')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch']
-                          ])->get();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->get();
             return $Arrnotification = $NotificationData['contents'];
 
             session()->put('notifications', $Arrnotification);
@@ -159,12 +162,15 @@ if (! function_exists('notificationsUnread')) {
         }
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch'],
-                              'role' => $data['role'],
-                          ])->get();
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    , 'role' => $data['role']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                ])->get();
             \Log::info($NotificationDataUnread);
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 

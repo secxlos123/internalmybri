@@ -13,26 +13,26 @@
 /* Backend */
 
     /* Auth */
-        Route::post('/login',
-            ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
+    Route::post('/login',
+        ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
 
-        Route::get('/login',
-            ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
+    Route::get('/login',
+        ['as'=>'login', 'uses'=>'User\LoginController@getLogin']);
 
-        Route::get('/forgot-password',
-            ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
+    Route::get('/forgot-password',
+        ['as'=>'forgot-password', 'uses'=>'User\LoginController@getForgotPassword']);
 
-        Route::post('/post-email',
-            ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
+    Route::post('/post-email',
+        ['as'=>'postForgotPassword', 'uses'=>'User\LoginController@postForgotPassword']);
 
-        Route::get('/email-sent', function () {
-            return view('internals.auth.email-sent');
-        });
+    Route::get('/email-sent', function () {
+        return view('internals.auth.email-sent');
+    });
 
-        Route::get('detailRole/{id}',
-            ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
+    Route::get('detailRole/{id}',
+        ['as'=>'detailRole', 'uses'=>'User\RoleController@show']);
 
-        Route::delete('logout', 'User\LoginController@logout');
+    Route::delete('logout', 'User\LoginController@logout');
 
     Route::group(['middleware'=> [ 'auth', 'check-token']], function () {
 
@@ -209,7 +209,17 @@
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
+
+        /* Auditrail */
+        // Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
+
+    /* Chart */
+    Route::get('chartEform', 'Home\HomeController@chartEform');
+
+    Route::get('chartCustomer', 'Home\HomeController@chartCustomer');
+
+    Route::get('chartProperty', 'Home\HomeController@chartProperty');
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
 
@@ -268,7 +278,6 @@
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
     /* Datatables */
-
     Route::group(['prefix'=>'datatables'], function () {
         /*ADK*/
         Route::get('adk-list', 'EForm\ADKController@datatables');
@@ -320,4 +329,7 @@
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
+
+        /*Auditrail*/
+        // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
     });

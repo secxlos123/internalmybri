@@ -58,8 +58,11 @@ class AOController extends Controller
 
         $eforms = Client::setEndpoint('eforms/'.$id)
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
         $eformData = $eforms['contents'];
         // dd($eformData);
@@ -92,13 +95,16 @@ class AOController extends Controller
         // dd($newForm);
 
     	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
-           ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
-            ])
-           ->setBody($newForm)
-           ->post('multipart');
-           // dd($client);
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])
+          ->setBody($newForm)
+          ->post('multipart');
+          // dd($client);
 
         if($client['code'] == 201){
             \Session::flash('success', $client['descriptions']);
@@ -233,12 +239,15 @@ class AOController extends Controller
         // dd($id);
          /* GET Role Data */
         $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                      ])
-                      ->post();
+          ->setQuery(['limit' => 100])
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])
+          ->post();
 
         $dataCustomer = $customerData['contents'];
         // dd ($dataCustomer);
@@ -264,14 +273,17 @@ class AOController extends Controller
         $data = $this->getUser();
 
         $response = Client::setEndpoint('verification/search-nik')
-            ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
-            ])
-            ->setBody([
-                'nik' => $request->input('new_nik')
-            ])
-            ->post();
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])
+          ->setBody([
+              'nik' => $request->input('new_nik')
+          ])
+          ->post();
 
         $data = $response['contents'];
 
@@ -290,12 +302,15 @@ class AOController extends Controller
 
          /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$customer_id)
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                      ])
-                      ->get();
+          ->setQuery(['limit' => 100])
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])
+          ->get();
 
         $dataCustomer = $customerData['contents'];
         // dd($customerData);
@@ -419,8 +434,11 @@ class AOController extends Controller
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
-            'Authorization' => $data['token'],
-            'pn' => $data['pn']
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])
          ->setBody($newData)
          ->put('multipart');
@@ -443,8 +461,11 @@ class AOController extends Controller
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
                 ->setHeaders([
-                  'Authorization' => $data['token'],
-                  'pn' => $data['pn']
+                  'Authorization' => $data['token']
+                  , 'pn' => $data['pn']
+                  // , 'auditaction' => 'action name'
+                  , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                  , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
                 ->setQuery([
                   'limit'     => $request->input('length'),
@@ -514,8 +535,11 @@ class AOController extends Controller
         $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
                       ->setQuery(['limit' => 100])
                       ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
+                          'Authorization' => $data['token']
+                          , 'pn' => $data['pn']
+                          // , 'auditaction' => 'action name'
+                          // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                          // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                       ])
                       ->post();
 
@@ -545,8 +569,11 @@ class AOController extends Controller
         $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
                       ->setQuery(['limit' => 100])
                       ->setHeaders([
-                          'Authorization' => $data['token'],
-                          'pn' => $data['pn']
+                          'Authorization' => $data['token']
+                          , 'pn' => $data['pn']
+                          // , 'auditaction' => 'action name'
+                          // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                          // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                       ])
                       ->post();
 

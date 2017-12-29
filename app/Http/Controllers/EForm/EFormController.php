@@ -57,8 +57,11 @@ class EFormController extends Controller
                 */
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
-                        'Authorization' => $data['token'],
-                        'pn' => $data['pn']
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])->setQuery([
                         'ref_number' => $request->get('ref_number'),
                         'ids' => $request->get('ids'),
@@ -108,12 +111,14 @@ class EFormController extends Controller
                 * mark read the notification
                 */
                 $reads = Client::setEndpoint('users/notification/read/'.@$request->get('ids').' ')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch']
-                          ])->get();
-                // dd($reads)
+                       ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        , 'branch_id' => $data['branch']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])->get();
             }
 
             return view('internals.eform.index-ao', compact('data','form_notif'));
@@ -125,8 +130,11 @@ class EFormController extends Controller
                 */
                 $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
-                        'Authorization' => $data['token'],
-                        'pn' => $data['pn']
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])->setQuery([
                         'ref_number' => $request->get('ref_number'),
                         'ids' => $request->get('ids'),
@@ -157,11 +165,14 @@ class EFormController extends Controller
                 * mark read the notification
                 */
                 $reads = Client::setEndpoint('users/notification/read/'.@$request->get('ids').' ')
-                          ->setHeaders([
-                              'Authorization' => $data['token'],
-                              'pn' => $data['pn'],
-                              'branch_id' => $data['branch']
-                          ])->get();
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        , 'branch_id' => $data['branch']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])->get();
             }
 
             return view('internals.eform.index', compact('data','form_notif'));
@@ -182,8 +193,11 @@ class EFormController extends Controller
 
         $customers = Client::setEndpoint('customer')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'nik' => $request->input('nik'),
                 'page' => $request->input('page'),
@@ -212,8 +226,11 @@ class EFormController extends Controller
 
         $officers = Client::setEndpoint('account-officers')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setQuery([
                 'name' => $request->input('name'),
@@ -244,8 +261,11 @@ class EFormController extends Controller
          /* GET Role Data */
         $customerData = Client::setEndpoint('customer/'.$request->input('nik'))
                         ->setHeaders([
-                            'Authorization' => $data['token'],
-                            'pn' => $data['pn']
+                            'Authorization' => $data['token']
+                            , 'pn' => $data['pn']
+                            // , 'auditaction' => 'action name'
+                            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                         ])->get();
         $dataCustomer = $customerData['contents'];
         // echo json_encode($dataCustomer['data']);die();
@@ -273,8 +293,11 @@ class EFormController extends Controller
 
         $customerData = Client::setEndpoint('customer')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setQuery([
                 'nik' => $request->input('nik')
@@ -316,8 +339,11 @@ class EFormController extends Controller
 
         $offices = Client::setEndpoint('offices')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'branch' => $data['branch'],
                 'distance' => 1,
@@ -347,11 +373,14 @@ class EFormController extends Controller
         $data = $this->getUser();
          /* GET Form Data */
         $formDetail = Client::setEndpoint('eforms/'.$id)
-                    ->setHeaders(
-                        [ 'Authorization' => $data['token'],
-                          'pn' => $data['pn']
-                        ])
-                    ->get();
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->get();
 
         $detail = $formDetail['contents'];
         // dd($detail);
@@ -425,8 +454,11 @@ class EFormController extends Controller
 
                 $client = Client::setEndpoint('eforms')
                    ->setHeaders([
-                        'Authorization' => $data['token'],
-                        'pn' => $data['pn']
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])->setBody($newForm)
                    ->post('multipart');
                 // dd($client);
@@ -454,8 +486,11 @@ class EFormController extends Controller
 
         $client = Client::setEndpoint('eforms/prescreening')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setBody([
                 'eform' => $request->input('eform')
@@ -477,8 +512,11 @@ class EFormController extends Controller
 
         $client = Client::setEndpoint('eforms/submit-screening')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setBody([
                 'eform_id' => $request->input('eform_id')
@@ -510,10 +548,13 @@ class EFormController extends Controller
 
         $client = Client::setEndpoint('eforms/'.$id.'/disposition')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn'],
-                    'branch_id' => $data['branch'],
-                    'role' => $data['role'],
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    , 'branch_id' => $data['branch']
+                    , 'role' => $data['role']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setBody($dispotition)
                 ->post();
         // dd($client);
@@ -540,8 +581,11 @@ class EFormController extends Controller
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
@@ -614,8 +658,11 @@ class EFormController extends Controller
 
         $client = Client::setEndpoint('eforms/'.$request->id.'/delete')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setBody($eform_id)
                 ->post();
         // dd($client);

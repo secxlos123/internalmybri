@@ -85,9 +85,13 @@ class DebiturController extends Controller
          /* GET Role Data */
         $customerData = Client::setEndpoint('debitur-detail')
                         ->setQuery(['limit' => 100, 'user_id' => $id])
-                        ->setHeaders(['Authorization' => $data['token'],
-                                      'pn' => $data['pn']
-                                    ])
+                        ->setHeaders([
+                            'Authorization' => $data['token']
+                            , 'pn' => $data['pn']
+                            // , 'auditaction' => 'action name'
+                            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])
                         ->get();
 
         $dataCustomer = $customerData['contents'][0];
@@ -104,8 +108,11 @@ class DebiturController extends Controller
 
         $debiturs = Client::setEndpoint('debitur-list')
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
                     'limit'     => $request->input('length'),
                     'search'    => $request->input('search.value'),
@@ -121,7 +128,7 @@ class DebiturController extends Controller
             $debitur['email'] = $debitur['user']['email'];
             $debitur['phone'] = $debitur['user']['mobile_phone'];
             $debitur['gender'] = $debitur['user']['gender'];
-            
+
             $debitur['action'] = view('internals.layouts.actions', [
                 'show' => route('debitur.show', $debitur['user_id']),
             ])->render();

@@ -10,16 +10,6 @@ use Client;
 
 class LoginController extends Controller
 {
-
-    public function getUser(){
-     /* GET UserLogin Data */
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-        return $data;
-    }
-
     /**
     * Show the view of login
     *
@@ -45,9 +35,14 @@ class LoginController extends Controller
         ];
 
         $client = Client::setEndpoint('auth/login')
-                ->setBody($data)
-                ->post();
-
+            ->setHeaders([
+                'pn' => $request->pn
+                , 'auditaction' => 'Login'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->setBody($data)
+            ->post();
 
         if(env('APP_ENV') == 'local'){
             if($request->pn == '66777'){
@@ -66,7 +61,7 @@ class LoginController extends Controller
                 $role = ['role' => 'staff'];
                 $uker = ['uker' => 'other'];
             }
-                
+
             $user =array_merge($client['contents'], $uker, $role);
         }
 
@@ -97,10 +92,18 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         /* GET UserLogin Data */
-        $data = $this->getUser();
+        $data = getUser();
 
-        $logout = Client::setEndpoint('auth/logout')->setHeaders(['Authorization' => $data['token']])->deleted();
+        $logout = Client::setEndpoint('auth/logout')->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            , 'auditaction' => 'Logout'
+            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+        ])->deleted();
+
         session()->flush();
+
         return redirect()->route('login');
     }
 

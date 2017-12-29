@@ -25,8 +25,11 @@ class OfficeController extends Controller
         $data = $this->getUser();
         $offices = \Client::setEndpoint('offices')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'distance' => $request->input('distance'),
                 'long' => $request->input('long'),
@@ -56,8 +59,11 @@ class OfficeController extends Controller
 
         $kanwil = \Client::setEndpoint('kanwil-list')
             ->setHeaders([
-                'Authorization' => $data['token'],
-                'pn' => $data['pn']
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setQuery([
                 'name' => $request->input('name'),

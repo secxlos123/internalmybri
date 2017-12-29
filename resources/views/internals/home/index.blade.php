@@ -41,7 +41,7 @@
 <script src="{{asset('assets/js/morris.min.js')}}"></script>
 <script src="{{asset('assets/js/raphael-min.js')}}"></script>
 <!-- <script src="{{asset('assets/js/jquery.morris.init.js')}}"></script> -->
-<script src="{{asset('assets/js/jquery.morris2.init.js')}}"></script>
+<!-- <script src="{{asset('assets/js/jquery.morris2.init.js')}}"></script> -->
 @if(($data['role']=='staff') || ($data['role']=='admin'))
     @include('internals.home.admin.script')
 @elseif(($data['role']=='ao'))

@@ -110,8 +110,11 @@ class AOController extends Controller
         $data = $this->getUser();
         $eform = Client::setEndpoint('eforms/'.$id)
                 ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                    // , 'auditaction' => 'action name'
+                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
         $eform = $eform['contents'];
         return view('internals.screening.getscore', compact('data','id','eform'));
@@ -172,8 +175,11 @@ class AOController extends Controller
         $data = $this->getUser();
         $eforms = Client::setEndpoint('eforms')
                 ->setHeaders([
-                  'Authorization' => $data['token'],
-                  'pn' => $data['pn']
+                  'Authorization' => $data['token']
+                  , 'pn' => $data['pn']
+                  // , 'auditaction' => 'action name'
+                  , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                  , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
                 ->setQuery([
                   'limit'     => $request->input('length'),

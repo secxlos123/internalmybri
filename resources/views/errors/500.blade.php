@@ -8,9 +8,9 @@
                     <img src="{{asset('assets/images/animat-customize-color.gif')}}" alt="" height="180">
                     <h1 style="font-size: 78px; color: #315374;"><b>500</b></h1>
                     <h3 class="text-uppercase text-danger"><b>Internal Server Error</b></h3>
-                    <p class="text-muted">Why not try refreshing your page? or you can contact <a href="#" class="text-primary">support</a></p>
+                    <p class="text-muted">Maaf, sedang terdapat gangguan di sisi server.</p>
 
-                    <a class="btn btn-primary waves-light waves-effect w-md m-b-15 top20" href="index.html"> Return Home</a>
+                    <a class="btn btn-primary waves-light waves-effect w-md m-b-15 top20" href="{{route('dashboard')}}"> Kembali ke Dashboard</a>
                 </div>
             </div>
         </div>
