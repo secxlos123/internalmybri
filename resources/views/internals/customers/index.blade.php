@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="tab-scroll">
-                            <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
+                            <table id="datatable" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>NIK</th>
