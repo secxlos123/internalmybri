@@ -88,99 +88,102 @@
                     </div>
                 </div>
             </div> -->
-
+            @php ( $className = ($datas['kpr']['status_property'] == "1" && $datas['kpr']['developer_id'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+            @php ( $classNameType = ($datas['kpr']['status_property'] != "1" || $datas['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+            @php ( $classKPRType = ($datas['kpr']['status_property'] != "1" && $datas['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
+            @php ( $classNameDeveloper = ($datas['kpr']['status_property'] == "1") ? '' : 'hide' )
             <div>
-                        <div class="tracking-widget cms-tracking-widget">
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three @if($datas['status']=='Pengajuan Kredit') active @endif">
-                                    <div class="bg-icon">
-                    
-                                        <i class="fa fa-envelope"></i> 
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Telah Diterima</p>
-                                    </div>
-                                </div>
-                                <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                <div class="tracking-widget cms-tracking-widget">
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three @if($datas['status']=='Pengajuan Kredit') active @endif">
+                            <div class="bg-icon">
+
+                                <i class="fa fa-envelope"></i> 
                             </div>
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three @if($datas['status']=='Disposisi Pengajuan') active @endif">
-                                    <div class="bg-icon">
-                                        <i class="fa fa-file"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Disposisi Pengajuan</p>
-                                    </div>
-                                </div>
-                                <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Telah Diterima</p>
                             </div>
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three @if($datas['status']=='Prakarsa') active @endif">
-                                    <div class="bg-icon">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Prakarsa</p>
-                                    </div>
-                                </div>
-                                <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                        </div>
+                        <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                    </div>
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three @if($datas['status']=='Disposisi Pengajuan') active @endif">
+                            <div class="bg-icon">
+                                <i class="fa fa-file"></i>
                             </div>
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three @if($datas['status']=='Proses CLF') active @endif">
-                                    <div class="bg-icon">
-                                        <i class="ti-archive"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Proses CLF</p>
-                                    </div>
-                                </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Disposisi Pengajuan</p>
                             </div>
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @endif">
-                                    <div class="bg-icon">
-                                        <i class="ti-wallet"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
-                                    </div>
-                                </div>
+                        </div>
+                        <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                    </div>
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three @if($datas['status']=='Prakarsa') active @endif">
+                            <div class="bg-icon">
+                                <i class="fa fa-user"></i>
                             </div>
-                            @if($datas['status']=='Rekontes Kredit') 
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three active">
-                                    <div class="bg-icon">
-                                        <i class="ti-wallet"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Rekontes Kredit</p>
-                                    </div>
-                                </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Prakarsa</p>
                             </div>
-                            @endif
-                             @if($datas['status']=='Kredit Ditolak') 
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three active">
-                                    <div class="bg-icon">
-                                        <i class="ti-wallet"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Kredit Ditolak</p>
-                                    </div>
-                                </div>
+                        </div>
+                        <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
+                    </div>
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three @if($datas['status']=='Proses CLF') active @endif">
+                            <div class="bg-icon">
+                                <i class="ti-archive"></i>
                             </div>
-                            @endif
-                            <div class="tracking-card">
-                                <div class="card-box widget-box-three">
-                                    <div class="bg-icon">
-                                        <i class="fa fa-usd"></i>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="m-t-5 text-uppercase font-600 font-secondary">Pencairan</p>
-                                    </div>
-                                </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Proses CLF</p>
                             </div>
                         </div>
                     </div>
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @endif">
+                            <div class="bg-icon">
+                                <i class="ti-wallet"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
+                            </div>
+                        </div>
+                    </div>
+                    @if($datas['status']=='Rekontes Kredit') 
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three active">
+                            <div class="bg-icon">
+                                <i class="ti-wallet"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Rekontes Kredit</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @if($datas['status']=='Kredit Ditolak') 
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three active">
+                            <div class="bg-icon">
+                                <i class="ti-wallet"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Kredit Ditolak</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="tracking-card">
+                        <div class="card-box widget-box-three">
+                            <div class="bg-icon">
+                                <i class="fa fa-usd"></i>
+                            </div>
+                            <div class="text-center">
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">Pencairan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row m-t-10">
                 <div class="col-md-12">
@@ -205,35 +208,35 @@
                                         <label class="col-md-4 control-label">Jenis KPR :</label>
                                         <div class="col-md-8">
                                             <p class="form-control-static">@if($datas['kpr']['status_property'] == 1) Baru
-                                            @elseif($datas['kpr']['status_property'] == 2)Secondary
-                                            @elseif($datas['kpr']['status_property'] == 3)Refinancing
-                                            @elseif($datas['kpr']['status_property'] == 4)Renovasi
-                                            @elseif($datas['kpr']['status_property'] == 5)Top Up
-                                            @elseif($datas['kpr']['status_property'] == 6)Take Over
-                                            @elseif($datas['kpr']['status_property'] == 7)Take Over Top Up
-                                            @elseif($datas['kpr']['status_property'] == 8)Take Over Account In House (Cash Bertahap)
+                                                @elseif($datas['kpr']['status_property'] == 2)Secondary
+                                                @elseif($datas['kpr']['status_property'] == 3)Refinancing
+                                                @elseif($datas['kpr']['status_property'] == 4)Renovasi
+                                                @elseif($datas['kpr']['status_property'] == 5)Top Up
+                                                @elseif($datas['kpr']['status_property'] == 6)Take Over
+                                                @elseif($datas['kpr']['status_property'] == 7)Take Over Top Up
+                                                @elseif($datas['kpr']['status_property'] == 8)Take Over Account In House (Cash Bertahap)
                                             @endif</p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group {{ $classNameDeveloper }}">
                                         <label class="col-md-4 control-label">Nama Developer :</label>
                                         <div class="col-md-8">
                                             <p class="form-control-static">{{$datas['kpr']['developer_name']}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group  {{ $className }}">
                                         <label class="col-md-4 control-label">Nama Proyek :</label>
                                         <div class="col-md-8">
                                             <p class="form-control-static">{{$datas['kpr']['property_name']}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group {{ $className }}">
                                         <label class="col-md-4 control-label">Tipe Properti :</label>
                                         <div class="col-md-8">
                                             <p class="form-control-static">{{$datas['kpr']['property_type_name']}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group {{ $className }}">
                                         <label class="col-md-4 control-label">Unit Properti :</label>
                                         <div class="col-md-8">
                                             <p class="form-control-static">{{$datas['kpr']['property_item_name']}}</p>
@@ -270,7 +273,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">KPR Aktif ke- :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">@if($datas['kpr']['active_kpr'] <= 3){{$datas['kpr']['active_kpr']}} @else >2 @endif </p>
+                                            <p class="form-control-static">@if($datas['kpr']['active_kpr'] < 3){{$datas['kpr']['active_kpr']}} @else >2 @endif </p>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -338,8 +341,8 @@
             processing : true,
             serverSide : true,
             lengthMenu: [
-                [ 10, 25, 50, -1 ],
-                [ '10', '25', '50', 'All' ]
+            [ 10, 25, 50, -1 ],
+            [ '10', '25', '50', 'All' ]
             ],
             language : {
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
@@ -352,16 +355,16 @@
                     d.page = Math.min(
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
-                    );
+                        );
                 }
             },
             aoColumns : [
-                { data: 'ref_number', name: 'ref_number' },
-                { data: 'appointment_date', name: 'appointment_date' },
-                { data: 'developer_id', name: 'developer_id' },
-                { data: 'property_id', name: 'property_id' },
-                { data: 'status', name: 'status' },
-                { data: 'action', name: 'action', bSortable: false },
+            { data: 'ref_number', name: 'ref_number' },
+            { data: 'appointment_date', name: 'appointment_date' },
+            { data: 'developer_id', name: 'developer_id' },
+            { data: 'property_id', name: 'property_id' },
+            { data: 'status', name: 'status' },
+            { data: 'action', name: 'action', bSortable: false },
             ],
         });
 

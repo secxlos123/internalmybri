@@ -83,14 +83,15 @@ class ScheduleController extends Controller
      * Get e-form resources from api
      * @return \Illuminate\Http\Response
      */
-    public function eFormList()
+    public function eFormList(Request $request)
     {
         return $this->jsonResponse(
           $this->api('eforms')
             ->setQuery([
-                'limit' => 10,
-                'office_id' => $this->getUser()['branch'],
-                'status' => 0
+                'limit' => 10
+                , 'office_id' => $this->getUser()['branch']
+                , 'status' => 0
+                , 'ref_number' => $request->input('term')['term']
             ])->get()
         );
     }
