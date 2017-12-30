@@ -804,8 +804,9 @@
         console.log(status);
         if (status == 1) {
             if (age < 21) {
-                $("#leads-modal .birth_date").addClass("has-error");
-                $("#leads-modal .birth_date div.col-md-9").append("<span id=\"birth_date-error\" class=\"help-block error-help-block\">Umur harus lebih dari 21 tahun.</span>");
+                // $(".birth_date").removeClass("has-success");
+                // $(".birth_date").addClass("has-error");
+                $("#birth_date_div div.col-md-9").append('<span id="birth_date-error" class="error-help-block" style="display:block;">Umur harus lebih dari 21 tahun.</span>');
                 HoldOn.close();
                 doSomething = 2;
             } else {
@@ -867,6 +868,11 @@
         });
         }else{
             console.log('not ajax');
+            $("#birth_date_div").removeClass("has-success");
+            $("#birth_date_div").addClass("has-error");
+            $("#birth_date_div span#birth_date-error").css({ display: "block", color: "red" });
+
+            $("#birth_date_div span#birth_date-error").html("Umur harus lebih dari 21 tahun.");
             HoldOn.close();
         }
 
