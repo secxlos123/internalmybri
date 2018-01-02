@@ -72,6 +72,7 @@
             @endif
 
             <form @if(!empty($dataCustomer)) action="{{route('verifyData', $dataCustomer['customer']['id'])}}" @endif method="POST" enctype="multipart/form-data" id="form1">
+                <input type="hidden" id="id" value="{{$id}}">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                     @if (isset($dataCustomer['kpr']))

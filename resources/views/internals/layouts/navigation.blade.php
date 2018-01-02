@@ -55,9 +55,9 @@
                                 <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
                             </li>
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
-                            <li>
+                            <!-- <li>
                                 <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
-                            </li>
+                            </li> -->
                             @endif
 
                             @if(($data['role']=='collateral'))
@@ -79,9 +79,9 @@
                                     <li>
                                         <a href="{{route('approveDeveloper')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="{{route('approveThirdParty')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ke-3 </span> </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </li>
                             @endif

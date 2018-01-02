@@ -52,13 +52,12 @@
                                                         ]) !!}
                                                     </div>
                                                 </div>
-                                                <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
+                                                <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}" id="birth_date_div">
                                                     <label class="col-md-3 control-label">Tanggal Lahir * :</label>
-                                                    <div class="col-md-9">
+                                                    <div class="col-md-9" id="date_error">
                                                         <div class="input-group">
                                                             <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" value="{{ old('birth_date') }}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                                                            @if ($errors->has('birth_date')) <p class="help-block">{{ $errors->first('birth_date') }}</p> @endif
                                                         </div>
                                                     </div>
                                                 </div>

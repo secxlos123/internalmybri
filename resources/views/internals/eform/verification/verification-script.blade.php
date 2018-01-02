@@ -967,12 +967,12 @@
 
        //search customer detail
     $('#print').on('click', function() {
-       var nik = $('#nik').val();
-
+       var id = $('#id').val();
+       console.log(id);
        $.ajax({
             dataType: 'json',
             type: 'GET',
-            url: '{{url("eform/verification/print/6")}}',
+            url: '{{url("eform/verification/print")}}/'+id,
             // data: { nik : nik }
         }).done(function(data){
             console.log(data);

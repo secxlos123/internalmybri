@@ -82,22 +82,38 @@
                                     <label class="distance">Status Agunan</label>
                                     <div class="form-horizontal" role="form">
                                         <ul style="list-style-type:none">
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['collateral_binding_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
                                             <li class="icon-distance"></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['collateral_insurance_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['life_insurance_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
                                             <li class="icon-distance"></li>
-                                            <li><i class="fa fa-times-circle text-danger fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['ownership_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['building_permit_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['sales_law_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['property_tax_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['sale_value_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
                                             <li class="icon-distance"></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-check-circle text-info fa-2x"></i></li>
-                                            <li><i class="fa fa-times-circle text-danger fa-2x"></i></li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['progress_one_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['progress_two_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['progress_three_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['progress_four_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
+                                            <li>@if(strpos($detailCollateral['contents']['ots_doc']['progress_five_doc'], 'noimage') == false)<i class="fa fa-check-circle text-info fa-2x"></i> @else <i class="fa fa-times-circle text-danger fa-2x"></i>@endif</li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -105,7 +121,7 @@
                                     <label class="distance"></label>
                                     <div class="form-horizontal" role="form">
                                         <h4><b>Presentase</b></h4>
-                                        <h1>80%</h1>
+                                        <h1>{{$percent}}%</h1>
                                     </div>
                                 </div>
                             </div>

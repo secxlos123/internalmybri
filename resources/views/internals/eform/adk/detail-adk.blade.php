@@ -264,6 +264,7 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
+    $('.thumbnail').viewbox();
     var options = {
         theme:"sk-bounce",
         message:'Mohon tunggu sebentar.',
