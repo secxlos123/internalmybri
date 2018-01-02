@@ -33,8 +33,8 @@
                     @endif
                     <div class="card-box">
                         <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
+                            <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
+                            <!-- <div class="col-md-12"> -->
                                <!--  <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
                                 </p> -->
@@ -53,7 +53,7 @@
                                 <!-- informasi penilaian -->
                                 @include('internals.collateral.manager._collateral-detail')
 
-                            </div>
+                            <!-- </div> -->
                             <form class="form-horizontal" role="form" method="POST" id="form1" action="{{route('postApprovalCollateral', $collateral['id'])}}">
                                 {{ csrf_field() }}
                                 <div class="panel panel-default">
