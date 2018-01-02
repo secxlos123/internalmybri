@@ -60,7 +60,7 @@
                             </li> -->
                             @endif
 
-                            @if(($data['role']=='collateral'))
+                            @if(($data['role']=='collateral') || ($data['role']=='ao'))
                             <li>
                                 <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Penilaian Agunan </span> </a>
                             </li>

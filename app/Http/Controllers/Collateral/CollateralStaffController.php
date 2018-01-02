@@ -229,7 +229,7 @@ class CollateralStaffController extends Controller
      */
     public function returnContent( $field, $values, $baseName )
     {
-      $excludeNumber = ['npw_land', 'nl_land', 'pnpw_land', 'pnl_land', 'npw_building', 'nl_building', 'pnpw_building', 'pnl_building', 'npw_all', 'nl_all', 'pnpw_all', 'pnl_all'];
+      $excludeNumber = ['npw_land', 'nl_land', 'pnpw_land', 'pnl_land', 'npw_building', 'nl_building', 'pnpw_building', 'pnl_building', 'npw_all', 'nl_all', 'pnpw_all', 'pnl_all', 'liquidation_realization', 'fair_market', 'liquidation', 'fair_market_projection', 'liquidation_projection', 'njop', 'binding_value', 'paripasu_bank', 'insurance_value'];
         // $excludeNumber = [];
       $excludeImage = ['image_condition_area'];
 

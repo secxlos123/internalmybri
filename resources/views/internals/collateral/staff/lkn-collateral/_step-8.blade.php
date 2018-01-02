@@ -8,37 +8,55 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Nilai Likuiditas saat Realisasi * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control numericOnly" name="eight[liquidation_realization]" maxlength="50" value="{{old('eight[liquidation_realization]')}}" id="liquidation_realization">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control numericOnly currency-rp" name="eight[liquidation_realization]" maxlength="50" value="{{old('eight[liquidation_realization]')}}" id="liquidation_realization">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Nilai Pasar Wajar * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control numericOnly" name="eight[fair_market]" maxlength="50" value="{{old('eight[fair_market]')}}" id="fair_market">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control numericOnly currency-rp" name="eight[fair_market]" maxlength="50" value="{{old('eight[fair_market]')}}" id="fair_market">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Nilai Likuidasi * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control numericOnly" name="eight[liquidation]" maxlength="50" value="{{old('eight[liquidation]')}}" id="liquidation">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control numericOnly currency-rp" name="eight[liquidation]" maxlength="50" value="{{old('eight[liquidation]')}}" id="liquidation">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Proyeksi Nilai Pasar Wajar * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="eight[fair_market_projection]" maxlength="50" value="{{old('eight[fair_market_projection]')}}" id="fair_market_projection">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control numericOnly currency-rp" name="eight[fair_market_projection]" maxlength="50" value="{{old('eight[fair_market_projection]')}}" id="fair_market_projection">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Proyeksi Nilai Likuidasi * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="eight[liquidation_projection]" maxlength="50" value="{{old('eight[liquidation_projection]')}}" id="liquidation_projection">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control numericOnly currency-rp" name="eight[liquidation_projection]" maxlength="50" value="{{old('eight[liquidation_projection]')}}" id="liquidation_projection">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Nilai Jual Objek Pajak (NJOP) * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="eight[njop]" maxlength="50" value="{{old('eight[njop]')}}" id="njop">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control numericOnly currency-rp" name="eight[njop]" maxlength="50" value="{{old('eight[njop]')}}" id="njop">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -100,16 +118,16 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">No. Bukti Pengikatan * :</label>
                         <div class="col-md-8">
-                            <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="eight[binding_number]" value="{{old('eight[binding_number]')}}" id="binding_number" maxlength="50">
-                                <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                            </div>
+                            <input type="text" class="form-control numericOnly" name="eight[binding_number]" value="{{old('eight[binding_number]')}}" id="binding_number" maxlength="50">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Nilai Pengikatan * :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly" name="eight[binding_value]" maxlength="50" value="{{old('eight[binding_value]')}}" id="binding_value">
+                            <div class="input-group">
+                                <span class="input-group-addon b-0">Rp</i></span>
+                                <input type="text" class="form-control numericOnly currency-rp" name="eight[binding_value]" maxlength="50" value="{{old('eight[binding_value]')}}" id="binding_value">
+                            </div>
                         </div>
                     </div>
                 </div>

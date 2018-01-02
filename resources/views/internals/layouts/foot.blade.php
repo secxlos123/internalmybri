@@ -260,7 +260,7 @@
     });
 
     function openSide() {
-        document.getElementById("rightSide").style.width = "300px";
+        document.getElementById("rightSide").style.width = "285px";
     }
 
     function closeSide() {

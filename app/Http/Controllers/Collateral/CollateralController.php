@@ -260,7 +260,7 @@ class CollateralController extends Controller
                 ->post();
             $response = 'Pengajuan Properti Baru telah Ditolak';
         }
-        
+
         if(($client['contents']['status'] == 'disetujui')){
             $color = 'success';
         }elseif($client['contents']['status'] == 'ditolak'){
@@ -295,21 +295,23 @@ class CollateralController extends Controller
                 // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
-
             //count percentage
             $keys = 0 ;
             $findme   = 'noimage.jpg';
-             foreach ($detailCollateral['contents']['ots_doc'] as $key => $value) {
-                 $found = strpos($value, $findme);
-                 if ($found) {
-                     $keys++;
-                 }else{
-                    continue;
-                 }
-             }
-            $all =  13-$keys;
-            $percent = ($all/13)*100;
-            
+            if(!empty($detailCollateral['contents']['ots_doc'])){
+                foreach ($detailCollateral['contents']['ots_doc'] as $key => $value) {
+                    $found = strpos($value, $findme);
+                    if ($found) {
+                        $keys++;
+                    }else{
+                        continue;
+                    }
+                }
+                $all =  13-$keys;
+                $percent = ($all/13)*100;
+            }else{
+                $percent = 0;
+            }
 
 
         return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral','percent'));
