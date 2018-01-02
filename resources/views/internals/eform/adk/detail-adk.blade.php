@@ -223,7 +223,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <form class="form-horizontal" role="form">
                                                 <div class="form-group">
@@ -234,7 +234,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
