@@ -260,7 +260,7 @@ class CollateralController extends Controller
                 ->post();
             $response = 'Pengajuan Properti Baru telah Ditolak';
         }
-        
+
         if(($client['contents']['status'] == 'disetujui')){
             $color = 'success';
         }elseif($client['contents']['status'] == 'ditolak'){
@@ -312,7 +312,7 @@ class CollateralController extends Controller
             }else{
                 $percent = 0;
             }
-            // dd($detailCollateral);
+
 
         return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral','percent'));
     }

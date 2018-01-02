@@ -28,7 +28,7 @@
   top: 0;
   right: 0;
   background-color: #fff;
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   /* Disable horizontal scroll */
   transition: 0.5s;
   /* 0.5 second transition effect to slide in the rightSide */
@@ -388,6 +388,7 @@ a.notif-item:hover {
     border-radius: 100px;
     color: #fff;
     background: #00529C !important;
+    width: 33px;
 }
 tr.read .notif-ico{background: #b9b9b9 !important;}
 tr.unread {
