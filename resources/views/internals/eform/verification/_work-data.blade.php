@@ -12,26 +12,42 @@
                                 <label class="col-md-3 control-label">Bidang Pekerjaan * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
-                                    {!! Form::select('job_field_id', [$dataCustomer['customer']['job_field_id'] => $dataCustomer['customer']['job_field_name']], old('work_field'), [
-                                    'class' => 'select2 work_field',
-                                    'data-placeholder' => 'Pilih Bidang Pekerjaan'
-                                    ]) !!}
+                                    @if(isset($dataCustomer['customer']['job_field_id']))
+                                        {!! Form::select('job_field_id', [$dataCustomer['customer']['job_field_id'] => $dataCustomer['customer']['job_field_name']], old('job_field_id'), [
+                                        'class' => 'select2 work_field',
+                                        'data-placeholder' => 'Pilih Bidang Pekerjaan'
+                                        ]) !!}
+                                    @else
+                                        {!! Form::select('job_field_id', [old('job_field_id') => old('job_field_name')], old('job_field_id'), [
+                                        'class' => 'select2 work_field',
+                                        'data-placeholder' => 'Pilih Bidang Pekerjaan'
+                                        ]) !!}
+                                    @endif
                                 @else
                                     <p>{{@$dataCustomer['customer']['job_field_name']}}</p>
                                 @endif
                                     @if ($errors->has('work_field')) <p class="help-block">{{ $errors->first('work_field') }}</p> @endif
                                 </div>
+
                                 <input type="hidden" name="job_field_name" id="new_job_field" value="{{$dataCustomer['customer']['job_field_name']}}">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Pekerjaan * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
-                                    {!! Form::select('job_type_id', [$dataCustomer['customer']['job_type_id'] => $dataCustomer['customer']['job_type_name']], old('work_type'), [
-                                    'class' => 'select2 work_type',
-                                    'data-placeholder' => 'Pilih Jenis Pekerjaan',
-                                    'readonly' => true
-                                    ]) !!}
+                                    @if(isset($dataCustomer['customer']['job_type_id']))
+                                        {!! Form::select('job_type_id', [$dataCustomer['customer']['job_type_id'] => $dataCustomer['customer']['job_type_name']], old('job_type_id'), [
+                                        'class' => 'select2 work_type',
+                                        'data-placeholder' => 'Pilih Jenis Pekerjaan',
+                                        'readonly' => true
+                                        ]) !!}
+                                    @else
+                                        {!! Form::select('job_type_id', [old('job_type_id') => old('job_type_name')], old('job_type_id'), [
+                                        'class' => 'select2 work_type',
+                                        'data-placeholder' => 'Pilih Jenis Pekerjaan',
+                                        'readonly' => true
+                                        ]) !!}
+                                    @endif
                                 @else
                                     <p>{{@$dataCustomer['customer']['job_type_name']}}</p>
                                 @endif
@@ -43,11 +59,19 @@
                                 <label class="col-md-3 control-label">Pekerjaan * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
-                                    {!! Form::select('job_id', [$dataCustomer['customer']['job_id'] => $dataCustomer['customer']['job_name']], old('work'), [
-                                    'class' => 'select2 work',
-                                    'data-placeholder' => 'Pilih Pekerjaan',
-                                    'readonly' => true
-                                    ]) !!}
+                                    @if(isset($dataCustomer['customer']['job_type_id']))
+                                        {!! Form::select('job_id', [$dataCustomer['customer']['job_id'] => $dataCustomer['customer']['job_name']], old('job_id'), [
+                                        'class' => 'select2 work',
+                                        'data-placeholder' => 'Pilih Pekerjaan',
+                                        'readonly' => true
+                                        ]) !!}
+                                    @else
+                                        {!! Form::select('job_id', [old('job_id') => old('job_name')], old('job_id'), [
+                                        'class' => 'select2 work',
+                                        'data-placeholder' => 'Pilih Pekerjaan',
+                                        'readonly' => true
+                                        ]) !!}
+                                    @endif
                                 @else
                                     <p>{{@$dataCustomer['customer']['job_name']}}</p>
                                 @endif
@@ -59,7 +83,7 @@
                                 <label class="col-md-3 control-label">Nama Perusahaan * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
-                                    <input type="text" class="form-control" name="company_name" maxlength="50" value="{{$dataCustomer['customer']['company_name']}}">
+                                    <input type="text" class="form-control" name="company_name" maxlength="50" value="{{(isset($dataCustomer['customer']['company_name']) ? $dataCustomer['customer']['company_name'] : old('company_name'))}}">
                                 @else
                                     <p>{{@$dataCustomer['customer']['company_name']}}</p>
                                 @endif
@@ -74,11 +98,19 @@
                                 <label class="col-md-4 control-label">Jabatan * :</label>
                                 <div class="col-md-8">
                                 @if ($type != 'preview')
-                                    {!! Form::select('position', [$dataCustomer['customer']['position'] => $dataCustomer['customer']['position_name']], old('positions'), [
-                                    'class' => 'select2 positions',
-                                    'data-placeholder' => 'Pilih Posisi',
-                                    'readonly' => true
-                                    ]) !!}
+                                    @if(isset($dataCustomer['customer']['job_type_id']))
+                                        {!! Form::select('position', [$dataCustomer['customer']['position'] => $dataCustomer['customer']['position_name']], old('position'), [
+                                        'class' => 'select2 positions',
+                                        'data-placeholder' => 'Pilih Posisi',
+                                        'readonly' => true
+                                        ]) !!}
+                                    @else
+                                        {!! Form::select('position', [old('position') => old('position_name')], old('position'), [
+                                        'class' => 'select2 positions',
+                                        'data-placeholder' => 'Pilih Posisi',
+                                        'readonly' => true
+                                        ]) !!}
+                                    @endif
                                 @else
                                     <p>{{@$dataCustomer['customer']['position_name']}}</p>
                                 @endif
@@ -91,7 +123,7 @@
                                 <div class="col-md-8">
                                     <div class="col-md-4">
                                     @if ($type != 'preview')
-                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" value="{{$dataCustomer['customer']['work_duration']}}">
+                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" value="{{(isset($dataCustomer['customer']['work_duration']) ? $dataCustomer['customer']['work_duration'] : old('work_duration'))}}">
                                     @else
                                         <p>{{@$dataCustomer['customer']['work_duration']}}</p>
                                     @endif
@@ -99,7 +131,7 @@
                                     <label class="col-md-2 control-label">Tahun</label>
                                     <div class="col-md-4">
                                     @if ($type != 'preview')
-                                        <input type="text" class="form-control numericOnly" name="work_duration_month" id="work_duration_month" maxlength="2" value="{{$dataCustomer['customer']['work_duration_month']}}">
+                                        <input type="text" class="form-control numericOnly" name="work_duration_month" id="work_duration_month" maxlength="2" value="{{(isset($dataCustomer['customer']['work_duration_month']) ? $dataCustomer['customer']['work_duration_month'] : old('work_duration_month'))}}">
                                     @else
                                         <p>{{@$dataCustomer['customer']['work_duration_month']}}</p>
                                     @endif
@@ -112,7 +144,7 @@
                                 <label class="col-md-4 control-label">Alamat Kantor * :</label>
                                 <div class="col-md-8">
                                 @if ($type != 'preview')
-                                    <textarea class="form-control" rows="3" name="office_address" maxlength="255">{{$dataCustomer['customer']['office_address']}}</textarea>
+                                    <textarea class="form-control" rows="3" name="office_address" maxlength="255">{{(isset($dataCustomer['customer']['office_address']) ? $dataCustomer['customer']['office_address'] : old('office_address'))}}</textarea>
                                 @else
                                     <p>{{@$dataCustomer['customer']['office_address']}}</p>
                                 @endif
