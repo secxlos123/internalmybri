@@ -17,7 +17,7 @@
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="24" value="{{(isset($dataCustomer['customer']['salary']) ? $dataCustomer['customer']['salary'] : old('salary'))}}">
+                                                <input type="text" class="form-control numericOnly currency-rp" name="salary" maxlength="16" value="{{(isset($dataCustomer['customer']['salary']) ? $dataCustomer['customer']['salary'] : old('salary'))}}">
                                                 @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                             @else
                                                 <p>Rp {{ number_format($dataCustomer['customer']['salary'], 2, ",", ".") }}</p>
@@ -31,7 +31,7 @@
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="24" value="{{(isset($dataCustomer['customer']['other_salary']) ? $dataCustomer['customer']['other_salary'] : old('other_salary'))}}">
+                                                <input type="text" class="form-control numericOnly currency-rp" name="other_salary" maxlength="16" value="{{(isset($dataCustomer['customer']['other_salary']) ? $dataCustomer['customer']['other_salary'] : old('other_salary'))}}">
                                                 @if ($errors->has('salary')) <p class="help-block">{{ $errors->first('salary') }}</p> @endif
                                             @else
                                                 <p>Rp {{ number_format($dataCustomer['customer']['other_salary'], 2, ",", ".") }}</p>
@@ -49,7 +49,7 @@
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="24" value="{{(isset($dataCustomer['customer']['loan_installment']) ? $dataCustomer['customer']['loan_installment'] : old('loan_installment'))}}">
+                                                <input type="text" class="form-control numericOnly currency-rp" name="loan_installment" maxlength="16" value="{{(isset($dataCustomer['customer']['loan_installment']) ? $dataCustomer['customer']['loan_installment'] : old('loan_installment'))}}">
                                             @else
                                                 <p>Rp {{ number_format($dataCustomer['customer']['loan_installment'], 2, ",", ".")}}</p>
                                             @endif
@@ -108,7 +108,7 @@
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_salary'])) value="{{$dataCustomer['customer']['couple_salary']}}" @else value="{{ old('couple_salary') }}" @endif>
+                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="16" @if(!empty($dataCustomer['customer']['couple_salary'])) value="{{$dataCustomer['customer']['couple_salary']}}" @else value="{{ old('couple_salary') }}" @endif>
                                             @else
                                                 <p>Rp {{@number_format($dataCustomer['customer']['couple_salary'], 2, ",", ".")}}</p>
                                             @endif
@@ -122,7 +122,7 @@
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" @if(!empty($dataCustomer['customer']['couple_other_salary'])) value="{{$dataCustomer['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
+                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="16" @if(!empty($dataCustomer['customer']['couple_other_salary'])) value="{{$dataCustomer['customer']['couple_other_salary']}}" @else value="{{ old('couple_other_salary') }}" @endif>
                                             @else
                                                 <p>Rp {{@number_format($dataCustomer['customer']['couple_other_salary'], 2, ",", ".")}}</p>
                                             @endif
@@ -140,7 +140,7 @@
                                             <div class="input-group">
                                             @if ($type != 'preview')
                                                 <span class="input-group-addon">Rp</span>
-                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="24" @if(!empty($dataCustomer['customer']['couple_loan_installment'])) value="{{$dataCustomer['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
+                                                <input type="text" class="form-control numericOnly currency-rp" name="couple_loan_installment" maxlength="16" @if(!empty($dataCustomer['customer']['couple_loan_installment'])) value="{{$dataCustomer['customer']['couple_loan_installment']}}" @else value="{{ old('couple_loan_installment') }}" @endif>
                                             @else
                                                 <p>Rp {{@number_format($dataCustomer['customer']['couple_loan_installment'], 2, ",", ".")}}</p>
                                             @endif

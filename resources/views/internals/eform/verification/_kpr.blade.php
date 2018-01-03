@@ -127,7 +127,7 @@
                                     @if ($type != 'preview')
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
-                                        <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{$dataCustomer['kpr']['price']}}" maxlength="19" readonly="">
+                                        <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{$dataCustomer['kpr']['price']}}" maxlength="16" readonly="">
                                         <!-- <span class="input-group-addon">,00</span> -->
                                         @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                     </div>
@@ -199,7 +199,7 @@
                                     @if ($type != 'preview')
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
-                                        <input type="text" class="form-control numericOnly currency-rp" value="{{($dataCustomer['kpr']['dp'] / 100) * $dataCustomer['kpr']['price']}}" maxlength="19" id="down_payment">
+                                        <input type="text" class="form-control numericOnly currency-rp" value="{{($dataCustomer['kpr']['dp'] / 100) * $dataCustomer['kpr']['price']}}" maxlength="16" id="down_payment">
                                         <!-- <span class="input-group-addon">,00</span> -->
                                     </div><br>
                                     @else
@@ -223,7 +223,7 @@
                                     @if ($type != 'preview')
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
-                                        <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{$dataCustomer['kpr']['request_amount']}}" maxlength="19" id="request_amount" readonly="">
+                                        <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{$dataCustomer['kpr']['request_amount']}}" maxlength="16" id="request_amount" readonly="">
                                         <!-- <span class="input-group-addon">,00</span> -->
                                         @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
                                     </div>
