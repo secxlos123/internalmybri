@@ -63,7 +63,7 @@
                       <td>
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" name="mutations[0][tables][0][amount]" maxlength="24">
+                            <input type="text" class="form-control numericOnly currency-rp" name="mutations[0][tables][0][amount]" maxlength="16">
                             <!-- <span class="input-group-addon">,00</span> -->
                         </div>
                       </td>
