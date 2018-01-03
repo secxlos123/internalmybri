@@ -168,7 +168,7 @@ class AOController extends Controller
       $excludeImage = ['file', 'npwp', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax', 'legal_bussiness_document', 'work_letter', 'license_of_practice', 'other_document'];
 
       if ( in_array($baseName, $excludeNumber) ) {
-        $values = str_replace(',', '.', str_replace('.', '', $values));
+        $values = str_replace(',', '', $values);
       }
 
       if ( in_array($baseName, $excludeImage) ) {
@@ -358,7 +358,7 @@ class AOController extends Controller
       if ( isset($requestNumber) ) {
         $number[] = [
           'name'     => $attribute,
-          'contents' => str_replace(',', '.', str_replace('.', '', $requestNumber))
+          'contents' => str_replace(',', '', $requestNumber)
         ];
         return $number;
       };
@@ -430,7 +430,6 @@ class AOController extends Controller
         $data = $this->getUser();
 
         $newData = $this->dataRequest($request);
-        // dd($newData);
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
@@ -442,7 +441,6 @@ class AOController extends Controller
           ])
          ->setBody($newData)
          ->put('multipart');
-         // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', $client['descriptions']);

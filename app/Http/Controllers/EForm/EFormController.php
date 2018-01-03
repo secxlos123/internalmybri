@@ -406,19 +406,19 @@ class EFormController extends Controller
         $moneyInput = array(
                 [
                     'name'    => 'request_amount',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->request_amount))
+                    'contents' => str_replace(',', '', $request->request_amount)
                 ],
                 [
                     'name'    => 'price',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->price))
+                    'contents' => str_replace(',', '', $request->price)
                 ],
                 [
                     'name'    => 'dp',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->dp))
+                    'contents' => str_replace(',', '', $request->dp)
                 ],
                 [
                     'name'    => 'down_payment',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->down_payment))
+                    'contents' => str_replace(',', '', $request->down_payment)
                 ]
             );
 
