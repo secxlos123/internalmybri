@@ -476,7 +476,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-md-6 control-label">Jenis KPR :</label>
                                                                 <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['kpr_type_property_name'])){{$dataCustomer['kpr']['kpr_type_property_name']}}@else - @endif
+                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['status_property_name'])){{$dataCustomer['kpr']['status_property_name']}}@else - @endif
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -490,7 +490,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-md-6 control-label">Jenis Properti :</label>
                                                                 <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['property_type_name'])){{$dataCustomer['kpr']['property_type_name']}}@else - @endif
+                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['kpr_type_property_name'])){{$dataCustomer['kpr']['kpr_type_property_name']}}@else - @endif
                                                                     </p>
                                                                 </div>
                                                             </div>
