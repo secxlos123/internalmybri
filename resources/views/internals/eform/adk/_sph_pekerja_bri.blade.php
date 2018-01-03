@@ -22,7 +22,7 @@
 <h3 align="center">SURAT PENGAKUAN HUTANG</h3>
 <h4 align="center">Nomor : &nbsp;{{$data_sph['no_skpp']}}</h4>
 <p style="text-align: justify;">
-  Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai Badan Hukum yang berkedudukan di Jakarta berdasarkan Anggaran Dasar Perseroan yang dimuat dalam Akta Nomor 51 tanggal 26 Mei 2008 yang dibuat dihadapan Fathiah Helmi, SH Notaris di Jakarta dan telah diumumkan dalam Berita Negara RI Nomor 68 tanggal 25 Agustus 2009, Tambahan Nomor 23079, yang telah beberapa kali diubah, perubahan Anggaran Dasar terakhir dimuat dalam Akta No. 1 tanggal 1 April 2015 yang dibuat dihadapan Fathiah Helmi, S.H. Notaris di Jakarta, yang Penerimaan Pemberitahuan Perubahan Anggaran Dasarnya telah diterima dan dicatat dalam database Sistem Administrasi Badan Hukum Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia sesuai dengan suratnya tanggal 8 April 2015 Nomor AHU-AH.01.03-0054353.<br>
+  Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai Badan Hukum yang berkedudukan di Jakarta berdasarkan Anggaran Dasar Perseroan yang dimuat dalam Akta Nomor 51 tanggal 26 Mei 2008 yang dibuat dihadapan Fathiah Helmi, SH Notaris di Jakarta dan telah diumumkan dalam Berita Negara RI Nomor 68 tanggal 25 Agustus 2009, Tambahan Nomor 23079.<br>
   Pada hari ini tanggal <?php echo date('d')?> bulan <?php echo date('m')?> tahun <?php echo date('Y')?> (<?php echo date('d-m-Y')?>)
   Yang bertandatangan dibawah ini :<font size='1'>2)</font>
 </p> 
@@ -91,7 +91,7 @@
   </table>
 <p style="text-align: justify;">
   dengan ini menggabungkan diri masing-masing untuk menanggung hutang sejumlah dibawah ini atau segala hutang yang akan timbul sehubungan dengan Surat Pengakuan Hutang ini, sehingga dengan demikian baik bersama-sama maupun sendiri-sendiri atau salah seorang saja menanggung segala hutang (hoofdelijk)<font size='1'>3)</font>, selanjutnya disebut YANG BERHUTANG, menyatakan mengaku berhutang kepada PT. Bank Rakyat Indonesia (Persero) Tbk Kanca/Kancapem/Unit<font size='1'>4)</font> {{$data_sph['kantor_cabang']}} selanjutnya disebut BANK, karena telah menerima uang sebagai pinjaman sejumlah Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} (.............. rupiah) menurut syarat-syarat dan ketentuan-ketentuan sebagaimana tersebut berikut ini :
-  <br><br><br>
+  <br><br><br><br><br><br>
   <hr>
   <font size='1'><i>1) Dicoret yang tidak perlu</i></font><br>
   <font size='1'><i>2) Diisi dengan nama, alamat, dan pekerjaan dari YANG BERHUTANG</i></font><br>
@@ -121,7 +121,9 @@
       <ol type="a">
         <li>Sisa Pokok Pinjaman,</li>
         <li>Bunga Berjalan,</li>
-        <li>Penalty/Denda Bunga (jika ada).</li>
+        <li>Penalty/Denda Bunga (jika ada), dan </li>
+        <li>Rekalkulasi Bunga (jika ada) ,</li>
+        <li>Serta kewajiban-kewajiban lainnya sesuai dengan ketentuan Bank yang berlaku.</li>
       </ol>
     </li>
   </ol>
@@ -170,18 +172,17 @@
           Surat Keputusan Penetapan Pangkat Terakhir nomor {{$data_sph['no_sk_akhir']}} tanggal (-)
         </li>
       </ul>
+      sehingga BANK berhak untuk menerima gaji/upah dan atau hak-hak lainnya dimaksud guna diperhitungkan dengan pinjaman YANG BERHUTANG.<br>Untuk keperluan tersebut YANG BERHUTANG ({{$data_sph['nama_debitur']}})<font size='1'>6)</font> menyerahkan Surat Kuasa Potong Gaji/Upah Dan Atau Hak-hak Lainnya kepada Bendaharawan/Jurubayar / Surat Kuasa Debet Rekening kepada PT. Bank Rakyat Indonesia (Persero) Tbk<font size='1'>8)</font>, yang akan dibuatkan kemudian dengan akta tersendiri.
     </li>
     <li>
-      Segala hak dari YANG BERHUTANG ({{$data_sph['nama_debitur']}})<font size='1'>6)</font> berupa uang pensiun selaku pensiunan yang kepesertaan pensiunnya diterangkan dalam Surat Keputusan Pensiun Nomor (-) tanggal (-).
+      Segala hak dari YANG BERHUTANG ({{$data_sph['nama_debitur']}})<font size='1'>6)</font> berupa uang pensiun selaku pensiunan yang kepesertaan pensiunnya diterangkan dalam Surat Keputusan Pensiun Nomor (-) tanggal (-),
+      sehingga BANK berhak untuk menerima uang Pensiun dimaksud guna diperhitungkan dengan pinjaman YANG BERHUTANG. 
+      Untuk keperluan tersebut YANG BERHUTANG ({{$data_sph['nama_debitur']}})<font size='1'>6)</font> menyerahkan Surat Kuasa Potong Uang Pensiun kepada Pemotong Gaji/Uang Pensiun /Surat Kuasa Debet Rekening kepada PT.Bank Rakyat Indonesai Tbk7), yang akan dibuatkan kemudian dengan akta tersendiri.
     </li>
-    <li>
-      Penghasilan dan hak-hak lain milik YANG BERHUTANG;
-      <br>
-      Sehingga BANK berhak untuk menerima gaji/upah/uang pensiun/hak-hak lain milik YANG BERHUTANG dimaksud sebagai pembayaran angsuran pinjaman. Untuk keperluan tersebut YANG BERHUTANG ({{$data_sph['nama_debitur']}})<font size='1'>7)</font> menyerahkan Surat Kuasa Potong Gaji/Upah/Uang Pensiun atau hak-hak lainnya milik YANG BERHUTANG (dalam hal gaji dan/atau pensiun tidak dibayarkan melalui BANK) kepada Bendaharawan/Jurubayar atau Surat Kuasa Debet Rekening kepada PT. Bank Rakyat Indonesia (Persero) Tbk)<font size='1'>8)</font>, yang akan dibuatkan kemudian dengan akta tersendiri.
-    </li>
+    <li>Penghasilan dan hak-hak lain milik YANG BERHUTANG;</li>
     <li><font size='1'>9)</font></li>
   </ol>
-  <br><br><br><br><br><br>
+  <br><br><br><br>
 </p>
 <!-- pasal 5 -->
 <p style="text-align: justify;">
@@ -203,7 +204,7 @@
   <font size='1'><i>9) Diisi apabila ada agunan kebendaan</i></font><br>
   <font size='1'><i>10) Diisi nama YANG BERHUTANG yang diasuransikan sesuai ketentuan</i></font>
 </p>
-<br><br>
+<br>
 <!-- pasal 6 -->
 <p style="text-align: justify;">
   <h3 align="center">KEWAJIBAN LAIN YANG BERHUTANG</h3>
@@ -315,11 +316,8 @@
     <li>
       Terhadap pengakuan hutang ini dan segala akibatnya berlaku pula “SYARAT-SYARAT UMUM PERJANJIAN PINJAMAN DAN KREDIT PT. BANK RAKYAT INDONESIA (PERSERO) TBK” yang telah disetujui oleh YANG BERHUTANG dan mengikat YANG BERHUTANG serta merupakan satu kesatuan yang tidak dapat dipisahkan dari pengakuan hutang ini.
     </li>
-    <li>
-      Perjanjian ini telah disesuaikan dengan ketentuan peraturan perundang-undangan termasuk ketentuan peraturan Otoritas Jasa Keuangan.
-    </li>
   </ol>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian, Surat Pengakuan Hutang ini dibuat tanpa didasarkan atas unsur paksaan, kekhilafan, penipuan dan penyalahgunaan keadaan, serta berlaku sejak tanggal ditandatanganinya.<br><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Demikian, Surat Pengakuan Hutang ini dibuat dan berlaku sejak tanggal ditandatanganinya.<br><br>
   <table width="100%">
     <tr>
       <td width="45%" align="center">Menerima Pengakuan dari yang BERHUTANG</td>
@@ -362,7 +360,7 @@
   <br><br><br>
   <?php } else { ?>
   </table>
-  <br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br>
   <?php } ?>
   <hr>
   <font size='1'><i>12) Jika dapat menulis, YANG BERHUTANG harus menulis sendiri kalimat ”baik untuk sejumlah Rp.............. (dengan huruf ....................................) ditambah dengan bunga dan ongkos-ongkos.” </i></font><br>

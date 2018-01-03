@@ -668,14 +668,15 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
+            $no_skpp        = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
             $detail_debitur = [
                 'name_adk'     => $data['name'],
                 'jabatan_adk'  => $data['position'],
                 'nama_debitur' => $detail['customer']['personal']['first_name'],
                 'alamat'       => $detail['customer']['personal']['address'],
-                'tgl_skpp'     => '-',
+                'no_skpp'      => $no_skpp,
                 'perusahaan'   => $detail['customer']['work']['company_name'],
-                'no_putusan'   => '-',
+                'no_putusan'   => $no_skpp,
                 'scoring'      => $detail['score'],
                 'jumlah_kredit'=> $detail['request_amount'],
                 'jangka_waktu' => $detail['Jangka_waktu'],
@@ -701,7 +702,9 @@ class ADKController extends Controller
 
     public function exportSPH(Request $request) {
         $data = $this->getUser();
-        // print_r($data);exit();
+        // $angka = 125000000000000;
+        // $terbilang = $this->terbilang($angka,$style=3);
+        // print_r($terbilang);exit();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
                     ->setHeaders(
@@ -712,47 +715,144 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $no_sk_awal = $detail['no_dan_tanggal_sk_awal'];
-            $tgl_sk_awal= $detail['no_dan_tanggal_sk_awal'];
+            $fasilitas   = substr($detail['Kode_fasilitas'],-2);
+            $no_skpp     = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            // dd($fasilitas);
+            $no_sk_awal  = $detail['no_dan_tanggal_sk_awal'];
             $no_sk_akhir = $detail['no_dan_tanggal_sk_akhir'];
-            $tgl_sk_akhir= $detail['no_dan_tanggal_sk_akhir'];
-            $provisi = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
+            // $tgl_sk_awal = $detail['no_dan_tanggal_sk_awal'];
+            // $tgl_sk_akhir= $detail['no_dan_tanggal_sk_akhir'];
+            $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
 
             $detail_sph = [
-                'nama_debitur'   => $detail['customer']['personal']['first_name'],
-                'nama_pasangan'  => $detail['customer']['personal']['couple_name'],
-                'ktp'            => $detail['customer']['personal']['nik'],
-                'ktp_pasangan'   => $detail['customer']['personal']['couple_nik'],
-                'pekerjaan'      => $detail['customer']['work']['work'],
-                'alamat'         => $detail['customer']['personal']['address'],
-                'status'         => $detail['customer']['personal']['status'],
-                'kantor_cabang'  => $detail['branch_name'],
-                'pinjaman'       => $detail['request_amount'],
-                'tujuan'         => $detail['Tujuan_penggunaan_kredit'],
-                'jangka_waktu'   => $detail['Jangka_waktu'],
-                'suku_bunga'     => ($detail['Suku_bunga'] / 12),
-                'angsuran'       => $detail['angsuran_usulan'],
-                'provisi'        => $detail['Provisi_kredit'],
-                'provisi_atau'   => $provisi,
-                'biaya_adm'      => $detail['Biaya_administrasi'],
-                'asuransi'       => $detail['Premi_asuransi_jiwa'],
-                'beban_debitur'  => $detail['Premi_beban_debitur'],
-                'beban_bri'      => $detail['Premi_beban_bri'],
-                'pengadilan'     => $detail['Pengadilan_terdekat'],
-                'ref_number'     => $detail['ref_number'],
-                'cif_las'        => $detail['cif_las'],
-                'no_sk_awal'     => $no_sk_awal,
-                'tgl_sk_awal'    => $tgl_sk_awal,
-                'no_sk_akhir'    => $no_sk_akhir,
-                'tgl_sk_akhir'   => $tgl_sk_akhir
+                'nama_debitur'  => $detail['customer']['personal']['first_name'],
+                'nama_pasangan' => $detail['customer']['personal']['couple_name'],
+                'ktp'           => $detail['customer']['personal']['nik'],
+                'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
+                'pekerjaan'     => $detail['customer']['work']['work'],
+                'alamat'        => $detail['customer']['personal']['address'],
+                'status'        => $detail['customer']['personal']['status'],
+                'kantor_cabang' => $detail['branch_name'],
+                'pinjaman'      => $detail['Plafond_usulan'],
+                'tujuan'        => $detail['Tujuan_penggunaan_kredit'],
+                'jangka_waktu'  => $detail['Jangka_waktu'],
+                'suku_bunga'    => ($detail['Suku_bunga'] / 12),
+                'angsuran'      => $detail['angsuran_usulan'],
+                'provisi'       => $detail['Provisi_kredit'],
+                'provisi_atau'  => $provisi,
+                'biaya_adm'     => $detail['Biaya_administrasi'],
+                'asuransi'      => $detail['Premi_asuransi_jiwa'],
+                'beban_debitur' => $detail['Premi_beban_debitur'],
+                'beban_bri'     => $detail['Premi_beban_bri'],
+                'pengadilan'    => $detail['Pengadilan_terdekat'],
+                'cif_las'       => $detail['cif_las'],
+                'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=3),
+                'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=3),
+                'bil_day'       => $this->terbilang(date('d'),$style=3),
+                'bil_month'     => $this->terbilang(date('m'),$style=3),
+                'bil_year'      => $this->terbilang(date('Y'),$style=3),
+                'bil_provisi'   => $this->terbilang($detail['Provisi_kredit'],$style=3),
+                'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
+                'bil_angsuran'  => $this->terbilang($detail['angsuran_usulan'],$style=3),
+                'bil_biaya_adm' => $this->terbilang($detail['Biaya_administrasi'],$style=3),
+                'no_skpp'       => $no_skpp,
+                'no_sk_awal'    => $no_sk_awal,
+                'no_sk_akhir'   => $no_sk_akhir
+                // 'tgl_sk_awal'   => $tgl_sk_awal,
+                // 'tgl_sk_akhir'  => $tgl_sk_akhir
             ];
+            // dd($detail_sph);
 
-            // lempar data ke view blade
-            view()->share('data_sph',$detail_sph);
-            $pdf = PDF::loadView('internals.eform.adk._sph');
-            return $pdf->download('sph.pdf');
+            if (strtolower($fasilitas) == 'wl') {
+                // lempar data ke view blade
+                view()->share('data_sph',$detail_sph);
+                $pdf = PDF::loadView('internals.eform.adk._sph');
+                return $pdf->download('sph.pdf');
+            } else {
+                // lempar data ke view blade
+                view()->share('data_sph',$detail_sph);
+                $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
+                return $pdf->download('sph_pekerja_bri.pdf');
+            }
+            
         } else {
             \Session::flash('error', 'Dokumen SPH gagal didownload');
+            return redirect()->route('adk.index');
+        }
+    }
+
+    public function exportDebitur(Request $request) {
+        $data = $this->getUser();
+        // $angka = 125000000000000;
+        // $terbilang = $this->terbilang($angka,$style=3);
+        // print_r($terbilang);exit();
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
+                    ->setHeaders([ 
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])
+                    ->get();
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        if (!empty($detail)) {
+            $fasilitas   = substr($detail['Kode_fasilitas'],-2);
+            $no_skpp     = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            // dd($fasilitas);
+            $no_sk_awal  = $detail['no_dan_tanggal_sk_awal'];
+            $no_sk_akhir = $detail['no_dan_tanggal_sk_akhir'];
+            // $tgl_sk_awal = $detail['no_dan_tanggal_sk_awal'];
+            // $tgl_sk_akhir= $detail['no_dan_tanggal_sk_akhir'];
+            $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
+
+            $detail_sph = [
+                'nama_debitur'  => $detail['customer']['personal']['first_name'],
+                'nama_pasangan' => $detail['customer']['personal']['couple_name'],
+                'ktp'           => $detail['customer']['personal']['nik'],
+                'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
+                'pekerjaan'     => $detail['customer']['work']['work'],
+                'alamat'        => $detail['customer']['personal']['address'],
+                'status'        => $detail['customer']['personal']['status'],
+                'kantor_cabang' => $detail['branch_name'],
+                'pinjaman'      => $detail['Plafond_usulan'],
+                'tujuan'        => $detail['Tujuan_penggunaan_kredit'],
+                'jangka_waktu'  => $detail['Jangka_waktu'],
+                'suku_bunga'    => ($detail['Suku_bunga'] / 12),
+                'angsuran'      => $detail['angsuran_usulan'],
+                'provisi'       => $detail['Provisi_kredit'],
+                'provisi_atau'  => $provisi,
+                'biaya_adm'     => $detail['Biaya_administrasi'],
+                'asuransi'      => $detail['Premi_asuransi_jiwa'],
+                'beban_debitur' => $detail['Premi_beban_debitur'],
+                'beban_bri'     => $detail['Premi_beban_bri'],
+                'pengadilan'    => $detail['Pengadilan_terdekat'],
+                'cif_las'       => $detail['cif_las'],
+                'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=3),
+                'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=3),
+                'bil_day'       => $this->terbilang(date('d'),$style=3),
+                'bil_month'     => $this->terbilang(date('m'),$style=3),
+                'bil_year'      => $this->terbilang(date('Y'),$style=3),
+                'bil_provisi'   => $this->terbilang($detail['Provisi_kredit'],$style=3),
+                'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
+                'bil_angsuran'  => $this->terbilang($detail['angsuran_usulan'],$style=3),
+                'bil_biaya_adm' => $this->terbilang($detail['Biaya_administrasi'],$style=3),
+                'no_skpp'       => $no_skpp,
+                'no_sk_awal'    => $no_sk_awal,
+                'no_sk_akhir'   => $no_sk_akhir
+                // 'tgl_sk_awal'   => $tgl_sk_awal,
+                // 'tgl_sk_akhir'  => $tgl_sk_akhir
+            ];
+            // dd($detail_sph);
+
+            // $this->data['data_sph'] = $detail_sph;
+            // return view('internals.eform.adk._debitur')->with($this->data);
+            /// lempar data ke view blade
+            $pdf = \PDF::loadView('internals.eform.adk._debitur', 
+                    ['data_sph' => $detail_sph])
+                    ->setPaper('a4', 'landscape');
+            return $pdf->download('debitur.pdf');            
+        } else {
+            \Session::flash('error', 'Dokumen Debitur gagal didownload');
             return redirect()->route('adk.index');
         }
     }
@@ -825,5 +925,61 @@ class ADKController extends Controller
             ];
             return response()->json($eforms['contents']);
         }
+    }
+
+    function terbilang($x, $style = 4) {
+        if($x < 0) {
+            $hasil = "minus ".trim($this->kekata($x));
+        } else {
+            $hasil = trim($this->kekata($x));
+        }    
+        
+        switch($style) {
+            case 1 :
+                $hasil = strtoupper($hasil);
+            break;
+            case 2 :
+                $hasil = strtolower($hasil);
+            break;
+            case 3 :
+                $hasil = ucwords($hasil);
+            break;
+            default:
+                $hasil = ucfirst($hasil);
+            break;
+        }    
+        return $hasil;
+    }
+
+    function kekata($x) {
+        $x = abs($x);
+        $angka = [
+            "","satu","dua","tiga","empat","lima",
+            "enam","tujuh","delapan","sembilan","sepuluh","sebelas"
+        ];
+
+        $temp = "";
+        if ($x < 12) {
+            $temp = " ".$angka[$x];
+        } elseif($x < 20) {
+            $temp = $this->kekata($x-10)." belas";
+        } elseif($x < 100) {
+            $temp = $this->kekata($x/10)." puluh".$this->kekata($x%10);
+        } elseif($x < 200) {
+            $temp = " seratus".$this->kekata($x-100);
+        } elseif($x < 1000) {
+            $temp = $this->kekata($x/100)." ratus".$this->kekata($x%100);
+        } elseif($x < 2000) {
+            $temp = " seribu".$this->kekata($x-1000);
+        } elseif($x < 1000000) {
+            $temp = $this->kekata($x/1000)." ribu".$this->kekata($x%1000);
+        } elseif($x < 1000000000) {
+            $temp = $this->kekata($x/1000000)." juta".$this->kekata($x%1000000);
+        } elseif($x < 1000000000000) {
+            $temp = $this->kekata($x/1000000000)." milyar".$this->kekata(fmod($x,1000000000));
+        } elseif($x < 1000000000000000) {
+            $temp = $this->kekata($x/1000000000000)." trilyun".$this->kekata(fmod($x,1000000000000));
+        }    
+        return $temp;
     }
 }

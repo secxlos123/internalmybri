@@ -174,7 +174,7 @@
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
         Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPTK']);
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
-
+        Route::get('post_debitur/{id}', ['as'=>'post_debitur', 'uses'=>'EForm\ADKController@exportDebitur']);
 
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');

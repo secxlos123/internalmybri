@@ -235,6 +235,18 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Data Debitur :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download Debitur</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
