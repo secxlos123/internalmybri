@@ -159,13 +159,13 @@
         Inputmask.extendAliases({
             rupiah: {
                 // prefix: "Rp ",
-                radixPoint: ",",
+                radixPoint: ".",
                 groupSeparator: ".",
                 alias: "numeric",
-                placeholder: "0",
+                // placeholder: "0",
                 autoGroup: !0,
-                digits: 2,
-                digitsOptional: !1,
+                // digits: 2,
+                // digitsOptional: !1,
                 clearMaskOnLostFocus: !1,
                 rightAlign: false
             }
