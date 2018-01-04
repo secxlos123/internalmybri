@@ -236,7 +236,7 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: `/offices?citi_id=${citi_id}`,
+                url: '/offices?citi_id=${citi_id}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {

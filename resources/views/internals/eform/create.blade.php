@@ -87,8 +87,7 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
                                             <div class="" id="detail">
-                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
- -->
+                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4> -->
                                                 <!-- ============================================== -->
                                                 <!-- Space untuk Detail Nasabah -->
                                                <!--  <p class="text-muted font-13 m-t-20" >

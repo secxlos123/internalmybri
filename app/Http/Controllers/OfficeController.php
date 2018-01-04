@@ -32,8 +32,8 @@ class OfficeController extends Controller
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'distance' => $request->input('distance'),
-                'long' => $request->input('long'),
-                'lat' => $request->input('lat'),
+                'long' => $request->input('longitude'),
+                'lat' => $request->input('latitude'),
                 'page' => $request->input('page'),
                 'name' => $request->input('name'),
             ])->get();
