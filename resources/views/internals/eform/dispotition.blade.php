@@ -416,7 +416,7 @@
                                                 </div>
                                             </div>
                                             @include('form_audit._input_long_lat')
-                                            <input type="hidden" name="auditaction" value="{{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}}">
+                                            <input type="hidden" name="auditaction" value="{{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi Kredit' : 'Re-Disposisi Kredit')}}">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group pull-right">

@@ -177,7 +177,7 @@
     };
     $('#btn-approve').on('click', function(){
         $('#is_approved').attr('value', true);
-        $('#auditaction').va('Approve');
+        $('#auditaction').val('Approval Kredit');
         HoldOn.open(options);
         $('#form1').submit();
         HoldOn.close();
@@ -185,7 +185,7 @@
 
     $('#btn-reject').on('click', function(){
         $('#is_approved').attr('value', false);
-        $('#auditaction').va('Reject');
+        $('#auditaction').val('Reject Kredit');
         HoldOn.open(options);
         $('#form1').submit();
         HoldOn.close();
