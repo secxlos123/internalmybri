@@ -280,16 +280,16 @@ class CustomerController extends Controller
     public function store(CustomerRequest $request)
     {
         $data = $this->getUser();
-
+        $role = $data['role'];
         $newCustomer = $this->dataRequest($request);
         // dd($newCustomer);
         $client = Client::setEndpoint('customer')
          ->setHeaders([
               'Authorization' => $data['token']
               , 'pn' => $data['pn']
-              // , 'auditaction' => 'action name'
-              , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-              , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+              , 'auditaction' => 'eform tambah leads via '.$role
+              , 'long' => $request['hidden-long']
+              , 'lat' => $request['hidden-lat']
           ])->setBody($newCustomer)
          ->post('multipart');
          // dd($client);
