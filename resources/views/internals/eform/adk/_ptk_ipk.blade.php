@@ -17,7 +17,7 @@
     <tr>
       <td>No/Tgl SKPP</td>
       <td>:</td>
-      <td>&nbsp;{{$data_debitur['tgl_skpp']}}</td>
+      <td>&nbsp;{{$data_debitur['no_skpp']}}</td>
     </tr>
     <tr>
       <td>Instansi/Perusahaan</td>

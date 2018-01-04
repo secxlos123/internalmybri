@@ -81,21 +81,23 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-                                                                        <thead class="bg-primary">
-                                                                            <tr>
-                                                                                <th>Nama Proyek</th>
-                                                                                <th>Kota</th>
-                                                                                <th>Jumlah Tipe</th>
-                                                                                <th>Unit Properti</th>
-                                                                                <th>PIC</th>
-                                                                                <th>Telepon</th>
-                                                                                <th>Staff Penilai</th>
-                                                                                <th>Status Approval</th>
-                                                                                <th style="width: 150px">Aksi</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
+                                                                    <div class="tab-scroll">
+                                                                        <table id="datatable" class="table table-bordered">
+                                                                            <thead class="bg-primary">
+                                                                                <tr>
+                                                                                    <th>Nama Proyek</th>
+                                                                                    <th>Kota</th>
+                                                                                    <th>Jumlah Tipe</th>
+                                                                                    <th>Unit Properti</th>
+                                                                                    <th>PIC</th>
+                                                                                    <th>Telepon</th>
+                                                                                    <th>Staff Penilai</th>
+                                                                                    <th>Status Approval</th>
+                                                                                    <th style="width: 150px">Aksi</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -110,18 +112,20 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable-independent" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-                                                                        <thead class="bg-primary">
-                                                                            <tr>
-                                                                                <th>Nama Pengaju</th>
-                                                                                <th>Kota</th>
-                                                                                <th>Telepon</th>
-                                                                                <th>Staff Penilai</th>
-                                                                                <th>Status Approval</th>
-                                                                                <th style="width: 150px">Aksi</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
+                                                                    <div class="tab-scroll">
+                                                                        <table id="datatable-independent" class="table table-bordered">
+                                                                            <thead class="bg-primary">
+                                                                                <tr>
+                                                                                    <th>Nama Pengaju</th>
+                                                                                    <th>Kota</th>
+                                                                                    <th>Telepon</th>
+                                                                                    <th>Staff Penilai</th>
+                                                                                    <th>Status Approval</th>
+                                                                                    <th style="width: 150px">Aksi</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -185,10 +189,10 @@
             }
         },
         aoColumns : [
-                {   data: 'prop_name', name: 'prop_name', bSortable: false  },
-                {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
-                {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
-                {   data: 'prop_items', name: 'prop_items', bSortable: true },
+        {   data: 'prop_name', name: 'prop_name', bSortable: false  },
+        {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
+        {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
+        {   data: 'prop_items', name: 'prop_items', bSortable: true },
                 // {   data: 'product_type', name: 'product_type' },
                 {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
                 {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
@@ -199,7 +203,7 @@
             });
     }
 
-     var table2 = $('#datatable-independent').DataTable({
+    var table2 = $('#datatable-independent').DataTable({
         searching: false,
         "language": {
             "emptyTable": "No data available in table"

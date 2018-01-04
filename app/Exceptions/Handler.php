@@ -45,8 +45,8 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         // 404 page when a page not found
-        if(env('APP_ENV') == 'local'){
-            if ($exception instanceof Exception) {
+        // if(env('APP_ENV') == 'production'){
+            if ($exception instanceof CustomException) {
                 return response()->view('errors.404', [], 404);
             }
 
@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
             } else {
                 return parent::render($request, $exception);
             }
-        }
+        // }
 
         return parent::render($request, $exception);
     }

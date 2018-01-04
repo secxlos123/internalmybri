@@ -29,51 +29,60 @@
             <div class="row">
                 <div class="col-md-12">
                     @if (\Session::has('error'))
-                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
                     <div class="card-box">
                         <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
+                            <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
+                            <!-- <div class="col-md-12"> -->
                                <!--  <p class="text-muted m-b-30 font-13">
                                     No. Contact Agen / Sales : 
                                 </p> -->
                                 @if($type != 'nonindex')
-                                    <!-- detail properti -->
-                                    @include('internals.collateral.manager._detail-property')
-                                    <!-- tipe -->
-                                    @include('internals.collateral.manager._type-property')
-                                    <!-- unit -->
-                                    @include('internals.collateral.manager._unit-property')
+                                <!-- detail properti -->
+                                @include('internals.collateral.manager._detail-property')
+                                <!-- tipe -->
+                                @include('internals.collateral.manager._type-property')
+                                <!-- unit -->
+                                @include('internals.collateral.manager._unit-property')
                                 @else
-                                    <!-- detail property -->
-                                    @include('internals.collateral.manager._detail-collateral-nonindex')
+                                <!-- detail property -->
+                                @include('internals.collateral.manager._detail-collateral-nonindex')
 
                                 @endif                            
                                 <!-- informasi penilaian -->
                                 @include('internals.collateral.manager._collateral-detail')
 
+                            <!-- </div> -->
+                            <form class="form-horizontal" role="form" method="POST" id="form1" action="{{route('postApprovalCollateral', $collateral['id'])}}">
+                                {{ csrf_field() }}
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <!-- rekomendasi approval -->
-                                        <form class="form-horizontal" role="form" method="POST" id="form1" action="{{route('postApprovalCollateral', $collateral['id'])}}">
-                                            {{ csrf_field() }}
-                                            @if($type == 'nonindex')
-                                                <input type="hidden" name="eform_id" value="{{$collateral['eform_id']}}">
-                                            @endif
-                                            <input type="hidden" name="is_approved" id="is_approved">
-                                            <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
-                                            <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">
-                                            <div class="text-center">
-                                                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</a>
-                                                <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
-                                                <input type="hidden" name="remark" id="remark">
-                                                <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Opini * :</label>
+                                                    <textarea class="form-control" name="remark" placeholder="Tulis Opini Disini">{{ old('remark') }}</textarea>
+                                                </div>
                                             </div>
-                                        </form>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!-- rekomendasi approval -->
+                                        @if($type == 'nonindex')
+                                        <input type="hidden" name="eform_id" value="{{$collateral['eform_id']}}">
+                                        @endif
+                                        <input type="hidden" name="is_approved" id="is_approved">
+                                        <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
+                                        <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">
+                                        <div class="text-center">
+                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</a>
+                                            <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a>
+                                            <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

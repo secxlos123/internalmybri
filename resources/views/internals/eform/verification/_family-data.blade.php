@@ -12,7 +12,7 @@
                                 <label class="col-md-3 control-label">Nama * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
-                                    <input type="text" class="form-control" name="emergency_name" value="{{$dataCustomer['customer']['emergency_name']}}" maxlength="50">
+                                    <input type="text" class="form-control" name="emergency_name" value="{{(isset($dataCustomer['customer']['emergency_name']) ? $dataCustomer['customer']['emergency_name'] : old('emergency_name'))}}" maxlength="50">
                                 @else
                                     <p>{{ @$dataCustomer['customer']['emergency_name'] }}</p>
                                 @endif
@@ -23,7 +23,7 @@
                                 <label class="col-md-3 control-label">No. Handphone * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
-                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{$dataCustomer['customer']['emergency_contact']}}" maxlength="12">
+                                    <input type="text" class="form-control numericOnly" name="emergency_mobile_phone" value="{{(isset($dataCustomer['customer']['emergency_contact']) ? $dataCustomer['customer']['emergency_contact'] : old('emergency_mobile_phone'))}}" maxlength="12">
                                 @else
                                     <p>{{ @$dataCustomer['customer']['emergency_contact'] }}</p>
                                 @endif
@@ -39,7 +39,7 @@
                                 <label class="col-md-4 control-label">Hubungan * :</label>
                                 <div class="col-md-8">
                                 @if ($type != 'preview')
-                                    <input type="text" class="form-control" name="emergency_relation" maxlength="50" value="{{$dataCustomer['customer']['emergency_relation']}}">
+                                    <input type="text" class="form-control" name="emergency_relation" maxlength="50" value="{{(isset($dataCustomer['customer']['emergency_relation']) ? $dataCustomer['customer']['emergency_relation'] : old ('emergency_relation'))}}">
                                 @else
                                     <p>{{ @$dataCustomer['customer']['emergency_relation'] }}</p>
                                 @endif

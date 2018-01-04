@@ -32,7 +32,7 @@
                                             <div class="col-md-7">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="selling_price" maxlength="24" value="{{ old('selling_price') }}">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="selling_price" maxlength="16" value="{{ old('selling_price') }}">
                                                 </div>
                                                     @if ($errors->has('selling_price')) <p class="help-block">{{ $errors->first('selling_price') }}</p> @endif
                                             </div>

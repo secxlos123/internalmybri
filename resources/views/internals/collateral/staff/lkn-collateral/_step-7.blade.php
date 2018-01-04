@@ -12,7 +12,7 @@
                                     "Ditempati Sendiri" => "Ditempati Sendiri", 
                                     "Disewakan" => "Disewakan"), 
                                     old('seven[collateral_status]'), [
-                                    'class' => 'select2',
+                                    'class' => 'select2 collateral_status_',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
                             </div>

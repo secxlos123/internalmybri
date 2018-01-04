@@ -148,6 +148,8 @@
             Route::post('reject-form/{id}', ['as'=>'rejectAssignment', 'uses'=>'Collateral\CollateralStaffController@rejectAssignment']);
 
             Route::get('upload-doc/{dev_id}/{prop_id}', ['as'=>'getUploadDoc', 'uses'=>'Collateral\CollateralStaffController@getUploadDoc']);
+
+            Route::post('post-upload-doc/{id}', ['as'=>'postUploadDoc', 'uses'=>'Collateral\CollateralStaffController@postUploadDoc']);
         });
 
         Route::group(['prefix'=>'approval-data'], function () {
@@ -176,7 +178,7 @@
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
         Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPTK']);
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
-
+        Route::get('post_debitur/{id}', ['as'=>'post_debitur', 'uses'=>'EForm\ADKController@exportDebitur']);
 
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
@@ -232,6 +234,13 @@
         /* Auditrail */
         // Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
+
+    /* Chart */
+    Route::get('chartEform', 'Home\HomeController@chartEform');
+
+    Route::get('chartCustomer', 'Home\HomeController@chartCustomer');
+
+    Route::get('chartProperty', 'Home\HomeController@chartProperty');
 
     Route::put('users/{users}/actived', 'User\UserController@actived');
 

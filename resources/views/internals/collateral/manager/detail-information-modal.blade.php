@@ -1,6 +1,6 @@
 <style type="text/css">
 .modal-dialog-custom {
-    width: 1500px;
+    width: 1000px;
     margin: 50px auto;
 }
 </style>
@@ -15,37 +15,61 @@
                                 <li class="active">
                                     <a href="#step1" data-toggle="tab" aria-expanded="true">
                                         <span class="visible-xs"><i class="fa fa-info"></i></span>
-                                        <span class="hidden-xs">Identifikasi Tanah di Lapangan</span>
+                                        <span class="hidden-xs">Step 2</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#step2" data-toggle="tab" aria-expanded="true">
                                         <span class="visible-xs"><i class="fa fa-info"></i></span>
-                                        <span class="hidden-xs">Identifikasi Tanah Berdasarkan Surat Tanah</span>
+                                        <span class="hidden-xs">Step 3</span>
                                     </a>
                                 </li>
                                 <li class="">
                                     <a href="#step3" data-toggle="tab" aria-expanded="false">
                                         <span class="visible-xs"><i class="fa fa-phone"></i></span>
-                                        <span class="hidden-xs">Uraian Bangunan</span>
+                                        <span class="hidden-xs">Step 4</span>
                                     </a>
                                 </li>
                                 <li class="">
                                     <a href="#step4" data-toggle="tab" aria-expanded="false">
                                         <span class="visible-xs"><i class="fa fa-list"></i></span>
-                                        <span class="hidden-xs">Identifikasi Data Lingkungan</span>
+                                        <span class="hidden-xs">Step 5</span>
                                     </a>
                                 </li>
                                 <!-- <li class="">
                                     <a href="#step5" data-toggle="tab" aria-expanded="false">
                                         <span class="visible-xs"><i class="fa fa-list"></i></span>
-                                        <span class="hidden-xs">Penilaian</span>
+                                        <span class="hidden-xs">Step 5</span>
                                     </a>
                                 </li> -->
                                 <li class="">
                                     <a href="#step6" data-toggle="tab" aria-expanded="false">
                                         <span class="visible-xs"><i class="fa fa-list"></i></span>
-                                        <span class="hidden-xs">Lain-lain</span>
+                                        <span class="hidden-xs">Step 6</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#step7" data-toggle="tab" aria-expanded="false">
+                                        <span class="visible-xs"><i class="fa fa-list"></i></span>
+                                        <span class="hidden-xs">Step 7</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#step8" data-toggle="tab" aria-expanded="false">
+                                        <span class="visible-xs"><i class="fa fa-list"></i></span>
+                                        <span class="hidden-xs">Step 8</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#step9" data-toggle="tab" aria-expanded="false">
+                                        <span class="visible-xs"><i class="fa fa-list"></i></span>
+                                        <span class="hidden-xs">Step 9</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#step10" data-toggle="tab" aria-expanded="false">
+                                        <span class="visible-xs"><i class="fa fa-list"></i></span>
+                                        <span class="hidden-xs">Step 10</span>
                                     </a>
                                 </li>
                             </ul>
@@ -437,7 +461,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="step5">
+                                <!-- <div class="tab-pane" id="step5">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default">
@@ -551,7 +575,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="tab-pane" id="step6">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -603,6 +627,331 @@
                                                                         <p class="form-control-static" id="optimal_building_use"></p>
                                                                     </div>
                                                                 </div> 
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step7">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Agunan Tanah & Rumah Tinggal</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status Agunan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="collateral_status"></p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Atas Nama (Pemilik) :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="on_behalf_of"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">No. Bukti Kepemilikan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="ownership_number"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Lokasi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="location"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Alamat Agunan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="address_collateral"></p>
+                                                                    </div>
+                                                                </div> 
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Deskripsi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="description"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status Bukti Kepemilikan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="ownership_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Bukti :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="date_evidence"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Kelurahan/Desa :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="village"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Kecamatan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="districts"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step8">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Nilai Likuiditas saat Realisasi</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Likuiditas saat Realisasi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="liquidation_realization"></p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Pasar Wajar :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="fair_market"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Likuidasi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="liquidation"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Proyeksi Nilai Pasar Wajar :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="fair_market_projection"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Proyeksi Nilai Likuidasi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="liquidation_projection"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Jual Objek Pajak (NJOP) :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="njop"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Penilaian Dilakukan Oleh :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="appraisal_by"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <div class="form-group independent_appraiser">
+                                                                    <label class="col-md-5 control-label">Penilai Independent :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="independent_appraiser"></p>
+                                                                    </div>
+                                                                </div> 
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penilaian Terakhir :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="date_assessment"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Jenis Pengikatan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="type_binding"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">No. Bukti Pengikatan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="binding_number"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Pengikatan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="binding_value"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step9">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Pemecahan Sertifikat</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <h5>Pemecahan Sertifikat</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="certificate_status"></p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information"></p>
+                                                                    </div>
+                                                                </div> 
+                                                                <h5>Dokumen Notaris Developer</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="notary_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <h5>Dokumen Take Over</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="takeover_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <h5>Perjanjian Kredit</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="credit_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <h5>SKMHT</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="skmht_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <h5>IMB</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="imb_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <h5>SHGB</h5>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Status :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="shgb_status"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="step10">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Paripasu</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Paripasu :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="paripasu"></p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Paripasu Agunan Bank :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="paripasu_bank"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Flag Asuransi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="insurance"></p>
+                                                                    </div>
+                                                                </div> 
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <form class="form-horizontal" role="form">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nama Perusahaan Asuransi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="insurance_company"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Nilai Asuransi :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="insurance_value"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Eligibility :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="eligibility"></p>
+                                                                    </div>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>

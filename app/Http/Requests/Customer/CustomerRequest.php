@@ -27,7 +27,7 @@ class CustomerRequest extends FormRequest
             'nik' => 'required|numeric|digits:16',
             'full_name' => 'required',
             'birth_place_id'   => 'required',
-            'birth_date'    => 'date|date_format:Y-m-d|before:today',
+            // 'birth_date'    => 'date|date_format:Y-m-d',
             'gender'    => 'required',
             // 'city'  => 'required',
             // 'phone' => 'required|numeric|digits_between:1,12',

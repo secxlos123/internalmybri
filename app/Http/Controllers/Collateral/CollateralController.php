@@ -166,9 +166,9 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'auditaction' => 'Post Assigment'
+                , 'long' => $request['hidden-long']
+                , 'lat'  => $request['hidden-lat'] 
             ])->setBody($disposition)
             ->post();
 
@@ -231,13 +231,12 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $reqs = [
-            'eform_id' => $request->has('eform_id')?$request->eform_id : false,
-            'remark' => $request->remark
+            'eform_id' => $request->has('eform_id')? $request->eform_id : false
+            , 'remark' => $request->input('remark')
             , 'approved_by' => $data['pn']
         ];
 
         $approve = $request->is_approved;
-        // dd($request->all());
         if($approve == 'true'){
             $client = Client::setEndpoint('collateral/approve/'.$id)
                 ->setHeaders([
@@ -249,7 +248,6 @@ class CollateralController extends Controller
                 ])->setBody($reqs)
                 ->post();
             $response = 'Pengajuan Properti Baru telah Disetujui';
-
         } else {
             $client = Client::setEndpoint('collateral/reject/'.$id)
                 ->setHeaders([
@@ -261,11 +259,18 @@ class CollateralController extends Controller
                 ])->setBody($reqs)
                 ->post();
             $response = 'Pengajuan Properti Baru telah Ditolak';
+        }
 
+        if(($client['contents']['status'] == 'disetujui')){
+            $color = 'success';
+        }elseif($client['contents']['status'] == 'ditolak'){
+            $color = 'success';
+        }else{
+            $color = 'error';
         }
 
         if($client['code'] == 200){
-            \Session::flash('success', $response);
+            \Session::flash($color, $response);
             return redirect()->route('collateral.index');
         }else{
             $error = reset($client['contents']);
@@ -282,7 +287,34 @@ class CollateralController extends Controller
     {
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return view('internals.collateral.manager.monitoring', compact('data', 'collateral'));
+        $detailCollateral = Client::setEndpoint('collateral/otsdoc/'.$collateral['id'])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->get();
+            //count percentage
+            $keys = 0 ;
+            $findme   = 'noimage.jpg';
+            if(!empty($detailCollateral['contents']['ots_doc'])){
+                foreach ($detailCollateral['contents']['ots_doc'] as $key => $value) {
+                    $found = strpos($value, $findme);
+                    if ($found) {
+                        $keys++;
+                    }else{
+                        continue;
+                    }
+                }
+                $all =  13-$keys;
+                $percent = ($all/13)*100;
+            }else{
+                $percent = 0;
+            }
+
+
+        return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral','percent'));
     }
 
     /**

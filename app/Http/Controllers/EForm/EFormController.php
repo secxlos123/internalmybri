@@ -406,19 +406,19 @@ class EFormController extends Controller
         $moneyInput = array(
                 [
                     'name'    => 'request_amount',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->request_amount))
+                    'contents' => str_replace(',', '', $request->request_amount)
                 ],
                 [
                     'name'    => 'price',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->price))
+                    'contents' => str_replace(',', '', $request->price)
                 ],
                 [
                     'name'    => 'dp',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->dp))
+                    'contents' => str_replace(',', '', $request->dp)
                 ],
                 [
                     'name'    => 'down_payment',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->down_payment))
+                    'contents' => str_replace(',', '', $request->down_payment)
                 ]
             );
 
@@ -540,7 +540,7 @@ class EFormController extends Controller
     public function postDispotition(Request $request, $id)
     {
         $data = $this->getUser();
-        // dd($id);
+        // dd($request->all());
 
         $dispotition = [
             'ao_id' => $request->name,
@@ -552,9 +552,9 @@ class EFormController extends Controller
                     , 'pn' => $data['pn']
                     , 'branch_id' => $data['branch']
                     , 'role' => $data['role']
-                    // , 'auditaction' => 'action name'
-                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    , 'auditaction' => $request['auditaction']
+                    , 'long' => $request['hidden-long']
+                    , 'lat'  => $request['hidden-lat']
                 ])->setBody($dispotition)
                 ->post();
         // dd($client);

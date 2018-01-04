@@ -74,6 +74,10 @@
 
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
+<script src="{{asset('assets/js/jquery.viewbox.min.js')}}"></script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
 
 <script type="text/javascript">
@@ -112,8 +116,10 @@
     // handling serialize
     $.ajaxPrefilter(function(options, originalData, xhr){
         if (options.data) {
-            options.data += "&long="+$('input[name="hidden-long"]').val();
-            options.data += "&lat="+$('input[name="hidden-lat"]').val();
+            if (typeof(options.data) == 'string') {
+                options.data += "&long="+$('input[name="hidden-long"]').val();
+                options.data += "&lat="+$('input[name="hidden-lat"]').val();
+            }
         }
     });
 
@@ -156,13 +162,13 @@
         Inputmask.extendAliases({
             rupiah: {
                 // prefix: "Rp ",
-                radixPoint: ",",
+                radixPoint: ".",
                 groupSeparator: ".",
                 alias: "numeric",
-                placeholder: "0",
+                // placeholder: "0",
                 autoGroup: !0,
-                digits: 2,
-                digitsOptional: !1,
+                // digits: 2,
+                // digitsOptional: !1,
                 clearMaskOnLostFocus: !1,
                 rightAlign: false
             }
@@ -255,6 +261,29 @@
     $('.cities').on('select2:select', function (e) {
         var citi_id = e.params.data.id;
     });
+
+    function openSide() {
+        document.getElementById("rightSide").style.width = "285px";
+    }
+
+    function closeSide() {
+        document.getElementById("rightSide").style.width = "0px";
+
+    }
+
+    $( window ).resize( function() {
+        var rightsidebar_height = $( '.rightSide' ).height(),
+            rightsidebar_notif  = $( '.rightSide .notif-head').height(),
+            rightsidebar_item   = $( '.rightSide li' ).not( '.notif-head' );
+
+        rightsidebar_item.css( 'height', parseFloat( rightsidebar_height - rightsidebar_notif ) + 'px' );
+    } );
+
+    var rightsidebar_height = $( '.rightSide' ).height(),
+        rightsidebar_notif  = $( '.rightSide .notif-head').height(),
+        rightsidebar_item   = $( '.rightSide li' ).not( '.notif-head' );
+
+    rightsidebar_item.css( 'height', parseFloat( rightsidebar_height - rightsidebar_notif ) + 'px' );
 
 </script>
 

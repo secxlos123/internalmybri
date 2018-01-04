@@ -19,21 +19,42 @@
     },
     MorrisCharts.prototype.init = function() {
         //creating Stacked chart
-        var $stckedData  = [
-        { y: 'Januari', a: 45 },
-        { y: 'Februari', a: 75, },
-        { y: 'Maret', a: 100 },
-        { y: 'April', a: 75, },
-        { y: 'Mei', a: 100 },
-        { y: 'Juni', a: 75, },
-        { y: 'Juli', a: 50, },
-        { y: 'Agustus', a: 75, },
-        { y: 'September', a: 50, },
-        { y: 'Oktober', a: 75, },
-        { y: 'November', a: 100 },
-        { y: 'Desember', a: 100 }
-        ];
-        this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Customer Baru'], ['#00529C']);
+        // var $stckedData  = [
+        // { y: 'Januari', a: 45 },
+        // { y: 'Februari', a: 75, },
+        // { y: 'Maret', a: 100 },
+        // { y: 'April', a: 75, },
+        // { y: 'Mei', a: 100 },
+        // { y: 'Juni', a: 75, },
+        // { y: 'Juli', a: 50, },
+        // { y: 'Agustus', a: 75, },
+        // { y: 'September', a: 50, },
+        // { y: 'Oktober', a: 75, },
+        // { y: 'November', a: 100 },
+        // { y: 'Desember', a: 100 }
+        // ];
+        // this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Customer Baru'], ['#00529C']);
+        $.ajax({
+            url: "{{url('chartCustomer')}}",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var $stckedData = data;
+
+                MorrisCharts.prototype.createStackedChart('morris-bar-stacked', $stckedData, 'month', ['value'], ['Customer Baru'], ['#00529C']);
+            },
+        })
+
+        $.ajax({
+            url: "{{url('chartProperty')}}",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                var $stckedData = data;
+
+                MorrisCharts.prototype.createStackedChart('property-bar-stacked', $stckedData, 'month', ['value'], ['Properti Baru'], ['#00529C']);
+            },
+        })
     },
     //init
     $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts
@@ -43,6 +64,7 @@ function($) {
     "use strict";
     $.MorrisCharts.init();
 }(window.jQuery);
+
 $(document).ready(function() {
    var table = $('#datatable').dataTable({
     "searching": false,

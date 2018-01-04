@@ -398,8 +398,8 @@
         var year = $('#year');
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         building_area.on('input', function() {
             if((price !== null) && (building_area !== null)){
@@ -417,9 +417,9 @@
             var val = $(this).val();
             var down_payment = $('#down_payment');
             var request_amount = $('#request_amount');
-            var price_without_comma = price.val().replace(',00', '');
-            var static_price = price_without_comma.replace(/\./g, '');
-
+            var price_without_comma = price.val();
+            var static_price = price_without_comma.replace(/\,/g, '');
+            console.log(static_price);
             if(building_area.val() < 21){
                 switch (val) {
                     case '1':
@@ -522,8 +522,8 @@
                 var dp_min = dp.attr('min');
                 var down_payment = $('#down_payment');
                 var request_amount = $('#request_amount');
-                var price_without_comma = price.val().replace(',00', '');
-                var static_price = price_without_comma.replace(/\./g, '');
+                var price_without_comma = price.val();
+                var static_price = price_without_comma.replace(/\,/g, '');
 
                 if (val < dp_min) {
                     val = dp_min;
@@ -539,8 +539,8 @@
 
         down_payment
             .on('input', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var request_amount = $('#request_amount');
@@ -573,8 +573,8 @@
                 }
             })
             .on('blur', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var min = parseInt(static_price) * (dp_min/100);
@@ -689,8 +689,8 @@
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
         var price = $('#price');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         if (parseInt(val) > 90) {
             val = 90;
@@ -751,14 +751,14 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: `/offices`,
+                url: '/offices',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
                     return {
                         distance : distance,
-                        long : long,
-                        lat : lat,
+                        longitude : long,
+                        latitude : lat,
                         name: params.term,
                         page: params.page || 1,
                     };
@@ -804,8 +804,9 @@
         console.log(status);
         if (status == 1) {
             if (age < 21) {
-                $("#leads-modal .birth_date").addClass("has-error");
-                $("#leads-modal .birth_date div.col-md-9").append("<span id=\"birth_date-error\" class=\"help-block error-help-block\">Umur harus lebih dari 21 tahun.</span>");
+                // $(".birth_date").removeClass("has-success");
+                // $(".birth_date").addClass("has-error");
+                $("#birth_date_div div.col-md-9").append('<span id="birth_date-error" class="error-help-block" style="display:block;">Umur harus lebih dari 21 tahun.</span>');
                 HoldOn.close();
                 doSomething = 2;
             } else {
@@ -867,6 +868,11 @@
         });
         }else{
             console.log('not ajax');
+            $("#birth_date_div").removeClass("has-success");
+            $("#birth_date_div").addClass("has-error");
+            $("#birth_date_div span#birth_date-error").css({ display: "block", color: "red" });
+
+            $("#birth_date_div span#birth_date-error").html("Umur harus lebih dari 21 tahun.");
             HoldOn.close();
         }
 

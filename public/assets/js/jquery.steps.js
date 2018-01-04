@@ -2006,7 +2006,9 @@ var defaults = $.fn.steps.defaults = {
          * @default "Finish"
          * @for defaults
          **/
-        finish: "Selesai dan Ajukan Aplikasi",
+        finish: "Selesai",
+        // finish: "Selesai dan Ajukan Aplikasi",
+
 
         /**
          * Label for the next button.

@@ -123,6 +123,7 @@
                                                         </div>
                                                         @endif
                                                     </div>
+                                                    @include('form_audit._input_long_lat')
                                                 </div>
                                             </div>
                                             <div class="row">

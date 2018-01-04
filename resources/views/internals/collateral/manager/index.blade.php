@@ -26,6 +26,9 @@
                     @if (\Session::has('success'))
                     <div class="alert alert-success">{{ \Session::get('success') }}</div>
                     @endif
+                    @if (\Session::has('error'))
+                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    @endif
                     <div class="card-box ">
                         <div id="filter" class="m-b-15">
                             <div class="row">
@@ -81,21 +84,23 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-                                                                        <thead class="bg-primary">
-                                                                            <tr>
-                                                                                <th>Nama Proyek</th>
-                                                                                <th>Kota</th>
-                                                                                <th>Jumlah Tipe</th>
-                                                                                <th>Unit Properti</th>
-                                                                                <th>PIC</th>
-                                                                                <th>Telepon</th>
-                                                                                <th>Staff Penilai</th>
-                                                                                <th>Status Approval</th>
-                                                                                <th style="width: 150px">Aksi</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
+                                                                    <div class="tab-scroll">
+                                                                        <table id="datatable" class="table table-bordered">
+                                                                            <thead class="bg-primary">
+                                                                                <tr>
+                                                                                    <th>Nama Proyek</th>
+                                                                                    <th>Kota</th>
+                                                                                    <th>Jumlah Tipe</th>
+                                                                                    <th>Unit Properti</th>
+                                                                                    <th>PIC</th>
+                                                                                    <th>Telepon</th>
+                                                                                    <th>Staff Penilai</th>
+                                                                                    <th>Status Approval</th>
+                                                                                    <th style="width: 150px">Aksi</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -110,18 +115,20 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <table id="datatable-independent" class="table table-bordered display responsive nowrap dataTable no-footer dtr-inline collapsed">
-                                                                        <thead class="bg-primary">
-                                                                            <tr>
-                                                                                <th>Nama Pengaju</th>
-                                                                                <th>Kota</th>
-                                                                                <th>Telepon</th>
-                                                                                <th>Staff Penilai</th>
-                                                                                <th>Status Approval</th>
-                                                                                <th style="width: 150px">Aksi</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
+                                                                    <div class="tab-scroll">
+                                                                        <table id="datatable-independent" class="table table-bordered">
+                                                                            <thead class="bg-primary">
+                                                                                <tr>
+                                                                                    <th>Nama Pengaju</th>
+                                                                                    <th>Kota</th>
+                                                                                    <th>Telepon</th>
+                                                                                    <th>Staff Penilai</th>
+                                                                                    <th>Status Approval</th>
+                                                                                    <th style="width: 150px">Aksi</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
