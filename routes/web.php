@@ -13,6 +13,10 @@
 /* Backend */
 
     /* Auth */
+			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
+			Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
+
     Route::post('/login',
         ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
 
@@ -208,6 +212,21 @@
 
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
+		
+		Route::resource('mitra', 'Mitra\MitraController');
+		Route::resource('gimmick', 'Mitra\GimmickController');
+		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
+		Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+		Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
+		Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
+		Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
+		Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
+		
+		Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
+		Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
+		Route::resource('hasil_scoring', 'Mitra\scoring\HasilScoringcontroller');
+		
+        Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
 
         /* Auditrail */
@@ -321,8 +340,16 @@
 
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');
+		
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
 
+		/* DirRpc */
+		
+        Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
+		
+		
+        Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
+		
         /*Auditrail*/
         // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
     });
