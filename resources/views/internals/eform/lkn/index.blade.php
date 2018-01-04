@@ -198,7 +198,7 @@
                 </div>
             </div>
 
-
+             @include('form_audit._input_long_lat')
             <div class="row">
                 <div class="col-md-12">
                     <div class="pull-right">

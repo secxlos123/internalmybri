@@ -151,6 +151,7 @@
             <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                 {{ csrf_field() }}
                 <input type="hidden" name="is_approved" id="is_approved">
+                <input type="hidden" name="auditaction" id="auditaction">
                 @include('internals.eform.approval._recommendation')
             </form>
             </div>
@@ -176,6 +177,7 @@
     };
     $('#btn-approve').on('click', function(){
         $('#is_approved').attr('value', true);
+        $('#auditaction').val('Approval Kredit');
         HoldOn.open(options);
         $('#form1').submit();
         HoldOn.close();
@@ -183,6 +185,7 @@
 
     $('#btn-reject').on('click', function(){
         $('#is_approved').attr('value', false);
+        $('#auditaction').val('Reject Kredit');
         HoldOn.open(options);
         $('#form1').submit();
         HoldOn.close();
