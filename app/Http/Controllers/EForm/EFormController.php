@@ -436,6 +436,7 @@ class EFormController extends Controller
     public function store(Request $request)
     {
         $data = $this->getUser();
+        $role = $data['role'];
         $newForm = $this->eformRequest($request, $data);
         // dd(json_encode($newForm));
 
@@ -456,9 +457,9 @@ class EFormController extends Controller
                    ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        , 'auditaction' => 'pengajuan kredit via '.$role
+                        , 'long' => $request['hidden-long']
+                        , 'lat' => $request['hidden-lat']
                     ])->setBody($newForm)
                    ->post('multipart');
                 // dd($client);

@@ -46,7 +46,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        
+                                         @include('form_audit._input_long_lat')
                                         @php ( $className = (old('status_property') == "1" && old('developer') != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                                         @php ( $classNameType = (old('status_property') != "1" || old('developer') == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                                         @php ( $classNameDeveloper = old('developer') ? '' : 'hide' )
