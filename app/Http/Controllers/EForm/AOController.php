@@ -393,7 +393,7 @@ class AOController extends Controller
           ],
         );
 
-        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount']);
+        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount','hidden-long','hidden-lat']);
           foreach ($allReq as $index => $req) {
             $inputData[] = [
               'name'     => $index,
@@ -435,9 +435,9 @@ class AOController extends Controller
          ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            , 'auditaction' => 'Verifikasi Data Nasabah'
+            , 'long' => $request['hidden-long']
+            , 'lat' =>$request['hidden-lat']
           ])
          ->setBody($newData)
          ->put('multipart');
