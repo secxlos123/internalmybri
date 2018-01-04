@@ -98,9 +98,9 @@ class AOController extends Controller
           ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            , 'auditaction' => 'Simpan Form LKN'
+            , 'long' =>  $request['hidden-long']
+            , 'lat' =>  $request['hidden-long']
           ])
           ->setBody($newForm)
           ->post('multipart');
