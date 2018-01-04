@@ -37,7 +37,7 @@ class LoginController extends Controller
         $client = Client::setEndpoint('auth/login')
             ->setHeaders([
                 'pn' => $request->pn
-                , 'auditaction' => 'Login'
+                , 'auditaction' => 'login internal'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
@@ -97,9 +97,9 @@ class LoginController extends Controller
         $logout = Client::setEndpoint('auth/logout')->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            , 'auditaction' => 'Logout'
-            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            , 'auditaction' => 'logout internal'
+            , 'long' => $request['hidden-long']
+            , 'lat' => $request['hidden-lat'] 
         ])->deleted();
 
         session()->flush();
