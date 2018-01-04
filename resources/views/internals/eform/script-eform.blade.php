@@ -751,14 +751,14 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: `/offices`,
+                url: '/offices',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
                     return {
                         distance : distance,
-                        long : long,
-                        lat : lat,
+                        longitude : long,
+                        latitude : lat,
                         name: params.term,
                         page: params.page || 1,
                     };
