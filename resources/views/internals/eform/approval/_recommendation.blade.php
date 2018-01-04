@@ -36,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            @include('form_audit._input_long_lat')
         </div>
         @endif
         <hr>
