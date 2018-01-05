@@ -144,10 +144,10 @@ class CollateralStaffController extends Controller
       $client = Client::setEndpoint('collateral/reject/'.$id)
       ->setHeaders([
         'Authorization' => $data['token']
-        , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+        , 'pn'          => $data['pn']
+        , 'auditaction' => $request['auditaction']
+        , 'long'        => $request['hidden-long']
+        , 'lat'         => $request['hidden-lat']
       ])
       ->setBody($remark)
       ->post();
@@ -170,14 +170,15 @@ class CollateralStaffController extends Controller
      */
     public function getLKNAgunan($dev_id, $prop_id)
     {
+
       $data = $this->getUser();
 
       if($dev_id == 1){
         $type = 'nonindex';
-        $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        $collateral = $this->getDataNonIndex($dev_id, $prop_id, $data);
       }else{
         $type = '';
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        $collateral = $this->getDataIndex($dev_id, $prop_id, $data);
             // dd($collateral);
       }
       if($collateral['property']['category'] == 0){
@@ -269,7 +270,7 @@ class CollateralStaffController extends Controller
         // ];
 
       \Log::info($request->all());
-      foreach ($request->except('_token', 'collateral_type') as $field => $value) {
+      foreach ($request->except('_token', 'collateral_type','hidden-long','hidden-lat') as $field => $value) {
         foreach ($value as $index => $data) {
           $baseName = $field . '[' . $index . ']';
           $return = $this->returnContent( $baseName, $data, $index );
@@ -299,10 +300,10 @@ class CollateralStaffController extends Controller
       $client = Client::setEndpoint('collateral/ots/'.$id)
       ->setHeaders([
         'Authorization' => $data['token']
-        , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+        , 'pn'          => $data['pn']
+        , 'auditaction' => 'Simpan Form Penilaian Agunan'
+        , 'long'        => $request['hidden-long']
+        , 'lat'         => $request['hidden-lat']
       ])
       ->setBody($newForm)
       ->post('multipart');
@@ -340,7 +341,7 @@ class CollateralStaffController extends Controller
       $application = [];
 
       // dd($request->all());
-      foreach ($request->except('_token') as $field => $value) {
+      foreach ($request->except('_token','hidden-lat', 'hidden-long') as $field => $value) {
         $application[] = [
           'name' => $field
           , 'contents' => fopen($value->getRealPath(), 'r')
@@ -368,10 +369,10 @@ class CollateralStaffController extends Controller
       $client = Client::setEndpoint('collateral/otsdoc/'.$id)
       ->setHeaders([
         'Authorization' => $data['token']
-        , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+        , 'pn'          => $data['pn']
+        , 'auditaction' => 'unggah dokumen checklist'
+        , 'long'        => $request['hidden-long']
+        , 'lat'         => $request['hidden-lat']
       ])
       ->setBody($newForm)
       ->post('multipart');
@@ -487,5 +488,45 @@ class CollateralStaffController extends Controller
       $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
 
       return response()->json($collateral['contents']);
+    }
+
+    /**
+     * Get detail NonIndex of collateral for getLKNagunan.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDataNonIndex($dev_id, $prop_id, $data)
+    {
+      $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn'          => $data['pn']
+        , 'auditaction' => 'ots menilai agunan'
+        , 'long'        => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+        , 'lat'         => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+      ])->get();
+
+      return $detailCollateral['contents'];
+    }
+
+    /**
+     * Get detail of collateral.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDataIndex($dev_id, $prop_id, $data)
+    {
+      $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn'          => $data['pn']
+        , 'auditaction' => 'ots menilai agunan'
+        , 'long'        => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+        , 'lat'         => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+      ])->get();
+
+      return $detailCollateral['contents'];
     }
   }
