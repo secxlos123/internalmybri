@@ -357,34 +357,34 @@
   //calculate npw
     $('#npw_land')
         .on('input', function() {
-          var val1 = parseInt($('#npw_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#npw_building').val().replace(/\,/g, ''));
           var all = $('#npw_all');
           counting(this, val1, all);
         })
         .on('change', function() {
-          var val1 = parseInt($('#npw_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#npw_building').val().replace(/\,/g, ''));
           var all = $('#npw_all');
           counting(this, val1, all);
         })
         .on('blur', function() {
-          var val1 = parseInt($('#npw_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#npw_building').val().replace(/\,/g, ''));
           var all = $('#npw_all');
           counting(this, val1, all);
         });
 
     $('#npw_building')
       .on('input', function() {
-        var val1 = parseInt($('#npw_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#npw_land').val().replace(/\,/g, ''));
         var all = $('#npw_all');
         counting(this, val1, all);
       })
       .on('change', function() {
-        var val1 = parseInt($('#npw_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#npw_land').val().replace(/\,/g, ''));
         var all = $('#npw_all');
         counting(this, val1, all);
       })
       .on('blur', function() {
-        var val1 = parseInt($('#npw_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#npw_land').val().replace(/\,/g, ''));
         var all = $('#npw_all');
         counting(this, val1, all);
       });
@@ -392,34 +392,34 @@
     //calculate pnpw
     $('#pnpw_land')
         .on('input', function() {
-          var val1 = parseInt($('#pnpw_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#pnpw_building').val().replace(/\,/g, ''));
           var all = $('#pnpw_all');
           counting(this, val1, all);
         })
         .on('change', function() {
-          var val1 = parseInt($('#pnpw_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#pnpw_building').val().replace(/\,/g, ''));
           var all = $('#pnpw_all');
           counting(this, val1, all);
         })
         .on('blur', function() {
-          var val1 = parseInt($('#pnpw_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#pnpw_building').val().replace(/\,/g, ''));
           var all = $('#pnpw_all');
           counting(this, val1, all);
         });
 
     $('#pnpw_building')
       .on('input', function() {
-        var val1 = parseInt($('#pnpw_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#pnpw_land').val().replace(/\,/g, ''));
         var all = $('#pnpw_all');
         counting(this, val1, all);
       })
       .on('change', function() {
-        var val1 = parseInt($('#pnpw_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#pnpw_land').val().replace(/\,/g, ''));
         var all = $('#pnpw_all');
         counting(this, val1, all);
       })
       .on('blur', function() {
-        var val1 = parseInt($('#pnpw_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#pnpw_land').val().replace(/\,/g, ''));
         var all = $('#pnpw_all');
         counting(this, val1, all);
       });
@@ -427,34 +427,34 @@
       //calculate nl
     $('#nl_land')
         .on('input', function() {
-          var val1 = parseInt($('#nl_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#nl_building').val().replace(/\,/g, ''));
           var all = $('#nl_all');
           counting(this, val1, all);
         })
         .on('change', function() {
-          var val1 = parseInt($('#nl_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#nl_building').val().replace(/\,/g, ''));
           var all = $('#nl_all');
           counting(this, val1, all);
         })
         .on('blur', function() {
-          var val1 = parseInt($('#nl_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#nl_building').val().replace(/\,/g, ''));
           var all = $('#nl_all');
           counting(this, val1, all);
         });
 
     $('#nl_building')
       .on('input', function() {
-        var val1 = parseInt($('#nl_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#nl_land').val().replace(/\,/g, ''));
         var all = $('#nl_all');
         counting(this, val1, all);
       })
       .on('change', function() {
-        var val1 = parseInt($('#nl_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#nl_land').val().replace(/\,/g, ''));
         var all = $('#nl_all');
         counting(this, val1, all);
       })
       .on('blur', function() {
-        var val1 = parseInt($('#nl_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#nl_land').val().replace(/\,/g, ''));
         var all = $('#nl_all');
         counting(this, val1, all);
       });
@@ -462,40 +462,40 @@
       //calculate pnl
     $('#pnl_land')
         .on('input', function() {
-          var val1 = parseInt($('#pnl_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#pnl_building').val().replace(/\,/g, ''));
           var all = $('#pnl_all');
           counting(this, val1, all);
         })
         .on('change', function() {
-          var val1 = parseInt($('#pnl_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#pnl_building').val().replace(/\,/g, ''));
           var all = $('#pnl_all');
           counting(this, val1, all);
         })
         .on('blur', function() {
-          var val1 = parseInt($('#pnl_building').val().replace(',00', '').replace(/\./g, ''));
+          var val1 = parseInt($('#pnl_building').val().replace(/\,/g, ''));
           var all = $('#pnl_all');
           counting(this, val1, all);
         });
 
     $('#pnl_building')
       .on('input', function() {
-        var val1 = parseInt($('#pnl_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#pnl_land').val().replace(/\,/g, ''));
         var all = $('#pnl_all');
         counting(this, val1, all);
       })
       .on('change', function() {
-        var val1 = parseInt($('#pnl_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#pnl_land').val().replace(/\,/g, ''));
         var all = $('#pnl_all');
         counting(this, val1, all);
       })
       .on('blur', function() {
-        var val1 = parseInt($('#pnl_land').val().replace(',00', '').replace(/\./g, ''));
+        var val1 = parseInt($('#pnl_land').val().replace(/\,/g, ''));
         var all = $('#pnl_all');
         counting(this, val1, all);
       });
 
     function counting(element, val1, all) {
-      var val = parseInt($(element).val().replace(',00', '').replace(/\./g, ''));      
+      var val = parseInt($(element).val().replace(/\,/g, ''));      
       npw_all = (val1) + (val);
       if(isNaN(parseInt(npw_all))){
         all.val(val);

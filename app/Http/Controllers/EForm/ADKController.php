@@ -783,9 +783,6 @@ class ADKController extends Controller
 
     public function exportDebitur(Request $request) {
         $data = $this->getUser();
-        // $angka = 125000000000000;
-        // $terbilang = $this->terbilang($angka,$style=3);
-        // print_r($terbilang);exit();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
                     ->setHeaders([ 
@@ -796,51 +793,57 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $fasilitas   = substr($detail['Kode_fasilitas'],-2);
-            $no_skpp     = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
-            // dd($fasilitas);
-            $no_sk_awal  = $detail['no_dan_tanggal_sk_awal'];
-            $no_sk_akhir = $detail['no_dan_tanggal_sk_akhir'];
-            // $tgl_sk_awal = $detail['no_dan_tanggal_sk_awal'];
-            // $tgl_sk_akhir= $detail['no_dan_tanggal_sk_akhir'];
-            $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
-
+            $no_skpp    = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
             $detail_sph = [
                 'nama_debitur'  => $detail['customer']['personal']['first_name'],
                 'nama_pasangan' => $detail['customer']['personal']['couple_name'],
+                'nama_emergency'=> $detail['customer']['contact']['emergency_name'],
+                'tgl_lahir_deb' => $detail['customer']['personal']['birth_date'],
+                'tgl_pasangan'  => $detail['customer']['personal']['couple_birth_date'],
+                'tmpt_lahir_deb'=> $detail['customer']['personal']['birth_place'],
+                'tmpt_pasangan' => $detail['customer']['personal']['couple_birth_place'],
                 'ktp'           => $detail['customer']['personal']['nik'],
                 'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
+                'jenis_kelamin' => $detail['customer']['personal']['gender'],
                 'pekerjaan'     => $detail['customer']['work']['work'],
                 'alamat'        => $detail['customer']['personal']['address'],
+                'alamat_dom'    => $detail['customer']['personal']['current_address'],
+                'alamat_kantor' => $detail['customer']['work']['office_address'],
+                'tlp_emergency' => $detail['customer']['contact']['emergency_contact'],
                 'status'        => $detail['customer']['personal']['status'],
+                'tlp_rumah'     => $detail['customer']['personal']['phone'],
+                'handphone'     => $detail['customer']['personal']['mobile_phone'],
+                'jml_tanggungan'=> $detail['customer']['personal']['dependent_amount'],
+                'nama_ibu'      => $detail['customer']['personal']['mother_name'],
+                'kewarganegaran'=> $detail['customer']['personal']['citizenship_id'],
+                'email'         => $detail['customer']['personal']['email'],
+                'status_rumah'  => $detail['customer']['personal']['address_status'],
+                'gaji'          => $detail['customer']['personal']['salary'],
+                'gaji_lainnya'  => $detail['customer']['personal']['other_salary'],
+                'lama_kerja'    => $detail['customer']['work']['work_duration'],
+                'lama_kerja_bln'=> $detail['customer']['work']['work_duration_month'],
+                'jabatan'       => $detail['customer']['work']['position'],
+                'jenis_pinjaman'=> $detail['tp_produk'],
+                'instansi'      => $detail['mitra'],
+                'nip'           => $detail['NIP'],
+                'status_kerja'  => $detail['Status_Pekerjaan'],
+                'nama_atasan'   => $detail['Nama_atasan_Langsung'],
+                'jabatan_atasan'=> $detail['Jabatan_atasan'],
+                'npwp'          => $detail['no_npwp'],
                 'kantor_cabang' => $detail['branch_name'],
                 'pinjaman'      => $detail['Plafond_usulan'],
                 'tujuan'        => $detail['Tujuan_penggunaan_kredit'],
                 'jangka_waktu'  => $detail['Jangka_waktu'],
                 'suku_bunga'    => ($detail['Suku_bunga'] / 12),
                 'angsuran'      => $detail['angsuran_usulan'],
-                'provisi'       => $detail['Provisi_kredit'],
-                'provisi_atau'  => $provisi,
-                'biaya_adm'     => $detail['Biaya_administrasi'],
-                'asuransi'      => $detail['Premi_asuransi_jiwa'],
-                'beban_debitur' => $detail['Premi_beban_debitur'],
-                'beban_bri'     => $detail['Premi_beban_bri'],
-                'pengadilan'    => $detail['Pengadilan_terdekat'],
-                'cif_las'       => $detail['cif_las'],
                 'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=3),
                 'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=3),
                 'bil_day'       => $this->terbilang(date('d'),$style=3),
                 'bil_month'     => $this->terbilang(date('m'),$style=3),
                 'bil_year'      => $this->terbilang(date('Y'),$style=3),
-                'bil_provisi'   => $this->terbilang($detail['Provisi_kredit'],$style=3),
                 'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
                 'bil_angsuran'  => $this->terbilang($detail['angsuran_usulan'],$style=3),
-                'bil_biaya_adm' => $this->terbilang($detail['Biaya_administrasi'],$style=3),
-                'no_skpp'       => $no_skpp,
-                'no_sk_awal'    => $no_sk_awal,
-                'no_sk_akhir'   => $no_sk_akhir
-                // 'tgl_sk_awal'   => $tgl_sk_awal,
-                // 'tgl_sk_akhir'  => $tgl_sk_akhir
+                'no_skpp'       => $no_skpp
             ];
             // dd($detail_sph);
 
