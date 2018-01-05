@@ -1146,9 +1146,9 @@ var counter = 1;
 		success: function(data) {
 		 console.log("Data added!", data);
 		 
-			/* var url = window.location.href;
+			var url = window.location.href;
 			var url = url.replace("gimmick", "gimmick_list");
-			window.location.href = url; */
+			window.location.href = url;
 		}
 		});
 	}
