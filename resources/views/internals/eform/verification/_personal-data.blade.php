@@ -156,7 +156,7 @@
                                         'data-bri' => ''
                                     ]) !!}
                                 @else
-                                    <p>{{ isset($dataCustomer['customer']['gender']) &&($dataCustomer['customer']['gender'] == 'L') ? 'Laki-laki' : 'Perempuan'}}</p>
+                                    <p>{{ isset($dataCustomer['customer']['gender']) ? $dataCustomer['customer']['gender'] : ''}}</p>
                                 @endif
 
                                     @if ($errors->has('gender'))
