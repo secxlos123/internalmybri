@@ -97,12 +97,9 @@
 
 	$('.use_reason').on('change', function(){
 		$('#use_reason_id').val($(this).val());
+        var project = $('.project_list').val();
 		// console.log($(this).val());
-        if($(this).val() == 2){
-            $('#shm').removeAttr('hidden');
-            $('#imb').removeAttr('hidden');
-            $('#investigate').removeAttr('hidden');
-        }else if($(this).val() == 18){
+        if(($(this).val() == 2) || ($(this).val() == 18) || (project == 1)){
             $('#shm').removeAttr('hidden');
             $('#imb').removeAttr('hidden');
             $('#investigate').removeAttr('hidden');
