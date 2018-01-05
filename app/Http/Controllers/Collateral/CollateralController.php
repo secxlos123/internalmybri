@@ -166,9 +166,9 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                , 'auditaction' => 'Post Assigment'
+                , 'auditaction' => 'disposisi collateral'
                 , 'long' => $request['hidden-long']
-                , 'lat'  => $request['hidden-lat'] 
+                , 'lat'  => $request['hidden-lat']
             ])->setBody($disposition)
             ->post();
 
@@ -242,7 +242,7 @@ class CollateralController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
+                    , 'auditaction' => 'approval collateral'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setBody($reqs)
@@ -253,7 +253,7 @@ class CollateralController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
+                    , 'auditaction' => 'reject collateral'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setBody($reqs)

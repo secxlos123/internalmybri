@@ -20,12 +20,14 @@
                     </div>
                 </div>
 
+                @if($collateral['status_property'] == 1)
                 <div class="form-group">
                     <label class="col-md-5 control-label">Developer :</label>
                     <div class="col-md-7">
                         <p class="form-control-static">{{$collateral['developer_name']}}</p>
                     </div>
                 </div>
+                @endif
                 <div class="form-group">
                     <label class="col-md-5 control-label">Jenis Properti :</label>
                     <div class="col-md-7">
