@@ -83,7 +83,6 @@
                                 @include('internals.collateral.staff.lkn-collateral._step-10')
 
                             </div>
-                            @include('form_input._input_long_lat')
                         </form>
                     </div>
                 </div>
