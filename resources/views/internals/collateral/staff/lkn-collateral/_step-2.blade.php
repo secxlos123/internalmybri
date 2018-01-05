@@ -108,7 +108,7 @@
                         <!-- <label class="col-md-4 control-label">Masa Hak tanah * :</label> -->
                         <!-- <div class="col-md-8"> -->
                             <!-- <div class="input-group"> -->
-                                <input type="hidden" class="form-control datepicker-autoclose" name="letter[duration_land_authorization]" value="-" id="letter_duration">
+                                <input type="hidden" class="form-control datepicker-autoclose" value="-" id="letter_duration">
                                 <!-- <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span> -->
                             <!-- </div> -->
                         <!-- </div> -->
