@@ -115,6 +115,12 @@
             },
         });
     });
+    var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'?&hidden-lat='+$('input[name="hidden-lat"]').val();
+    $(document).ready(function(){
+        $('#btn-approve').on('click', function(event){
+            window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+LongLat);
+        });
+    });
 
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');
