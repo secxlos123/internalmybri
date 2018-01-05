@@ -420,13 +420,18 @@ class DropdownController extends Controller
             ])
             ->get();
 
-        foreach ($staffs['contents']['data'] as $key => $staff) {
-            if ($staff['id'] = $staff['id']) {
-                $staff['text'] = $staff['name'];
-                $staffs['contents']['data'][$key] = $staff;
+        if(!empty($staffs)){
+            foreach ($staffs['contents']['data'] as $key => $staff) {
+                if ($staff['id'] = $staff['id']) {
+                    $staff['text'] = $staff['name'];
+                    $staffs['contents']['data'][$key] = $staff;
+                }
             }
+            $contents = $staffs['contents'];
+        }else{
+            $contents = [];
         }
 
-        return response()->json(['staffs' => $staffs['contents']]);
+        return response()->json(['staffs' => $contents]);
     }
 }

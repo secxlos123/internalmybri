@@ -48,10 +48,10 @@ class GimmickController extends Controller
             $dir['gimmick_name'] = strtoupper($dir['gimmick_name']);
             $dir['no'] = strtoupper($i);
             $dir['gimmick_level'] = strtoupper($dir['gimmick_level']);
-            $dir['area_level'] = strtoupper($dir['area_level']);
-			$dir['segmen_level'] = strtoupper($dir['segmen_level']);
-			$dir['payroll'] = strtoupper($dir['payroll']);
-			$dir['dir_rpc'] = strtoupper($dir['dir_rpc']);
+            $dir['first_month'] = strtoupper($dir['first_month']);
+			$dir['last_month'] = strtoupper($dir['last_month']);
+			$dir['persen_bunga'] = strtoupper($dir['persen_bunga']);
+			//$dir['dir_rpc'] = strtoupper($dir['dir_rpc']);
 			$dir['action'] = $action;
             $gimmick['contents']['data'][$key] = $dir;
 			$i = $i+1;

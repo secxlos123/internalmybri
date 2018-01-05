@@ -42,8 +42,10 @@
         <hr>
             <div class="text-center">
             @if ($type != 'preview')
-                <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
-                <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
+                @if($detail['prescreening_status'] != '-')
+                    <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
+                    <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
+                @endif
             @else
                 <button type="button" onclick="printPage()" class="btn waves-light waves-effect w-md m-b-20"><i class="fa fa-print"></i> Print</button>
             @endif

@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="form-group clearfix">
-                            <label class="col-md-4 control-label">Kecocokan Data Dengan Kantor Anggara/BPN * :</label>
+                            <label class="col-md-4 control-label">Kecocokan Data Dengan Kantor Anggaran/BPN * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('letter[match_bpn]', array("" => "", 
                                     "Cocok" => "Cocok", 
@@ -104,21 +104,21 @@
                             <input type="text" class="form-control" name="letter[on_behalf_of]" maxlength="25" value="{{old('letter[on_behalf_of]')}}" id="letter_on_behalf_on">
                         </div>
                     </div>
-                    <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Masa Hak tanah * :</label>
-                        <div class="col-md-8">
-                            <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="letter[duration_land_authorization]" value="{{old('letter[duration_land_authorization]')}}" id="letter_duration">
-                                <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group clearfix">
-                        <label class="col-md-4 control-label">Nama Kantor Anggaran/BPN * :</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[bpn_name]" maxlength="50" value="{{old('letter[bpn_name]')}}" id="letter_bpn_name">
-                        </div>
-                    </div>
+                    <!-- <div class="form-group clearfix"> -->
+                        <!-- <label class="col-md-4 control-label">Masa Hak tanah * :</label> -->
+                        <!-- <div class="col-md-8"> -->
+                            <!-- <div class="input-group"> -->
+                                <input type="hidden" class="form-control datepicker-autoclose" value="-" id="letter_duration">
+                                <!-- <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="form-group clearfix"> -->
+                        <!-- <label class="col-md-4 control-label">Nama Kantor Anggaran/BPN * :</label> -->
+                        <!-- <div class="col-md-8"> -->
+                            <input type="hidden" class="form-control" name="letter[bpn_name]" maxlength="50" value="-" id="letter_bpn_name">
+                        <!-- </div> -->
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
