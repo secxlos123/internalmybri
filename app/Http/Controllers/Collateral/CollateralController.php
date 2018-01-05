@@ -166,7 +166,7 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                , 'auditaction' => 'action name'
+                , 'auditaction' => 'Post Assigment'
                 , 'long' => $request['hidden-long']
                 , 'lat'  => $request['hidden-lat'] 
             ])->setBody($disposition)
