@@ -140,12 +140,12 @@ class CollateralStaffController extends Controller
       $remark = [
         'remark' => $request->remark
       ];
-
+      $auditaction = $request['auditaction'].' via '.$data['role'];
       $client = Client::setEndpoint('collateral/reject/'.$id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' => $request['auditaction']
+        , 'auditaction' => $auditaction
         , 'long'        => $request['hidden-long']
         , 'lat'         => $request['hidden-lat']
       ])
@@ -365,12 +365,12 @@ class CollateralStaffController extends Controller
       $data = $this->getUser();
       $newForm = $this->docsRequest($request);
       // dd($newForm);
-
+      $role = $data['role'];
       $client = Client::setEndpoint('collateral/otsdoc/'.$id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' => 'unggah dokumen checklist'
+        , 'auditaction' => 'unggah dokumen checklist via '.$role
         , 'long'        => $request['hidden-long']
         , 'lat'         => $request['hidden-lat']
       ])
@@ -498,11 +498,12 @@ class CollateralStaffController extends Controller
      */
     public function getDataNonIndex($dev_id, $prop_id, $data)
     {
+      $role = $data['role'];
       $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' => 'ots menilai agunan'
+        , 'auditaction' => 'ots menilai agunan via '.$role
         , 'long'        => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
         , 'lat'         => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
       ])->get();
@@ -518,11 +519,12 @@ class CollateralStaffController extends Controller
      */
     public function getDataIndex($dev_id, $prop_id, $data)
     {
+      $role = $data['role'];
       $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' => 'ots menilai agunan'
+        , 'auditaction' => 'ots menilai agunan via '.$role
         , 'long'        => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
         , 'lat'         => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
       ])->get();
