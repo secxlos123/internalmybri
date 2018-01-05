@@ -168,18 +168,18 @@ class CollateralStaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLKNAgunan($dev_id, $prop_id)
+    public function getLKNAgunan(Request $request, $dev_id, $prop_id)
     {
 
       $data = $this->getUser();
 
       if($dev_id == 1){
         $type = 'nonindex';
-        $collateral = $this->getDataNonIndex($dev_id, $prop_id, $data);
+        $collateral = $this->getDataNonIndex($request, $dev_id, $prop_id, $data);
        // dd($collateral);
       }else{
         $type = '';
-        $collateral = $this->getDataIndex($dev_id, $prop_id, $data);
+        $collateral = $this->getDataIndex($request, $dev_id, $prop_id, $data);
             // dd($collateral);
       }
       if($collateral['property']['category'] == 0){
@@ -499,6 +499,7 @@ class CollateralStaffController extends Controller
      */
     public function getDataNonIndex(Request $request, $dev_id, $prop_id, $data)
     {
+    //  dd($request->all());
       $role = $data['role'];
       $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
@@ -520,6 +521,7 @@ class CollateralStaffController extends Controller
      */
     public function getDataIndex(Request $request, $dev_id, $prop_id, $data)
     {
+     // dd($request->all());
       $role = $data['role'];
       $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
