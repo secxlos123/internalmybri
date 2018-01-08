@@ -170,7 +170,7 @@ class CollateralStaffController extends Controller
      */
     public function getLKNAgunan(Request $request, $dev_id, $prop_id)
     {
-
+    //  dd($request->all());
       $data = $this->getUser();
 
       if($dev_id == 1){
@@ -497,16 +497,17 @@ class CollateralStaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getDataNonIndex(Request $request, $dev_id, $prop_id, $data)
+    public function getDataNonIndex($request, $dev_id, $prop_id, $data)
     {
     //  dd($request->all());
       $role = $data['role'];
+      $long = number_format(floatval($request['hidden-long']), 5);
       $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' => 'ots menilai agunan via '.$role
-        , 'long'        => $request['hidden-long']
+        , 'auditaction' =>  $request['ket'].' via '.$role
+        , 'long'        => $long
         , 'lat'         => $request['hidden-lat']
       ])->get();
 
@@ -519,16 +520,17 @@ class CollateralStaffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getDataIndex(Request $request, $dev_id, $prop_id, $data)
+    public function getDataIndex($request, $dev_id, $prop_id, $data)
     {
-     // dd($request->all());
+   //   dd($request->all());
       $role = $data['role'];
+      $long = number_format(floatval($request['hidden-long']), 5);
       $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
         , 'auditaction' => 'ots menilai agunan via '.$role
-        , 'long'        => $request['hidden-long']
+        , 'long'        => $long
         , 'lat'         => $request['hidden-lat']
       ])->get();
 

@@ -172,7 +172,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @include('form_audit._input_long_lat')
                             <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20 pull-right">Simpan</button>
                         </div>
                     </div>
