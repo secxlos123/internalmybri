@@ -17,6 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @if (count($collateral['property']['propertyTypes'])>0)
                     @foreach($collateral['property']['propertyTypes'] as $index => $propType)
                         <tr>
                             <td>
@@ -43,6 +44,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    @endif
                     </tbody>
                 </table>
                 <div class="col-md-6">
