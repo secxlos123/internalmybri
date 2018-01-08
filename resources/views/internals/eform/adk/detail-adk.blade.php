@@ -205,7 +205,7 @@
             </div>
 
             <!-- rekomendasi approval -->
-            @if($detail['is_send'] == '0' && $detail['is_verified'] == '1')                    
+            @if($detail['is_send'] == '1' && $detail['is_verified'] == '1')                    
                 <div class="text-center">
                     <div class="row">
                         <div class="col-md-6">
@@ -255,18 +255,20 @@
                     {{ csrf_field() }}
                         <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">
                         <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
+                        <input type="hidden" name="type" value="kirim">
                         <input type="hidden" name="uid" value="{{$detail['uid']}}">
                         <h3 class="panel-title">catatan :</h3>
                         <hr> 
-                        <input type="text" name="catatan" class="form-control">
+                        <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
                         <hr>
                         <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                        <!-- <button class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-batal">Batalkan Kirim</button> -->
                         <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
                     </form>
                 </div>
             @else
                 <div class="text-center">
-                    <a href="{{route('adk.index')}}" class="btn btn-default">Kembali</a>
+                    <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                 </div>
             @endif
         </div>
@@ -287,6 +289,39 @@
         HoldOn.open(options);
         $('#form1').submit();
         HoldOn.close();
+    })
+
+    $('#btn-batal').on('click', function(){
+        eformId = $("#eform_id").val();
+        catatan_adk = $("#catat_adk").val();
+        HoldOn.open(options);
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("post_adk") }}',
+            data: {
+
+                eform_id  : eformId,
+                type      : 'batal',
+                catat_adk : catatan_adk
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+        }).done(function(data){
+            // console.log(data);
+            // $('#result-modal-ktp').modal('hide');
+            alert(data.message);
+            HoldOn.close();
+            if (data.code == 200) {
+                location.reload();
+            } else {
+                $("#catat_adk").focus();
+            }
+        }).fail(function(errors) {
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
+        });
     })
 
     $('#btn-verifikasi').on('click', function(){
