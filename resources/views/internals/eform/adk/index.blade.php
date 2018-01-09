@@ -109,13 +109,14 @@
                         <table id="datatable" class="table table-bordered">
                             <thead class="bg-primary">
                                 <tr>
+                                    <th>Tanggal Pengajuan</th>
                                     <th>ID Aplikasi</th>
+                                    <th>No Referensi</th>
                                     <th>Produk</th>
                                     <th>Nama Pegawai</th>
                                     <th>Nama Debitur</th>
                                     <th>Plafond</th>
-                                    <th>Status</th>
-                                    <th style="width: 100px">Aksi</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -22,7 +22,63 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Penggunaan Kredit :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Penggunaan_kredit']}}</p>
+                    <p class="form-control-static">{{}}
+                        @if($detail['Penggunaan_kredit'] == '10')
+                            KMKU/PERTAMBANGAN
+                        @elseif($detail['Penggunaan_kredit'] == '11')
+                            KMKU/PERINDUSTRIAN
+                        @elseif($detail['Penggunaan_kredit'] == '12')
+                            KMKU/LISTRIK, GAS & AIR
+                        @elseif($detail['Penggunaan_kredit'] == '13')
+                            KMKU/KONSTRUKSI
+                        @elseif($detail['Penggunaan_kredit'] == '14')
+                            KMKU/PERDAGANGAN, HOTEL & RESTORAN
+                        @elseif($detail['Penggunaan_kredit'] == '15')
+                            KMKU/PENGANGKUTAN
+                        @elseif($detail['Penggunaan_kredit'] == '16')
+                            KMKU/JASA DUNIA USAHA & JASA SOSIAL
+                        @elseif($detail['Penggunaan_kredit'] == '17')
+                            KMKU/IMPOR EKSPOR
+                        @elseif($detail['Penggunaan_kredit'] == '18')
+                            KMKU/PERTANIAN
+                        @elseif($detail['Penggunaan_kredit'] == '20')
+                            KI U/PERTAMBANGAN
+                        @elseif($detail['Penggunaan_kredit'] == '21')
+                            KI U/PERINDUSTRIAN
+                        @elseif($detail['Penggunaan_kredit'] == '22')
+                            KI U/LISTRIK, GAS & AIR
+                        @elseif($detail['Penggunaan_kredit'] == '23')
+                            KI U/KONTRUKSI
+                        @elseif($detail['Penggunaan_kredit'] == '24')
+                            KI U/PERDAGANGAN, HOTEL & RESTORAN
+                        @elseif($detail['Penggunaan_kredit'] == '25')
+                            KI U/PENGANGKUTAN
+                        @elseif($detail['Penggunaan_kredit'] == '26')
+                            KI U/JASA DUNIA USAHA & JASA SOSIAL
+                        @elseif($detail['Penggunaan_kredit'] == '27')
+                            KI U/IMPOR EKSPOR
+                        @elseif($detail['Penggunaan_kredit'] == '28')
+                            KI U/PERTANIAN
+                        @elseif($detail['Penggunaan_kredit'] == '30')
+                            KONSUMSI
+                        @elseif($detail['Penggunaan_kredit'] == '31')
+                            LAIN-LAIN
+                        @elseif($detail['Penggunaan_kredit'] == '32')
+                            BG
+                        @elseif($detail['Penggunaan_kredit'] == '33')
+                            KMKU/PENGEMBANG
+                        @elseif($detail['Penggunaan_kredit'] == '34')
+                            KMKI yang terdapat PJI
+                        @elseif($detail['Penggunaan_kredit'] == '35')
+                            KI Import yang terdapat PJI
+                        @elseif($detail['Penggunaan_kredit'] == '36')
+                            Fasilitas Direct
+                        @elseif($detail['Penggunaan_kredit'] == '37')
+                            Fasilitas In Direct
+                        @else
+                            Fasilitas Direct maupun Indirect
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -290,22 +346,28 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Premi Beban BRI :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Premi_beban_bri']}}</p>
+                    <p class="form-control-static">{{$detail['Premi_beban_bri']}} % &nbsp;Rp. {{number_format($asuransi['premi_beban_bri'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['branch_id']}}</p>
+                    <p class="form-control-static">{{$detail['pemrakarsa_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">NPL Instansi :</label>
+                <label class="col-md-5 control-label">NPL Mitra Kerjasama :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['npl_instansi']}}</p>
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-md-5 control-label">NPL Unit Kerja :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
+                </div>
+            </div>
+            <!-- <div class="form-group">
                 <label class="col-md-5 control-label">Jumlah Pekerja :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['jumlah_pekerja']}}</p>
@@ -316,7 +378,7 @@
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['jumlah_debitur']}}</p>
                 </div>
-            </div>
+            </div> -->
         </form>  
     </div>
     <div class="col-md-6">
@@ -336,7 +398,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Total Eksposure Group Debitur Selain Debitur :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">Rp. {{$detail['total_exposure']}}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['total_exposure'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -348,7 +410,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pinalty :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Penalty']}}</p>
+                    <p class="form-control-static">{{$detail['Penalty']}} %</p>
                 </div>
             </div>
             <div class="form-group">
@@ -438,25 +500,19 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Premi Asuransi Jiwa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Premi_asuransi_jiwa']}}</p>
+                    <p class="form-control-static">{{$detail['Premi_asuransi_jiwa']}} % &nbsp;Rp. {{number_format($asuransi['premi_as_jiwa'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Premi Beban Debitur :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Premi_beban_debitur']}}</p>
+                    <p class="form-control-static">{{$detail['Premi_beban_debitur']}} % &nbsp;Rp. {{number_format($asuransi['premi_beban_debitur'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Uker Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['pemrakarsa_name']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">NPL Unit Kerja :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
+                    <p class="form-control-static">{{$detail['branch_id']}}</p>
                 </div>
             </div>
         </form>

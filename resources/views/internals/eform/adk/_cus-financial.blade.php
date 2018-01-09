@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Jumlah Tanggungan :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ $detail['customer']['financial']['dependent_amount'] }}</p>
+                    <p class="form-control-static">{{$detail['customer']['financial']['dependent_amount']}} orang</p>
                 </div>
             </div>
         </form>

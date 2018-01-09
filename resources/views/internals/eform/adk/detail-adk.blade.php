@@ -215,19 +215,7 @@
                                         <div class="col-md-12">
                                             <form class="form-horizontal" role="form">
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data Kredit :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data Instansi :</label>
+                                                    <label class="col-md-5 control-label">Cetak Data SPH :</label>
                                                     <div class="col-md-5">
                                                         <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download SPH</a>
                                                     </div>
@@ -239,9 +227,9 @@
                                         <div class="col-md-12">
                                             <form class="form-horizontal" role="form">
                                                 <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data Debitur :</label>
+                                                    <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download Debitur</a>
+                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download Form Pengajuan</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -265,6 +253,29 @@
                         <!-- <button class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-batal">Batalkan Kirim</button> -->
                         <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
                     </form>
+                </div>
+            @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1')
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Data PTK/IPK :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download PTK/IPK</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @else
                 <div class="text-center">

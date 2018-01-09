@@ -46,13 +46,29 @@ class ADKController extends Controller
             ->get();
         $detail = $formDetail['contents'];
         // dd($detail);
+
         $conten = [
             'nik' => '',
             'tp_produk' => '',
             'uid_pemrakarsa' => ''
         ];
+        $asuransi = [
+            'premi_as_jiwa' => '',
+            'premi_beban_debitur' => '',
+            'premi_beban_bri' => ''
+        ];
 
         if (!empty($detail)) {
+            $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
+
+            $asuransi = [
+                'premi_as_jiwa' => $premi_as_jiwa,
+                'premi_beban_debitur' => $premi_beban_debitur,
+                'premi_beban_bri' => $premi_beban_bri
+            ];
+
             $conten = [
                 'nik'           => $detail['nik'],
                 'tp_produk'     => $detail['tp_produk'],
@@ -78,7 +94,7 @@ class ADKController extends Controller
         // dd($debitur);
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi'));
         } else {
             return view('internals.layouts.404');
         }
@@ -632,7 +648,7 @@ class ADKController extends Controller
                     'requestData'   => $data['branch']
                 ])->post();
 
-            // print_r($debitur);exit();
+            // print_r($customer);exit();
             if ($debitur['code'] == '01') {
                 \Log::info("masuk");
                 $listVerADK = $debitur['contents']['data'];
@@ -646,8 +662,10 @@ class ADKController extends Controller
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
                             // print_r($form);exit();
+                            $form['ref_number'] = $value['ref_number'];
+                            $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
                             $form['eform_id'] = $value['eform_id'];
-                            $form['request_amount'] = 'Rp '.number_format($form['plafond'], 2, ",", ".");
+                            $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
                             if ($form['fid_tp_produk'] == '1') {
                                 $form['fid_tp_produk'] = 'Briguna Karya';
                             } elseif ($form['fid_tp_produk'] == '10') {
@@ -839,7 +857,7 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $conten = [
+            /*$conten = [
                 'nik'           => $detail['nik'],
                 'tp_produk'     => $detail['tp_produk'],
                 'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
@@ -859,7 +877,7 @@ class ADKController extends Controller
             $debitur = [];
             if ($data_debitur['code'] == '01') {
                 $debitur = $data_debitur['contents']['data'][0];
-            }
+            }*/
             // debitur belum digunakan
             // dd($debitur);exit();
             $no_skpp    = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
