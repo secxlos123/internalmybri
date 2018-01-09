@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Penggunaan Kredit :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{}}
+                    <p class="form-control-static">
                         @if($detail['Penggunaan_kredit'] == '10')
                             KMKU/PERTAMBANGAN
                         @elseif($detail['Penggunaan_kredit'] == '11')
