@@ -498,70 +498,116 @@ class ADKController extends Controller
         $data = $this->getUser();
         // print_r($request->all());exit();
         $response = $request->all();
-        $conten_putusan = [
-            "id_aplikasi" => $response['id_aplikasi'],
-            "uid"         => $response['uid'],
-            "flag_putusan"=> '7',
-            "catatan"     => $response['catatan']
-        ];
-        // print_r($conten_putusan);exit();
-        // flag putusan kirim ke brinets
-        $putusan = Client::setEndpoint('api_las/index')
+        if (strtolower($response['type']) == 'batal') {
+            $update_data = [
+                'eform_id'    => $response['eform_id'],
+                'is_send'     => 4,
+                'catatan_adk' => $response['catat_adk']
+            ];
+            if ($response['catat_adk'] == '') {
+                // echo "masuk";
+                return response()->json([
+                    'code'     => 400,
+                    'message'  => 'Catatan ADK tidak boleh kosong, jika ingin dibatalkan',
+                    'response' => ''
+                ]);
+            }
+            // print_r($response['catat_adk']);
+            // print_r($update_data);
+            // exit();
+            $update_briguna = Client::setEndpoint('api_las/update')
                 ->setHeaders(
                     [ 'Authorization' => $data['token'],
                       'pn' => $data['pn']
                     ])
-                ->setBody([
-                    'requestMethod' => 'putusSepakat',
-                    'requestData'   => $conten_putusan
-                ])
-                ->post('form_params');
+                ->setBody($update_data)
+                ->post();
+            // dd($update_briguna);
 
-        // $putusan['statusCode'] = '01';
-        // $putusan['statusDesc'] = 'berhasil';
-        if ($putusan['statusCode'] == '01') {
-            // get status interface yang sudah dikirim ke brinets
-            $getBrinets = Client::setEndpoint('api_las/index')
-                ->setHeaders(
-                    [ 'Authorization' => $data['token'],
-                      'pn' => $data['pn']
-                    ])
-                ->setBody([
-                    'requestMethod' => 'getStatusInterface',
-                    'requestData'   => $response['id_aplikasi']
-                ])
-                ->post('form_params');
-            // dd($getBrinets);
-            // $getBrinets['statusCode'] = '01';
-            if ($getBrinets['statusCode'] == '01') {
-                $update_data = [
-                    'eform_id'    => $response['eform_id'],
-                    'is_send'     => 1,
-                    'cif'         => $getBrinets['items'][0]['CIF'],
-                    'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                    'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
-                ];
-                // print_r($response['eform_id']);
-                // print_r($update_data);
-                // exit();
-                $update_briguna = Client::setEndpoint('api_las/update')
+            if ($update_briguna['code'] == '200') {
+                return response()->json([
+                    'code'     => 200,
+                    'message'  => 'Verifikasi dibatalkan kirim ke Brinets',
+                    'response' => $update_briguna
+                ]);
+            } else {
+                return response()->json([
+                    'code'     => 400,
+                    'message'  => 'Verifikasi gagal dibatalkan kirim ke Brinets',
+                    'response' => $update_briguna
+                ]);
+            }
+        } else {
+            $conten_putusan = [
+                "id_aplikasi" => $response['id_aplikasi'],
+                "uid"         => $response['uid'],
+                "flag_putusan"=> '7',
+                "catatan"     => $response['catat_adk']
+            ];
+            // print_r($conten_putusan);exit();
+            // flag putusan kirim ke brinets
+            $putusan = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
                         ])
-                    ->setBody($update_data)
-                    ->post();
-                // dd($update_briguna);
+                    ->setBody([
+                        'requestMethod' => 'putusSepakat',
+                        'requestData'   => $conten_putusan
+                    ])
+                    ->post('form_params');
 
-                \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
-                return redirect()->route('adk.index');
+            // $putusan['statusCode'] = '01';
+            // $putusan['statusDesc'] = 'berhasil';
+            if ($putusan['statusCode'] == '01') {
+                // get status interface yang sudah dikirim ke brinets
+                $getBrinets = Client::setEndpoint('api_las/index')
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->setBody([
+                        'requestMethod' => 'getStatusInterface',
+                        'requestData'   => $response['id_aplikasi']
+                    ])
+                    ->post('form_params');
+                // dd($getBrinets);
+                // $getBrinets['statusCode'] = '01';
+                if ($getBrinets['statusCode'] == '01') {
+                    $update_data = [
+                        'eform_id'    => $response['eform_id'],
+                        'is_send'     => 2,
+                        'catatan_adk' => $response['catat_adk'],
+                        'cif'         => $getBrinets['items'][0]['CIF'],
+                        'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                    ];
+                    // print_r($response['eform_id']);
+                    // print_r($update_data);
+                    // exit();
+                    $update_briguna = Client::setEndpoint('api_las/update')
+                        ->setHeaders(
+                            [ 'Authorization' => $data['token'],
+                              'pn' => $data['pn']
+                            ])
+                        ->setBody($update_data)
+                        ->post();
+                    // dd($update_briguna);
+                    if ($update_briguna['code'] == '200') {
+                        \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
+                        return redirect()->route('adk.index');
+                    } else {
+                        \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+                        return redirect()->route('adk.index');
+                    }
+                } else {
+                    \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
+                    return redirect()->route('adk.index');
+                }
             } else {
-                \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
+                \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
                 return redirect()->route('adk.index');
             }
-        } else {
-            \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
-            return redirect()->route('adk.index');
         }
     }
 
@@ -793,6 +839,29 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
+            $conten = [
+                'nik'           => $detail['nik'],
+                'tp_produk'     => $detail['tp_produk'],
+                'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
+            ];
+
+            // GET Form Data Debitur LAS
+            $data_debitur = Client::setEndpoint('api_las/index')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody([
+                    'requestMethod' => 'inquiryHistoryDebiturPerorangan',
+                    'requestData'   => $conten
+                ])
+                ->post();
+            $debitur = [];
+            if ($data_debitur['code'] == '01') {
+                $debitur = $data_debitur['contents']['data'][0];
+            }
+            // debitur belum digunakan
+            // dd($debitur);exit();
             $no_skpp    = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
             $detail_sph = [
                 'nama_debitur'  => $detail['customer']['personal']['first_name'],

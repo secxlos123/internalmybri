@@ -1,3 +1,25 @@
+<style type="text/css">
+	#padding {
+		padding: 5px 10px 5px 10px;
+	}
+
+	#padding2 {
+		padding: 2px 5px 2px 5px;
+	}
+
+	#padding3 {
+		padding: 1px 5px 1px 5px;
+	}
+
+	#head6 {
+		margin-top: 500px;
+		border-top: 1px solid;
+	}
+
+	.justify {
+		text-align: justify;
+	}
+</style>
 <table width="100%" border="1">
 	<tr>
 		<td colspan="2" align="right" bgcolor="yellow">Form Permohonan <b>BRIGUNA</b></td>
@@ -6,13 +28,13 @@
 		<td colspan="2" bgcolor="yellow"><b>&nbsp;&nbsp;DATA PRIBADI</b></td>
 	</tr>
     <tr>
-    	<td width="50%">
+    	<td width="50%" id="padding3">
     		<table width="100%">
     			<tr>
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-	    						<td width="30%">&nbsp;<font size="0">NAMA LENGKAP (SESUAI KTP)</font></td>
+	    						<td width="30%"><font size="0">NAMA LENGKAP (SESUAI KTP)</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
 				      			<td width="68%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
 	    					</tr>
@@ -23,11 +45,11 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="10%">&nbsp;<font size="0">NO KTP</font></td>
-			    				<td width="2%">:</td>
+    							<td width="10%"><font size="0">NO KTP</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
 				      			<td width="20%"><font size="0">BERLAKU SAMPAI</font></td>
-			    				<td width="2%">:</td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0">12-31-2099</font></td>
     						</tr>
     					</table>
@@ -37,9 +59,9 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="45%">&nbsp;<font size="0">ALAMAT RUMAH TINGGAL (SESUAI KTP)</font></td>
-				      			<td width="2%">:</td>
-				      			<td width="53%"><font size="0">{{$data_sph['alamat']}}</font></td>
+			    				<td width="40%"><font size="0">ALAMAT RUMAH TINGGAL (SESUAI KTP)</font></td>
+				      			<td width="2%"><font size="0">:</font></td>
+				      			<td width="58%"><font size="0">{{$data_sph['alamat']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -48,15 +70,15 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="15%">&nbsp;<font size="0">KELURAHAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
-				      			<td width="5%"><font size="0">KOTA</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+    							<td width="15%"><font size="0">KELURAHAN</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
+				      			<td width="10%"><font size="0">KOTA</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
 				      			<td width="15%"><font size="0">KODE POS</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
     						</tr>
     					</table>
     				</td>
@@ -65,12 +87,12 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="20%">&nbsp;<font size="0">RT</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+    							<td width="20%"><font size="0">RT</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
 				      			<td width="5%"><font size="0">RW</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
     						</tr>
     					</table>
     				</td>
@@ -79,11 +101,11 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="20%">&nbsp;<font size="0">TELEPON RUMAH</font></td>
-			    				<td width="2%">:</td>
+    							<td width="20%"><font size="0">TELEPON RUMAH</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0">{{$data_sph['tlp_rumah']}}</font></td>
 				      			<td width="5%"><font size="0">HP</font></td>
-			    				<td width="2%">:</td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0">{{$data_sph['handphone']}}</font></td>
     						</tr>
     					</table>
@@ -93,9 +115,9 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="30%">&nbsp;<font size="0">PENDIDIKAN TERAKHIR</font></td>
-			    				<td width="1%">:</td>
-				      			<td width="69%">
+			    				<td width="25%"><font size="0">PENDIDIKAN TERAKHIR</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
+				      			<td width="74%">
 				      				<table>
 				      					<tr>
 				      						<td>
@@ -109,7 +131,7 @@
 							      			<td>
 							      				<font size="0">&nbsp;<input type="checkbox"></font>
 							      			</td>
-							      			<td><font size="0">&nbsp;&nbsp;S1/S2/S3</font></td>
+							      			<td><font size="0">&nbsp;S1/S2/S3</font></td>
 							      			<td>
 							      				<font size="0">&nbsp;<input type="checkbox"></font>
 							      			</td>
@@ -125,9 +147,9 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="30%">&nbsp;<font size="0">STATUS PERKAWINAN</font></td>
-			    				<td width="1%">:</td>
-				      			<td>
+			    				<td width="25%"><font size="0">STATUS PERKAWINAN</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
+				      			<td width="74%">
 				      				<table>
 				      					<tr>
 				      						<td>
@@ -165,9 +187,9 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="30%">&nbsp;<font size="0">JUMLAH TANGGUNGAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td>
+			    				<td width="25%"><font size="0">JUMLAH TANGGUNGAN</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
+				      			<td width="74%">
 				      				<table>
 				      					<tr>
 				      						<td><font size="0">{{$data_sph['jml_tanggungan']}}</font></td>
@@ -185,9 +207,9 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="10%">&nbsp;<font size="0">ALAMAT PENGIRIMAN SURAT</font></td>
-			    				<td width="1%">:</td>
-				      			<td width="50%">
+			    				<td width="25%"><font size="0">ALAMAT PENGIRIMAN SURAT</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
+				      			<td width="74%">
 				      				<table>
 				      					<tr>
 				      						<td>
@@ -215,14 +237,14 @@
     			</tr>
     		</table>
     	</td>
-	    <td width="50%">
+	    <td width="50%" id="padding3">
 	    	<table width="100%">
     			<tr>
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="15%">&nbsp;<font size="0">JENIS KELAMIN</font></td>
-			    				<td width="1%">:</td>
+    							<td width="15%"><font size="0">JENIS KELAMIN</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="15%">
 				      				<table>
 				      					<tr>
@@ -253,9 +275,16 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-			    				<td width="15%">&nbsp;<font size="0">TEMPAT & TANGGAL LAHIR (tgl/bln/th)</font></td>
-			    				<td width="1%">:</td>
-				      			<td width="15%">&nbsp;<font size="0"><?php echo $data_sph['tmpt_lahir_deb'].', '.date('d-m-Y',strtotime($data_sph['tgl_lahir_deb']));?></font></td>
+			    				<td width="15%"><font size="0">TEMPAT & TANGGAL LAHIR (tgl/bln/th)</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
+				      			<td width="15%">&nbsp;<font size="0">
+				      				<?php 
+				      				if (!empty($data_sph['tgl_lahir_deb'])) {
+				      					echo $data_sph['tmpt_lahir_deb'].', '.date('d-m-Y',strtotime($data_sph['tgl_lahir_deb']));
+				      				} else {
+				      					echo $data_sph['tmpt_lahir_deb'].', -';
+				      				}
+				      				?></font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -264,8 +293,8 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-			    				<td width="15%">&nbsp;<font size="0">NAMA GADIS IBU KANDUNG</font></td>
-			    				<td width="1%">:</td>
+			    				<td width="15%"><font size="0">NAMA GADIS IBU KANDUNG</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['nama_ibu']}}</font></td>
 				      		</tr>
 				      	</table>
@@ -275,8 +304,8 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-			    				<td width="15%">&nbsp;<font size="0">KEWARGANEGARAAN</font></td>
-			    				<td width="1%">:</td>
+			    				<td width="15%"><font size="0">KEWARGANEGARAAN</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['kewarganegaran']}}</font></td>
 				      		</tr>
 				      	</table>
@@ -286,8 +315,8 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-			    				<td width="15%">&nbsp;<font size="0">EMAIL</font></td>
-			    				<td width="1%">:</td>
+			    				<td width="15%"><font size="0">EMAIL</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['email']}}</font></td>
 				      		</tr>
 				      	</table>
@@ -297,17 +326,17 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="15%">&nbsp;<font size="0">LAMA TINGGAL</font></td>
-			    				<td width="1%">:</td>
+			    				<td width="15%"><font size="0">LAMA TINGGAL</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="15%">
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0">{{$data_sph['nama_debitur']}}</font>
+				      							<font size="0"></font>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;TAHUN</font></td>
 				      						<td>
-							      				<font size="0">&nbsp;&nbsp;<input type="checkbox" checked="true"></font>
+							      				<font size="0">&nbsp;&nbsp;</font>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;BULAN</font></td>
 				      					</tr>
@@ -321,8 +350,8 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="15%">&nbsp;<font size="0">TELEPON RUMAH</font></td>
-				      			<td width="1%">:</td>
+			    				<td width="15%"><font size="0">TELEPON RUMAH</font></td>
+				      			<td width="1%"><font size="0">:</font></td>
 				      			<td width="15%"><font size="0">{{$data_sph['tlp_rumah']}}</font></td>
 				      		</tr>
 				      	</table>
@@ -332,8 +361,8 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="35%">&nbsp;<font size="0">ALAMAT DOMISILI (DIISI APABILA ALAMAT BEDA DENGAN KTP)</font></td>
-				      			<td width="2%">:</td>
+			    				<td width="35%"><font size="0">ALAMAT DOMISILI (DIISI APABILA ALAMAT BEDA DENGAN KTP)</font></td>
+				      			<td width="2%"><font size="0">:</font></td>
 				      			<td width="35%"><font size="0">{{$data_sph['alamat_dom']}}</font></td>
 				      		</tr>
 				      	</table>
@@ -343,15 +372,15 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="15%">&nbsp;<font size="0">KELURAHAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+    							<td width="15%"><font size="0">KELURAHAN</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
 				      			<td width="5%"><font size="0">KOTA</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
 				      			<td width="15%"><font size="0">KODE POS</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
     						</tr>
     					</table>
     				</td>
@@ -360,8 +389,8 @@
     				<td>
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
-			    				<td width="10%">&nbsp;<font size="0">STATUS RUMAH</font></td>
-			    				<td width="1%">:</td>
+			    				<td width="10%"><font size="0">STATUS RUMAH</font></td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="50%">
 				      				<table>
 				      					<tr>
@@ -401,15 +430,15 @@
 		<td bgcolor="yellow"><b>&nbsp;&nbsp;DATA INSTANSI/PERUSAHAAN</b></td>
 	</tr>
 	<tr>
-		<td>
+		<td id="padding2">
 			<table width="100%">
 				<tr>
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="45%"><font size="0">&nbsp;NAMA SUAMI/ISTRI (SESUAI DENGAN KTP)</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0">{{$data_sph['nama_pasangan']}}</font></td>
+								<td width="40%"><font size="0">NAMA SUAMI/ISTRI (SESUAI DENGAN KTP)</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0">{{$data_sph['nama_pasangan']}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -418,9 +447,26 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="45%"><font size="0">&nbsp;TANGGAL LAHIR</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0"><?php echo date('d-m-Y',strtotime($data_sph['tgl_pasangan']));?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font></td>
+								<td width="40%"><font size="0">TANGGAL LAHIR</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0"><?php 
+									if (!empty($data_sph['tgl_pasangan'])) {
+				      					echo date('d-m-Y',strtotime($data_sph['tgl_pasangan']));
+				      				} else {
+				      					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				      				}
+								?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" cellpadding=0 cellspacing=0 align="center">
+							<tr>
+								<td width="40%"><font size="0">NO. KTP</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0">{{$data_sph['ktp_pasangan']}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -429,38 +475,27 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="15%">&nbsp;<font size="0">HP</font></td>
-			    				<td width="2%">:</td>
+    							<td width="15%"><font size="0">HP</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0">{{$data_sph['handphone']}}</font></td>
     							<td width="20%"><font size="0">TELEPON KANTOR</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
     						</tr>
     					</table>
     				</td>
     			</tr>
-    			<tr>
-					<td>
-						<table width="100%" cellpadding=0 cellspacing=0 align="center">
-							<tr>
-								<td width="45%"><font size="0">&nbsp;NO. KTP</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0">{{$data_sph['ktp_pasangan']}}</font></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
 			</table>
 		</td>
-		<td>
+		<td id="padding2">
 			<table width="100%">
 				<tr>
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="35%"><font size="0">&nbsp;NAMA INSTANSI/PERUSAHAAN</font></td>
-								<td width="2%">:</td>
-								<td width="63%"><font size="0">{{$data_sph['instansi']}}</font></td>
+								<td width="30%"><font size="0">NAMA INSTANSI/PERUSAHAAN</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="68%"><font size="0">{{$data_sph['instansi']}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -469,9 +504,9 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="35%"><font size="0">&nbsp;ALAMAT</font></td>
-								<td width="2%">:</td>
-								<td width="63%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+								<td width="30%"><font size="0">NAMA ATASAN LANGSUNG</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="68%"><font size="0">{{$data_sph['nama_atasan']}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -480,12 +515,34 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="15%">&nbsp;<font size="0">KOTA</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+								<td width="30%"><font size="0">JABATAN ATASAN</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="68%"><font size="0">{{$data_sph['jabatan_atasan']}}</font></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" cellpadding=0 cellspacing=0 align="center">
+							<tr>
+								<td width="30%"><font size="0">ALAMAT</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="68%"><font size="0"></font></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" cellpadding=0 cellspacing=0 align="center">
+							<tr>
+								<td width="15%"><font size="0">KOTA</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
     							<td width="20%"><font size="0">KODE POS</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
 							</tr>
 						</table>
 					</td>
@@ -494,34 +551,12 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="15%">&nbsp;<font size="0">TELEPON</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
+								<td width="15%"><font size="0">TELEPON</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
     							<td width="20%"><font size="0">FACSIMILE</font></td>
-			    				<td width="2%">:</td>
-				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<table width="100%" cellpadding=0 cellspacing=0 align="center">
-							<tr>
-								<td width="35%"><font size="0">&nbsp;NAMA ATASAN LANGSUNG</font></td>
-								<td width="2%">:</td>
-								<td width="63%"><font size="0">{{$data_sph['nama_atasan']}}</font></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<table width="100%" cellpadding=0 cellspacing=0 align="center">
-							<tr>
-								<td width="35%"><font size="0">&nbsp;JABATAN ATASAN</font></td>
-								<td width="2%">:</td>
-								<td width="63%"><font size="0">{{$data_sph['jabatan_atasan']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td><font size="0"></font></td>
 							</tr>
 						</table>
 					</td>
@@ -530,14 +565,13 @@
 		</td>
 	</tr>
 </table>
-<!-- <br><br><br><br><br><br><br><br><br><br> -->
 <table width="100%" border="1">
 	<tr>
 		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;DATA PEKERJAAN DAN PENGHASILAN PEMOHON</b></td>
 		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;DATA PINJAMAN DI BANK LAIN</b></td>
 	</tr>
 	<tr>
-		<td>
+		<td id="padding2">
 			<table width="100%">
 				<tr>
     				<td>
@@ -573,9 +607,9 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="45%"><font size="0">&nbsp;NOMOR INDUK PEGAWAI(NIP)</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0">{{$data_sph['nip']}}</font></td>
+								<td width="40%"><font size="0">NOMOR INDUK PEGAWAI(NIP)</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0">{{$data_sph['nip']}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -585,7 +619,7 @@
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
 			    				<td width="10%"><font size="0">JABATAN</font></td>
-			    				<td width="2%">:</td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td width="88%">
 				      				<table>
 				      					<tr>
@@ -613,7 +647,7 @@
 	    				<table width="100%" cellpadding=0 cellspacing=0 align="center">
 	    					<tr>
 			    				<td width="15%"><font size="0">STATUS PEKERJAAN</font></td>
-			    				<td width="1%">:</td>
+			    				<td width="1%"><font size="0">:</font></td>
 				      			<td width="50%">
 				      				<table>
 				      					<tr>
@@ -635,7 +669,7 @@
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KONTRAK</font></td>
 							      			<td><font size="0">&nbsp;BERAKHIR</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;{{$data_sph['nama_debitur']}} &nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font>
+							      				<font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font>
 							      			</td>
 				      					</tr>
 				      				</table>
@@ -648,9 +682,9 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="45%"><font size="0">&nbsp;NO. NPWP PRIBADI</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0">{{$data_sph['npwp']}}</font></td>
+								<td width="40%"><font size="0">NO. NPWP PRIBADI</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0">{{$data_sph['npwp']}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -659,9 +693,9 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="45%"><font size="0">&nbsp;PENGHASILAN/GAJI BERSIH PER BULAN</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0">Rp. {{number_format($data_sph['gaji'], 2, ",", ".")}}</font></td>
+								<td width="40%"><font size="0">PENGHASILAN/GAJI BERSIH PER BULAN</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0">Rp. {{number_format($data_sph['gaji'], 2, ",", ".")}}</font></td>
 							</tr>
 						</table>
 					</td>
@@ -670,24 +704,24 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="45%"><font size="0">&nbsp;PENGHASILAN LAIN-LAIN</font></td>
-								<td width="2%">:</td>
-								<td width="53%"><font size="0">Rp. {{number_format($data_sph['gaji_lainnya'], 2, ",", ".")}}</font></td>
+								<td width="40%"><font size="0">PENGHASILAN LAIN-LAIN</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="58%"><font size="0">Rp. {{number_format($data_sph['gaji_lainnya'], 2, ",", ".")}}</font></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			</table>
 		</td>
-		<td>
+		<td id="padding2">
 			<table width="100%">
 				<tr>
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="20%"><font size="0">&nbsp;NAMA BANK</font></td>
-								<td width="2%">:</td>
-								<td width="78%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+								<td width="20%"><font size="0">NAMA BANK</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="78%"><font size="0"></font></td>
 							</tr>
 						</table>
 					</td>
@@ -697,11 +731,11 @@
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
     							<td width="15%"><font size="0">JENIS PINJAMAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td width="20%"><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td width="20%"><font size="0"></font></td>
     							<td width="20%"><font size="0">JUMLAH PINJAMAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td width="20%">&nbsp;<font size="0">Rp {{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td width="20%">&nbsp;<font size="0">Rp </font></td>
     						</tr>
     					</table>
     				</td>
@@ -710,9 +744,9 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="20%"><font size="0">&nbsp;NAMA BANK</font></td>
-								<td width="2%">:</td>
-								<td width="78%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+								<td width="20%"><font size="0">NAMA BANK</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="78%"><font size="0"></font></td>
 							</tr>
 						</table>
 					</td>
@@ -722,11 +756,11 @@
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
     							<td width="15%"><font size="0">JENIS PINJAMAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td width="20%"><font size="0">{{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td width="20%"><font size="0"></font></td>
     							<td width="20%"><font size="0">JUMLAH PINJAMAN</font></td>
-			    				<td width="2%">:</td>
-				      			<td width="20%">&nbsp;<font size="0">Rp {{$data_sph['ktp']}}</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td width="20%">&nbsp;<font size="0">Rp </font></td>
     						</tr>
     					</table>
     				</td>
@@ -734,14 +768,14 @@
 			</table>
 			<table width="100%">
 				<tr>
-					<td bgcolor="yellow">&nbsp;<b>PERMOHONAN</b></td>
+					<td bgcolor="yellow"><b>PERMOHONAN</b></td>
 				</tr>
 				<tr>
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-			    				<td width="10%"><font size="0">&nbsp;JENIS PINJAMAN</font></td>
-			    				<td width="2%">:</td>
+			    				<td width="10%"><font size="0">JENIS PINJAMAN</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td width="88%">
 				      				<table>
 				      					<tr>
@@ -766,29 +800,29 @@
 				      			</td>
 				      		</tr>
 				      		<tr>
-			    				<td width="10%"><font size="0">&nbsp;TUJUAN PENGGUNAAN</font></td>
-			    				<td width="2%">:</td>
+			    				<td width="10%"><font size="0">TUJUAN PENGGUNAAN</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
 				      			<td width="88%">
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"><input type="checkbox" checked="true"></font>
+				      							<font size="0"><input type="checkbox"></font>
 				      							<font size="0">PENDIDIKAN</font>
 				      						</td>
 				      						<td>
-							      				<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+							      				<font size="0">&nbsp;<input type="checkbox"></font>
 							      				<font size="0">KESEHATAN</font>
 							      			</td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+							      				<font size="0">&nbsp;<input type="checkbox"></font>
 							      				<font size="0">RENOVASI</font>
 							      			</td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+							      				<font size="0">&nbsp;<input type="checkbox"></font>
 							      				<font size="0">USAHA</font>
 							      			</td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+							      				<font size="0">&nbsp;<input type="checkbox"></font>
 							      				<font size="0">LAINNYA</font>
 							      			</td>
 				      					</tr>
@@ -796,13 +830,13 @@
 				      			</td>
 				      		</tr>
 							<tr>
-								<td width="55%"><font size="0">&nbsp;JUMLAH PINJAMAN YANG DIAJUKAN</font></td>
-								<td width="2%">:</td>
+								<td width="55%"><font size="0">JUMLAH PINJAMAN YANG DIAJUKAN</font></td>
+								<td width="2%"><font size="0">:</font></td>
 								<td width="43%"><font size="0">Rp. {{number_format($data_sph['pinjaman'], 2, ",", ".")}}</font></td>
 							</tr>
 							<tr>
-								<td width="10%"><font size="0">&nbsp;JANGKA WAKTU</font></td>
-								<td width="2%">:</td>
+								<td width="10%"><font size="0">JANGKA WAKTU</font></td>
+								<td width="2%"><font size="0">:</font></td>
 								<td width="88%"><font size="0">{{$data_sph['jangka_waktu']}}&nbsp; BULAN</font></td>
 							</tr>
 						</table>
@@ -811,19 +845,21 @@
 			</table>
 		</td>
 	</tr>
+</table>
+<table width="100%" border="1" id="head6">
 	<tr>
-		<td bgcolor="yellow"><b>&nbsp;&nbsp;PERSETUJUAN FASILITAS (DIISI OLEH BANK)</b></td>
-		<td bgcolor="yellow"><b>&nbsp;&nbsp;PERLINDUNGAN ASURANSI JIWA</b></td>
+		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;PERSETUJUAN FASILITAS (DIISI OLEH BANK)</b></td>
+		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;PERLINDUNGAN ASURANSI JIWA</b></td>
 	</tr>
 	<tr>
-		<td>
+		<td width="50%" id="padding">
 			<table width="100%">
 				<tr>
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="35%"><font size="0">&nbsp;KREDIT YANG DISETUJUI</font></td>
-								<td width="2%">:</td>
+								<td width="35%"><font size="0">KREDIT YANG DISETUJUI</font></td>
+								<td width="2%"><font size="0">:</font></td>
 								<td width="63%"><font size="0">Rp. {{number_format($data_sph['pinjaman'], 2, ",", ".")}}</font></td>
 							</tr>
 						</table>
@@ -833,8 +869,8 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="35%">&nbsp;<font size="0">TERBILANG</font></td>
-								<td width="65%"><font size="0">(.........{{$data_sph['pinjaman']}}........)</font></td>
+								<td width="35%"><font size="0">TERBILANG</font></td>
+								<td width="65%"><font size="0">({{$data_sph['pinjaman']}})</font></td>
 							</tr>
 						</table>
 					</td>
@@ -843,8 +879,8 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="35%">&nbsp;<font size="0">JANGKA WAKTU</font></td>
-								<td width="2%">:</td>
+								<td width="35%"><font size="0">JANGKA WAKTU</font></td>
+								<td width="2%"><font size="0">:</font></td>
 								<td width="63%"><font size="0">{{$data_sph['jangka_waktu']}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BULAN</font></td>
 							</tr>
 						</table>
@@ -854,9 +890,9 @@
     				<td>
     					<table width="100%" cellpadding=0 cellspacing=0 align="center">
     						<tr>
-    							<td width="35%">&nbsp;<font size="0">BUNGA</font></td>
-			    				<td width="2%">:</td>
-				      			<td width="63%"><font size="0">Rp. {{$data_sph['ktp']}}</font></td>
+    							<td width="35%"><font size="0">BUNGA</font></td>
+			    				<td width="2%"><font size="0">:</font></td>
+				      			<td width="63%"><font size="0">{{$data_sph['suku_bunga']}}</font></td>
     						</tr>
     					</table>
     				</td>
@@ -865,8 +901,8 @@
 					<td>
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
-								<td width="35%">&nbsp;<font size="0">ANGSURAN PER BULAN</font></td>
-								<td width="2%">:</td>
+								<td width="35%"><font size="0">ANGSURAN PER BULAN</font></td>
+								<td width="2%"><font size="0">:</font></td>
 								<td width="63%"><font size="0">Rp. {{number_format($data_sph['angsuran'], 2, ",", ".")}}</font></td>
 							</tr>
 						</table>
@@ -874,9 +910,9 @@
 				</tr>
 			</table>
 		</td>
-		<td>
-			<p style="text-align: justify;">
-				<font size="0">&nbsp;
+		<td id="padding">
+			<p class="justify">
+				<font size="0">
 					Dengan ini saya menyatakan bahwa saya ingin mendapatkan perlindungan asuransi jiwa dari perusahaan asuransi rekanan BRI*) :
 				</font>
 			</p>
@@ -896,8 +932,8 @@
 		  			<td><font size="0">&nbsp;&nbsp;&nbsp;Lain-lain</font></td>
 				</tr>
 			</table>
-			<p style="text-align: justify;">
-				<font size="0">&nbsp;
+			<p class="justify">
+				<font size="0">
 					untuk membantu menyelesaikan kewajiban saya atas fasilitas Kredit BRIGUNA di Bank BRI karena meninggal dunia. Dengan ini saya menyatakan bahwa saat ini berada dalam keadaan sehat jasmani dan rohani.<br>
 					*) Dipilih Salah satu
 				</font>
@@ -905,14 +941,13 @@
 		</td>
 	</tr>
 </table>
-<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 <table width="100%" border="1">
 	<tr>
 		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;PERSYARATAN *)</b></td>
-		<td bgcolor="yellow">&nbsp;<b>DIISI OLEH BANK</b></td>
+		<td bgcolor="yellow" width="50%">&nbsp;<b>DIISI OLEH BANK</b></td>
 	</tr>
 	<tr>
-		<td>
+		<td id="padding">
 			<table border="1" align="center" width="100%">
 				<tr>
 					<td align="center"></td>
@@ -965,27 +1000,28 @@
 					<td align="center"></td>
 				</tr>
 			</table>
+			<br>
 			<font size="0">*) Untuk permohonan pinjaman yang ditujukan untuk take-over KPR atau KKB di Bank lain mengikuti ketentuan yang berlaku.</font>
 		</td>
-		<td>			
+		<td id="padding">			
 			<table width="100%" cellpadding=0 cellspacing=0 align="center">
 				<tr>
-    				<td colspan="3"><font size="0">&nbsp;Konfirmasi persetujuan kredit dan nomor rekening calon debitur oleh petugas Bank.</font></td>
+    				<td colspan="3"><font size="0">Konfirmasi persetujuan kredit dan nomor rekening calon debitur oleh petugas Bank.</font></td>
 	      		</tr>
 				<tr>
-					<td width="30%"><font size="0">&nbsp;Nama Account Officer / Mantri</font></td>
-					<td width="2%">:</td>
+					<td width="30%"><font size="0">Nama Account Officer / Mantri</font></td>
+					<td width="2%"><font size="0">:</font></td>
 					<td width="68%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
 				</tr>
 				<tr>
-					<td width="30%"><font size="0">&nbsp;Tanggal Realisasi</font></td>
-					<td width="2%">:</td>
+					<td width="30%"><font size="0">Tanggal Realisasi</font></td>
+					<td width="2%"><font size="0">:</font></td>
 					<td width="68%"><font size="0"><?php echo date('d-m-Y');?>&nbsp; (Tanggal/Bulan/Tahun)</font></td>
 				</tr>
 				<tr>
-					<td width="30%"><font size="0">&nbsp;Yang berhutang telah mengetahui dan setuju</font></td>
-					<td width="2%">:</td>
-					<td width="68%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+					<td width="30%"><font size="0">Yang berhutang telah mengetahui dan setuju</font></td>
+					<td width="2%"><font size="0">:</font></td>
+					<td width="68%"><font size="0"></font></td>
 				</tr>
 			</table>
 			<table cellpadding=0 cellspacing=0>
@@ -1038,14 +1074,14 @@
 		</td>
 	</tr>
 </table>
-<table width="100%" border="1">
+<table width="100%" border="1" id="head6">
 	<tr>
 		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;PERNYATAAN DAN KUASA</b></td>
 		<td bgcolor="yellow" width="50%"><b>&nbsp;&nbsp;PENAMBAHAN FASILITAS KARTU KREDIT BRI</b></td>
 	</tr>
 	<tr>
-		<td>
-			<p style="text-align: justify;">
+		<td id="padding">
+			<p class="justify">
 				<font size="1">
 				Saya yang bertandatangan di bawah ini adalah Pemohon kredit BRIGUNA pada PT Bank Rakyat Indonesia (Persero) Tbk Kanca/KCP/BRI Unit {{$data_sph['kantor_cabang']}} dan apabila permohonan saya telah mendapatkan persetujuan dari BRI, maka dengan ini saya sebagai debitur menyatakan bersedia untuk:
 				<ol>
@@ -1096,11 +1132,11 @@
 				</font>
 			</p>
 		</td>
-		<td>
+		<td id="padding">
 			<table width="100%">
 				<tr>
 					<td>
-						<p style="text-align: justify;"><font size="0">
+						<p class="justify"><font size="0">
 							Saya menyatakan bersedia menerima fasilitas tambahan berupa Kartu Kredit BRI dengan limit sesuai ketentuan yang ditetapkan oleh BANK.
 						</font></p>
 						<table align="left">
@@ -1108,33 +1144,33 @@
 								<td>..............., ..................</td>
 							</tr>
 							<tr>
-								<td>materai</td>
+								<td><br><br><br></td>
 							</tr>
 							<tr>
-								<td>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td>
+								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
 							</tr>
 						</table>
 						<table align="right">
 							<tr>
-								<td></td>
-								<td></td>
-								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
+								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
 							</tr>
 							<tr>
-								<td></td>
-								<td></td>
-								<td><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+								<td><br><br><br></td>
+							</tr>
+							<tr>
+								<td><font size="0">({{$data_sph['nama_debitur']}})</font></td>
 							</tr>
 						</table>
+						<br><br><br><br><br><br><br>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<table width="100%">
 							<tr>
-								<td><font size="0">Nama Lengkap Emergency Contact(keluarga tidak serumah)<b>*</b></font></td>
-								<td><font size="0">:</font></td>
-								<td><font size="0">{{$data_sph['nama_emergency']}}</font></td>
+								<td width="30%"><font size="0">Nama Lengkap Emergency Contact (keluarga tidak serumah)<b>*</b></font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="68%"><font size="0">{{$data_sph['nama_emergency']}}</font></td>
 							</tr>
 							<tr>
 								<td><font size="0">Alamat Emergency Contact <b>**)</b></font></td>
@@ -1146,12 +1182,8 @@
 								<td><font size="0">:</font></td>
 								<td><font size="0">{{$data_sph['tlp_emergency']}} / {{$data_sph['tlp_emergency']}}</font></td>
 							</tr>
-							<tr>
-								<td><font size="0"><b>**) wajib diisi apabila anda menyetujui pernyataan diatas</b></font></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</table>
+						</table><br>
+						<font size="0"><b>**) wajib diisi apabila anda menyetujui pernyataan diatas</b></font>
 					</td>
 				</tr>
 			</table>

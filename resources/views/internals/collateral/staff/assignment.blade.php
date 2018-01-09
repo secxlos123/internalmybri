@@ -115,10 +115,14 @@
             },
         });
     });
-    var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'?&hidden-lat='+$('input[name="hidden-lat"]').val();
+// JS for Auditrail
+var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'?&hidden-lat='+$('input[name="hidden-lat"]').val();
+var longlatAction = LongLat+'&ket=ots menilai agunan';
     $(document).ready(function(){
         $('#btn-approve').on('click', function(event){
-            window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+LongLat);
+            event.preventDefault();
+            window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+longlatAction);
+            //console.log(LongLat);
         });
     });
 
