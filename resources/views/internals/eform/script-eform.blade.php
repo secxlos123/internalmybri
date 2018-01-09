@@ -743,6 +743,8 @@
             console.log(e.params.data);
             var alamat = e.params.data.address;
             $('#branch_address').val(alamat).html(alamat).trigger('change');
+            var text = $(this).find("option:selected").text();
+            $('#branch_id').val(text);
         });
     });
 
