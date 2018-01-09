@@ -233,7 +233,7 @@ class CollateralStaffController extends Controller
     {
       $excludeNumber = ['npw_land', 'nl_land', 'pnpw_land', 'pnl_land', 'npw_building', 'nl_building', 'pnpw_building', 'pnl_building', 'npw_all', 'nl_all', 'pnpw_all', 'pnl_all', 'liquidation_realization', 'fair_market', 'liquidation', 'fair_market_projection', 'liquidation_projection', 'njop', 'binding_value', 'paripasu_bank', 'insurance_value'];
         // $excludeNumber = [];
-      $excludeImage = ['image_condition_area'];
+      $excludeImage = ['image_area'];
 
       if ( in_array($baseName, $excludeNumber) ) {
         $values = str_replace(',', '.', str_replace('.', '', $values));
@@ -273,12 +273,23 @@ class CollateralStaffController extends Controller
       \Log::info($request->all());
       foreach ($request->except('_token', 'collateral_type','hidden-long','hidden-lat') as $field => $value) {
         foreach ($value as $index => $data) {
-          $baseName = $field . '[' . $index . ']';
-          $return = $this->returnContent( $baseName, $data, $index );
-          if ($return != null) {
-            $application[] = $this->returnContent( $baseName, $data, $index );
+          if ( $index == 'image_area' ) {
+            foreach ($data as $photos => $photo) {
+              foreach ($photo as $key => $values) {
+                $baseName = $field . '[' . $index . ']'. '['. $photos .']'. '['. $key .']';
+                $return = $this->returnContent( $baseName, $values, $index );
+                  if ($return != null) {
+                    $application[] = $this->returnContent( $baseName, $values, $index );
+                  }
+              }
+            }
+          }else{
+            $baseName = $field . '[' . $index . ']';
+            $return = $this->returnContent( $baseName, $data, $index );
+            if ($return != null) {
+              $application[] = $this->returnContent( $baseName, $data, $index );
+            }
           }
-
         }
       }
 
@@ -296,7 +307,7 @@ class CollateralStaffController extends Controller
     {
       $data = $this->getUser();
       $newForm = $this->otsRequest($request);
-        // dd($newForm);
+      // dd($newForm);
 
       $client = Client::setEndpoint('collateral/ots/'.$id)
       ->setHeaders([
@@ -308,7 +319,7 @@ class CollateralStaffController extends Controller
       ])
       ->setBody($newForm)
       ->post('multipart');
-           // dd($client);
+           dd($client);
 
       if($client['code'] == 200){
         \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');
