@@ -71,8 +71,8 @@ class LKNRequest extends FormRequest
            'down_payment'               => 'mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
            'building_tax'               => 'mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
            'photo_with_customer'        => 'required|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
-           'building_permit'            => 'required_if:use_reason,2,18|mimes:jpg,png,gif,svg,rar,pdf,zip',
-           'proprietary'                => 'required_if:use_reason,2,18|mimes:jpg,png,gif,svg,rar,pdf,zip',
+           'building_permit'            => 'required_if:use_reason,2,18|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
+           'proprietary'                => 'required_if:use_reason,2,18|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
 
            'title'                      => 'required',
            'employment_status'          => 'required',
