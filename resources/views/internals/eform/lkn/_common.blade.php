@@ -5,7 +5,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label">Foto NPWP * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="npwp" accept="image/*">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="npwp" accept="image/*,application/pdf,application/rar">
                         @if ($errors->has('npwp')) <p class="help-block">{{ $errors->first('npwp') }}</p> @endif
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label class="col-md-6 control-label">Foto Debitur * :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/*">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="photo_with_customer" accept="image/*,application/pdf,application/rar">
                     </div>
                 </div>
                 <div class="form-group">
