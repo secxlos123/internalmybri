@@ -100,7 +100,7 @@ class AOController extends Controller
             , 'pn' => $data['pn']
             , 'auditaction' => 'Simpan Form LKN'
             , 'long' =>  $request['hidden-long']
-            , 'lat' =>  $request['hidden-long']
+            , 'lat' =>  $request['hidden-lat']
           ])
           ->setBody($newForm)
           ->post('multipart');

@@ -4,9 +4,9 @@
 @include('internals.layouts.navigation')
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 <style>
-    .center-steps .wizard > .steps > ul > li {
-        width: 10%;
-    }
+.center-steps .wizard > .steps > ul > li {
+    width: 10%;
+}
 </style>
 
 <div class="content-page">
@@ -35,11 +35,11 @@
             <div class="row">
                 <div class="col-md-12">
                     @if (\Session::has('error'))
-                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
                     <div class="card-box center-steps">
                         <form role="role" method="POST" action="{{route('postLKNAgunan', $collateral['id'])}}" id="form-lkn" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                            {{ csrf_field() }}
                             <div>
 
                                 <h3>&nbsp;</h3>
@@ -94,8 +94,11 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.collateral.staff.lkn-collateral._modal-detail')
+@include('internals.collateral.staff.lkn-collateral._render-upload')
+<!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
+<!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
+<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -120,7 +123,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -136,37 +138,65 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-              url: '/cities',
-              dataType: 'json',
-              delay: 250,
-              data: function (params) {
-                return {
-                  name: params.term,
-                  page: params.page || 1
-                };
-              },
-              processResults: function (data, params) {
-                params.page = params.page || 1;
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
 
-                return {
-                  results: data.cities.data,
-                  pagination: {
-                    more: (params.page * data.cities.per_page) < data.cities.total
-                  }
-                };
-              },
-              cache: true
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
             },
-          });
+        });
+
+        $('.filestyle-foto').filestyle({
+            buttonText : "Unggah",
+            htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
+            placeholder: "Tidak ada file"
+        });
     });
 
-        $('.cities').on('select2:select', function (e) {
-          var citi_id = e.params.data.id;
-        });
+    $('.cities').on('select2:select', function (e) {
+      var citi_id = e.params.data.id;
+  });
 
-        $('#detail-collateral-modal #btn-save').on('click', function() {
-            HoldOn.open(options);
-            $('#form-lkn').submit();
-            HoldOn.close();
-        });
+    $('#detail-collateral-modal #btn-save').on('click', function() {
+        HoldOn.open(options);
+        $('#form-lkn').submit();
+        HoldOn.close();
+    });
+
+    $('#add_photo').click(function(){
+      var index = $('.photo').length;
+      index++;
+      $('#foto_div').append(
+        '<div class="foto">'
+            +'<div class="input-group">'
+                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/png,image/jpg,application/pdf,application/docx" id="filestyle-'+index+'">'
+                +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
+            +'</div>'
+        +'</div>'
+        );
+      $('.filestyle-foto').filestyle({
+        buttonText : "Unggah",
+        htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
+        placeholder: "Tidak ada file"
+    });
+  });
+
+    $('#foto_div').on('click', '.delete-photo', function () {
+      $(this).closest('div.foto').remove();
+  })
 </script>

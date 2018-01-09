@@ -230,6 +230,14 @@
                                             <p class="form-control-static">{{$datas['kpr']['property_name']}}</p>
                                         </div>
                                     </div>
+                                    @if(($datas['kpr']['developer_id'] == 1) || ($datas['kpr']['status_property'] != 1))
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Jenis Properti :</label>
+                                        <div class="col-md-8">
+                                            <p class="form-control-static">{{$datas['kpr']['kpr_type_property_name']}}</p>
+                                        </div>
+                                    </div>
+                                    @endif
                                     <div class="form-group {{ $className }}">
                                         <label class="col-md-4 control-label">Tipe Properti :</label>
                                         <div class="col-md-8">

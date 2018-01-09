@@ -193,8 +193,9 @@
                                              <div class="form-group">
                                                   <label class="control-label">Kantor Cabang BRI</label>
                                                   <div>
-                                                    <select id="branch_id" name="branch_id" class="select2 offices" value="1" data-placeholder="Pilih Kantor" style="width: 70%;">
+                                                    <select name="branch_id" class="select2 offices" value="1" data-placeholder="Pilih Kantor" style="width: 70%;">
                                                     </select>
+                                                    <input type="hidden" id="branch_id">
                                                     <div id="alert-nik" class="text-danger">{!! $errors->first('branch_id') !!}</div>
                                                   </div>
                                                 </div>

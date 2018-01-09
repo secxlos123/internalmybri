@@ -33,9 +33,9 @@
 <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
 <script src="{{asset('assets/js/jquery.datatables.init.js')}}"></script>
 <script src="{{asset('assets/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('assets/js/dataTables.buttons.min.js')}}"></script>
+<!-- <script src="{{asset('assets/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('assets/js/dataTables.editor.min.js')}}"></script>
-<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script>
+<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script> -->
 
 <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
