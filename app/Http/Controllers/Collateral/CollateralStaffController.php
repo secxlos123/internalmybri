@@ -319,7 +319,7 @@ class CollateralStaffController extends Controller
       ])
       ->setBody($newForm)
       ->post('multipart');
-           dd($client);
+           // dd($client);
 
       if($client['code'] == 200){
         \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');
