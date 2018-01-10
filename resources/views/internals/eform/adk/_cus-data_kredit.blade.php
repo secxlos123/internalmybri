@@ -24,23 +24,23 @@
                 <div class="col-md-7">
                     <p class="form-control-static">
                         @if($detail['Penggunaan_kredit'] == '10')
-                            KMKU/PERTAMBANGAN
+                            KMK U/PERTAMBANGAN
                         @elseif($detail['Penggunaan_kredit'] == '11')
-                            KMKU/PERINDUSTRIAN
+                            KMK U/PERINDUSTRIAN
                         @elseif($detail['Penggunaan_kredit'] == '12')
-                            KMKU/LISTRIK, GAS & AIR
+                            KMK U/LISTRIK, GAS & AIR
                         @elseif($detail['Penggunaan_kredit'] == '13')
-                            KMKU/KONSTRUKSI
+                            KMK U/KONSTRUKSI
                         @elseif($detail['Penggunaan_kredit'] == '14')
-                            KMKU/PERDAGANGAN, HOTEL & RESTORAN
+                            KMK U/PERDAGANGAN, HOTEL & RESTORAN
                         @elseif($detail['Penggunaan_kredit'] == '15')
-                            KMKU/PENGANGKUTAN
+                            KMK U/PENGANGKUTAN
                         @elseif($detail['Penggunaan_kredit'] == '16')
-                            KMKU/JASA DUNIA USAHA & JASA SOSIAL
+                            KMK U/JASA DUNIA USAHA & JASA SOSIAL
                         @elseif($detail['Penggunaan_kredit'] == '17')
-                            KMKU/IMPOR EKSPOR
+                            KMK U/IMPOR EKSPOR
                         @elseif($detail['Penggunaan_kredit'] == '18')
-                            KMKU/PERTANIAN
+                            KMK U/PERTANIAN
                         @elseif($detail['Penggunaan_kredit'] == '20')
                             KI U/PERTAMBANGAN
                         @elseif($detail['Penggunaan_kredit'] == '21')
@@ -66,7 +66,7 @@
                         @elseif($detail['Penggunaan_kredit'] == '32')
                             BG
                         @elseif($detail['Penggunaan_kredit'] == '33')
-                            KMKU/PENGEMBANG
+                            KMK U/PENGEMBANG
                         @elseif($detail['Penggunaan_kredit'] == '34')
                             KMKI yang terdapat PJI
                         @elseif($detail['Penggunaan_kredit'] == '35')
