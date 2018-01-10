@@ -216,4 +216,20 @@
             @endif
         </div>
     </div>
+
+    <div class="col-md-6" align="center">
+        <div class="card-box">
+            @if((pathinfo(strtolower($detail['visit_report']['other_document']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($detail['visit_report']['other_document']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($detail['visit_report']['other_document'])), PATHINFO_EXTENSION) == 'jpeg'))
+                @if(strpos($detail['visit_report']['other_document'], 'noimage.jpg'))
+                <p>Dokumen Lainnya Kosong</p>
+                @else
+                <img src="@if(!empty($detail['visit_report']['other_document'])){{$detail['visit_report']['other_document']}}@endif" class="img-responsive">
+                <p>Dokumen Lainnya</p>
+                @endif
+            @else
+                <a href="@if(!empty($detail['visit_report']['other_document'])){{$detail['visit_report']['other_document']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                <p>Klik Untuk Lihat Dokumen Lainnya</p>
+            @endif
+        </div>
+    </div>
 </div>
