@@ -72,13 +72,13 @@
     						<tr>
     							<td width="15%"><font size="0">KELURAHAN</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kelurahan']}}</font></td>
 				      			<td width="10%"><font size="0">KOTA</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kota']}}</font></td>
 				      			<td width="15%"><font size="0">KODE POS</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kode_pos']}}</font></td>
     						</tr>
     					</table>
     				</td>
@@ -121,19 +121,51 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"><input type="checkbox"></font>
+				      							<?php if($data_sph['pendidikan_terakhir'] == '0100') {?>
+				      							<font size="0"><input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0"><input type="checkbox"></font>
+				      							<?php } ?>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;SMA</font></td>
 				      						<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0101' || $data_sph['pendidikan_terakhir'] == '0102' || $data_sph['pendidikan_terakhir'] == '0103') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;DIPLOMA</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0104') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
-							      			<td><font size="0">&nbsp;S1/S2/S3</font></td>
+							      			<td><font size="0">&nbsp;&nbsp;S1</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0105') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
+							      			</td>
+							      			<td><font size="0">&nbsp;&nbsp;S2</font></td>
+							      			<td>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0106') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
+							      			</td>
+							      			<td><font size="0">&nbsp;&nbsp;S3</font></td>
+							      			<td>
+							      				<?php if($data_sph['pendidikan_terakhir'] == 'LAINNYA') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;LAINNYA</font></td>
 				      					</tr>
@@ -332,7 +364,7 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"></font>
+				      							<font size="0">{{$data_sph['lama_menetap']}}</font>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;TAHUN</font></td>
 				      						<td>
@@ -374,13 +406,13 @@
     						<tr>
     							<td width="15%"><font size="0">KELURAHAN</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kelurahan_dom']}}</font></td>
 				      			<td width="5%"><font size="0">KOTA</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kota_dom']}}</font></td>
 				      			<td width="15%"><font size="0">KODE POS</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kode_pos_dom']}}</font></td>
     						</tr>
     					</table>
     				</td>
@@ -395,24 +427,35 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"><input type="checkbox"></font>
-				      							<!-- <?php //if($data_sph['status'] == '1') {?>
+				      							<?php if($data_sph['status_rumah'] == '0') {?>
 				      							<font size="0"><input type="checkbox" checked="true"></font>
-				      							<?php //} else { ?>
+				      							<?php } else { ?>
 				      								<font size="0"><input type="checkbox"></font>
-				      							<?php //} ?> -->
+				      							<?php } ?>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;&nbsp;MILIK SENDIRI</font></td>
 				      						<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['status_rumah'] == '2') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KELUARGA</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['status_rumah'] == '1') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;MILIK PERUSAHAAN</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['status_rumah'] == '3') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEWA/KONTRAK</font></td>
 				      					</tr>
@@ -477,7 +520,7 @@
     						<tr>
     							<td width="15%"><font size="0">HP</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0">{{$data_sph['handphone']}}</font></td>
+				      			<td><font size="0"></font></td>
     							<td width="20%"><font size="0">TELEPON KANTOR</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0"></font></td>
@@ -669,7 +712,7 @@
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KONTRAK</font></td>
 							      			<td><font size="0">&nbsp;BERAKHIR</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font>
+							      				<font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font>
 							      			</td>
 				      					</tr>
 				      				</table>
@@ -777,7 +820,7 @@
 							<tr>
 								<td width="55%"><font size="0">JUMLAH PINJAMAN YANG DIAJUKAN</font></td>
 								<td width="2%"><font size="0">:</font></td>
-								<td width="43%"><font size="0">Rp. {{number_format($data_sph['pinjaman'], 2, ",", ".")}}</font></td>
+								<td width="43%"><font size="0">Rp. {{number_format($data_sph['pinjam_ajukan'], 2, ",", ".")}}</font></td>
 							</tr>
 							<tr>
 								<td width="10%"><font size="0">JANGKA WAKTU</font></td>
@@ -815,7 +858,7 @@
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
 								<td width="35%"><font size="0">TERBILANG</font></td>
-								<td width="65%"><font size="0">({{$data_sph['pinjaman']}})</font></td>
+								<td width="65%"><font size="0">({{$data_sph['bil_pinjaman']}} Rupiah)</font></td>
 							</tr>
 						</table>
 					</td>
@@ -826,7 +869,7 @@
 							<tr>
 								<td width="35%"><font size="0">JANGKA WAKTU</font></td>
 								<td width="2%"><font size="0">:</font></td>
-								<td width="63%"><font size="0">{{$data_sph['jangka_waktu']}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BULAN</font></td>
+								<td width="63%"><font size="0">{{$data_sph['jangka_waktu']}}&nbsp;BULAN</font></td>
 							</tr>
 						</table>
 					</td>
@@ -837,7 +880,7 @@
     						<tr>
     							<td width="35%"><font size="0">BUNGA</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td width="63%"><font size="0">{{$data_sph['suku_bunga']}}</font></td>
+				      			<td width="63%"><font size="0">{{$data_sph['suku_bunga']}} %</font></td>
     						</tr>
     					</table>
     				</td>
@@ -981,7 +1024,7 @@
 				<tr>
 					<td width="30%"><font size="0">Nama Account Officer / Mantri</font></td>
 					<td width="2%"><font size="0">:</font></td>
-					<td width="68%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+					<td width="68%"><font size="0">{{$data_sph['nama_ao']}}</font></td>
 				</tr>
 				<tr>
 					<td width="30%"><font size="0">Tanggal Realisasi</font></td>
@@ -1106,21 +1149,6 @@
 						</p>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<table align="right">
-							<tr>
-								<td>..............., ..................</td>
-							</tr>
-							<tr>
-								<td><br><br></td>
-							</tr>
-							<tr>
-								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
 			</table>
 		</td>
 		<td id="padding">
@@ -1168,6 +1196,17 @@
 						<p class="justify"><font size="0">
 							Saya menyatakan bersedia menerima fasilitas tambahan berupa Kartu Kredit BRI dengan limit sesuai ketentuan yang ditetapkan oleh BANK.
 						</font></p>
+						<table align="left">
+							<tr>
+								<td>..............., ..................</td>
+							</tr>
+							<tr>
+								<td><br><br><br></td>
+							</tr>
+							<tr>
+								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
+							</tr>
+						</table>
 						<table align="right">
 							<tr>
 								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
@@ -1193,7 +1232,7 @@
 							<tr>
 								<td><font size="0">Alamat Emergency Contact <b>**)</b></font></td>
 								<td><font size="0">:</font></td>
-								<td><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+								<td><font size="0"></font></td>
 							</tr>
 							<tr>
 								<td><font size="0">Telepon Emergency Contact <b>**)</b></font></td>
