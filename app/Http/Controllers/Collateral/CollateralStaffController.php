@@ -236,7 +236,7 @@ class CollateralStaffController extends Controller
       $excludeImage = ['image_area'];
 
       if ( in_array($baseName, $excludeNumber) ) {
-        $values = str_replace(',', '.', str_replace('.', '', $values));
+        $values = str_replace(',', '', $values);
       }
 
       if ( in_array($baseName, $excludeImage) ) {
@@ -307,7 +307,6 @@ class CollateralStaffController extends Controller
     {
       $data = $this->getUser();
       $newForm = $this->otsRequest($request);
-      // dd($newForm);
 
       $client = Client::setEndpoint('collateral/ots/'.$id)
       ->setHeaders([
