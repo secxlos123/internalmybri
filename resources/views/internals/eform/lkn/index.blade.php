@@ -120,8 +120,9 @@
         </div>
 
         <!--Hanya muncul jika properti bekas-->
+        @if(($eformData['kpr']['status_property'] != 1) || ($eformData['kpr']['developer_id'] == 1))
         <!--investigation-->
-        <div class="row" hidden="" id="investigate">
+        <div class="row" id="investigate">
             <div class="col-md-12">
                 <div class="panel panel-color panel-primary">
                     <div class="panel-heading">
@@ -131,6 +132,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         <!--common-->
         <div class="row">
