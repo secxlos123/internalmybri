@@ -615,6 +615,7 @@ class AOController extends Controller
                                    , 'pn' => $data['pn']
                           
                           ])->get();
+                          // dd($resend_verification);
       if($resend_verification['code'] == 200)
       {
         \Session::flash('success', $resend_verification['descriptions']);

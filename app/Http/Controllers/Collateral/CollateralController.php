@@ -57,10 +57,6 @@ class CollateralController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        \Log::info($data);
-        if ($data['position'] != 'PJ. COLLATERAL MANAGER') {
-            return redirect()->route('dashboard');
-        }
         return view('internals.collateral.manager.index', compact('data'));
     }
 
