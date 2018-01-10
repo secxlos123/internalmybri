@@ -44,7 +44,7 @@
                                                 <div class="form-group developer_name {!! $errors->has('developer_name') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Nama PIC *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="developer_name" maxlength="50" required="" @if(!empty($dataDev['developer_name'])) value="{{$dataDev['developer_name']}}" @else value="{{old('developer_name')}}" @endif id="name">
+                                                        <input type="text" class="form-control alphaOnly" name="developer_name" maxlength="50" required="" @if(!empty($dataDev['developer_name'])) value="{{$dataDev['developer_name']}}" @else value="{{old('developer_name')}}" @endif id="name">
                                                     @if ($errors->has('developer_name')) <p class="help-block">{{ $errors->first('developer_name') }}</p> @endif
                                                     </div>
                                                 </div>

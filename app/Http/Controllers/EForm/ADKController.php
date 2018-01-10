@@ -742,9 +742,9 @@ class ADKController extends Controller
                 'perusahaan'   => $detail['customer']['work']['company_name'],
                 'no_putusan'   => $no_skpp,
                 'scoring'      => $detail['score'],
-                'jumlah_kredit'=> $detail['request_amount'],
+                'jumlah_kredit'=> $detail['Plafond_usulan'],
                 'jangka_waktu' => $detail['Jangka_waktu'],
-                'suku_bunga'   => ($detail['Suku_bunga'] / 12),
+                'suku_bunga'   => $detail['Suku_bunga'],
                 'provisi'      => $detail['Provisi_kredit'],
                 'biaya_adm'    => $detail['Biaya_administrasi'],
                 'penalty'      => $detail['Penalty'],
@@ -766,9 +766,6 @@ class ADKController extends Controller
 
     public function exportSPH(Request $request) {
         $data = $this->getUser();
-        // $angka = 125000000000000;
-        // $terbilang = $this->terbilang($angka,$style=3);
-        // print_r($terbilang);exit();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
                     ->setHeaders(
@@ -781,11 +778,8 @@ class ADKController extends Controller
         if (!empty($detail)) {
             $fasilitas   = substr($detail['Kode_fasilitas'],-2);
             $no_skpp     = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
-            // dd($fasilitas);
             $no_sk_awal  = $detail['no_dan_tanggal_sk_awal'];
             $no_sk_akhir = $detail['no_dan_tanggal_sk_akhir'];
-            // $tgl_sk_awal = $detail['no_dan_tanggal_sk_awal'];
-            // $tgl_sk_akhir= $detail['no_dan_tanggal_sk_akhir'];
             $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
 
             $detail_sph = [
@@ -798,9 +792,9 @@ class ADKController extends Controller
                 'status'        => $detail['customer']['personal']['status'],
                 'kantor_cabang' => $detail['branch_name'],
                 'pinjaman'      => $detail['Plafond_usulan'],
-                'tujuan'        => $detail['Penggunaan_kredit'],
+                'tujuan'        => $detail['Tujuan_penggunaan_kredit'],
                 'jangka_waktu'  => $detail['Jangka_waktu'],
-                'suku_bunga'    => ($detail['Suku_bunga'] / 12),
+                'suku_bunga'    => $detail['Suku_bunga'],
                 'angsuran'      => $detail['angsuran_usulan'],
                 'provisi'       => $detail['Provisi_kredit'],
                 'provisi_atau'  => $provisi,
@@ -810,20 +804,19 @@ class ADKController extends Controller
                 'beban_bri'     => $detail['Premi_beban_bri'],
                 'pengadilan'    => $detail['Pengadilan_terdekat'],
                 'cif_las'       => $detail['cif_las'],
-                'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=3),
-                'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=3),
-                'bil_day'       => $this->terbilang(date('d'),$style=3),
-                'bil_month'     => $this->terbilang(date('m'),$style=3),
-                'bil_year'      => $this->terbilang(date('Y'),$style=3),
-                'bil_provisi'   => $this->terbilang($detail['Provisi_kredit'],$style=3),
-                'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
-                'bil_angsuran'  => $this->terbilang($detail['angsuran_usulan'],$style=3),
-                'bil_biaya_adm' => $this->terbilang($detail['Biaya_administrasi'],$style=3),
+                'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=2),
+                'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=2),
+                'bil_day'       => $this->terbilang(date('d'),$style=2),
+                'bil_month'     => $this->month(intval(date('m'))),
+                'bil_year'      => $this->terbilang(date('Y'),$style=2),
+                'bil_provisi'   => $this->terbilang($detail['Provisi_kredit'],$style=2),
+                'bil_prov_atau' => $this->terbilang($provisi,$style=2),
+                'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=2),
+                'bil_angsuran'  => $this->terbilang($detail['angsuran_usulan'],$style=2),
+                'bil_biaya_adm' => $this->terbilang($detail['Biaya_administrasi'],$style=2),
                 'no_skpp'       => $no_skpp,
                 'no_sk_awal'    => $no_sk_awal,
                 'no_sk_akhir'   => $no_sk_akhir
-                // 'tgl_sk_awal'   => $tgl_sk_awal,
-                // 'tgl_sk_akhir'  => $tgl_sk_akhir
             ];
             // dd($detail_sph);
 
@@ -857,29 +850,6 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            /*$conten = [
-                'nik'           => $detail['nik'],
-                'tp_produk'     => $detail['tp_produk'],
-                'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
-            ];
-
-            // GET Form Data Debitur LAS
-            $data_debitur = Client::setEndpoint('api_las/index')
-                ->setHeaders(
-                    [ 'Authorization' => $data['token'],
-                      'pn' => $data['pn']
-                    ])
-                ->setBody([
-                    'requestMethod' => 'inquiryHistoryDebiturPerorangan',
-                    'requestData'   => $conten
-                ])
-                ->post();
-            $debitur = [];
-            if ($data_debitur['code'] == '01') {
-                $debitur = $data_debitur['contents']['data'][0];
-            }*/
-            // debitur belum digunakan
-            // dd($debitur);exit();
             $no_skpp    = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
             $detail_sph = [
                 'nama_debitur'  => $detail['customer']['personal']['first_name'],
@@ -922,7 +892,7 @@ class ADKController extends Controller
                 'pinjaman'      => $detail['Plafond_usulan'],
                 'tujuan'        => $detail['Penggunaan_kredit'],
                 'jangka_waktu'  => $detail['Jangka_waktu'],
-                'suku_bunga'    => ($detail['Suku_bunga'] / 12),
+                'suku_bunga'    => $detail['Suku_bunga'],
                 'angsuran'      => $detail['angsuran_usulan'],
                 // baru
                 'pendidikan_terakhir' => $detail['id_Status_gelar'],
@@ -945,9 +915,9 @@ class ADKController extends Controller
             $pdf = \PDF::loadView('internals.eform.adk._debitur', 
                     ['data_sph' => $detail_sph])
                     ->setPaper('a4', 'landscape');
-            return $pdf->download('debitur.pdf');            
+            return $pdf->download('form_pengajuan.pdf');            
         } else {
-            \Session::flash('error', 'Dokumen Debitur gagal didownload');
+            \Session::flash('error', 'Dokumen Form Pengajuan gagal didownload');
             return redirect()->route('adk.index');
         }
     }
@@ -1076,5 +1046,49 @@ class ADKController extends Controller
             $temp = $this->kekata($x/1000000000000)." trilyun".$this->kekata(fmod($x,1000000000000));
         }    
         return $temp;
+    }
+
+    function month($x) {
+        switch ($x) {
+            case 1:
+                return 'Januari';
+                break;
+            case 2:
+                return 'Februari';
+                break;
+            case 3:
+                return 'Maret';
+                break;
+            case 4:
+                return 'April';
+                break;
+            case 5:
+                return 'Mei';
+                break;
+            case 6:
+                return 'Juni';
+                break;
+            case 7:
+                return 'Juli';
+                break;
+            case 8:
+                return 'Agustus';
+                break;
+            case 9:
+                return 'September';
+                break;
+            case 10:
+                return 'Oktober';
+                break;
+            case 11:
+                return 'November';
+                break;
+            case 12:
+                return 'Desember';
+                break;
+            default:
+                return 'Bulan tidak ditemukan';
+                break;
+        }
     }
 }

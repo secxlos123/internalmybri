@@ -98,7 +98,7 @@
 <!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
 <!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
+{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {

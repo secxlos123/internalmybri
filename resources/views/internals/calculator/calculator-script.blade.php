@@ -100,22 +100,22 @@
 
 var defaultJangkaWaktu = 240;
 
-$(document).ready(function(){
-    var interest_rate_type = $("#interest_rate_type").val();
-    if(interest_rate_type == 1){
-        hideFloorFloat();
-        showDefaultInterest();
-    }else if(interest_rate_type == 2){
-        hideFloorFloat();
-        showDefaultInterest();
-    }else if(interest_rate_type== 3){
-        hideDefaultInterest();
-        showOnlyFloat();
-    }else if(interest_rate_type == 4){
-        hideDefaultInterest();
-        showFloorFloat();
-    }
-});
+// // $(document).ready(function(){
+//     var interest_rate_type = $("#interest_rate_type").val();
+//     if(interest_rate_type == 1){
+//         hideFloorFloat();
+//         showDefaultInterest();
+//     }else if(interest_rate_type == 2){
+//         hideFloorFloat();
+//         showDefaultInterest();
+//     }else if(interest_rate_type== 3){
+//         hideDefaultInterest();
+//         showOnlyFloat();
+//     }else if(interest_rate_type == 4){
+//         hideDefaultInterest();
+//         showFloorFloat();
+//     }
+// // });
 
 $("#dp").keyup(function(){
  var dp =this.value;
@@ -142,27 +142,96 @@ $("#price").keyup(function(){
   var down_payment = hitungDP(priceint,dpPersen);
 });
 
-$("#down_payment").keyup(function(){
-   var down_payment = $("#down_payment").inputmask('unmaskedvalue');
-   var down_payment_int = parseInt(down_payment);
+// $("#down_payment").keyup(function(){
+//    var down_payment = $("#down_payment").inputmask('unmaskedvalue');
+//    var down_payment_int = parseInt(down_payment);
  
-   var price = $("#price").inputmask('unmaskedvalue'); 
-   var priceint  = parseInt(price);
-    if(down_payment_int > priceint){
-      alert('Dp tidak boleh lebih besar dari harga rumah');
-      var persen = 0;
-      $("#down_payment").val(persen);
-    }else{
-      var persen = (100/priceint)*down_payment_int;
+//    var price = $("#price").inputmask('unmaskedvalue'); 
+//    var priceint  = parseInt(price);
+//     if(down_payment_int > priceint){
+//       alert('Dp tidak boleh lebih besar dari harga rumah');
+//       var persen = 0;
+//       $("#down_payment").val(persen);
+//     }else{
+//       var persen = (100/priceint)*down_payment_int;
       
-    }
-    if (isNaN(persen)) {
-       persen = 0;
-    }
+//     }
+//     if (isNaN(persen)) {
+//        persen = 0;
+//     }
 
-    persen = persen.toFixed(2);
-      $("#dp").val(persen);
-});
+//     persen = persen.toFixed(2);
+//       $("#dp").val(persen);
+// });
+var down_payment = $('#down_payment');
+ down_payment
+            .on('input', function() {
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var price_platform = $('#price_platform');
+                var max = parseInt(static_price) * (90/100);
+
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
+
+                if (parseInt(val) < max) {
+                    payment = (val / static_price) * 100;
+
+                } else {
+                    $(this).val(max);
+                    payment = 90;
+
+                }
+
+                if ( !isNaN(payment) ) {
+                    dp.val(Math.round(payment));
+                    total = static_price - val;
+
+                    if (total > 0) {
+                        price_platform.val(static_price - val);
+
+                    } else {
+                        price_platform.val(static_price - max);
+                    }
+                }
+            })
+            .on('blur', function() {
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
+                var dp = $('#dp');
+                var dp_min = dp.attr('min');
+                var price_platform = $('#price_platform');
+                var max = parseInt(static_price) * (90/100);
+
+                if ( isNaN(parseInt(val)) ) {
+                    val = 0;
+                }
+
+                if (parseInt(val) < max) {
+                    payment = (val / static_price) * 100;
+
+                } else {
+                    $(this).val(max);
+                    payment = 90;
+
+                }
+
+                if ( !isNaN(payment) ) {
+                    dp.val(Math.round(payment));
+                    total = static_price - val;
+
+                    if (total > 0) {
+                        price_platform.val(static_price - val);
+
+                    } else {
+                        price_platform.val(static_price - max);
+
+                    }
+                }
+            });
 
 //validasi nomer suku bunga
 $("#rate").keyup(function(e){

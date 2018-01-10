@@ -96,8 +96,8 @@
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
         //this route for resend verification to nasabah
-        Route::get('/efrom/resendVerification/{eform_id}', 
-            ['as' => 'resend_verifyData', 'uses' => 'Eform\AOController@resendVerification']);
+        Route::get('/eform/resendVerification/{eform_id}', 
+            ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
 
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
 
@@ -139,7 +139,7 @@
             Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
-        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:collateral'], function () {
+        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal'], function () {
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
