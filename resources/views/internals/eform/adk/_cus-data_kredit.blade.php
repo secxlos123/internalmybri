@@ -358,13 +358,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_instansi']}}</p>
+                    <p class="form-control-static">{{$detail['npl_instansi']}} %</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}} %</p>
                 </div>
             </div>
             <!-- <div class="form-group">
@@ -416,7 +416,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Kredit Take Over :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['kredit_take_over']}}</p>
+                    <p class="form-control-static">
+                    @if($detail['kredit_take_over'] == '0')
+                        Ya
+                    @elseif($detail['kredit_take_over'] == '1')
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

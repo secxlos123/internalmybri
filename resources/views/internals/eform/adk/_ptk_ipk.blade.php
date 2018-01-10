@@ -77,17 +77,17 @@
   <tr>
     <td>- Asuransi Jiwa Kredit</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['asuransi']}}</td>
+    <td>&nbsp;{{$data_debitur['asuransi']}} %</td>
   </tr>
   <tr>
     <td>   - Premi Beban BRI</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['beban_bri']}}</td>
+    <td>&nbsp;{{$data_debitur['beban_bri']}} %</td>
   </tr>
   <tr>
     <td>   - Premi Beban Debitur</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['beban_debitur']}}</td>
+    <td>&nbsp;{{$data_debitur['beban_debitur']}} %</td>
   </tr>
   <tr>
     <td>- Syarat-syarat lainnya</td>

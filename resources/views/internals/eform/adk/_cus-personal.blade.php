@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Lengkap :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
                 </div>
             </div>
             <div class="form-group">
