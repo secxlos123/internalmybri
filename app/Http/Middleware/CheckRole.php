@@ -20,7 +20,7 @@ class CheckRole
             return $next($request);
         }
         $data = $this->getUser();
-        if ($data['role'] != $role) {
+        if (!in_array($data['role'],$role)){
             return redirect()->route('dashboard');
         }
         return $next($request);

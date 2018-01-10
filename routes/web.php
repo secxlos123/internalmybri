@@ -116,7 +116,7 @@
         Route::post('/calculator/calculate/',
             ['as'=>'postCalculate', 'uses'=>'Calculator\CalculatorController@postCalculate']);
 
-        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:collateral'], function () {
+        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:[collateral]'], function () {
 
             Route::get('detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);
 
@@ -135,7 +135,7 @@
             Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
-        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:collateral'], function () {
+        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:[collateral]'], function () {
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
