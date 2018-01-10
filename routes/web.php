@@ -95,6 +95,10 @@
         Route::put('/eform/verifyData/{id}',
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
+        //this route for resend verification to nasabah
+        Route::get('/efrom/resendVerification/{eform_id}', 
+            ['as' => 'resend_verifyData', 'uses' => 'Eform\AOController@resendVerification']);
+
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
 
         Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
