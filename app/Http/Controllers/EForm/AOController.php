@@ -516,6 +516,7 @@ class AOController extends Controller
               'preview' => route('getDetail', $form['id']),
               'lkn' => route('getLKN', $form['id']),
               'recontest' => $recontest,
+              'reverification' => route('resend_verifyData', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
@@ -598,6 +599,30 @@ class AOController extends Controller
         // }
 
         // return view('internals.eform.verification._print-verification', compact('data', 'id', 'dataCustomer'));
+    }
+
+    /*
+     * This function for resend verification to nasabah
+     *
+     */
+
+    public function resendVerification($eform_id)
+    {
+      $data = $this->getUser();
+      $resend_verification = Client::setEndpoint('eforms/'.$eform_id.'/verification/resend')
+                          ->setHeaders([
+                          'Authorization' => $data['token']
+                                   , 'pn' => $data['pn']
+                          
+                          ])->get();
+      if($resend_verification['code'] == 200)
+      {
+        \Session::flash('success', $resend_verification['descriptions']);
+        return redirect()->route('eform.index');
+      }
+      \Session::flash('error', $resend_verification['descriptions']);
+        return redirect()->route('eform.index');
+
     }
 
 }
