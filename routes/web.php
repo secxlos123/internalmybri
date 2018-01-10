@@ -139,7 +139,7 @@
             Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
-        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:collateral,ao,collateral-appraisal'], function () {
+        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal'], function () {
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
