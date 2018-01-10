@@ -150,7 +150,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Agama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['agama']}}</p>
+                    <p class="form-control-static">{{$detail['agama']}}</p>
                 </div>
             </div>
         </form>
