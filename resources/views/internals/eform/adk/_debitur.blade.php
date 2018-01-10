@@ -50,7 +50,7 @@
 				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
 				      			<td width="20%"><font size="0">BERLAKU SAMPAI</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0">12-31-2099</font></td>
+				      			<td><font size="0">31-12-2099</font></td>
     						</tr>
     					</table>
     				</td>
@@ -309,7 +309,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">TEMPAT & TANGGAL LAHIR (tgl/bln/th)</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">
+				      			<td width="15%"><font size="0">
 				      				<?php 
 				      				if (!empty($data_sph['tgl_lahir_deb'])) {
 				      					echo $data_sph['tmpt_lahir_deb'].', '.date('d-m-Y',strtotime($data_sph['tgl_lahir_deb']));
@@ -327,7 +327,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">NAMA GADIS IBU KANDUNG</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['nama_ibu']}}</font></td>
+				      			<td width="15%"><font size="0">{{$data_sph['nama_ibu']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -338,7 +338,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">KEWARGANEGARAAN</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['kewarganegaran']}}</font></td>
+				      			<td width="15%"><font size="0">{{$data_sph['kewarganegaran']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -349,7 +349,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">EMAIL</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['email']}}</font></td>
+				      			<td width="15%"><font size="0">{{$data_sph['email']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -364,7 +364,7 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0">{{$data_sph['lama_menetap']}}</font>
+				      							<font size="0">{{$data_sph['lama_tinggal']}}</font>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;TAHUN</font></td>
 				      						<td>
@@ -858,7 +858,8 @@
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
 								<td width="35%"><font size="0">TERBILANG</font></td>
-								<td width="65%"><font size="0">({{$data_sph['bil_pinjaman']}} Rupiah)</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="63%"><font size="0">({{$data_sph['bil_pinjaman']}} Rupiah)</font></td>
 							</tr>
 						</table>
 					</td>

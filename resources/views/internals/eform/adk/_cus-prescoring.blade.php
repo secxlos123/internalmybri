@@ -144,11 +144,11 @@
                 <label class="col-md-6 control-label">Status Payroll :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">
-                    @if($detail['Payroll'] == '1')
-                        Payroll Bank BRI
-                    @else
-                        Payroll Non BRI
-                    @endif
+                        @if($detail['Payroll'] == '1')
+                            Bank BRI
+                        @else
+                            Non Bank BRI
+                        @endif
                     </p>
                 </div>
             </div>
@@ -230,7 +230,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Skor Mitra Kerjasama :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['score']}}</p>
+                    <p class="form-control-static">{{$detail['scoring_mitra']}}</p>
                 </div>
             </div>
             <div class="form-group">

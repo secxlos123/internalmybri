@@ -23,7 +23,7 @@
 <h4 align="center">Nomor : &nbsp;{{$data_sph['no_skpp']}}</h4>
 <p style="text-align: justify;">
   Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai Badan Hukum yang berkedudukan di Jakarta berdasarkan Anggaran Dasar Perseroan yang dimuat dalam Akta Nomor 51 tanggal 26 Mei 2008 yang dibuat dihadapan Fathiah Helmi, SH Notaris di Jakarta dan telah diumumkan dalam Berita Negara RI Nomor 68 tanggal 25 Agustus 2009, Tambahan Nomor 23079.<br>
-  Pada hari ini tanggal <?php echo date('d')?> bulan <?php echo date('m')?> tahun <?php echo date('Y')?> (<?php echo date('d-m-Y')?>)
+  Pada hari ini tanggal {{$data_sph['bil_day']}} bulan {{$data_sph['bil_month']}} tahun {{$data_sph['bil_year']}} (<?php echo date('d/m/Y')?>)<br>
   Yang bertandatangan dibawah ini :<font size='1'>2)</font>
 </p> 
   <br>
@@ -90,7 +90,7 @@
     </tr>
   </table>
 <p style="text-align: justify;">
-  dengan ini menggabungkan diri masing-masing untuk menanggung hutang sejumlah dibawah ini atau segala hutang yang akan timbul sehubungan dengan Surat Pengakuan Hutang ini, sehingga dengan demikian baik bersama-sama maupun sendiri-sendiri atau salah seorang saja menanggung segala hutang (hoofdelijk)<font size='1'>3)</font>, selanjutnya disebut YANG BERHUTANG, menyatakan mengaku berhutang kepada PT. Bank Rakyat Indonesia (Persero) Tbk Kanca/Kancapem/Unit<font size='1'>4)</font> {{$data_sph['kantor_cabang']}} selanjutnya disebut BANK, karena telah menerima uang sebagai pinjaman sejumlah Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} (.............. rupiah) menurut syarat-syarat dan ketentuan-ketentuan sebagaimana tersebut berikut ini :
+  dengan ini menggabungkan diri masing-masing untuk menanggung hutang sejumlah dibawah ini atau segala hutang yang akan timbul sehubungan dengan Surat Pengakuan Hutang ini, sehingga dengan demikian baik bersama-sama maupun sendiri-sendiri atau salah seorang saja menanggung segala hutang (hoofdelijk)<font size='1'>3)</font>, selanjutnya disebut YANG BERHUTANG, menyatakan mengaku berhutang kepada PT. Bank Rakyat Indonesia (Persero) Tbk Kanca/Kancapem/Unit<font size='1'>4)</font> {{$data_sph['kantor_cabang']}} selanjutnya disebut BANK, karena telah menerima uang sebagai pinjaman sejumlah Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} ({{$data_sph['bil_pinjaman']}} rupiah) menurut syarat-syarat dan ketentuan-ketentuan sebagaimana tersebut berikut ini :
   <br><br><br><br><br><br>
   <hr>
   <font size='1'><i>1) Dicoret yang tidak perlu</i></font><br>
@@ -111,10 +111,10 @@
   <h4 align="center">Pasal 2</h4>
   <ol style="text-align: justify;">
     <li>
-      Pokok pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG kepada BANK dalam jangka waktu {{$data_sph['jangka_waktu']}} (……………………………………………………………) bulan terhitung sejak tanggal ditandatanganinya Surat Pengakuan Hutang ini.
+      Pokok pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG kepada BANK dalam jangka waktu {{$data_sph['jangka_waktu']}} ({{$data_sph['bil_jangka']}}) bulan terhitung sejak tanggal ditandatanganinya Surat Pengakuan Hutang ini.
     </li>
     <li>
-      Pokok Pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG tiap-tiap bulanan dengan angsuran yang sama besarnya yang meliputi angsuran pokok dan bunga dalam {{$data_sph['suku_bunga']}} (……………………………………………………………) kali angsuran masing-masing sebesar Rp {{number_format($data_sph['angsuran'], 2, ",", ".")}} (…………………………………… rupiah). Angsuran tersebut harus dibayar selambat-lambatnya setiap tanggal ……… pada bulan angsuran yang bersangkutan. Dalam hal tanggal tersebut jatuh pada hari libur maka angsuran harus dibayar oleh YANG BERHUTANG pada hari kerja sebelumnya.
+      Pokok Pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG tiap-tiap bulanan dengan angsuran yang sama besarnya yang meliputi angsuran pokok dan bunga dalam {{$data_sph['suku_bunga']}} ({{$data_sph['bil_bunga']}}) kali angsuran masing-masing sebesar Rp {{number_format($data_sph['angsuran'], 2, ",", ".")}} ({{$data_sph['bil_angsuran']}} rupiah). Angsuran tersebut harus dibayar selambat-lambatnya setiap tanggal ……… pada bulan angsuran yang bersangkutan. Dalam hal tanggal tersebut jatuh pada hari libur maka angsuran harus dibayar oleh YANG BERHUTANG pada hari kerja sebelumnya.
     </li>
     <li>
       Yang berhutang wajib membayar angsuran kredit/pinjaman sesuai dengan jangka waktu dan periode angsuran yang telah disepakati. Apabila yang berhutang melakukan pelunasan maju sebelum jangka waktu yang disepakati, maka kepada debitur diwajibkan membayar :
@@ -137,10 +137,10 @@
       YANG BERHUTANG harus membayar :
       <ol type="a">
         <li>
-          Provisi sebesar {{$data_sph['provisi']}} (………………) % dari Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} (………………………………………………… rupiah) atau sebesar Rp {{number_format($data_sph['provisi_atau'], 2, ",", ".")}} (………………………………………………………………………… rupiah).
+          Provisi sebesar {{$data_sph['provisi']}} (............) % dari Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} ({{$data_sph['bil_pinjaman']}} rupiah) atau sebesar Rp {{number_format($data_sph['provisi_atau'], 2, ",", ".")}} ({{$data_sph['bil_prov_atau']}} rupiah).
         </li>
         <li>
-          Biaya Administrasi sebesar Rp {{number_format($data_sph['biaya_adm'], 2, ",", ".")}} (………………………………………………… rupiah). <br>
+          Biaya Administrasi sebesar Rp {{number_format($data_sph['biaya_adm'], 2, ",", ".")}} ({{$data_sph['bil_biaya_adm']}} rupiah). <br>
           Biaya-biaya tersebut dibayar sekaligus lunas pada saat penandatanganan Surat Pengakuan Hutang ini.
         </li>
       </ol>
@@ -196,7 +196,7 @@
       Apabila dianggap perlu BANK akan mempertanggungkan atau mengasuransikan agunan atas pinjaman ini kepada perusahaan asuransi yang rekanan BANK yang dipilih oleh YANG BERHUTANG dengan Banker’s Clause untuk dan atas nama BANK, atas beban biaya YANG BERHUTANG. 
     </li>
   </ol>
-  <br><br><br>
+  <br><br>
   <hr>
   <font size='1'><i>6) Dicoret jenis jaminan yang tidak digunakan</i></font><br>
   <font size='1'><i>7) Diisi nama YANG BERHUTANG yang tercantum dalam Surat Keputusan</i></font><br>

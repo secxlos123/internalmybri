@@ -56,14 +56,14 @@
                 <div class="col-md-7">
                     <p class="form-control-static">
                         @if($debitur['TRANSAKSI_NORMAL_HARIAN'] == '1')
-                            0 s.d 10jt
+                            s.d 10jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '2')
                             > 10jt s.d 50jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '3')
                             > 50jt s.d 100jt
                         @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '4')
                             > 100jt s.d 1M
-                        @else
+                        @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '5')
                             > 1M
                         @endif
                     </p>
@@ -145,6 +145,12 @@
                         Ya
                     @endif
                     </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Agama :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['agama']}}</p>
                 </div>
             </div>
         </form>
