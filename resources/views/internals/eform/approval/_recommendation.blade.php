@@ -42,7 +42,7 @@
         <hr>
             <div class="text-center">
             @if ($type != 'preview')
-                @if($detail['prescreening_status'] != '-')
+                @if(($detail['is_screening'] == '1') && ($detail['response_status'] == 'approve'))
                     <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
                     <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
                 @endif

@@ -499,6 +499,12 @@ class AOController extends Controller
               'prescreening_result' => $form['prescreening_status'],
             ])->render();
 
+            if(!empty($form['recontest'])){
+              $recontest = $form['recontest'];
+            }else{
+              $recontest = [];
+            }
+
             $form['action'] = view('internals.layouts.actions', [
               'verified' => $verify,
               'visited' => $visit,
@@ -509,6 +515,7 @@ class AOController extends Controller
               'eform_id' => $form['id'],
               'preview' => route('getDetail', $form['id']),
               'lkn' => route('getLKN', $form['id']),
+              'recontest' => $recontest,
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
