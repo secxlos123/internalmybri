@@ -15,6 +15,10 @@ class CheckRole
      */
     public function handle($request, Closure $next , $role)
     {
+        if(env('APP_ENV') == 'local')
+        {
+            return $next($request);
+        }
         $data = $this->getUser();
         if ($data['role'] != $role) {
             return redirect()->route('dashboard');
