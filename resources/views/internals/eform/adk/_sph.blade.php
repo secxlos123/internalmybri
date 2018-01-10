@@ -85,7 +85,7 @@
       <?php if($data_sph['status'] == '1'){ ?>
       <td>&nbsp;-</td>
       <?php } else { ?>
-      <td>&nbsp;{{$data_sph['address']}}</td>
+      <td>&nbsp;{{$data_sph['alamat']}}</td>
       <?php } ?>
     </tr>
   </table>
@@ -362,7 +362,7 @@
   <br><br><br>
   <?php } else { ?>
   </table>
-  <br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br>
   <?php } ?>
   <hr>
   <font size='1'><i>12) Jika dapat menulis, YANG BERHUTANG harus menulis sendiri kalimat ”baik untuk sejumlah Rp.............. (dengan huruf ....................................) ditambah dengan bunga dan ongkos-ongkos.” </i></font><br>
