@@ -116,7 +116,7 @@
                                     <th>Nama Pegawai</th>
                                     <th>Nama Debitur</th>
                                     <th>Plafond</th>
-                                    <th>Aksi</th>
+                                    <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

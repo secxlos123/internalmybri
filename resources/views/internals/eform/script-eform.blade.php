@@ -426,7 +426,7 @@
                         dp.val('0');
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         amount = static_price - payment;
                         request_amount.val(amount);
                         break;
@@ -435,7 +435,7 @@
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '3':
@@ -443,7 +443,7 @@
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                 }
@@ -455,7 +455,7 @@
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '2':
@@ -463,7 +463,7 @@
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '3':
@@ -471,7 +471,7 @@
                         dp.attr('min', '20');
                         payment = (20 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                 }
@@ -483,7 +483,7 @@
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '2':
@@ -491,7 +491,7 @@
                         dp.attr('min', '20');
                         payment = (20 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '3':
@@ -499,7 +499,7 @@
                         dp.attr('min', '25');
                         payment = (25 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                 }
@@ -531,9 +531,9 @@
                 }
 
                 payment = (val / 100) * static_price;
-                down_payment.val(payment);
+                // down_payment.val(payment);
                 amount = static_price - payment;
-                down_payment.val(payment);
+                down_payment.val(Math.round(payment));
                 request_amount.val(amount);
             });
 
@@ -699,9 +699,9 @@
         }
 
         payment = (val / 100) * static_price;
-        down_payment.val(payment);
+        // down_payment.val(payment);
         amount = static_price - payment;
-        down_payment.val(payment);
+        down_payment.val(Math.round(payment));
         request_amount.val(amount);
     }
 
