@@ -55,7 +55,7 @@
               <tbody>
                   <tr>
                       <td>
-                        <div class="input-group">
+                        <div class="input-group count-row">
                             <input type="text" class="form-control" id="datepicker-inline" name="mutations[0][tables][0][date]">
                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                         </div>
