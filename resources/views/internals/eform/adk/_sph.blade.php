@@ -1,6 +1,17 @@
+<style type="text/css">
+  .justify {
+    text-align: justify;
+  }
+  .right {
+    text-align: right;
+  }
+</style>
+<p class="right"><font size="0">
+1/6
+</font></p>
 <h3>PT BANK RAKYAT INDONESIA (PERSERO) Tbk.</h3>
 <hr>
-<p style="text-align: justify;">
+<p class="justify">
   <table>
     <tr>
       <td>KC/KCP/UNIT<font size='1'>1)</font></td>
@@ -99,6 +110,9 @@
   <font size='1'><i>4) Dicoret yang tidak perlu</i></font>
 </p>
 <!-- pasal 1 -->
+<p class="right"><font size="0">
+2/6
+</font></p>
 <p style="text-align: justify;">
   <h3 align="center">PENGGUNAAN PINJAMAN</h3>
   <h4 align="center">Pasal 1</h4>
