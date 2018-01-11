@@ -7,8 +7,12 @@
 		padding: 2px 5px 2px 5px;
 	}
 
+	#padding6 {
+		padding: 0 10px 0 10px;
+	}
+
 	#head6 {
-		margin-top: 500px;
+		margin-top: 0px;
 		border-top: 1px solid;
 	}
 
@@ -28,7 +32,9 @@
 </font></p>
 <table width="100%" border="1">
 	<tr>
-		<td colspan="2" align="right" id="head_color">Form Permohonan <b>BRIGUNA</b></td>
+		<td colspan="2" align="right" id="head_color">
+			No. Ref Aplikasi : <b>{{$data_sph['ref_number']}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form Permohonan <b>BRIGUNA</b>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2" id="head_color"><b>&nbsp;&nbsp;DATA PRIBADI</b></td>
@@ -840,10 +846,11 @@
 		</td>
 	</tr>
 </table>
-<p class="right"><font size="0">
+<p class="right" style="margin-top: 39px"><font size="0">
 2/3
 </font></p>
 <table width="100%" border="1" id="head6">
+
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERSETUJUAN FASILITAS (DIISI OLEH BANK)</b></td>
 		<td width="50%"><b>&nbsp;&nbsp;DATA PINJAMAN DI BANK LAIN</b></td>
@@ -964,7 +971,7 @@
 		</td>
 	</tr>
 </table>
-<table width="100%" border="1">
+<table width="100%" border="1" style="margin-bottom: 200px;">
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERSYARATAN *)</b></td>
 		<td width="50%">&nbsp;<b>DIISI OLEH BANK</b></td>
@@ -1026,7 +1033,7 @@
 			<br>
 			<font size="0">*) Untuk permohonan pinjaman yang ditujukan untuk take-over KPR atau KKB di Bank lain mengikuti ketentuan yang berlaku.</font>
 		</td>
-		<td id="padding">			
+		<td id="padding">
 			<table width="100%" cellpadding=0 cellspacing=0 align="center">
 				<tr>
     				<td colspan="3"><font size="0">Konfirmasi persetujuan kredit dan nomor rekening calon debitur oleh petugas Bank.</font></td>
@@ -1097,7 +1104,7 @@
 		</td>
 	</tr>
 </table>
-<p class="right"><font size="0">
+<p class="right" style="margin-top: 0px"><font size="0">
 3/3
 </font></p>
 <table width="100%" border="1" id="head6">
@@ -1106,7 +1113,7 @@
 		<td width="50%"><b>&nbsp;&nbsp;PENAMBAHAN FASILITAS KARTU KREDIT BRI</b></td>
 	</tr>
 	<tr>
-		<td id="padding">
+		<td id="padding6">
 			<table width="100%">
 				<tr>
 					<td>
@@ -1155,7 +1162,7 @@
 									Tunduk pada ketentuan yang berlaku di BRI. Pernyataan ini dibuat dengan sebenarnya, apabila secara sengaja saya tidak mengikuti pernyataan ini saya bersedia untuk dikenakan sanksi sesuai ketentuan yang berlaku.
 								</li>
 								<li>
-									Memberikan kuasa pada Bank untuk tabungan saya dengan nomor rekening: .................................... di Bank BRI Cabang {{$data_sph['kantor_cabang']}}, serta kuasa mendebet tersebut untuk keperluan pembayaraan biaya-biaya provisi, administrasi serta angsuran rekening Kredit atau biaya-biaya lain yang mungkin timbul di kemudian hari terkait dengan fasilitas Briguna yang saya terima dan kuasa yang saya berikan ini berlaku sampai dengan fasilitas Briguna saya dinyatakan lunas oleh Bank. Apabila gaji/upah/uang pensiun saya disalurkan melalui Bank BRI, maka saya memberikan kuasa kepada Bank untuk melakukan pemotongan gaji saya untuk kepentingan tersebut di atas. Kuasa ini tidak dapat ditarik kembali serta tidak akan berakhir oleh karena sebab-sebab yang termaktub dalam pasal 1813, 1814, dan 1816 Kitab Undang Hukum Perdata dan saya membebaskan Bank dari segala tanggung jawab atas kerugian/biaya apapun sehubungan pemberian kuasa tersebut di atas.
+									Memberikan kuasa pada Bank untuk tabungan saya dengan nomor rekening: ....................................... di Bank BRI Cabang {{$data_sph['kantor_cabang']}}, serta kuasa mendebet tersebut untuk keperluan pembayaraan biaya-biaya provisi, administrasi serta angsuran rekening Kredit atau biaya-biaya lain yang mungkin timbul di kemudian hari terkait dengan fasilitas Briguna yang saya terima dan kuasa yang saya berikan ini berlaku sampai dengan fasilitas Briguna saya dinyatakan lunas oleh Bank. Apabila gaji/upah/uang pensiun saya disalurkan melalui Bank BRI, maka saya memberikan kuasa kepada Bank untuk melakukan pemotongan gaji saya untuk kepentingan tersebut di atas. Kuasa ini tidak dapat ditarik kembali serta tidak akan berakhir oleh karena sebab-sebab yang termaktub dalam pasal 1813, 1814, dan 1816 Kitab Undang Hukum Perdata dan saya membebaskan Bank dari segala tanggung jawab atas kerugian/biaya apapun sehubungan pemberian kuasa tersebut di atas.
 								</li>
 							</ol>
 							</font>
@@ -1164,7 +1171,7 @@
 				</tr>
 			</table>
 		</td>
-		<td id="padding">
+		<td id="padding6">
 			<table width="100%">
 				<tr>
 					<td>

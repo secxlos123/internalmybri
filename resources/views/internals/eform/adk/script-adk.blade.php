@@ -67,7 +67,7 @@
                 {data: 'nama_pegawai', name: 'nama_pegawai', bSortable: true},
                 {data: 'namadeb', name: 'namadeb', bSortable: true},
                 {data: 'request_amount', name: 'request_amount', bSortable: true},
-                // {data: 'STATUS', name: 'STATUS', bSortable: true },
+                {data: 'STATUS', name: 'STATUS', bSortable: true },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
       });

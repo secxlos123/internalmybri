@@ -299,10 +299,17 @@
                     }
                     ?> 
                         <tr>
-                            <td colspan="5"></td>
+                            <td colspan="3"></td>
+                            <td>Catatan ADK</td>
+                            <td>
+                                <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
+                            </td>
                             <td align="center">
-                                <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
-                                <input type="submit" value="Verifikasi" class="btn btn-primary" id="btn-verifikasi">
+                                @if($detail['is_send'] == '1') 
+                                    <a class="btn btn-danger" id="btn-batal" href="#">Batal</a>
+                                    <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
+                                    <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
+                                @endif
                             </td>
                         </tr>
                     </tbody>

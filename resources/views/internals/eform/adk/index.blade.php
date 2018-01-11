@@ -113,9 +113,10 @@
                                     <th>ID Aplikasi</th>
                                     <th>No Referensi</th>
                                     <th>Produk</th>
-                                    <th>Nama Pegawai</th>
+                                    <th>Nama AO</th>
                                     <th>Nama Debitur</th>
                                     <th>Plafond</th>
+                                    <th>Status</th>
                                     <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>

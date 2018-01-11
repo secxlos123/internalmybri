@@ -473,20 +473,36 @@ class ADKController extends Controller
             $slip_gaji = 1;
         }
         // print_r($response);exit();
-        
-        $update_data = [
-            'is_verified'      => $response['is_verified'],
-            'eform_id'         => $response['eform_id'],
-            'flag_kk'          => $kk,
-            'flag_ktp'         => $ktp,
-            'flag_couple_ktp'  => $ktp_pasangan,
-            'flag_slip_gaji'   => $slip_gaji,
-            'flag_npwp'        => $npwp,
-            'flag_sk_awal'     => $sk_awal,
-            'flag_sk_akhir'    => $sk_akhir,
-            'flag_skpu'        => $skpu,
-            'flag_rekomendasi' => $rekomendasi
-        ];
+        if ($response['is_verified'] == 1) {
+            $update_data = [
+                'is_verified'      => $response['is_verified'],
+                'is_send'          => 5,
+                'eform_id'         => $response['eform_id'],
+                'flag_kk'          => $kk,
+                'flag_ktp'         => $ktp,
+                'flag_couple_ktp'  => $ktp_pasangan,
+                'flag_slip_gaji'   => $slip_gaji,
+                'flag_npwp'        => $npwp,
+                'flag_sk_awal'     => $sk_awal,
+                'flag_sk_akhir'    => $sk_akhir,
+                'flag_skpu'        => $skpu,
+                'flag_rekomendasi' => $rekomendasi
+            ];
+        } else {
+            $update_data = [
+                'is_verified'      => $response['is_verified'],
+                'eform_id'         => $response['eform_id'],
+                'flag_kk'          => $kk,
+                'flag_ktp'         => $ktp,
+                'flag_couple_ktp'  => $ktp_pasangan,
+                'flag_slip_gaji'   => $slip_gaji,
+                'flag_npwp'        => $npwp,
+                'flag_sk_awal'     => $sk_awal,
+                'flag_sk_akhir'    => $sk_akhir,
+                'flag_skpu'        => $skpu,
+                'flag_rekomendasi' => $rekomendasi
+            ];
+        }
         // print_r($update_data);exit();
         $update_briguna = Client::setEndpoint('api_las/update')
                         ->setHeaders(
@@ -514,6 +530,7 @@ class ADKController extends Controller
         $data = $this->getUser();
         // print_r($request->all());exit();
         $response = $request->all();
+        // print_r($response);exit();
         if (strtolower($response['type']) == 'batal') {
             $update_data = [
                 'eform_id'    => $response['eform_id'],
@@ -543,13 +560,13 @@ class ADKController extends Controller
             if ($update_briguna['code'] == '200') {
                 return response()->json([
                     'code'     => 200,
-                    'message'  => 'Verifikasi dibatalkan kirim ke Brinets',
+                    'message'  => 'Pengajuan berhasil dibatalkan',
                     'response' => $update_briguna
                 ]);
             } else {
                 return response()->json([
                     'code'     => 400,
-                    'message'  => 'Verifikasi gagal dibatalkan kirim ke Brinets',
+                    'message'  => 'Pengajuan gagal dibatalkan',
                     'response' => $update_briguna
                 ]);
             }
@@ -655,6 +672,18 @@ class ADKController extends Controller
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
+                    if (intval($value['is_send']) == '1') {
+                        $status = 'Pengajuan diapprove pinca';
+                    } else if (intval($value['is_send']) == '3') {
+                        $status = 'Pengajuan ditolak pinca';
+                    } else if (intval($value['is_send']) == '4') {
+                        $status = 'Pengajuan dibatalkan approve adk';
+                    } else if (intval($value['is_send']) == '5') {
+                        $status = 'Pengajuan diapprove adk';
+                    } else if (intval($value['is_send']) == '6') {
+                        $status = 'Pengajuan pencairan diapprove pinca';
+                    }
+                    
                     // print_r($value);exit();
                     foreach ($listVerADK as $key => $form) {
                         // print_r($debitur);
@@ -662,22 +691,25 @@ class ADKController extends Controller
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
                             // print_r($form);exit();
-                            $form['ref_number'] = $value['ref_number'];
-                            $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                            $form['eform_id'] = $value['eform_id'];
-                            $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                            if ($form['fid_tp_produk'] == '1') {
-                                $form['fid_tp_produk'] = 'Briguna Karya';
-                            } elseif ($form['fid_tp_produk'] == '10') {
-                                $form['fid_tp_produk'] = 'Briguna Micro';
-                            } else {
-                                $form['fid_tp_produk'] = 'Lainnya';
+                            if (intval($value['is_send']) == '1') {
+                                $form['STATUS'] = $status;
+                                $form['ref_number'] = $value['ref_number'];
+                                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
+                                $form['eform_id'] = $value['eform_id'];
+                                $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
+                                if ($form['fid_tp_produk'] == '1') {
+                                    $form['fid_tp_produk'] = 'Briguna Karya';
+                                } elseif ($form['fid_tp_produk'] == '10') {
+                                    $form['fid_tp_produk'] = 'Briguna Micro';
+                                } else {
+                                    $form['fid_tp_produk'] = 'Lainnya';
+                                }
+                                $form['action'] = view('internals.layouts.actions', [
+                                    'approve_adk' => $form
+                                ])->render();
+                                $eforms['contents']['data'][] = $form;
+                                $count = count($form);
                             }
-                            $form['action'] = view('internals.layouts.actions', [
-                                'approve_adk' => $form
-                            ])->render();
-                            $eforms['contents']['data'][] = $form;
-                            $count = count($form);
                         }
                     }
                 }
@@ -687,7 +719,9 @@ class ADKController extends Controller
                     $eforms['contents']['recordsTotal'] = '0';
                     $eforms['contents']['recordsFiltered'] = '0';
                     $eforms['contents']['data'][] = [
+                        'tgl_pengajuan' => '-',
                         'id_aplikasi'   => '-',
+                        'ref_number'    => '-',
                         'fid_tp_produk' => '-',
                         'nama_pegawai'  => '-',
                         'namadeb'       => '-',
@@ -708,7 +742,9 @@ class ADKController extends Controller
             $eforms['contents']['recordsTotal'] = '0';
             $eforms['contents']['recordsFiltered'] = '0';
             $eforms['contents']['data'][] = [
+                'tgl_pengajuan' => '-',
                 'id_aplikasi'   => '-',
+                'ref_number'    => '-',
                 'fid_tp_produk' => '-',
                 'nama_pegawai'  => '-',
                 'namadeb'       => '-',
@@ -858,7 +894,7 @@ class ADKController extends Controller
                 'tgl_lahir_deb' => $detail['customer']['personal']['birth_date'],
                 'tgl_pasangan'  => $detail['customer']['personal']['couple_birth_date'],
                 'tmpt_lahir_deb'=> $detail['customer']['personal']['birth_place'],
-                'tmpt_pasangan' => $detail['customer']['personal']['couple_birth_place'],
+                // 'tmpt_pasangan' => $detail['customer']['personal']['couple_birth_place'],
                 'ktp'           => $detail['customer']['personal']['nik'],
                 'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
                 'jenis_kelamin' => $detail['customer']['personal']['gender'],
@@ -904,6 +940,7 @@ class ADKController extends Controller
                 'kota_dom'      => $detail['kota_dom'],
                 'kode_pos'      => $detail['kode_pos'],
                 'kode_pos_dom'  => $detail['kode_pos_dom'],
+                'ref_number'    => $detail['ref_number'],
                 'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
                 'no_skpp'       => $no_skpp
             ];

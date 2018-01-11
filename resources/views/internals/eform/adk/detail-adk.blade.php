@@ -205,7 +205,7 @@
             </div>
 
             <!-- rekomendasi approval -->
-            @if($detail['is_send'] == '1' && $detail['is_verified'] == '1')                    
+            @if($detail['is_send'] == '1')                    
                 <div class="text-center">
                     <div class="row">
                         <div class="col-md-6">
@@ -239,20 +239,6 @@
                             </div>
                         </div>
                     </div>
-                    <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
-                    {{ csrf_field() }}
-                        <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">
-                        <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
-                        <input type="hidden" name="type" value="kirim">
-                        <input type="hidden" name="uid" value="{{$detail['uid']}}">
-                        <h3 class="panel-title">catatan :</h3>
-                        <hr> 
-                        <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
-                        <hr>
-                        <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                        <!-- <button class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-batal">Batalkan Kirim</button> -->
-                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
-                    </form>
                 </div>
             @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1')
                 <div class="text-center">
@@ -260,6 +246,30 @@
                         <div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Data SPH :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download SPH</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download Form Pengajuan</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <form class="form-horizontal" role="form">
@@ -276,6 +286,19 @@
                             </div>
                         </div>
                     </div>
+                    <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
+                    {{ csrf_field() }}
+                        <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">
+                        <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
+                        <input type="hidden" name="type" value="kirim">
+                        <input type="hidden" name="uid" value="{{$detail['uid']}}">
+                        <h3 class="panel-title">catatan :</h3>
+                        <hr> 
+                        <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
+                        <hr>
+                        <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
+                    </form>
                 </div>
             @else
                 <div class="text-center">
@@ -305,6 +328,7 @@
     $('#btn-batal').on('click', function(){
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
+        alert(eformId);
         HoldOn.open(options);
         $.ajax({
             dataType: 'json',
