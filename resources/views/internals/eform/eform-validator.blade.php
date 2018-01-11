@@ -96,8 +96,20 @@
                         $("#view-modal #couple_name").html(couple_name);
                         $("#view-modal #couple_birth_place").html(couple_birth_place);
                         $("#view-modal #couple_birth_date").html(couple_birth_date);
-                        $("#view-modal #couple_identity").html('<img src="'+couple_identity+'" class="img-responsive">');
-                        $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">');
+                        var ext_couple = couple_identity.substr((couple_identity.lastIndexOf('.') +1));
+                        if(ext_couple == 'pdf'){
+                            $("#view-modal #couple_identity").html('<a href="'+couple_identity+'" target="_blank" class="img-responsive"><img src="{{asset("assets/images/download-logo.png")}}" class="img-responsive"></a>');
+                        }else{
+                            $("#view-modal #couple_identity").html('<img src="'+couple_identity+'" class="img-responsive">');
+                        }
+
+                        var ext = identity.substr( (identity.lastIndexOf('.') +1) );
+                        if(ext == 'pdf'){
+                            $("#view-modal #identity").html('<a href="'+identity+'" target="_blank" class="img-responsive"><img src="{{asset("assets/images/download-logo.png")}}" class="img-responsive"></a>');
+                        }else{
+                            $("#view-modal #identity").html('<img src="'+identity+'" class="img-responsive">');
+                        }
+
                         $("#view-modal #marritalstatus").val(status);
                         $("#view-modal #office").val(office);
                         $("#view-modal #ao_name").html(ao_name);
