@@ -109,32 +109,37 @@ class CollateralController extends Controller
     public function detail($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
 
-        if($dev_id == 1){
+        if ( $dev_id == 1 ) {
             $type = 'nonindex';
             $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
-            $id = $collateral['eform_id'];
-        //get data eform
-            $EformDetail = Client::setEndpoint('eforms/'.$id)
-             ->setHeaders([
-                    'Authorization' => $data['token']
-            ,                  'pn' => $data['pn']
-                         ])->get();
-        
-            $detail = $EformDetail['contents'];
 
-            $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
-            ->setHeaders([
-                    'Authorization' => $data['token']
-            ,                  'pn' => $data['pn']   
-                        ])->get();
-
-            $customer = $dataCustomer['contents'];
-        }else{
+        } else {
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
         }
+
+        $id = $collateral['eform_id'];
+        //get data eform
+        $EformDetail = Client::setEndpoint('eforms/'.$id)
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+            ])
+            ->get();
+
+        $detail = $EformDetail['contents'];
+
+        $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+            ])
+            ->get();
+
+        $customer = $dataCustomer['contents'];
+
         // dd($collateral);
         return view('internals.collateral.manager.detail', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
