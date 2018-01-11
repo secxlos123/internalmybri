@@ -406,19 +406,19 @@ class EFormController extends Controller
         $moneyInput = array(
                 [
                     'name'    => 'request_amount',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->request_amount))
+                    'contents' => str_replace(',', '', $request->request_amount)
                 ],
                 [
                     'name'    => 'price',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->price))
+                    'contents' => str_replace(',', '', $request->price)
                 ],
                 [
                     'name'    => 'dp',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->dp))
+                    'contents' => str_replace(',', '', $request->dp)
                 ],
                 [
                     'name'    => 'down_payment',
-                    'contents' => str_replace(',', '.', str_replace('.', '', $request->down_payment))
+                    'contents' => str_replace(',', '', $request->down_payment)
                 ]
             );
 
@@ -436,6 +436,7 @@ class EFormController extends Controller
     public function store(Request $request)
     {
         $data = $this->getUser();
+        $role = $data['role'];
         $newForm = $this->eformRequest($request, $data);
         // dd(json_encode($newForm));
 
@@ -456,9 +457,9 @@ class EFormController extends Controller
                    ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        , 'auditaction' => 'pengajuan kredit via '.$role
+                        , 'long' => $request['hidden-long']
+                        , 'lat' => $request['hidden-lat']
                     ])->setBody($newForm)
                    ->post('multipart');
                 // dd($client);
@@ -540,7 +541,7 @@ class EFormController extends Controller
     public function postDispotition(Request $request, $id)
     {
         $data = $this->getUser();
-        // dd($id);
+        // dd($request->all());
 
         $dispotition = [
             'ao_id' => $request->name,
@@ -552,9 +553,9 @@ class EFormController extends Controller
                     , 'pn' => $data['pn']
                     , 'branch_id' => $data['branch']
                     , 'role' => $data['role']
-                    // , 'auditaction' => 'action name'
-                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    , 'auditaction' => $request['auditaction']
+                    , 'long' => $request['hidden-long']
+                    , 'lat'  => $request['hidden-lat']
                 ])->setBody($dispotition)
                 ->post();
         // dd($client);
@@ -623,11 +624,14 @@ class EFormController extends Controller
                 'dispose' => $form['ao_name'],
                 'submited' => ($form['is_approved'] && $verify),
                 'dispotition' => $form,
+                'response_status' => $form['response_status'],
+                'is_screening' => $form['is_screening'],
                 // 'screening' => route('eform.show', $form['id']),
                 'approve' => $form,
                 // 'verified' => $verify,
                 'visited' => $visit,
                 'status' => $form['status_eform'],
+                'rekontes' => $form['status_eform'],
                 // 'verification' => route('getVerification', $form['user_id']),
                 // 'lkn' => route('getLKN', $form['id']),
             ])->render();

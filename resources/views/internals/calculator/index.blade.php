@@ -63,7 +63,7 @@
                                                 </div><br>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
                                                 </div>
@@ -77,7 +77,7 @@
                                                     <option value="1"> FLAT </option>
                                                     <option value="2"> EFEKTIF </option>
                                                     <option value="3"> EFEKTIF (Fixed - Float) </option>
-                                                    <option value="4"> EFEKTIF (Fixed - Floor - Float) </option>
+                                                    <!-- <option value="4"> EFEKTIF (Fixed - Floor - Float) </option> -->
                                                 </select>
                                             </div>
                                         </div>
@@ -183,3 +183,5 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')    
 @include('internals.calculator.calculator-script')
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Calculator\CalculatorRequest', '#form-calculator'); !!}

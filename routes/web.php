@@ -13,6 +13,10 @@
 /* Backend */
 
     /* Auth */
+			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
+			Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
+
     Route::post('/login',
         ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
 
@@ -91,6 +95,10 @@
         Route::put('/eform/verifyData/{id}',
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
+        //this route for resend verification to nasabah
+        Route::get('/eform/resendVerification/{eform_id}', 
+            ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
+
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
 
         Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
@@ -112,7 +120,7 @@
         Route::post('/calculator/calculate/',
             ['as'=>'postCalculate', 'uses'=>'Calculator\CalculatorController@postCalculate']);
 
-        Route::group(['prefix'=>'collateral'], function () {
+        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:collateral'], function () {
 
             Route::get('detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);
 
@@ -131,7 +139,7 @@
             Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
-        Route::group(['prefix'=>'staff-collateral'], function () {
+        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal'], function () {
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
@@ -174,7 +182,7 @@
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
         Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPTK']);
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
-
+        Route::get('post_debitur/{id}', ['as'=>'post_debitur', 'uses'=>'EForm\ADKController@exportDebitur']);
 
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
@@ -210,10 +218,25 @@
 
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
+
+		Route::resource('mitra', 'Mitra\MitraController');
+		Route::resource('gimmick', 'Mitra\GimmickController');
+		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
+		Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+		Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
+		Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
+		Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
+		Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
+
+		Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
+		Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
+		Route::resource('hasil_scoring', 'Mitra\scoring\HasilScoringcontroller');
+
+        Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
 
         /* Auditrail */
-        // Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
+        Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
 
     /* Chart */
@@ -330,7 +353,15 @@
 
         /* Screening*/
         Route::get('screening', 'Screening\ScreeningController@datatables');
+
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
+
+		/* DirRpc */
+
+        Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
+
+
+        Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
         // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');

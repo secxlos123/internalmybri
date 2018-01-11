@@ -46,7 +46,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        
+                                         @include('form_audit._input_long_lat')
                                         @php ( $className = (old('status_property') == "1" && old('developer') != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                                         @php ( $classNameType = (old('status_property') != "1" || old('developer') == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
                                         @php ( $classNameDeveloper = old('developer') ? '' : 'hide' )
@@ -127,7 +127,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="19" id="price" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price" readonly="">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                                 </div>
@@ -179,7 +179,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="19" id="down_payment">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
                                                 </div><br>
@@ -196,7 +196,7 @@
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
-                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{ old('request_amount') }}" maxlength="19" id="request_amount" readonly="">
+                                                    <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{ old('request_amount') }}" maxlength="16" id="request_amount" readonly="">
                                                     <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
                                                 </div>

@@ -36,13 +36,16 @@
                     </div>
                 </div>
             </div>
+            @include('form_audit._input_long_lat')
         </div>
         @endif
         <hr>
             <div class="text-center">
             @if ($type != 'preview')
-                <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
-                <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
+                @if(($detail['is_screening'] == '1') && ($detail['response_status'] == 'approve'))
+                    <button type="submit" href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Terima</button>
+                    <button type="submit" href="#" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</button>
+                @endif
             @else
                 <button type="button" onclick="printPage()" class="btn waves-light waves-effect w-md m-b-20"><i class="fa fa-print"></i> Print</button>
             @endif

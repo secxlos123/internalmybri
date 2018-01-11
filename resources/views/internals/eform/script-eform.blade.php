@@ -398,8 +398,8 @@
         var year = $('#year');
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         building_area.on('input', function() {
             if((price !== null) && (building_area !== null)){
@@ -417,16 +417,16 @@
             var val = $(this).val();
             var down_payment = $('#down_payment');
             var request_amount = $('#request_amount');
-            var price_without_comma = price.val().replace(',00', '');
-            var static_price = price_without_comma.replace(/\./g, '');
-
+            var price_without_comma = price.val();
+            var static_price = price_without_comma.replace(/\,/g, '');
+            console.log(static_price);
             if(building_area.val() < 21){
                 switch (val) {
                     case '1':
                         dp.val('0');
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         amount = static_price - payment;
                         request_amount.val(amount);
                         break;
@@ -435,7 +435,7 @@
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '3':
@@ -443,7 +443,7 @@
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                 }
@@ -455,7 +455,7 @@
                         dp.attr('min', '0');
                         payment = (0 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '2':
@@ -463,7 +463,7 @@
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '3':
@@ -471,7 +471,7 @@
                         dp.attr('min', '20');
                         payment = (20 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                 }
@@ -483,7 +483,7 @@
                         dp.attr('min', '15');
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '2':
@@ -491,7 +491,7 @@
                         dp.attr('min', '20');
                         payment = (20 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                     case '3':
@@ -499,7 +499,7 @@
                         dp.attr('min', '25');
                         payment = (25 / 100) * static_price;
                         amount = static_price - payment;
-                        down_payment.val(payment);
+                        down_payment.val(Math.round(payment));
                         request_amount.val(amount);
                         break;
                 }
@@ -522,8 +522,8 @@
                 var dp_min = dp.attr('min');
                 var down_payment = $('#down_payment');
                 var request_amount = $('#request_amount');
-                var price_without_comma = price.val().replace(',00', '');
-                var static_price = price_without_comma.replace(/\./g, '');
+                var price_without_comma = price.val();
+                var static_price = price_without_comma.replace(/\,/g, '');
 
                 if (val < dp_min) {
                     val = dp_min;
@@ -531,16 +531,16 @@
                 }
 
                 payment = (val / 100) * static_price;
-                down_payment.val(payment);
+                // down_payment.val(payment);
                 amount = static_price - payment;
-                down_payment.val(payment);
+                down_payment.val(Math.round(payment));
                 request_amount.val(amount);
             });
 
         down_payment
             .on('input', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var request_amount = $('#request_amount');
@@ -573,8 +573,8 @@
                 }
             })
             .on('blur', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var min = parseInt(static_price) * (dp_min/100);
@@ -689,8 +689,8 @@
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
         var price = $('#price');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         if (parseInt(val) > 90) {
             val = 90;
@@ -699,9 +699,9 @@
         }
 
         payment = (val / 100) * static_price;
-        down_payment.val(payment);
+        // down_payment.val(payment);
         amount = static_price - payment;
-        down_payment.val(payment);
+        down_payment.val(Math.round(payment));
         request_amount.val(amount);
     }
 
@@ -743,6 +743,8 @@
             console.log(e.params.data);
             var alamat = e.params.data.address;
             $('#branch_address').val(alamat).html(alamat).trigger('change');
+            var text = $(this).find("option:selected").text();
+            $('#branch_id').val(text);
         });
     });
 
@@ -751,14 +753,14 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: `/offices`,
+                url: '/offices',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
                     return {
                         distance : distance,
-                        long : long,
-                        lat : lat,
+                        longitude : long,
+                        latitude : lat,
                         name: params.term,
                         page: params.page || 1,
                     };

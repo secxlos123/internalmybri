@@ -60,12 +60,14 @@
                 }
             },
             aoColumns : [
+                {data: 'tgl_pengajuan', name: 'tgl_pengajuan', bSortable: true},
                 {data: 'id_aplikasi', name: 'id_aplikasi', bSortable: true},
+                {data: 'ref_number', name: 'ref_number', bSortable: true},
                 {data: 'fid_tp_produk', name: 'fid_tp_produk', bSortable: true},
                 {data: 'nama_pegawai', name: 'nama_pegawai', bSortable: true},
                 {data: 'namadeb', name: 'namadeb', bSortable: true},
                 {data: 'request_amount', name: 'request_amount', bSortable: true},
-                {data: 'STATUS', name: 'STATUS', bSortable: true },
+                // {data: 'STATUS', name: 'STATUS', bSortable: true },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
       });

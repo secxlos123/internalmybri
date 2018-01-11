@@ -12,7 +12,13 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Briguna Profesi :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">Rp. {{ number_format($detail['Briguna_profesi'], 2, ",", ".") }}</p>
+                    <p class="form-control-static">
+                    @if($detail['Briguna_profesi'] == '1')
+                        Ya
+                    @else
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -100,7 +106,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">Potongan(Perbulan) :</label>
+                <label class="col-md-6 control-label">Potongan Perbulan :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. {{ number_format($detail['Potongan_per_bulan'], 2, ",", ".") }}</p>
                 </div>
@@ -138,24 +144,36 @@
                 <label class="col-md-6 control-label">Status Payroll :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">
-                    @if($detail['Payroll'] == '1')
-                        Payroll Bank BRI
-                    @else
-                        Payroll Non BRI
-                    @endif
+                        @if($detail['Payroll'] == '1')
+                            Bank BRI
+                        @else
+                            Non Bank BRI
+                        @endif
                     </p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">Gaji Bersih(Perbulan) :</label>
+                <label class="col-md-6 control-label">Gaji Bersih Perbulan :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
+                    <p class="form-control-static">Rp. {{ number_format($detail['Gaji_bersih_per_bulan'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Gimmick :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['gimmick']}}</p>
+                    <p class="form-control-static">
+                        @if($detail['gimmick'] == '1')
+                            001 - BRIGUNA BERHADIAH
+                        @elseif($detail['gimmick'] == '2')
+                            002 - BRIGUNA UNTUNG
+                        @elseif($detail['gimmick'] == '4')
+                            004 - UNTUNG UNTUNG
+                        @elseif($detail['gimmick'] == '6')
+                            UA1 - PROMO UAT PMS EDIT
+                        @else
+                            -
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -198,9 +216,45 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">Scoring Mitra :</label>
+                <label class="col-md-6 control-label" bgcolor="blue">DITERIMA</label>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <h3 align="center">Hasil Mitra Kerjasama</h3>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Skor Mitra Kerjasama :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">{{$detail['scoring_mitra']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Jumlah Pekerja :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$detail['jumlah_pekerja']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Jumlah Debitur :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$detail['jumlah_debitur']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">NPL Mitra Kerjasama :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$detail['npl_instansi']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">NPL Unit Kerja :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
                 </div>
             </div>
         </form>

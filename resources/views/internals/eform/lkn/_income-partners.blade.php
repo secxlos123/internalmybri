@@ -30,7 +30,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="24" value="{{$eformData['customer']['financial']['salary_couple']}}">
+                            <input type="text" class="form-control numericOnly currency-rp" name="couple_salary" maxlength="16" value="{{$eformData['customer']['financial']['salary_couple']}}">
                             <!-- <span class="input-group-addon">,00</span> -->
                             @if ($errors->has('couple_salary')) <p class="help-block">{{ $errors->first('couple_salary') }}</p> @endif
                         </div>
@@ -41,7 +41,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="24" value="{{$eformData['customer']['financial']['other_salary_couple']}}">
+                            <input type="text" class="form-control numericOnly currency-rp" name="couple_other_salary" maxlength="16" value="{{$eformData['customer']['financial']['other_salary_couple']}}">
                             @if ($errors->has('couple_other_salary')) <p class="help-block">{{ $errors->first('couple_other_salary') }}</p> @endif
                             <!-- <span class="input-group-addon">,00</span> -->
                         </div>

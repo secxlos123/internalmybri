@@ -3,29 +3,29 @@
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <style type="text/css">
-    .card-box > img {
-        height: 350px;
-        width: 100%;
-    }
+.card-box > img {
+    height: 350px;
+    width: 100%;
+}
 
-    .card-box > a {
-        height: 350px;
-        width: 100%;
-        padding-top: 50px;
+.card-box > a {
+    height: 350px;
+    width: 100%;
+    padding-top: 50px;
+}
+@page {
+    size: A4;
+    margin: 0;
+}
+@media print {
+    html, body {
+        width: 210mm;
     }
-    @page {
-        size: A4;
-        margin: 0;
+    .no-print, .no-print *
+    {
+        display: none !important;
     }
-    @media print {
-        html, body {
-            width: 210mm;
-        }
-        .no-print, .no-print *
-        {
-            display: none !important;
-        }
-    }
+}
 </style>
 
 <div class="content-page">
@@ -148,11 +148,12 @@
 
             <!-- rekomendasi approval -->
             <div class="no-print">
-            <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
-                {{ csrf_field() }}
-                <input type="hidden" name="is_approved" id="is_approved">
-                @include('internals.eform.approval._recommendation')
-            </form>
+                <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="is_approved" id="is_approved">
+                    <input type="hidden" name="auditaction" id="auditaction">
+                    @include('internals.eform.approval._recommendation')
+                </form>
             </div>
         </div>
     </div>
@@ -169,42 +170,44 @@
 //         );
 //   });
 
-    var options = {
-        theme:"sk-bounce",
-        message:'Mohon tunggu sebentar.',
-        textColor:"white"
-    };
-    $('#btn-approve').on('click', function(){
-        $('#is_approved').attr('value', true);
-        HoldOn.open(options);
-        $('#form1').submit();
-        HoldOn.close();
-    })
+var options = {
+    theme:"sk-bounce",
+    message:'Mohon tunggu sebentar.',
+    textColor:"white"
+};
+$('#btn-approve').on('click', function(){
+    $('#is_approved').attr('value', true);
+    $('#auditaction').val('Approval Kredit');
+    HoldOn.open(options);
+    $('#form1').submit();
+    HoldOn.close();
+})
 
-    $('#btn-reject').on('click', function(){
-        $('#is_approved').attr('value', false);
-        HoldOn.open(options);
-        $('#form1').submit();
-        HoldOn.close();
-    })
+$('#btn-reject').on('click', function(){
+    $('#is_approved').attr('value', false);
+    $('#auditaction').val('Reject Kredit');
+    HoldOn.open(options);
+    $('#form1').submit();
+    HoldOn.close();
+})
 
-    $('#form1').on('keyup keypress', function(e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) { e.preventDefault(); return false; }
-    });
+$('#form1').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) { e.preventDefault(); return false; }
+});
 
-    function printPage() {
-        window.print();
-    }
+function printPage() {
+    window.print();
+}
 
-    $('#no').on('change',function(){
+$('#no').on('change',function(){
         // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').hide();
         }
     });
 
-    $('#yes').on('change',function(){
+$('#yes').on('change',function(){
         // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').show();

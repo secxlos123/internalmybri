@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -32,19 +32,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Baru/Suplesi :</label>
+                <label class="col-md-5 control-label">Status Pengajuan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['baru_atau_perpanjang'] == '0')
-                        Kredit Baru
-                    @else
-                        Kredit Suplesi / Perpanjangan
-                    @endif
+                        {{$detail['status']}}
                     </p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Bunga :</label>
+                <label class="col-md-5 control-label">Suku Bunga :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['Suku_bunga']}} % pertahun</p>
                 </div>
@@ -69,13 +65,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_instansi']}}</p>
+                    <p class="form-control-static">{{$detail['npl_instansi']}} %</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}} %</p>
                 </div>
             </div>
             <div class="form-group">
@@ -83,9 +79,9 @@
                 <div class="col-md-7">
                     <p class="form-control-static">
                         @if($detail['Payroll'] == '1')
-                            Payroll Bank BRI
+                            Bank BRI
                         @else
-                            Payroll Non BRI
+                            Non Bank BRI
                         @endif
                     </p>
                 </div>

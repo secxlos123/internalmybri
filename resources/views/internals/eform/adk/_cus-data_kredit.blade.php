@@ -22,7 +22,63 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Penggunaan Kredit :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Penggunaan_kredit']}}</p>
+                    <p class="form-control-static">
+                        @if($detail['Penggunaan_kredit'] == '10')
+                            KMK U/PERTAMBANGAN
+                        @elseif($detail['Penggunaan_kredit'] == '11')
+                            KMK U/PERINDUSTRIAN
+                        @elseif($detail['Penggunaan_kredit'] == '12')
+                            KMK U/LISTRIK, GAS & AIR
+                        @elseif($detail['Penggunaan_kredit'] == '13')
+                            KMK U/KONSTRUKSI
+                        @elseif($detail['Penggunaan_kredit'] == '14')
+                            KMK U/PERDAGANGAN, HOTEL & RESTORAN
+                        @elseif($detail['Penggunaan_kredit'] == '15')
+                            KMK U/PENGANGKUTAN
+                        @elseif($detail['Penggunaan_kredit'] == '16')
+                            KMK U/JASA DUNIA USAHA & JASA SOSIAL
+                        @elseif($detail['Penggunaan_kredit'] == '17')
+                            KMK U/IMPOR EKSPOR
+                        @elseif($detail['Penggunaan_kredit'] == '18')
+                            KMK U/PERTANIAN
+                        @elseif($detail['Penggunaan_kredit'] == '20')
+                            KI U/PERTAMBANGAN
+                        @elseif($detail['Penggunaan_kredit'] == '21')
+                            KI U/PERINDUSTRIAN
+                        @elseif($detail['Penggunaan_kredit'] == '22')
+                            KI U/LISTRIK, GAS & AIR
+                        @elseif($detail['Penggunaan_kredit'] == '23')
+                            KI U/KONTRUKSI
+                        @elseif($detail['Penggunaan_kredit'] == '24')
+                            KI U/PERDAGANGAN, HOTEL & RESTORAN
+                        @elseif($detail['Penggunaan_kredit'] == '25')
+                            KI U/PENGANGKUTAN
+                        @elseif($detail['Penggunaan_kredit'] == '26')
+                            KI U/JASA DUNIA USAHA & JASA SOSIAL
+                        @elseif($detail['Penggunaan_kredit'] == '27')
+                            KI U/IMPOR EKSPOR
+                        @elseif($detail['Penggunaan_kredit'] == '28')
+                            KI U/PERTANIAN
+                        @elseif($detail['Penggunaan_kredit'] == '30')
+                            KONSUMSI
+                        @elseif($detail['Penggunaan_kredit'] == '31')
+                            LAIN-LAIN
+                        @elseif($detail['Penggunaan_kredit'] == '32')
+                            BG
+                        @elseif($detail['Penggunaan_kredit'] == '33')
+                            KMK U/PENGEMBANG
+                        @elseif($detail['Penggunaan_kredit'] == '34')
+                            KMKI yang terdapat PJI
+                        @elseif($detail['Penggunaan_kredit'] == '35')
+                            KI Import yang terdapat PJI
+                        @elseif($detail['Penggunaan_kredit'] == '36')
+                            Fasilitas Direct
+                        @elseif($detail['Penggunaan_kredit'] == '37')
+                            Fasilitas In Direct
+                        @else
+                            Fasilitas Direct maupun Indirect
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -44,21 +100,65 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Pengadilan Terdekat :</label>
+                <label class="col-md-5 control-label">Kredit Take Over :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Pengadilan_terdekat']}}</p>
+                    <p class="form-control-static">
+                    @if($detail['kredit_take_over'] == '0')
+                        Ya
+                    @elseif($detail['kredit_take_over'] == '1')
+                        Tidak
+                    @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Agribisnis :</label>
+                <label class="col-md-5 control-label">BUPLN :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{ $detail['Bupln'] }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Sifat Kredit(SID) :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['Agribisnis'] == 'N')
-                        Tidak
+                    @if($detail['Sifat_kredit'] == '10')
+                        Dalam rangka pembiayaan bersama
+                    @elseif($detail['Sifat_kredit'] == '15')
+                        Dalam rangka restrukturisasi kredit
+                    @elseif($detail['Sifat_kredit'] == '20')
+                        Penyaluran kredit melalui lembaga lain (channelling)
+                    @elseif($detail['Sifat_kredit'] == '30')
+                        Kartu kredit
+                    @elseif($detail['Sifat_kredit'] == '40')
+                        Pengambilalihan kredit
+                    @elseif($detail['Sifat_kredit'] == '45')
+                        Surat berharga dengan Note Purchase Agreement (NPA)
+                    @elseif($detail['Sifat_kredit'] == '50')
+                        Pembiayaan Musyarakah
+                    @elseif($detail['Sifat_kredit'] == '55')
+                        Pembiayaan Mudharabah
+                    @elseif($detail['Sifat_kredit'] == '60')
+                        Piutang Murabahah
+                    @elseif($detail['Sifat_kredit'] == '65')
+                        Piutang Salam
+                    @elseif($detail['Sifat_kredit'] == '70')
+                        Piutang Istishna
+                    @elseif($detail['Sifat_kredit'] == '79')
+                        Lainnya dgn PK
+                    @elseif($detail['Sifat_kredit'] == '80')
+                        Giro bersaldo debet
+                    @elseif($detail['Sifat_kredit'] == '85')
+                        Tagihan atas transaksi perdagangan
                     @else
-                        Ya
+                        Lainnya Tanpa PK
                     @endif
                     </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Sektor Ekonomi :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Sektor_ekonomi_sid']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -155,6 +255,116 @@
                         Pemilikan Rumah s/d Tipe 36
                     @else
                         Pemilikan Rumah Di atas Tipe 36
+                    @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Sumber Aplikasi :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Sumber_aplikasi']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Premi Asuransi Jiwa :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Premi_asuransi_jiwa']}} % &nbsp;Rp. {{number_format($asuransi['premi_as_jiwa'], 2, ",", ".")}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Premi Beban Debitur :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Premi_beban_debitur']}} % &nbsp;Rp. {{number_format($asuransi['premi_beban_debitur'], 2, ",", ".")}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Uker Pemrakarsa :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['branch_id']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">NPL Unit Kerja :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}} %</p>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <label class="col-md-5 control-label">Jumlah Pekerja :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['jumlah_pekerja']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Jumlah Debitur :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['jumlah_debitur']}}</p>
+                </div>
+            </div> -->
+        </form>  
+    </div>
+    <div class="col-md-6">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-md-5 control-label">Kode Fasilitas :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Kode_fasilitas']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Tujuan Penggunaan Kredit :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Tujuan_penggunaan_kredit']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Total Eksposure Group Debitur Selain Debitur :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">Rp. {{ number_format($detail['total_exposure'], 2, ",", ".") }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Provisi :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Provisi_kredit']}} %</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Pinalty :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Penalty']}} %</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Pengadilan Terdekat :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Pengadilan_terdekat']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Agribisnis :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                    @if($detail['Agribisnis'] == 'N')
+                        Tidak
+                    @else
+                        Ya
+                    @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Sifat Kredit(LBU) :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                    @if($detail['Sifat_kredit_lbu'] == '1')
+                        Kredit yang direstrukturisasi
+                    @elseif($detail['Sifat_kredit_lbu'] == '2')
+                        Pengambilalihan Kredit
+                    @elseif($detail['Sifat_kredit_lbu'] == '3')
+                        Kredit Subordinasi
+                    @else
+                        Lainnya
                     @endif
                     </p>
                 </div>
@@ -290,137 +500,19 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Premi Beban BRI :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Premi_beban_bri']}}</p>
+                    <p class="form-control-static">{{$detail['Premi_beban_bri']}} % &nbsp;Rp. {{number_format($asuransi['premi_beban_bri'], 2, ",", ".")}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['branch_id']}}</p>
+                    <p class="form-control-static">{{$detail['pemrakarsa_name']}}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">NPL Instansi :</label>
+                <label class="col-md-5 control-label">NPL Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_instansi']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Jumlah Pekerja :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['jumlah_pekerja']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Jumlah Debitur :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['jumlah_debitur']}}</p>
-                </div>
-            </div>
-        </form>  
-    </div>
-    <div class="col-md-6">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label class="col-md-5 control-label">Kode Fasilitas :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Kode_fasilitas']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Tujuan Penggunaan Kredit :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Tujuan_penggunaan_kredit']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Total Eksposure Group Debitur Selain Debitur :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">Rp. {{$detail['total_exposure']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Provisi :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Provisi_kredit']}} %</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Pinalty :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Penalty']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Kredit Take Over :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['kredit_take_over']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">BUPLN :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{ $detail['Bupln'] }}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Sifat Kredit(SID) :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">
-                    @if($detail['Sifat_kredit'] == '10')
-                        Dalam rangka pembiayaan bersama
-                    @elseif($detail['Sifat_kredit'] == '15')
-                        Dalam rangka restrukturisasi kredit
-                    @elseif($detail['Sifat_kredit'] == '20')
-                        Penyaluran kredit melalui lembaga lain (channelling)
-                    @elseif($detail['Sifat_kredit'] == '30')
-                        Kartu kredit
-                    @elseif($detail['Sifat_kredit'] == '40')
-                        Pengambilalihan kredit
-                    @elseif($detail['Sifat_kredit'] == '45')
-                        Surat berharga dengan Note Purchase Agreement (NPA)
-                    @elseif($detail['Sifat_kredit'] == '50')
-                        Pembiayaan Musyarakah
-                    @elseif($detail['Sifat_kredit'] == '55')
-                        Pembiayaan Mudharabah
-                    @elseif($detail['Sifat_kredit'] == '60')
-                        Piutang Murabahah
-                    @elseif($detail['Sifat_kredit'] == '65')
-                        Piutang Salam
-                    @elseif($detail['Sifat_kredit'] == '70')
-                        Piutang Istishna
-                    @elseif($detail['Sifat_kredit'] == '79')
-                        Lainnya dgn PK
-                    @elseif($detail['Sifat_kredit'] == '80')
-                        Giro bersaldo debet
-                    @elseif($detail['Sifat_kredit'] == '85')
-                        Tagihan atas transaksi perdagangan
-                    @else
-                        Lainnya Tanpa PK
-                    @endif
-                    </p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Sifat Kredit(LBU) :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">
-                    @if($detail['Sifat_kredit_lbu'] == '1')
-                        Kredit yang direstrukturisasi
-                    @elseif($detail['Sifat_kredit_lbu'] == '2')
-                        Pengambilalihan Kredit
-                    @elseif($detail['Sifat_kredit_lbu'] == '3')
-                        Kredit Subordinasi
-                    @else
-                        Lainnya
-                    @endif
-                    </p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Sektor Ekonomi :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Sektor_ekonomi_sid']}}</p>
+                    <p class="form-control-static">{{$detail['npl_instansi']}} %</p>
                 </div>
             </div>
             <div class="form-group">
@@ -428,37 +520,7 @@
                 <div class="col-md-7">
                     <p class="form-control-static">Ditetapkan untuk dijual berdasarkan nilai wajar</p>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Sumber Aplikasi :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Sumber_aplikasi']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Premi Asuransi Jiwa :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Premi_asuransi_jiwa']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Premi Beban Debitur :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Premi_beban_debitur']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">Uker Pemrakarsa :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['pemrakarsa_name']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-5 control-label">NPL Unit Kerja :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
-                </div>
-            </div>
+            </div>            
         </form>
     </div>
 </div>

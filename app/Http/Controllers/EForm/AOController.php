@@ -98,9 +98,9 @@ class AOController extends Controller
           ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            , 'auditaction' => 'Simpan Form LKN'
+            , 'long' =>  $request['hidden-long']
+            , 'lat' =>  $request['hidden-lat']
           ])
           ->setBody($newForm)
           ->post('multipart');
@@ -165,10 +165,10 @@ class AOController extends Controller
     public function returnContent( $field, $values, $baseName )
     {
       $excludeNumber = ['amount', 'npwp_number', 'income', 'income_salary', 'income_allowance', 'number', 'couple_salary', 'couple_other_salary', 'salary', 'other_salary'];
-      $excludeImage = ['file', 'npwp', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax', 'legal_bussiness_document', 'work_letter', 'license_of_practice'];
+      $excludeImage = ['file', 'npwp', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax', 'legal_bussiness_document', 'work_letter', 'license_of_practice', 'other_document'];
 
       if ( in_array($baseName, $excludeNumber) ) {
-        $values = str_replace(',', '.', str_replace('.', '', $values));
+        $values = str_replace(',', '', $values);
       }
 
       if ( in_array($baseName, $excludeImage) ) {
@@ -358,7 +358,7 @@ class AOController extends Controller
       if ( isset($requestNumber) ) {
         $number[] = [
           'name'     => $attribute,
-          'contents' => str_replace(',', '.', str_replace('.', '', $requestNumber))
+          'contents' => str_replace(',', '', $requestNumber)
         ];
         return $number;
       };
@@ -393,7 +393,7 @@ class AOController extends Controller
           ],
         );
 
-        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount']);
+        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount','hidden-long','hidden-lat']);
           foreach ($allReq as $index => $req) {
             $inputData[] = [
               'name'     => $index,
@@ -430,19 +430,17 @@ class AOController extends Controller
         $data = $this->getUser();
 
         $newData = $this->dataRequest($request);
-        // dd($newData);
 
         $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
          ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            , 'auditaction' => 'Verifikasi Data Nasabah'
+            , 'long' => $request['hidden-long']
+            , 'lat' =>$request['hidden-lat']
           ])
          ->setBody($newData)
          ->put('multipart');
-         // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', $client['descriptions']);
@@ -501,6 +499,12 @@ class AOController extends Controller
               'prescreening_result' => $form['prescreening_status'],
             ])->render();
 
+            if(!empty($form['recontest'])){
+              $recontest = $form['recontest'];
+            }else{
+              $recontest = [];
+            }
+
             $form['action'] = view('internals.layouts.actions', [
               'verified' => $verify,
               'visited' => $visit,
@@ -511,6 +515,8 @@ class AOController extends Controller
               'eform_id' => $form['id'],
               'preview' => route('getDetail', $form['id']),
               'lkn' => route('getLKN', $form['id']),
+              'recontest' => $recontest,
+              'reverification' => route('resend_verifyData', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
@@ -593,6 +599,31 @@ class AOController extends Controller
         // }
 
         // return view('internals.eform.verification._print-verification', compact('data', 'id', 'dataCustomer'));
+    }
+
+    /*
+     * This function for resend verification to nasabah
+     *
+     */
+
+    public function resendVerification($eform_id)
+    {
+      $data = $this->getUser();
+      $resend_verification = Client::setEndpoint('eforms/'.$eform_id.'/verification/resend')
+                          ->setHeaders([
+                          'Authorization' => $data['token']
+                                   , 'pn' => $data['pn']
+                          
+                          ])->get();
+                          // dd($resend_verification);
+      if($resend_verification['code'] == 200)
+      {
+        \Session::flash('success', $resend_verification['descriptions']);
+        return redirect()->route('eform.index');
+      }
+      \Session::flash('error', $resend_verification['descriptions']);
+        return redirect()->route('eform.index');
+
     }
 
 }

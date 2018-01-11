@@ -9,6 +9,9 @@
         <title>@yield("title")</title>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.dataTables.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap.min.css')}}"/>
+        <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/buttons.dataTables.min.css')}}"/> -->
+        <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select.dataTables.min.css')}}"/> -->
+        <!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/editor.dataTables.min.css')}}"/> -->
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.dataTables.min.css')}}"/>
 

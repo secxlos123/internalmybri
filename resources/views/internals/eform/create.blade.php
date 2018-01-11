@@ -87,8 +87,7 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
                                             <div class="" id="detail">
-                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4>
- -->
+                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4> -->
                                                 <!-- ============================================== -->
                                                 <!-- Space untuk Detail Nasabah -->
                                                <!--  <p class="text-muted font-13 m-t-20" >
@@ -194,8 +193,9 @@
                                              <div class="form-group">
                                                   <label class="control-label">Kantor Cabang BRI</label>
                                                   <div>
-                                                    <select id="branch_id" name="branch_id" class="select2 offices" value="1" data-placeholder="Pilih Kantor" style="width: 70%;">
+                                                    <select name="branch_id" class="select2 offices" value="1" data-placeholder="Pilih Kantor" style="width: 70%;">
                                                     </select>
+                                                    <input type="hidden" id="branch_id">
                                                     <div id="alert-nik" class="text-danger">{!! $errors->first('branch_id') !!}</div>
                                                   </div>
                                                 </div>

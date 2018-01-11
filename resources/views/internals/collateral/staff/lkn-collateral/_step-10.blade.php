@@ -20,7 +20,10 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Nilai Paripasu Agunan Bank * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="ten[paripasu_bank]" maxlength="50" value="{{old('ten[paripasu_bank]')}}" id="paripasu_bank">
+                                <div class="input-group">
+                                    <span class="input-group-addon b-0">Rp</i></span>
+                                    <input type="text" class="form-control currency-rp numericOnly" name="ten[paripasu_bank]" maxlength="50" value="{{old('ten[paripasu_bank]')}}" id="paripasu_bank">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group clearfix">
@@ -53,21 +56,22 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Nilai Asuransi * :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="ten[insurance_value]" maxlength="50" value="{{old('ten[insurance_value]')}}" id="insurance_value">
+                            <div class="input-group">
+                                <span class="input-group-addon b-0">Rp</i></span>
+                                <input type="text" class="form-control currency-rp numericOnly" name="ten[insurance_value]" maxlength="50" value="{{old('ten[insurance_value]')}}" id="insurance_value">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Eligibility * :</label>
                         <div class="col-md-8">
-                            <div class="input-group">
-                                {!! Form::select('ten[eligibility]', array("" => "", 
-                                    "Eligible" => "Eligible", 
-                                    "Not Eligible" => "Not Eligible"), 
-                                    old('ten[eligibility]'), [
-                                    'class' => 'select2 eligibility ',
-                                    'data-placeholder' => '-- Pilih --'
-                                ]) !!}
-                            </div>
+                            {!! Form::select('ten[eligibility]', array("" => "", 
+                                "Eligible" => "Eligible", 
+                                "Not Eligible" => "Not Eligible"), 
+                                old('ten[eligibility]'), [
+                                'class' => 'select2 eligibility ',
+                                'data-placeholder' => '-- Pilih --'
+                            ]) !!}
                         </div>
                     </div>
                 </div>

@@ -72,8 +72,21 @@ class ScheduleController extends Controller
     {
       $method = request()->has('id') ? 'put' : 'post';
       $id = request()->has('id') ? '/' . request()->get('id') : '';
+      $auditname = 'tambah jadwal';
+      if($method=='put'){
+        $auditname = 'ubah jadwal';
+      }
+      $user = $this->getUser();
+      $headers= [
+                  'Authorization' => $user['token'],
+                  'pn' => $user['pn'],
+                  'auditaction' => $auditname,
+                  'long' => $_POST['long'],
+                  'lat' => $_POST['lat']
+                ];
       return $this->jsonResponse(
         $this->api('schedule' . $id)
+          ->setHeaders($headers)
           ->setBody(request()->except('id'))
           ->{$method}()
       );

@@ -33,6 +33,9 @@
 <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
 <script src="{{asset('assets/js/jquery.datatables.init.js')}}"></script>
 <script src="{{asset('assets/js/dataTables.responsive.min.js')}}"></script>
+<!-- <script src="{{asset('assets/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('assets/js/dataTables.editor.min.js')}}"></script>
+<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script> -->
 
 <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
@@ -159,13 +162,13 @@
         Inputmask.extendAliases({
             rupiah: {
                 // prefix: "Rp ",
-                radixPoint: ",",
+                radixPoint: ".",
                 groupSeparator: ".",
                 alias: "numeric",
-                placeholder: "0",
+                // placeholder: "0",
                 autoGroup: !0,
-                digits: 2,
-                digitsOptional: !1,
+                // digits: 2,
+                // digitsOptional: !1,
                 clearMaskOnLostFocus: !1,
                 rightAlign: false
             }

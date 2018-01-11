@@ -152,6 +152,33 @@
                 allowClear: true,
             });
 
+            $('.cities').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
         // var table = $('#datatable').dataTable({
         //     "processing": true,
         //     "serverSide": true,

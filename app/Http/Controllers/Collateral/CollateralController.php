@@ -109,17 +109,39 @@ class CollateralController extends Controller
     public function detail($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
 
-        if($dev_id == 1){
+        if ( $dev_id == 1 ) {
             $type = 'nonindex';
             $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
-        }else{
+            $id = $collateral['eform_id'];
+            //get data eform
+            $EformDetail = Client::setEndpoint('eforms/'.$id)
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                ])
+                ->get();
+
+            $detail = $EformDetail['contents'];
+
+            $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                ])
+                ->get();
+
+            $customer = $dataCustomer['contents'];
+
+        } else {
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
         }
+
+
         // dd($collateral);
-        return view('internals.collateral.manager.detail', compact('data', 'collateral', 'type'));
+        return view('internals.collateral.manager.detail', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
 
     /**
@@ -166,9 +188,9 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'auditaction' => 'disposisi collateral'
+                , 'long' => $request['hidden-long']
+                , 'lat'  => $request['hidden-lat']
             ])->setBody($disposition)
             ->post();
 
@@ -242,7 +264,7 @@ class CollateralController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
+                    , 'auditaction' => 'approval collateral'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setBody($reqs)
@@ -253,7 +275,7 @@ class CollateralController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
+                    , 'auditaction' => 'reject collateral'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setBody($reqs)
@@ -295,21 +317,23 @@ class CollateralController extends Controller
                 // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
-
             //count percentage
             $keys = 0 ;
             $findme   = 'noimage.jpg';
-             foreach ($detailCollateral['contents']['ots_doc'] as $key => $value) {
-                 $found = strpos($value, $findme);
-                 if ($found) {
-                     $keys++;
-                 }else{
-                    continue;
-                 }
-             }
-            $all =  13-$keys;
-            $percent = ($all/13)*100;
-
+            if(!empty($detailCollateral['contents']['ots_doc'])){
+                foreach ($detailCollateral['contents']['ots_doc'] as $key => $value) {
+                    $found = strpos($value, $findme);
+                    if ($found) {
+                        $keys++;
+                    }else{
+                        continue;
+                    }
+                }
+                $all =  13-$keys;
+                $percent = ($all/13)*100;
+            }else{
+                $percent = 0;
+            }
 
 
         return view('internals.collateral.manager.monitoring', compact('data', 'collateral', 'detailCollateral','percent'));

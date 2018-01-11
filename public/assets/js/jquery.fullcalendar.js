@@ -356,6 +356,8 @@
             select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
             eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); },
             eventDrop: function(calEvent, delta, revertFunc) { $this.onEventDrop(calEvent, delta, revertFunc); }
+        }).on('click', '.fc-agendaWeek-button,.fc-agendaDay-button', function() {
+            $this.$calendar.fullCalendar('refetchEvents');
         });
         // $this.$calendarObj.fullCalendar('refetchEvents', defaultEvents);
 

@@ -17,6 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @if (count($collateral['property']['propertyItems']) > 0)
                     @foreach($collateral['property']['propertyItems'] as $index => $propItem)
                         <tr>
                             <td>
@@ -35,10 +36,16 @@
                                 <p class="form-control-static">{{ucwords($propItem['status'])}}</p>
                             </td>
                             <td>
-                                <img id="preview" @if(!empty($propItem['photos'])) src="{{$propItem['photos'][$index]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                @if ( isset($propItem['photos']) )
+                                    <img id="preview" @if(isset($propItem['photos'][$index])) src="{{$propItem['photos'][$index]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                @else
+                                    <img id="preview" src="{{asset('assets/images/no-image.jpg')}}" width="200">
+                                @endif
+                                
                             </td>
                         </tr>
                     @endforeach
+                    @endif
                     </tbody>
                 </table>
                 <div class="col-md-6">

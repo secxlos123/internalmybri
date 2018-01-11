@@ -18,14 +18,14 @@
                         @elseif($eformData['kpr']['status_property'] == 6)Take Over
                         @elseif($eformData['kpr']['status_property'] == 7)Take Over Top Up
                         @elseif($eformData['kpr']['status_property'] == 8)Take Over Account In House (Cash Bertahap)
-                        @endif" maxlength="19" readonly="">
+                        @endif" maxlength="16" readonly="">
                     </div>
                 </div>
 
                 <div class="form-group {{ $classNameDeveloper }} {!! $errors->has('developer') ? 'has-error' : '' !!}" id="developer">
                     <label class="control-label col-md-4">Developer *:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" value="{{$eformData['kpr']['developer_name']}}" maxlength="19" readonly="">
+                        <input type="text" class="form-control" value="{{$eformData['kpr']['developer_name']}}" maxlength="16" readonly="">
                     </div>
                 </div>
 
@@ -35,27 +35,27 @@
                         <input type="text" class="form-control" value="@if($eformData['kpr']['kpr_type_property'] == 1) Rumah Tapak
                         @elseif($eformData['kpr']['kpr_type_property'] == 2)Rumah Susun/Apartment
                         @elseif($eformData['kpr']['kpr_type_property'] == 3)Rumah Toko
-                        @endif" maxlength="19" readonly="">
+                        @endif" maxlength="16" readonly="">
                     </div>
                 </div>
 
                 <div class="form-group {{ $className }} {!! $errors->has('property_name') ? 'has-error' : '' !!}" id="property_name">
                     <label class="control-label col-md-4">Nama Proyek *:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" value="{{$eformData['kpr']['property_name']}}" maxlength="19" readonly="">
+                        <input type="text" class="form-control" value="{{$eformData['kpr']['property_name']}}" maxlength="16" readonly="">
                     </div>
                 </div>
 
                 <div class="form-group {{ $className }} {!! $errors->has('property_type') ? 'has-error' : '' !!}" id="property_type">
                     <label class="control-label col-md-4">Tipe Properti *:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" value="{{ $eformData['kpr']['property_type_name'] }}" maxlength="19" readonly="">
+                        <input type="text" class="form-control" value="{{ $eformData['kpr']['property_type_name'] }}" maxlength="16" readonly="">
                     </div>
                 </div>
                 <div class="form-group {{ $className }} {!! $errors->has('property_item') ? 'has-error' : '' !!}" id="property_unit">
                     <label class="control-label col-md-4">Unit Properti *:</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" value="{{ $eformData['kpr']['property_item_name'] }}" maxlength="19" readonly="">
+                        <input type="text" class="form-control" value="{{ $eformData['kpr']['property_item_name'] }}" maxlength="16" readonly="">
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control currency-rp" value="{{$eformData['kpr']['price']}}" maxlength="19" readonly="">
+                            <input type="text" class="form-control currency-rp" value="{{$eformData['kpr']['price']}}" maxlength="16" readonly="">
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <label class="control-label col-md-4">Luas Bangunan *:</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{$eformData['kpr']['building_area']}}" maxlength="19" readonly="">
+                            <input type="text" class="form-control" value="{{$eformData['kpr']['building_area']}}" maxlength="16" readonly="">
                             <span class="input-group-addon">M<sup>2</sup></span>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                     <label class="control-label col-md-4">Jangka Waktu *:</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{$eformData['kpr']['year']}}" maxlength="19" readonly="">
+                            <input type="text" class="form-control" value="{{$eformData['kpr']['year']}}" maxlength="16" readonly="">
                             <span class="input-group-addon">Bulan</span>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <input type="text" class="form-control" value="@if($eformData['kpr']['active_kpr'] == 1) 1
                         @elseif($eformData['kpr']['active_kpr'] == 2) 2
                         @elseif($eformData['kpr']['active_kpr'] == 3) > 2
-                        @endif" maxlength="19" readonly="">
+                        @endif" maxlength="16" readonly="">
                     </div>
                 </div>
                 <div class="form-group down_payment {!! $errors->has('down_payment') ? 'has-error' : '' !!}">
@@ -111,11 +111,11 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control numericOnly currency-rp" value="{{($eformData['kpr']['dp'] / 100) * $eformData['kpr']['price']}}" maxlength="19" id="down_payment" readonly="">
+                            <input type="text" class="form-control numericOnly currency-rp" value="{{($eformData['kpr']['dp'] / 100) * $eformData['kpr']['price']}}" maxlength="16" id="down_payment" readonly="">
                             <!-- <span class="input-group-addon">,00</span> -->
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control" value="{{$eformData['kpr']['dp']}}" maxlength="19" readonly="">
+                            <input type="text" class="form-control" value="{{$eformData['kpr']['dp']}}" maxlength="16" readonly="">
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                     <div class="col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
-                            <input type="text" class="form-control currency-rp" value="{{$eformData['kpr']['request_amount']}}" maxlength="19" readonly="">
+                            <input type="text" class="form-control currency-rp" value="{{$eformData['kpr']['request_amount']}}" maxlength="16" readonly="">
                         </div>
                     </div>
                 </div>

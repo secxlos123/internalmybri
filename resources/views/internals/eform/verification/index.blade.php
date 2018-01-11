@@ -91,6 +91,7 @@
                     @include('internals.eform.verification._financial-data')
                     <!--Bundle of data Emergency contact-->
                     @include('internals.eform.verification._family-data')
+                     @include('form_audit._input_long_lat')
                     <!--Action button-->
                     <div class="row no-print">
                         <div class="col-md-12">
