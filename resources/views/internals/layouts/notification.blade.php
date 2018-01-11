@@ -3,14 +3,14 @@
         <h4>Notification</h4>
         <a href="javascript:void(0)" onclick="closeSide()" class="close-notif"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
     </li>
-    <li>
+    <li class="unread_notif">
         <table class="notification">
             @if(count(notificationsUnread()) > 0 )
                 @foreach(notificationsUnread() as $value)
                     <tr class="line-notif">
                           <td>
                               <div class="notif-ico bg-success">
-                                <a href="{{ url('/eform?ref_number='.$value['data']['ref_number'].'&ids='.$value['data']['eform_id'].'') }}" class="user-list-item list-notif">
+                                <a href="{{ $value['url'] }}" class="user-list-item list-notif">
                                     <i class="fa fa-bell"></i>
                                 </a>
                               </div>

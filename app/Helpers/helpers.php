@@ -160,6 +160,7 @@ if (! function_exists('notificationsUnread')) {
         foreach ($users as $user) {
             $data = $user;
         }
+        \Log::info($data);
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
                 ->setHeaders([
@@ -172,9 +173,10 @@ if (! function_exists('notificationsUnread')) {
                     // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
             \Log::info($NotificationDataUnread);
+            session()->put('notificationsUnread', $NotificationDataUnread['contents']);
+            
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 
-            session()->put('notificationsUnread', $ArrnotificationUnread);
 
         } catch (ClientException $e) {
             \Log::info(Psr7\str($e->getRequest()));
