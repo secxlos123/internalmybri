@@ -19,7 +19,13 @@
 	.justify {
 		text-align: justify;
 	}
+	.right {
+		text-align: right;
+	}
 </style>
+<p class="right"><font size="0">
+1/3
+</font></p>
 <table width="100%" border="1">
 	<tr>
 		<td colspan="2" align="right" id="head_color">Form Permohonan <b>BRIGUNA</b></td>
@@ -834,6 +840,9 @@
 		</td>
 	</tr>
 </table>
+<p class="right"><font size="0">
+2/3
+</font></p>
 <table width="100%" border="1" id="head6">
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERSETUJUAN FASILITAS (DIISI OLEH BANK)</b></td>
@@ -1088,6 +1097,9 @@
 		</td>
 	</tr>
 </table>
+<p class="right"><font size="0">
+3/3
+</font></p>
 <table width="100%" border="1" id="head6">
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERNYATAAN DAN KUASA</b></td>
@@ -1143,7 +1155,7 @@
 									Tunduk pada ketentuan yang berlaku di BRI. Pernyataan ini dibuat dengan sebenarnya, apabila secara sengaja saya tidak mengikuti pernyataan ini saya bersedia untuk dikenakan sanksi sesuai ketentuan yang berlaku.
 								</li>
 								<li>
-									Memberikan kuasa pada Bank untuk tabungan saya dengan nomor rekening: di Bank BRI Cabang {{$data_sph['kantor_cabang']}}, serta kuasa mendebet tersebut untuk keperluan pembayaraan biaya-biaya provisi, administrasi serta angsuran rekening Kredit atau biaya-biaya lain yang mungkin timbul di kemudian hari terkait dengan fasilitas Briguna yang saya terima dan kuasa yang saya berikan ini berlaku sampai dengan fasilitas Briguna saya dinyatakan lunas oleh Bank. Apabila gaji/upah/uang pensiun saya disalurkan melalui Bank BRI, maka saya memberikan kuasa kepada Bank untuk melakukan pemotongan gaji saya untuk kepentingan tersebut di atas. Kuasa ini tidak dapat ditarik kembali serta tidak akan berakhir oleh karena sebab-sebab yang termaktub dalam pasal 1813, 1814, dan 1816 Kitab Undang Hukum Perdata dan saya membebaskan Bank dari segala tanggung jawab atas kerugian/biaya apapun sehubungan pemberian kuasa tersebut di atas.
+									Memberikan kuasa pada Bank untuk tabungan saya dengan nomor rekening: .................................... di Bank BRI Cabang {{$data_sph['kantor_cabang']}}, serta kuasa mendebet tersebut untuk keperluan pembayaraan biaya-biaya provisi, administrasi serta angsuran rekening Kredit atau biaya-biaya lain yang mungkin timbul di kemudian hari terkait dengan fasilitas Briguna yang saya terima dan kuasa yang saya berikan ini berlaku sampai dengan fasilitas Briguna saya dinyatakan lunas oleh Bank. Apabila gaji/upah/uang pensiun saya disalurkan melalui Bank BRI, maka saya memberikan kuasa kepada Bank untuk melakukan pemotongan gaji saya untuk kepentingan tersebut di atas. Kuasa ini tidak dapat ditarik kembali serta tidak akan berakhir oleh karena sebab-sebab yang termaktub dalam pasal 1813, 1814, dan 1816 Kitab Undang Hukum Perdata dan saya membebaskan Bank dari segala tanggung jawab atas kerugian/biaya apapun sehubungan pemberian kuasa tersebut di atas.
 								</li>
 							</ol>
 							</font>
