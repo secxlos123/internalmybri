@@ -123,7 +123,7 @@
                                             <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
                                                 <label class="col-md-5 control-label">Foto KTP * :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif/pdf">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/*,application/pdf">
                                                     @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
                                                 </div>
                                             </div>
