@@ -134,9 +134,9 @@ if (! function_exists('getNotification')) {
                     // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
+            session()->put('notifications', $NotificationData['contents']);
             return $Arrnotification = $NotificationData['contents'];
 
-            session()->put('notifications', $Arrnotification);
 
         } catch (ClientException $e) {
             \Log::info(Psr7\str($e->getRequest()));
@@ -160,6 +160,7 @@ if (! function_exists('notificationsUnread')) {
         foreach ($users as $user) {
             $data = $user;
         }
+        \Log::info($data);
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
                 ->setHeaders([
@@ -172,9 +173,10 @@ if (! function_exists('notificationsUnread')) {
                     // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
             \Log::info($NotificationDataUnread);
+            session()->put('notificationsUnread', $NotificationDataUnread['contents']);
+            
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 
-            session()->put('notificationsUnread', $ArrnotificationUnread);
 
         } catch (ClientException $e) {
             \Log::info(Psr7\str($e->getRequest()));

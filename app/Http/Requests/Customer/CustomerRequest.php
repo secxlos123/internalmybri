@@ -36,7 +36,7 @@ class CustomerRequest extends FormRequest
             'email'    => 'email|required',
             'mother_name'   => 'required',
             'mobile_phone'  => 'required|string|regex:/^08[0-9]+$/|min:9|max:12',
-            'identity'  => 'mimes:jpeg,jpg,png,gif,pdf|required|max:10000',
+            'identity'  => 'required|mimes:jpg,jpeg,png,gif,svg,pdf|max:10000',
             'couple_nik' => 'required_if:status,2',
             'couple_name' => 'required_if:status,2',
             'couple_birth_date' => 'required_if:status,2',

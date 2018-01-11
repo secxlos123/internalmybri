@@ -192,7 +192,7 @@ class AOController extends Controller
     public function lknRequest($request)
     {
         $application = [];
-
+        // dd($request->all());
         foreach ($request->all() as $field => $values) {
           if ( $field == 'mutations' ) {
             foreach ($values as $mutationIndex => $mutations) {
