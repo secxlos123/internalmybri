@@ -140,11 +140,14 @@
                                 <div class="col-md-9">
                                     @if((pathinfo(strtolower($dataCustomer['customer']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($dataCustomer['customer']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($dataCustomer['customer']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
                                         @if(strpos($dataCustomer['customer']['identity'], 'noimage.jpg'))
+                                        <p style="margin-left:25px">Foto KTP Kosong</p>
                                         @else
                                         <img id="preview" src="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" width="300">
+                                        <p style="margin-left:25px">Foto KTP</p>
                                         @endif
                                     @else
-                                        <a href="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" target="_blank" class="img-responsive" title="Klik Untuk Lihat Foto KTP"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                        <a href="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                        <p style="margin-left:25px">Klik Untuk Lihat Foto KTP</p>
                                     @endif
                                 </div>
                             </div>

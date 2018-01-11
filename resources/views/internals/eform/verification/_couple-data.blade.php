@@ -35,7 +35,7 @@
                             <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
                                 <label class="col-md-4 control-label">KTP Pasangan * :</label>
                                 <div class="col-md-8">
-                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="couple_identity" id="couple_identity" accept="image/png,image/jpeg,image/gif">
+                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="couple_identity" id="couple_identity" accept="image/*,application/pdf">
                                     @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                 </div>
                             </div>
@@ -45,11 +45,14 @@
                                 <div class="col-md-8">
                                     @if((pathinfo(strtolower($dataCustomer['customer']['couple_identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($dataCustomer['customer']['couple_identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($dataCustomer['customer']['couple_identity'])), PATHINFO_EXTENSION) == 'jpeg'))
                                         @if(strpos($dataCustomer['customer']['couple_identity'], 'noimage.jpg'))
+                                        <p style="margin-left:15px">Foto KTP  PasanganKosong</p>
                                         @else
                                         <img id="couple_preview" src="@if(!empty($dataCustomer['customer']['couple_identity'])){{$dataCustomer['customer']['couple_identity']}}@endif" alt="KTP Pasangan" width="300">
+                                        <p style="margin-left:15px">Foto KTP Pasangan</p>
                                         @endif
                                     @else
                                         <a href="@if(!empty($dataCustomer['customer']['couple_identity'])){{$dataCustomer['customer']['couple_identity']}}@endif" target="_blank" class="img-responsive" title="Klik Untuk Lihat Foto KTP Pasangan"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                        <p style="margin-left:15px">Klik Untuk Lihat Foto KTP Pasangan</p>
                                     @endif
                                 </div>
                             </div>
