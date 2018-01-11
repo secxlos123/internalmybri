@@ -55,7 +55,7 @@
               <tbody>
                   <tr>
                       <td>
-                        <div class="input-group">
+                        <div class="input-group count-row">
                             <input type="text" class="form-control" id="datepicker-inline" name="mutations[0][tables][0][date]">
                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                         </div>
@@ -89,7 +89,7 @@
               <div class="form-group mutation_file {!! $errors->has('mutation_file') ? 'has-error' : '' !!}">
                   <label class="col-md-4 control-label">Unggah File Mutasi *</label>
                   <div class="col-md-8">
-                      <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" >
+                      <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" accept="image/*,application/pdf,application/rar,application/zip">
                       @if ($errors->has('mutation_file')) <p class="help-block">{{ $errors->first('mutation_file') }}</p> @endif
                   </div>
               </div>

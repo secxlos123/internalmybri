@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Usia MPP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['USIA_MPP']}} tahun</p>
+                    <p class="form-control-static">{{$detail['usia_mpp']}} tahun</p>
                 </div>
             </div>
             <div class="form-group">
@@ -41,13 +41,14 @@
                 <label class="col-md-5 control-label">Federal WH Code :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                        @if($debitur['FEDERAL_WH_CODE'] == '1')
+                        <!-- hardcode las -->
+                        <!-- @if($debitur['FEDERAL_WH_CODE'] == '1') -->
                             Kena Pajak dan Penduduk
-                        @elseif($debitur['FEDERAL_WH_CODE'] == '2')
+                        <!-- @elseif($debitur['FEDERAL_WH_CODE'] == '2')
                             Kena Pajak dan Bukan Penduduk
                         @else
                             Tidak Kena Pajak
-                        @endif
+                        @endif -->
                     </p>
                 </div>
             </div>
@@ -72,7 +73,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Domisili / Lama Menetap :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['DOMISILI']}} tahun</p>
+                    <p class="form-control-static">{{$detail['lama_menetap']}} tahun</p>
                 </div>
             </div>
         </form>
@@ -121,11 +122,12 @@
                 <label class="col-md-5 control-label">Resident Flag :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($debitur['RESIDENT_FLAG'] == 'Y')
+                    <!-- hardcode las -->
+                    <!-- @if($debitur['RESIDENT_FLAG'] == 'Y') -->
                         Ya
-                    @else
+                    <!-- @else
                         Tidak
-                    @endif
+                    @endif -->
                     </p>
                 </div>
             </div>
@@ -139,7 +141,7 @@
                 <label class="col-md-5 control-label">Perjanjian Pisah Harta :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($debitur['JENIS_PERJANJIAN'] == '0')
+                    @if($detail['perjanjian_pisah_harta'] == '0')
                         Tidak
                     @else
                         Ya

@@ -51,6 +51,9 @@ class LoginController extends Controller
             }else if($request->pn == '68881'){
                 $role = ['role' => 'mp'];
                 $uker = ['uker' => 'KC'];
+            }else if($request->pn == '16181'){
+                $role = ['role' => 'pinca'];
+                $uker = ['uker' => 'KC'];
             }else if($request->pn == '70828'){
                 $role = ['role' => 'collateral'];
                 $uker = ['uker' => 'other'];
@@ -64,7 +67,6 @@ class LoginController extends Controller
 
             $user =array_merge($client['contents'], $uker, $role);
         }
-
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];
 

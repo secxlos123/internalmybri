@@ -12,11 +12,11 @@
 	$(document).on('click', '.add-row', function () {
 		var row = $(this).data('row');
 		// console.log(row);
-		var	index = $('.add-row').length;
+		var	index = $('.count-row').length;
 	    $('#accountTable'+row).append(
 	    			'<tr data-tr="'+index+'">'
                       +'<td>'
-                        +'<div class="input-group">'
+                        +'<div class="input-group count-row">'
                             +'<input type="text" class="form-control datepicker-mindate" id="datepicker-mindate" name="mutations['+row+'][tables]['+index+'][date]">'
                             +'<span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>'
                         +'</div>'
