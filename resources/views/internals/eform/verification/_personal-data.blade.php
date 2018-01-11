@@ -138,7 +138,14 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-9">
-                                    <img id="preview" src="{{ $dataCustomer['customer']['identity'] }}" width="300">
+                                    @if((pathinfo(strtolower($dataCustomer['customer']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($dataCustomer['customer']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($dataCustomer['customer']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                        @if(strpos($dataCustomer['customer']['identity'], 'noimage.jpg'))
+                                        @else
+                                        <img id="preview" src="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" width="300">
+                                        @endif
+                                    @else
+                                        <a href="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" target="_blank" class="img-responsive" title="Klik Untuk Lihat Foto KTP"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -43,7 +43,14 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label"></label>
                                 <div class="col-md-8">
-                                    <img id="couple_preview" @if(!empty($dataCustomer['customer']['couple_identity'])) src="{{$dataCustomer['customer']['couple_identity']}}" @else src="{{ old('couple_identity') }}" @endif alt="KTP Pasangan" width="300">
+                                    @if((pathinfo(strtolower($dataCustomer['customer']['couple_identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($dataCustomer['customer']['couple_identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($dataCustomer['customer']['couple_identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                        @if(strpos($dataCustomer['customer']['couple_identity'], 'noimage.jpg'))
+                                        @else
+                                        <img id="couple_preview" src="@if(!empty($dataCustomer['customer']['couple_identity'])){{$dataCustomer['customer']['couple_identity']}}@endif" alt="KTP Pasangan" width="300">
+                                        @endif
+                                    @else
+                                        <a href="@if(!empty($dataCustomer['customer']['couple_identity'])){{$dataCustomer['customer']['couple_identity']}}@endif" target="_blank" class="img-responsive" title="Klik Untuk Lihat Foto KTP Pasangan"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
