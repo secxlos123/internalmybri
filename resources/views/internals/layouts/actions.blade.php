@@ -80,6 +80,7 @@
 @endif
 
 @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
+	
 	@if(!empty($status))
 		@if($status == 'Rejected')
 			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
