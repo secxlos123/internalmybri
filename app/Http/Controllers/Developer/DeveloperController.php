@@ -118,6 +118,8 @@ class DeveloperController extends Controller
     public function store(DevRequest $request)
     {
         $data = $this->getUser();
+        $email = strtolower($request->email);
+        $request->merge(['email'=>$email]);
         $newDev = $this->devRequest($request, $data);
         // dd($newDev);
 
