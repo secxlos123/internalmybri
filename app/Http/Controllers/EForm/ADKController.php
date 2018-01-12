@@ -473,6 +473,7 @@ class ADKController extends Controller
             $slip_gaji = 1;
         }
         // print_r($response);exit();
+        // verifikasi dokumen lengkap
         if ($response['is_verified'] == 1) {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
@@ -488,6 +489,7 @@ class ADKController extends Controller
                 'flag_skpu'        => $skpu,
                 'flag_rekomendasi' => $rekomendasi
             ];
+        // tunda verifikasi dokumen
         } else {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
@@ -531,6 +533,7 @@ class ADKController extends Controller
         // print_r($request->all());exit();
         $response = $request->all();
         // print_r($response);exit();
+        // verifikasi adk dibatalkan kirim ke brinet
         if (strtolower($response['type']) == 'batal') {
             $update_data = [
                 'eform_id'    => $response['eform_id'],
@@ -691,7 +694,7 @@ class ADKController extends Controller
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
                             // print_r($form);exit();
-                            if (intval($value['is_send']) == '1') {
+                            if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
                                 $form['STATUS'] = $status;
                                 $form['ref_number'] = $value['ref_number'];
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
