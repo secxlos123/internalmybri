@@ -994,9 +994,12 @@ class ADKController extends Controller
                 } else if (intval($value['is_send']) == '6') {
                     $status = 'Disbursed';
                 }
-                
+
+                $form['STATUS'] = $status;
+                $form['ref_number'] = $value['ref_number'];
+                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
                 $form['eform_id'] = $value['eform_id'];
-                $form['request_amount'] = 'Rp '.number_format($value['plafond'], 2, ",", ".");
+                $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
                 if ($form['fid_tp_produk'] == '1') {
                     $form['fid_tp_produk'] = 'Briguna Karya/Umum';
                 } elseif ($form['fid_tp_produk'] == '2') {
