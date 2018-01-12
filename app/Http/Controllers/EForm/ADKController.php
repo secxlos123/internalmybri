@@ -477,6 +477,7 @@ class ADKController extends Controller
         if ($response['is_verified'] == 1) {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
+                'catatan_adk'      => $response['catat_adk'],
                 'is_send'          => 5,
                 'eform_id'         => $response['eform_id'],
                 'flag_kk'          => $kk,
@@ -493,6 +494,7 @@ class ADKController extends Controller
         } else {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
+                'catatan_adk'      => $response['catat_adk'],
                 'eform_id'         => $response['eform_id'],
                 'flag_kk'          => $kk,
                 'flag_ktp'         => $ktp,
@@ -516,14 +518,14 @@ class ADKController extends Controller
         // dd($update_briguna);
         if ($update_briguna['code'] == '200') {
             if ($response['is_verified'] == 1) {
-                \Session::flash('success', 'Pengajuan berhasil di Verifikasi');
+                \Session::flash('success', 'Pengajuan berhasil diverifikasi, dokumen sudah lengkap');
                 return redirect()->route('adk.index');
             } else {
                 \Session::flash('error', 'Pengajuan ditunda, karena dokumen verifikasi belum lengkap');
                 return redirect()->route('adk.index');
             }
         } else {
-            \Session::flash('error', 'Pengajuan gagal di Verifikasi');
+            \Session::flash('error', 'Pengajuan gagal diverifikasi');
             return redirect()->route('adk.index');
         }
     }
@@ -541,7 +543,6 @@ class ADKController extends Controller
                 'catatan_adk' => $response['catat_adk']
             ];
             if ($response['catat_adk'] == '') {
-                // echo "masuk";
                 return response()->json([
                     'code'     => 400,
                     'message'  => 'Catatan ADK tidak boleh kosong, jika ingin dibatalkan',
@@ -612,7 +613,7 @@ class ADKController extends Controller
                 if ($getBrinets['statusCode'] == '01') {
                     $update_data = [
                         'eform_id'    => $response['eform_id'],
-                        'is_send'     => 2,
+                        'is_send'     => 7,
                         'catatan_adk' => $response['catat_adk'],
                         'cif'         => $getBrinets['items'][0]['CIF'],
                         'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
@@ -676,15 +677,15 @@ class ADKController extends Controller
                 $count = 0;
                 foreach ($customer as $index => $value) {
                     if (intval($value['is_send']) == '1') {
-                        $status = 'Pengajuan diapprove pinca';
+                        $status = 'Approved';
                     } else if (intval($value['is_send']) == '3') {
-                        $status = 'Pengajuan ditolak pinca';
+                        $status = 'Void';
                     } else if (intval($value['is_send']) == '4') {
                         $status = 'Pengajuan dibatalkan approve adk';
                     } else if (intval($value['is_send']) == '5') {
                         $status = 'Pengajuan diapprove adk';
                     } else if (intval($value['is_send']) == '6') {
-                        $status = 'Pengajuan pencairan diapprove pinca';
+                        $status = 'Disbursed';
                     }
                     
                     // print_r($value);exit();
@@ -701,7 +702,13 @@ class ADKController extends Controller
                                 $form['eform_id'] = $value['eform_id'];
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
                                 if ($form['fid_tp_produk'] == '1') {
-                                    $form['fid_tp_produk'] = 'Briguna Karya';
+                                    $form['fid_tp_produk'] = 'Briguna Karya/Umum';
+                                } elseif ($form['fid_tp_produk'] == '2') {
+                                    $form['fid_tp_produk'] = 'Briguna Purna';
+                                } elseif ($form['fid_tp_produk'] == '28') {
+                                    $form['fid_tp_produk'] = 'Briguna Karyawan BRI';
+                                } elseif ($form['fid_tp_produk'] == '22') {
+                                    $form['fid_tp_produk'] = 'Briguna Talangan';
                                 } elseif ($form['fid_tp_produk'] == '10') {
                                     $form['fid_tp_produk'] = 'Briguna Micro';
                                 } else {
