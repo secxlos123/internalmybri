@@ -297,21 +297,23 @@
                     <?php
                         } 
                     }
-                    ?> 
+                    ?>
+                    @if($detail['is_send'] == '1')
                         <tr>
-                            <td colspan="3"></td>
+                            <td colspan="2"></td>
                             <td>Catatan ADK</td>
                             <td>
                                 <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
                             </td>
+                            <td>
+                                <a href="#" class="btn btn-danger" id="btn-batal">Batal</a>
+                            </td>
                             <td align="center">
-                                @if($detail['is_send'] == '1') 
-                                    <a class="btn btn-danger" id="btn-batal" href="#">Batal</a>
-                                    <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
-                                    <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
-                                @endif
+                                <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
+                                <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
                             </td>
                         </tr>
+                    @endif
                     </tbody>
                 </table>
             </form>
