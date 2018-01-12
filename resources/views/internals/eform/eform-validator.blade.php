@@ -48,6 +48,7 @@
                         var couple_birth_date = result.data.couple_birth_date;
                         var couple_identity = result.data.couple_identity;
                         var identity = result.data.identity;
+                        var address = result.data.address;
                         var ao_name = result.data.name;
 
                         if(result.data.status == 1){
@@ -91,6 +92,7 @@
                         $("#view-modal #birth_date").html(birth_date);
                         $("#view-modal #mother_name").html(mother_name);
                         $("#view-modal #mobile_phone").html(mobile_phone);
+                        $("#view-modal #address").html(address);
                         $("#view-modal #status").html(status);
                         $("#view-modal #couple_nik").html(couple_nik);
                         $("#view-modal #couple_name").html(couple_name);

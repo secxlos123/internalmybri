@@ -117,6 +117,12 @@
                                                     <p class="form-control-static" id="mobile_phone"></p>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Alamat :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="address"></p>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="col-md-6">
