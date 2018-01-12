@@ -91,7 +91,7 @@
 			</a>
 		@endif
 	@else
-		@if(($status == 'approve') && ($is_screening == 1))
+		@if(($response_status == 'approve') && ($is_screening == 1))
 		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info " data-original-title="Approval" title="Approval">
 		    <i class="mdi mdi-check"></i>
 		</a>
