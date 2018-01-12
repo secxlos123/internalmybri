@@ -39,14 +39,17 @@ class DropdownController extends Controller
             ])
             ->get();
             // dd($properties);
-
-        foreach ($properties['contents']['data'] as $key => $prop) {
-            $prop['text'] = $prop['prop_name'];
-            $prop['id'] = $prop['prop_id'];
-            $properties['contents']['data'][$key] = $prop;
+        $contents = array();
+        if (count($properties['contents'])>0) {
+            foreach ($properties['contents']['data'] as $key => $prop) {
+                $prop['text'] = $prop['prop_name'];
+                $prop['id'] = $prop['prop_id'];
+                $properties['contents']['data'][$key] = $prop;
+            }
+            $contents = $properties['contents'];
         }
 
-        return response()->json(['properties' => $properties['contents']]);
+        return response()->json(['properties' => $contents ]);
     }
 
     public function types(Request $request)
@@ -67,14 +70,17 @@ class DropdownController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-
-        foreach ($types['contents']['data'] as $key => $type) {
-            $type['text'] = $type['name'];
-            $type['id'] = $type['id'];
-            $types['contents']['data'][$key] = $type;
+        $contents = array();
+        if (count($types['contents'])>0) {
+            foreach ($types['contents']['data'] as $key => $type) {
+                $type['text'] = $type['name'];
+                $type['id'] = $type['id'];
+                $types['contents']['data'][$key] = $type;
+            }
+            $contents = $types['contents'];
         }
 
-        return response()->json(['types' => $types['contents']]);
+        return response()->json(['types' => $contents ]);
     }
 
     public function units(Request $request)
@@ -96,14 +102,17 @@ class DropdownController extends Controller
                 'is_available' => true
             ])
             ->get();
-
-        foreach ($units['contents']['data'] as $key => $type) {
-            $type['text'] = $type['address'];
-            $type['id'] = $type['id'];
-            $units['contents']['data'][$key] = $type;
+        $contents = array();
+        if (count($units['contents'])>0) {
+            foreach ($units['contents']['data'] as $key => $type) {
+                $type['text'] = $type['address'];
+                $type['id'] = $type['id'];
+                $units['contents']['data'][$key] = $type;
+            }
+            $contents = $units['contents'];
         }
 
-        return response()->json(['units' => $units['contents']]);
+        return response()->json(['units' => $contents ]);
     }
 
     public function birth_place(Request $request)
@@ -121,14 +130,17 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($cities['contents']['data'] as $key => $city) {
-            $city['text'] = $city['name'];
-            // $city['id'] = $city['name'];
-            $cities['contents']['data'][$key] = $city;
+        $contents = array();
+        if (count($cities['contents'])>0) {
+            foreach ($cities['contents']['data'] as $key => $city) {
+                $city['text'] = $city['name'];
+                // $city['id'] = $city['name'];
+                $cities['contents']['data'][$key] = $city;
+            }
+            $contents = $cities['contents'];
         }
 
-        return response()->json(['cities' => $cities['contents']]);
+        return response()->json(['cities' => $contents ]);
     }
 
     public function jobs(Request $request)
@@ -146,13 +158,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($jobs['contents']['data'] as $key => $job) {
-            $job['text'] = $job['name'];
-            $jobs['contents']['data'][$key] = $job;
+        $contents = array();
+        if (count($jobs['contents'])>0) {
+            foreach ($jobs['contents']['data'] as $key => $job) {
+                $job['text'] = $job['name'];
+                $jobs['contents']['data'][$key] = $job;
+            }
+            $contents = $jobs['contents'];
         }
 
-        return response()->json(['jobs' => $jobs['contents']]);
+        return response()->json(['jobs' => $contents ]);
     }
 
     public function job_types(Request $request)
@@ -170,13 +185,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($job_types['contents']['data'] as $key => $type) {
-            $type['text'] = $type['name'];
-            $job_types['contents']['data'][$key] = $type;
+        $contents = array();
+        if (count($job_types['contents'])>0) {
+            foreach ($job_types['contents']['data'] as $key => $type) {
+                $type['text'] = $type['name'];
+                $job_types['contents']['data'][$key] = $type;
+            }
+            $contents = $job_types['contents'];
         }
 
-        return response()->json(['job_types' => $job_types['contents']]);
+        return response()->json(['job_types' => $contents ]);
     }
 
     public function job_fields(Request $request)
@@ -194,13 +212,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($job_fields['contents']['data'] as $key => $field) {
-            $field['text'] = $field['name'];
-            $job_fields['contents']['data'][$key] = $field;
+        $contents = array();
+        if (count($job_fields['contents'])>0) {
+            foreach ($job_fields['contents']['data'] as $key => $field) {
+                $field['text'] = $field['name'];
+                $job_fields['contents']['data'][$key] = $field;
+            }
+            $contents = $job_fields['contents'];
         }
 
-        return response()->json(['job_fields' => $job_fields['contents']]);
+        return response()->json(['job_fields' => $contents ]);
     }
 
     public function positions(Request $request)
@@ -218,13 +239,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($positions['contents']['data'] as $key => $position) {
-            $position['text'] = $position['name'];
-            $positions['contents']['data'][$key] = $position;
+        $contents = array();
+        if (count($positions['contents'])>0) {
+            foreach ($positions['contents']['data'] as $key => $position) {
+                $position['text'] = $position['name'];
+                $positions['contents']['data'][$key] = $position;
+            }
+            $contents = $positions['contents'];
         }
 
-        return response()->json(['positions' => $positions['contents']]);
+        return response()->json(['positions' => $contents ]);
     }
 
     public function citizenship(Request $request)
@@ -242,13 +266,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($citizenship['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $citizenship['contents']['data'][$key] = $czen;
+        $contents = array();
+        if (count($citizenship['contents'])>0) {
+            foreach ($citizenship['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $citizenship['contents']['data'][$key] = $czen;
+            }
+            $contents = $citizenship['contents'];
         }
 
-        return response()->json(['citizenship' => $citizenship['contents']]);
+        return response()->json(['citizenship' => $contents]);
     }
 
     public function kppTypeList(Request $request)
@@ -266,13 +293,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($kppType['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $kppType['contents']['data'][$key] = $czen;
+        $contents = array();
+        if (count($kppType['contents'])>0) {
+            foreach ($kppType['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $kppType['contents']['data'][$key] = $czen;
+            }
+            $contents = $kppType['contents'];
         }
 
-        return response()->json(['kppType' => $kppType['contents']]);
+        return response()->json(['kppType' => $contents ]);
     }
 
     public function typeFinanced(Request $request)
@@ -290,13 +320,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($typeFinanced['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $typeFinanced['contents']['data'][$key] = $czen;
+        $contents = array();
+        if (count($typeFinanced['contents'])>0) {
+            foreach ($typeFinanced['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $typeFinanced['contents']['data'][$key] = $czen;
+            }
+            $contents = $typeFinanced['contents'];
         }
 
-        return response()->json(['typeFinanced' => $typeFinanced['contents']]);
+        return response()->json(['typeFinanced' => $contents ]);
     }
 
     public function economySectors(Request $request)
@@ -315,13 +348,16 @@ class DropdownController extends Controller
                 'limit' => 5
             ])
             ->get();
-
-        foreach ($economySector['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $economySector['contents']['data'][$key] = $czen;
+        $contents = array();
+        if (count($economySector['contents'])>0) {
+            foreach ($economySector['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $economySector['contents']['data'][$key] = $czen;
+            }
+            $contents = $economySector['contents'];
         }
 
-        return response()->json(['economySector' => $economySector['contents']]);
+        return response()->json(['economySector' => $contents ]);
     }
 
     public function projectList(Request $request)
@@ -339,13 +375,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
+        $contents = array();
+        if (count($projectList['contents'])>0) {
+            foreach ($projectList['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $projectList['contents']['data'][$key] = $czen;
+            }
+            $contents = $projectList['contents'];
+        }    
 
-        foreach ($projectList['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $projectList['contents']['data'][$key] = $czen;
-        }
-
-        return response()->json(['projectList' => $projectList['contents']]);
+        return response()->json(['projectList' => $contents]);
     }
 
     public function programList(Request $request)
@@ -363,13 +402,16 @@ class DropdownController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
-        foreach ($programList['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $programList['contents']['data'][$key] = $czen;
+        $contents = array();
+        if (count($programList['contents'])>0) {
+            foreach ($programList['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $programList['contents']['data'][$key] = $czen;
+            }
+            $contents = $programList['contents'];
         }
 
-        return response()->json(['programList' => $programList['contents']]);
+        return response()->json(['programList' => $contents]);
     }
 
     public function useReason(Request $request)
@@ -388,12 +430,16 @@ class DropdownController extends Controller
             ])
             ->get();
 
-        foreach ($useReason['contents']['data'] as $key => $czen) {
-            $czen['text'] = $czen['name'];
-            $useReason['contents']['data'][$key] = $czen;
+        $contents = array();
+        if (count($useReason['contents'])>0) {
+            foreach ($useReason['contents']['data'] as $key => $czen) {
+                $czen['text'] = $czen['name'];
+                $useReason['contents']['data'][$key] = $czen;
+                }
+            $contents = $useReason['contents'];
         }
 
-        return response()->json(['useReason' => $useReason['contents']]);
+        return response()->json(['useReason' => $contents]);
     }
 
     /**
@@ -419,8 +465,8 @@ class DropdownController extends Controller
                 'region_id' => $request->input('region_id')
             ])
             ->get();
-
-        if(!empty($staffs)){
+        $contents = array();
+        if ( count($staffs['contents'])>0){
             foreach ($staffs['contents']['data'] as $key => $staff) {
                 if ($staff['id'] = $staff['id']) {
                     $staff['text'] = $staff['name'];
@@ -428,8 +474,6 @@ class DropdownController extends Controller
                 }
             }
             $contents = $staffs['contents'];
-        }else{
-            $contents = [];
         }
 
         return response()->json(['staffs' => $contents]);
