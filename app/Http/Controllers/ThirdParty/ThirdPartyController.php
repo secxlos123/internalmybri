@@ -76,6 +76,8 @@ class ThirdPartyController extends Controller
     public function store(ThirdPartyRequest $request)
     {
         $data = $this->getUser();
+        $email = strtolower($request->email);
+        $request->merge(['email'=>$email]);
         $newOther = $this->otherRequest($request, $data);
         // dd($newOther);
 
