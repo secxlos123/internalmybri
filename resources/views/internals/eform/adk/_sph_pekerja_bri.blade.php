@@ -381,7 +381,6 @@
       <td align="center">{{$data_sph['nama_pasangan']}}</td>
     </tr>
   </table>
-  <br>
   <?php } else { ?>
   </table>
   <br><br><br><br><br><br><br><br>
