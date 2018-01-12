@@ -281,8 +281,9 @@ class CustomerController extends Controller
     {
         $data = $this->getUser();
         $role = $data['role'];
+        $email = strtolower($request->email);
+        $request->merge(['email'=>$email]);
         $newCustomer = $this->dataRequest($request);
-        // echo json_encode($newCustomer);die();
         $client = Client::setEndpoint('customer')
          ->setHeaders([
               'Authorization' => $data['token']
