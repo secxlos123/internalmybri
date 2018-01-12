@@ -130,8 +130,6 @@
 
             Route::get('approval-collateral/{dev_id}/{prop_id}', ['as'=>'getApprovalCollateral', 'uses'=>'Collateral\CollateralController@approval']);
 
-            Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
-
             Route::post('postApprovalCollateral/{id}', ['as'=>'postApprovalCollateral', 'uses'=>'Collateral\CollateralController@postApprovalCollateral']);
 
             Route::post('reject-approval/{id}', ['as'=>'rejectApprovalCollateral', 'uses'=>'Collateral\CollateralController@rejectApprovalCollateral']);
@@ -238,6 +236,8 @@
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
+    
+    Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
     /* Chart */
     Route::get('chartEform', 'Home\HomeController@chartEform');

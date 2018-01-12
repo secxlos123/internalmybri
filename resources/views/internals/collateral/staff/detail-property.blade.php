@@ -120,6 +120,10 @@
         });
     });
 
+    // $(document).on('click', "#view-detail", function(){
+    //     $('#detail-collateral-modal').modal('show');
+    // })
+
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');
     })
