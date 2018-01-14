@@ -176,7 +176,7 @@
 
         /*ADK*/
         Route::resource('adk', 'EForm\ADKController');
-        Route::get('/adk/histori-list', 'EForm\ADKController@history');
+        Route::resource('adk-histori', 'EForm\ADKHistoriController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
         Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
         Route::post('verifikasi', ['as'=>'verifikasi', 'uses'=>'EForm\ADKController@postVerifikasi']);
@@ -307,7 +307,7 @@
     Route::group(['prefix'=>'datatables'], function () {
         /*ADK*/
         Route::get('adk-list', 'EForm\ADKController@datatables');
-        Route::get('adk-his-list', 'EForm\ADKController@datatable_history');
+        Route::get('adk-his-list', 'EForm\ADKHistoriController@datatables');
 
         /* Roles */
         Route::get('roles', 'User\RoleController@datatables');
