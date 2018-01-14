@@ -70,6 +70,6 @@
                 {data: 'STATUS', name: 'STATUS', bSortable: true },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
-      });
+        });
     }
 </script>

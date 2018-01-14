@@ -25,11 +25,22 @@ class ADKController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $data     = $this->getUser();
+        $data = $this->getUser();
         // print_r($data);exit();
         // hanya adk yg bisa melakukan fungsi ini
         if ($data['role'] == 'adk') {
             return view('internals.eform.adk.index', compact('data'));
+        } else {
+            return view('internals.layouts.404');
+        }
+    }
+
+    public function history() {
+        $data = $this->getUser();
+        // print_r($data);exit();
+        // hanya adk yg bisa melakukan fungsi ini
+        if ($data['role'] == 'adk') {
+            return view('internals.eform.adk.his_index', compact('data'));
         } else {
             return view('internals.layouts.404');
         }
@@ -966,7 +977,7 @@ class ADKController extends Controller
         }
     }
 
-    public function datatablesBackup(Request $request) {
+    public function datatable_history(Request $request) {
         $data = $this->getUser();
         // print_r($data);exit();
         $customer = Client::setEndpoint('api_las/index')
@@ -976,7 +987,7 @@ class ADKController extends Controller
                 ])->setBody([
                     'requestMethod' => 'eformBriguna'
                 ])->post();
-        // print_r($customer);exit();
+        print_r($customer);exit();
         if (!empty($customer)) {
             \Log::info("masuk");
             $form  = array();
@@ -985,14 +996,18 @@ class ADKController extends Controller
                 print_r($value);exit();
                 if (intval($value['is_send']) == '1') {
                     $status = 'Approved';
+                } else if (intval($value['is_send']) == '2') {
+                    $status = 'Unapproved';
                 } else if (intval($value['is_send']) == '3') {
                     $status = 'Void';
                 } else if (intval($value['is_send']) == '4') {
-                    $status = 'Pengajuan dibatalkan approve adk';
+                    $status = 'Void adk';
                 } else if (intval($value['is_send']) == '5') {
-                    $status = 'Pengajuan diapprove adk';
+                    $status = 'Approved pencairan';
                 } else if (intval($value['is_send']) == '6') {
                     $status = 'Disbursed';
+                } else if (intval($value['is_send']) == '7') {
+                    $status = 'Send to brinets';
                 }
 
                 $form['STATUS'] = $status;
