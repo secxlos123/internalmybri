@@ -70,6 +70,22 @@ class ADKController extends Controller
         ];
 
         if (!empty($detail)) {
+            if (intval($detail['is_send']) == '1') {
+                $status = 'Approved';
+            } else if (intval($detail['is_send']) == '2') {
+                $status = 'Unapproved';
+            } else if (intval($detail['is_send']) == '3') {
+                $status = 'Void';
+            } else if (intval($detail['is_send']) == '4') {
+                $status = 'Void adk';
+            } else if (intval($detail['is_send']) == '5') {
+                $status = 'Approved pencairan';
+            } else if (intval($detail['is_send']) == '6') {
+                $status = 'Disbursed';
+            } else if (intval($detail['is_send']) == '7') {
+                $status = 'Send to brinets';
+            }
+
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
@@ -105,7 +121,7 @@ class ADKController extends Controller
         // dd($debitur);
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi','status');
         } else {
             return view('internals.layouts.404');
         }
@@ -688,10 +704,6 @@ class ADKController extends Controller
                         $status = 'Approved';
                     } else if (intval($value['is_send']) == '3') {
                         $status = 'Void';
-                    } else if (intval($value['is_send']) == '4') {
-                        $status = 'Pengajuan dibatalkan approve adk';
-                    } else if (intval($value['is_send']) == '5') {
-                        $status = 'Pengajuan diapprove adk';
                     } else if (intval($value['is_send']) == '6') {
                         $status = 'Disbursed';
                     }

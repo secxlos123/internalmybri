@@ -36,7 +36,7 @@
                                     <th>Nama Debitur</th>
                                     <th>Plafond</th>
                                     <th>Status</th>
-                                    <th style="width: 100px">Aksi</th>
+                                    <!-- <th style="width: 100px">Aksi</th> -->
                                 </tr>
                             </thead>
                             <tbody>
