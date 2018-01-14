@@ -121,7 +121,7 @@ class ADKController extends Controller
         // dd($debitur);
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi','status');
+            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi','status'));
         } else {
             return view('internals.layouts.404');
         }
