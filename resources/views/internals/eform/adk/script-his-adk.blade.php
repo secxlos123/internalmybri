@@ -28,6 +28,7 @@
                 {data: 'id_aplikasi', name: 'id_aplikasi', bSortable: true},
                 {data: 'ref_number', name: 'ref_number', bSortable: true},
                 {data: 'fid_tp_produk', name: 'fid_tp_produk', bSortable: true},
+                {data: 'ao_name', name: 'ao_name', bSortable: true},
                 {data: 'namadeb', name: 'namadeb', bSortable: true},
                 {data: 'request_amount', name: 'request_amount', bSortable: true},
                 {data: 'STATUS', name: 'STATUS', bSortable: true },
