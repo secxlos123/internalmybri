@@ -109,13 +109,13 @@ class ADKHistoriController extends Controller
                 ])->setBody([
                     'requestMethod' => 'eformBriguna'
                 ])->post();
-        print_r($customer);exit();
+        // print_r($customer);exit();
         if (!empty($customer)) {
             \Log::info("masuk");
             $form  = array();
             $count = 0;
             foreach ($customer as $index => $value) {
-                print_r($value);exit();
+                // print_r($value);exit();
                 if (intval($value['is_send']) == '1') {
                     $status = 'Approved';
                 } else if (intval($value['is_send']) == '2') {
@@ -132,29 +132,34 @@ class ADKHistoriController extends Controller
                     $status = 'Send to brinets';
                 }
 
-                $form['STATUS'] = $status;
-                $form['ref_number'] = $value['ref_number'];
-                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                $form['eform_id'] = $value['eform_id'];
-                $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                if ($form['fid_tp_produk'] == '1') {
-                    $form['fid_tp_produk'] = 'Briguna Karya/Umum';
-                } elseif ($form['fid_tp_produk'] == '2') {
-                    $form['fid_tp_produk'] = 'Briguna Purna';
-                } elseif ($form['fid_tp_produk'] == '28') {
-                    $form['fid_tp_produk'] = 'Briguna Karyawan BRI';
-                } elseif ($form['fid_tp_produk'] == '22') {
-                    $form['fid_tp_produk'] = 'Briguna Talangan';
-                } elseif ($form['fid_tp_produk'] == '10') {
-                    $form['fid_tp_produk'] = 'Briguna Micro';
-                } else {
-                    $form['fid_tp_produk'] = 'Lainnya';
+                if (!empty($value['is_send'])) {
+                    if (intval($value['is_send']) != '0') {
+                        $value['namadeb'] = $value['first_name'];
+                        $value['STATUS'] = $status;
+                        $value['ref_number'] = $value['ref_number'];
+                        $value['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
+                        $value['eform_id'] = $value['eform_id'];
+                        $value['request_amount'] = 'Rp '.number_format($value['Plafond_usulan'], 0, ",", ".");
+                        if ($value['tp_produk'] == '1') {
+                            $value['fid_tp_produk'] = 'Briguna Karya/Umum';
+                        } elseif ($value['tp_produk'] == '2') {
+                            $value['fid_tp_produk'] = 'Briguna Purna';
+                        } elseif ($value['fid_tp_produk'] == '28') {
+                            $value['fid_tp_produk'] = 'Briguna Karyawan BRI';
+                        } elseif ($value['tp_produk'] == '22') {
+                            $value['fid_tp_produk'] = 'Briguna Talangan';
+                        } elseif ($value['tp_produk'] == '10') {
+                            $value['fid_tp_produk'] = 'Briguna Micro';
+                        } else {
+                            $value['fid_tp_produk'] = 'Lainnya';
+                        }
+                        $value['action'] = view('internals.layouts.actions', [
+                            'approve_adk' => $value
+                        ])->render();
+                        $eforms['contents']['data'][] = $value;
+                        $count = count($value);
+                    }
                 }
-                $form['action'] = view('internals.layouts.actions', [
-                    'approve_adk' => $form
-                ])->render();
-                $eforms['contents']['data'][] = $form;
-                $count = count($form);
             }
 
             if (intval($count) == 0) {
