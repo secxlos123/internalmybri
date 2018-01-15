@@ -1,4 +1,4 @@
-@section('title','My BRI - E-Form')
+@section('title','MyBRI - Pengajuan Kredit')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">E-Form</h4>
+                            <h4 class="page-title">Pengajuan Kredit</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="{{url('/')}}">Dashboard</a>
                                 </li>
                                 <li class="active">
-                                    E-Form
+                                    Pengajuan Kredit
                                 </li>
                             </ol>
                             <div class="clearfix"></div>
@@ -32,7 +32,7 @@
                         <div class="card-box ">
                             <div class="add-button">
                                 @if(($data['role']=='ao') || ($data['role']=='other'))
-                                <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
+                                <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Pinjaman Aplikasi</a>
                                 @endif
                             </div>
                             <div id="filter" class="m-b-15">
@@ -65,26 +65,26 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-4 control-label">Status Pengajuan :</label>
+                                                    <label class="col-sm-4 control-label">Status Pengajuan Kredit:</label>
                                                     <div class="col-sm-8">
                                                         <select class="form-control" id="status">
-                                                            <option selected="" value="All"> Semua</option>
-                                                            <option value="Rekomend">Pengajuan Kredit</option>
-                                                            <option value="Dispose">Disposisi Pengajuan</option>
+                                                            <option selected="" value="All"> (Semua)</option>
+                                                            <option value="Rekomend">Pengajuan</option>
+                                                            <option value="Dispose">Disposisi</option>
                                                             <option value="Initiate">Prakarsa</option>
                                                             <option value="Submit">Proses CLF</option>
-                                                            <option value="Approval1">Kredit Disetujui</option>
-                                                            <option value="Approval2">Rekontes Kredit</option>
-                                                            <option value="Rejected">Kredit Ditolak</option>
+                                                            <option value="Approval1">Disetujui</option>
+                                                            <option value="Approval2">Pengajuan Ulang</option>
+                                                            <option value="Rejected"> Ditolak</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-4 control-label">Status Prescreening :</label>
+                                                    <label class="col-sm-4 control-label">Prescreening :</label>
                                                     <div class="col-sm-8">
                                                         <select id="prescreening_filter" class="form-control">
-                                                            <option selected="" value="All"> Semua</option>
+                                                            <option selected="" value="All"> (Semua)</option>
                                                             <option value="1" class="text-success">Hijau</option>
                                                             <option value="2" class="text-warning">Kuning</option>
                                                             <option value="3" class="text-danger">Merah</option>
@@ -105,7 +105,7 @@
 
                                             </form>
                                             <div class="text-right">
-                                                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Cari</a>
                                             </div>
                                         </div>
                                     </div>

@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Penugasan Collateral Properti')
+@section('title','MyBRI - Form Penugasan Collateral Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

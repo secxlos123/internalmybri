@@ -1,4 +1,4 @@
-@section('title','My BRI - Form LKN')
+@section('title','MyBRI - Form LKN')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -13,7 +13,7 @@
                         <h4 class="page-title">Laporan Kunjungan Nasabah dan Rekomendasi Pengajuan Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('indexAO')}}">E-Form</a>
+                                <a href="{{route('indexAO')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
                                 Form LKN

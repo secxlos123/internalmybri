@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Informasi Properti')
+@section('title','MyBRI - Detail Informasi Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -119,6 +119,10 @@
             },
         });
     });
+
+    // $(document).on('click', "#view-detail", function(){
+    //     $('#detail-collateral-modal').modal('show');
+    // })
 
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');

@@ -1,4 +1,4 @@
-@section('title','My BRI - Login')
+@section('title','MyBRI - Login')
 @include('internals.layouts.head')
 <body class="bg-grey">
         <section>

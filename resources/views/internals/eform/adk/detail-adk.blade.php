@@ -1,4 +1,4 @@
-@section('title','My BRI - Verifikasi ADK')
+@section('title','MyBRI - Verifikasi ADK')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -17,7 +17,7 @@
                         <h4 class="page-title">Verifikasi ADK</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li><a href="{{url('/')}}">Dashboard</a></li>
-                            <li><a href="{{route('eform.index')}}">E-Form</a></li>
+                            <li><a href="{{route('eform.index')}}">Pengajuan Kredit</a></li>
                             <li class="active">Pengajuan</li>
                         </ol>
                         <div class="clearfix"></div>

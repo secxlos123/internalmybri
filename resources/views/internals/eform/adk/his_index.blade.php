@@ -26,23 +26,27 @@
                         <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
                     <div class="card-box">
-                        <table id="datatable-histori" class="table table-bordered">
-                            <thead class="bg-primary">
-                                <tr>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>ID Aplikasi</th>
-                                    <th>No Referensi</th>
-                                    <th>Produk</th>
-                                    <th>Nama AO</th>
-                                    <th>Nama Debitur</th>
-                                    <th>Plafond</th>
-                                    <th>Status</th>
-                                    <!-- <th style="width: 100px">Aksi</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <div class="tab-scroll">
+                            <table id="datatable-histori" class="table table-bordered">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <td align="center">Tanggal Pengajuan</td>
+                                        <td align="center">ID Aplikasi</td>
+                                        <td align="center">No Referensi</td>
+                                        <td align="center">Produk</td>
+                                        <td align="center">Nama Pemutus</td>
+                                        <td align="center">Nama Pemrakarsa</td>
+                                        <td align="center">Nama Debitur</td>
+                                        <td align="center">Nomor Rekening</td>
+                                        <td align="center">Plafond</td>
+                                        <td align="center">Status</td>
+                                        <!-- <th style="width: 100px">Aksi</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

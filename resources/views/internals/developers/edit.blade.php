@@ -1,4 +1,4 @@
-@section('title','My BRI - Edit Developer')
+@section('title','MyBRI - Edit Mitra Kerjasama')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Edit Developer</h4>
+                                    <h4 class="page-title">Edit Mitra Kerjasama</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('developers.index')}}">Developer</a>
+                                            <a href="{{route('developers.index')}}">Mitra Kerjasama</a>
                                         </li>
                                         <li class="active">
-                                            Edit Developer
+                                            Edit Mitra Kerjasama
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -220,4 +220,4 @@
     TableManageButtons.init();
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Developer\UpdateDevRequest', '#form1'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\Mitra Kerjasama\UpdateDevRequest', '#form1'); !!}

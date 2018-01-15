@@ -104,11 +104,9 @@ class ADKController extends Controller
         }
 
         // GET Form Data Debitur LAS
-        $data_debitur = Client::setEndpoint('api_las/index')
-            ->setHeaders(
-                [ 'Authorization' => $data['token'],
-                  'pn' => $data['pn']
-                ])
+        /*$data_debitur = Client::setEndpoint('api_las/index')
+            ->setHeaders(['Authorization' => $data['token'],
+                  'pn' => $data['pn']])
             ->setBody([
                 'requestMethod' => 'inquiryHistoryDebiturPerorangan',
                 'requestData'   => $conten
@@ -117,11 +115,10 @@ class ADKController extends Controller
         $debitur = [];
         if ($data_debitur['code'] == '01') {
             $debitur = $data_debitur['contents']['data'][0];
-        }
-        // dd($debitur);
+        }*/
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi','status'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
             return view('internals.layouts.404');
         }
@@ -799,6 +796,13 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $no_skpp        = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
+
+            $asuransi = [
+                
+            ];
             $detail_debitur = [
                 'name_adk'     => $data['name'],
                 'jabatan_adk'  => $data['position'],
@@ -817,7 +821,12 @@ class ADKController extends Controller
                 'angsuran'     => $detail['angsuran_usulan'],
                 'asuransi'     => $detail['Premi_asuransi_jiwa'],
                 'beban_debitur'=> $detail['Premi_beban_debitur'],
-                'beban_bri'    => $detail['Premi_beban_bri']
+                'beban_bri'    => $detail['Premi_beban_bri'],
+                'nama_ao'      => $detail['ao_name'],
+                'nama_pemutus' => $detail['pinca_name'],
+                'premi_as_jiwa'=> $premi_as_jiwa,
+                'premi_beban_debitur'=> $premi_beban_debitur,
+                'premi_beban_bri'    => $premi_beban_bri
             ];
 
             // lempar data ke view blade
