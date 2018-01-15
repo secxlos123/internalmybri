@@ -529,4 +529,58 @@
           $('#date_receipt').attr('hidden', true);
         }
     })
+    $('#notary_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_notary').removeAttr('hidden');
+        }else{
+          $('#date_receipt_notary').attr('hidden', true);
+        }
+    })
+    $('#takeover_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_takeover').removeAttr('hidden');
+        }else{
+          $('#date_receipt_takeover').attr('hidden', true);
+        }
+    })
+    $('#credit_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_credit').removeAttr('hidden');
+        }else{
+          $('#date_receipt_credit').attr('hidden', true);
+        }
+    })
+    $('#skmht_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_skmht').removeAttr('hidden');
+        }else{
+          $('#date_receipt_skmht').attr('hidden', true);
+        }
+    })
+    $('#imb_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_imb').removeAttr('hidden');
+        }else{
+          $('#date_receipt_imb').attr('hidden', true);
+        }
+    })
+    $('#shgb_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_shgb').removeAttr('hidden');
+        }else{
+          $('#date_receipt_shgb').attr('hidden', true);
+        }
+    })
 </script>
