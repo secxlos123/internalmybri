@@ -104,11 +104,9 @@ class ADKController extends Controller
         }
 
         // GET Form Data Debitur LAS
-        $data_debitur = Client::setEndpoint('api_las/index')
-            ->setHeaders(
-                [ 'Authorization' => $data['token'],
-                  'pn' => $data['pn']
-                ])
+        /*$data_debitur = Client::setEndpoint('api_las/index')
+            ->setHeaders(['Authorization' => $data['token'],
+                  'pn' => $data['pn']])
             ->setBody([
                 'requestMethod' => 'inquiryHistoryDebiturPerorangan',
                 'requestData'   => $conten
@@ -117,11 +115,10 @@ class ADKController extends Controller
         $debitur = [];
         if ($data_debitur['code'] == '01') {
             $debitur = $data_debitur['contents']['data'][0];
-        }
-        // dd($debitur);
+        }*/
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi','status'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
             return view('internals.layouts.404');
         }
