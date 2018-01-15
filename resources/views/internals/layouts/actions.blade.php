@@ -38,27 +38,27 @@
 @if(isset($verified))
 	@if ((isset($verification) && ($verified == false)))
 		@if($response_status == 'unverified')
-		<a href="{!! $reverification !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Resend Verification" title="Resend Verification">
-	    <i class="fa fa-reply" aria-hidden="true"></i>
+		<a href="{!! $reverification !!}" class="btn btn-icon waves-effect waves-light btn-pastel" data-original-title="Resend Verification" title="Resend Verification">
+	    <i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
 	    </a>
 		@endif
-	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-info {{($response_status == 'unverified') ? 'disabled' : ''}}" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified') ? 'pointer-events: none;cursor: default; display: none;' : ''}}">
-	    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-pastel {{($response_status == 'unverified') ? 'disabled' : ''}}" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified') ? 'pointer-events: none;cursor: default; display: none;' : ''}}">
+	    <i class="fa fa-check-square-o" style="color: white;" aria-hidden="true"></i>
 	</a>
 	@endif
 
 	@if (!empty($verified) && $verified == true)
-	<span class="waves-effect waves-light" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;">
-	    <i class="fa fa-check-circle fa-2x" style="color: cadetblue;" aria-hidden="true" title="Verified"></i>
+	<span class="waves-effect waves-light" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;cursor: default;">
+	    <i class="fa fa-check-circle fa-2x" style="color: orange;" aria-hidden="true" title="Verified"></i>
 	</span>
-	<a href="{!! $preview !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Verification" title="Detail Verification">
-	    <i class="fa fa-eye" aria-hidden="true"></i>
+	<a href="{!! $preview !!}" class="btn btn-icon waves-effect waves-light btn-pastel" data-original-title="Verification" title="Detail Verification">
+	    <i class="fa fa-eye" aria-hidden="true" style="color: white;"></i>
 	</a>
 	@endif
 
 	@if ((isset($lkn)) && ($visited == false))
-	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-orange" data-original-title="Form LKN" title="Form LKN">
-	    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-pastel" data-original-title="Form LKN" title="Form LKN">
+	    <i class="fa fa-file-text-o" style="color: white;" aria-hidden="true"></i>
 	</a>
 	@endif
 
