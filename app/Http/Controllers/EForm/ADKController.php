@@ -799,6 +799,13 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $no_skpp        = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
+
+            $asuransi = [
+                
+            ];
             $detail_debitur = [
                 'name_adk'     => $data['name'],
                 'jabatan_adk'  => $data['position'],
@@ -817,7 +824,12 @@ class ADKController extends Controller
                 'angsuran'     => $detail['angsuran_usulan'],
                 'asuransi'     => $detail['Premi_asuransi_jiwa'],
                 'beban_debitur'=> $detail['Premi_beban_debitur'],
-                'beban_bri'    => $detail['Premi_beban_bri']
+                'beban_bri'    => $detail['Premi_beban_bri'],
+                'nama_ao'      => $detail['ao_name'],
+                'nama_pemutus' => $detail['pinca_name'],
+                'premi_as_jiwa'=> $premi_as_jiwa,
+                'premi_beban_debitur'=> $premi_beban_debitur,
+                'premi_beban_bri'    => $premi_beban_bri
             ];
 
             // lempar data ke view blade
