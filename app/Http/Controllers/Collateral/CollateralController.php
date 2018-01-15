@@ -238,8 +238,16 @@ class CollateralController extends Controller
         $prop_id = $request->input('prop_id');
 
          /* GET Data */
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return response()->json(['data' => $collateral]);
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
+
+        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return response()->json(['data' => $collateral['data']['0']]);
     }
 
     /**

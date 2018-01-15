@@ -1,4 +1,4 @@
-@section('title','My BRI - Tambah Pengajuan')
+@section('title','MyBRI - Pengajuan Pinjaman')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -16,13 +16,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Tambah Pengajuan</h4>
+                        <h4 class="page-title">Pengajuan Pinjaman</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('eform.index')}}">E-Form</a>
+                                <a href="{{route('eform.index')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
-                                Tambah Pengajuan
+                                Pengajuan Pinjaman
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -44,20 +44,20 @@
                         <form id="wizard-validation-form"  action="{{route('eform.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div>
-                                <h3>Produk</h3>
+                                <h3>Fasilitas Pinjaman</h3>
                                 @include('internals.eform.product')
-                                <h3>Customer</h3>
+                                <h3>Calon Debitur</h3>
                                 <section>
-                                    <h4 class="m-t-0 header-title"><b>Customer</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Calon Debitur</b></h4>
                                     <p class="text-muted m-b-30 font-13">
-                                        Cari NIK Customer atau tambah Customer baru
+                                        Cari NIK Calon Debitur atau tambah Calon Debitur baru
                                     </p>
                                 <div id="divForm"></div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div role="form">
                                                 <div class="form-group nik {!! $errors->has('nik') ? 'has-error' : '' !!}">
-                                                    <label class="control-label">Cari NIK Customer *</label>
+                                                    <label class="control-label">Cari NIK Calon Debitur *</label>
                                                     <div class="input-group">
                                                         {!! Form::select('nik', ['' => ''], old('nik'), [
                                                                 'class' => 'select2 nikSelect',
@@ -79,7 +79,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Nasabah Baru</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Calon Debitur</a>
                                             </div>
                                         </div>
                                     </div>

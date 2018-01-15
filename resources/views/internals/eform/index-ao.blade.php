@@ -1,4 +1,4 @@
-@section('title','My BRI - E-Form')
+@section('title','MyBRI - Pengajuan Kredit')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">E-Form</h4>
+                        <h4 class="page-title">Pengajuan Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
-                                E-Form
+                                Pengajuan Kredit
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -32,7 +32,7 @@
                     <div class="card-box">
                         <div class="add-button">
                             <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
-                            <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
+                            <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Pinjaman Aplikasi</a>
                             <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                         </div>
                         <div id="filter" class="m-b-15">

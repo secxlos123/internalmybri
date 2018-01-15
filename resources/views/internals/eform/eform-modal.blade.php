@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-               <h4 class="modal-title">Tambah Pengajuan</h4>
+               <h4 class="modal-title">Pengajuan Pinjaman</h4>
            </div>
             <div class="modal-body">
                 <div class="row">
@@ -115,6 +115,12 @@
                                                 <label class="col-md-5 control-label">Nomor HP :</label>
                                                 <div class="col-md-7">
                                                     <p class="form-control-static" id="mobile_phone"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Alamat :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="address"></p>
                                                 </div>
                                             </div>
                                         </form>

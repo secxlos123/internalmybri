@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Approval Pengajuan')
+@section('title','MyBRI - Form Approval Pengajuan')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -40,7 +40,7 @@
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{route('eform.index')}}">E-Form</a>
+                                <a href="{{route('eform.index')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
                                 Pengajuan

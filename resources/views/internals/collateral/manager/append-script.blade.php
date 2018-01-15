@@ -6,7 +6,7 @@
         $.ajax({
             dataType: 'json',
             type: 'GET',
-            url: '/collateral/detailCollateral',
+            url: '{{route("detailCollateral")}}',
             data: { dev_id : dev_id, prop_id : prop_id },
             success: function(result, data) {  
             console.log(result); 
