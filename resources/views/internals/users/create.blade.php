@@ -1,4 +1,4 @@
-@section('title','My BRI - Tambah User')
+@section('title','MyBRI - Tambah User')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
