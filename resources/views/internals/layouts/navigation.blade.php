@@ -4,11 +4,11 @@
                         <ul>
                         	<li class="menu-title">Navigasi Utama</li>
                             <li>
-                                <a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home </span> </a>
+                                <a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a>
                             </li>
                             @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
                             <li>
-                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Customer </span> </a>
+                                <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Calon Debitur </span> </a>
                             </li>
                             @endif
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
@@ -19,23 +19,29 @@
 
                             <li>
                             @if(($data['role']=='ao') || ($data['role']=='other'))
-                                <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+                                <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span> </a>
 
                             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
                                 <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
 
                             @elseif(($data['role']=='staff'))
-                                <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Aplikasi </span> </a>
+                                <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span> </a>
 
                             @endif
                             </li>
 
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca'))
-                            <li>
-                                <a href="{{route('developers.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
+                            <li class="treeview">
+                                <a href="#" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Mitra Kerjasama </span> </a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="{{route('developers.index')}}" class="waves-effect"> <span> Mitra Kerjasama KPR</span> </a>
+                                    </li>
+                                    
+                                </ul>
                             </li>
                             <li>
-                                <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
+                                <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span>Profil Debitur </span> </a>
                             </li>
                             @endif
                             @if($data['role']=='adk')
@@ -77,7 +83,7 @@
                                 <a href="#" class="waves-effect"><i class="mdi mdi-check"></i> <span > Approval Perubahan </span> </a>
                                 <ul class="treeview-menu">
                                     <li>
-                                        <a href="{{route('approveDeveloper')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
+                                        <a href="{{route('approveDeveloper')}}" class="waves-effect"> <span> Mitra Kerjasama </span> </a>
                                     </li>
                                     <!-- <li>
                                         <a href="{{route('approveThirdParty')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ke-3 </span> </a>

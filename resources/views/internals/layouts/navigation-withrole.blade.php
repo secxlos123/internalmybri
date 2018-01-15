@@ -5,7 +5,7 @@
                         	<li class="menu-title">Navigasi Utama</li>
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='admin-bri'))
                             <li>
-                                <a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home </span> </a>
+                                <a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-Home MyBRI"></i> <span> Home MyBRI </span> </a>
                             </li>
                             @endif
                             @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
@@ -20,7 +20,7 @@
                             @endif
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
                             <li>
-                            <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> e-Form </span> </a>
+                            <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span> </a>
                             </li>
                             @endif
                             @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='admin-bri'))
