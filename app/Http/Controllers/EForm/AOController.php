@@ -15,16 +15,16 @@ class AOController extends Controller
   //   }
 
 	protected $columns = [
-        'ref_number',
-        'customer_name',
-        'request_amount',
-        'created_at',
-        'mobile_phone',
-        'prescreening_status',
-        'status',
-        'created_at',
-        'action',
-    ];
+    'ref_number',
+    'customer_name',
+    'request_amount',
+    'created_at',
+    'mobile_phone',
+    'prescreening_status',
+    'status',
+    'created_at',
+    'action',
+  ];
 
     /**
      * Display a listing of the resource.
@@ -33,19 +33,19 @@ class AOController extends Controller
      */
     public function index()
     {
-        $data = $this->getUser();
+      $data = $this->getUser();
 
-        return view('internals.eform.index-ao', compact('data'));
+      return view('internals.eform.index-ao', compact('data'));
     }
 
     public function getUser(){
      /* GET UserLogin Data */
-        $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
-        return $data;
+     $users = session()->get('user');
+     foreach ($users as $user) {
+      $data = $user;
     }
+    return $data;
+  }
 
     /**
      * Show the form for creating a new resource.
@@ -54,33 +54,34 @@ class AOController extends Controller
      */
     public function getLKN($id)
     {
-        $data = $this->getUser();
+      $data = $this->getUser();
 
-        $eforms = Client::setEndpoint('eforms/'.$id)
-                ->setHeaders([
-                    'Authorization' => $data['token']
-                    , 'pn' => $data['pn']
+      $eforms = Client::setEndpoint('eforms/'.$id)
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
                     // , 'auditaction' => 'action name'
                     // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                ])->get();
-        $eformData = $eforms['contents'];
+      ])->get();
+      $eformData = $eforms['contents'];
         // dd($eformData);
 
-        $client = new \GuzzleHttp\Client();
-        try {
-            $res = $client->request('GET', 'http://freegeoip.net/json/');
+      $client = new \GuzzleHttp\Client();
+      try {
+        $res = $client->request('GET', 'http://freegeoip.net/json/');
 
-            $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
-            $eformData['longitude'] = $getIP->longitude;
-            $eformData['latitude'] = $getIP->latitude;
+        $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
+        $eformData['longitude'] = $getIP->longitude;
+        $eformData['latitude'] = $getIP->latitude;
 
-        } catch (\Exception $e) {
-            \Log::info($e);
+      } catch (\Exception $e) {
+        \Log::info($e);
+      }
 
-        }
+      $recontest = 1;
 
-        return view('internals.eform.lkn.index', compact('data', 'id', 'eformData'));
+      return view('internals.eform.lkn.index', compact('data', 'id', 'eformData', 'recontest'));
     }
 
     /**
@@ -90,41 +91,41 @@ class AOController extends Controller
      */
     public function postLKN(Request $request, $id)
     {
-        $data = $this->getUser();
-        $newForm = $this->lknRequest($request);
+      $data = $this->getUser();
+      $newForm = $this->lknRequest($request);
         // dd($newForm);
 
-    	  $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
-          ->setHeaders([
-            'Authorization' => $data['token']
-            , 'pn' => $data['pn']
-            , 'auditaction' => 'Simpan Form LKN'
-            , 'long' =>  $request['hidden-long']
-            , 'lat' =>  $request['hidden-lat']
-          ])
-          ->setBody($newForm)
-          ->post('multipart');
+      $client = Client::setEndpoint('eforms/'.$id.'/visit-reports')
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+        , 'auditaction' => 'Simpan Form LKN'
+        , 'long' =>  $request['hidden-long']
+        , 'lat' =>  $request['hidden-lat']
+      ])
+      ->setBody($newForm)
+      ->post('multipart');
           // dd($client);
 
-        if($client['code'] == 201){
-            \Session::flash('success', $client['descriptions']);
-            return redirect()->route('eform.index');
-        }else{
-            $error = reset($client['contents']);
-            \Session::flash('error', $client['descriptions'].' '.$error);
-            return redirect()->back()->withInput($request->input());
-        }
+      if($client['code'] == 201){
+        \Session::flash('success', $client['descriptions']);
+        return redirect()->route('eform.index');
+      }else{
+        $error = reset($client['contents']);
+        \Session::flash('error', $client['descriptions'].' '.$error);
+        return redirect()->back()->withInput($request->input());
+      }
 
-        return view('internals.eform.lkn', compact('data'));
+      return view('internals.eform.lkn', compact('data'));
     }
 
     public function renderMutation(Request $request)
     {
 
-       $view = (String)view('internals.eform.lkn._render-mutation')
-          ->render();
-       return response()->json(['view' => $view]);
-    }
+     $view = (String)view('internals.eform.lkn._render-mutation')
+     ->render();
+     return response()->json(['view' => $view]);
+   }
 
     /**
      * Reformat image request
@@ -191,41 +192,41 @@ class AOController extends Controller
      */
     public function lknRequest($request)
     {
-        $application = [];
+      $application = [];
         // dd($request->all());
-        foreach ($request->all() as $field => $values) {
-          if ( $field == 'mutations' ) {
-            foreach ($values as $mutationIndex => $mutations) {
-              foreach ($mutations as $key => $value) {
-                $baseName = $field . '[' . $mutationIndex . '][' . $key . ']';
-                if ( $key == 'tables' ) {
-                  foreach ($value as $tablesIndex => $tables) {
-                    foreach ($tables as $tableKey => $data) {
-                      $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
+      foreach ($request->all() as $field => $values) {
+        if ( $field == 'mutations' ) {
+          foreach ($values as $mutationIndex => $mutations) {
+            foreach ($mutations as $key => $value) {
+              $baseName = $field . '[' . $mutationIndex . '][' . $key . ']';
+              if ( $key == 'tables' ) {
+                foreach ($value as $tablesIndex => $tables) {
+                  foreach ($tables as $tableKey => $data) {
+                    $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
 
-                      $return = $this->returnContent( $name, $data, $tableKey );
-                      if ($return != null) {
-                        $application[] = $this->returnContent( $name, $data, $tableKey );
-                      }
+                    $return = $this->returnContent( $name, $data, $tableKey );
+                    if ($return != null) {
+                      $application[] = $this->returnContent( $name, $data, $tableKey );
                     }
                   }
-                } else {
-                  $return = $this->returnContent( $baseName, $value, $key );
-                  if ($return != null) {
-                    $application[] = $this->returnContent( $baseName, $value, $key );
-                  }
+                }
+              } else {
+                $return = $this->returnContent( $baseName, $value, $key );
+                if ($return != null) {
+                  $application[] = $this->returnContent( $baseName, $value, $key );
                 }
               }
             }
+          }
 
-          } else {
-            $return = $this->returnContent( $field, $values, $field );
-            if ($return != null) {
-              $application[] = $this->returnContent( $field, $values, $field );
-            }
+        } else {
+          $return = $this->returnContent( $field, $values, $field );
+          if ($return != null) {
+            $application[] = $this->returnContent( $field, $values, $field );
           }
         }
-        return $application;
+      }
+      return $application;
     }
 
      /**
@@ -233,33 +234,33 @@ class AOController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getVerification($id)
-    {
-        $data = $this->getUser();
+     public function getVerification($id)
+     {
+      $data = $this->getUser();
         // dd($id);
-         /* GET Role Data */
-        $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
-          ->setQuery(['limit' => 100])
-          ->setHeaders([
-            'Authorization' => $data['token']
-            , 'pn' => $data['pn']
+      /* GET Role Data */
+      $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
+      ->setQuery(['limit' => 100])
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
             // , 'auditaction' => 'action name'
             // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
             // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-          ])
-          ->post();
+      ])
+      ->post();
 
-        $dataCustomer = $customerData['contents'];
+      $dataCustomer = $customerData['contents'];
         // dd ($dataCustomer);
 
-        if (count($dataCustomer) == 0) {
-          \Session::flash('danger', 'Data verification tidak ditemukan!');
-          return redirect()->route('eform.index');
-        }
+      if (count($dataCustomer) == 0) {
+        \Session::flash('danger', 'Data verification tidak ditemukan!');
+        return redirect()->route('eform.index');
+      }
 
-        $type = 'fill';
+      $type = 'fill';
 
-        return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
+      return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
 
      /**
@@ -268,26 +269,26 @@ class AOController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function searchNik(Request $request)
-    {
-        $data = $this->getUser();
+     public function searchNik(Request $request)
+     {
+      $data = $this->getUser();
 
-        $response = Client::setEndpoint('verification/search-nik')
-          ->setHeaders([
-            'Authorization' => $data['token']
-            , 'pn' => $data['pn']
+      $response = Client::setEndpoint('verification/search-nik')
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
             // , 'auditaction' => 'action name'
-            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-          ])
-          ->setBody([
-              'nik' => $request->input('new_nik')
-          ])
-          ->post();
+        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+      ])
+      ->setBody([
+        'nik' => $request->input('new_nik')
+      ])
+      ->post();
 
-        $data = $response['contents'];
+      $data = $response['contents'];
 
-        return response()->json( $data );
+      return response()->json( $data );
     }
 
     /**
@@ -297,33 +298,33 @@ class AOController extends Controller
      */
     public function completeData($eform_id, $customer_id)
     {
-        $data = $this->getUser();
+      $data = $this->getUser();
         // dd($data);
 
-         /* GET Role Data */
-        $customerData = Client::setEndpoint('customer/'.$customer_id)
-          ->setQuery(['limit' => 100])
-          ->setHeaders([
-            'Authorization' => $data['token']
-            , 'pn' => $data['pn']
+      /* GET Role Data */
+      $customerData = Client::setEndpoint('customer/'.$customer_id)
+      ->setQuery(['limit' => 100])
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
             // , 'auditaction' => 'action name'
             // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
             // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-          ])
-          ->get();
+      ])
+      ->get();
 
-        $dataCustomer = $customerData['contents'];
+      $dataCustomer = $customerData['contents'];
         // dd($customerData);
 
-        return view('internals.eform.complete', compact('data', 'eform_id', 'dataCustomer', 'customer_id'));
+      return view('internals.eform.complete', compact('data', 'eform_id', 'dataCustomer', 'customer_id'));
     }
 
     // uses regex that accepts any word character or hyphen in last name
     function split_name($request) {
-        $name = trim($request->full_name);
-        $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
-        $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
-        return array($first_name, $last_name);
+      $name = trim($request->full_name);
+      $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+      $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+      return array($first_name, $last_name);
     }
 
     /**
@@ -373,49 +374,49 @@ class AOController extends Controller
      */
     public function dataRequest($request)
     {
-        $first_name = $this->split_name($request)['0'];
-        $last_name = $this->split_name($request)['1'];
+      $first_name = $this->split_name($request)['0'];
+      $last_name = $this->split_name($request)['1'];
         // dd($request->gender);
 
-        $verifyStatus[] = [
-          'name'     => 'verify_status',
-          'contents' => 'verify'
+      $verifyStatus[] = [
+        'name'     => 'verify_status',
+        'contents' => 'verify'
+      ];
+
+      $name = array(
+        [
+          'name'     => 'first_name',
+          'contents' => $first_name,
+        ],
+        [
+          'name'     => 'last_name',
+          'contents' => $last_name,
+        ],
+      );
+
+      $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount','hidden-long','hidden-lat']);
+      foreach ($allReq as $index => $req) {
+        $inputData[] = [
+          'name'     => $index,
+          'contents' => $req
         ];
+      }
 
-        $name = array(
-          [
-            'name'     => 'first_name',
-            'contents' => $first_name,
-          ],
-          [
-            'name'     => 'last_name',
-            'contents' => $last_name,
-          ],
-        );
-
-        $allReq = $request->except(['full_name', '_token', 'salary', 'other_salary', 'loan_installment', 'couple_other_salary', 'couple_salary', 'couple_loan_installment', 'identity', 'couple_identity', 'price', 'request_amount','hidden-long','hidden-lat']);
-          foreach ($allReq as $index => $req) {
-            $inputData[] = [
-              'name'     => $index,
-              'contents' => $req
-            ];
-          }
-
-        return array_merge(
-          $inputData
-          , $name
-          , $verifyStatus
-          , $this->parseImage( $request->identity, 'identity' )
-          , $this->parseImage( $request->couple_identity, 'couple_identity' )
-          , $this->parseNumber( $request->salary, 'salary' )
-          , $this->parseNumber( $request->other_salary, 'other_salary' )
-          , $this->parseNumber( $request->loan_installment, 'loan_installment' )
-          , $this->parseNumber( $request->couple_salary, 'couple_salary' )
-          , $this->parseNumber( $request->couple_other_salary, 'couple_other_salary' )
-          , $this->parseNumber( $request->couple_loan_installment, 'couple_loan_installment' )
-          , $this->parseNumber( $request->price, 'price' )
-          , $this->parseNumber( $request->request_amount, 'request_amount' )
-        );
+      return array_merge(
+        $inputData
+        , $name
+        , $verifyStatus
+        , $this->parseImage( $request->identity, 'identity' )
+        , $this->parseImage( $request->couple_identity, 'couple_identity' )
+        , $this->parseNumber( $request->salary, 'salary' )
+        , $this->parseNumber( $request->other_salary, 'other_salary' )
+        , $this->parseNumber( $request->loan_installment, 'loan_installment' )
+        , $this->parseNumber( $request->couple_salary, 'couple_salary' )
+        , $this->parseNumber( $request->couple_other_salary, 'couple_other_salary' )
+        , $this->parseNumber( $request->couple_loan_installment, 'couple_loan_installment' )
+        , $this->parseNumber( $request->price, 'price' )
+        , $this->parseNumber( $request->request_amount, 'request_amount' )
+      );
     }
 
     /**
@@ -427,105 +428,106 @@ class AOController extends Controller
      */
     public function verifyData(Request $request, $customer_id)
     {
-        $data = $this->getUser();
+      $data = $this->getUser();
 
-        $newData = $this->dataRequest($request);
+      $newData = $this->dataRequest($request);
 
-        $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
-         ->setHeaders([
-            'Authorization' => $data['token']
-            , 'pn' => $data['pn']
-            , 'auditaction' => 'Verifikasi Data Nasabah'
-            , 'long' => $request['hidden-long']
-            , 'lat' =>$request['hidden-lat']
-          ])
-         ->setBody($newData)
-         ->put('multipart');
+      $client = Client::setEndpoint('customers/'.$customer_id.'/verify')
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+        , 'auditaction' => 'Verifikasi Data Nasabah'
+        , 'long' => $request['hidden-long']
+        , 'lat' =>$request['hidden-lat']
+      ])
+      ->setBody($newData)
+      ->put('multipart');
 
-        if($client['code'] == 200){
-            \Session::flash('success', $client['descriptions']);
-            return redirect()->route('eform.index');
-        }else{
-            $error = reset($client['contents']);
-            \Session::flash('error', $client['descriptions'].' '.$error);
-            return redirect()->back()->withInput($request->input());
-        }
+      if($client['code'] == 200){
+        \Session::flash('success', $client['descriptions']);
+        return redirect()->route('eform.index');
+      }else{
+        $error = reset($client['contents']);
+        \Session::flash('error', $client['descriptions'].' '.$error);
+        return redirect()->back()->withInput($request->input());
+      }
     }
 
     //datatable
     public function datatables(Request $request)
     {
-        $sort = $request->input('order.0');
-        $data = $this->getUser();
-        $eforms = Client::setEndpoint('eforms')
-                ->setHeaders([
-                  'Authorization' => $data['token']
-                  , 'pn' => $data['pn']
+      $sort = $request->input('order.0');
+      $data = $this->getUser();
+      $eforms = Client::setEndpoint('eforms')
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
                   // , 'auditaction' => 'action name'
-                  , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                  , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                ])
-                ->setQuery([
-                  'limit'     => $request->input('length'),
-                  'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-                  'search'    => $request->input('search.value'),
-                  'page'      => (int) $request->input('page') + 1,
-                  'start_date'=> $request->input('start_date'),
-                  'end_date'  => $request->input('end_date'),
-                  'status'    => $request->input('status'),
-                  'ref_number'=> $request->input('ref_number'),
-                  'customer_name'=> $request->input('customer_name'),
-                  'branch_id' => $data['branch'],
-                  'prescreening' => $request->input('prescreening'),
-                  'product' => $request->input('product')
-                ])->get();
+        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+      ])
+      ->setQuery([
+        'limit'     => $request->input('length'),
+        'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+        'search'    => $request->input('search.value'),
+        'page'      => (int) $request->input('page') + 1,
+        'start_date'=> $request->input('start_date'),
+        'end_date'  => $request->input('end_date'),
+        'status'    => $request->input('status'),
+        'ref_number'=> $request->input('ref_number'),
+        'customer_name'=> $request->input('customer_name'),
+        'branch_id' => $data['branch'],
+        'prescreening' => $request->input('prescreening'),
+        'product' => $request->input('product')
+      ])->get();
                 // echo json_encode($request->input('customer_name'));exit();
 
-        foreach ($eforms['contents']['data'] as $key => $form) {
-            $form['ref_number'] = strtoupper($form['ref_number']);
-            $form['customer_name'] = strtoupper($form['customer_name']);
-            $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
+      foreach ($eforms['contents']['data'] as $key => $form) {
+        $form['ref_number'] = strtoupper($form['ref_number']);
+        $form['customer_name'] = strtoupper($form['customer_name']);
+        $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
             // $form['product_type'] = strtoupper($form['product_type']);
-            $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            $form['created_at'] = $form['created_at'];
+        $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
+        $form['created_at'] = $form['created_at'];
 
             // $verify = $form['customer']['is_verified'];
-            $verify = $form['response_status'] == 'approve' ? true : false;
-            $visit = $form['is_visited'];
-            $status = $form['response_status'];
+        $verify = $form['response_status'] == 'approve' ? true : false;
+        $visit = $form['is_visited'];
+        $status = $form['response_status'];
 
-            $form['prescreening_status'] = view('internals.layouts.actions', [
-              'prescreening_status' => route('getLKN', $form['id']),
-              'prescreening_result' => $form['prescreening_status'],
-            ])->render();
+        $form['prescreening_status'] = view('internals.layouts.actions', [
+          'prescreening_status' => route('getLKN', $form['id']),
+          'prescreening_result' => $form['prescreening_status'],
+        ])->render();
 
-            if(!empty($form['recontest'])){
-              $recontest = $form['recontest'];
-            }else{
-              $recontest = [];
-            }
-
-            $form['action'] = view('internals.layouts.actions', [
-              'verified' => $verify,
-              'visited' => $visit,
-              'response_status' => $status,
-
-              'verification' => route('getVerification', $form['id']),
-              'approval' => $form['is_approved'],
-              'eform_id' => $form['id'],
-              'preview' => route('getDetail', $form['id']),
-              'lkn' => route('getLKN', $form['id']),
-              'recontest' => $recontest,
-              'reverification' => route('resend_verifyData', $form['id']),
-            ])->render();
-            $eforms['contents']['data'][$key] = $form;
+        if(!empty($form['recontest'])){
+              // $recontest = $form['recontest'];
+          $recontest = route('getRecontest', $form['id']);
+        }else{
+          $recontest = [];
         }
 
-        $eforms['contents']['draw'] = $request->input('draw');
-        $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-        $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+        $form['action'] = view('internals.layouts.actions', [
+          'verified' => $verify,
+          'visited' => $visit,
+          'response_status' => $status,
 
-        return response()->json($eforms['contents']);
+          'verification' => route('getVerification', $form['id']),
+          'approval' => $form['is_approved'],
+          'eform_id' => $form['id'],
+          'preview' => route('getDetail', $form['id']),
+          'lkn' => route('getLKN', $form['id']),
+          'recontest' => $recontest,
+          'reverification' => route('resend_verifyData', $form['id']),
+        ])->render();
+        $eforms['contents']['data'][$key] = $form;
+      }
+
+      $eforms['contents']['draw'] = $request->input('draw');
+      $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
+      $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+
+      return response()->json($eforms['contents']);
     }
 
     /**
@@ -535,31 +537,31 @@ class AOController extends Controller
      */
     public function getPreview($id)
     {
-        $data = $this->getUser();
+      $data = $this->getUser();
         // dd($id);
-         /* GET Role Data */
-        $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token']
-                          , 'pn' => $data['pn']
+      /* GET Role Data */
+      $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
+      ->setQuery(['limit' => 100])
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
                           // , 'auditaction' => 'action name'
                           // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                           // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                      ])
-                      ->post();
+      ])
+      ->post();
 
-        $dataCustomer = $customerData['contents'];
+      $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
 
-        if (count($dataCustomer) == 0) {
-          \Session::flash('danger', 'Data verification tidak ditemukan!');
-          return redirect()->route('eform.index');
-        }
+      if (count($dataCustomer) == 0) {
+        \Session::flash('danger', 'Data verification tidak ditemukan!');
+        return redirect()->route('eform.index');
+      }
 
-        $type = 'preview';
+      $type = 'preview';
 
-        return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
+      return view('internals.eform.verification.index', compact('data', 'id', 'dataCustomer', 'type'));
     }
 
     /**
@@ -569,29 +571,29 @@ class AOController extends Controller
      */
     public function getPrint($id)
     {
-        $data = $this->getUser();
+      $data = $this->getUser();
         // dd($id);
-         /* GET Role Data */
-        $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
-                      ->setQuery(['limit' => 100])
-                      ->setHeaders([
-                          'Authorization' => $data['token']
-                          , 'pn' => $data['pn']
+      /* GET Role Data */
+      $customerData = Client::setEndpoint('eforms/'.$id.'/verification/show')
+      ->setQuery(['limit' => 100])
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
                           // , 'auditaction' => 'action name'
                           // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                           // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                      ])
-                      ->post();
+      ])
+      ->post();
 
-        $dataCustomer = $customerData['contents'];
+      $dataCustomer = $customerData['contents'];
         // dd($dataCustomer);
-        if(($customerData['code'])==200){
-            $view = (String)view('internals.eform.verification._print-verification')
-                ->with('dataCustomer', $dataCustomer)
-                ->render();
+      if(($customerData['code'])==200){
+        $view = (String)view('internals.eform.verification._print-verification')
+        ->with('dataCustomer', $dataCustomer)
+        ->render();
 
-            return response()->json(['view' => $view]);
-        }
+        return response()->json(['view' => $view]);
+      }
 
         // if (count($dataCustomer) == 0) {
         //   \Session::flash('danger', 'Data verification tidak ditemukan!');
@@ -610,11 +612,11 @@ class AOController extends Controller
     {
       $data = $this->getUser();
       $resend_verification = Client::setEndpoint('eforms/'.$eform_id.'/verification/resend')
-                          ->setHeaders([
-                          'Authorization' => $data['token']
-                                   , 'pn' => $data['pn']
-                          
-                          ])->get();
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+        
+      ])->get();
                           // dd($resend_verification);
       if($resend_verification['code'] == 200)
       {
@@ -622,8 +624,8 @@ class AOController extends Controller
         return redirect()->route('eform.index');
       }
       \Session::flash('error', $resend_verification['descriptions']);
-        return redirect()->route('eform.index');
+      return redirect()->route('eform.index');
 
     }
 
-}
+  }

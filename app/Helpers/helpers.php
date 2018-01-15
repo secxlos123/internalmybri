@@ -302,3 +302,67 @@ if (! function_exists('get_loan_history')) {
         return $data;
     }
 }
+
+if (! function_exists('get_visit_purpose')) {
+
+    /**
+     * Convert csv file to array.
+     *
+     * @param  string $file path to file
+     * @param  array $headers
+     * @param  string $delimiter
+     *
+     * @return array
+     */
+    function get_visit_purpose($key)
+    {
+        $data = array(
+            "prakarsa" => "Prakarsa Kredit"
+            , "negosiasi" => "Negosiasi"
+            , "pembinaan" => "Pembinaan"
+            , "penagihan" => "Penagihan"
+            , "lain" => "Lain-lain"
+        );
+
+        if ( $key != 'all' ) {
+            return isset($data[$key]) ? $data[$key] : '-';
+        }
+
+        return $data;
+    }
+}
+
+if (! function_exists('get_bank')) {
+
+    /**
+     * Convert csv file to array.
+     *
+     * @param  string $file path to file
+     * @param  array $headers
+     * @param  string $delimiter
+     *
+     * @return array
+     */
+    function get_bank($key)
+    {
+        $data = array(
+            "bri" => "BRI"
+            , "bni" => "BNI"
+            , "mandiri" => "Mandiri"
+            , "bca" => "BCA"
+            , "btn" => "BTN"
+            , "panin" => "Panin"
+            , "permata" => "Permata"
+            , "bii" => "BII"
+            , "danamon" => "Danamon"
+            , "cimb" => "CIMB"
+            , "other" => "Lainya"
+        );
+
+        if ( $key != 'all' ) {
+            return isset($data[$key]) ? $data[$key] : '-';
+        }
+
+        return $data;
+    }
+}
