@@ -25,11 +25,22 @@ class ADKController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $data     = $this->getUser();
+        $data = $this->getUser();
         // print_r($data);exit();
         // hanya adk yg bisa melakukan fungsi ini
         if ($data['role'] == 'adk') {
             return view('internals.eform.adk.index', compact('data'));
+        } else {
+            return view('internals.layouts.404');
+        }
+    }
+
+    public function history() {
+        $data = $this->getUser();
+        // print_r($data);exit();
+        // hanya adk yg bisa melakukan fungsi ini
+        if ($data['role'] == 'adk') {
+            return view('internals.eform.adk.his_index', compact('data'));
         } else {
             return view('internals.layouts.404');
         }
@@ -59,6 +70,22 @@ class ADKController extends Controller
         ];
 
         if (!empty($detail)) {
+            if (intval($detail['is_send']) == '1') {
+                $status = 'Approved';
+            } else if (intval($detail['is_send']) == '2') {
+                $status = 'Unapproved';
+            } else if (intval($detail['is_send']) == '3') {
+                $status = 'Void';
+            } else if (intval($detail['is_send']) == '4') {
+                $status = 'Void adk';
+            } else if (intval($detail['is_send']) == '5') {
+                $status = 'Approved pencairan';
+            } else if (intval($detail['is_send']) == '6') {
+                $status = 'Disbursed';
+            } else if (intval($detail['is_send']) == '7') {
+                $status = 'Send to brinets';
+            }
+
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
@@ -94,7 +121,7 @@ class ADKController extends Controller
         // dd($debitur);
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi','status'));
         } else {
             return view('internals.layouts.404');
         }
@@ -677,10 +704,6 @@ class ADKController extends Controller
                         $status = 'Approved';
                     } else if (intval($value['is_send']) == '3') {
                         $status = 'Void';
-                    } else if (intval($value['is_send']) == '4') {
-                        $status = 'Pengajuan dibatalkan approve adk';
-                    } else if (intval($value['is_send']) == '5') {
-                        $status = 'Pengajuan diapprove adk';
                     } else if (intval($value['is_send']) == '6') {
                         $status = 'Disbursed';
                     }
@@ -963,97 +986,6 @@ class ADKController extends Controller
         } else {
             \Session::flash('error', 'Dokumen Form Pengajuan gagal didownload');
             return redirect()->route('adk.index');
-        }
-    }
-
-    public function datatablesBackup(Request $request) {
-        $data = $this->getUser();
-        // print_r($data);exit();
-        $customer = Client::setEndpoint('api_las/index')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn'            => $data['pn']
-                ])->setBody([
-                    'requestMethod' => 'eformBriguna'
-                ])->post();
-        // print_r($customer);exit();
-        if (!empty($customer)) {
-            \Log::info("masuk");
-            $form  = array();
-            $count = 0;
-            foreach ($customer as $index => $value) {
-                print_r($value);exit();
-                if (intval($value['is_send']) == '1') {
-                    $status = 'Approved';
-                } else if (intval($value['is_send']) == '3') {
-                    $status = 'Void';
-                } else if (intval($value['is_send']) == '4') {
-                    $status = 'Pengajuan dibatalkan approve adk';
-                } else if (intval($value['is_send']) == '5') {
-                    $status = 'Pengajuan diapprove adk';
-                } else if (intval($value['is_send']) == '6') {
-                    $status = 'Disbursed';
-                }
-
-                $form['STATUS'] = $status;
-                $form['ref_number'] = $value['ref_number'];
-                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                $form['eform_id'] = $value['eform_id'];
-                $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                if ($form['fid_tp_produk'] == '1') {
-                    $form['fid_tp_produk'] = 'Briguna Karya/Umum';
-                } elseif ($form['fid_tp_produk'] == '2') {
-                    $form['fid_tp_produk'] = 'Briguna Purna';
-                } elseif ($form['fid_tp_produk'] == '28') {
-                    $form['fid_tp_produk'] = 'Briguna Karyawan BRI';
-                } elseif ($form['fid_tp_produk'] == '22') {
-                    $form['fid_tp_produk'] = 'Briguna Talangan';
-                } elseif ($form['fid_tp_produk'] == '10') {
-                    $form['fid_tp_produk'] = 'Briguna Micro';
-                } else {
-                    $form['fid_tp_produk'] = 'Lainnya';
-                }
-                $form['action'] = view('internals.layouts.actions', [
-                    'approve_adk' => $form
-                ])->render();
-                $eforms['contents']['data'][] = $form;
-                $count = count($form);
-            }
-
-            if (intval($count) == 0) {
-                $eforms['contents']['draw'] = $request->input('draw');
-                $eforms['contents']['recordsTotal'] = '0';
-                $eforms['contents']['recordsFiltered'] = '0';
-                $eforms['contents']['data'][] = [
-                    'id_aplikasi'   => '-',
-                    'fid_tp_produk' => '-',
-                    'nama_pegawai'  => '-',
-                    'namadeb'       => '-',
-                    'request_amount'=> '-',
-                    'STATUS'        => '-',
-                    'action'        => '-'
-                ];
-                return response()->json($eforms['contents']);
-            }
-            $eforms['contents']['total'] = $count;
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-            $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-            return response()->json($eforms['contents']);   
-        } else {
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = '0';
-            $eforms['contents']['recordsFiltered'] = '0';
-            $eforms['contents']['data'][] = [
-                'id_aplikasi'   => '-',
-                'fid_tp_produk' => '-',
-                'nama_pegawai'  => '-',
-                'namadeb'       => '-',
-                'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
-            ];
-            return response()->json($eforms['contents']);
         }
     }
 
