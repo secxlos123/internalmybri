@@ -46,11 +46,6 @@ class ADKHistoriController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
 
-        $conten = [
-            'nik' => '',
-            'tp_produk' => '',
-            'uid_pemrakarsa' => ''
-        ];
         $asuransi = [
             'premi_as_jiwa' => '',
             'premi_beban_debitur' => '',
@@ -58,42 +53,19 @@ class ADKHistoriController extends Controller
         ];
 
         if (!empty($detail)) {
-            $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
 
             $asuransi = [
-                'premi_as_jiwa' => $premi_as_jiwa,
-                'premi_beban_debitur' => $premi_beban_debitur,
-                'premi_beban_bri' => $premi_beban_bri
-            ];
-
-            $conten = [
-                'nik'           => $detail['nik'],
-                'tp_produk'     => $detail['tp_produk'],
-                'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
+                'premi_as_jiwa'   => $premi_as_jiwa,
+                'premi_beban_bri' => $premi_beban_bri,
+                'premi_beban_debitur' => $premi_beban_debitur
             ];
         }
-
-        // GET Form Data Debitur LAS
-        $data_debitur = Client::setEndpoint('api_las/index')
-            ->setHeaders(
-                [ 'Authorization' => $data['token'],
-                  'pn' => $data['pn']
-                ])
-            ->setBody([
-                'requestMethod' => 'inquiryHistoryDebiturPerorangan',
-                'requestData'   => $conten
-            ])
-            ->post();
-        $debitur = [];
-        if ($data_debitur['code'] == '01') {
-            $debitur = $data_debitur['contents']['data'][0];
-        }
-        // dd($debitur);
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi'));
         } else {
             return view('internals.layouts.404');
         }
@@ -130,11 +102,15 @@ class ADKHistoriController extends Controller
                     $status = 'Disbursed';
                 } else if (intval($value['is_send']) == '7') {
                     $status = 'Send to brinets';
+                } else if (intval($value['is_send']) == '8') {
+                    $status = 'Agree mp';
+                } else if (intval($value['is_send']) == '9') {
+                    $status = 'Not Agree mp';
                 }
 
                 if (!empty($value['is_send'])) {
                     if (intval($value['is_send']) != '0') {
-                        $value['namadeb'] = $value['first_name'];
+                        $value['namadeb'] = $value['first_name'].' '.$value['last_name'];
                         $value['STATUS'] = $status;
                         $value['ref_number'] = $value['ref_number'];
                         $value['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));

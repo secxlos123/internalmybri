@@ -58,11 +58,11 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
 
-        $conten = [
+        /*$conten = [
             'nik' => '',
             'tp_produk' => '',
             'uid_pemrakarsa' => ''
-        ];
+        ];*/
         $asuransi = [
             'premi_as_jiwa' => '',
             'premi_beban_debitur' => '',
@@ -84,6 +84,10 @@ class ADKController extends Controller
                 $status = 'Disbursed';
             } else if (intval($detail['is_send']) == '7') {
                 $status = 'Send to brinets';
+            } else if (intval($detail['is_send']) == '8') {
+                $status = 'Agree mp';
+            } else if (intval($detail['is_send']) == '9') {
+                $status = 'Not Agree mp';
             }
 
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
@@ -96,11 +100,11 @@ class ADKController extends Controller
                 'premi_beban_bri' => $premi_beban_bri
             ];
 
-            $conten = [
+            /*$conten = [
                 'nik'           => $detail['nik'],
                 'tp_produk'     => $detail['tp_produk'],
                 'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
-            ];
+            ];*/
         }
 
         // GET Form Data Debitur LAS
@@ -707,8 +711,6 @@ class ADKController extends Controller
                     
                     // print_r($value);exit();
                     foreach ($listVerADK as $key => $form) {
-                        // print_r($debitur);
-                        // print_r($form);exit();
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
                             // print_r($form);exit();
@@ -806,7 +808,7 @@ class ADKController extends Controller
             $detail_debitur = [
                 'name_adk'     => $data['name'],
                 'jabatan_adk'  => $data['position'],
-                'nama_debitur' => $detail['customer']['personal']['first_name'],
+                'nama_debitur' => $detail['costumer_name'],
                 'alamat'       => $detail['customer']['personal']['address'],
                 'no_skpp'      => $no_skpp,
                 'perusahaan'   => $detail['customer']['work']['company_name'],
@@ -858,7 +860,7 @@ class ADKController extends Controller
             $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
 
             $detail_sph = [
-                'nama_debitur'  => $detail['customer']['personal']['first_name'],
+                'nama_debitur'  => $detail['costumer_name'],
                 'nama_pasangan' => $detail['customer']['personal']['couple_name'],
                 'ktp'           => $detail['customer']['personal']['nik'],
                 'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
@@ -927,7 +929,7 @@ class ADKController extends Controller
         if (!empty($detail)) {
             $no_skpp    = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
             $detail_sph = [
-                'nama_debitur'  => $detail['customer']['personal']['first_name'],
+                'nama_debitur'  => $detail['costumer_name'],
                 'nama_pasangan' => $detail['customer']['personal']['couple_name'],
                 'nama_emergency'=> $detail['customer']['contact']['emergency_name'],
                 'tgl_lahir_deb' => $detail['customer']['personal']['birth_date'],
