@@ -7,17 +7,13 @@
                                             <div class="col-md-8">
                                                 <select class="form-control" name="source" id="source">
                                                     <option disabled="">-- Pilih --</option>
-                                                    <option {{ ($recontest == 0 && $eformData['visit_report']['source'] == 'fixed') ? 'selected' : '' }} value="fixed">Fixed Income</option>
-                                                    <option {{ ($recontest == 0 && $eformData['visit_report']['source'] == 'nonfixed') ? 'selected' : '' }} value="nonfixed">Non Fixed Income</option>
+                                                    <option selected="" value="fixed">Fixed Income</option>
+                                                    <option value="nonfixed">Non Fixed Income</option>
                                                 </select>
                                                 @if ($errors->has('source')) <p class="help-block">{{ $errors->first('source') }}</p> @endif
                                             </div>
                                         </div>
-                                        <div class="form-group" id="nonfixed-income" @if($recontest == 0 && $eformData['visit_report']['source'] == 'nonfixed')
-                                            ''
-                                        @elseif($recontest == 1)
-                                            hidden="" 
-                                        @else hidden="" @endif>
+                                        <div class="form-group" id="nonfixed-income">
                                             <label class="col-md-4 control-label">Penghasilan per-Bulan * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
@@ -28,12 +24,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="form-group" id="fixed-salary" @if($recontest == 0 && $eformData['visit_report']['source'] == 'fixed')
-                                            ''
-                                        @elseif($recontest == 1)
-                                            '' 
-                                        @else hidden="" @endif>
+                                        <div class="form-group" id="fixed-salary">
                                             <label class="col-md-4 control-label">Gaji / THP per-Bulan * :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
@@ -44,11 +35,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group" id="fixed-allowance" @if($recontest == 0 && $eformData['visit_report']['source'] == 'fixed')
-                                            ''
-                                        @elseif($recontest == 1)
-                                            '' 
-                                        @else hidden="" @endif>
+                                        <div class="form-group" id="fixed-allowance">
                                             <label class="col-md-4 control-label">Tunjangan / Insentif Lain :</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
