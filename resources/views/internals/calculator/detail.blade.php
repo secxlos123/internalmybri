@@ -1,4 +1,4 @@
-@section('title','My BRI - Kalkulator Simulasi Kredit')
+@section('title','MyBRI - Kalkulator Simulasi Kredit')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

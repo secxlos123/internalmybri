@@ -29,8 +29,8 @@
                                     <img src="<?php echo $detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -56,8 +56,8 @@
                                     <img src="<?php echo $detail['NPWP_nasabah']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['NPWP_nasabah']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['NPWP_nasabah']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -83,8 +83,8 @@
                                     <img src="<?php echo $detail['SLIP_GAJI']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['SLIP_GAJI']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['SLIP_GAJI']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -110,8 +110,8 @@
                                     <img src="<?php echo $detail['KK']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['KK']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['KK']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -137,8 +137,8 @@
                                     <img src="<?php echo $detail['SK_AWAL']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['SK_AWAL']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['SK_AWAL']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -164,8 +164,8 @@
                                     <img src="<?php echo $detail['SK_AKHIR']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['SK_AKHIR']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['SK_AKHIR']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -191,8 +191,8 @@
                                     <img src="<?php echo $detail['REKOMENDASI']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['REKOMENDASI']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['REKOMENDASI']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -207,7 +207,7 @@
                             <td align="center"><a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a></td>
                         </tr>
                     <?php 
-                    if($detail['Payroll'] == '1') {
+                    if($detail['Payroll'] == '2') {
                         if ($detail['customer']['personal']['status'] != '1') {
                     ?>
                         <tr>
@@ -222,8 +222,8 @@
                                     <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -249,8 +249,8 @@
                                     <img src="<?php echo $detail['SKPG']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['SKPG']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['SKPG']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -265,7 +265,8 @@
                             <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                         </tr>
                     <?php   
-                        } else {
+                        }
+                    } else {
                     ?>
                         <tr>
                             <td align="center">8</td>
@@ -279,8 +280,8 @@
                                     <img src="<?php echo $detail['SKPG']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].'/'.$detail['SKPG']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].'/'.$detail['SKPG']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -295,23 +296,24 @@
                             <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                         </tr>
                     <?php
-                        } 
                     }
-                    ?> 
+                    ?>
+                    @if($detail['is_send'] == '1')
                         <tr>
-                            <td colspan="3"></td>
+                            <td colspan="2"></td>
                             <td>Catatan ADK</td>
                             <td>
                                 <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
                             </td>
+                            <td>
+                                <a href="#" class="btn btn-danger" id="btn-batal">Batal</a>
+                            </td>
                             <td align="center">
-                                @if($detail['is_send'] == '1') 
-                                    <a class="btn btn-danger" id="btn-batal" href="#">Batal</a>
-                                    <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
-                                    <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
-                                @endif
+                                <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
+                                <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
                             </td>
                         </tr>
+                    @endif
                     </tbody>
                 </table>
             </form>

@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Verifikasi Data Nasabah')
+@section('title','MyBRI - Form Verifikasi Data Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -40,7 +40,7 @@
                                 <div class="card-box m-t-30">                                    
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title"><b>Data Pribadi</b></h4>
                                     <table class="table table-bordered">
-                                        <input type="hidden" name="form_id" value="{{$id}}">
+                                        <input type="hidden" name="eform_id" value="{{$id}}">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th class="bg-inverse">Field</th>

@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Approval Perubahan Data Pihak Ke-3')
+@section('title','MyBRI - Daftar Approval Perubahan Data Pihak Ke-3')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

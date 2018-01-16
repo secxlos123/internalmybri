@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <div class="row">
                     <table class="table table-bordered">
-                        <input type="hidden" name="form_id" value="{{$id}}">
+                        <input type="hidden" name="eform_id" value="{{$id}}">
                         <thead class="bg-primary">
                             <tr>
                                 <th class="bg-inverse">Field</th>

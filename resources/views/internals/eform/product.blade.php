@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-12">
             <!-- <h4 class="m-t-0 header-title"><b>Selesai</b></h4> -->
-            <p class="text-muted m-b-30 font-13">
+            <!-- <p class="text-muted m-b-30 font-13">
                 Pilih produk pembiayaan
-            </p>
+            </p> -->
             <input type="hidden" name="product_type" value="kpr" id="product_type">
             <div class="row">
                 <div class="col-md-12">
@@ -162,7 +162,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group active_kpr {!! $errors->has('active_kpr') ? 'has-error' : '' !!}">
-                                            <label class="control-label col-md-4">KPR Aktif ke *:</label>
+                                            <label class="control-label col-md-4">Fasilitas KPR Ke- *:</label>
                                             <div class="col-md-8">
                                                 {!! Form::select('active_kpr', array("" => "", "1" => "1", "2" => "2", "3" => "> 2"), old('active_kpr'), [
                                                     'class' => 'select2 active_kpr ',

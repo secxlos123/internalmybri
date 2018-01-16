@@ -21,7 +21,7 @@ class EFormController extends Controller
         'customer_name',
         'request_amount',
         'created_at',
-        // 'branch_id',
+        'branch_id',
         'prescreening_status',
         'ao_name',
         'status',
@@ -352,11 +352,17 @@ class EFormController extends Controller
             ])
             ->get();
 
-        $office = [];
-
         if(!empty($offices['contents']['data'])){
             $office = $offices['contents']['data'][0];
 
+        } else {
+            $office = array(
+                'branch' => $data['branch'],
+                'unit' => $data['uker'],
+                'address' => $data['uker'],
+                'lat' => $lat,
+                'long' => $long
+            );
         }
 
         return view('internals.eform.create', compact('data', 'office'));

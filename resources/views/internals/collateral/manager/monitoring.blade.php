@@ -1,4 +1,4 @@
-@section('title','My BRI - Monitoring Collateral Properti')
+@section('title','MyBRI - Monitoring Collateral Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Developer')
+@section('title','MyBRI - Detail Mitra Kerjasama')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Detail Developer "{{$dataDev['developer_name']}}" </h4>
+                        <h4 class="page-title">Detail Mitra Kerjasama "{{$dataDev['developer_name']}}" </h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('customers.index')}}">Developer</a>
+                                <a href="{{route('customers.index')}}">Mitra Kerjasama</a>
                             </li>
                             <li class="active">
-                                Detail Developer
+                                Detail Mitra Kerjasama
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -30,7 +30,7 @@
                             <li class="active">
                                 <a href="#developer-info" data-toggle="tab" aria-expanded="true">
                                     <span class="visible-xs"><i class="fa fa-info"></i></span>
-                                    <span class="hidden-xs">Developer Info</span>
+                                    <span class="hidden-xs">Mitra Kerjasama Info</span>
                                 </a>
                             </li>
                             <fieldset hidden>

@@ -178,5 +178,101 @@
                 </div>
             </div>
         </div>
+
+        @if(isset($detail) && isset($customer))
+        <div class="row">
+                <div class="col-md-12">
+                    @if (\Session::has('error'))
+                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                    @endif
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Pengajuan</h3>
+                        </div>
+                        <!-- data pengajuan-->
+                        <div class="panel-body">
+                            @include('internals.eform.approval._eform-data')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Nasabah</h3>
+                        </div>
+                        <!-- data nasabah -->
+                        <div class="panel-body">
+                            @include('internals.eform.approval._customer-personal')
+                            <hr>
+
+                            @if($detail['customer']['personal']['status_id'] == 2)
+                            <!--pasangan-->
+                            @include('internals.eform.approval._customer-couple')
+                            <hr>
+                            @endif
+
+                            <!--pekerjaan-->
+                            @include('internals.eform.approval._customer-work')
+                            <hr>
+
+                            <!-- finansial -->
+                            @include('internals.eform.approval._customer-financial')
+                            <hr>
+
+                            <!-- family -->
+                            @include('internals.eform.approval._customer-family')
+                            <hr>
+
+                            <!-- identity -->
+                            @include('internals.eform.approval._customer-identity')
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Kunjungan LKN</h3>
+                        </div>
+                        <!-- data lkn -->
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-visit')
+                        </div>
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-income')
+                        </div>
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-kpp')
+                        </div>
+                        @if (isset($detail['visit_report']['mutation']))
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-mutation')
+                        </div>
+                        @endif
+                        @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-investigate')
+                        </div>
+                        @endif
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-analist')
+                        </div>
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-recommend')
+                        </div>
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-common')
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
     </div>
 </div>

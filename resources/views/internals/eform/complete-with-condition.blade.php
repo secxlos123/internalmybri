@@ -1,4 +1,4 @@
-@section('title','My BRI - Lengkapi Data Nasabah')
+@section('title','MyBRI - Lengkapi Data Profil Calon Debitur')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -11,13 +11,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Lengkapi Data Nasabah</h4>
+                                    <h4 class="page-title">Lengkapi Data Profil Calon Debitur</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Nasabah</a>
+                                            <a href="{{route('customers.index')}}">Profil Calon Debitur</a>
                                         </li>
                                         <li class="active">
-                                            Lengkapi Data Nasabah
+                                            Lengkapi Data Profil Calon Debitur
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -521,7 +521,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Nasabah "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin menambah Profil Calon Debitur "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>

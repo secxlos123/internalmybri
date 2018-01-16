@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Developer')
+@section('title','MyBRI - Daftar Mitra Kerjasama')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Daftar Developer</h4>
+                        <h4 class="page-title">Daftar Mitra Kerjasama</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
-                                Manajemen Developer
+                                Manajemen Mitra Kerjasama
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -29,7 +29,7 @@
                     <div class="card-box table-responsive">
                         <div class="add-button">
                             <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
-                            <a href="{{route('developers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Developer</a>
+                            <a href="{{route('developers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Mitra Kerjasama</a>
                         </div>
                         <div id="filter" class="m-b-15">
                             <div class="row">
@@ -70,7 +70,7 @@
                             <table id="datatable" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <!-- <th>Nama Developer</th> -->
+                                        <!-- <th>Nama Mitra Kerjasama</th> -->
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Nomor Telepon</th>
@@ -95,7 +95,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <p>Apakah Anda yakin ingin merubah status Developer "<b class="fullname"></b>" ?</p>
+                            <p>Apakah Anda yakin ingin merubah status Mitra Kerjasama "<b class="fullname"></b>" ?</p>
                         </div>
                     </div>
                 </div>

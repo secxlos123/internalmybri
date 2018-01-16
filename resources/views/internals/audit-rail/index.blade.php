@@ -1,4 +1,4 @@
-@section('title','My BRI - Auditrail')
+@section('title','MyBRI - Auditrail')
 
 @include('internals.layouts.head')
 @include('internals.layouts.header')

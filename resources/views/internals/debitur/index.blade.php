@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Debitur')
+@section('title','MyBRI - Daftar Profil Debitur')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -15,7 +15,7 @@
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
-                                Daftar Debitur
+                                Daftar Profil Debitur
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Nama Debitur :</label>
+                                                <label class="col-sm-4 control-label">Nama Calon Debitur :</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="customer_name" name="customer_name">
                                                 </div>
