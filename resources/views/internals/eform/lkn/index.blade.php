@@ -3,7 +3,13 @@
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
-
+<style type="text/css">
+    .card-box > a {
+    height: 350px;
+    width: 100%;
+    padding-top: 50px;
+}
+</style>
 <div class="content-page">
     <div class="content">
         <div class="container">
@@ -37,7 +43,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Pengajuan</h3>
                             </div>
-                            @include('internals.eform.lkn._kpr')
+                            @if($recontest == 1)
+                                @include('internals.eform.lkn._kpr')
+                            @else
+                                @include('internals.eform.recontest._kpr-recontest')
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -50,7 +60,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Kunjungan</h3>
                             </div>
-                            @include('internals.eform.lkn._visit')
+                            @if($recontest == 1)
+                                @include('internals.eform.lkn._visit')
+                            @else
+                                @include('internals.eform.recontest._visit-recontest')
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -99,7 +113,11 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">KPP</h3>
                         </div>
-                        @include('internals.eform.lkn._kpp-type')
+                        @if($recontest == 1)
+                            @include('internals.eform.lkn._kpp-type')
+                        @else
+                            @include('internals.eform.recontest._kpp-recontest')
+                        @endif
                     </div>
                 </div>
             </div>
@@ -132,7 +150,11 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Investigasi Jual Beli</h3>
                     </div>
-                    @include('internals.eform.lkn._investigate')
+                    @if($recontest == 1)
+                        @include('internals.eform.lkn._investigate')
+                    @else
+                        @include('internals.eform.recontest._investigate-recontest')
+                    @endif
                 </div>
             </div>
         </div>
@@ -145,7 +167,11 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Dokumen Pendukung</h3>
                     </div>
-                    @include('internals.eform.lkn._common')
+                    @if($recontest == 1)
+                        @include('internals.eform.lkn._common')
+                    @else
+                        @include('internals.eform.recontest._common-recontest')
+                    @endif
                 </div>
             </div>
         </div>
@@ -241,6 +267,9 @@
 @include('internals.layouts.foot')
 @include('internals.eform.lkn.lkn-script')
 @include('internals.eform.lkn.render-mutation')
+@if($recontest == 0)
+    @include('internals.eform.recontest.script-recontest')
+@endif
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

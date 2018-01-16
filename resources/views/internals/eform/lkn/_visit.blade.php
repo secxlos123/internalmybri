@@ -118,14 +118,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="job" maxlength="50" value="{{ $recontest == 0 ? $eformData['customer']['work']['work'] : old('job') }}" readonly="">
+                            <input type="text" class="form-control" name="job" maxlength="50" value="{{$eformData['customer']['work']['work']}}" readonly="">
                             @if ($errors->has('job')) <p class="help-block">{{ $errors->first('job') }}</p> @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">No Telp Kantor / Tempat Usaha *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly" name="office_phone" maxlength="12" value="{{ $recontest == 0 ? $eformData['visit_report']['office_phone'] : old('office_phone') }}">
+                            <input type="text" class="form-control numericOnly" name="office_phone" maxlength="12" value="{{$eformData['visit_report']['office_phone']}}">
                             @if ($errors->has('office_phone')) <p class="help-block">{{ $errors->first('office_phone') }}</p> @endif
                         </div>
                     </div>
