@@ -21,7 +21,7 @@ class EFormController extends Controller
         'customer_name',
         'request_amount',
         'created_at',
-        // 'branch_id',
+        'branch_id',
         'prescreening_status',
         'ao_name',
         'status',
