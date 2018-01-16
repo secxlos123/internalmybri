@@ -38,6 +38,20 @@ if (! function_exists('getUser')) {
     }
 }
 
+if (! function_exists('is_read')) {
+
+    /**
+     * GET UserLogin Data.
+     *
+     * @return object
+     */
+    function is_read(){
+        $data = session()->get('user');
+
+        return json_encode( ['pn' => $data['pn'] ,'branch_id'=> $data['branch_id'] ,'role'=> $data['role'] ,'name'=> $data['name']] );
+    }
+}
+
 if (! function_exists('checkRolesInternal')) {
 
     /**

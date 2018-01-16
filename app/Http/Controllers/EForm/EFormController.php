@@ -51,11 +51,11 @@ class EFormController extends Controller
         // dd(env('APP_ENV'));
         if($data['role'] == 'ao'){
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){
+            if(@$request->get('ref_number') && @$request->get('slug')){
                 /*
                 * redirect to eform with id and ref_number
                 */
-                $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
+                $eforms = Client::setEndpoint('eforms/'.@$request->get('slug').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
@@ -64,7 +64,7 @@ class EFormController extends Controller
                         , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])->setQuery([
                         'ref_number' => $request->get('ref_number'),
-                        'ids' => $request->get('ids'),
+                        'ids' => $request->get('slug'),
                     ])->get();
                 $form_notif = $eforms['contents'];
                 $form_notif['ref_number'] = strtoupper($form_notif['ref_number']);
@@ -110,7 +110,7 @@ class EFormController extends Controller
                 /*
                 * mark read the notification
                 */
-                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('ids').' ')
+                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
                        ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
@@ -124,11 +124,11 @@ class EFormController extends Controller
             return view('internals.eform.index-ao', compact('data','form_notif'));
         } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
             $form_notif = [];
-            if(@$request->get('ref_number') && @$request->get('ids')){
+            if(@$request->get('ref_number') && @$request->get('slug')){
                /*
                 * redirect to eform with id and ref_number
                 */
-                $eforms = Client::setEndpoint('eforms/'.@$request->get('ids').'/'.@$request->get('ref_number').' ')
+                $eforms = Client::setEndpoint('eforms/'.@$request->get('slug').'/'.@$request->get('ref_number').' ')
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
@@ -137,7 +137,7 @@ class EFormController extends Controller
                         , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])->setQuery([
                         'ref_number' => $request->get('ref_number'),
-                        'ids' => $request->get('ids'),
+                        'ids' => $request->get('slug'),
                     ])->get();
                 $form_notif = $eforms['contents'];
                 $form_notif['ref'] = strtoupper($form_notif['ref_number']);
@@ -164,7 +164,7 @@ class EFormController extends Controller
                 /*
                 * mark read the notification
                 */
-                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('ids').' ')
+                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
