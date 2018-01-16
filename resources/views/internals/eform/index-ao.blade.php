@@ -418,7 +418,7 @@
                     }
                 },
                 //{   data: 'aging', name: 'aging' },
-                {   data: 'action', name: 'action', orderable: false, searchable: false}
+                {   data: 'action', name: 'action', bSortable: false }
             ],
       });
     }

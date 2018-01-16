@@ -256,7 +256,7 @@
                 {   data: 'ao_name', name: 'ao_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: false },
                 {   data: 'aging', name: 'aging' },
-                {   data: 'action', name: 'action', orderable: false, searchable: false},
+                {   data: 'action', name: 'action', bSortable: false },
             ],
       });
       }
