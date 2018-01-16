@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Peninjauan Properti Baru')
+@section('title','MyBRI - Form Peninjauan Properti Baru')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

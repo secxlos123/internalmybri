@@ -92,6 +92,12 @@
                     <p class="form-control-static">Rp. {{ number_format($detail['angsuran_usulan'], 2, ",", ".") }}</p>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Status :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$status}}</p>
+                </div>
+            </div>
         </form>
     </div>
 </div>

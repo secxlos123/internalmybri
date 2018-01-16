@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Developer')
+@section('title','MyBRI - Detail Mitra Kerjasama')
 @include('internals.layouts.head')
 <link href="{{asset('assets/pack/bx-slider/jquery.bxslider.css')}}" rel="stylesheet" type="text/css" />
 @include('internals.layouts.header')
@@ -12,10 +12,10 @@
                                     <h4 class="page-title">Detail Property "Puri Pasir Mas Residence"</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('developers.index')}}">Developer</a>
+                                            <a href="{{route('developers.index')}}">Mitra Kerjasama</a>
                                         </li>
                                         <li>
-                                            <a href="{{route('developers.show', $id)}}">Detail Developer</a>
+                                            <a href="{{route('developers.show', $id)}}">Detail Mitra Kerjasama</a>
                                         </li>
                                         <li class="active">
                                             Detail Property
@@ -162,7 +162,7 @@
                                 <div class="col-md-4">
                                     <div class="text-center card-box">
                                         <div class="text-left">
-                                            <h4 class="header-title m-t-0 m-b-20">Developer</h4>
+                                            <h4 class="header-title m-t-0 m-b-20">Mitra Kerjasama</h4>
                                         </div>
                                         <div class="member-card">
                                             <div class="member-thumb m-b-10 center-block">

@@ -125,6 +125,7 @@ class CollateralStaffController extends Controller
         $type = '';
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
       }
+      // dd($collateral);
       return view('internals.collateral.staff.detail-property', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
 

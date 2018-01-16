@@ -1,4 +1,4 @@
-@section('title','My BRI - Form LKN')
+@if($recontest == 1) @section('title','MyBRI - Form LKN') @else @section('title','MyBRI - Form Rekontes') @endif
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -10,13 +10,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Laporan Kunjungan Nasabah dan Rekomendasi Pengajuan Kredit</h4>
+                        <h4 class="page-title">{{ $recontest == 1 ? 'Laporan Kunjungan Nasabah dan Rekomendasi Pengajuan Kredit' : 'Laporan Kunjungan Nasabah dan Rekomendasi Recontesting Kredit' }}</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('indexAO')}}">E-Form</a>
+                                <a href="{{route('indexAO')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
-                                Form LKN
+                                {{ $recontest == 1 ? 'Form LKN' : 'Form Recontest' }}
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -111,7 +111,11 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Mutasi Rekening</h3>
                         </div>
-                        @include('internals.eform.lkn._mutation')
+                        @if($recontest == 1)
+                            @include('internals.eform.lkn._mutation')
+                        @else
+                            @include('internals.eform.recontest._mutation-recontest')
+                        @endif
                     </div>
                     <br>
                     <a href="javascript:void(0)" class="btn btn-info" title="Tambah Rekening" id="add_account">+ Tambah Rekening Bank</a>

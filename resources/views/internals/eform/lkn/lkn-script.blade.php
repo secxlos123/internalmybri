@@ -48,7 +48,7 @@
 	    $(this).closest('tr').remove();
 	})
 
-	$('#nonfixed-income').hide();
+	// $('#nonfixed-income').hide();
     $('#legal_bussiness_document').hide();
 
 	$('#source').on('change', function () {

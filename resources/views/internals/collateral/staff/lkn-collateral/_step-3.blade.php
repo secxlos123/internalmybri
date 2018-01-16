@@ -32,10 +32,10 @@
                         <div class="form-group clearfix">
                             <label class="col-md-6 control-label">Jenis Bangunan * :</label>
                             <div class="col-md-6">
-                                {!! Form::select('building[type]', array($collateral['property']['category'] => $category_name , 
-                                    "0" => "Rumah Tapak", 
-                                    "1" => "Rumah Susun/Apartment", 
-                                    "2" => "Rumah Toko"), 
+                                {!! Form::select('building[type]', array( 
+                                    "3" => "Tanah Dan Rumah Tinggal", 
+                                    "4" => "Properti Komersial"
+                                    ), 
                                     old('building[type]'), [
                                     'class' => 'select2 building_type',
                                     'data-placeholder' => '-- Pilih --'

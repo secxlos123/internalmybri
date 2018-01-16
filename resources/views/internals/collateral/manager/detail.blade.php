@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Informasi Approval Collateral Properti')
+@section('title','MyBRI - Detail Informasi Approval Collateral Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

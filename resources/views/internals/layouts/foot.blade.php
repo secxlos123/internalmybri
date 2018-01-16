@@ -190,7 +190,7 @@
             (e.keyCode == 88 && e.ctrlKey === true) ||
             // Allow: backspace
             (e.keyCode === 320 && e.ctrlKey === true) ||
-            // Allow: home, end, left, right
+            // Allow: Home MyBRI, end, left, right
             (e.keyCode >= 35 && e.keyCode <= 39) )
         {
             // let it happen, don't do anything

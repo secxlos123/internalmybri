@@ -21,7 +21,7 @@
                         </li>
 
                         <li class="hidden-xs">
-                            <p>Selamat Datang di Aplikasi My BRI. Untuk Bantuan Hubungi <b>consumer.support@corp.bri.co.id</b>.</p>
+                            <p>Selamat Datang di Aplikasi MyBRI. Untuk Bantuan Hubungi <b>consumer.support@corp.bri.co.id</b>.</p>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -38,15 +38,16 @@
                                 <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="user-img" class="img-circle user-img">
                             </a>
 
-                            <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+                            <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list" style="min-width:200px">
                                 <li>
                                     <h5>Hai, {{$data['name']}}</h5>
                                 </li>
+                                <li><p>{{$data['pn']}} / {{$data['role']}} / {{$data['uker']}}-{{$data['branch']}}</p></li>
                                 <fieldset hidden>
                                     <li><a href="#"><i class="ti-user m-r-5"></i> Profil</a></li>
                                     <li><a href="#"><i class="ti-settings m-r-5"></i> Pengaturan</a></li>
                                 </fieldset>
-                                <li><a href="#" id="logout"><i class="ti-power-off m-r-5"></i> Keluar</a></li>
+                                <li><a href="#" id="logout"><center><i class="ti-power-off m-r-5"></i>Keluar</center></a></li>
                             </ul>
                         </li>
                     </ul>

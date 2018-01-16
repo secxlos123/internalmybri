@@ -1,4 +1,4 @@
-@section('title','My BRI - Monitoring Collateral Properti')
+@section('title','MyBRI - Monitoring Collateral Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -54,7 +54,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5">1. Pengikatan Agunan : </label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="collateral_binding_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="collateral_binding_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">a. Polis Asuransi Agunan :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="collateral_insurance_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="collateral_insurance_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                             
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">b. Polis Asuransi Jiwa :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="life_insurance_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="life_insurance_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">a. SHM / SHGB / SHMRS :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="ownership_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="ownership_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                             
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">b. IMB :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_permit_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_permit_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">c. AJB / PPJB :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="sales_law_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="sales_law_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">d. PBB :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="property_tax_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="property_tax_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">e. NJOP :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="sale_value_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="sale_value_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">a. Progress 1 :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_one_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_one_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                             
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">b. Progress 2 :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_two_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_two_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">c. Progress 3 :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_three_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_three_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -157,7 +157,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">d. Progress 4 :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_four_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_four_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@
                                             <div class="col-md-12 distance">
                                                 <label class="col-md-5 tab">e. Progress 5 :</label>
                                                 <div class="col-md-7">
-                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_five_doc">
+                                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="progress_five_doc" accept="image/*,application/pdf,application/rar,application/zip">
                                                 </div>                                          
                                             </div>
                                         </div>

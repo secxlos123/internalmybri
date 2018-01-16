@@ -6,7 +6,7 @@
         $.ajax({
             dataType: 'json',
             type: 'GET',
-            url: '/collateral/detailCollateral',
+            url: '{{route("detailCollateral")}}',
             data: { dev_id : dev_id, prop_id : prop_id },
             success: function(result, data) {  
             console.log(result); 
@@ -52,12 +52,10 @@
                 var building_permit_number = result.data.ots_building.permit_number;
                 var building_permit_date = result.data.ots_building.permit_date;
                 var building_on_behalf_of = result.data.ots_building.on_behalf_of;
-                    if(result.data.ots_building.type == 0){
-                        var building_type = 'Rumah Tapak';
-                    }else if(result.data.ots_building.type == 1){
-                        var building_type = 'Rumah Susun/Apartment';
+                    if(result.data.ots_building.type == 4){
+                        var building_type = 'Properti Komersial';
                     }else{
-                        var building_type = 'Rumah Toko';
+                        var building_type = 'Tanah Dan Rumah Tinggal';
                     };
                 var building_count = result.data.ots_building.count;
                 var building_spacious = result.data.ots_building.spacious;
