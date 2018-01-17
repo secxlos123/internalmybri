@@ -235,7 +235,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nama Dokumen :</label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control numericOnly" name="doc_name[0]" maxlength="12" value="{{ old('doc_name') }}">
+                        <input type="text" class="form-control" name="recontest[0][name]" maxlength="12" value="{{ old('recontest.name') }}">
                     </div>
                 </div>
             </div>
@@ -243,7 +243,7 @@
                 <div class="form-group">
                     <label class="col-md-5 control-label">Upload Dokumen Pendukung :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle upload" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="doc_upload[0]" accept="image/*,application/pdf">
+                        <input type="file" class="filestyle upload" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="recontest[0][document]" accept="image/*,application/pdf">
                     </div>
                     <span class="btn btn-orange col-md-1" id="plus">+</span>
                 </div>

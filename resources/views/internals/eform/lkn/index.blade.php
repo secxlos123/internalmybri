@@ -30,7 +30,11 @@
                 </div>
             </div>
 
-            <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
+            @if($recontest == 1)
+                <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
+            @else
+                <form id="formLKN" method="POST" action="{{route('postLKNRecontest', $id)}}" enctype="multipart/form-data">
+            @endif
                 {{ csrf_field() }}
 
                 <!--KPR-->

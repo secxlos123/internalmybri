@@ -34,10 +34,10 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Tanggal *</th>
-              <th>Nominal *</th>
-              <th>Jenis Transaksi *</th>
-              <th>Keterangan *</th>
+              <th>Tanggal</th>
+              <th>Nominal</th>
+              <th>Jenis Transaksi</th>
+              <th>Keterangan</th>
             </tr>
           </thead>
           <tbody>
@@ -87,7 +87,7 @@
             <div class="col-md-6">
               {!! Form::select( 'mutation[0][bank]'
               , get_bank('all')
-              , $eformData['visit_report']['mutation'][0]['bank']
+              , old('mutation[0][bank]')
               , [
               'class' => 'form-control '
               , 'placeholder' => 'Pilih Bank'
@@ -102,7 +102,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label">No. Rekening :</label>
             <div class="col-md-6">
-              <input type="text" class="form-control numericOnly" name="mutations[0][number]" maxlength="15" value="{{$eformData['visit_report']['mutation'][0]['number']}}">
+              <input type="text" class="form-control numericOnly" name="mutations[0][number]" maxlength="15" value="{{old('mutation[0][number]')}}">
             </div>
           </div>
         </div>
@@ -118,10 +118,10 @@
         <table class="table table-bordered accountTable" id="accountTable0">
           <thead>
             <tr>
-              <th>Tanggal *</th>
-              <th>Nominal *</th>
-              <th>Jenis Transaksi *</th>
-              <th>Keterangan *</th>
+              <th>Tanggal</th>
+              <th>Nominal</th>
+              <th>Jenis Transaksi</th>
+              <th>Keterangan</th>
               <th></th>
             </tr>
           </thead>
@@ -160,7 +160,7 @@
         </table>
         <div class="col-md-6" align="center">
           <div class="form-group mutation_file {!! $errors->has('mutation_file') ? 'has-error' : '' !!}">
-            <label class="col-md-4 control-label">Unggah File Mutasi *</label>
+            <label class="col-md-4 control-label">Unggah File Mutasi</label>
             <div class="col-md-8">
               <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" accept="image/*,application/pdf,application/rar,application/zip">
               @if ($errors->has('mutation_file')) <p class="help-block">{{ $errors->first('mutation_file') }}</p> @endif
