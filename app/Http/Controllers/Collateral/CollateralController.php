@@ -245,9 +245,9 @@ class CollateralController extends Controller
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
         }
-
+        $detail = isset($collateral['data']['0'])? $collateral['data']['0'] : $collateral;
         // $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return response()->json(['data' => $collateral['data']['0']]);
+        return response()->json(['data' => $detail ]);
     }
 
     /**
