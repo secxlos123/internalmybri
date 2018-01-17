@@ -143,13 +143,17 @@ class ADKHistoriController extends Controller
                 $eforms['contents']['recordsTotal'] = '0';
                 $eforms['contents']['recordsFiltered'] = '0';
                 $eforms['contents']['data'][] = [
+                    'tgl_pengajuan' => '-',
                     'id_aplikasi'   => '-',
+                    'ref_number'    => '-',
                     'fid_tp_produk' => '-',
-                    'nama_pegawai'  => '-',
+                    'pinca_name'    => '-',
+                    'ao_name'       => '-',
                     'namadeb'       => '-',
+                    'no_rekening'   => '-',
                     'request_amount'=> '-',
-                    'STATUS'        => '-',
-                    'action'        => '-'
+                    'STATUS'        => '-'
+                    // 'action'        => '-'
                 ];
                 return response()->json($eforms['contents']);
             }
@@ -163,13 +167,17 @@ class ADKHistoriController extends Controller
             $eforms['contents']['recordsTotal'] = '0';
             $eforms['contents']['recordsFiltered'] = '0';
             $eforms['contents']['data'][] = [
+                'tgl_pengajuan' => '-',
                 'id_aplikasi'   => '-',
+                'ref_number'    => '-',
                 'fid_tp_produk' => '-',
-                'nama_pegawai'  => '-',
+                'pinca_name'    => '-',
+                'ao_name'       => '-',
                 'namadeb'       => '-',
+                'no_rekening'   => '-',
                 'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
+                'STATUS'        => '-'
+                // 'action'        => '-'
             ];
             return response()->json($eforms['contents']);
         }
