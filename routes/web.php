@@ -82,7 +82,13 @@
         // Rekontes LKN
         Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
 
+        Route::post('/eform/post-lkn-recontest/{id}',
+            ['as'=>'postLKNRecontest', 'uses'=>'EForm\RecontestController@postLKNRecontest']);
+
         Route::get('eform/approval-recontest/{id}', ['as'=>'getApprovalRecontest', 'uses'=>'EForm\RecontestController@getApprovalRecontest']);
+
+        Route::post('/eform/post-approval-recontest/{id}',
+            ['as'=>'postApprovalRecontest', 'uses'=>'EForm\RecontestController@postApprovalRecontest']);
 
         Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
 

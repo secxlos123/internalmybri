@@ -163,7 +163,11 @@
 
             <!-- rekomendasi approval -->
             <div class="no-print">
-                <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
+                @if($recontest == 1)
+                    <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
+                @else
+                    <form class="form-horizontal" role="form" action="{{route('postApprovalRecontest', $id)}}" method="POST" id="form1">
+                @endif
                     {{ csrf_field() }}
                     <input type="hidden" name="is_approved" id="is_approved">
                     <input type="hidden" name="auditaction" id="auditaction">
