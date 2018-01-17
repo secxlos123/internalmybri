@@ -149,8 +149,8 @@ class ADKHistoriController extends Controller
                     'fid_tp_produk' => '-',
                     'pinca_name'    => '-',
                     'ao_name'       => '-',
-                    'nama_pegawai'  => '-',
                     'namadeb'       => '-',
+                    'no_rekening'   => '-',
                     'request_amount'=> '-',
                     'STATUS'        => '-'
                     // 'action'        => '-'
@@ -173,8 +173,8 @@ class ADKHistoriController extends Controller
                 'fid_tp_produk' => '-',
                 'pinca_name'    => '-',
                 'ao_name'       => '-',
-                'nama_pegawai'  => '-',
                 'namadeb'       => '-',
+                'no_rekening'   => '-',
                 'request_amount'=> '-',
                 'STATUS'        => '-'
                 // 'action'        => '-'
