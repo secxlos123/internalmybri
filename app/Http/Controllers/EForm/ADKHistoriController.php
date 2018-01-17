@@ -147,11 +147,13 @@ class ADKHistoriController extends Controller
                     'id_aplikasi'   => '-',
                     'ref_number'    => '-',
                     'fid_tp_produk' => '-',
+                    'pinca_name'    => '-',
+                    'ao_name'       => '-',
                     'nama_pegawai'  => '-',
                     'namadeb'       => '-',
                     'request_amount'=> '-',
-                    'STATUS'        => '-',
-                    'action'        => '-'
+                    'STATUS'        => '-'
+                    // 'action'        => '-'
                 ];
                 return response()->json($eforms['contents']);
             }
@@ -169,11 +171,13 @@ class ADKHistoriController extends Controller
                 'id_aplikasi'   => '-',
                 'ref_number'    => '-',
                 'fid_tp_produk' => '-',
+                'pinca_name'    => '-',
+                'ao_name'       => '-',
                 'nama_pegawai'  => '-',
                 'namadeb'       => '-',
                 'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
+                'STATUS'        => '-'
+                // 'action'        => '-'
             ];
             return response()->json($eforms['contents']);
         }
