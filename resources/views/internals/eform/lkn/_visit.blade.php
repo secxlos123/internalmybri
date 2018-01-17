@@ -24,7 +24,7 @@
                         <label class="col-md-4 control-label">Tanggal Kunjungan *:</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="datepicker-mindate" name="date" value="{{ $recontest == 1 ? $eformData['appointment_date'] : date('Y-m-d') }}" readonly="">
+                                <input type="text" class="form-control" id="datepicker-mindate" name="date" value="{{ $eformData['appointment_date'] }}" readonly="">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                                 @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif
@@ -40,25 +40,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Pendidikan Terakhir *:</label>
                         <div class="col-md-8">
-                            @if($recontest == 1)
-                                {!! Form::select( 'title'
-                                    , get_title('all')
-                                    , old('title')
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Pendidikan Terakhir'
-                                    ]
-                                ) !!}
-                            @else
-                                {!! Form::select( 'title'
-                                    , get_title('all')
-                                    , $eformData['visit_report']['title']
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Pendidikan Terakhir'
-                                    ]
-                                ) !!}
-                            @endif
+                            {!! Form::select( 'title'
+                                , get_title('all')
+                                , old('title')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Pendidikan Terakhir'
+                                ]
+                            ) !!}
 
                             @if ($errors->has('title')) <p class="help-block">{{ $errors->first('title') }}</p> @endif
                         </div>
@@ -66,25 +55,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Agama *:</label>
                         <div class="col-md-8">
-                            @if($recontest == 1)
-                                {!! Form::select( 'religion'
-                                    , get_religion('all')
-                                    , old('religion')
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Agama'
-                                    ]
-                                ) !!}
-                            @else
-                                {!! Form::select( 'religion'
-                                    , get_religion('all')
-                                    , $eformData['visit_report']['religion']
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Agama'
-                                    ]
-                                ) !!}
-                            @endif
+                            {!! Form::select( 'religion'
+                                , get_religion('all')
+                                , old('religion')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Agama'
+                                ]
+                            ) !!}
 
                             @if ($errors->has('religion')) <p class="help-block">{{ $errors->first('religion') }}</p> @endif
                         </div>
@@ -92,25 +70,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Riwayat Kepemilikan Rekening Pinjaman *:</label>
                         <div class="col-md-8">
-                            @if($recontest == 1)
-                                {!! Form::select( 'loan_history_accounts'
-                                    , get_loan_history('all')
-                                    , old('loan_history_accounts')
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Riwayat Kepemilikan Rekening Pinjaman'
-                                    ]
-                                ) !!}
-                            @else
-                                {!! Form::select( 'loan_history_accounts'
-                                    , get_loan_history('all')
-                                    , $eformData['visit_report']['loan_history_accounts']
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Riwayat Kepemilikan Rekening Pinjaman'
-                                    ]
-                                ) !!}
-                            @endif
+                            {!! Form::select( 'loan_history_accounts'
+                                , get_loan_history('all')
+                                , old('loan_history_accounts')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Riwayat Kepemilikan Rekening Pinjaman'
+                                ]
+                            ) !!}
 
                             @if ($errors->has('loan_history_accounts')) <p class="help-block">{{ $errors->first('loan_history_accounts') }}</p> @endif
                         </div>
@@ -118,39 +85,28 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Pekerjaan / Usaha *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="job" maxlength="50" value="{{$eformData['customer']['work']['work']}}" readonly="">
+                            <input type="text" class="form-control" name="job" maxlength="50" value="{{ $eformData['customer']['work']['work'] }}" readonly="">
                             @if ($errors->has('job')) <p class="help-block">{{ $errors->first('job') }}</p> @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">No Telp Kantor / Tempat Usaha *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly" name="office_phone" maxlength="12" value="{{$eformData['visit_report']['office_phone']}}">
+                            <input type="text" class="form-control numericOnly" name="office_phone" maxlength="12" value="{{ old('office_phone') }}">
                             @if ($errors->has('office_phone')) <p class="help-block">{{ $errors->first('office_phone') }}</p> @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Status Kepegawaian *:</label>
                         <div class="col-md-8">
-                            @if($recontest == 1)
-                                {!! Form::select( 'employment_status'
-                                    , get_employment('all')
-                                    , old('employment_status')
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Status Kepegawaian'
-                                    ]
-                                ) !!}
-                            @else
-                                {!! Form::select( 'employment_status'
-                                    , get_employment('all')
-                                    , $eformData['visit_report']['employment_status']
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Status Kepegawaian'
-                                    ]
-                                ) !!}
-                            @endif
+                            {!! Form::select( 'employment_status'
+                                , get_employment('all')
+                                , old('employment_status')
+                                , [
+                                    'class' => 'form-control '
+                                    , 'placeholder' => 'Pilih Status Kepegawaian'
+                                ]
+                            ) !!}
 
                             @if ($errors->has('employment_status')) <p class="help-block">{{ $errors->first('employment_status') }}</p> @endif
                         </div>
@@ -158,14 +114,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Usia MPP *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly age-of-mpp" name="age_of_mpp" maxlength="2" value="{{ $recontest == 0 ? $eformData['visit_report']['age_of_mpp'] : old('age_of_mpp') }}">
+                            <input type="text" class="form-control numericOnly age-of-mpp" name="age_of_mpp" maxlength="2" value="{{ old('age_of_mpp') }}">
                             @if ($errors->has('age_of_mpp')) <p class="help-block">{{ $errors->first('age_of_mpp') }}</p> @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nomor NPWP *:</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="{{ $recontest == 0 ? $eformData['visit_report']['npwp_number_masking'] : old('npwp_number')}}" id="npwp_number">
+                            <input type="text" class="form-control numericOnly" name="npwp_number" maxlength="50" value="{{old('npwp_number')}}" id="npwp_number">
                             @if ($errors->has('npwp_number')) <p class="help-block">{{ $errors->first('npwp_number') }}</p> @endif
                         </div>
                     </div>
@@ -205,25 +161,6 @@
                                 <option value="lain-lain">Lain-lain</option>
 
                             </select>
-                           <!--  @if($recontest == 1)
-                                {!! Form::select( 'purpose_of_visit'
-                                    , get_visit_purpose('all')
-                                    , old('purpose_of_visit')
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Tujuan Kunjungan'
-                                    ]
-                                ) !!}
-                            @else
-                                {!! Form::select( 'purpose_of_visit'
-                                    , get_visit_purpose('all')
-                                    , $eformData['visit_report']['purpose_of_visit']
-                                    , [
-                                        'class' => 'form-control '
-                                        , 'placeholder' => 'Pilih Tujuan Kunjungan'
-                                    ]
-                                ) !!}
-                            @endif -->
 
                             <div id="other-input" style="display: none;">
                                 <input type="text" class="form-control">

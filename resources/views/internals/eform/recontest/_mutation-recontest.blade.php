@@ -1,3 +1,4 @@
+@if (count($eformData['visit_report']['mutation']) > 0)
 @foreach($eformData['visit_report']['mutation'] as $index => $mutation)
 <div>
   <div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">
@@ -169,3 +170,4 @@
       </div>
     </div>
   </div>
+@endif

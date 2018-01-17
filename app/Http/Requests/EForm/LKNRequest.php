@@ -66,7 +66,7 @@ class LKNRequest extends FormRequest
            'work_letter'                => 'required|mimes:jpg,jpeg,png,gif,svg,pdf',
            'family_card'                => 'required|mimes:jpg,jpeg,png,gif,svg,pdf',
            'marrital_certificate'       => 'mimes:jpg,jpeg,png,gif,svg,pdf',
-           'divorce_certificate'        => 'required|mimes:jpg,jpeg,png,gif,svg,pdf',
+           'divorce_certificate'        => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'offering_letter'            => 'required|mimes:jpg,jpeg,png,gif,svg,pdf',
            'down_payment'               => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'building_tax'               => 'mimes:jpg,jpeg,png,gif,svg,pdf',

@@ -8,9 +8,9 @@
                     <label class="col-md-4 control-label">KPP *:</label>
                     <div class="col-md-8">
                         {!! Form::select('kpp_type', ['' => ''], old('kpp_type'), [
-                        'class' => 'select2 kpp_type',
-                        'data-option' => 1,
-                        'data-placeholder' => 'Pilih KPP',
+                            'class' => 'select2 kpp_type',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih KPP',
                         ]) !!}
                     </div>
                     <input type="hidden" name="kpp_type_name" id="new_kpp_type">
@@ -19,9 +19,9 @@
                     <label class="col-md-4 control-label">Jenis Dibiayai *:</label>
                     <div class="col-md-8">
                         {!! Form::select('type_financed', ['' => ''], old('type_financed'), [
-                        'class' => 'select2 type_financed',
-                        'data-option' => 1,
-                        'data-placeholder' => 'Pilih Jenis Dibiayai',
+                            'class' => 'select2 type_financed',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih Jenis Dibiayai',
                         ]) !!}
                     </div>
                     <input type="hidden" name="type_financed_name" id="new_type_financed">
@@ -30,9 +30,9 @@
                     <label class="col-md-4 control-label">Sektor Ekonomi *:</label>
                     <div class="col-md-8">
                         {!! Form::select('economy_sector', ['' => ''], old('economy_sector'), [
-                        'class' => 'select2 economy_sector',
-                        'data-option' => 1,
-                        'data-placeholder' => 'Pilih Sektor Ekonomi',
+                            'class' => 'select2 economy_sector',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih Sektor Ekonomi',
                         ]) !!}
                     </div>
                     <input type="hidden" name="economy_sector_name" id="new_economy_sector">
@@ -60,9 +60,9 @@
                     <label class="col-md-4 control-label">Program *:</label>
                     <div class="col-md-8">
                         {!! Form::select('program_list', ['' => ''], old('program_list'), [
-                        'class' => 'select2 program_list',
-                        'data-option' => 1,
-                        'data-placeholder' => 'Pilih Program',
+                            'class' => 'select2 program_list',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih Program',
                         ]) !!}
                     </div>
                     <input type="hidden" name="program_list_name" id="new_program_list">
@@ -71,9 +71,9 @@
                     <label class="col-md-4 control-label">Tujuan Penggunaan *:</label>
                     <div class="col-md-8">
                         {!! Form::select('use_reason', ['' => ''], old('use_reason'), [
-                        'class' => 'select2 use_reason',
-                        'data-option' => 1,
-                        'data-placeholder' => 'Pilih Tujuan Penggunaan',
+                            'class' => 'select2 use_reason',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih Tujuan Penggunaan',
                         ]) !!}
                     </div>
                     <input type="hidden" name="use_reason_name" id="new_use_reason">

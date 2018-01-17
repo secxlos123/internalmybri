@@ -29,8 +29,8 @@
                                     <img src="<?php echo $detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].$detail['user_id'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].$detail['user_id'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -207,7 +207,7 @@
                             <td align="center"><a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a></td>
                         </tr>
                     <?php 
-                    if($detail['Payroll'] == '1') {
+                    if($detail['Payroll'] == '2') {
                         if ($detail['customer']['personal']['status'] != '1') {
                     ?>
                         <tr>
@@ -222,8 +222,8 @@
                                     <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].$detail['user_id'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].$detail['user_id'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
@@ -265,7 +265,8 @@
                             <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                         </tr>
                     <?php   
-                        } else {
+                        }
+                    } else {
                     ?>
                         <tr>
                             <td align="center">8</td>
@@ -295,7 +296,6 @@
                             <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                         </tr>
                     <?php
-                        } 
                     }
                     ?>
                     @if($detail['is_send'] == '1')
