@@ -34,7 +34,11 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Approval Pengajuan</h4>
+                        @if($recontest == 1)
+                            <h4 class="page-title">Approval Pengajuan Kredit</h4>
+                        @else
+                            <h4 class="page-title">Approval Recontesting Kredit</h4>
+                        @endif
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
@@ -43,7 +47,7 @@
                                 <a href="{{route('eform.index')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
-                                Pengajuan
+                                Approval
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -58,7 +62,11 @@
                     @endif
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                        @if($recontest == 1)
                             <h3 class="panel-title">Data Pengajuan</h3>
+                        @else
+                            <h3 class="panel-title">Data Recontesting</h3>
+                        @endif
                         </div>
                         <!-- data pengajuan-->
                         <div class="panel-body">
@@ -109,7 +117,11 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                        @if($recontest == 1)
                             <h3 class="panel-title">Data Kunjungan LKN</h3>
+                        @else
+                            <h3 class="panel-title">Data Kunjungan LKN Recontesting </h3>
+                        @endif
                         </div>
                         <!-- data lkn -->
                         <div class="panel-body">
@@ -140,11 +152,14 @@
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-common')
                         </div>
+                        @if($recontest == 0)
+                        <div class="panel-body">
+                            @include('internals.eform.recontest._lkn-recontest-docs')
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
-
-
 
             <!-- rekomendasi approval -->
             <div class="no-print">
@@ -152,7 +167,11 @@
                     {{ csrf_field() }}
                     <input type="hidden" name="is_approved" id="is_approved">
                     <input type="hidden" name="auditaction" id="auditaction">
-                    @include('internals.eform.approval._recommendation')
+                    @if($recontest == 1)
+                        @include('internals.eform.approval._recommendation')
+                    @else
+                        @include('internals.eform.recontest._recommendation-recontest')
+                    @endif
                 </form>
             </div>
         </div>

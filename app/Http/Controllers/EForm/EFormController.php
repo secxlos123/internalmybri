@@ -625,6 +625,11 @@ class EFormController extends Controller
               'prescreening_result' => $form['prescreening_status'],
             ])->render();
 
+            if($form['is_recontest'] == 1){
+              $recontest = route('getApprovalRecontest', $form['id']);
+            }else{
+              $recontest = [];
+            }
             $form['action'] = view('internals.layouts.actions', [
 
                 'dispose' => $form['ao_name'],
@@ -637,7 +642,7 @@ class EFormController extends Controller
                 // 'verified' => $verify,
                 'visited' => $visit,
                 'status' => $form['status_eform'],
-                'rekontes' => $form['status_eform'],
+                'recontest' => $recontest,
                 // 'verification' => route('getVerification', $form['user_id']),
                 // 'lkn' => route('getLKN', $form['id']),
             ])->render();
