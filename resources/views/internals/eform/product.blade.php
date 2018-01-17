@@ -39,7 +39,8 @@
                                                 {!! Form::select('status_property', array("" => "", "1" => "Baru", "2" => "Secondary", "3" => "Refinancing", "4" => "Renovasi", "5" => "Top Up", "6" => "Take Over", "7" => "Take Over Top Up", "8" => "Take Over Account In House (Cash Bertahap)"), old('status_property'), [
                                                     'class' => 'select2 status_property ',
                                                     'data-placeholder' => 'Pilih Jenis KPR',
-                                                    'data-bri' => ''
+                                                    'data-bri' => '',
+                                                    'id' => 'jenis_kpr'
                                                 ]) !!}
                                                 {{-- <input type="hidden" name="status_property" value="new"> --}}
                                                 @if ($errors->has('status_property')) <p class="help-block">{{ $errors->first('status_property') }}</p> 
@@ -57,7 +58,8 @@
                                                 {!! Form::select('developer', ['' => ''], old('developer'), [
                                                     'class' => 'select2 developers ',
                                                     'data-placeholder' => 'Pilih Developer',
-                                                    'data-bri' => ''
+                                                    'data-bri' => '',
+                                                    'id' => 'developer-kode'
                                                 ]) !!}
                                             </div>
                                             <input type="hidden" name="developer_name" id="new_developer_name">
@@ -69,7 +71,8 @@
                                                 {!! Form::select('kpr_type_property', array("" => "", "1" => "Rumah Tapak", "2" => "Rumah Susun/Apartment", "3" => "Rumah Toko"), old('kpr_type_property'), [
                                                     'class' => 'select2 kpr_type_properties ',
                                                     'data-placeholder' => 'Pilih Jenis Properti',
-                                                    'data-bri' => ''
+                                                    'data-bri' => '',
+                                                    'id' => 'kpr_type'
                                                 ]) !!}
                                                 @if ($errors->has('kpr_type_property'))
                                                  <p class="help-block">{{ $errors->first('kpr_type_property') }}</p> 

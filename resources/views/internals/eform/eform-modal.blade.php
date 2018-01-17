@@ -82,6 +82,84 @@
                         </div>
                     </div>
                 </div>
+                <!-- Data Developer -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-color panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Data Properti</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" id="dev">
+                                                <label class="col-md-5 control-label">Developer :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="developer_name"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Jenis KPR :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="kpr"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="jp">
+                                                <label class="col-md-5 control-label">Jenis Properti :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="jenis_property"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="kerjasama">
+                                                <label class="col-md-5 control-label">Nama Proyek :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="project_name"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="kerjasama">
+                                                <label class="col-md-5 control-label">Tipe Properti :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="property_type">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" id="kerjasama">
+                                                <label class="col-md-5 control-label">Unit Properti :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="property_unit"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Harga :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="harga"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Luas Bangunan :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="luas_bangunan"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-5 control-label">Lokasi Rumah :</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static" id="lokasi_bangunan"></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End Data Developer -->
 
                 <div class="row">
                     <div class="col-md-12">
