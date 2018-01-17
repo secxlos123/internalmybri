@@ -32,7 +32,7 @@
                     <div class="card-box">
                         <div class="add-button">
                             <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
-                            <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Pinjaman Aplikasi</a>
+                            <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Kredit</a>
                             <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                         </div>
                         <div id="filter" class="m-b-15">
@@ -65,26 +65,26 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Status Pengajuan :</label>
+                                                <label class="col-sm-4 control-label">Status Pengajuan Kredit :</label>
                                                 <div class="col-sm-8">
                                                     <select class="form-control" id="status">
-                                                        <option selected="" value="All"> Semua</option>
-                                                        <option value="Rekomend">Pengajuan Kredit</option>
-                                                        <option value="Dispose">Disposisi Pengajuan</option>
+                                                        <option selected="" value="All"> (Semua)</option>
+                                                        <option value="Rekomend">Pengajuan</option>
+                                                        <option value="Dispose">Disposisi</option>
                                                         <option value="Initiate">Prakarsa</option>
                                                         <option value="Submit">Proses CLF</option>
-                                                        <option value="Approval1">Kredit Disetujui</option>
-                                                        <option value="Approval2">Rekontes Kredit</option>
-                                                        <option value="Rejected">Kredit Ditolak</option>
+                                                        <option value="Approval1">Disetujui</option>
+                                                        <option value="Approval2">Pengajuan Ulang</option>
+                                                        <option value="Rejected">Ditolak</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Status Prescreening :</label>
+                                                <label class="col-sm-4 control-label">Prescreening :</label>
                                                 <div class="col-sm-8">
                                                     <select id="prescreening_filter" class="form-control">
-                                                        <option selected="" value="All"> Semua</option>
+                                                        <option selected="" value="All"> (Semua)</option>
                                                         <option value="1" class="text-success">Hijau</option>
                                                         <option value="2" class="text-warning">Kuning</option>
                                                         <option value="3" class="text-danger">Merah</option>
@@ -96,7 +96,7 @@
                                                 <label class="col-sm-4 control-label">Jenis Produk :</label>
                                                 <div class="col-sm-8">
                                                     <select id="product_filter" class="form-control">
-                                                        <option selected="" value="All"> Semua</option>
+                                                        <option selected="" value="All"> (Semua)</option>
                                                         <option value="kpr">KPR</option>
                                                         <option value="briguna">BRIGUNA</option>
                                                     </select>
@@ -104,7 +104,7 @@
                                             </div>
                                         </form>
                                         <div class="text-right">
-                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Cari</a>
                                         </div>
                                     </div>
                                 </div>
