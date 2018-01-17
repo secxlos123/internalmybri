@@ -143,7 +143,9 @@ class ADKHistoriController extends Controller
                 $eforms['contents']['recordsTotal'] = '0';
                 $eforms['contents']['recordsFiltered'] = '0';
                 $eforms['contents']['data'][] = [
+                    'tgl_pengajuan' => '-',
                     'id_aplikasi'   => '-',
+                    'ref_number'    => '-',
                     'fid_tp_produk' => '-',
                     'nama_pegawai'  => '-',
                     'namadeb'       => '-',
@@ -163,7 +165,9 @@ class ADKHistoriController extends Controller
             $eforms['contents']['recordsTotal'] = '0';
             $eforms['contents']['recordsFiltered'] = '0';
             $eforms['contents']['data'][] = [
+                'tgl_pengajuan' => '-',
                 'id_aplikasi'   => '-',
+                'ref_number'    => '-',
                 'fid_tp_produk' => '-',
                 'nama_pegawai'  => '-',
                 'namadeb'       => '-',
