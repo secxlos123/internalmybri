@@ -203,9 +203,9 @@
                 processResults: function (data, params) {
                     params.page = params.page || 1;
                     return {
-                        results: data.insurances.data,
+                        results: data.appraisers.data,
                         pagination: {
-                            more: (params.page * data.insurances.per_page) < data.insurances.total
+                            more: (params.page * data.appraisers.per_page) < data.appraisers.total
                         }
                     };
                 },

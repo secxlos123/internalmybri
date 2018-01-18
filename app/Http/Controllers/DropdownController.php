@@ -547,7 +547,7 @@ class DropdownController extends Controller
                     $appraisers['contents']['data'][$key] = $appraiser;
                 }
             }
-            $contents = $insurances['contents'];
+            $contents = $appraisers['contents'];
         }
 
         return response()->json(['appraisers' => $contents]);
