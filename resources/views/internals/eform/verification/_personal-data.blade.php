@@ -103,7 +103,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Kota * :</label>
+                                <label class="col-md-3 control-label">Kota sesuai KTP * :</label>
                                 <div class="col-md-9">
                                 @if ($type != 'preview')
                                     {!! Form::select('city_id', [$dataCustomer['customer']['city_id'] => $dataCustomer['customer']['city']], old('city_id'), [

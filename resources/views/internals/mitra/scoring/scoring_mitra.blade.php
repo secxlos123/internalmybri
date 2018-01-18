@@ -26,4 +26,4 @@
 	</div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot') ')
-@include('internals.mitra.script.script_dirrpc') 
+@include('internals.mitra.script.dirrpc.script_dirrpc') 
