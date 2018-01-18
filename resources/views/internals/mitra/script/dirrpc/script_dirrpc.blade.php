@@ -18,19 +18,26 @@
 	  window.location.href = url; 
     })
 	   $('#datatable').on('click', '#BTN-EDIT', function (e) {
+	  var data = table1.row($(this).parents('tr')).data();
+	  var kode = data['nomor'];
+	  var no = $("#NO"+kode).val();
       var x = window.location.href;
-	  var url = x.replace("dir_rpc", "dir_rpc_maintance");
+	  var url = x.replace("dir_rpc", "dir_rpc_maintance?no="+no);
 	  window.location.href = url; 
     } );
 	
 	   $('#datatable').on('click', '#BTN-HAPUS', function (e) {
 		    var data = table1.row($(this).parents('tr')).data();
-			var kode = data['no'];
+			var kode = data['nomor'];
 			var no = $("#NO"+kode).val();
 			var formarray = [];
 			formarray.push({
 			"name": "no",
 			"value": no
+			});
+			formarray.push({
+			"name": "act",
+			"value": "search"
 			});
 			sentform(formarray);
 /*  var data = table1
@@ -58,9 +65,10 @@ function sentform(formdata)
 		dataType: "json",
 		success: function(data) {
 		 console.log("Data Delete!", data);
-		 
 			var url = window.location.href;
 			window.location.href = url;
+			/* var url = window.location.href;
+			window.location.href = url; */
 		}
 	});}	
 	/*   $('#datatable').on('click', '#BTN-HAPUS', function (e) {
@@ -81,6 +89,7 @@ function sentform(formdata)
 	
     function table_dirrpc(gimmick_name)
       {
+		  var act = 'search';
         table1 = $('#datatable').DataTable({
            searching : false,
            processing : true,
@@ -102,12 +111,12 @@ function sentform(formdata)
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
                     );
-
+					d.act = act;
                     d.gimmick_name = gimmick_name;
                 }
             },
           aoColumns : [
-                {   data: 'no', name: 'no', bSortable: false },
+                {   data: 'nomor', name: 'nomor', bSortable: false },
                 {   data: 'debt_name', name: 'debt_name', bSortable: false  },
                 {   data: 'maintance', name: 'maintance', bSortable: false },
                 {   data: 'action', name: 'action', orderable: false, searchable: false}

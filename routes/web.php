@@ -14,8 +14,15 @@
 
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
+			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+			Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
+			Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
+			Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
+			Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
 			Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
+			Route::get('/DirRpcHapusDetail', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus_detail']);
 
     Route::post('/login',
         ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
@@ -219,14 +226,23 @@
 		Route::resource('gimmick', 'Mitra\GimmickController');
 		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
 		Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+		Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+		Route::resource('mitra_list', 'Mitra\mitra\MitraController');
+		Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
+		Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
+		Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
+		Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
+		Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
+		Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
+		Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
 		Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
+		Route::resource('dir_rpc_edit', 'Mitra\dirrpc\EditDircontroller');
 		Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
 		Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
 		Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
 
 		Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
 		Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
-		Route::resource('hasil_scoring', 'Mitra\scoring\HasilScoringcontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
@@ -355,6 +371,7 @@
 		/* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
+        Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
