@@ -506,7 +506,7 @@ class AOController extends Controller
           $now  = Carbon::now();
           $end  = Carbon::parse( $form['recontest']['expired_date'] );
 
-          if ( $now->diffInDays( $end ) <= 30 ) {
+          if ( $now->diffInDays( $end ) <= 30 && $form['status_eform'] != 'Approval2' ) {
             $recontest = route( 'getRecontest', $form['id'] );
           }
 

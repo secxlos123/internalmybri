@@ -94,7 +94,7 @@
 	@endif
 
 @else
-	@if ( !empty($recontest) && !empty($submited) && $submited == false )
+	@if ( !empty($recontest) && !isset($submited) )
 		<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Rekontes Kredit" title="Rekontes Kredit">
 			<i class="fa fa-undo" aria-hidden="true"></i>
 		</a>
