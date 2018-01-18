@@ -797,7 +797,8 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $no_skpp        = $detail['ref_number'].'/'.date('is').'/'.date('m').'/'.date('Y').'/  '.date('d-m-Y',strtotime($detail['created_at']));
+            $no_skpp = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.date('d-m-Y',strtotime($detail['created_at']));
+            $no_putusan = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y'));
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
@@ -809,7 +810,7 @@ class ADKController extends Controller
                 'alamat'       => $detail['customer']['personal']['address'],
                 'no_skpp'      => $no_skpp,
                 'perusahaan'   => $detail['customer']['work']['company_name'],
-                'no_putusan'   => $no_skpp,
+                'no_putusan'   => $no_putusan,
                 'scoring'      => $detail['score'],
                 'jumlah_kredit'=> $detail['Plafond_usulan'],
                 'jangka_waktu' => $detail['Jangka_waktu'],
@@ -851,7 +852,7 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $fasilitas   = substr($detail['Kode_fasilitas'],-2);
-            $no_skpp     = $detail['ref_number'].'/'.date('is').'/'.date('m').'/'.date('Y');
+            $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y');
             $no_sk_awal  = $detail['no_dan_tanggal_sk_awal'];
             $no_sk_akhir = $detail['no_dan_tanggal_sk_akhir'];
             $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
@@ -924,7 +925,7 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $no_skpp    = $detail['ref_number'].'/'.date('is').'/'.date('m').'/'.date('Y');
+            $no_skpp    = $detail['ref_number'].'/'.date('m').'/'.date('Y');
             $detail_sph = [
                 'nama_debitur'  => $detail['costumer_name'],
                 'nama_pasangan' => $detail['customer']['personal']['couple_name'],
