@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EForm\LKNRequest;
 use App\Http\Controllers\Controller;
 use Client;
+use Carbon\Carbon;
 
 class AOController extends Controller
 {
@@ -500,11 +501,15 @@ class AOController extends Controller
           'prescreening_result' => $form['prescreening_status'],
         ])->render();
 
-        if(!empty($form['recontest'])){
-              // $recontest = $form['recontest'];
-          $recontest = route('getRecontest', $form['id']);
-        }else{
-          $recontest = [];
+        $recontest = [];
+        if ( !empty( $form['recontest'] ) ){
+          $now  = Carbon::now();
+          $end  = Carbon::parse( $form['recontest']['expired_date'] );
+
+          if ( $now->diffInDays( $end ) <= 30 && $form['status_eform'] != 'Approval2' ) {
+            $recontest = route( 'getRecontest', $form['id'] );
+          }
+
         }
 
         $form['action'] = view('internals.layouts.actions', [
@@ -615,7 +620,7 @@ class AOController extends Controller
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn' => $data['pn']
-        
+
       ])->get();
                           // dd($resend_verification);
       if($resend_verification['code'] == 200)

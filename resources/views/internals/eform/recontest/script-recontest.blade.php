@@ -1,7 +1,6 @@
 <script type="text/javascript">
   $('#plus').click(function(){
     var index = $('.upload').length;
-    index++;
     if(index <= 10){
       $('#div_other_doc').append(
         '<div class="col-md-12 docs" style="margin-bottom:10px;">'
@@ -17,7 +16,7 @@
               +'<div class="form-group">'
                 +'<label class="col-md-5 control-label">Upload Dokumen Pendukung :</label>'
                   +'<div class="col-md-6">'
-                    +'<input type="file" class="filestyle-upload" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="recontest['+index+'][document]" accept="image/*,application/pdf">'
+                    +'<input type="file" class="filestyle-upload upload" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="recontest['+index+'][document]" accept="image/*,application/pdf">'
                   +'</div>'
                 +'<span class="btn btn-danger col-md-1 delete-photo"><i class="fa fa-trash"></i></span>'
               +'</div>'

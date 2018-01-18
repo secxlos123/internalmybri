@@ -43,28 +43,29 @@
 @if(isset($verified))
 	@if ((isset($verification) && ($verified == false)))
 		@if($response_status == 'unverified')
-		<a href="{!! $reverification !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin" data-original-title="Resend Verification" title="Resend Verification">
-	    <i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
-	    </a>
+			<a href="{!! $reverification !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin" data-original-title="Resend Verification" title="Resend Verification">
+			    <i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
+		    </a>
 		@endif
-	<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin {{($response_status == 'unverified') ? 'disabled' : ''}}" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified') ? 'pointer-events: none;cursor: default; display: none;' : ''}}">
-	    <i class="fa fa-check-square-o" style="color: white;" aria-hidden="true"></i>
-	</a>
+
+		<a href="{!! $verification !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin {{($response_status == 'unverified') ? 'disabled' : ''}}" data-original-title="Verification" title="Verification" style="{{($response_status == 'unverified') ? 'pointer-events: none;cursor: default; display: none;' : ''}}">
+		    <i class="fa fa-check-square-o" style="color: white;" aria-hidden="true"></i>
+		</a>
 	@endif
 
 	@if (!empty($verified) && $verified == true)
-	<span class="waves-effect waves-light bottom-margin" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;cursor: default;">
-	    <i class="fa fa-check-circle fa-2x" style="color: orange;" aria-hidden="true" title="Verified"></i>
-	</span>
-	<a href="{!! $preview !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin" data-original-title="Verification" title="Detail Verification">
-	    <i class="fa fa-eye" aria-hidden="true" style="color: white;"></i>
-	</a>
+		<span class="waves-effect waves-light bottom-margin" data-original-title="Verified" title="Verified" style="width: 35px;text-align: center;cursor: default;">
+		    <i class="fa fa-check-circle fa-2x" style="color: orange;" aria-hidden="true" title="Verified"></i>
+		</span>
+		<a href="{!! $preview !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin" data-original-title="Verification" title="Detail Verification">
+		    <i class="fa fa-eye" aria-hidden="true" style="color: white;"></i>
+		</a>
 	@endif
 
 	@if ((isset($lkn)) && ($visited == false))
-	<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin" data-original-title="Form LKN" title="Form LKN">
-	    <i class="fa fa-file-text-o" style="color: white;" aria-hidden="true"></i>
-	</a>
+		<a href="{!! $lkn !!}" class="btn btn-icon waves-effect waves-light btn-pastel bottom-margin" data-original-title="Form LKN" title="Form LKN">
+		    <i class="fa fa-file-text-o" style="color: white;" aria-hidden="true"></i>
+		</a>
 	@endif
 
 @endif
@@ -82,14 +83,27 @@
 	<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="Approval">
 	    <i class="mdi mdi-eye"></i>
 	</a>
+
 @elseif( isset($recontest) && !empty($submited) && $submited == true )
-	<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Approval Rekontes Kredit" title="Approval Rekontes Kredit">
-		<i class="fa fa-check-square-o" aria-hidden="true"></i>
-	</a>
+	@if( isset($status) )
+		@if( $status == 'Approval2' )
+			<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Approval Rekontes Kredit" title="Approval Rekontes Kredit">
+				<i class="fa fa-check-square-o" aria-hidden="true"></i>
+			</a>
+		@endif
+	@endif
+
+@else
+	@if ( !empty($recontest) && !isset($submited) )
+		<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Rekontes Kredit" title="Rekontes Kredit">
+			<i class="fa fa-undo" aria-hidden="true"></i>
+		</a>
+	@endif
+
 @endif
 
 @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
-	
+
 	@if(!empty($status))
 		@if($status == 'Rejected')
 			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
@@ -186,10 +200,3 @@
 		<i class="fa fa-{{ $prescreening_icon }}" aria-hidden="true"></i>
 	</a>
 @endif
-
-@if ( ( !empty($recontest) ) )
-	<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Rekontes Kredit" title="Rekontes Kredit">
-		<i class="fa fa-undo" aria-hidden="true"></i>
-	</a>
-@endif
-
