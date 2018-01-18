@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Debitur')
+@section('title','My BRI - Detail Profil Calon Debitur')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Detail Debitur "{{$dataCustomer['customer']['personal']['name']}}" </h4>
+                        <h4 class="page-title">Detail Profil Calon Debitur "{{$dataCustomer['customer']['personal']['name']}}" </h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{route('debitur.index')}}">Debitur</a>
                             </li>
                             <li class="active">
-                                Detail Debitur
+                                Detail Profil Calon Debitur
                             </li>
                         </ol>
                         <div class="clearfix"></div>

@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Informasi Approval Collateral Properti')
+@section('title','MyBRI - Detail Informasi Approval Collateral Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -49,7 +49,7 @@
                                     @include('internals.collateral.manager._type-property')
 
                                     <!-- unit -->
-                                    @include('internals.collateral.manager._unit-property') 
+                                    @include('internals.collateral.manager._unit-property')
 
                                 @else
                                     <!-- detail properti -->
@@ -99,7 +99,7 @@
             witdh : '100%',
             allowClear: true,
         });
-        
+
         $('.name').select2({
             witdh : '100%',
             allowClear: true,

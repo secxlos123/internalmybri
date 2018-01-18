@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Mail;
 
 class Handler extends ExceptionHandler
 {
@@ -44,19 +45,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // 404 page when a page not found
-        // if(env('APP_ENV') == 'production'){
-            if ($exception instanceof CustomException) {
-                return response()->view('errors.404', [], 404);
-            }
-
-            // 500 page when a page not found
-            if ($exception instanceof \ErrorException) {
-                return response()->view('errors.500', [], 500);
-            } else {
-                return parent::render($request, $exception);
-            }
+        // send email if error
+        // if ( ENV("APP_ENV") == "production" ) {
+        //     Mail::send('mails.ErrorException', array('exception' => $exception), function($message)
+        //     {
+        //         $message->subject("INT myBRI Error Exception");
+        //         $message->from("error@mybri.bri.co.id", 'Error Exception');
+        //         $message->to("rachmat.ramadhan@wgs.co.id");
+        //     });
         // }
+
+        // 404 page when a page not found
+        if ($exception instanceof CustomException) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        // 500 page when a page not found
+        if ($exception instanceof \ErrorException) {
+            return response()->view('errors.500', [], 500);
+        }
 
         return parent::render($request, $exception);
     }

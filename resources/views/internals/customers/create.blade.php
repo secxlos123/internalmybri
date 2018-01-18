@@ -1,4 +1,4 @@
-@section('title','My BRI - Tambah Profil Customer')
+@section('title','MyBRI - Tambah Profil Calon Debitur')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Tambah Profil Customer</h4>
+                                    <h4 class="page-title">Tambah Profil Calon Debitur</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('customers.index')}}">Profil Customer</a>
+                                            <a href="{{route('customers.index')}}">Profil Calon Debitur</a>
                                         </li>
                                         <li class="active">
-                                            Tambah Profil Customer
+                                            Tambah Profil Calon Debitur
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -121,7 +121,7 @@
                                                     <div class="form-group identity {!! $errors->has('identity') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">Foto KTP * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/*,application/pdf">
                                                             @if ($errors->has('identity')) <p class="help-block">{{ $errors->first('identity') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -188,7 +188,7 @@
                                                     <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
                                                         <label class="col-md-5 control-label">KTP Pasangan * :</label>
                                                         <div class="col-md-7">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="couple_identity" accept="image/png,image/jpeg,image/gif">
+                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="couple_identity" accept="image/*,application/pdf">
                                                             @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                                         </div>
                                                     </div>
@@ -220,7 +220,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Profil Customer "<b id="name"></b>" ?</p>
+                                <p>Apakah Anda yakin ingin menambah Profil Calon Debitur "<b id="name"></b>" ?</p>
                             </div>
                         </div>
                     </div>

@@ -277,12 +277,13 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CustomerRequest $request)
+    public function store(Request $request)
     {
         $data = $this->getUser();
         $role = $data['role'];
+        $email = strtolower($request->email);
+        $request->merge(['email'=>$email]);
         $newCustomer = $this->dataRequest($request);
-        // dd($newCustomer);
         $client = Client::setEndpoint('customer')
          ->setHeaders([
               'Authorization' => $data['token']

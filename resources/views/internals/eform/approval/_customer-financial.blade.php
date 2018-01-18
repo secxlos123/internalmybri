@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label title ="Take Home Pay Per Bulan" class="col-md-5 control-label">Gaji/Pendapatan :</label>
+                <label title ="Take Home MyBRI Pay Per Bulan" class="col-md-5 control-label">Gaji/Pendapatan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['salary'], 2, ",", ".") }}</p>
                 </div>

@@ -42,15 +42,15 @@
                     <div class="col-md-8">
                         @if($eformData['kpr']['developer_id'] == 1)
                             {!! Form::select('project_list', ["1" => "TIDAK MENGIKUTI PROJECT"], !empty($eformData) ? $eformData['kpr']['developer_id'] : old('project_list'), [
-                                'class' => 'select2 project_list',
-                                'data-option' => 1,
-                                'data-placeholder' => 'Pilih Project',
+                            'class' => 'select2 project_list',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih Project',
                             ]) !!}
                         @else
                             {!! Form::select('project_list', [$eformData['kpr']['property_id'] => $eformData['kpr']['property_name']], old('project_list'), [
-                                'class' => 'select2 project_list',
-                                'data-option' => 1,
-                                'data-placeholder' => 'Pilih Project',
+                            'class' => 'select2 project_list',
+                            'data-option' => 1,
+                            'data-placeholder' => 'Pilih Project',
                             ]) !!}
                         @endif
                     </div>

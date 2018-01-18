@@ -1,9 +1,15 @@
-@section('title','My BRI - Form LKN')
+@section('title','MyBRI - Form LKN')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
-
+<style type="text/css">
+    .card-box > a {
+    height: 350px;
+    width: 100%;
+    padding-top: 50px;
+}
+</style>
 <div class="content-page">
     <div class="content">
         <div class="container">
@@ -13,7 +19,7 @@
                         <h4 class="page-title">Laporan Kunjungan Nasabah dan Rekomendasi Pengajuan Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('indexAO')}}">E-Form</a>
+                                <a href="{{route('indexAO')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
                                 Form LKN
@@ -24,7 +30,11 @@
                 </div>
             </div>
 
-            <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
+            @if($recontest == 1)
+                <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
+            @else
+                <form id="formLKN" method="POST" action="{{route('postLKNRecontest', $id)}}" enctype="multipart/form-data">
+            @endif
                 {{ csrf_field() }}
 
                 <!--KPR-->
@@ -37,7 +47,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Pengajuan</h3>
                             </div>
-                            @include('internals.eform.lkn._kpr')
+                            @if($recontest == 1)
+                                @include('internals.eform.lkn._kpr')
+                            @else
+                                @include('internals.eform.recontest._kpr-recontest')
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -50,7 +64,11 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Data Kunjungan</h3>
                             </div>
-                            @include('internals.eform.lkn._visit')
+                            @if($recontest == 1)
+                                @include('internals.eform.lkn._visit')
+                            @else
+                                @include('internals.eform.recontest._visit-recontest')
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -99,7 +117,11 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">KPP</h3>
                         </div>
-                        @include('internals.eform.lkn._kpp-type')
+                        @if($recontest == 1)
+                            @include('internals.eform.lkn._kpp-type')
+                        @else
+                            @include('internals.eform.recontest._kpp-recontest')
+                        @endif
                     </div>
                 </div>
             </div>
@@ -111,7 +133,11 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Mutasi Rekening</h3>
                         </div>
-                        @include('internals.eform.lkn._mutation')
+                        @if($recontest == 1)
+                            @include('internals.eform.lkn._mutation')
+                        @else
+                            @include('internals.eform.recontest._mutation-recontest')
+                        @endif
                     </div>
                     <br>
                     <a href="javascript:void(0)" class="btn btn-info" title="Tambah Rekening" id="add_account">+ Tambah Rekening Bank</a>
@@ -120,17 +146,23 @@
         </div>
 
         <!--Hanya muncul jika properti bekas-->
+        @if(($eformData['kpr']['status_property'] != 1) || ($eformData['kpr']['developer_id'] == 1))
         <!--investigation-->
-        <div class="row" hidden="" id="investigate">
+        <div class="row" id="investigate">
             <div class="col-md-12">
                 <div class="panel panel-color panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Investigasi Jual Beli</h3>
                     </div>
-                    @include('internals.eform.lkn._investigate')
+                    @if($recontest == 1)
+                        @include('internals.eform.lkn._investigate')
+                    @else
+                        @include('internals.eform.recontest._investigate-recontest')
+                    @endif
                 </div>
             </div>
         </div>
+        @endif
 
         <!--common-->
         <div class="row">
@@ -139,7 +171,11 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Dokumen Pendukung</h3>
                     </div>
-                    @include('internals.eform.lkn._common')
+                    @if($recontest == 1)
+                        @include('internals.eform.lkn._common')
+                    @else
+                        @include('internals.eform.recontest._common-recontest')
+                    @endif
                 </div>
             </div>
         </div>
@@ -235,6 +271,9 @@
 @include('internals.layouts.foot')
 @include('internals.eform.lkn.lkn-script')
 @include('internals.eform.lkn.render-mutation')
+@if($recontest == 0)
+    @include('internals.eform.recontest.script-recontest')
+@endif
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

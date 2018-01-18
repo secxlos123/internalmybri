@@ -1,4 +1,4 @@
-@section('title','My BRI - 404 - Halaman Tidak Ditemukan')
+@section('title','MyBRI - 404 - Halaman Tidak Ditemukan')
 @include('internals.layouts.head')
     <div class="content">
         <div class="container">

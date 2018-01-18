@@ -1,4 +1,4 @@
-@section('title','My BRI - Edit Developer')
+@section('title','MyBRI - Edit Mitra Kerjasama')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Edit Developer</h4>
+                                    <h4 class="page-title">Edit Mitra Kerjasama</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{route('developers.index')}}">Developer</a>
+                                            <a href="{{route('developers.index')}}">Mitra Kerjasama</a>
                                         </li>
                                         <li class="active">
-                                            Edit Developer
+                                            Edit Mitra Kerjasama
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -44,7 +44,7 @@
                                                 <div class="form-group developer_name {!! $errors->has('developer_name') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Nama PIC *:</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" name="developer_name" maxlength="50" required="" @if(!empty($dataDev['developer_name'])) value="{{$dataDev['developer_name']}}" @else value="{{old('developer_name')}}" @endif id="name">
+                                                        <input type="text" class="form-control alphaOnly" name="developer_name" maxlength="50" required="" @if(!empty($dataDev['developer_name'])) value="{{$dataDev['developer_name']}}" @else value="{{old('developer_name')}}" @endif id="name">
                                                     @if ($errors->has('developer_name')) <p class="help-block">{{ $errors->first('developer_name') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -220,4 +220,4 @@
     TableManageButtons.init();
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Developer\UpdateDevRequest', '#form1'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\Mitra Kerjasama\UpdateDevRequest', '#form1'); !!}

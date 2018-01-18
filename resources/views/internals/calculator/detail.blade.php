@@ -1,4 +1,4 @@
-@section('title','My BRI - Kalkulator Simulasi Kredit')
+@section('title','MyBRI - Kalkulator Simulasi Kredit')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -50,12 +50,12 @@
                                 <span class="hidden-xs text-uppercase">Detail Angsuran</span>
                             </a>
                         </li>
-                        <li class="">
+                        <!-- <li class="">
                             <a href="#property-list" data-toggle="tab" aria-expanded="false">
                                 <span class="visible-xs"><i class="fa fa-list"></i></span>
                                 <span class="hidden-xs text-uppercase">Download</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="developer-info">

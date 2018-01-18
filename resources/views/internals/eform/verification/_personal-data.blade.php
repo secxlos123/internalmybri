@@ -8,7 +8,7 @@
             <div class="panel-body">
                 <div class="row">
                     <table class="table table-bordered">
-                        <input type="hidden" name="form_id" value="{{$id}}">
+                        <input type="hidden" name="eform_id" value="{{$id}}">
                         <thead class="bg-primary">
                             <tr>
                                 <th class="bg-inverse">Field</th>
@@ -138,7 +138,17 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label"></label>
                                 <div class="col-md-9">
-                                    <img id="preview" src="{{ $dataCustomer['customer']['identity'] }}" width="300">
+                                    @if((pathinfo(strtolower($dataCustomer['customer']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($dataCustomer['customer']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($dataCustomer['customer']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                        @if(strpos($dataCustomer['customer']['identity'], 'noimage.jpg'))
+                                        <p style="margin-left:25px">Foto KTP Kosong</p>
+                                        @else
+                                        <img id="preview" src="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" width="300">
+                                        <p style="margin-left:25px">Foto KTP</p>
+                                        @endif
+                                    @else
+                                        <a href="@if(!empty($dataCustomer['customer']['identity'])){{$dataCustomer['customer']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                        <p style="margin-left:25px">Klik Untuk Lihat Foto KTP</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

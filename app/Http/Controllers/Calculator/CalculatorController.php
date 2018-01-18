@@ -51,7 +51,7 @@ class CalculatorController extends Controller
       $term = $calculate['time_period'];
       $rate = $this->convertCommatoPoint($calculate['rate']);
       $downPayment = $calculate['dp'];
-      $priceNumber = str_replace(".", "", $price);
+      $priceNumber = str_replace(",", "", $price);
       $fxflterm = $calculate['time_period_total'];
       $fxterm =  $calculate['time_period_fixed'];
       $fxrate =  $this->convertCommatoPoint($calculate['interest_rate_fixed']);

@@ -109,17 +109,39 @@ class CollateralController extends Controller
     public function detail($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
 
-        if($dev_id == 1){
+        if ( $dev_id == 1 ) {
             $type = 'nonindex';
             $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
-        }else{
+            $id = $collateral['eform_id'];
+            //get data eform
+            $EformDetail = Client::setEndpoint('eforms/'.$id)
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                ])
+                ->get();
+
+            $detail = $EformDetail['contents'];
+
+            $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                ])
+                ->get();
+
+            $customer = $dataCustomer['contents'];
+
+        } else {
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
+
         }
+
+
         // dd($collateral);
-        return view('internals.collateral.manager.detail', compact('data', 'collateral', 'type'));
+        return view('internals.collateral.manager.detail', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
 
     /**
@@ -216,8 +238,16 @@ class CollateralController extends Controller
         $prop_id = $request->input('prop_id');
 
          /* GET Data */
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return response()->json(['data' => $collateral]);
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
+        $detail = isset($collateral['data']['0'])? $collateral['data']['0'] : $collateral;
+        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return response()->json(['data' => $detail ]);
     }
 
     /**

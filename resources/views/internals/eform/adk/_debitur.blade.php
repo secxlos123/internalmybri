@@ -7,8 +7,12 @@
 		padding: 2px 5px 2px 5px;
 	}
 
+	#padding6 {
+		padding: 0 10px 0 10px;
+	}
+
 	#head6 {
-		margin-top: 500px;
+		margin-top: 0px;
 		border-top: 1px solid;
 	}
 
@@ -19,10 +23,18 @@
 	.justify {
 		text-align: justify;
 	}
+	.right {
+		text-align: right;
+	}
 </style>
+<p class="right"><font size="0">
+1/3
+</font></p>
 <table width="100%" border="1">
 	<tr>
-		<td colspan="2" align="right" id="head_color">Form Permohonan <b>BRIGUNA</b></td>
+		<td colspan="2" align="right" id="head_color">
+			No. Ref Aplikasi : <b>{{$data_sph['ref_number']}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Form Permohonan <b>BRIGUNA</b>
+		</td>
 	</tr>
 	<tr>
 		<td colspan="2" id="head_color"><b>&nbsp;&nbsp;DATA PRIBADI</b></td>
@@ -50,7 +62,7 @@
 				      			<td><font size="0">{{$data_sph['ktp']}}</font></td>
 				      			<td width="20%"><font size="0">BERLAKU SAMPAI</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0">12-31-2099</font></td>
+				      			<td><font size="0">31-12-2099</font></td>
     						</tr>
     					</table>
     				</td>
@@ -72,13 +84,13 @@
     						<tr>
     							<td width="15%"><font size="0">KELURAHAN</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kelurahan']}}</font></td>
 				      			<td width="10%"><font size="0">KOTA</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kota']}}</font></td>
 				      			<td width="15%"><font size="0">KODE POS</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kode_pos']}}</font></td>
     						</tr>
     					</table>
     				</td>
@@ -121,19 +133,51 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"><input type="checkbox"></font>
+				      							<?php if($data_sph['pendidikan_terakhir'] == '0100') {?>
+				      							<font size="0"><input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0"><input type="checkbox"></font>
+				      							<?php } ?>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;SMA</font></td>
 				      						<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0101' || $data_sph['pendidikan_terakhir'] == '0102' || $data_sph['pendidikan_terakhir'] == '0103') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;DIPLOMA</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0104') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
-							      			<td><font size="0">&nbsp;S1/S2/S3</font></td>
+							      			<td><font size="0">&nbsp;&nbsp;S1</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0105') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
+							      			</td>
+							      			<td><font size="0">&nbsp;&nbsp;S2</font></td>
+							      			<td>
+							      				<?php if($data_sph['pendidikan_terakhir'] == '0106') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
+							      			</td>
+							      			<td><font size="0">&nbsp;&nbsp;S3</font></td>
+							      			<td>
+							      				<?php if($data_sph['pendidikan_terakhir'] == 'LAINNYA') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;LAINNYA</font></td>
 				      					</tr>
@@ -277,7 +321,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">TEMPAT & TANGGAL LAHIR (tgl/bln/th)</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">
+				      			<td width="15%"><font size="0">
 				      				<?php 
 				      				if (!empty($data_sph['tgl_lahir_deb'])) {
 				      					echo $data_sph['tmpt_lahir_deb'].', '.date('d-m-Y',strtotime($data_sph['tgl_lahir_deb']));
@@ -295,7 +339,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">NAMA GADIS IBU KANDUNG</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['nama_ibu']}}</font></td>
+				      			<td width="15%"><font size="0">{{$data_sph['nama_ibu']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -306,7 +350,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">KEWARGANEGARAAN</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['kewarganegaran']}}</font></td>
+				      			<td width="15%"><font size="0">{{$data_sph['kewarganegaran']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -317,7 +361,7 @@
     						<tr>
 			    				<td width="15%"><font size="0">EMAIL</font></td>
 			    				<td width="1%"><font size="0">:</font></td>
-				      			<td width="15%">&nbsp;<font size="0">{{$data_sph['email']}}</font></td>
+				      			<td width="15%"><font size="0">{{$data_sph['email']}}</font></td>
 				      		</tr>
 				      	</table>
 				    </td>
@@ -332,7 +376,7 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"></font>
+				      							<font size="0">{{$data_sph['lama_tinggal']}}</font>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;TAHUN</font></td>
 				      						<td>
@@ -374,13 +418,13 @@
     						<tr>
     							<td width="15%"><font size="0">KELURAHAN</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kelurahan_dom']}}</font></td>
 				      			<td width="5%"><font size="0">KOTA</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kota_dom']}}</font></td>
 				      			<td width="15%"><font size="0">KODE POS</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0"></font></td>
+				      			<td><font size="0">{{$data_sph['kode_pos_dom']}}</font></td>
     						</tr>
     					</table>
     				</td>
@@ -395,24 +439,35 @@
 				      				<table>
 				      					<tr>
 				      						<td>
-				      							<font size="0"><input type="checkbox"></font>
-				      							<!-- <?php //if($data_sph['status'] == '1') {?>
+				      							<?php if($data_sph['status_rumah'] == '0') {?>
 				      							<font size="0"><input type="checkbox" checked="true"></font>
-				      							<?php //} else { ?>
+				      							<?php } else { ?>
 				      								<font size="0"><input type="checkbox"></font>
-				      							<?php //} ?> -->
+				      							<?php } ?>
 				      						</td>
 				      						<td><font size="0">&nbsp;&nbsp;&nbsp;MILIK SENDIRI</font></td>
 				      						<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['status_rumah'] == '2') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KELUARGA</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['status_rumah'] == '1') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;MILIK PERUSAHAAN</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;<input type="checkbox"></font>
+							      				<?php if($data_sph['status_rumah'] == '3') {?>
+				      							<font size="0">&nbsp;<input type="checkbox" checked="true"></font>
+				      							<?php } else { ?>
+				      								<font size="0">&nbsp;<input type="checkbox"></font>
+				      							<?php } ?>
 							      			</td>
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SEWA/KONTRAK</font></td>
 				      					</tr>
@@ -477,7 +532,7 @@
     						<tr>
     							<td width="15%"><font size="0">HP</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td><font size="0">{{$data_sph['handphone']}}</font></td>
+				      			<td><font size="0"></font></td>
     							<td width="20%"><font size="0">TELEPON KANTOR</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
 				      			<td><font size="0"></font></td>
@@ -669,7 +724,7 @@
 							      			<td><font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KONTRAK</font></td>
 							      			<td><font size="0">&nbsp;BERAKHIR</font></td>
 							      			<td>
-							      				<font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font>
+							      				<font size="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TGL/BLN/TH)</font>
 							      			</td>
 				      					</tr>
 				      				</table>
@@ -777,7 +832,7 @@
 							<tr>
 								<td width="55%"><font size="0">JUMLAH PINJAMAN YANG DIAJUKAN</font></td>
 								<td width="2%"><font size="0">:</font></td>
-								<td width="43%"><font size="0">Rp. {{number_format($data_sph['pinjaman'], 2, ",", ".")}}</font></td>
+								<td width="43%"><font size="0">Rp. {{number_format($data_sph['pinjam_ajukan'], 2, ",", ".")}}</font></td>
 							</tr>
 							<tr>
 								<td width="10%"><font size="0">JANGKA WAKTU</font></td>
@@ -791,7 +846,11 @@
 		</td>
 	</tr>
 </table>
+<p class="right" style="margin-top: 39px"><font size="0">
+2/3
+</font></p>
 <table width="100%" border="1" id="head6">
+
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERSETUJUAN FASILITAS (DIISI OLEH BANK)</b></td>
 		<td width="50%"><b>&nbsp;&nbsp;DATA PINJAMAN DI BANK LAIN</b></td>
@@ -815,7 +874,8 @@
 						<table width="100%" cellpadding=0 cellspacing=0 align="center">
 							<tr>
 								<td width="35%"><font size="0">TERBILANG</font></td>
-								<td width="65%"><font size="0">({{$data_sph['pinjaman']}})</font></td>
+								<td width="2%"><font size="0">:</font></td>
+								<td width="63%"><font size="0">({{$data_sph['bil_pinjaman']}} Rupiah)</font></td>
 							</tr>
 						</table>
 					</td>
@@ -826,7 +886,7 @@
 							<tr>
 								<td width="35%"><font size="0">JANGKA WAKTU</font></td>
 								<td width="2%"><font size="0">:</font></td>
-								<td width="63%"><font size="0">{{$data_sph['jangka_waktu']}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BULAN</font></td>
+								<td width="63%"><font size="0">{{$data_sph['jangka_waktu']}}&nbsp;BULAN</font></td>
 							</tr>
 						</table>
 					</td>
@@ -837,7 +897,7 @@
     						<tr>
     							<td width="35%"><font size="0">BUNGA</font></td>
 			    				<td width="2%"><font size="0">:</font></td>
-				      			<td width="63%"><font size="0">{{$data_sph['suku_bunga']}}</font></td>
+				      			<td width="63%"><font size="0">{{$data_sph['suku_bunga']}} %</font></td>
     						</tr>
     					</table>
     				</td>
@@ -911,7 +971,7 @@
 		</td>
 	</tr>
 </table>
-<table width="100%" border="1">
+<table width="100%" border="1" style="margin-bottom: 200px;">
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERSYARATAN *)</b></td>
 		<td width="50%">&nbsp;<b>DIISI OLEH BANK</b></td>
@@ -973,7 +1033,7 @@
 			<br>
 			<font size="0">*) Untuk permohonan pinjaman yang ditujukan untuk take-over KPR atau KKB di Bank lain mengikuti ketentuan yang berlaku.</font>
 		</td>
-		<td id="padding">			
+		<td id="padding">
 			<table width="100%" cellpadding=0 cellspacing=0 align="center">
 				<tr>
     				<td colspan="3"><font size="0">Konfirmasi persetujuan kredit dan nomor rekening calon debitur oleh petugas Bank.</font></td>
@@ -981,7 +1041,7 @@
 				<tr>
 					<td width="30%"><font size="0">Nama Account Officer / Mantri</font></td>
 					<td width="2%"><font size="0">:</font></td>
-					<td width="68%"><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+					<td width="68%"><font size="0">{{$data_sph['nama_ao']}}</font></td>
 				</tr>
 				<tr>
 					<td width="30%"><font size="0">Tanggal Realisasi</font></td>
@@ -1044,13 +1104,16 @@
 		</td>
 	</tr>
 </table>
+<p class="right" style="margin-top: 0px"><font size="0">
+3/3
+</font></p>
 <table width="100%" border="1" id="head6">
 	<tr id="head_color">
 		<td width="50%"><b>&nbsp;&nbsp;PERNYATAAN DAN KUASA</b></td>
 		<td width="50%"><b>&nbsp;&nbsp;PENAMBAHAN FASILITAS KARTU KREDIT BRI</b></td>
 	</tr>
 	<tr>
-		<td id="padding">
+		<td id="padding6">
 			<table width="100%">
 				<tr>
 					<td>
@@ -1099,31 +1162,16 @@
 									Tunduk pada ketentuan yang berlaku di BRI. Pernyataan ini dibuat dengan sebenarnya, apabila secara sengaja saya tidak mengikuti pernyataan ini saya bersedia untuk dikenakan sanksi sesuai ketentuan yang berlaku.
 								</li>
 								<li>
-									Memberikan kuasa pada Bank untuk tabungan saya dengan nomor rekening: di Bank BRI Cabang {{$data_sph['kantor_cabang']}}, serta kuasa mendebet tersebut untuk keperluan pembayaraan biaya-biaya provisi, administrasi serta angsuran rekening Kredit atau biaya-biaya lain yang mungkin timbul di kemudian hari terkait dengan fasilitas Briguna yang saya terima dan kuasa yang saya berikan ini berlaku sampai dengan fasilitas Briguna saya dinyatakan lunas oleh Bank. Apabila gaji/upah/uang pensiun saya disalurkan melalui Bank BRI, maka saya memberikan kuasa kepada Bank untuk melakukan pemotongan gaji saya untuk kepentingan tersebut di atas. Kuasa ini tidak dapat ditarik kembali serta tidak akan berakhir oleh karena sebab-sebab yang termaktub dalam pasal 1813, 1814, dan 1816 Kitab Undang Hukum Perdata dan saya membebaskan Bank dari segala tanggung jawab atas kerugian/biaya apapun sehubungan pemberian kuasa tersebut di atas.
+									Memberikan kuasa pada Bank untuk tabungan saya dengan nomor rekening: ....................................... di Bank BRI Cabang {{$data_sph['kantor_cabang']}}, serta kuasa mendebet tersebut untuk keperluan pembayaraan biaya-biaya provisi, administrasi serta angsuran rekening Kredit atau biaya-biaya lain yang mungkin timbul di kemudian hari terkait dengan fasilitas Briguna yang saya terima dan kuasa yang saya berikan ini berlaku sampai dengan fasilitas Briguna saya dinyatakan lunas oleh Bank. Apabila gaji/upah/uang pensiun saya disalurkan melalui Bank BRI, maka saya memberikan kuasa kepada Bank untuk melakukan pemotongan gaji saya untuk kepentingan tersebut di atas. Kuasa ini tidak dapat ditarik kembali serta tidak akan berakhir oleh karena sebab-sebab yang termaktub dalam pasal 1813, 1814, dan 1816 Kitab Undang Hukum Perdata dan saya membebaskan Bank dari segala tanggung jawab atas kerugian/biaya apapun sehubungan pemberian kuasa tersebut di atas.
 								</li>
 							</ol>
 							</font>
 						</p>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<table align="right">
-							<tr>
-								<td>..............., ..................</td>
-							</tr>
-							<tr>
-								<td><br><br></td>
-							</tr>
-							<tr>
-								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
 			</table>
 		</td>
-		<td id="padding">
+		<td id="padding6">
 			<table width="100%">
 				<tr>
 					<td>
@@ -1168,6 +1216,17 @@
 						<p class="justify"><font size="0">
 							Saya menyatakan bersedia menerima fasilitas tambahan berupa Kartu Kredit BRI dengan limit sesuai ketentuan yang ditetapkan oleh BANK.
 						</font></p>
+						<table align="left">
+							<tr>
+								<td>..............., ..................</td>
+							</tr>
+							<tr>
+								<td><br><br><br></td>
+							</tr>
+							<tr>
+								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
+							</tr>
+						</table>
 						<table align="right">
 							<tr>
 								<td><font size="0">(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</font></td>
@@ -1193,7 +1252,7 @@
 							<tr>
 								<td><font size="0">Alamat Emergency Contact <b>**)</b></font></td>
 								<td><font size="0">:</font></td>
-								<td><font size="0">{{$data_sph['nama_debitur']}}</font></td>
+								<td><font size="0"></font></td>
 							</tr>
 							<tr>
 								<td><font size="0">Telepon Emergency Contact <b>**)</b></font></td>

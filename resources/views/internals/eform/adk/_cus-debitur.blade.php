@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Usia MPP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['USIA_MPP']}} tahun</p>
+                    <p class="form-control-static">{{$detail['usia_mpp']}} tahun</p>
                 </div>
             </div>
             <div class="form-group">
@@ -41,13 +41,8 @@
                 <label class="col-md-5 control-label">Federal WH Code :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                        @if($debitur['FEDERAL_WH_CODE'] == '1')
-                            Kena Pajak dan Penduduk
-                        @elseif($debitur['FEDERAL_WH_CODE'] == '2')
-                            Kena Pajak dan Bukan Penduduk
-                        @else
-                            Tidak Kena Pajak
-                        @endif
+                        <!-- hardcode las federal wh code-->
+                        Kena Pajak dan Penduduk
                     </p>
                 </div>
             </div>
@@ -55,15 +50,15 @@
                 <label class="col-md-5 control-label">Transaksi Normal Harian :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                        @if($debitur['TRANSAKSI_NORMAL_HARIAN'] == '1')
-                            0 s.d 10jt
-                        @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '2')
+                        @if($detail['trans_normal_harian'] == '1')
+                            s.d 10jt
+                        @elseif($detail['trans_normal_harian'] == '2')
                             > 10jt s.d 50jt
-                        @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '3')
+                        @elseif($detail['trans_normal_harian'] == '3')
                             > 50jt s.d 100jt
-                        @elseif($debitur['TRANSAKSI_NORMAL_HARIAN'] == '4')
+                        @elseif($detail['trans_normal_harian'] == '4')
                             > 100jt s.d 1M
-                        @else
+                        @elseif($detail['trans_normal_harian'] == '5')
                             > 1M
                         @endif
                     </p>
@@ -72,7 +67,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Domisili / Lama Menetap :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['DOMISILI']}} tahun</p>
+                    <p class="form-control-static">{{$detail['lama_menetap']}} tahun</p>
                 </div>
             </div>
         </form>
@@ -102,7 +97,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Tanggal Mulai Bekerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], 0, 2) }}-{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], 2, 2) }}-{{ substr($debitur['TANGGAL_MULAI_BEKERJA'], -4) }}</p>
+                    <p class="form-control-static">{{ substr($detail['tgl_mulai_kerja'], 0, 2) }}-{{ substr($detail['tgl_mulai_kerja'], 2, 2) }}-{{ substr($detail['tgl_mulai_kerja'], -4) }}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -121,28 +116,45 @@
                 <label class="col-md-5 control-label">Resident Flag :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($debitur['RESIDENT_FLAG'] == 'Y')
+                    <!-- hardcode las, resident flag -->
                         Ya
-                    @else
-                        Tidak
-                    @endif
                     </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Pernah Pinjam di Bank Lain :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$debitur['APAKAH_PERNAH_PINJAM_DI_BANK_LAIN']}}</p>
+                    <p class="form-control-static">{{$detail['pernah_pinjam']}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-5 control-label">Perjanjian Pisah Harta :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($debitur['JENIS_PERJANJIAN'] == '0')
+                    @if($detail['perjanjian_pisah_harta'] == '0')
                         Tidak
                     @else
                         Ya
+                    @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Agama :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                    @if($detail['agama'] == 'BUD')
+                        Budha
+                    @elseif($detail['agama'] == 'ISL')
+                        Islam
+                    @elseif($detail['agama'] == 'HIN')
+                        Hindu
+                    @elseif($detail['agama'] == 'KAT')
+                        Katholik
+                    @elseif($detail['agama'] == 'KRI')
+                        Kristen
+                    @else
+                        Lainnya
                     @endif
                     </p>
                 </div>

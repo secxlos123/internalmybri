@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['customer']['personal']['first_name']}}</p>
+                    <p class="form-control-static">{{$detail['customer']['personal']['name']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -35,11 +35,7 @@
                 <label class="col-md-5 control-label">Status Pengajuan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['baru_atau_perpanjang'] == '0')
-                        Kredit Baru
-                    @else
-                        Kredit Suplesi / Perpanjangan
-                    @endif
+                        {{$detail['status']}}
                     </p>
                 </div>
             </div>
@@ -94,6 +90,12 @@
                 <label class="col-md-5 control-label">Angsuran :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">Rp. {{ number_format($detail['angsuran_usulan'], 2, ",", ".") }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Status :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$status}}</p>
                 </div>
             </div>
         </form>

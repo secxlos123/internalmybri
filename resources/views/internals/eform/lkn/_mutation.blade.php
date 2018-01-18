@@ -4,7 +4,7 @@
         <div class="col-md-4">
             <div class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Nama Bank *:</label>
+                    <label class="col-md-4 control-label">Nama Bank :</label>
                     <div class="col-md-6">
                         <select class="form-control bank" name="mutations[0][bank]">
                            <option selected="" disabled="">-- Pilih Bank --</option>
@@ -27,7 +27,7 @@
         <div class="col-md-5">
             <div class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-md-4 control-label">No. Rekening *:</label>
+                    <label class="col-md-4 control-label">No. Rekening :</label>
                     <div class="col-md-6">
                         <input type="text" class="form-control numericOnly" name="mutations[0][number]" maxlength="15">
                     </div>
@@ -45,17 +45,17 @@
             <table class="table table-bordered accountTable" id="accountTable0">
               <thead>
                   <tr>
-                      <th>Tanggal *</th>
-                      <th>Nominal *</th>
-                      <th>Jenis Transaksi *</th>
-                      <th>Keterangan *</th>
+                      <th>Tanggal </th>
+                      <th>Nominal </th>
+                      <th>Jenis Transaksi </th>
+                      <th>Keterangan </th>
                       <th></th>
                   </tr>
               </thead>
               <tbody>
                   <tr>
                       <td>
-                        <div class="input-group">
+                        <div class="input-group count-row">
                             <input type="text" class="form-control" id="datepicker-inline" name="mutations[0][tables][0][date]">
                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                         </div>
@@ -87,9 +87,9 @@
             </table>
             <div class="col-md-6">
               <div class="form-group mutation_file {!! $errors->has('mutation_file') ? 'has-error' : '' !!}">
-                  <label class="col-md-4 control-label">Unggah File Mutasi *</label>
+                  <label class="col-md-4 control-label">Unggah File Mutasi </label>
                   <div class="col-md-8">
-                      <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" >
+                      <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="mutations[0][file]" accept="image/,application/pdf,application/rar,application/zip">
                       @if ($errors->has('mutation_file')) <p class="help-block">{{ $errors->first('mutation_file') }}</p> @endif
                   </div>
               </div>

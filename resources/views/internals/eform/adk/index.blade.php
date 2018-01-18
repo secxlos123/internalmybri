@@ -1,4 +1,4 @@
-@section('title','My BRI - Verifikasi ADK')
+@section('title','MyBRI - Verifikasi ADK')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -28,7 +28,7 @@
                     <div class="card-box">
                         <!-- <div class="add-button"> -->
                             <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
-                            <!-- <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a> -->
+                            <!-- <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Pinjaman Aplikasi</a> -->
                             <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                         <!-- </div> -->
                         <!-- <div id="filter" class="m-b-15">
@@ -113,10 +113,11 @@
                                     <th>ID Aplikasi</th>
                                     <th>No Referensi</th>
                                     <th>Produk</th>
-                                    <th>Nama Pegawai</th>
+                                    <th>Nama AO</th>
                                     <th>Nama Debitur</th>
                                     <th>Plafond</th>
-                                    <th>Aksi</th>
+                                    <th>Status</th>
+                                    <th style="width: 100px">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

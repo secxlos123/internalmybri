@@ -1001,6 +1001,22 @@ a:focus {
 .btn-teal {
   color: #ffffff !important;
 }
+.btn-pastel {
+  background-color: #0083c1;
+  border-color: rgba(49, 58, 70, 0.2);
+}
+.btn-pastel:hover,
+.btn-pastel:focus,
+.btn-pastel:active,
+.btn-pastel.active,
+.btn-pastel.focus,
+.btn-pastel:active,
+.btn-pastel:focus,
+.btn-pastel:hover,
+.open > .dropdown-toggle.btn-pastel {
+  background-color: rgba(49, 58, 70, 0.07) !important;
+  border: 1px solid rgba(49, 58, 70, 0.2) !important;
+}
 .btn-custom {
   background-color: #7fc1fc;
   border-color: #7fc1fc;
@@ -3276,7 +3292,7 @@ input[switch="teal"]:checked + label {
   border-width: 0 6px 6px 6px !important;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: #7fc1fc;
+  background-color: #ffa500;
 }
 .select2-results__option {
   padding: 6px 12px;
@@ -4444,6 +4460,7 @@ table.dataTable thead th.sorting_desc:after {
   width: 36px;
   margin: 0px auto;
 }
+/*ended iqbal emveep --------------------------------------------------------*/
 .navbar-default .right-menu-item {
   height: 36px;
   width: 36px;
@@ -5698,3 +5715,4 @@ and (max-device-width : 1192px) {
 /*
 * ended
 */
+/*ended iqbal emveep --------------------------------------------------------*/

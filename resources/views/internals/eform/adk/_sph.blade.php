@@ -1,6 +1,17 @@
+<style type="text/css">
+  .justify {
+    text-align: justify;
+  }
+  .right {
+    text-align: right;
+  }
+</style>
+<p class="right"><font size="0">
+1/6
+</font></p>
 <h3>PT BANK RAKYAT INDONESIA (PERSERO) Tbk.</h3>
 <hr>
-<p style="text-align: justify;">
+<p class="justify">
   <table>
     <tr>
       <td>KC/KCP/UNIT<font size='1'>1)</font></td>
@@ -21,9 +32,9 @@
 </p>
 <h3 align="center">SURAT PENGAKUAN HUTANG</h3>
 <h4 align="center">Nomor : &nbsp;{{$data_sph['no_skpp']}}</h4>
-<p style="text-align: justify;">
+<p class="justify">
   Untuk kepentingan PT. Bank Rakyat Indonesia (Persero) Tbk sebagai Badan Hukum yang berkedudukan di Jakarta berdasarkan Anggaran Dasar Perseroan yang dimuat dalam Akta Nomor 51 tanggal 26 Mei 2008 yang dibuat dihadapan Fathiah Helmi, SH Notaris di Jakarta dan telah diumumkan dalam Berita Negara RI Nomor 68 tanggal 25 Agustus 2009, Tambahan Nomor 23079, yang telah beberapa kali diubah, perubahan Anggaran Dasar terakhir dimuat dalam Akta No. 1 tanggal 1 April 2015 yang dibuat dihadapan Fathiah Helmi, S.H. Notaris di Jakarta, yang Penerimaan Pemberitahuan Perubahan Anggaran Dasarnya telah diterima dan dicatat dalam database Sistem Administrasi Badan Hukum Kementerian Hukum dan Hak Asasi Manusia Republik Indonesia sesuai dengan suratnya tanggal 8 April 2015 Nomor AHU-AH.01.03-0054353.<br>
-  Pada hari ini tanggal <?php echo date('d')?> bulan <?php echo date('m')?> tahun <?php echo date('Y')?> (<?php echo date('d-m-Y')?>)
+  Pada hari ini tanggal {{$data_sph['bil_day']}} bulan {{$data_sph['bil_month']}} tahun {{$data_sph['bil_year']}} (<?php echo date('d/m/Y')?>)<br>
   Yang bertandatangan dibawah ini :<font size='1'>2)</font>
 </p> 
   <br>
@@ -76,7 +87,7 @@
       <td></td>
       <td>Pekerjaan</td>
       <td align="center">:</td>
-      <td>&nbsp;-</td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
       <td></td>
@@ -85,12 +96,12 @@
       <?php if($data_sph['status'] == '1'){ ?>
       <td>&nbsp;-</td>
       <?php } else { ?>
-      <td>&nbsp;{{$data_sph['address']}}</td>
+      <td>&nbsp;{{$data_sph['alamat']}}</td>
       <?php } ?>
     </tr>
   </table>
-<p style="text-align: justify;">
-  dengan ini menggabungkan diri masing-masing untuk menanggung hutang sejumlah dibawah ini atau segala hutang yang akan timbul sehubungan dengan Surat Pengakuan Hutang ini, sehingga dengan demikian baik bersama-sama maupun sendiri-sendiri atau salah seorang saja menanggung segala hutang (hoofdelijk)<font size='1'>3)</font>, selanjutnya disebut YANG BERHUTANG, menyatakan mengaku berhutang kepada PT. Bank Rakyat Indonesia (Persero) Tbk Kanca/Kancapem/Unit<font size='1'>4)</font> {{$data_sph['kantor_cabang']}} selanjutnya disebut BANK, karena telah menerima uang sebagai pinjaman sejumlah Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} (.............. rupiah) menurut syarat-syarat dan ketentuan-ketentuan sebagaimana tersebut berikut ini :
+<p class="justify">
+  dengan ini menggabungkan diri masing-masing untuk menanggung hutang sejumlah dibawah ini atau segala hutang yang akan timbul sehubungan dengan Surat Pengakuan Hutang ini, sehingga dengan demikian baik bersama-sama maupun sendiri-sendiri atau salah seorang saja menanggung segala hutang (hoofdelijk)<font size='1'>3)</font>, selanjutnya disebut YANG BERHUTANG, menyatakan mengaku berhutang kepada PT. Bank Rakyat Indonesia (Persero) Tbk Kanca/Kancapem/Unit<font size='1'>4)</font> {{$data_sph['kantor_cabang']}} selanjutnya disebut BANK, karena telah menerima uang sebagai pinjaman sejumlah Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} ({{$data_sph['bil_pinjaman']}} rupiah) menurut syarat-syarat dan ketentuan-ketentuan sebagaimana tersebut berikut ini :
   <br><br><br>
   <hr>
   <font size='1'><i>1) Dicoret yang tidak perlu</i></font><br>
@@ -99,22 +110,25 @@
   <font size='1'><i>4) Dicoret yang tidak perlu</i></font>
 </p>
 <!-- pasal 1 -->
-<p style="text-align: justify;">
+<p class="right"><font size="0">
+2/6
+</font></p>
+<p class="justify">
   <h3 align="center">PENGGUNAAN PINJAMAN</h3>
   <h4 align="center">Pasal 1</h4>
   Pinjaman yang diterima oleh YANG BERHUTANG dari BANK dipergunakan untuk keperluan {{$data_sph['tujuan']}}
 </p>
 <br><br>
 <!-- pasal 2 -->
-<p style="text-align: justify;">
+<p class="justify">
   <h3 align="center">JANGKA WAKTU, ANGSURAN DAN PELUNASAN MAJU</h3>
   <h4 align="center">Pasal 2</h4>
   <ol style="text-align: justify;">
     <li>
-      Pokok pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG kepada BANK dalam jangka waktu {{$data_sph['jangka_waktu']}} (……………………………………………………………) bulan terhitung sejak tanggal ditandatanganinya Surat Pengakuan Hutang ini.
+      Pokok pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG kepada BANK dalam jangka waktu {{$data_sph['jangka_waktu']}} ({{$data_sph['bil_jangka']}}) bulan terhitung sejak tanggal ditandatanganinya Surat Pengakuan Hutang ini.
     </li>
     <li>
-      Pokok Pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG tiap-tiap bulanan dengan angsuran yang sama besarnya yang meliputi angsuran pokok dan bunga dalam {{$data_sph['suku_bunga']}} (……………………………………………………………) kali angsuran masing-masing sebesar Rp {{number_format($data_sph['angsuran'], 2, ",", ".")}} (…………………………………… rupiah). Angsuran tersebut harus dibayar selambat-lambatnya setiap tanggal ……… pada bulan angsuran yang bersangkutan. Dalam hal tanggal tersebut jatuh pada hari libur maka angsuran harus dibayar oleh YANG BERHUTANG pada hari kerja sebelumnya.
+      Pokok Pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG tiap-tiap bulanan dengan angsuran yang sama besarnya yang meliputi angsuran pokok dan bunga dalam {{$data_sph['suku_bunga']}} ({{$data_sph['bil_bunga']}}) kali angsuran masing-masing sebesar Rp {{number_format($data_sph['angsuran'], 2, ",", ".")}} ({{$data_sph['bil_angsuran']}} rupiah). Angsuran tersebut harus dibayar selambat-lambatnya setiap tanggal ……… pada bulan angsuran yang bersangkutan. Dalam hal tanggal tersebut jatuh pada hari libur maka angsuran harus dibayar oleh YANG BERHUTANG pada hari kerja sebelumnya.
     </li>
     <li>
       Yang berhutang wajib membayar angsuran kredit/pinjaman sesuai dengan jangka waktu dan periode angsuran yang telah disepakati. Apabila yang berhutang melakukan pelunasan maju sebelum jangka waktu yang disepakati, maka kepada debitur diwajibkan membayar :
@@ -127,7 +141,7 @@
   </ol>
 </p>
 <!-- pasal 3 -->
-<p style="text-align: justify;">
+<p class="justify">
   <h3 align="center">PROVISI, DENDA DAN BIAYA-BIAYA</h3>
   <h4 align="center">Pasal 3</h4>
   <ol style="text-align: justify;">
@@ -135,10 +149,10 @@
       YANG BERHUTANG harus membayar :
       <ol type="a">
         <li>
-          Provisi sebesar {{$data_sph['provisi']}} (………………) % dari Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} (………………………………………………… rupiah) atau sebesar Rp {{number_format($data_sph['provisi_atau'], 2, ",", ".")}} (………………………………………………………………………… rupiah).
+          Provisi sebesar {{$data_sph['provisi']}} (...................) % dari Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} ({{$data_sph['bil_pinjaman']}} rupiah) atau sebesar Rp {{number_format($data_sph['provisi_atau'], 2, ",", ".")}} ({{$data_sph['bil_prov_atau']}} rupiah).
         </li>
         <li>
-          Biaya Administrasi sebesar Rp {{number_format($data_sph['biaya_adm'], 2, ",", ".")}} (………………………………………………… rupiah). <br>
+          Biaya Administrasi sebesar Rp {{number_format($data_sph['biaya_adm'], 2, ",", ".")}} ({{$data_sph['bil_biaya_adm']}} rupiah). <br>
           Biaya-biaya tersebut dibayar sekaligus lunas pada saat penandatanganan Surat Pengakuan Hutang ini.
         </li>
       </ol>
@@ -152,10 +166,13 @@
   </ol>
   <br>
   <hr>
-  <font size='1'><i>5) Kata biaya-biaya tersebut……dst, dicoret apabila biaya-biaya (provisi, administrasi dan/atau premi asuransi) dipotong dari pinjaman.</i></font><br>
+  <font size='1'><i>5) Kata biaya-biaya tersebut……dst, dicoret apabila biaya-biaya (provisi, administrasi dan/atau premi asuransi) dipotong dari pinjaman.</i></font><br><br><br>
 </p>
 <!-- pasal 4 -->
-<p style="text-align: justify;">
+<p class="right"><font size="0">
+3/6
+</font></p>
+<p class="justify">
   <h3 align="center">SUMBER PEMBAYARAN DAN JAMINAN</h3>
   <h4 align="center">Pasal 4</h4>
     Untuk pembayaran angsuran pinjaman dan atau untuk pelunasan segala pinjaman YANG BERHUTANG kepada BANK berupa pokok, bunga, denda dan biaya-biaya lainnya, maka YANG BERHUTANG menyerahkan dan mengalihkan kepada BANK <font size='1'>6)</font>:
@@ -184,7 +201,7 @@
   <br><br><br><br><br><br>
 </p>
 <!-- pasal 5 -->
-<p style="text-align: justify;">
+<p class="justify">
   <h3 align="center">ASURANSI</h3>
   <h4 align="center">Pasal 5</h4>
   <ol style="text-align: justify;">
@@ -203,9 +220,11 @@
   <font size='1'><i>9) Diisi apabila ada agunan kebendaan</i></font><br>
   <font size='1'><i>10) Diisi nama YANG BERHUTANG yang diasuransikan sesuai ketentuan</i></font>
 </p>
-<br><br>
 <!-- pasal 6 -->
-<p style="text-align: justify;">
+<p class="right"><font size="0">
+4/6
+</font></p>
+<p class="justify">
   <h3 align="center">KEWAJIBAN LAIN YANG BERHUTANG</h3>
   <h4 align="center">Pasal 6</h4>
     YANG BERHUTANG berkewajiban untuk menyerahkan kepada BANK :
@@ -217,14 +236,14 @@
 </p>
 <br><br>
 <!-- pasal 7 -->
-<p style="text-align: justify;">
+<p class="justify">
   <h3 align="center">PENGAWASAN DAN PEMERIKSAAN</h3>
   <h4 align="center">Pasal 7</h4>
   BANK berhak baik dilakukan sendiri atau dilakukan oleh pihak lain yang ditunjuk BANK dan YANG BERHUTANG wajib mematuhinya untuk setiap waktu meminta keterangan dan melakukan pemeriksaan yang diperlukan BANK kepada YANG BERHUTANG.
 </p>
 <br><br>
 <!-- pasal 8 -->
-<p style="text-align: justify;">
+<p class="justify">
   <h3 align="center">PERNYATAAN</h3>
   <h4 align="center">Pasal 8</h4>
   YANG BERHUTANG dengan tegas menyatakan : 
@@ -253,7 +272,10 @@
   <font size='1'><i>11) Dicoret butir 2 apabila tidak ada agunan kebendaan </i></font><br>
 </p>
 <!-- pasal 9 -->
-<p style="text-align: justify;">
+<p class="right"><font size="0">
+5/6
+</font></p>
+<p class="justify">
   <h3 align="center">KLAUSULA-KLAUSULA</h3>
   <h4 align="center">Pasal 9</h4>
   <ol style="text-align: justify;">
@@ -289,17 +311,19 @@
       </ol>
     </li>
   </ol>
-  <br>
 </p>
 <!-- pasal 10 -->
 <h3 align="center">DOMISILI</h3>
 <h4 align="center">Pasal 10</h4>
-<p style="text-align: justify;">
+<p class="justify">
   Tentang Surat Pengakuan Hutang ini dan segala akibatnya serta pelaksanaannya YANG BERHUTANG memilih tempat kedudukan hukum (domisili) yang tetap dan umum di Kantor Kepaniteraan Pengadilan Negeri {{$data_sph['pengadilan']}} dengan tidak mengurangi hak dan wewenangnya BANK untuk menuntut pelaksanaan/eksekusi atau mengajukan tuntutan hukum terhadap YANG BERHUTANG berdasarkan Surat Pengakuan Hutang ini melalui atau dihadapan Pengadilan-Pengadilan lainnya dimanapun juga di dalam wilayah Republik Indonesia.
 </p>
 <br><br><br><br><br>
 <!-- pasal 11 -->
-<p style="text-align: justify;">
+<p class="right"><font size="0">
+6/6
+</font></p>
+<p class="justify">
   <h3 align="center">KETENTUAN LAIN-LAIN</h3>
   <h4 align="center">Pasal 11</h4>
   <ol style="text-align: justify;">
@@ -359,10 +383,9 @@
       <td align="center">{{$data_sph['nama_pasangan']}}</td>
     </tr>
   </table>
-  <br><br><br>
   <?php } else { ?>
   </table>
-  <br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br>
   <?php } ?>
   <hr>
   <font size='1'><i>12) Jika dapat menulis, YANG BERHUTANG harus menulis sendiri kalimat ”baik untuk sejumlah Rp.............. (dengan huruf ....................................) ditambah dengan bunga dan ongkos-ongkos.” </i></font><br>

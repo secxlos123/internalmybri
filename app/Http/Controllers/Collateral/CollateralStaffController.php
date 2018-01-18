@@ -99,15 +99,34 @@ class CollateralStaffController extends Controller
     public function show($dev_id, $prop_id)
     {
       $data = $this->getUser();
-        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
+      
       if($dev_id == 1){
         $type = 'nonindex';
         $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        $id = $collateral['eform_id'];
+        //get data eform
+        $EformDetail = Client::setEndpoint('eforms/'.$id)
+          ->setHeaders([
+            'Authorization' => $data['token']
+            ,          'pn' => $data['pn']
+            ])->get();
+        
+        $detail = $EformDetail['contents'];
+
+        $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
+          ->setHeaders([
+            'Authorization' => $data['token']
+            ,          'pn' => $data['pn']   
+            ])->get();
+
+        $customer = $dataCustomer['contents'];
+
       }else{
         $type = '';
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
       }
-      return view('internals.collateral.staff.detail-property', compact('data', 'collateral', 'type'));
+      // dd($collateral);
+      return view('internals.collateral.staff.detail-property', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
 
     /**
@@ -236,7 +255,7 @@ class CollateralStaffController extends Controller
       $excludeImage = ['image_area'];
 
       if ( in_array($baseName, $excludeNumber) ) {
-        $values = str_replace(',', '.', str_replace('.', '', $values));
+        $values = str_replace(',', '', $values);
       }
 
       if ( in_array($baseName, $excludeImage) ) {
@@ -307,7 +326,6 @@ class CollateralStaffController extends Controller
     {
       $data = $this->getUser();
       $newForm = $this->otsRequest($request);
-      // dd($newForm);
 
       $client = Client::setEndpoint('collateral/ots/'.$id)
       ->setHeaders([
@@ -502,7 +520,7 @@ class CollateralStaffController extends Controller
       return response()->json($collateral['contents']);
     }
 
-    /**
+     /**
      * Get detail NonIndex of collateral for getLKNagunan.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -513,7 +531,7 @@ class CollateralStaffController extends Controller
     //  dd($request->all());
       $role = $data['role'];
       $long = number_format(floatval($request['hidden-long']), 5);
-      $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
+      $detailCollateral = Client::setEndpoint('collateral/notifotsnonindex/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
@@ -536,7 +554,7 @@ class CollateralStaffController extends Controller
    //   dd($request->all());
       $role = $data['role'];
       $long = number_format(floatval($request['hidden-long']), 5);
-      $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
+      $detailCollateral = Client::setEndpoint('collateral/notifots/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
