@@ -12,7 +12,7 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label title ="Take Home Pay Per Bulan" class="col-md-3 control-label">Gaji/Pendapatan * :</label>
+                                        <label title ="Take Home Pay Per Bulan" class="col-md-3 control-label">Gaji/Pendapatan Per bulan * :</label>
                                         <div class="col-md-9">
                                             <div class="input-group">
                                             @if ($type != 'preview')
@@ -44,7 +44,7 @@
                             <div class="col-md-6">
                                 <div class="form-horizontal">
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Angsuran Pinjaman Lain * :</label>
+                                        <label class="col-md-4 control-label">Angsuran Pinjaman Berjalan * :</label>
                                         <div class="col-md-8">
                                             <div class="input-group">
                                             @if ($type != 'preview')

@@ -63,6 +63,16 @@
                                                         <input type="text" class="form-control" id="customer_name">
                                                     </div>
                                                 </div>
+                                                 <div class="form-group">
+                                                    <label class="col-sm-4 control-label">AO :</label>
+                                                    <div class="col-sm-8">
+                                                         {!! Form::select('name', ['All' => ' (Semua)']+['All' => ' (Semua)'], old('name'), [
+                                                                    'class' => 'select2 name',
+                                                                    'data-placeholder' => 'Pilih Nama AO',
+                                                                    'id' => 'name'
+                                                                ]) !!}
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label class="col-sm-4 control-label">Status Pengajuan Kredit:</label>
@@ -96,7 +106,7 @@
                                                     <label class="col-sm-4 control-label">Jenis Produk :</label>
                                                     <div class="col-sm-8">
                                                         <select id="product_filter" class="form-control">
-                                                            <option selected="" value="All"> Semua</option>
+                                                            <option selected="" value="All"> (Semua)</option>
                                                             <option value="kpr">KPR</option>
                                                             <option value="briguna">BRIGUNA</option>
                                                         </select>
@@ -242,6 +252,7 @@
                     d.customer_name = $('#customer_name').val();
                     d.prescreening = $('#prescreening_filter').val();
                     d.product = $('#product_filter').val();
+                    d.name = $('#name').val();
                 }
             },
           aoColumns : [
@@ -440,4 +451,46 @@
 
         });
     })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var lastStatusElement = null;
+        $('.select2').select2({
+            witdh : '100%',
+            allowClear: true,
+        });
+
+        $('.name').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getAO")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                     //   aoId: $('#fake-aoid').val(),
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.officers.data,
+                        pagination: {
+                            more: (params.page * data.officers.per_page) < data.officers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        // $('.name').on('select2:select', function(){
+        //     $('#fake-aoid').val($(this).val());
+        // });
+    });
 </script>
