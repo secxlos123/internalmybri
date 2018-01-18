@@ -33,7 +33,7 @@
                                     "Ya" => "Ya", 
                                     "Tidak" => "Tidak"), 
                                     old('ten[insurance]'), [
-                                    'class' => 'select2 insurance ',
+                                    'class' => 'select2 insurance_flag ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
                             </div>
