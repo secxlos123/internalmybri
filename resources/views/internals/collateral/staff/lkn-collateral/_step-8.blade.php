@@ -75,12 +75,16 @@
                         <div class="form-group clearfix" id="independent" hidden="">
                             <label class="col-md-4 control-label">Penilai Independent * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('eight[independent_appraiser]', array("" => "", 
+                                <!-- {!! Form::select('eight[independent_appraiser]', array("" => "", 
                                     "Menggunakan Servis CLAS" => "Menggunakan Servis CLAS", 
                                     "Untuk Listing Data" => "Untuk Listing Data"), 
                                     old('eight[independent_appraiser]'), [
-                                    'class' => 'select2 independent_appraiser ',
+                                    'class' => 'select2 appraiser ',
                                     'data-placeholder' => '-- Pilih --'
+                                ]) !!} -->
+                                {!! Form::select('eight[independent_appraiser]', ['' => ''], old('eight[independent_appraiser]'), [
+                                    'class' => 'select2 appraiser',
+                                    'data-placeholder' => 'Pilih Nama Penilai'
                                 ]) !!}
                             </div>
                         </div>
