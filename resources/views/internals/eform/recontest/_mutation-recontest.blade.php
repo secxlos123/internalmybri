@@ -85,9 +85,9 @@
           <div class="form-group">
             <label class="col-md-4 control-label">Nama Bank :</label>
             <div class="col-md-6">
-              {!! Form::select( 'mutation[0][bank]'
+              {!! Form::select( 'mutations[0][bank]'
               , get_bank('all')
-              , old('mutation[0][bank]')
+              , old('mutations[0][bank]')
               , [
               'class' => 'form-control '
               , 'placeholder' => 'Pilih Bank'
@@ -102,7 +102,7 @@
           <div class="form-group">
             <label class="col-md-4 control-label">No. Rekening :</label>
             <div class="col-md-6">
-              <input type="text" class="form-control numericOnly" name="mutations[0][number]" maxlength="15" value="{{old('mutation[0][number]')}}">
+              <input type="text" class="form-control numericOnly" name="mutations[0][number]" maxlength="15" value="{{old('mutations[0][number]')}}">
             </div>
           </div>
         </div>

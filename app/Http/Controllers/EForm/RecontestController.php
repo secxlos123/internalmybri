@@ -172,32 +172,30 @@ class RecontestController extends Controller
      */
     public function postLKNRecontest(Request $request, $id)
     {
-        // $data = $this->getUser();
-        // $newForm = $this->lknRequest($request);
-        // dd($newForm);
+        $data = $this->getUser();
+        $newForm = $this->lknRequest($request);
 
-        // $client = Client::setEndpoint('eforms/'.$id.'/recontest')
-        // ->setHeaders([
-        //     'Authorization' => $data['token']
-        //     , 'pn' => $data['pn']
-        //     , 'auditaction' => 'Simpan Form LKN Recontest'
-        //     , 'long' =>  $request['hidden-long']
-        //     , 'lat' =>  $request['hidden-lat']
-        // ])
-        // ->setBody($newForm)
-        // ->post('multipart');
-        //   // dd($client);
+        $client = Client::setEndpoint('eforms/'.$id.'/recontest')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                , 'auditaction' => 'Simpan Form LKN Recontest'
+                , 'long' =>  $request['hidden-long']
+                , 'lat' =>  $request['hidden-lat']
+            ])
+            ->setBody($newForm)
+            ->post('multipart');
 
-        // if($client['code'] == 201){
-        //     \Session::flash('success', $client['descriptions']);
-        //     return redirect()->route('eform.index');
-        // }else{
-        //     $error = reset($client['contents']);
-        //     \Session::flash('error', $client['descriptions'].' '.$error);
-        //     return redirect()->back()->withInput($request->input());
-        // }
+        if ( $client['code'] == 201 ) {
+            \Session::flash('success', $client['descriptions']);
+            return redirect()->route('eform.index');
 
-        return redirect()->route('eform.index');
+        } else {
+            $error = reset($client['contents']);
+            \Session::flash('error', $client['descriptions'].' '.$error);
+            return redirect()->back()->withInput($request->input());
+
+        }
     }
 
     /**
