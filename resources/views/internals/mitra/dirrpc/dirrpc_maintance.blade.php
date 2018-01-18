@@ -22,7 +22,7 @@
 
 			</div>
 			</form>
-			<form>
+			<!--<form>
 			<div class="row">
                     <div class="col-md-12">
                             @if (\Session::has('error'))
@@ -78,12 +78,6 @@
 										<div class="col-lg-6">
 											<div class="form-group submit3">
 													<div class="col-md-2">                               
-														<button type="button" class="btn btn-danger waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-download" name="btn-download"><i class="mdi mdi-download"></i>Unduh </button>
-													</div>
-													<div class="col-md-2">                               
-														<button type="button" class="btn btn-info waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-print" name="btn-print"><i class="mdi mdi-printer"></i>Print </button>
-													</div>
-													<div class="col-md-2">                               
 														<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save" name="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
 													</div>
                                             </div>
@@ -127,8 +121,9 @@
                     </div>
 
 			</div>
-			</form>
+			</form>-->
 		</div>
 	</div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')  
+@include('internals.mitra.script.dirrpc.script_dirrpc_maintance')  

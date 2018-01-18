@@ -79,7 +79,7 @@ class AOController extends Controller
         \Log::info($e);
       }
 
-      $recontest = 0;
+      $recontest = 1;
 
       return view('internals.eform.lkn.index', compact('data', 'id', 'eformData', 'recontest'));
     }

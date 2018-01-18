@@ -34,8 +34,36 @@ class AddDirRpcontroller extends Controller
 					'form' => 'dir_rpc_add'
 				])
 				->post();
+		if(!empty($_GET['no'])){
+		$client = Client::setEndpoint('get_dir')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'no' => $_GET['no']
+				])
+				->post();	
+		$clients = $client['contents'][0];
+		}else{
+			$clients = ['debt_name'=>''];
+		}
+		if(!empty($_GET['id_detail'])){
+		$client_detail = Client::setEndpoint('get_dir_detail')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'no' => $_GET['id_detail']
+				])
+				->post();	
+		$clients_detail = $client_detail['contents'][0];
+		}else{
+			$clients_detail = ['penghasilan_maksimal'=>'','penghasilan_minimal'=>'','payroll'=>'','dir_persen'=>''];
+		}
 		$view = $view['contents'];
-		return view('internals.mitra.dirrpc.dirrpc_add',  compact('data','view'));
+		return view('internals.mitra.dirrpc.dirrpc_add',  compact('data','view','clients','clients_detail'));
     }
 	
 	
@@ -64,8 +92,19 @@ class AddDirRpcontroller extends Controller
 //			return $pdf->download('invoice.pdf');
 //			die();
 		}else if($request->button=='submit'){
-			
 		$data = $this->getUser();
+		if($request->type=="add_detail"){
+			$client = Client::setEndpoint('add_detail')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'dirrpc' => $request->all()
+				])
+				->post();
+		return response()->json(['response' => $client]);
+		}else{
 		$client = Client::setEndpoint('dirrpc')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -76,6 +115,7 @@ class AddDirRpcontroller extends Controller
 				])
 				->post();
 		return response()->json(['response' => $client]);
+		}
 		}
 		}
   

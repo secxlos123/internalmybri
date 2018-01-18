@@ -277,7 +277,11 @@
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+    @if($recontest == 1)
     {!! JsValidator::formRequest('App\Http\Requests\EForm\LKNRequest', '#formLKN'); !!}
+    @else
+    {!! JsValidator::formRequest('App\Http\Requests\Recontest\RecontestRequest', '#formLKN'); !!}
+    @endif
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
     <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script>
 

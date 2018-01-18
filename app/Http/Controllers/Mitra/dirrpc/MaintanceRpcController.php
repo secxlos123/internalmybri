@@ -34,8 +34,18 @@ class MaintanceRpcController extends Controller
 					'form' => 'dir_rpc_maintance'
 				])
 				->post();
+		$client = Client::setEndpoint('get_dir')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'no' => $_GET['no']
+				])
+				->post();	
+		$clients = $client['contents'][0];
 		$view = $view['contents'];
-		return view('internals.mitra.dirrpc.dirrpc_maintance',  compact('data','view'));
+		return view('internals.mitra.dirrpc.dirrpc_maintance',  compact('data','view','clients'));
     }
 	
 	

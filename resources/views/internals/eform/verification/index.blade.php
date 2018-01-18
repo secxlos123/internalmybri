@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Verify Data Nasabah</h4>
+                        <h4 class="page-title">Verifikasi Data Nasabah</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>

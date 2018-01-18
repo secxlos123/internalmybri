@@ -478,4 +478,78 @@ class DropdownController extends Controller
 
         return response()->json(['staffs' => $contents]);
     }
+
+    /**
+     * Get Insurance List
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getInsurance(Request $request)
+    {
+        $data = $this->getUser();
+
+        $insurances = Client::setEndpoint('insurance-list')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page'),
+                'region_id' => $request->input('region_id')
+            ])
+            ->get();
+        $contents = array();
+        if ( count($insurances['contents'])>0){
+            foreach ($insurances['contents']['data'] as $key => $insurance) {
+                if ($insurance['id'] = $insurance['id']) {
+                    $insurance['text'] = $insurance['name'];
+                    $insurances['contents']['data'][$key] = $insurance;
+                }
+            }
+            $contents = $insurances['contents'];
+        }
+
+        return response()->json(['insurances' => $contents]);
+    }
+
+    /**
+     * Get Appraiser List
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAppraiser(Request $request)
+    {
+        $data = $this->getUser();
+
+        $appraisers = Client::setEndpoint('appraiser-list')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page'),
+                'region_id' => $request->input('region_id')
+            ])
+            ->get();
+        $contents = array();
+        if ( count($appraisers['contents'])>0){
+            foreach ($appraisers['contents']['data'] as $key => $appraiser) {
+                if ($appraiser['id'] = $appraiser['id']) {
+                    $appraiser['text'] = $appraiser['name'];
+                    $appraisers['contents']['data'][$key] = $appraiser;
+                }
+            }
+            $contents = $appraisers['contents'];
+        }
+
+        return response()->json(['appraisers' => $contents]);
+    }
 }

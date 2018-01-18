@@ -33,7 +33,7 @@
                                     "Ya" => "Ya", 
                                     "Tidak" => "Tidak"), 
                                     old('ten[insurance]'), [
-                                    'class' => 'select2 insurance ',
+                                    'class' => 'select2 insurance_flag ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
                             </div>
@@ -44,12 +44,16 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Nama Perusahaan Asuransi * :</label>
                         <div class="col-md-8">
-                            {!! Form::select('ten[insurance_company]', array("" => "", 
+                            <!-- {!! Form::select('ten[insurance_company]', array("" => "", 
                                 "Menggunakan Servis CLAS" => "Menggunakan Servis CLAS", 
                                 "Untuk Listing Data" => "Untuk Listing Data"), 
                                 old('ten[insurance_company]'), [
                                 'class' => 'select2 insurance_company ',
                                 'data-placeholder' => '-- Pilih --'
+                            ]) !!} -->
+                            {!! Form::select('ten[insurance_company]', ['' => ''], old('ten[insurance_company]'), [
+                                'class' => 'select2 insurance',
+                                'data-placeholder' => 'Pilih Nama Perusahaan'
                             ]) !!}
                         </div>
                     </div>

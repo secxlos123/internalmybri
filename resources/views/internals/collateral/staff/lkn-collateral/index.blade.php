@@ -98,7 +98,7 @@
 <!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
 <!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
+<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -154,6 +154,58 @@
                         results: data.cities.data,
                         pagination: {
                             more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.insurance').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getInsurance")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.insurances.data,
+                        pagination: {
+                            more: (params.page * data.insurances.per_page) < data.insurances.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.appraiser').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getAppraiser")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.appraisers.data,
+                        pagination: {
+                            more: (params.page * data.appraisers.per_page) < data.appraisers.total
                         }
                     };
                 },
