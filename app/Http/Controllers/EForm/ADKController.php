@@ -798,7 +798,7 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $no_skpp = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.date('d-m-Y',strtotime($detail['created_at']));
-            $no_putusan = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y'));
+            $no_putusan = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y');
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
