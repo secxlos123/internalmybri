@@ -229,8 +229,10 @@
             </div>
         </div>
     </div>
+</div>
+<div class="panel-body">
     <div class="row" id="div_other_doc">
-        <div class="col-md-12 docs" style="margin-bottom: 10px;">
+        <div class="col-md-12 docs" style="margin-bottom: 30px;">
             <div class="col-md-5">
                 <div class="form-group">
                     <label class="col-md-4 control-label">Nama Dokumen :</label>

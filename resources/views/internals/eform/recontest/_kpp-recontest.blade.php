@@ -1,6 +1,6 @@
 <div class="panel-body">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <div class="form-horizontal" role="form">
                 <!-- <input type="hidden" name="use_reason_id" id="use_reason_id" value=""> -->
                 <input type="hidden" name="id_prescreening" id="id_prescreening" value="12">
@@ -25,6 +25,10 @@
                     </div>
                     <input type="hidden" name="economy_sector_name" id="new_economy_sector">
                 </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-horizontal" role="form">
                 <div class="form-group {!! $errors->has('project_list') ? 'has-error' : '' !!}" id="project_list">
                     <label class="col-md-4 control-label">Project :</label>
                     <div class="col-md-8">

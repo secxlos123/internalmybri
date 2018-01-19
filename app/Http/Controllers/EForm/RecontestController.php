@@ -238,7 +238,7 @@ class RecontestController extends Controller
 
         $type = 'fill';
 
-        return view('internals.eform.approval.index', compact('data', 'id', 'detail', 'recontest', 'type'));
+        return view('internals.eform.recontest.approval', compact('data', 'id', 'detail', 'recontest', 'type'));
     }
 
     /**
