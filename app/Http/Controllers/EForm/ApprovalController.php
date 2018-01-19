@@ -167,7 +167,8 @@ class ApprovalController extends Controller
         $customer = $customerData['contents'];
         // dd($detail);
         $type = 'preview';
+        $recontest = 1;
 
-        return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id', 'type'));
+        return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id', 'type','recontest'));
     }
 }
