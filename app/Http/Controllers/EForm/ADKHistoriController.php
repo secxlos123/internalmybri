@@ -81,6 +81,8 @@ class ADKHistoriController extends Controller
                 ])->setBody([
                     'requestMethod' => 'eformBriguna'
                 ])->post();
+
+
         // print_r($customer);exit();
         if (!empty($customer)) {
             \Log::info("masuk");
@@ -110,6 +112,22 @@ class ADKHistoriController extends Controller
 
                 if (!empty($value['is_send'])) {
                     if (intval($value['is_send']) != '0') {
+                        $getBrinets = Client::setEndpoint('api_las/index')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody([
+                                    'requestMethod' => 'getStatusInterface',
+                                    'requestData'   => $value['id_aplikasi']
+                                ])
+                                ->post('form_params');
+                                // print_r($getBrinets['items'][0]['NO_REKENING']);exit();
+                        $value['no_rekenings'] = '';
+                        if ($getBrinets['statusCode'] == '01') {
+                            $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
+                        }
+                        
                         $value['namadeb'] = $value['first_name'].' '.$value['last_name'];
                         $value['STATUS'] = $status;
                         $value['ref_number'] = $value['ref_number'];
