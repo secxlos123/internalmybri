@@ -659,7 +659,7 @@ class ADKController extends Controller
                         \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
                         return redirect()->route('adk.index');
                     } else {
-                        \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+                        \Session::flash('error', 'Verifikasi gagal disimpan');
                         return redirect()->route('adk.index');
                     }
                 } else {
