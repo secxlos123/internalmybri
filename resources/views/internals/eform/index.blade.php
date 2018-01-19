@@ -84,7 +84,7 @@
                                                             <option value="Initiate">Prakarsa</option>
                                                             <option value="Submit">Proses CLF</option>
                                                             <option value="Approval1">Disetujui</option>
-                                                            <option value="Approval2">Pengajuan Ulang</option>
+                                                            <option value="Approval2">Rekontes Kredit</option>
                                                             <option value="Rejected"> Ditolak</option>
                                                         </select>
                                                     </div>
