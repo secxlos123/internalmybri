@@ -77,8 +77,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['proprietary']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['proprietary']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['proprietary'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['proprietary'], 'noimage.jpg'))
+                            <p>Surat Hak Milik Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['proprietary'])){{$collateral['proprietary']}}@endif" class="img-responsive">
                             <p>Surat Hak Milik</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['proprietary'])){{$collateral['proprietary']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat Surat Hak Milik</p>
@@ -89,8 +93,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['building_permit']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['building_permit']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['building_permit'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['building_permit'], 'noimage.jpg'))
+                            <p>Izin Mendirikan Bangunan Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['building_permit'])){{$collateral['building_permit']}}@endif" class="img-responsive">
                             <p>Izin Mendirikan Bangunan</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['building_permit'])){{$collateral['building_permit']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat Izin Mendirikan Bangunan</p>
@@ -101,8 +109,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['building_tax']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['building_tax']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['building_tax'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['building_tax'], 'noimage.jpg'))
+                            <p>PBB Terakhir Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['building_tax'])){{$collateral['building_tax']}}@endif" class="img-responsive">
                             <p>PBB Terakhir</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['building_tax'])){{$collateral['building_tax']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat PBB Terakhir</p>
@@ -120,8 +132,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['ots_doc']['ownership_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['ownership_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['ownership_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['ownership_doc'], 'noimage.jpg'))
+                            <p>Surat SHM / SHGB / SHMRS Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['ots_doc']['ownership_doc'])){{$collateral['ots_doc']['ownership_doc']}}@endif" class="img-responsive">
                             <p>Surat SHM / SHGB / SHMRS</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['ownership_doc'])){{$collateral['ots_doc']['ownership_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat Surat SHM / SHGB / SHMRS</p>
@@ -132,8 +148,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['ots_doc']['building_permit_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['building_permit_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['building_permit_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['building_permit_doc'], 'noimage.jpg'))
+                            <p>Izin Mendirikan Bangunan Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['ots_doc']['building_permit_doc'])){{$collateral['ots_doc']['building_permit_doc']}}@endif" class="img-responsive">
                             <p>Izin Mendirikan Bangunan</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['building_permit_doc'])){{$collateral['ots_doc']['building_permit_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat Izin Mendirikan Bangunan</p>
@@ -144,8 +164,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['ots_doc']['sales_law_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['sales_law_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['sales_law_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['building_permit_doc'], 'noimage.jpg'))
+                            <p>AJB / PPJB Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['ots_doc']['sales_law_doc'])){{$collateral['ots_doc']['sales_law_doc']}}@endif" class="img-responsive">
                             <p>AJB / PPJB</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['sales_law_doc'])){{$collateral['ots_doc']['sales_law_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat AJB / PPJB</p>
@@ -156,8 +180,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['ots_doc']['property_tax_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['property_tax_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['property_tax_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['property_tax_doc'], 'noimage.jpg'))
+                            <p>PBB Terakhir Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['ots_doc']['property_tax_doc'])){{$collateral['ots_doc']['property_tax_doc']}}@endif" class="img-responsive">
                             <p>PBB Terakhir</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['property_tax_doc'])){{$collateral['ots_doc']['property_tax_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat PBB Terakhir</p>
@@ -168,8 +196,12 @@
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['ots_doc']['sale_value_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['sale_value_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['sale_value_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['sale_value_doc'], 'noimage.jpg'))
+                            <p>NJOP Kosong</p>
+                            @else
                             <img src="@if(!empty($collateral['ots_doc']['sale_value_doc'])){{$collateral['ots_doc']['sale_value_doc']}}@endif" class="img-responsive">
                             <p>NJOP</p>
+                            @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['sale_value_doc'])){{$collateral['ots_doc']['sale_value_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                             <p>Klik Untuk Lihat NJOP</p>
