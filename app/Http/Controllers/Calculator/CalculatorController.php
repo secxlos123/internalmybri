@@ -92,7 +92,7 @@ class CalculatorController extends Controller
           );
       }
       $response = Client::setBase('common')->setEndpoint('calculator')->setBody($calculateSend)->post(); 
-      dd($response);
+     // dd($response);
       $rincian_pinjaman =  $response['contents']['rincian_pinjaman'];
       $detail_angsuran =   $response['contents']['detail_angsuran']; 
       return view('internals.calculator.detail', compact('rincian_pinjaman','detail_angsuran','interest_rate_type', 'data'));
