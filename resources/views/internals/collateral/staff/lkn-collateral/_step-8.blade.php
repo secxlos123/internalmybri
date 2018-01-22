@@ -87,6 +87,7 @@
                                     'data-placeholder' => 'Pilih Nama Penilai'
                                 ]) !!}
                             </div>
+                            <input type="hidden" name="eight[independent_appraiser_name]" id="independent_appraiser_name">
                         </div>
                     </div>
                 </div>

@@ -187,6 +187,12 @@
             },
         });
 
+        $('.insurance').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#insurance_company_name').val(text);
+        });
+
         $('.appraiser').select2({
             witdh : '100%',
             allowClear: true,
@@ -211,6 +217,12 @@
                 },
                 cache: true
             },
+        });
+
+        $('.appraiser').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#independent_appraiser_name').val(text);
         });
 
         $('.filestyle-foto').filestyle({
