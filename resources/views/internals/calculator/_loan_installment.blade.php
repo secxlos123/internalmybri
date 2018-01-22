@@ -8,6 +8,18 @@
                     <label class="col-md-8 control-label">: Rp. <span class="currency"> {{number_format($rincian_pinjaman['rincian']['uang_muka'], 2, ",", ".")}}</span></label>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Plafond </label>
+                <div class="col-md-8">
+                    <label class="col-md-8 control-label">: Rp. <span class="currency"> {{number_format($rincian_pinjaman['rincian']['plafond'], 2, ",", ".")}}</span></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Uang Muka </label>
+                <div class="col-md-8">
+                    <label class="col-md-8 control-label">: Rp. <span class="currency"> {{number_format($rincian_pinjaman['rincian']['uang_muka'], 2, ",", ".")}}</span></label>
+                </div>
+            </div>
             <?php
                 $suku_bunga = 'Suku Bunga';
                 if($interest_rate_type == 2){
