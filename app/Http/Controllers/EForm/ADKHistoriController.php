@@ -25,12 +25,11 @@ class ADKHistoriController extends Controller
      */
     public function index() {
         $data = $this->getUser();
-        // print_r($data);exit();
         // hanya adk yg bisa melakukan fungsi ini
         if ($data['role'] == 'adk') {
             return view('internals.eform.adk.his_index', compact('data'));
         } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
         }
     }
 
@@ -79,11 +78,12 @@ class ADKHistoriController extends Controller
                     'Authorization' => $data['token'],
                     'pn'            => $data['pn']
                 ])->setBody([
-                    'requestMethod' => 'eformBriguna'
+                    'requestMethod' => 'eformBriguna',
+                    'requestData'   => $data['branch']
                 ])->post();
 
 
-        // print_r($customer);exit();
+        print_r($customer);exit();
         if (!empty($customer)) {
             \Log::info("masuk");
             $form  = array();

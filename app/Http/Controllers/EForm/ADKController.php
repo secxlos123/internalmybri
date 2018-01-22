@@ -26,23 +26,11 @@ class ADKController extends Controller
      */
     public function index() {
         $data = $this->getUser();
-        // print_r($data);exit();
         // hanya adk yg bisa melakukan fungsi ini
         if ($data['role'] == 'adk') {
             return view('internals.eform.adk.index', compact('data'));
         } else {
-            return view('internals.layouts.404');
-        }
-    }
-
-    public function history() {
-        $data = $this->getUser();
-        // print_r($data);exit();
-        // hanya adk yg bisa melakukan fungsi ini
-        if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.his_index', compact('data'));
-        } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
         }
     }
 
@@ -138,7 +126,6 @@ class ADKController extends Controller
                 $catatan_ktp = '';
                 if (!empty($response['catatan_ktp'])) {
                     $catatan_ktp = $response['catatan_ktp'];
-                    // array_push($update_data, $catatan_ktp);
                 }
 
                 $update_data = [
@@ -154,7 +141,7 @@ class ADKController extends Controller
                                     ])
                                 ->setBody($update_data)
                                 ->post();
-                // print_r($update_briguna);exit();
+
                 if ($update_briguna['code'] == '200') {
                     return response()->json([
                         'code'     => 200,
@@ -189,7 +176,7 @@ class ADKController extends Controller
                                     ])
                                 ->setBody($update_data)
                                 ->post();
-                // print_r($update_briguna);exit();
+
                 if ($update_briguna['code'] == '200') {
                     return response()->json([
                         'code'     => 200,
@@ -224,7 +211,7 @@ class ADKController extends Controller
                                     ])
                                 ->setBody($update_data)
                                 ->post();
-                // print_r($update_briguna);exit();
+
                 if ($update_briguna['code'] == '200') {
                     return response()->json([
                         'code'     => 200,
@@ -500,7 +487,7 @@ class ADKController extends Controller
         if (!empty($response['slip_gaji'])) {
             $slip_gaji = 1;
         }
-        // print_r($response);exit();
+
         // verifikasi dokumen lengkap
         if ($response['is_verified'] == 1) {
             $update_data = [
@@ -561,7 +548,7 @@ class ADKController extends Controller
     public function postApprove(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
-        // print_r($response);exit();
+
         // verifikasi adk dibatalkan kirim ke brinet
         if (strtolower($response['type']) == 'batal') {
             $update_data = [
@@ -675,7 +662,6 @@ class ADKController extends Controller
 
     public function datatables(Request $request) {
         $data = $this->getUser();
-        // print_r($data);exit();
         $customer = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
@@ -709,7 +695,6 @@ class ADKController extends Controller
                         $status = 'Disbursed';
                     }
                     
-                    // print_r($value);exit();
                     foreach ($listVerADK as $key => $form) {
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
