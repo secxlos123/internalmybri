@@ -188,10 +188,10 @@ class LKNRequest extends FormRequest
     {
       return [
         'seven.collateral_status' => 'required',
-        'seven.on_behalf_of' => '',
-        'seven.ownership_number' => '',
-        'seven.location' => '',
-        'seven.address_collateral' => '',
+        'seven.on_behalf_of' => 'required',
+        'seven.ownership_number' => 'required',
+        'seven.location' => 'required',
+        'seven.address_collateral' => 'required',
         'seven.description' => 'required',
         'seven.ownership_status' => 'required',
         'seven.date_evidence' => 'required|date',
