@@ -76,6 +76,12 @@
 	</a>
 @endif
 
+@if (!empty($detail_adk))
+	<a href="{{route('getDetail', $detail_adk['eform_id'])}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-ADK">
+	    <i class="mdi mdi-eye"></i>
+	</a>
+@endif
+
 @if (!empty($submited) && $submited == true && empty($recontest) )
 	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Proses CLF

@@ -33,7 +33,7 @@ class ADKHistoriController extends Controller
         }
     }
 
-    public function getApprove($id) {
+    public function getDetail($id) {
         $data = $this->getUser();
         // GET DETAIL CUST with Form Data and briguna
         $formDetail = Client::setEndpoint('eforms/'.$id)
@@ -43,7 +43,7 @@ class ADKHistoriController extends Controller
                 ])
             ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+        dd($detail);
 
         $asuransi = [
             'premi_as_jiwa' => '',
@@ -81,36 +81,34 @@ class ADKHistoriController extends Controller
                     'requestMethod' => 'eformBriguna',
                     'requestData'   => $data['branch']
                 ])->post();
-
-
-        print_r($customer);exit();
+        // print_r($customer);exit();
         if (!empty($customer)) {
             \Log::info("masuk");
             $form  = array();
             $count = 0;
             foreach ($customer as $index => $value) {
                 // print_r($value);exit();
-                if (intval($value['is_send']) == '1') {
-                    $status = 'Approved';
-                } else if (intval($value['is_send']) == '2') {
-                    $status = 'Unapproved';
-                } else if (intval($value['is_send']) == '3') {
-                    $status = 'Void';
-                } else if (intval($value['is_send']) == '4') {
-                    $status = 'Void adk';
-                } else if (intval($value['is_send']) == '5') {
-                    $status = 'Approved pencairan';
-                } else if (intval($value['is_send']) == '6') {
-                    $status = 'Disbursed';
-                } else if (intval($value['is_send']) == '7') {
-                    $status = 'Send to brinets';
-                } else if (intval($value['is_send']) == '8') {
-                    $status = 'Agree mp';
-                } else if (intval($value['is_send']) == '9') {
-                    $status = 'Not Agree mp';
-                }
-
                 if (!empty($value['is_send'])) {
+                    if (intval($value['is_send']) == '1') {
+                        $status = 'Approved';
+                    } else if (intval($value['is_send']) == '2') {
+                        $status = 'Unapproved';
+                    } else if (intval($value['is_send']) == '3') {
+                        $status = 'Void';
+                    } else if (intval($value['is_send']) == '4') {
+                        $status = 'Void adk';
+                    } else if (intval($value['is_send']) == '5') {
+                        $status = 'Approved pencairan';
+                    } else if (intval($value['is_send']) == '6') {
+                        $status = 'Disbursed';
+                    } else if (intval($value['is_send']) == '7') {
+                        $status = 'Send to brinets';
+                    } else if (intval($value['is_send']) == '8') {
+                        $status = 'Agree mp';
+                    } else if (intval($value['is_send']) == '9') {
+                        $status = 'Not Agree mp';
+                    }
+
                     if (intval($value['is_send']) != '0') {
                         $getBrinets = Client::setEndpoint('api_las/index')
                                 ->setHeaders(
@@ -148,7 +146,7 @@ class ADKHistoriController extends Controller
                             $value['fid_tp_produk'] = 'Lainnya';
                         }
                         $value['action'] = view('internals.layouts.actions', [
-                            'approve_adk' => $value
+                            'detail_adk' => $value
                         ])->render();
                         $eforms['contents']['data'][] = $value;
                         $count = count($value);
@@ -170,8 +168,8 @@ class ADKHistoriController extends Controller
                     'namadeb'       => '-',
                     'no_rekening'   => '-',
                     'request_amount'=> '-',
-                    'STATUS'        => '-'
-                    // 'action'        => '-'
+                    'STATUS'        => '-',
+                    'action'        => '-'
                 ];
                 return response()->json($eforms['contents']);
             }
@@ -194,8 +192,8 @@ class ADKHistoriController extends Controller
                 'namadeb'       => '-',
                 'no_rekening'   => '-',
                 'request_amount'=> '-',
-                'STATUS'        => '-'
-                // 'action'        => '-'
+                'STATUS'        => '-',
+                'action'        => '-'
             ];
             return response()->json($eforms['contents']);
         }
