@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label">Plafond </label>
+                <label class="col-md-4 control-label">Plafond Yang Diajukan</label>
                 <div class="col-md-8">
                     <label class="col-md-8 control-label">: Rp. <span class="currency"> {{number_format($rincian_pinjaman['rincian']['plafond'], 2, ",", ".")}}</span></label>
                 </div>
