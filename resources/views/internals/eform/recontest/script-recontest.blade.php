@@ -1,7 +1,7 @@
 <script type="text/javascript">
   $('#plus').click(function(){
     var index = $('.upload').length;
-    if(index <= 10){
+    if(index < 10){
       $('#div_other_doc').append(
         '<div class="col-md-12 docs" style="margin-bottom:10px;">'
             +'<div class="col-md-5">'
@@ -34,7 +34,7 @@
   });
 
 $('#div_other_doc').on('click', '.delete-photo', function () {
-  console.log('no');
+  // console.log('no');
   $(this).closest('div.docs').remove();
 })
 </script>

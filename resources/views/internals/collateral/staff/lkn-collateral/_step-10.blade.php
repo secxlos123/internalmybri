@@ -56,6 +56,7 @@
                                 'data-placeholder' => 'Pilih Nama Perusahaan'
                             ]) !!}
                         </div>
+                        <input type="hidden" name="ten[insurance_company_name]" id="insurance_company_name">
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Nilai Asuransi * :</label>
