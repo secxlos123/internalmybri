@@ -47,14 +47,6 @@
                         <p class="form-control-static">{{$eformData['kpr']['property_item_name'] }}</p>
                     </div>
                 </div>
-                <div class="form-group price {!! $errors->has('price') ? 'has-error' : '' !!}">
-                    <label class="control-label col-md-4">Harga Rumah :</label>
-                    <div class="col-md-8">
-                        <div class="input-group">
-                            <p class="form-control-static">Rp. {{number_format($eformData['kpr']['price'],2,',','.') }}</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="form-group building_area {!! $errors->has('building_area') ? 'has-error' : '' !!}">
                     <label class="control-label col-md-4">Luas Bangunan :</label>
                     <div class="col-md-8">
@@ -75,6 +67,14 @@
 
         <div class="col-md-6">
             <div class="form-horizontal" role="form">
+                <div class="form-group price {!! $errors->has('price') ? 'has-error' : '' !!}">
+                    <label class="control-label col-md-4">Harga Rumah :</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <p class="form-control-static">Rp. {{number_format($eformData['kpr']['price'],2,',','.') }}</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group year {!! $errors->has('year') ? 'has-error' : '' !!}">
                     <label class="control-label col-md-4">Jangka Waktu :</label>
                     <div class="col-md-8">

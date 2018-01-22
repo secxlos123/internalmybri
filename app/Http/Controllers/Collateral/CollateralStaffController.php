@@ -103,6 +103,7 @@ class CollateralStaffController extends Controller
       if($dev_id == 1){
         $type = 'nonindex';
         $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        // dd($collateral);
         $id = $collateral['eform_id'];
         //get data eform
         $EformDetail = Client::setEndpoint('eforms/'.$id)

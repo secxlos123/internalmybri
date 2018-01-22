@@ -96,6 +96,20 @@
                 showFloorFloat();
             }
         });
+
+            if($('#interest_rate_type').val() == 1){
+                hideFloorFloat();
+                showDefaultInterest();
+            }else if($('#interest_rate_type').val() == 2){
+                hideFloorFloat();
+                showDefaultInterest();
+            }else if($('#interest_rate_type').val() == 3){
+                hideDefaultInterest();
+                showOnlyFloat();
+            }else if($('#interest_rate_type').val() == 4){
+                hideDefaultInterest();
+                showFloorFloat();
+            }
     });
 
 var defaultJangkaWaktu = 240;
@@ -187,7 +201,8 @@ var down_payment = $('#down_payment');
                 }
 
                 if ( !isNaN(payment) ) {
-                    dp.val(Math.round(payment));
+                    persen = payment.toFixed(4);
+                    dp.val(persen);
                     total = static_price - val;
 
                     if (total > 0) {
@@ -220,7 +235,8 @@ var down_payment = $('#down_payment');
                 }
 
                 if ( !isNaN(payment) ) {
-                    dp.val(Math.round(payment));
+                    persen = payment.toFixed(4);
+                    dp.val(persen);
                     total = static_price - val;
 
                     if (total > 0) {

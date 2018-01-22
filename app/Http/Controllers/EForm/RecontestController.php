@@ -208,13 +208,13 @@ class RecontestController extends Controller
         $data = $this->getUser();
 
         $eforms = Client::setEndpoint('eforms/'.$id)
-                ->setHeaders([
-                    'Authorization' => $data['token']
-                    , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
-                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                ])->get();
+          ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            // , 'auditaction' => 'action name'
+            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+          ])->get();
         $detail = $eforms['contents'];
         $client = new \GuzzleHttp\Client();
         // dd($detail);
@@ -238,7 +238,7 @@ class RecontestController extends Controller
 
         $type = 'fill';
 
-        return view('internals.eform.approval.index', compact('data', 'id', 'detail', 'recontest', 'type'));
+        return view('internals.eform.recontest.approval', compact('data', 'id', 'detail', 'recontest', 'type'));
     }
 
     /**
@@ -249,36 +249,36 @@ class RecontestController extends Controller
      */
     public function postApprovalRecontest(Request $request, $id)
     {
-        // $data = $this->getUser();
-        // // dd($request->all());
-        // $approve = [
-        //   'pros' => $request->pros,
-        //   'cons' => $request->cons,
-        //   'recommended' => $request->recommended,
-        //   'recommendation' => $request->recommendation,
-        //   'is_approved' => $request->is_approved == 'true' ? true : false
-        // ];
+      $data = $this->getUser();
 
-        // $client = Client::setEndpoint('eforms/'.$id.'/approve')
-        //           ->setHeaders([
-        //               'Authorization' => $data['token']
-        //               , 'pn' => $data['pn']
-        //               , 'auditaction' => $request['auditaction']
-        //               , 'long' => $request['hidden-long']
-        //               , 'lat'  => $request['hidden-lat']
-        //           ])
-        //           ->setBody($approve)
-        //           ->post();
+      $approve = [
+        'recommended' => $request->recommended,
+        'recommendation' => $request->recommendation,
+        'is_approved' => $request->is_approved == 'true' ? true : false
+      ];
 
-        // $color = $request->is_approved == 'true' ? 'success' : 'error';
+      $client = Client::setEndpoint('eforms/'.$id.'/approve')
+        ->setHeaders([
+          'Authorization' => $data['token']
+          , 'pn' => $data['pn']
+          , 'auditaction' => $request['auditaction']
+          , 'long' => $request['hidden-long']
+          , 'lat'  => $request['hidden-lat']
+        ])
+        ->setBody($approve)
+        ->post();
 
-        // if($client['code'] == 201){
-        //     \Session::flash($color, $client['descriptions']);
-        //     return redirect()->route('eform.index');
-        // }else{
-        //     \Session::flash('error', 'EForm gagal diapprove! - '.$client['descriptions']);
-        //     return redirect()->back()->withInput($request->input());
-        // }
+      $color = $request->is_approved == 'true' ? 'success' : 'error';
+
+      if ( $client['code'] == 201 ) {
+        \Session::flash( $color, $client['descriptions'] );
         return redirect()->route('eform.index');
+
+      } else {
+        \Session::flash( 'error', 'EForm gagal diapprove! - ' . $client['descriptions'] );
+        return redirect()->back()->withInput( $request->input() );
+      }
+
+      return redirect()->route('eform.index');
     }
 }
