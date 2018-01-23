@@ -53,7 +53,7 @@
     <div class="form-group" id="time_period_div">  
       <label>Jangka Waktu *:</label>
       <div class="input-group"> 
-         {!! Form::text('time_period', '', ['class' => 'form-control' ,'placeholder' => '0','id'=>'time_period','maxlength'=>'3']) !!}
+         {!! Form::text('time_period', '', ['class' => 'form-control numericOnly' ,'placeholder' => '0','id'=>'time_period','maxlength'=>'3']) !!}
         <span class="input-group-addon">Bulan</span>
       </div>
     </div>
@@ -94,7 +94,7 @@
     <div class="form-group" id="time_period_fixed_div">
       <label>Suku Bunga Fixed *:</label>                                         
       <div class="input-group">
-        {!! Form::text('interest_rate_fixed', '', ['class' => 'form-control','placeholder' => '0','id'=>'interest_rate_efektif','maxlength'=>'5']) !!}
+        {!! Form::text('interest_rate_fixed', '', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'interest_rate_efektif','maxlength'=>'5']) !!}
         <span class="input-group-addon">% per-tahun</span>
       </div>                    
     </div>

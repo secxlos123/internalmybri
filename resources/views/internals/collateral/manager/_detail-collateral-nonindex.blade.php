@@ -277,7 +277,7 @@
                             @include('internals.eform.approval._lkn-visit')
                         </div>
                         <div class="panel-body">
-                            @include('internals.eform.approval._lkn-income')
+                            @include('internals.collateral.manager._income-customer')
                         </div>
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-kpp')

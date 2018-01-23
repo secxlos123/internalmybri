@@ -721,8 +721,8 @@
         var year = $('#year');
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         building_area.on('input', function() {
             if((price !== null) && (building_area !== null)){
@@ -740,8 +740,8 @@
             var val = $(this).val();
             var down_payment = $('#down_payment');
             var request_amount = $('#request_amount');
-            var price_without_comma = price.val().replace(',00', '');
-            var static_price = price_without_comma.replace(/\./g, '');
+            var price_without_comma = price.val();
+            var static_price = price_without_comma.replace(/\,/g, '');
 
             if(building_area.val() < 21){
                 switch (val) {
@@ -850,8 +850,8 @@
                 var dp_min = dp.attr('min');
                 var down_payment = $('#down_payment');
                 var request_amount = $('#request_amount');
-                var price_without_comma = price.val().replace(',00', '');
-                var static_price = price_without_comma.replace(/\./g, '');
+                var price_without_comma = price.val();
+                var static_price = price_without_comma.replace(/\,/g, '');
 
                 if (val < dp_min) {
                     val = dp_min;
@@ -867,8 +867,8 @@
 
         down_payment
             .on('input', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var request_amount = $('#request_amount');
@@ -901,8 +901,8 @@
                 }
             })
             .on('blur', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var min = parseInt(static_price) * (dp_min/100);
@@ -949,8 +949,8 @@
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
         var price = $('#price');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         if (parseInt(val) > 90) {
             val = 90;
