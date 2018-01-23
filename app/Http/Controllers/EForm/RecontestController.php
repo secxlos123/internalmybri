@@ -218,7 +218,7 @@ class RecontestController extends Controller
           ])->get();
         $detail = $eforms['contents'];
         $client = new \GuzzleHttp\Client();
-        // dd($detail);
+        
         try {
             $res = $client->request('GET', 'http://freegeoip.net/json/');
 
@@ -268,6 +268,7 @@ class RecontestController extends Controller
         ])
         ->setBody($approve)
         ->post();
+        // dd($client);
 
       $color = $request->is_approved == 'true' ? 'success' : 'error';
 
