@@ -63,8 +63,8 @@
                             <label class="col-md-4 control-label">Penilaian Dilakukan Oleh * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('eight[appraisal_by]', array("" => "", 
-                                    "Bank" => "Bank", 
-                                    "Lembaga Penilai" => "Lembaga Penilai"), 
+                                    "bank" => "Bank", 
+                                    "independent" => "Lembaga Penilai"), 
                                     old('eight[appraisal_by]'), [
                                     'class' => 'select2 appraisal_by ',
                                     'data-placeholder' => '-- Pilih --',
@@ -105,15 +105,15 @@
                         <label class="col-md-4 control-label">Jenis Pengikatan * :</label>
                         <div class="col-md-8">
                             {!! Form::select('eight[type_binding]', array("" => "", 
-                                "Hak Tanggungan" => "Hak Tanggungan", 
-                                "Gadai" => "Gadai",
-                                "Feduciare Elgendom Overdracht" => "Feduciare Elgendom Overdracht",
-                                "SKMHT (Surat Kuasa Memberikan Hak Tanggungan)" => "SKMHT (Surat Kuasa Memberikan Hak Tanggungan)",
-                                "Cessie" => "Cessie",
-                                "Belum Diikat" => "Belum Diikat",
-                                "Lain-lain" => "Lain-lain",
-                                "Fidusia Dengan UU" => "Fidusia Dengan UU",
-                                "Fidusia Dengan PJ.08" => "Fidusia Dengan PJ.08"), 
+                                "01" => "Hak Tanggungan", 
+                                "02" => "Gadai",
+                                "03" => "Feduciare Elgendom Overdracht",
+                                "04" => "SKMHT (Surat Kuasa Memberikan Hak Tanggungan)",
+                                "05" => "Cessie",
+                                "06" => "Belum Diikat",
+                                "09" => "Lain-lain",
+                                "10" => "Fidusia Dengan UU",
+                                "11" => "Fidusia Dengan PJ.08"), 
                                 old('eight[type_binding]'), [
                                 'class' => 'select2 type_binding ',
                                 'data-placeholder' => '-- Pilih --'
