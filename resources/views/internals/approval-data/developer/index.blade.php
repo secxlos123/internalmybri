@@ -73,8 +73,20 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                </tbody>
+                                @if(count($data_apporals) > 0)
+                                    <tbody>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">{!! $data_apporals['company_name'] !!}</td>
+                                            <td>{!! $data_apporals['address'] !!}</td>
+                                            <td>{!! $data_apporals['city_id'] !!}</td>
+                                            <td>{!! $data_apporals['mobile_phone'] !!}</td>
+                                            <td>{!! $data_apporals['action'] !!}</td>
+                                        </tr>
+                                    </tbody>
+                                @else
+                                    <tbody>
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                     </div>
