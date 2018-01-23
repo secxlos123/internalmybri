@@ -38,12 +38,60 @@ class ApprovalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexApprovalDeveloper()
+    public function indexApprovalDeveloper(Request $request)
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
 
-        return view('internals.approval-data.developer.index', compact('data'));
+       if($data['role'] == 'ao'){
+            $data_apporals = [];
+           if(@$request->get('related_id') ){
+                $sort = $request->input('order.0');
+                $approvals = Client::setEndpoint('approval-data-change/developer/show-id/'.@$request->get('related_id').' ')
+                        ->setHeaders([
+                            'Authorization' => $data['token']
+                            , 'pn' => $data['pn']
+                            // , 'auditaction' => 'action name'
+                            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])->setQuery([
+                            'ids' => $request->get('related_id'),
+                        ])->get();
+
+                $approval = $approvals['contents'];
+                $approval['city_id'] = $approval['city']['name'];
+                $approval['address'] = $approval['address'];
+                $approval['mobile_phone'] = $approval['mobile_phone'];
+
+                $approval['action'] = view('internals.layouts.actions', [
+                    'show' => route('getApproveDeveloper', $approval['id']),
+                ])->render();
+
+                $approvals['contents']['data'] = $approval;
+
+                $approvals['contents']['draw'] = $request->input('draw');
+                $approvals['contents']['recordsTotal'] = 1; //$approvals['contents']['total'];
+                $approvals['contents']['recordsFiltered'] = 1; //$approvals['contents']['total'];
+                $data_apporals = $approvals['contents']['data'];
+
+               /*
+                * mark read the notification
+                */
+                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
+                       ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        , 'branch_id' => $data['branch']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])->get();
+           }
+
+
+        }
+
+        return view('internals.approval-data.developer.index', compact('data','data_apporals'));
     }
 
     /**
@@ -68,7 +116,7 @@ class ApprovalDataController extends Controller
             ->get();
 
         $detail = $detailData['contents'];
-        // dd($detail);
+        //dd($detailData);
         return view('internals.approval-data.developer.approval-form', compact('data', 'detail'));
     }
 
