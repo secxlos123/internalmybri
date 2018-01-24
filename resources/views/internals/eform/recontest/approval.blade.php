@@ -162,7 +162,7 @@
                             </div>
 
                             <!-- rekomendasi approval -->
-                            <div class="no-print">
+                            <!-- <div class="no-print">
                                 @if($recontest == 1)
                                 <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
                                     {{ csrf_field() }}
@@ -186,7 +186,7 @@
                                     @endif
                                 </form>
                                 @endif
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -318,9 +318,7 @@ var options = {
     textColor:"white"
 };
 $('#btn-approve').on('click', function(){
-    $('input[name=is_approved]')
-        .val(true)
-        .attr('value', true);
+    $('#is_approved').attr('value', true);
     $('#auditaction').val('Approval Kredit');
     HoldOn.open(options);
     $('#form1').submit();
@@ -328,9 +326,7 @@ $('#btn-approve').on('click', function(){
 })
 
 $('#btn-reject').on('click', function(){
-    $('input[name=is_approved]')
-        .val(false)
-        .attr('value', false);
+    $('#is_approved').attr('value', true);
     $('#auditaction').val('Reject Kredit');
     HoldOn.open(options);
     $('#form1').submit();
