@@ -940,7 +940,7 @@ class ADKController extends Controller
                 'jabatan'       => $detail['customer']['work']['position'],
                 'gaji'          => $detail['Gaji_bersih_per_bulan'],
                 'jenis_pinjaman'=> $detail['tp_produk'],
-                'instansi'      => $detail['mitra'],
+                'instansi'      => $detail['mitra']['NAMA_INSTANSI'],
                 'nip'           => $detail['NIP'],
                 'status_kerja'  => $detail['Status_Pekerjaan'],
                 'nama_atasan'   => $detail['Nama_atasan_Langsung'],
