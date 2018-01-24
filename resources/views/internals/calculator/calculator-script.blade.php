@@ -1,3 +1,4 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#btn-save').on('click', function(e) {
@@ -250,31 +251,31 @@ var down_payment = $('#down_payment');
             });
 
 //validasi nomer suku bunga
-$("#rate").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#rate";
-     sukubunga(nilai,id,e);
+$("#rate").keyup(function(){
+    var values = $(this).val();
+    var length = values.length;
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 });
 
 //validasi suku bunga fixed
 
 $("#interest_rate_efektif").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#interest_rate_efektif";
-     sukubunga(nilai,id,e);
+    var nilai = $(this).val();
+    var id =  "#interest_rate_efektif";
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 }); 
 
 $("#interest_rate_float").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#interest_rate_float";
-     sukubunga(nilai,id,e);
+    var nilai = $(this).val();
+    var id =  "#interest_rate_float";
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 }); 
 
 
 $("#interest_rate_floor").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#interest_rate_floor";
-     sukubunga(nilai,id,e);
+    var nilai = $(this).val();
+    var id =  "#interest_rate_floor";
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 }); 
 
 
