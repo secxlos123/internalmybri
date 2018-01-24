@@ -77,7 +77,7 @@
 @endif
 
 @if (!empty($detail_adk))
-	<a href="{{route('getDetail', $detail_adk)}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-ADK">
+	<a href="{{route('getDetailADK', $detail_adk)}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-ADK">
 	    <i class="mdi mdi-eye"></i>
 	</a>
 @endif
