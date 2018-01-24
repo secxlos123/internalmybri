@@ -355,7 +355,6 @@ class CollateralStaffController extends Controller
         //     , 'contents' => $pln.''.$phone.''.$pam.''.$telex
         // ];
 
-      \Log::info($request->all());
       foreach ($request->except('_token', 'collateral_type','hidden-long','hidden-lat') as $field => $value) {
         foreach ($value as $index => $data) {
           if ( $index == 'image_area' ) {
