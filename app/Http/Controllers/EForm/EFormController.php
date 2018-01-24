@@ -98,15 +98,16 @@ class EFormController extends Controller
                 ])->render();
 
                 $form_notif['action'] = view('internals.layouts.actions', [
-                                                      'verified' => $verify,
-                                                      'visited' => $visit,
-                                                      'response_status' => $status,
-                                                      'verification' => route('getVerification', $form_notif['id']),
-                                                      'approval' => $form_notif['is_approved'],
-                                                      'eform_id' => $form_notif['id'],
-                                                      'preview' => route('getDetail', $form_notif['id']),
-                                                      'lkn' => route('getLKN', $form_notif['id']),
-                                                    ])->render();
+                    'verified' => $verify,
+                    'visited' => $visit,
+                    'response_status' => $status,
+                    'verification' => route('getVerification', $form_notif['id']),
+                    'approval' => $form_notif['is_approved'],
+                    'eform_id' => $form_notif['id'],
+                    'preview' => route('getDetail', $form_notif['id']),
+                    'lkn' => route('getLKN', $form_notif['id']),
+                    'screening_result' => 'view',
+                ])->render();
                 /*
                 * mark read the notification
                 */

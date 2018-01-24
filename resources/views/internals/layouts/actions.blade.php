@@ -134,9 +134,15 @@
 @endif
 
 @if (isset($screening_result))
-	<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
-	    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
-	</a>
+	@if( $screening_result == 'view' )
+		<a href="javascript:void(0);" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+		</a>
+	@else
+		<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+		</a>
+	@endif
 @endif
 
 @if ((isset($dispose_collateral)) && ($status == "baru"))

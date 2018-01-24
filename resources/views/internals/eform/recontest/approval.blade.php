@@ -318,7 +318,9 @@ var options = {
     textColor:"white"
 };
 $('#btn-approve').on('click', function(){
-    $('#is_approved').attr('value', true);
+    $('input[name=is_approved]')
+        .val(true)
+        .attr('value', true);
     $('#auditaction').val('Approval Kredit');
     HoldOn.open(options);
     $('#form1').submit();
@@ -326,7 +328,9 @@ $('#btn-approve').on('click', function(){
 })
 
 $('#btn-reject').on('click', function(){
-    $('#is_approved').attr('value', false);
+    $('input[name=is_approved]')
+        .val(false)
+        .attr('value', false);
     $('#auditaction').val('Reject Kredit');
     HoldOn.open(options);
     $('#form1').submit();
