@@ -98,7 +98,7 @@
 <!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
 <!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
+{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -187,6 +187,12 @@
             },
         });
 
+        $('.insurance').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#insurance_company_name').val(text);
+        });
+
         $('.appraiser').select2({
             witdh : '100%',
             allowClear: true,
@@ -211,6 +217,12 @@
                 },
                 cache: true
             },
+        });
+
+        $('.appraiser').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#independent_appraiser_name').val(text);
         });
 
         $('.filestyle-foto').filestyle({

@@ -52,7 +52,7 @@
   <tr>
     <td>- Suku bunga Kredit</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['suku_bunga']}} % perbulan</td>
+    <td>&nbsp;{{$data_debitur['suku_bunga']}} % pertahun</td>
   </tr>
   <tr>
     <td>- Provisi Kredit</td>

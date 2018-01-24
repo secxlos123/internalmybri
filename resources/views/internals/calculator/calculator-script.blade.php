@@ -144,7 +144,7 @@ $("#dp").keyup(function(){
 function hitungDP(priceint,dpPersen){
   var down_payment = priceint *   dpPersen;
   var price_platform = priceint - down_payment;
-  $("#down_payment").val(down_payment);
+  $("#down_payment").val(down_payment.toFixed(0));
   $("#price_platform").val(price_platform);
 }
 
@@ -250,31 +250,31 @@ var down_payment = $('#down_payment');
             });
 
 //validasi nomer suku bunga
-$("#rate").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#rate";
-     sukubunga(nilai,id,e);
+$("#rate").keyup(function(){
+    var values = $(this).val();
+    var length = values.length;
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 });
 
 //validasi suku bunga fixed
 
 $("#interest_rate_efektif").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#interest_rate_efektif";
-     sukubunga(nilai,id,e);
+    var nilai = $(this).val();
+    var id =  "#interest_rate_efektif";
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 }); 
 
 $("#interest_rate_float").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#interest_rate_float";
-     sukubunga(nilai,id,e);
+    var nilai = $(this).val();
+    var id =  "#interest_rate_float";
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 }); 
 
 
 $("#interest_rate_floor").keyup(function(e){
-     var nilai = $(this).val();
-     var id =  "#interest_rate_floor";
-     sukubunga(nilai,id,e);
+    var nilai = $(this).val();
+    var id =  "#interest_rate_floor";
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
 }); 
 
 
@@ -282,15 +282,15 @@ $("#interest_rate_floor").keyup(function(e){
 function sukubunga(nilai,id,e){
     var rate = nilai;
     var numberstring = $(id).val().length;  
-    if(numberstring == 1 && rate ==','){
+    if(numberstring == 1 && rate =='.'){
       $(id).val('');
     }else if(e.keyCode==8 && numberstring == 2){
      
     }else if(numberstring == 2){       
-       var rate = rate+',';
+       var rate = rate+'.';
        $(id).val(rate);
     }else if(numberstring > 2){
-      var chekKomavalue = rate.search(',');
+      var chekKomavalue = rate.search('.');
       console.log(chekKomavalue); 
         var arr = rate.split("");
         var pangjangKata = arr.length; 

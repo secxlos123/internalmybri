@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['scoring_mitra']}} (DITERIMA)</p>
+                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['Ket_Scoring']}})</p>
                 </div>
             </div>
             <div class="form-group">
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['mitra']}}</p>
+                    <p class="form-control-static">{{$detail['mitra']['NAMA_INSTANSI']}}</p>
                 </div>
             </div>
             <div class="form-group">
