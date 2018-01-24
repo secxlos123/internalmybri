@@ -135,7 +135,7 @@
 
 @if (isset($screening_result))
 	@if( $screening_result == 'view' )
-		<a href="javascript:void(0);" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		<a href="javascript:void(0);" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
 		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 		</a>
 	@else

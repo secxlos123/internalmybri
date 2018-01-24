@@ -614,6 +614,8 @@ class EFormController extends Controller
                 'recontest' => $recontest,
                 // 'verification' => route('getVerification', $form['user_id']),
                 // 'lkn' => route('getLKN', $form['id']),
+                'screening_result' => 'view',
+                'is_verified' => $verify,
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
