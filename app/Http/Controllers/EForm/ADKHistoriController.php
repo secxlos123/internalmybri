@@ -43,7 +43,7 @@ class ADKHistoriController extends Controller
                 ])
             ->get();
         $detail = $formDetail['contents'];
-        dd($detail);
+        // dd($detail);
 
         $asuransi = [
             'premi_as_jiwa' => '',
@@ -52,6 +52,25 @@ class ADKHistoriController extends Controller
         ];
 
         if (!empty($detail)) {
+            if (intval($detail['is_send']) == '1') {
+                $status = 'Approved';
+            } else if (intval($detail['is_send']) == '2') {
+                $status = 'Unapproved';
+            } else if (intval($detail['is_send']) == '3') {
+                $status = 'Void';
+            } else if (intval($detail['is_send']) == '4') {
+                $status = 'Void adk';
+            } else if (intval($detail['is_send']) == '5') {
+                $status = 'Approved pencairan';
+            } else if (intval($detail['is_send']) == '6') {
+                $status = 'Disbursed';
+            } else if (intval($detail['is_send']) == '7') {
+                $status = 'Send to brinets';
+            } else if (intval($detail['is_send']) == '8') {
+                $status = 'Agree mp';
+            } else if (intval($detail['is_send']) == '9') {
+                $status = 'Not Agree mp';
+            }
             $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
@@ -61,10 +80,23 @@ class ADKHistoriController extends Controller
                 'premi_beban_bri' => $premi_beban_bri,
                 'premi_beban_debitur' => $premi_beban_debitur
             ];
+
+            
+            /*$update_data = [
+                'eform_id'    => $response['eform_id'],
+                'no_rekening' => $response['catat_adk']
+            ];
+            $update_briguna = Client::setEndpoint('api_las/update')
+                ->setHeaders(
+                    [ 'Authorization' => $data['token'],
+                      'pn' => $data['pn']
+                    ])
+                ->setBody($update_data)
+                ->post();*/
         }
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi'));
+            return view('internals.eform.adk.view-detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
             return view('internals.layouts.404');
         }
@@ -84,76 +116,85 @@ class ADKHistoriController extends Controller
         // print_r($customer);exit();
         if (!empty($customer)) {
             \Log::info("masuk");
-            $form  = array();
             $count = 0;
-            foreach ($customer as $index => $value) {
-                // print_r($value);exit();
-                if (!empty($value['is_send'])) {
-                    if (intval($value['is_send']) == '1') {
-                        $status = 'Approved';
-                    } else if (intval($value['is_send']) == '2') {
-                        $status = 'Unapproved';
-                    } else if (intval($value['is_send']) == '3') {
-                        $status = 'Void';
-                    } else if (intval($value['is_send']) == '4') {
-                        $status = 'Void adk';
-                    } else if (intval($value['is_send']) == '5') {
-                        $status = 'Approved pencairan';
-                    } else if (intval($value['is_send']) == '6') {
-                        $status = 'Disbursed';
-                    } else if (intval($value['is_send']) == '7') {
-                        $status = 'Send to brinets';
-                    } else if (intval($value['is_send']) == '8') {
-                        $status = 'Agree mp';
-                    } else if (intval($value['is_send']) == '9') {
-                        $status = 'Not Agree mp';
-                    }
+            foreach ($customer as $key => $result) {
+                // print_r($result);exit();
+                if (!empty($result['is_send'])) {
+                    if ($result['is_send'] != '0') {
+                        if ($result['is_send'] == '1') {
+                            $status = 'Approved';
+                        } else if ($result['is_send'] == '2') {
+                            $status = 'Unapproved';
+                        } else if ($result['is_send'] == '3') {
+                            $status = 'Void';
+                        } else if ($result['is_send'] == '4') {
+                            $status = 'Void adk';
+                        } else if ($result['is_send'] == '5') {
+                            $status = 'Approved pencairan';
+                        } else if ($result['is_send'] == '6') {
+                            $status = 'Disbursed';
+                        } else if ($result['is_send'] == '7') {
+                            $status = 'Send to brinets';
+                        } else if ($result['is_send'] == '8') {
+                            $status = 'Agree mp';
+                        } else if ($result['is_send'] == '9') {
+                            $status = 'Not Agree mp';
+                        }
 
-                    if (intval($value['is_send']) != '0') {
-                        $getBrinets = Client::setEndpoint('api_las/index')
-                                ->setHeaders(
-                                    [ 'Authorization' => $data['token'],
-                                      'pn' => $data['pn']
-                                    ])
-                                ->setBody([
-                                    'requestMethod' => 'getStatusInterface',
-                                    'requestData'   => $value['id_aplikasi']
-                                ])
-                                ->post('form_params');
-                                // print_r($getBrinets['items'][0]['NO_REKENING']);exit();
-                        $value['no_rekenings'] = '';
-                        if ($getBrinets['statusCode'] == '01') {
-                            $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
-                        }
-                        
-                        $value['namadeb'] = $value['first_name'].' '.$value['last_name'];
-                        $value['STATUS'] = $status;
-                        $value['ref_number'] = $value['ref_number'];
-                        $value['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                        $value['eform_id'] = $value['eform_id'];
-                        $value['request_amount'] = 'Rp '.number_format($value['Plafond_usulan'], 0, ",", ".");
-                        if ($value['tp_produk'] == '1') {
-                            $value['fid_tp_produk'] = 'Briguna Karya/Umum';
-                        } elseif ($value['tp_produk'] == '2') {
-                            $value['fid_tp_produk'] = 'Briguna Purna';
-                        } elseif ($value['fid_tp_produk'] == '28') {
-                            $value['fid_tp_produk'] = 'Briguna Karyawan BRI';
-                        } elseif ($value['tp_produk'] == '22') {
-                            $value['fid_tp_produk'] = 'Briguna Talangan';
-                        } elseif ($value['tp_produk'] == '10') {
-                            $value['fid_tp_produk'] = 'Briguna Micro';
+                        if ($result['tp_produk'] == '1') {
+                            $tp_produk = 'Briguna Karya/Umum';
+                        } elseif ($result['tp_produk'] == '2') {
+                            $tp_produk = 'Briguna Purna';
+                        } elseif ($result['fid_tp_produk'] == '28') {
+                            $tp_produk = 'Briguna Karyawan BRI';
+                        } elseif ($result['tp_produk'] == '22') {
+                            $tp_produk = 'Briguna Talangan';
+                        } elseif ($result['tp_produk'] == '10') {
+                            $tp_produk = 'Briguna Micro';
                         } else {
-                            $value['fid_tp_produk'] = 'Lainnya';
+                            $tp_produk = 'Lainnya';
                         }
-                        $value['action'] = view('internals.layouts.actions', [
-                            'detail_adk' => $value
-                        ])->render();
-                        $eforms['contents']['data'][] = $value;
-                        $count = count($value);
+
+                        $history['tgl_pengajuan'] = empty($result['created_at']) ? $result['created_at'] : date('d-m-Y',strtotime($result['created_at']));
+                        $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'], 0, ",", ".");
+                        $history['eform_id']      = $result['eform_id'];
+                        $history['id_aplikasi']   = $result['id_aplikasi'];
+                        $history['ref_number']    = $result['ref_number'];
+                        $history['STATUS']        = $status;
+                        $history['fid_tp_produk'] = $tp_produk;
+                        $history['pinca_name']    = $result['pinca_name'];
+                        $history['ao_name']       = $result['ao_name'];
+                        $history['namadeb']       = $result['first_name'].' '.$result['last_name'];
+                        $history['action']= view('internals.layouts.actions',['detail_adk' => $result['eform_id']])->render();
+                        $res_history[] = $history;
                     }
                 }
             }
-
+            // print_r($count);
+            // print_r($res_history);exit();
+            foreach ($res_history as $index => $value) {
+                // print_r($value);exit();
+                $getBrinets = Client::setEndpoint('api_las/index')
+                        ->setHeaders(
+                            [ 'Authorization' => $data['token'],
+                              'pn' => $data['pn']
+                            ])
+                        ->setBody([
+                            'requestMethod' => 'getStatusInterface',
+                            'requestData'   => $value['id_aplikasi']
+                        ])
+                        ->post('form_params');
+                //         print_r($getBrinets);
+                // print_r($getBrinets['items'][0]['NO_REKENING']);exit();
+                $value['no_rekenings'] = '';
+                if ($getBrinets['statusCode'] == '01') {
+                    $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
+                }
+                $eforms['contents']['data'][] = $value;
+                $count = count($value);
+            }
+            // print_r($eforms);
+            // print_r($count);exit();
             if (intval($count) == 0) {
                 $eforms['contents']['draw'] = $request->input('draw');
                 $eforms['contents']['recordsTotal'] = '0';
