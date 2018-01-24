@@ -682,7 +682,6 @@ class ADKController extends Controller
 
             // print_r($customer);exit();
             if ($debitur['code'] == '01') {
-                \Log::info("masuk");
                 $listVerADK = $debitur['contents']['data'];
                 $form  = array();
                 $count = 0;

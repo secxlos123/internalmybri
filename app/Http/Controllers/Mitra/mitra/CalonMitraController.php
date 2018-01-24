@@ -69,7 +69,6 @@ class CalonMitraController extends Controller
 		$act = $request->act;
 	    $sort = $request->input('order.0');
         $data = $this->getUser();
-		\Log::info($data);
         $dirrpc = Client::setEndpoint('dirrpc')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -84,8 +83,6 @@ class CalonMitraController extends Controller
                     'debt_name'=> $request->input('gimmick_name'),
                     'act'    => $act,
                 ])->get();
-		\Log::info($dirrpc);
-            // dd($eforms);
 		$i=1;
         foreach ($dirrpc['contents']['data'] as $key => $dir) {
             $dir['debt_name'] = strtoupper($dir['debt_name']);

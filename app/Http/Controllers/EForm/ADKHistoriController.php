@@ -115,7 +115,6 @@ class ADKHistoriController extends Controller
                 ])->post();
         // print_r($customer);exit();
         if (!empty($customer)) {
-            \Log::info("masuk");
             $count = 0;
             foreach ($customer as $key => $result) {
                 // print_r($result);exit();

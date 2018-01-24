@@ -27,7 +27,6 @@ class GimmickController extends Controller
     {
 	    $sort = $request->input('order.0');
         $data = $this->getUser();
-		\Log::info($data);
         $gimmick = Client::setEndpoint('gimmick')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -39,8 +38,6 @@ class GimmickController extends Controller
                     'page'      => (int) $request->input('page') + 1,
                     'gimmick_name'=> $request->input('gimmick_name'),
                 ])->get();
-		\Log::info($gimmick);
-            // dd($eforms);
 		$i=1;
 		$action = '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="btn-download" name="btn-download"><i class="mdi mdi-download"></i>Unduh </button>'.
 				  '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="btn-print" name="btn-print"><i class="mdi mdi-printer"></i>Print </button>';
