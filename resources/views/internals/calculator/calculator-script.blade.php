@@ -1,4 +1,3 @@
-<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#btn-save').on('click', function(e) {
