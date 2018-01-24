@@ -77,7 +77,7 @@
 @endif
 
 @if (!empty($detail_adk))
-	<a href="{{route('getDetail', $detail_adk)}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-ADK">
+	<a href="{{route('getDetailADK', $detail_adk)}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-ADK">
 	    <i class="mdi mdi-eye"></i>
 	</a>
 @endif
@@ -93,7 +93,7 @@
 @elseif( isset($recontest) && !empty($submited) && $submited == true )
 	@if( isset($status) )
 		@if( $status == 'Approval2' )
-			<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Approval Rekontes Kredit" title="Approval Rekontes Kredit">
+			<a onclick="addURL(this)" href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Approval Rekontes Kredit" title="Approval Rekontes Kredit">
 				<i class="fa fa-check-square-o" aria-hidden="true"></i>
 			</a>
 		@endif
@@ -101,7 +101,7 @@
 
 @else
 	@if ( !empty($recontest) && !isset($submited) )
-		<a href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Rekontes Kredit" title="Rekontes Kredit">
+		<a onclick="addURL(this)" href="{{$recontest}}" class="btn btn-icon btn-orange waves-effect waves-light bottom-margin" data-original-title="Rekontes Kredit" title="Rekontes Kredit">
 			<i class="fa fa-undo" aria-hidden="true"></i>
 		</a>
 	@endif
@@ -206,3 +206,13 @@
 		<i class="fa fa-{{ $prescreening_icon }}" aria-hidden="true"></i>
 	</a>
 @endif
+
+<script type="text/javascript">
+var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'&hidden-lat='+$('input[name="hidden-lat"]').val()+'&auditaction=klik icon rekontest';
+function addURL(element)
+{
+    $(element).attr('href', function() {
+        return this.href + LongLat;
+    });
+}
+</script>

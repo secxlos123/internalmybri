@@ -194,7 +194,7 @@
         Route::resource('adk', 'EForm\ADKController');
         Route::resource('adk-histori', 'EForm\ADKHistoriController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
-        Route::get('/adk-histori/view/{id}', ['as'=>'getDetail', 'uses'=>'EForm\ADKHistoriController@getDetail']);
+        Route::get('/adk-histori/view/{id}', ['as'=>'getDetailADK', 'uses'=>'EForm\ADKHistoriController@getDetail']);
         Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
         Route::post('verifikasi', ['as'=>'verifikasi', 'uses'=>'EForm\ADKController@postVerifikasi']);
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
