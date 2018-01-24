@@ -384,60 +384,6 @@
 
         });
     });
-
-    $(document).on('click', '#btn-update-sicd', function(){
-        input = $("input[name=select_sicd]:checked");
-        selectedSICD = input.val();
-        sicd = input.parent()
-            .next()
-                .children('div')
-                    .children('div')
-                        .children('div')
-                            .last()
-                                .find('p').html();
-
-        input = $("input[name=select_dhn]:checked");
-        selectedDHN = input.val();
-        dhn = input.parent()
-            .next()
-                .children('div')
-                    .children('div')
-                        .children('div')
-                                .find('.dhn-color').html();
-
-        pefindo = $("#prescreening-color").children('p').html();
-        eformId = $("#prescreening-id").html();
-
-        HoldOn.open();
-
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("postPrescreening") }}',
-            data: {
-                eform_id : eformId
-                , selected_sicd : selectedSICD
-                , selected_dhn : selectedDHN
-                , sicd : sicd
-                , dhn : dhn
-                , pefindo : pefindo
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-
-        }).done(function(data){
-            $('#result-modal').modal('hide');
-            $("#btn-filter").click();
-            alert(data.response.descriptions);
-            HoldOn.close();
-
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-
-        });
-    })
 </script>
 
 <script type="text/javascript">
