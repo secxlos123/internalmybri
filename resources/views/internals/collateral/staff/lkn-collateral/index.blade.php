@@ -103,7 +103,7 @@
 <!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
 <!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
+{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -259,7 +259,7 @@
       $('#foto_div').append(
         '<div class="foto">'
             +'<div class="input-group">'
-                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/png,image/jpg,application/pdf,application/docx" id="filestyle-'+index+'">'
+                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+index+'">'
                 +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
             +'</div>'
         +'</div>'
