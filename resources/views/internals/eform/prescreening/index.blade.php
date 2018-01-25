@@ -98,6 +98,57 @@
                             </div>
                         </div>
                     </div>
+
+                @else
+                    <!-- Pefindo -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Pefindo</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="card-box">
+                                        <h4 class="header-title custom-title">Pefindo</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Score </label>
+                                                        <div class="col-md-10">: {{ $eform['pefindo_score'] }} </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Hasil Pefindo </label>
+                                                        <div class="col-md-10">: {{ $eform['pefindo_color'] }} </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Dokumen </label>
+                                                        <div class="col-md-10">
+                                                            @foreach( explode(',', $eform['uploadedscore']) as $document )
+                                                                <a href="{{ $document }}" target="_blank">
+                                                                    <img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive">
+                                                                </a><br/>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
 
                 <!-- DHN -->
