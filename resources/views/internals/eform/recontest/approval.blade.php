@@ -160,33 +160,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- rekomendasi approval -->
-                            <div class="no-print">
-                                @if($recontest == 1)
-                                <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="is_approved" id="is_approved">
-                                    <input type="hidden" name="auditaction" id="auditaction">
-                                    @if($recontest == 1)
-                                    @include('internals.eform.approval._recommendation')
-                                    @else
-                                    @include('internals.eform.recontest._recommendation-recontest')
-                                    @endif
-                                </form>
-                                @else
-                                <form class="form-horizontal" role="form" action="{{route('postApprovalRecontest', $id)}}" method="POST" id="form1">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="is_approved" id="is_approved">
-                                    <input type="hidden" name="auditaction" id="auditaction">
-                                    @if($recontest == 1)
-                                    @include('internals.eform.approval._recommendation')
-                                    @else
-                                    @include('internals.eform.recontest._recommendation-recontest')
-                                    @endif
-                                </form>
-                                @endif
-                            </div>
                         </div>
                     </div>
 
