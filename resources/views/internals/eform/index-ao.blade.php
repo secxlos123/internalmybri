@@ -218,6 +218,8 @@
 
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
+        prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
+
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
             // notif for verification
@@ -340,18 +342,19 @@
 
             });
 
+        } else if ( prescreeningStatus == '-' ) {
+            // notif for verification
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
+            HoldOn.close();
+
         } else {
             window.location = $(this).attr('data-url');
-
-            // notif for verification
-            // $("#result-modal .modal-body")
-            //     .html(
-            //         $('.modal-text-base-none').html()
-            //     );
-            // $('#result-modal').modal('show');
-            // $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
-
-            // HoldOn.close();
 
         }
     });
