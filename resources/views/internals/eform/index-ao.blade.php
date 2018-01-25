@@ -340,8 +340,9 @@
 
             });
 
-        // } else {
-        //window.location = $(this).attr('data-url');
+        } else {
+            // window.location = $(this).attr('data-url');
+            HoldOn.close();
 
         }
     });
