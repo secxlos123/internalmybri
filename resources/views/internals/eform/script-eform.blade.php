@@ -428,7 +428,7 @@
                         payment = (0 / 100) * static_price;
                         down_payment.val(Math.round(payment));
                         amount = static_price - payment;
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                     case '2':
                         dp.val('0');
@@ -436,7 +436,7 @@
                         payment = (0 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                     case '3':
                         dp.val('15');
@@ -444,7 +444,7 @@
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                 }
                 // console.log('22');
@@ -456,7 +456,7 @@
                         payment = (0 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                     case '2':
                         dp.val('15');
@@ -464,7 +464,7 @@
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                     case '3':
                         dp.val('20');
@@ -472,7 +472,7 @@
                         payment = (20 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                 }
                 // console.log('23');
@@ -484,7 +484,7 @@
                         payment = (15 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                     case '2':
                         dp.val('20');
@@ -492,7 +492,7 @@
                         payment = (20 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                     case '3':
                         dp.val('25');
@@ -500,7 +500,7 @@
                         payment = (25 / 100) * static_price;
                         amount = static_price - payment;
                         down_payment.val(Math.round(payment));
-                        request_amount.val(amount);
+                        request_amount.val(amount.toFixed(0));
                         break;
                 }
                 // console.log('70');
@@ -534,7 +534,7 @@
                 // down_payment.val(payment);
                 amount = static_price - payment;
                 down_payment.val(Math.round(payment));
-                request_amount.val(amount);
+                request_amount.val(amount.toFixed(0));
             });
 
         down_payment
@@ -554,7 +554,7 @@
                     payment = (val / static_price) * 100;
 
                 } else {
-                    $(this).val(max);
+                    $(this).val(max.toFixed(0));
                     payment = 90;
 
                 }
@@ -564,10 +564,10 @@
                     total = static_price - val;
 
                     if (total > 0) {
-                        request_amount.val(static_price - val);
+                        request_amount.val((static_price - val).toFixed(0));
 
                     } else {
-                        request_amount.val(static_price - max);
+                        request_amount.val((static_price - max).toFixed(0));
 
                     }
                 }
@@ -585,13 +585,13 @@
                 var real = parseInt(static_price) * (dp.val()/100);
 
                 if (parseInt(val) < min) {
-                    $(this).val(min)
+                    $(this).val(min.toFixed(0))
                     dp.val(dp_min);
-                    request_amount.val(static_price - min);
+                    request_amount.val((static_price - min).toFixed(0));
 
                 } else {
-                    $(this).val(real);
-                    request_amount.val(static_price - real);
+                    $(this).val(real.toFixed(0));
+                    request_amount.val((static_price - real).toFixed(0));
 
                 }
             });
@@ -702,7 +702,7 @@
         // down_payment.val(payment);
         amount = static_price - payment;
         down_payment.val(Math.round(payment));
-        request_amount.val(amount);
+        request_amount.val(amount.toFixed(0));
     }
 
     //showing modal of eform
