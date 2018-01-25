@@ -340,8 +340,18 @@
 
             });
 
-        // } else {
-        //window.location = $(this).attr('data-url');
+        } else {
+            // window.location = $(this).attr('data-url');
+
+            // notif for verification
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
+            HoldOn.close();
 
         }
     });
