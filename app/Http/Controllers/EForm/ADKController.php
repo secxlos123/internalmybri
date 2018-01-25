@@ -661,6 +661,15 @@ class ADKController extends Controller
     }
 
     public function datatables(Request $request) {
+        $eforms = ['contents' => 
+            [
+                'draw'            => $request->input('draw'),
+                'recordsTotal'    => '0',
+                'recordsFiltered' => '0',
+                'data'            => []
+            ]
+        ];
+
         $data = $this->getUser();
         $customer = Client::setEndpoint('api_las/index')
                 ->setHeaders([
@@ -727,46 +736,15 @@ class ADKController extends Controller
                     }
                 }
 
-                if (intval($count) == 0) {
-                    $eforms['contents']['draw'] = $request->input('draw');
-                    $eforms['contents']['recordsTotal'] = '0';
-                    $eforms['contents']['recordsFiltered'] = '0';
-                    $eforms['contents']['data'][] = [
-                        'tgl_pengajuan' => '-',
-                        'id_aplikasi'   => '-',
-                        'ref_number'    => '-',
-                        'fid_tp_produk' => '-',
-                        'nama_pegawai'  => '-',
-                        'namadeb'       => '-',
-                        'request_amount'=> '-',
-                        'STATUS'        => '-',
-                        'action'        => '-'
-                    ];
-                    return response()->json($eforms['contents']);
+                if (intval($count) != 0) {
+                    $eforms['contents']['total']           = $count;
+                    $eforms['contents']['draw']            = $request->input('draw');
+                    $eforms['contents']['recordsTotal']    = $eforms['contents']['total'];
+                    $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
                 }
-                $eforms['contents']['total'] = $count;
-                $eforms['contents']['draw'] = $request->input('draw');
-                $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-                $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-                return response()->json($eforms['contents']);
             }
-        } else {
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = '0';
-            $eforms['contents']['recordsFiltered'] = '0';
-            $eforms['contents']['data'][] = [
-                'tgl_pengajuan' => '-',
-                'id_aplikasi'   => '-',
-                'ref_number'    => '-',
-                'fid_tp_produk' => '-',
-                'nama_pegawai'  => '-',
-                'namadeb'       => '-',
-                'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
-            ];
-            return response()->json($eforms['contents']);
         }
+        return response()->json($eforms['contents']);
     }
 
     public function exportPTK(Request $request) {
@@ -879,17 +857,17 @@ class ADKController extends Controller
             ];
             // dd($detail_sph);
 
-            if (strtolower($fasilitas) == 'wl') {
-                // lempar data ke view blade
-                view()->share('data_sph',$detail_sph);
-                $pdf = PDF::loadView('internals.eform.adk._sph');
-                return $pdf->download('sph.pdf');
-            } else {
+            // if (strtolower($fasilitas) == 'wl') {
+            //     // lempar data ke view blade
+            //     view()->share('data_sph',$detail_sph);
+            //     $pdf = PDF::loadView('internals.eform.adk._sph');
+            //     return $pdf->download('sph.pdf');
+            // } else {
                 // lempar data ke view blade
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
                 return $pdf->download('sph_pekerja_bri.pdf');
-            }
+            // }
             
         } else {
             \Session::flash('error', 'Dokumen SPH gagal didownload');

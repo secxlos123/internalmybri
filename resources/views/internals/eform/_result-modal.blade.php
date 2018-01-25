@@ -17,6 +17,10 @@
     Silahkan lakukan verifikasi data nasabah terlebih dahulu.
 </div>
 
+<div class="modal-text-base-none hidden">
+    Hasil prescreening belum tersedia.
+</div>
+
 <div class="modal-body-base hidden">
     <div class="card-box m-t-30">
         <h4 class="m-t-min30 m-b-30 header-title custom-title">Hasil Prescreening</h4>

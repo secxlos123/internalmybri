@@ -103,6 +103,14 @@ class ADKHistoriController extends Controller
     }
 
     public function datatables(Request $request) {
+        $eforms = ['contents' => 
+            [
+                'draw'            => $request->input('draw'),
+                'recordsTotal'    => '0',
+                'recordsFiltered' => '0',
+                'data'            => []
+            ]
+        ];
         $data = $this->getUser();
         // print_r($data);exit();
         $customer = Client::setEndpoint('api_las/index')
@@ -116,8 +124,8 @@ class ADKHistoriController extends Controller
         // print_r($customer);exit();
         if (!empty($customer)) {
             $count = 0;
+            $res_history = [];
             foreach ($customer as $key => $result) {
-                // print_r($result);exit();
                 if (!empty($result['is_send'])) {
                     if ($result['is_send'] != '0') {
                         if ($result['is_send'] == '1') {
@@ -169,73 +177,38 @@ class ADKHistoriController extends Controller
                     }
                 }
             }
-            // print_r($count);
-            // print_r($res_history);exit();
-            foreach ($res_history as $index => $value) {
-                // print_r($value);exit();
-                $getBrinets = Client::setEndpoint('api_las/index')
-                        ->setHeaders(
-                            [ 'Authorization' => $data['token'],
-                              'pn' => $data['pn']
+
+            if (!empty($res_history)) {
+                foreach ($res_history as $index => $value) {
+                    // print_r($value);exit();
+                    $getBrinets = Client::setEndpoint('api_las/index')
+                            ->setHeaders(
+                                [ 'Authorization' => $data['token'],
+                                  'pn' => $data['pn']
+                                ])
+                            ->setBody([
+                                'requestMethod' => 'getStatusInterface',
+                                'requestData'   => $value['id_aplikasi']
                             ])
-                        ->setBody([
-                            'requestMethod' => 'getStatusInterface',
-                            'requestData'   => $value['id_aplikasi']
-                        ])
-                        ->post('form_params');
-                //         print_r($getBrinets);
-                // print_r($getBrinets['items'][0]['NO_REKENING']);exit();
-                $value['no_rekenings'] = '';
-                if ($getBrinets['statusCode'] == '01') {
-                    $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
+                            ->post('form_params');
+                    // print_r($getBrinets);
+                    $value['no_rekenings'] = '';
+                    if ($getBrinets['statusCode'] == '01') {
+                        $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
+                    }
+                    $eforms['contents']['data'][] = $value;
+                    $count = count($value);
                 }
-                $eforms['contents']['data'][] = $value;
-                $count = count($value);
-            }
+            }            
             // print_r($eforms);
             // print_r($count);exit();
-            if (intval($count) == 0) {
-                $eforms['contents']['draw'] = $request->input('draw');
-                $eforms['contents']['recordsTotal'] = '0';
-                $eforms['contents']['recordsFiltered'] = '0';
-                $eforms['contents']['data'][] = [
-                    'tgl_pengajuan' => '-',
-                    'id_aplikasi'   => '-',
-                    'ref_number'    => '-',
-                    'fid_tp_produk' => '-',
-                    'pinca_name'    => '-',
-                    'ao_name'       => '-',
-                    'namadeb'       => '-',
-                    'no_rekening'   => '-',
-                    'request_amount'=> '-',
-                    'STATUS'        => '-',
-                    'action'        => '-'
-                ];
-                return response()->json($eforms['contents']);
-            }
-            $eforms['contents']['total'] = $count;
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-            $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-            return response()->json($eforms['contents']);   
-        } else {
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = '0';
-            $eforms['contents']['recordsFiltered'] = '0';
-            $eforms['contents']['data'][] = [
-                'tgl_pengajuan' => '-',
-                'id_aplikasi'   => '-',
-                'ref_number'    => '-',
-                'fid_tp_produk' => '-',
-                'pinca_name'    => '-',
-                'ao_name'       => '-',
-                'namadeb'       => '-',
-                'no_rekening'   => '-',
-                'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
-            ];
-            return response()->json($eforms['contents']);
+            if (intval($count) != 0) {
+                $eforms['contents']['total']           = $count;
+                $eforms['contents']['draw']            = $request->input('draw');
+                $eforms['contents']['recordsTotal']    = $eforms['contents']['total'];
+                $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
+            }   
         }
+        return response()->json($eforms['contents']);
     }
 }

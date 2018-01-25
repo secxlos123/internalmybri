@@ -274,8 +274,9 @@
 
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
+        HoldOn.open();
+
         if ( $(this).attr('data-verified') != 1 ) {
-            HoldOn.open();
             // notif for verification
             $("#result-modal .modal-body")
                 .html(
@@ -288,7 +289,6 @@
 
         } else if ( $(this).attr('data-screening') == 1 ) {
             eformId = $(this).parent().parent().children('td').eq(6).html();
-            HoldOn.open();
 
             $.ajax({
                 dataType: 'json',
@@ -395,6 +395,17 @@
                 HoldOn.close();
 
             });
+
+        } else {
+            // notif for verification
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
+            HoldOn.close();
 
         }
     });
