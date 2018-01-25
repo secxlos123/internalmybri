@@ -583,4 +583,26 @@
           $('#date_receipt_shgb').attr('hidden', true);
         }
     })
+    $('#paripasu_flag').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+      console.log(text);
+        if(text == 'Ya'){
+          $('#bank_paripasu').removeAttr('hidden');
+        }else{
+          $('#bank_paripasu').attr('hidden', true);
+        }
+    })
+    $('#asuransi_flag').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+      console.log(text);
+        if(text == 'Ya'){
+          $('#company_insurance').removeAttr('hidden');
+          $('#value_insurance').removeAttr('hidden');
+        }else{
+          $('#company_insurance').attr('hidden', true);
+          $('#value_insurance').attr('hidden', true);
+        }
+    })
 </script>
