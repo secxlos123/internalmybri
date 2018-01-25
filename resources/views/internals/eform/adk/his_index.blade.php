@@ -40,7 +40,7 @@
                                         <td align="center">Nomor Rekening</td>
                                         <td align="center">Plafond</td>
                                         <td align="center">Status</td>
-                                        <!-- <td align="center">Aksi</td> -->
+                                        <td align="center">Aksi</td>
                                     </tr>
                                 </thead>
                                 <tbody>

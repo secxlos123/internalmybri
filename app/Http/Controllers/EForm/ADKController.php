@@ -682,7 +682,6 @@ class ADKController extends Controller
 
             // print_r($customer);exit();
             if ($debitur['code'] == '01') {
-                \Log::info("masuk");
                 $listVerADK = $debitur['contents']['data'];
                 $form  = array();
                 $count = 0;
@@ -941,7 +940,7 @@ class ADKController extends Controller
                 'jabatan'       => $detail['customer']['work']['position'],
                 'gaji'          => $detail['Gaji_bersih_per_bulan'],
                 'jenis_pinjaman'=> $detail['tp_produk'],
-                'instansi'      => $detail['mitra'],
+                'instansi'      => $detail['mitra']['NAMA_INSTANSI'],
                 'nip'           => $detail['NIP'],
                 'status_kerja'  => $detail['Status_Pekerjaan'],
                 'nama_atasan'   => $detail['Nama_atasan_Langsung'],

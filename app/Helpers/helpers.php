@@ -174,7 +174,6 @@ if (! function_exists('notificationsUnread')) {
         foreach ($users as $user) {
             $data = $user;
         }
-        \Log::info($data);
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
                 ->setHeaders([
@@ -186,9 +185,7 @@ if (! function_exists('notificationsUnread')) {
                     // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
-            \Log::info($NotificationDataUnread);
             session()->put('notificationsUnread', $NotificationDataUnread['contents']);
-            
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 
 
