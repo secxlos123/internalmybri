@@ -331,6 +331,39 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        @if($detail['customer']['financial']['status_income'] == "Gabung Harta")
+                                        <!-- pendapatan istri-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label title ="Take Home Pay Per Bulan" class="col-md-5 control-label">Gaji/Pendapatan Pasangan :</label>
+                                                        <div class="col-md-7">
+                                                            <p class="form-control-static">
+                                                            Rp. {{ number_format($detail['customer']['financial']['salary_couple'], 2, ',','.') }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label title ="Rata-Rata Per Bulan" class="col-md-5 control-label">Pendapatan Lain Pasangan :</label>
+                                                        <div class="col-md-7">
+                                                            <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['other_salary_couple'], 2, ',','.') }}</p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Angsuran Permohonan Pasangan :</label>
+                                                        <div class="col-md-7">
+                                                            <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['loan_installment_couple'], 2, ',','.') }}</p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        @endif
 
                                         <!-- keluarga -->
                                         <div class="row">
@@ -425,7 +458,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * </label>
+                                                            <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * :</label>
                                                             <div class="col-md-7">
                                                                 <textarea class="form-control" rows="5"></textarea>
                                                             </div>

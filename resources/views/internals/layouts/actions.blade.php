@@ -128,27 +128,21 @@
 	@endif
 @endif
 
-@if (isset($approval) && $approval == false)
-	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete bottom-margin" data-id="{{$eform_id}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
-	    <i class="mdi mdi-delete"></i>
-	</a>
+@if (isset($prescreening_result))
+	@php ( $prescreening_class = ( $prescreening_result == 'Hijau' ? 'success' : ( $prescreening_result == 'Kuning' ? 'warning' : ( $prescreening_result == 'Merah' ? 'danger' : '' ) ) ) )
+	<p class="btn-{{ $prescreening_class }} text-center" style="cursor: default;" onhover="javascript:void(0)">{{ $prescreening_result }}</p>
 @endif
 
-@if (isset($prescreening_status))
-	<a href="javascript:void(0);" id="{{ ( $prescreening_result == 'Hijau' || $prescreening_result == 'Kuning' || $prescreening_result == 'Merah' ) ? 'btn-prescreening' : '' }}">
-		@if( $prescreening_result == 'Hijau' )
-			<span class="btn btn-success col-md-6 bottom-margin">{{ $prescreening_result }}</span>
-		</a><small class="col-md-6">(klik disini)</small>
-		@elseif( $prescreening_result == 'Kuning' )
-			<span class="btn btn-warning col-md-6 bottom-margin">{{ $prescreening_result }}</span>
-		</a><small class="col-md-6">(klik disini)</small>
-		@elseif( $prescreening_result == 'Merah' )
-			<span class="btn btn-danger col-md-6 bottom-margin">{{ $prescreening_result }}</span>
-		</a><small class="col-md-6">(klik disini)</small>
-		@else
-			<p>{{ $prescreening_result }}</p>
+@if (isset($screening_result))
+	@if( $screening_result == 'view' )
+		<a href="javascript:void(0);" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 		</a>
-		@endif
+	@else
+		<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+		</a>
+	@endif
 @endif
 
 @if ((isset($dispose_collateral)) && ($status == "baru"))
@@ -168,12 +162,6 @@
 	    <i class="fa fa-list-ul" aria-hidden="true"></i>
 	</a>
 @endif
-
-<!-- @if ((isset($lkn_collateral)))
-	<a href="{!! $lkn_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info" data-original-title="Form LKN" title="Form LKN">
-	    <i class="fa fa-file-text" aria-hidden="true"></i>
-	</a>
-@endif -->
 
 @if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses"))
 	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Lakukan OTS / Penolakan
@@ -204,6 +192,12 @@
 @if ( ( isset($prescreening) ) )
 	<a href="{!! $prescreening !!}" class="btn btn-icon btn-{{ $prescreening_color }} waves-effect waves-light bottom-margin" data-original-title="Prescreening" title="Prescreening">
 		<i class="fa fa-{{ $prescreening_icon }}" aria-hidden="true"></i>
+	</a>
+@endif
+
+@if (isset($approval) && $approval == false)
+	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete bottom-margin" data-id="{{$eform_id}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
+	    <i class="mdi mdi-delete"></i>
 	</a>
 @endif
 

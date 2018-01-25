@@ -71,11 +71,14 @@
         Route::resource('developers', 'Developer\DeveloperController');
 
         /* E-Form */
+        // New Prescreening
+        Route::get('eform/prescreening/{id}', ['as'=>'getPrescreening', 'uses'=>'EForm\AOController@getPrescreening']);
 
-        Route::post('eform/prescreening', ['as'=>'getPrescreening', 'uses'=>'EForm\EFormController@getPrescreening']);
+        Route::post('eform/prescreening/{id}', ['as'=>'postPrescreening', 'uses'=>'EForm\AOController@postPrescreening']);
 
-        Route::post('eform/submit-prescreening', ['as'=>'postPrescreening', 'uses'=>'EForm\EFormController@postPrescreening']);
+        Route::post('eform/prescreening', ['as'=>'detailPrescreening', 'uses'=>'EForm\EFormController@detailPrescreening']);
 
+        // Dispotition
         Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
         Route::post('/eform/dispotition/{id}',
@@ -114,7 +117,7 @@
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
         //this route for resend verification to nasabah
-        Route::get('/eform/resendVerification/{eform_id}', 
+        Route::get('/eform/resendVerification/{eform_id}',
             ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
 
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
@@ -265,7 +268,7 @@
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
-    
+
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
     /* Chart */
