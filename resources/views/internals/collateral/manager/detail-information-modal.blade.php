@@ -601,8 +601,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-6 control-label">Foto :</label>
-                                                                    <div class="col-md-6" id="image_condition_area"> 
+                                                                    <label class="col-md-6 control-label">Foto Kondisi Lapangan :</label>
+                                                                    <div class="col-md-12 image_condition_area" id="image_condition_area"> 
                                                                     </div>
                                                                 </div>
                                                             </form>

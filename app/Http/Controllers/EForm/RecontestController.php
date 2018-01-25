@@ -108,6 +108,7 @@ class RecontestController extends Controller
       $excludeImage = ['file', 'npwp', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax', 'legal_bussiness_document', 'work_letter', 'license_of_practice', 'other_document', 'document'];
 
       if ( in_array($baseName, $excludeNumber) ) {
+        $values = str_replace('.00', '', $values);
         $values = str_replace(',', '', $values);
       }
 
@@ -132,7 +133,7 @@ class RecontestController extends Controller
     public function lknRequest($request)
     {
       $application = [];
-        // dd($request->all());
+        // echo json_encode($request->all());exit();
       foreach ($request->all() as $field => $values) {
         if ( $field == 'mutations') {
           foreach ($values as $mutationIndex => $mutations) {
@@ -186,7 +187,7 @@ class RecontestController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->lknRequest($request);
-
+        // dd($newForm);
         $client = Client::setEndpoint('eforms/'.$id.'/recontest')
             ->setHeaders([
                 'Authorization' => $data['token']
@@ -227,6 +228,7 @@ class RecontestController extends Controller
             // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
             // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->get();
+          // echo json_encode($eforms);exit();
         $detail = $eforms['contents'];
         $client = new \GuzzleHttp\Client();
         
