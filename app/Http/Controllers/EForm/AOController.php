@@ -522,8 +522,7 @@ class AOController extends Controller
                 'lkn' => route('getLKN', $form['id']),
                 'recontest' => $recontest,
                 'reverification' => route('resend_verifyData', $form['id']),
-                // 'screening_result' => route('getPrescreening', $form['id']), // uncomment jika service prescreening sudah lancar
-                'screening_result' => 'view',
+                'screening_result' => route('getPrescreening', $form['id']), // uncomment jika service prescreening sudah lancar
                 'is_verified' => $form['customer']['is_verified'],
                 'is_screening' => $form['is_screening']
             ])->render();
