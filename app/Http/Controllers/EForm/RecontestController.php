@@ -19,22 +19,33 @@ class RecontestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getRecontest($id)
+    public function getRecontest($id,Request $request)
     {
         $data = $this->getUser();
-
-        $eforms = Client::setEndpoint('eforms/'.$id)
-                ->setHeaders([
-                    'Authorization' => $data['token'], 
-                    'pn' => $data['pn'],
-                    'recontest' => true,
-                    // , 'auditaction' => 'action name'
-                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                ])->get();
+        //tambahan kode audit trail klik ikon rekontes
+        if(!empty( $request['hidden-long']))
+        {
+          $headersLog= [
+                      'Authorization' => $data['token'], 
+                      'pn' => $data['pn'],
+                      'recontest' => true,
+                      'long' => $request['hidden-long'],  
+                      'lat' =>  $request['hidden-lat'],  
+                      'auditaction' => 'klik ikon rekontes'
+                    ];
+        }else{
+          $headersLog= [
+                        'Authorization' => $data['token'], 
+                        'pn' => $data['pn'],
+                        'recontest' => true,
+                        'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5),
+                        'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+                        'auditaction' => 'klik ikon rekontes'
+                      ];
+        } 
+        $eforms = Client::setEndpoint('eforms/'.$id)->setHeaders($headersLog)->get();
         $eformData = $eforms['contents'];
         $client = new \GuzzleHttp\Client();
-        // dd($eformData);
         try {
             $res = $client->request('GET', 'http://freegeoip.net/json/');
 

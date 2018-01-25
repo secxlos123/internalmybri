@@ -230,13 +230,13 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Skor Mitra Kerjasama :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['scoring_mitra']}}</p>
+                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['Ket_Scoring']}})</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Jumlah Pekerja :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['jumlah_pekerja']}}</p>
+                    <p class="form-control-static">{{$detail['mitra']['Jumlah_pegawai']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -255,6 +255,24 @@
                 <label class="col-md-6 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Target Plafond :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">-</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Plafond Realisasi :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">-</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Baki Debet :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">-</p>
                 </div>
             </div>
         </form>

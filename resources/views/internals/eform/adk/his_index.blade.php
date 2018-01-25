@@ -27,7 +27,7 @@
                     @endif
                     <div class="card-box">
                         <div class="tab-scroll">
-                            <table id="datatable-histori" class="table table-bordered">
+                            <table id="datatable-histori" class="table table-bordered" width="100%">
                                 <thead class="bg-primary">
                                     <tr>
                                         <td align="center">Tanggal Pengajuan</td>
@@ -40,7 +40,7 @@
                                         <td align="center">Nomor Rekening</td>
                                         <td align="center">Plafond</td>
                                         <td align="center">Status</td>
-                                        <!-- <td align="center">Aksi</td> -->
+                                        <td align="center">Aksi</td>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -98,15 +98,16 @@ class EFormController extends Controller
                 ])->render();
 
                 $form_notif['action'] = view('internals.layouts.actions', [
-                                                      'verified' => $verify,
-                                                      'visited' => $visit,
-                                                      'response_status' => $status,
-                                                      'verification' => route('getVerification', $form_notif['id']),
-                                                      'approval' => $form_notif['is_approved'],
-                                                      'eform_id' => $form_notif['id'],
-                                                      'preview' => route('getDetail', $form_notif['id']),
-                                                      'lkn' => route('getLKN', $form_notif['id']),
-                                                    ])->render();
+                    'verified' => $verify,
+                    'visited' => $visit,
+                    'response_status' => $status,
+                    'verification' => route('getVerification', $form_notif['id']),
+                    'approval' => $form_notif['is_approved'],
+                    'eform_id' => $form_notif['id'],
+                    'preview' => route('getDetail', $form_notif['id']),
+                    'lkn' => route('getLKN', $form_notif['id']),
+                    'screening_result' => 'view',
+                ])->render();
                 /*
                 * mark read the notification
                 */
@@ -482,12 +483,12 @@ class EFormController extends Controller
     }
 
     /**
-     * Get prescreening data.
+     * Get prescreening detail data.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function getPrescreening(Request $request)
+    public function detailPrescreening( Request $request )
     {
         $data = $this->getUser();
 
@@ -501,37 +502,6 @@ class EFormController extends Controller
             ])
             ->setBody([
                 'eform' => $request->input('eform')
-            ])
-            ->post();
-
-        return response()->json(['response' => $client]);
-    }
-
-    /**
-     * Post prescreening data.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postPrescreening(Request $request)
-    {
-        $data = $this->getUser();
-
-        $client = Client::setEndpoint('eforms/submit-screening')
-            ->setHeaders([
-                'Authorization' => $data['token']
-                , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-            ])
-            ->setBody([
-                'eform_id' => $request->input('eform_id')
-                , 'sicd' => $request->input('sicd')
-                , 'dhn' => $request->input('dhn')
-                , 'pefindo' => $request->input('pefindo')
-                , 'selected_dhn' => $request->input('selected_dhn')
-                , 'selected_sicd' => $request->input('selected_sicd')
             ])
             ->post();
 
@@ -554,17 +524,16 @@ class EFormController extends Controller
         ];
 
         $client = Client::setEndpoint('eforms/'.$id.'/disposition')
-                ->setHeaders([
-                    'Authorization' => $data['token']
-                    , 'pn' => $data['pn']
-                    , 'branch_id' => $data['branch']
-                    , 'role' => $data['role']
-                    , 'auditaction' => $request['auditaction']
-                    , 'long' => $request['hidden-long']
-                    , 'lat'  => $request['hidden-lat']
-                ])->setBody($dispotition)
-                ->post();
-        // dd($client);
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                , 'branch_id' => $data['branch']
+                , 'role' => $data['role']
+                , 'auditaction' => $request['auditaction']
+                , 'long' => $request['hidden-long']
+                , 'lat'  => $request['hidden-lat']
+            ])->setBody($dispotition)
+            ->post();
 
         if($client['code'] == 201){
             \Session::flash('success', 'Disposisi Berhasil Dilakukan');
@@ -581,7 +550,6 @@ class EFormController extends Controller
      * Get Datatables
      * @param $request
      */
-
     public function datatables(Request $request)
     {
         $sort = $request->input('order.0');
@@ -646,6 +614,8 @@ class EFormController extends Controller
                 'recontest' => $recontest,
                 // 'verification' => route('getVerification', $form['user_id']),
                 // 'lkn' => route('getLKN', $form['id']),
+                'screening_result' => 'view',
+                'is_verified' => $verify,
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
@@ -670,65 +640,45 @@ class EFormController extends Controller
         $eform_id = [
             'eform_id' => $request->id,
         ];
-        // return ($eform_id);
 
         $client = Client::setEndpoint('eforms/'.$request->id.'/delete')
-                ->setHeaders([
-                    'Authorization' => $data['token']
-                    , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
-                    , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                ])->setBody($eform_id)
-                ->post();
-        // dd($client);
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])->setBody($eform_id)
+            ->post();
+
          return response()->json(['response' => $client]);
     }
-
-     /**
-     * Validation general
-     * @param $request
-     */
-    // public function generalRules($request)
-    // {
-    //     $rules = [
-    //                 'name' => 'required',
-    //                 'date' => 'required|date|after_or_equal:today',
-    //                 'location' => 'required',
-    //                 'cities' => 'required',
-    //                 'office_name' => 'required',
-    //             ];
-
-    //     $validator = Validator::make($request, $rules);
-    //     return $validator;
-    // }
 
     /**
      * Validation KPR
      * @param $request
      */
-
     public function kprRules($request)
     {
         $rules = [
-                   'product_type' => 'required|in:kpr',
-                   'status_property' => 'required_if:product_type,kpr,required|in:new,second',
-                   'developer' => 'required_if:product_type,kpr,required_if:status_property,new',
-                   'property' => 'required_if:product_type,kpr,required_if:status_property,new',
-                   'price' => 'required_if:product_type,kpr,required',
-                   'building_area' => 'required_if:product_type,kpr,required|numeric',
-                   'home_location' => 'required_if:product_type,kpr,required',
-                   'year' => 'required_if:product_type,kpr,required|numeric',
-                   'active_kpr' => 'required_if:product_type,kpr,required|numeric',
-                   'dp' => 'required_if:product_type,kpr,required',
-                   'request_amount' => 'required_if:product_type,kpr,required',
-                   'nik' => 'required',
-                   'office_id' => 'required',
-                   'appointment_date' => 'required|date',
-                   'address' => 'required',
-                   'longitude' => 'required',
-                   'latitude' => 'required'
-                ];
+           'product_type' => 'required|in:kpr',
+           'status_property' => 'required_if:product_type,kpr,required|in:new,second',
+           'developer' => 'required_if:product_type,kpr,required_if:status_property,new',
+           'property' => 'required_if:product_type,kpr,required_if:status_property,new',
+           'price' => 'required_if:product_type,kpr,required',
+           'building_area' => 'required_if:product_type,kpr,required|numeric',
+           'home_location' => 'required_if:product_type,kpr,required',
+           'year' => 'required_if:product_type,kpr,required|numeric',
+           'active_kpr' => 'required_if:product_type,kpr,required|numeric',
+           'dp' => 'required_if:product_type,kpr,required',
+           'request_amount' => 'required_if:product_type,kpr,required',
+           'nik' => 'required',
+           'office_id' => 'required',
+           'appointment_date' => 'required|date',
+           'address' => 'required',
+           'longitude' => 'required',
+           'latitude' => 'required'
+        ];
 
         $validator = Validator::make($request, $rules);
         return $validator;
@@ -738,19 +688,18 @@ class EFormController extends Controller
      * Validation KKB
      * @param $request
      */
-
     public function kkbRules($request)
     {
         $rules = [
-                    'kkb_application' => 'required',
-                    'kkb_time_periode' => 'required',
-                    'vehicle_condition' => 'required',
-                    'vehicle_brand' => 'required',
-                    'vehicle_price' => 'required',
-                    'kkb_payment' => 'required',
-                    'vehicle_type' => 'required',
-                    'production_year' => 'required',
-                ];
+            'kkb_application' => 'required',
+            'kkb_time_periode' => 'required',
+            'vehicle_condition' => 'required',
+            'vehicle_brand' => 'required',
+            'vehicle_price' => 'required',
+            'kkb_payment' => 'required',
+            'vehicle_type' => 'required',
+            'production_year' => 'required',
+        ];
 
         $validator = Validator::make($request, $rules);
         return $validator;
@@ -760,13 +709,13 @@ class EFormController extends Controller
      * Validation briguna
      * @param $request
      */
-
-    public function brigunaRules($request) {
+    public function brigunaRules($request)
+    {
         $rules = [
-                    'briguna_application' => 'required',
-                    'briguna_time_periode' => 'required',
-                    'loan_status' => 'required',
-                ];
+            'briguna_application' => 'required',
+            'briguna_time_periode' => 'required',
+            'loan_status' => 'required',
+        ];
 
         $validator = Validator::make($request, $rules);
         return $validator;
@@ -776,13 +725,13 @@ class EFormController extends Controller
      * Validation britama
      * @param $request
      */
-
-    public function britamaRules($request) {
+    public function britamaRules($request)
+    {
         $rules = [
-                    'deposit_amount' => 'required',
-                    'ebanking_fasility' => 'required',
-                    'purpose_utilization' => 'required',
-                ];
+            'deposit_amount' => 'required',
+            'ebanking_fasility' => 'required',
+            'purpose_utilization' => 'required',
+        ];
 
         $validator = Validator::make($request, $rules);
         return $validator;
@@ -792,12 +741,12 @@ class EFormController extends Controller
      * Validation KUR
      * @param $request
      */
-
-    public function kurRules($request) {
+    public function kurRules($request)
+    {
         $rules = [
-                    'kur_application' => 'required',
-                    'kur_time_periode' => 'required',
-                ];
+            'kur_application' => 'required',
+            'kur_time_periode' => 'required',
+        ];
 
         $validator = Validator::make($request, $rules);
         return $validator;

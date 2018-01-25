@@ -1,12 +1,6 @@
-<style type="text/css">
-.custom-dialog {
-    width: 1000px;
-    margin: 50px auto;
-}
-</style>
-<!-- Modal Penolakan -->
+<!-- Modal Prescreening -->
 <div id="result-modal" class="modal fade">
-    <div class="custom-dialog" role="document">
+    <div class="custom-dialog" role="document" style="margin: 50px auto; width: 300px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Hasil Prescreening</h4>
@@ -14,10 +8,13 @@
             <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-orange waves-effect" id="btn-update-sicd">Update</button>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal-text-base hidden">
+    Silahkan lakukan verifikasi data nasabah terlebih dahulu.
 </div>
 
 <div class="modal-body-base hidden">

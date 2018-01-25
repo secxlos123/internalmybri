@@ -53,7 +53,6 @@ class MitraController extends Controller
     {
 	    $sort = $request->input('order.0');
         $data = $this->getUser();
-		\Log::info($data);
         $mitra = Client::setEndpoint('mitra_list')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -67,8 +66,6 @@ class MitraController extends Controller
                     'anak_perusahaan_wilayah'  => $request->input('anak_perusahaan_wilayah'),
                     'anak_perusahaan_kabupaten'=> $request->input('anak_perusahaan_kabupaten'),
                 ])->get();
-		\Log::info($mitra);
-            // dd($eforms);
 		$i=1;
         foreach ($mitra['contents']['data'] as $key => $dir) {
             $dir['no'] = strtoupper($i);

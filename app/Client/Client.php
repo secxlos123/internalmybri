@@ -171,7 +171,7 @@ class Client
             case 'multipart':
                 $methods = ['method' => 'POST', 'more_content' => [['name' => '_method', 'contents' => 'put']]];
                 break;
-            default: 
+            default:
                 $methods = ['method' => 'PUT'];
                 break;
         }
@@ -236,7 +236,7 @@ class Client
     {
         $method = $this->setMethod($type);
         $body = array_key_exists('more_content', $method) ? array_merge($this->body, $method['more_content']) : $this->body;
-        
+
         try {
             $request  = $this->http->request($method['method'], $this->uri(), [
                 'headers'  => $this->headers,
