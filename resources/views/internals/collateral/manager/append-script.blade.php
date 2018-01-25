@@ -88,7 +88,7 @@
                 var optimal_building_use = result.data.ots_other.optimal_building_use;
                 var building_exchange = result.data.ots_other.building_exchange;
                 var things_bank_must_know = result.data.ots_other.things_bank_must_know;
-                var image_condition_area = result.data.ots_other.image_condition_area;
+                var image_condition_area = result.data.ots_other.images;
 
             //step6
                 var collateral_status = result.data.ots_seven.collateral_status;
@@ -197,7 +197,9 @@
                 $("#detail-collateral-modal #optimal_building_use").html(optimal_building_use);
                 $("#detail-collateral-modal #building_exchange").html(building_exchange);
                 $("#detail-collateral-modal #things_bank_must_know").html(things_bank_must_know);
-                $("#detail-collateral-modal #image_condition_area").html('<img src='+image_condition_area+' class="img-responsive">');
+                $.each(result.data.ots_other.images, function( index, value ) {
+                $("#detail-collateral-modal .image_condition_area").append('<div class="card-box"><img src='+value.image_data+' class="img-responsive"><br></div>');
+                });
 
             //step6
                 $("#detail-collateral-modal #collateral_status").html(collateral_status);

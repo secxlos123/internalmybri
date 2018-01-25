@@ -7,6 +7,11 @@
 .center-steps .wizard > .steps > ul > li {
     width: 10%;
 }
+.select2-container .select2-selection--single .select2-selection__rendered .select2-selection__clear{
+  height: 34px;
+  width: 24px;
+  right: 3px;
+}
 </style>
 
 <div class="content-page">
@@ -98,7 +103,7 @@
 <!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
 <!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
+<!-- {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!} -->
 @include('internals.collateral.staff.lkn-collateral.script')
 <script type="text/javascript">
     $(document).ready(function () {
@@ -159,6 +164,12 @@
                 },
                 cache: true
             },
+        });
+
+        $('.cities').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#city_name').val(text);
         });
 
         $('.insurance').select2({
