@@ -124,11 +124,60 @@
             </div>
         </div>
 
+        @if(!empty($collateral['ots_doc']))
         <div class="row">
             <div class="panel-heading">
                 <h3 class="panel-title">Dokumen Pendukung Collateral</h3>
             </div>
             <div class="row">
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['collateral_binding_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['collateral_binding_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['collateral_binding_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['collateral_binding_doc'], 'noimage.jpg'))
+                            <p>Dokumen Pengikatan Agunan Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['collateral_binding_doc'])){{$collateral['ots_doc']['collateral_binding_doc']}}@endif" class="img-responsive">
+                            <p>Dokumen Pengikatan Agunan</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['collateral_binding_doc'])){{$collateral['ots_doc']['collateral_binding_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Dokumen Pengikatan Agunan</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['collateral_insurance_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['collateral_insurance_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['collateral_insurance_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['collateral_insurance_doc'], 'noimage.jpg'))
+                            <p>Dokumen Polis Asuransi Agunan Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['collateral_insurance_doc'])){{$collateral['ots_doc']['collateral_insurance_doc']}}@endif" class="img-responsive">
+                            <p>Dokumen Polis Asuransi Agunan</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['collateral_insurance_doc'])){{$collateral['ots_doc']['collateral_insurance_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Dokumen Polis Asuransi Agunan</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['life_insurance_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['life_insurance_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['life_insurance_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['life_insurance_doc'], 'noimage.jpg'))
+                            <p>Dokumen Polis Asuransi Jiwa  Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['life_insurance_doc'])){{$collateral['ots_doc']['life_insurance_doc']}}@endif" class="img-responsive">
+                            <p>Dokumen Polis Asuransi Jiwa </p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['life_insurance_doc'])){{$collateral['ots_doc']['life_insurance_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Dokumen Polis Asuransi Jiwa </p>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="col-md-6" align="center">
                     <div class="card-box">
                         @if((pathinfo(strtolower($collateral['ots_doc']['ownership_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['ownership_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['ownership_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
@@ -210,6 +259,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         @if(isset($detail) && isset($customer))
         <div class="row">
