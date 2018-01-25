@@ -134,7 +134,7 @@
                                                     <div class="">
                                                         <label class="col-md-2"> Dokumen </label>
                                                         <div class="col-md-10">
-                                                            @foreach( explode(',', $eform['uploadedscore']) as $document )
+                                                            @foreach( explode(',', $eform['uploadscore']) as $document )
                                                                 <a href="{{ $document }}" target="_blank">
                                                                     <img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive">
                                                                 </a><br/>
