@@ -4,16 +4,16 @@
 @include('internals.layouts.navigation')
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
 <style type="text/css">
-    .card-box > img {
-        height: 350px;
-        width: 100%;
-    }
+.card-box > img {
+    height: 350px;
+    width: 100%;
+}
 
-    .card-box > a {
-        height: 350px;
-        width: 100%;
-        padding-top: 50px;
-    }
+.card-box > a {
+    height: 350px;
+    width: 100%;
+    padding-top: 50px;
+}
 </style>
 <div class="content-page">
     <div class="content">
@@ -36,73 +36,73 @@
             </div>
 
             @if($recontest == 1)
-                <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
-            @else
+            <form id="formLKN" method="POST" action="{{route('postLKN', $id)}}" enctype="multipart/form-data">
+                @else
                 <form id="formLKN" method="POST" action="{{route('postLKNRecontest', $id)}}" enctype="multipart/form-data">
-            @endif
-                {{ csrf_field() }}
+                    @endif
+                    {{ csrf_field() }}
 
-                <!--KPR-->
-                <div class="row">
-                    <div class="col-md-12">
-                        @if (\Session::has('error'))
-                        <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                        @endif
-                        <div class="panel panel-color panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Data Pengajuan</h3>
-                            </div>
-                            @if($recontest == 1)
+                    <!--KPR-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if (\Session::has('error'))
+                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                            @endif
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Data Pengajuan</h3>
+                                </div>
+                                @if($recontest == 1)
                                 @include('internals.eform.lkn._kpr')
-                            @else
+                                @else
                                 @include('internals.eform.recontest._kpr-recontest')
-                            @endif
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!--Visits-->
-                <div class="row">
-                    <input type="hidden" name="id" value="{{$id}}">
-                    <div class="col-md-12">
-                        <div class="panel panel-color panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Data Kunjungan</h3>
-                            </div>
-                            @if($recontest == 1)
+                    <!--Visits-->
+                    <div class="row">
+                        <input type="hidden" name="id" value="{{$id}}">
+                        <div class="col-md-12">
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Data Kunjungan</h3>
+                                </div>
+                                @if($recontest == 1)
                                 @include('internals.eform.lkn._visit')
-                            @else
+                                @else
                                 @include('internals.eform.recontest._visit-recontest')
-                            @endif
-                        </div>
-                    </div>
-                </div>
-
-                <!--income-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-color panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Data Penghasilan Per-Bulan</h3>
+                                @endif
                             </div>
-                            @include('internals.eform.lkn._income')
                         </div>
                     </div>
-                </div>
 
-                @if(!empty($eformData['customer']['personal']['couple_nik']))
-                <!--couple income-->
-                <div class="row" id="couple_income">
-                    <div class="col-md-12">
-                        <div class="panel panel-color panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Data Penghasilan Pasangan Per-Bulan</h3>
+                    <!--income-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Data Penghasilan Per-Bulan</h3>
+                                </div>
+                                @include('internals.eform.lkn._income')
                             </div>
-                            @include('internals.eform.lkn._income-partners')
                         </div>
                     </div>
-                </div>
-                @endif
+
+                    @if(!empty($eformData['customer']['personal']['couple_nik']))
+                    <!--couple income-->
+                    <div class="row" id="couple_income">
+                        <div class="col-md-12">
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Data Penghasilan Pasangan Per-Bulan</h3>
+                                </div>
+                                @include('internals.eform.lkn._income-partners')
+                            </div>
+                        </div>
+                    </div>
+                    @endif
 
             <!-- <div class="row">
                 <div class="col-md-12">
@@ -123,9 +123,9 @@
                             <h3 class="panel-title">KPP</h3>
                         </div>
                         @if($recontest == 1)
-                            @include('internals.eform.lkn._kpp-type')
+                        @include('internals.eform.lkn._kpp-type')
                         @else
-                            @include('internals.eform.recontest._kpp-recontest')
+                        @include('internals.eform.recontest._kpp-recontest')
                         @endif
                     </div>
                 </div>
@@ -139,9 +139,9 @@
                             <h3 class="panel-title">Mutasi Rekening</h3>
                         </div>
                         @if($recontest == 1)
-                            @include('internals.eform.lkn._mutation')
+                        @include('internals.eform.lkn._mutation')
                         @else
-                            @include('internals.eform.recontest._mutation-recontest')
+                        @include('internals.eform.recontest._mutation-recontest')
                         @endif
                     </div>
                     <br>
@@ -151,7 +151,7 @@
         </div>
 
         <!--Hanya muncul jika properti bekas-->
-        @if(($eformData['kpr']['status_property'] == 2) || ($eformData['kpr']['developer_id'] == 1))
+        @if(($eformData['kpr']['status_property'] == 2))
         <!--investigation-->
         <div class="row" id="investigate">
             <div class="col-md-12">
@@ -160,9 +160,26 @@
                         <h3 class="panel-title">Investigasi Jual Beli</h3>
                     </div>
                     @if($recontest == 1)
-                        @include('internals.eform.lkn._investigate')
+                    @include('internals.eform.lkn._investigate')
                     @else
-                        @include('internals.eform.recontest._investigate-recontest')
+                    @include('internals.eform.recontest._investigate-recontest')
+                    @endif
+                </div>
+            </div>
+        </div>
+        <!--Hanya muncul jika properti baru non kerjasama-->
+        @elseif(($eformData['kpr']['status_property'] == 1) && ($eformData['kpr']['developer_id'] == 1))
+        <!--investigation-->
+        <div class="row" id="investigate">
+            <div class="col-md-12">
+                <div class="panel panel-color panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Investigasi Jual Beli</h3>
+                    </div>
+                    @if($recontest == 1)
+                    @include('internals.eform.lkn._investigate')
+                    @else
+                    @include('internals.eform.recontest._investigate-recontest')
                     @endif
                 </div>
             </div>
@@ -177,9 +194,9 @@
                         <h3 class="panel-title">Dokumen Pendukung</h3>
                     </div>
                     @if($recontest == 1)
-                        @include('internals.eform.lkn._common')
+                    @include('internals.eform.lkn._common')
                     @else
-                        @include('internals.eform.recontest._common-recontest')
+                    @include('internals.eform.recontest._common-recontest')
                     @endif
                 </div>
             </div>
@@ -205,9 +222,9 @@
                         <h3 class="panel-title">Rekomendasi</h3>
                     </div>
                     @if($recontest == 1)
-                        @include('internals.eform.lkn._recommendation')
+                    @include('internals.eform.lkn._recommendation')
                     @else
-                        @include('internals.eform.recontest._recommendation-recontest-lkn')
+                    @include('internals.eform.recontest._recommendation-recontest-lkn')
                     @endif
                         <!-- <div class="panel-body">
                             <div class="row">
@@ -260,7 +277,7 @@
 @include('internals.eform.lkn.lkn-script')
 @include('internals.eform.lkn.render-mutation')
 @if($recontest == 0)
-    @include('internals.eform.recontest.script-recontest')
+@include('internals.eform.recontest.script-recontest')
 @endif
 <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
@@ -275,22 +292,28 @@
 
     <script type="text/javascript">
         var options = {
-           theme:"sk-bounce",
-           message:'Mohon tunggu sebentar.',
-           textColor:"white"
-       };
-       $(document).ready(function() {
-         $('#saveBtn').on('click', function(e) {
-            HoldOn.open(options);
-            $("#formLKN").submit();
-            HoldOn.close();
+            theme:"sk-bounce",
+            message:'Mohon tunggu sebentar.',
+            textColor:"white"
+        };
+        $(document).ready(function() {
+            $('#saveBtn').on('click', function(e) {
+                HoldOn.open(options);
+                $("#formLKN").submit();
+                HoldOn.close();
+            });
+            // $('.status_property')..select2('readonly',true);
         });
-       // $('.status_property')..select2('readonly',true);
-       npwp_masking($('#npwp_number'));
-   });
+    </script>
 
-       function npwp_masking(element) {
-         $(element).val($(element).val().replace(/[^\d+]/gi, ""));
-         $(element).inputmask("9{0,2}.9{0,3}.9{0,3}.9{0,1}-9{0,3}.9{0,3}");
-     }
- </script>
+    @if($recontest == 1)
+    <script type="text/javascript">
+        $(document).ready(function() {
+                npwp_masking($('#npwp_number'));
+            });
+        function npwp_masking(element) {
+            $(element).val($(element).val().replace(/[^\d+]/gi, ""));
+            $(element).inputmask("9{0,2}.9{0,3}.9{0,3}.9{0,1}-9{0,3}.9{0,3}");
+        }
+    </script>
+    @endif
