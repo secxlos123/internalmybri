@@ -106,23 +106,25 @@
                                 </div>
                             </div>
                         </div> -->
-                        <table id="datatable" class="table table-bordered">
-                            <thead class="bg-primary">
-                                <tr>
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>ID Aplikasi</th>
-                                    <th>No Referensi</th>
-                                    <th>Produk</th>
-                                    <th>Nama AO</th>
-                                    <th>Nama Debitur</th>
-                                    <th>Plafond</th>
-                                    <th>Status</th>
-                                    <th style="width: 100px">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                        <div class="tab-scroll">
+                            <table id="datatable" class="table table-bordered" width="100%">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <th>Tanggal Pengajuan</th>
+                                        <th>ID Aplikasi</th>
+                                        <th>No Referensi</th>
+                                        <th>Produk</th>
+                                        <th>Nama AO</th>
+                                        <th>Nama Debitur</th>
+                                        <th>Plafond</th>
+                                        <th>Status</th>
+                                        <th style="width: 100px">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
