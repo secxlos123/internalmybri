@@ -132,6 +132,15 @@
                                             <div class="col-md-12">
                                                 <div class="form-horizontal" role="form">
                                                     <div class="">
+                                                        <label class="col-md-2"> Keterangan Resiko </label>
+                                                        <div class="col-md-10">: {{ $eform['ket_risk'] }} </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
                                                         <label class="col-md-2"> Dokumen </label>
                                                         <div class="col-md-10">
                                                             @foreach( explode(',', $eform['uploadscore']) as $document )
