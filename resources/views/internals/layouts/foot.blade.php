@@ -79,7 +79,11 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
 <script src="{{asset('assets/js/jquery.viewbox.min.js')}}"></script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
-
+<script type="text/javascript">
+        $('tr[data-href]').on("click", function() {
+            document.location = $(this).data('href');
+        });
+</script>
 <script type="text/javascript">
     // Handling get longitude - latitude
     $(document).ready(function(){
