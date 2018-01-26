@@ -80,10 +80,10 @@ class ScoringController extends Controller
               'name'     => 'id',
               'contents' => $id,
             ],
-            [
-              'name'     => 'is_screening',
-              'contents' => '1',
-            ],
+            // [
+            //   'name'     => 'is_screening',
+            //   'contents' => '1',
+            // ],
             [
               'name'     => 'pefindo_score',
               'contents' => $pefindo_score,
@@ -147,10 +147,10 @@ class ScoringController extends Controller
               'name'     => 'id',
               'contents' => $id,
             ],
-            [
-              'name'     => 'is_screening',
-              'contents' => '1',
-            ],
+            // [
+            //   'name'     => 'is_screening',
+            //   'contents' => '1',
+            // ],
             [
               'name'     => 'pefindo_score',
               'contents' => $pefindo_score,

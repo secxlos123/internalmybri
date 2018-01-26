@@ -40,12 +40,12 @@
                                                 <label class="col-sm-4 control-label">Status Approval Properti :</label>
                                                 <div class="col-sm-8">
                                                     <select class="form-control" id="status">
-                                                        <option selected="" value="All"> Semua</option>
-                                                        <option value="1">Baru</option>
-                                                        <option value="2">Sedang Di Proses</option>
-                                                        <option value="3">Menunggu Persetujuan</option>
-                                                        <option value="4">Disetujui</option>
-                                                        <option value="5">Ditolak</option>
+                                                        <option selected="" value="" > Semua</option>
+                                                        <option value="baru">Baru</option>
+                                                        <option value="sedang di proses">Sedang Di Proses</option>
+                                                        <option value="menunggu persetujuan">Menunggu Persetujuan</option>
+                                                        <option value="disetujui">Disetujui</option>
+                                                        <option value="ditolak">Ditolak</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -186,6 +186,7 @@
                     Math.max(0, Math.round(d.start / api.page.len())),
                     api.page.info().pages
                     );
+                d.status = $('#status').val();
             }
         },
         aoColumns : [
@@ -232,6 +233,7 @@
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
                         );
+                    d.status = $('#status').val();
                 }
             },
             aoColumns : [

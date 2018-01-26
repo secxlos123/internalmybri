@@ -82,6 +82,20 @@
                    <label class="col-md-8 control-label">: Rp <span class="currency">{{number_format($rincian_pinjaman['angsuran_perbulan'], 2, ",", ".")}} </span></label>
                 </div>
             </div>
+        @if($interest_rate_type==3)
+            <div class="form-group">
+                <label class="col-md-4 control-label">Angsuran Fixed </label>
+                <div class="col-md-8">
+                   <label class="col-md-8 control-label">: Rp <span class="currency">{{number_format($rincian_pinjaman['rincian']['angsuranFixed'], 2, ",", ".")}} </span></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Angsuran Float </label>
+                <div class="col-md-8">
+                   <label class="col-md-8 control-label">: Rp <span class="currency">{{number_format($rincian_pinjaman['rincian']['angsuranFloat'], 2, ",", ".")}} </span></label>
+                </div>
+            </div>
+        @endif
             <div class="form-group">
                 <label class="col-md-4 control-label">Pembayaran Pertama</label>
                 <div class="col-md-8">

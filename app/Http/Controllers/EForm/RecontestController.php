@@ -19,22 +19,33 @@ class RecontestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getRecontest($id)
+    public function getRecontest($id,Request $request)
     {
         $data = $this->getUser();
-
-        $eforms = Client::setEndpoint('eforms/'.$id)
-                ->setHeaders([
-                    'Authorization' => $data['token'], 
-                    'pn' => $data['pn'],
-                    'recontest' => true,
-                    // , 'auditaction' => 'action name'
-                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                ])->get();
+        //tambahan kode audit trail klik ikon rekontes
+        if(!empty( $request['hidden-long']))
+        {
+          $headersLog= [
+                      'Authorization' => $data['token'], 
+                      'pn' => $data['pn'],
+                      'recontest' => true,
+                      'long' => $request['hidden-long'],  
+                      'lat' =>  $request['hidden-lat'],  
+                      'auditaction' => 'klik ikon rekontes'
+                    ];
+        }else{
+          $headersLog= [
+                        'Authorization' => $data['token'], 
+                        'pn' => $data['pn'],
+                        'recontest' => true,
+                        'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5),
+                        'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+                        'auditaction' => 'klik ikon rekontes'
+                      ];
+        } 
+        $eforms = Client::setEndpoint('eforms/'.$id)->setHeaders($headersLog)->get();
         $eformData = $eforms['contents'];
         $client = new \GuzzleHttp\Client();
-        // dd($eformData);
         try {
             $res = $client->request('GET', 'http://freegeoip.net/json/');
 
@@ -97,6 +108,7 @@ class RecontestController extends Controller
       $excludeImage = ['file', 'npwp', 'salary_slip', 'family_card', 'marrital_certificate', 'divorce_certificate', 'photo_with_customer', 'offering_letter', 'proprietary', 'building_permit', 'down_payment', 'building_tax', 'legal_bussiness_document', 'work_letter', 'license_of_practice', 'other_document', 'document'];
 
       if ( in_array($baseName, $excludeNumber) ) {
+        $values = str_replace('.00', '', $values);
         $values = str_replace(',', '', $values);
       }
 
@@ -121,7 +133,7 @@ class RecontestController extends Controller
     public function lknRequest($request)
     {
       $application = [];
-        // dd($request->all());
+        // echo json_encode($request->all());exit();
       foreach ($request->all() as $field => $values) {
         if ( $field == 'mutations') {
           foreach ($values as $mutationIndex => $mutations) {
@@ -175,7 +187,7 @@ class RecontestController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->lknRequest($request);
-
+        // dd($newForm);
         $client = Client::setEndpoint('eforms/'.$id.'/recontest')
             ->setHeaders([
                 'Authorization' => $data['token']
@@ -216,6 +228,7 @@ class RecontestController extends Controller
             // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
             // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->get();
+          // echo json_encode($eforms);exit();
         $detail = $eforms['contents'];
         $client = new \GuzzleHttp\Client();
         

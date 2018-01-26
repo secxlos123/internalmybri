@@ -280,7 +280,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Uker Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['branch_id']}}</p>
+                    <p class="form-control-static">{{$detail['branch']}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -506,7 +506,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['pemrakarsa_name']}}</p>
+                    <p class="form-control-static">{{$detail['ao_name']}}</p>
                 </div>
             </div>
             <div class="form-group">

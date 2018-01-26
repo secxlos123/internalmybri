@@ -140,7 +140,6 @@ class TrackingController extends Controller
                     'page'      => (int) $request->input('page') + 1,
                     'status'    => $request->input('status')
                 ])->get();
-                \Log::info($eforms);
         foreach ($eforms['contents']['data'] as $key => $form) {
             // dd($form['kpr']['developer_id']);
             $form['ref_number'] = strtoupper($form['ref_number']);

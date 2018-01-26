@@ -123,7 +123,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">No. Bukti Pengikatan * :</label>
                         <div class="col-md-8">
-                            <input type="hidden" class="form-control numericOnly" name="eight[binding_number]" value="0" id="binding_number" maxlength="50">
+                            <input type="text" class="form-control numericOnly" name="eight[binding_number]" value="0" id="binding_number" maxlength="50" placeholder="No. Bukti Pengikatan">
                         </div>
                     </div>
                     <div class="form-group clearfix">
@@ -131,7 +131,7 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <span class="input-group-addon b-0">Rp</i></span>
-                                <input type="hidden" class="form-control numericOnly currency-rp" name="eight[binding_value]" maxlength="50" value="0" id="binding_value">
+                                <input type="text" class="form-control numericOnly currency-rp" name="eight[binding_value]" maxlength="50" value="0" id="binding_value" placeholder="Nilai Pengikatan">
                             </div>
                         </div>
                     </div>

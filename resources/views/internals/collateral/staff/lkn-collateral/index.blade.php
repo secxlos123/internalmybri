@@ -7,6 +7,11 @@
 .center-steps .wizard > .steps > ul > li {
     width: 10%;
 }
+.select2-container .select2-selection--single .select2-selection__rendered .select2-selection__clear{
+  height: 34px;
+  width: 24px;
+  right: 3px;
+}
 </style>
 
 <div class="content-page">
@@ -161,6 +166,12 @@
             },
         });
 
+        $('.cities').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#city_name').val(text);
+        });
+
         $('.insurance').select2({
             witdh : '100%',
             allowClear: true,
@@ -248,7 +259,7 @@
       $('#foto_div').append(
         '<div class="foto">'
             +'<div class="input-group">'
-                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/png,image/jpg,application/pdf,application/docx" id="filestyle-'+index+'">'
+                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+index+'">'
                 +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
             +'</div>'
         +'</div>'

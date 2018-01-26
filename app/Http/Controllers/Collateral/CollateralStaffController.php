@@ -355,7 +355,6 @@ class CollateralStaffController extends Controller
         //     , 'contents' => $pln.''.$phone.''.$pam.''.$telex
         // ];
 
-      \Log::info($request->all());
       foreach ($request->except('_token', 'collateral_type','hidden-long','hidden-lat') as $field => $value) {
         foreach ($value as $index => $data) {
           if ( $index == 'image_area' ) {
@@ -504,7 +503,7 @@ class CollateralStaffController extends Controller
         'search'    => $request->input('search.value'),
         'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
         'page'      => (int) $request->input('page') + 1,
-                // 'status'    => $request->input('status'),
+        'status'    => $request->input('status'),
                 // 'branch_id' => $data['branch']
       ])->get();
 
@@ -554,7 +553,7 @@ class CollateralStaffController extends Controller
         'search'    => $request->input('search.value'),
         'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
         'page'      => (int) $request->input('page') + 1,
-                    // 'status'    => $request->input('status'),
+        'status'    => $request->input('status'),
                     // 'branch_id' => $data['branch']
       ])->get();
                 // echo json_encode($collateral);exit();

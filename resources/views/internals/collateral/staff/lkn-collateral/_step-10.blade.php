@@ -13,11 +13,12 @@
                                     "Tidak" => "Tidak"), 
                                     old('ten[paripasu]'), [
                                     'class' => 'select2 paripasu ',
-                                    'data-placeholder' => '-- Pilih --'
+                                    'data-placeholder' => '-- Pilih --',
+                                    'id'=>'paripasu_flag'
                                 ]) !!}
                             </div>
                         </div>
-                        <div class="form-group clearfix">
+                        <div class="form-group clearfix" id="bank_paripasu" hidden="">
                             <label class="col-md-4 control-label">Nilai Paripasu Agunan Bank * :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
@@ -34,14 +35,15 @@
                                     "Tidak" => "Tidak"), 
                                     old('ten[insurance]'), [
                                     'class' => 'select2 insurance_flag ',
-                                    'data-placeholder' => '-- Pilih --'
+                                    'data-placeholder' => '-- Pilih --',
+                                    'id'=>'asuransi_flag'
                                 ]) !!}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group clearfix">
+                    <div class="form-group clearfix" id="company_insurance" hidden="">
                         <label class="col-md-4 control-label">Nama Perusahaan Asuransi * :</label>
                         <div class="col-md-8">
                             <!-- {!! Form::select('ten[insurance_company]', array("" => "", 
@@ -58,7 +60,7 @@
                         </div>
                         <input type="hidden" name="ten[insurance_company_name]" id="insurance_company_name">
                     </div>
-                    <div class="form-group clearfix">
+                    <div class="form-group clearfix" id="value_insurance" hidden="">
                         <label class="col-md-4 control-label">Nilai Asuransi * :</label>
                         <div class="col-md-8">
                             <div class="input-group">

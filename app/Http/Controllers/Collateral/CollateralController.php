@@ -337,7 +337,7 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $reqs = [
-            'eform_id' => $request->has('eform_id')? $request->eform_id : false
+            'eform_id' => $request->has('eform_id')? $request->eform_id : 'false'
             , 'remark' => $request->input('remark')
             , 'approved_by' => $data['pn']
         ];
@@ -443,7 +443,7 @@ class CollateralController extends Controller
                 'search'    => $request->input('search.value'),
                 'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                 'page'      => (int) $request->input('page') + 1,
-                // 'status'    => $request->input('status'),
+                'status'    => $request->input('status'),
                 // 'branch_id' => $data['branch']
             ])->get();
             // echo json_encode($collateral);exit();
@@ -499,7 +499,7 @@ class CollateralController extends Controller
                 'search'    => $request->input('search.value'),
                 'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
                 'page'      => (int) $request->input('page') + 1,
-                // 'status'    => $request->input('status'),
+                'status'    => $request->input('status'),
                 // 'branch_id' => $data['branch']
             ])->get();
             // echo json_encode($collateral);exit();
