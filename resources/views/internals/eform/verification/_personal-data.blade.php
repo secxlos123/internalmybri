@@ -121,6 +121,17 @@
                                 </div>
                                 <input type="hidden" id="new_city" value="{{ $dataCustomer['customer']['city'] }}">
                             </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Kode Pos * :</label>
+                                <div class="col-md-3">
+                                @if ($type != 'preview')
+                                    <input type="text" class="form-control numericOnly" name="zip_code" maxlength="5" value="{{(isset($dataCustomer['customer']['zip_code']) ? $dataCustomer['customer']['zip_code'] : old('zip_code'))}}">
+                                @else
+                                    <p>{{@$dataCustomer['customer']['zip_code']}}</p>
+                                @endif
+                                    @if ($errors->has('zip_code')) <p class="help-block">{{ $errors->first('zip_code') }}</p> @endif
+                                </div>
+                            </div>
 
                             @if ($type != 'preview')
                             <div class="form-group">
