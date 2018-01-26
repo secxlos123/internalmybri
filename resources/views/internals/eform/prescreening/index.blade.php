@@ -35,68 +35,130 @@
                     </div>
                 @endif
 
-                <!-- Pefindo -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-color panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Pefindo</h3>
+                @if( isset($eform['pefindo_detail']) )
+                    <!-- Pefindo -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Pefindo</h3>
+                                </div>
+                                <div class="panel-body">
+                                    @foreach( json_decode($eform['pefindo_detail']) as $key => $pefindoAll )
+                                        @if( count($pefindoAll) > 1 )
+                                            <div class="card-box-head">{{ $key == 'individual' ? 'Calon Debitur' : 'Pasangan Calon Debitur' }}</div>
+                                        @endif
+                                        @foreach( $pefindoAll as $index => $pefindo )
+                                            <div class="card-box">
+                                                <h4 class="header-title custom-title">
+                                                    <input type="radio" id="dhn{{ $key }}{{ $pefindo->PefindoId }}" name="select_{{ $key }}_pefindo" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}>
+                                                    <label for="dhn{{ $key }}{{ $pefindo->PefindoId }}">Pefindo {{ $pefindo->PefindoId }}</label>
+                                                </h4>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-horizontal" role="form">
+                                                            <div class="">
+                                                                <label class="col-md-2"> Nama Lengkap </label>
+                                                                <div class="col-md-10"> : {{ $pefindo->FullName }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-horizontal" role="form">
+                                                            <div class="">
+                                                                <label class="col-md-2"> NIK </label>
+                                                                <div class="col-md-10"> : {{ $pefindo->KTP }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-horizontal" role="form">
+                                                            <div class="">
+                                                                <label class="col-md-2"> Tanggal Lahir </label>
+                                                                <div class="col-md-10"> : {{ $pefindo->DateOfBirth }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-horizontal" role="form">
+                                                            <div class="">
+                                                                <label class="col-md-2"> Alamat </label>
+                                                                <div class="col-md-10"> : {{ $pefindo->Address }}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                @foreach( json_decode($eform['pefindo_detail']) as $key => $pefindoAll )
-                                    @if( count($pefindoAll) > 1 )
-                                        <div class="card-box-head">{{ $key == 'individual' ? 'Calon Debitur' : 'Pasangan Calon Debitur' }}</div>
-                                    @endif
-                                    @foreach( $pefindoAll as $index => $pefindo )
-                                        <div class="card-box">
-                                            <h4 class="header-title custom-title">
-                                                <input type="radio" id="dhn{{ $key }}{{ $pefindo->PefindoId }}" name="select_{{ $key }}_pefindo" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}>
-                                                <label for="dhn{{ $key }}{{ $pefindo->PefindoId }}">Pefindo {{ $pefindo->PefindoId }}</label>
-                                            </h4>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-horizontal" role="form">
-                                                        <div class="">
-                                                            <label class="col-md-2"> Nama Lengkap </label>
-                                                            <div class="col-md-10"> : {{ $pefindo->FullName }}</div>
-                                                        </div>
+                        </div>
+                    </div>
+
+                @else
+                    <!-- Pefindo -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Pefindo</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="card-box">
+                                        <h4 class="header-title custom-title">Pefindo</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Score </label>
+                                                        <div class="col-md-10">: {{ $eform['pefindo_score'] }} </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="form-horizontal" role="form">
-                                                        <div class="">
-                                                            <label class="col-md-2"> NIK </label>
-                                                            <div class="col-md-10"> : {{ $pefindo->KTP }}</div>
-                                                        </div>
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Hasil Pefindo </label>
+                                                        <div class="col-md-10">: {{ $eform['pefindo_color'] }} </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="form-horizontal" role="form">
-                                                        <div class="">
-                                                            <label class="col-md-2"> Tanggal Lahir </label>
-                                                            <div class="col-md-10"> : {{ $pefindo->DateOfBirth }}</div>
-                                                        </div>
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Keterangan Resiko </label>
+                                                        <div class="col-md-10">: {{ $eform['ket_risk'] }} </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
-                                                <div class="col-md-12">
-                                                    <div class="form-horizontal" role="form">
-                                                        <div class="">
-                                                            <label class="col-md-2"> Alamat </label>
-                                                            <div class="col-md-10"> : {{ $pefindo->Address }}</div>
+                                            <div class="col-md-12">
+                                                <div class="form-horizontal" role="form">
+                                                    <div class="">
+                                                        <label class="col-md-2"> Dokumen </label>
+                                                        <div class="col-md-10">
+                                                            @foreach( explode(',', $eform['uploadscore']) as $document )
+                                                                <a href="{{ $document }}" target="_blank">
+                                                                    <img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive">
+                                                                </a><br/>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 <!-- DHN -->
                 <div class="row">

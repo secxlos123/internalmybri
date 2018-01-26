@@ -88,7 +88,7 @@
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
-            <label class="control-label">Dari Bangunan * </label>
+            <label class="control-label">Dari Bangunan * :</label>
             <div class="is-input">
                 <div class="input-group" style="width: 100%">
                     <input type="text" class="form-control"  name="building[north_limit_from]" maxlength="50" value="{{old('building[north_limit_from]')}}" id="building_north_limit_from">
@@ -97,14 +97,14 @@
         </div>
     <hr>
         <div class="form-group clearfix text-center horizontal-input">
-            <label class="control-label">Batas Timur * </label>
+            <label class="control-label">Batas Timur * :</label>
             <div class="is-input">
                 <div class="input-group">
                     <input type="text" class="form-control numericOnly" maxlength="4" name="building[east_limit]" value="{{old('building[east_limit]')}}" id="building_east_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
-            <label class="control-label">Dari Bangunan * </label>
+            <label class="control-label">Dari Bangunan * :</label>
             <div class="is-input">
                 <div class="input-group" style="width: 100%">
                     <input type="text" class="form-control" name="building[east_limit_from]" maxlength="50" value="{{old('building[east_limit_from]')}}" id="building_east_limit_from">
@@ -113,14 +113,14 @@
         </div>
     <hr>
         <div class="form-group clearfix text-center horizontal-input">
-            <label class="control-label">Batas Selatan * </label>
+            <label class="control-label">Batas Selatan * :</label>
             <div class="is-input">
                 <div class="input-group">
                     <input type="text" class="form-control numericOnly" maxlength="4" name="building[south_limit]" value="{{old('building[south_limit]')}}" id="building_south_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
-            <label class="control-label">Dari Bangunan * </label>
+            <label class="control-label">Dari Bangunan * :</label>
             <div class="is-input">
                 <div class="input-group" style="width: 100%">
                     <input type="text" class="form-control" name="building[south_limit_from]" maxlength="50" value="{{old('building[south_limit_from]')}}" id="building_south_limit_from">
@@ -129,14 +129,14 @@
         </div>
     <hr>
         <div class="form-group clearfix text-center horizontal-input">
-            <label class="control-label">Batas Barat * </label>
+            <label class="control-label">Batas Barat * :</label>
             <div class="is-input">
                 <div class="input-group">
                     <input type="text" class="form-control numericOnly" maxlength="4" name="building[west_limit]" value="{{old('building[west_limit]')}}" id="building_west_limit">
                     <span class="input-group-addon has-ket-input">Meter</span>
                 </div>
             </div>
-            <label class="control-label">Dari Bangunan * </label>
+            <label class="control-label">Dari Bangunan * :</label>
             <div class="is-input">
                 <div class="input-group" style="width: 100%">
                     <input type="text" class="form-control" name="building[west_limit_from]" maxlength="50" value="{{old('building[west_limit_from]')}}" id="building_west_limit_from">

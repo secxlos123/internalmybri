@@ -337,7 +337,7 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $reqs = [
-            'eform_id' => $request->has('eform_id')? $request->eform_id : false
+            'eform_id' => $request->has('eform_id')? $request->eform_id : 'false'
             , 'remark' => $request->input('remark')
             , 'approved_by' => $data['pn']
         ];

@@ -26,75 +26,44 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#customer">Profil Customer</a></li>
-                            <li><a data-toggle="tab" href="#pengajuan">Pengajuan Aplikasi</a></li>
-                            <li><a data-toggle="tab" href="#developer">Developer</a></li>
-                            <li><a data-toggle="tab" href="#pihak">Pihak Ketiga</a></li>
+                            <li class="active"><a data-toggle="tab" href="#pengajuan">Pengajuan Kredit</a></li>
+                            <li><a data-toggle="tab" href="#developerAdmin">Admin Developer</a></li>
+                            <li><a data-toggle="tab" href="#schedule">Penjadwalan</a></li>
+                            <li><a data-toggle="tab" href="#collateral">Collateral</a></li>
+                            <li><a data-toggle="tab" href="#loginUser">User Login</a></li>
+                            <li><a data-toggle="tab" href="#profileEdit">Edit Profil & Ubah Password</a></li>
+                            <li><a data-toggle="tab" href="#developerAgent">Agen Developer</a></li>
+                            <li><a data-toggle="tab" href="#property">Property</a></li>
+                            <li><a data-toggle="tab" href="#activityUser">User Activity</a></li>
                         </ul>
 
                         <div class="tab-content">
-                            <div id="customer" class="tab-pane fade in active">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <form class="form-horizontal" role="form" onsubmit="return false;">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Nama / NIK :</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" class="form-control" name="ref_number" id="ref_number">
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table id="datatable" class="table table-bordered responsive">
-                                        <thead class="bg-primary">
-                                            <tr>
-                                                <th>Old Value</th>
-                                                <th>New Value</th>
-                                                <th>Nominal</th>
-                                                <th>Tanggal Pengajuan</th>
-                                                <th>No. HP</th>
-                                                <th>Status Prescreening</th>
-                                                <th>id</th>
-                                                <th>Status Pengajuan</th>
-                                                <th>Umur Pengajuan</th>
-                                                <th>Janji Temu</th>
-                                                <th>Status Data Nasabah</th>
-                                                <th style="width: 100px">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr role="row" class="odd">
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                                <td> </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div id="pengajuan" class="tab-pane fade in active">
+                                @include('internals.audit-rail._eform')
                             </div>
-                            <div id="pengajuan" class="tab-pane fade">
-                                <h3>Pengajuan Aplikasi</h3>
+                            <div id="developerAdmin" class="tab-pane fade ">
+                                @include('internals.audit-rail._developerAdmin')
                             </div>
-                            <div id="developer" class="tab-pane fade">
-                                <h3>Developer</h3>
+                            <div id="schedule" class="tab-pane fade">
+                                @include('internals.audit-rail._schedule')
                             </div>
-                            <div id="pihak" class="tab-pane fade">
-                                <h3>Pihak Ketiga</h3>
+                            <div id="collateral" class="tab-pane fade">
+                                @include('internals.audit-rail._collateral')
+                            </div>
+                            <div id="loginUser" class="tab-pane fade">
+                                @include('internals.audit-rail._loginUser')
+                            </div>
+                            <div id="profileEdit" class="tab-pane fade">
+                                @include('internals.audit-rail._profilEdit')
+                            </div>
+                            <div id="developerAgent" class="tab-pane fade">
+                                @include('internals.audit-rail._developerAgent')
+                            </div>
+                            <div id="property" class="tab-pane fade">
+                                @include('internals.audit-rail._property')
+                            </div>
+                            <div id="activityUser" class="tab-pane fade">
+                                @include('internals.audit-rail._activityUser')
                             </div>
                         </div>
                     </div>
