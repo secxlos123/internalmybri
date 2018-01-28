@@ -110,15 +110,16 @@
                             <table id="datatable" class="table table-bordered" width="100%">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>Tanggal Pengajuan</th>
-                                        <th>ID Aplikasi</th>
-                                        <th>No Referensi</th>
-                                        <th>Produk</th>
-                                        <th>Nama AO</th>
-                                        <th>Nama Debitur</th>
-                                        <th>Plafond</th>
-                                        <th>Status</th>
-                                        <th style="width: 100px">Aksi</th>
+                                        <td align="center">Tanggal Pengajuan</td>
+                                        <td align="center">CIF</td>
+                                        <td align="center">ID Aplikasi</td>
+                                        <td align="center">No Referensi</td>
+                                        <td align="center">Produk</td>
+                                        <td align="center">Nama AO</td>
+                                        <td align="center">Nama Debitur</td>
+                                        <td align="center">Plafond</td>
+                                        <td align="center">Status</td>
+                                        <td align="center">Aksi</td>
                                     </tr>
                                 </thead>
                                 <tbody>

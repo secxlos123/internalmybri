@@ -61,6 +61,7 @@
             },
             aoColumns : [
                 {data: 'tgl_pengajuan', name: 'tgl_pengajuan', bSortable: true},
+                {data: 'cif', name: 'cif', bSortable: true},
                 {data: 'id_aplikasi', name: 'id_aplikasi', bSortable: true},
                 {data: 'ref_number', name: 'ref_number', bSortable: true},
                 {data: 'fid_tp_produk', name: 'fid_tp_produk', bSortable: true},

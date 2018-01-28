@@ -260,6 +260,13 @@
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <label class="col-md-3 control-label">Kode Pos * :</label>
+                                                    <div class="col-md-9">
+                                                        <p>{{$dataCustomer['customer']['zip_code']}}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
                                                     <label class="col-md-3 control-label"></label>
                                                     <div class="col-md-9">
                                                         <img id="preview" src="{{ $dataCustomer['customer']['identity'] }}" width="300">

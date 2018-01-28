@@ -497,9 +497,8 @@ class DropdownController extends Controller
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page'),
-                'region_id' => $request->input('region_id')
             ])
             ->get();
         $contents = array();
@@ -534,9 +533,8 @@ class DropdownController extends Controller
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->setQuery([
-                'name' => $request->input('name'),
+                'search' => $request->input('search'),
                 'page' => $request->input('page'),
-                'region_id' => $request->input('region_id')
             ])
             ->get();
         $contents = array();
@@ -551,5 +549,42 @@ class DropdownController extends Controller
         }
 
         return response()->json(['appraisers' => $contents]);
+    }
+
+    /**
+     * Get Appraiser List
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getZipCode(Request $request)
+    {
+        \Log::info($request);
+        $data = $this->getUser();
+
+        $zipcodes = Client::setEndpoint('zipcode-list')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->setQuery([
+                'search' => $request->input('search'),
+                'page' => $request->input('page'),
+            ])
+            ->get();
+        $contents = array();
+        if ( count($zipcodes['contents'])>0){
+            foreach ($zipcodes['contents']['data'] as $key => $zipcode) {
+                if ($zipcode['id'] = $zipcode['id']) {
+                    $zipcode['text'] = $zipcode['kota'];
+                    $zipcodes['contents']['data'][$key] = $zipcode;
+                }
+            }
+            $contents = $zipcodes['contents'];
+        }
+
+        return response()->json(['zipcodes' => $contents]);
     }
 }
