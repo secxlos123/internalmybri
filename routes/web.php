@@ -404,5 +404,5 @@
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
+        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
     });
