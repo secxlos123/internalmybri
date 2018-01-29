@@ -1014,7 +1014,8 @@
     $('#zip_code').on('input' , function() {
         var input=$(this).val();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
-         html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
@@ -1028,7 +1029,8 @@
                 $('#zip_code').val('');
             }else
             {
-             $('#err-zc').html('');
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zc').html(html_valid + kota );
             }
         }).fail(function(errors) {
             $('#err-zc').html(html_error);
@@ -1040,6 +1042,7 @@
     $('#zip_code_current').on('input' , function() {
         var input=$(this).val();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
         html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
         if(input.length == 5 )
         {
@@ -1054,7 +1057,8 @@
                 $('#zip_code_current').val('');
             }else
             {
-             $('#err-zcd').html('');
+                kota = data.zipcodes.data[0].kecamatan;
+                $('#err-zcd').html(html_valid + kota);
             }
         }).fail(function(errors) {
             $('#err-zcd').html(html_error);
@@ -1066,6 +1070,7 @@
     $('#zip_code_office').on('input' , function() {
         var input=$(this).val();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
         html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
         if(input.length == 5 )
         {
@@ -1080,7 +1085,8 @@
                 $('#zip_code_office').val('');
             }else
             {
-             $('#err-zco').html('');
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zco').html(html_valid + kota );
             }
         }).fail(function(errors) {
             $('#err-zco').html(html_error);
