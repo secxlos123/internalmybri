@@ -13,23 +13,9 @@
         };
 
         $('#save').on('click', function(e) {
-            if($('#zip_code').val()!="" && $('#zip_code_current').val()!="" && $('#zip_code_office').val()!="" ){
                 HoldOn.open(options);
                 $("#form1").submit();
                 HoldOn.close();
-            }else{
-                if($('#zip_code').val()==""){
-                    $('#err-zc').html("field is required");
-                    $('#zip_code').focus();
-                }else if($('#zip_code_current').val()==""){
-                    $('#err-zcd').html("field is required");
-                    $('#zip_code_current').focus();
-                }else{
-                    $('#err-zco').html("field is required");
-                    $('#zip_code_office').focus();
-                }
-                return false;
-            }
         });
 
 
@@ -1030,7 +1016,7 @@
             }else
             {
              kota = data.zipcodes.data[0].kecamatan;
-             $('#err-zc').html(html_valid + kota );
+             $('#err-zc').html(html_valid + kota);
             }
         }).fail(function(errors) {
             $('#err-zc').html(html_error);
@@ -1098,4 +1084,4 @@
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\Customer\VerificationCustomer', '#form1'); !!}
