@@ -252,11 +252,13 @@
 													
                                                        <select class="form-control" name="dir_rpc" id="dir_rpc">
 													    <option disabled selected> -- select an option -- </option>
+																@if($dir_rpc!='')
 																@foreach($dir_rpc as $dir)
 																<option value="{{$dir['no']}}">
 																	{{$dir['debt_name']}}
 																</option>
 																@endforeach
+																@endif
 														</select>
 													</div>
                                                 </div>

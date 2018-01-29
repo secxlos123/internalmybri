@@ -86,12 +86,16 @@ class GimmickController extends Controller
 				])->setQuery([
                 ])->get();
 				$i=0;
-        foreach ($dir_rpc['contents']['data'] as $key => $dir) {
-           $dirm[$i]['debt_name'] = strtoupper($dir['debt_name']);
-           $dirm[$i]['no'] = $dir['no'];
-			$i = $i+1;
-			$dir_rpc = $dirm;
-        }
+		if(!empty($dir_rpc['contents']['data'])){
+			foreach ($dir_rpc['contents']['data'] as $key => $dir) {
+			   $dirm[$i]['debt_name'] = strtoupper($dir['debt_name']);
+			   $dirm[$i]['no'] = $dir['no'];
+				$i = $i+1;
+				$dir_rpc = $dirm;
+			}
+		}else{
+			$dir_rpc = '';
+		}	
 		return view('internals.mitra.gimmick.gimmick',  compact('data','dir_rpc'));
     }
     public function getUser(){
