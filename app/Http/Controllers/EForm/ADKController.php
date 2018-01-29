@@ -611,7 +611,7 @@ class ADKController extends Controller
             // $putusan['statusDesc'] = 'berhasil';
             if ($putusan['statusCode'] == '01') {
                 // get status interface yang sudah dikirim ke brinets
-                $getBrinets = Client::setEndpoint('api_las/index')
+                /*$getBrinets = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
@@ -620,17 +620,17 @@ class ADKController extends Controller
                         'requestMethod' => 'getStatusInterface',
                         'requestData'   => $response['id_aplikasi']
                     ])
-                    ->post('form_params');
+                    ->post('form_params');*/
                 // dd($getBrinets);
                 // $getBrinets['statusCode'] = '01';
-                if ($getBrinets['statusCode'] == '01') {
+                // if ($getBrinets['statusCode'] == '01') {
                     $update_data = [
                         'eform_id'    => $response['eform_id'],
                         'is_send'     => 7,
                         'catatan_adk' => $response['catat_adk'],
-                        'cif'         => $getBrinets['items'][0]['CIF'],
-                        'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                        'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                        // 'cif'         => $getBrinets['items'][0]['CIF'],
+                        // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
                     ];
                     // print_r($response['eform_id']);
                     // print_r($update_data);exit();
@@ -649,10 +649,10 @@ class ADKController extends Controller
                         \Session::flash('error', 'Verifikasi gagal disimpan');
                         return redirect()->route('adk.index');
                     }
-                } else {
-                    \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
-                    return redirect()->route('adk.index');
-                }
+                // } else {
+                //     \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
+                //     return redirect()->route('adk.index');
+                // }
             } else {
                 \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
                 return redirect()->route('adk.index');
@@ -695,40 +695,22 @@ class ADKController extends Controller
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
-                    if (intval($value['is_send']) == '1') {
-                        $status = 'Approved';
-                    } else if (intval($value['is_send']) == '3') {
-                        $status = 'Void';
-                    } else if (intval($value['is_send']) == '6') {
-                        $status = 'Disbursed';
-                    }
                     
                     foreach ($listVerADK as $key => $form) {
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
                             // print_r($form);exit();
                             if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                                $status    = $this->getStatusIsSend($value['is_send']);
+                                $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                                $form['cif'] = $value['cif'];
+                                $form['eform_id'] = $value['eform_id'];
+                                $form['fid_tp_produk'] = $tp_produk;
                                 $form['STATUS'] = $status;
                                 $form['ref_number'] = $value['ref_number'];
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                                $form['eform_id'] = $value['eform_id'];
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                                if ($form['fid_tp_produk'] == '1') {
-                                    $form['fid_tp_produk'] = 'Briguna Karya/Umum';
-                                } elseif ($form['fid_tp_produk'] == '2') {
-                                    $form['fid_tp_produk'] = 'Briguna Purna';
-                                } elseif ($form['fid_tp_produk'] == '28') {
-                                    $form['fid_tp_produk'] = 'Briguna Karyawan BRI';
-                                } elseif ($form['fid_tp_produk'] == '22') {
-                                    $form['fid_tp_produk'] = 'Briguna Talangan';
-                                } elseif ($form['fid_tp_produk'] == '10') {
-                                    $form['fid_tp_produk'] = 'Briguna Micro';
-                                } else {
-                                    $form['fid_tp_produk'] = 'Lainnya';
-                                }
-                                $form['action'] = view('internals.layouts.actions', [
-                                    'approve_adk' => $form
-                                ])->render();
+                                $form['action'] = view('internals.layouts.actions',['approve_adk' => $form])->render();
                                 $eforms['contents']['data'][] = $form;
                                 $count = count($form);
                             }
@@ -759,20 +741,22 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $no_skpp = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.date('d-m-Y',strtotime($detail['created_at']));
-            $no_putusan = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y');
-            $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $tgl_skpp = empty($detail['created_at']) ? '' : date('d-m-Y',strtotime($detail['created_at']));
+            $tgl_putusan = empty($detail['tgl_putusan']) ? '' : date('d-m-Y',strtotime($detail['tgl_putusan']));
+            $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_skpp;
+            $no_putusan  = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_putusan;
+            $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
 
             $detail_debitur = [
                 'name_adk'     => $data['name'],
                 'jabatan_adk'  => $data['position'],
+                'no_skpp'      => $no_skpp,
+                'no_putusan'   => $no_putusan,
                 'nama_debitur' => $detail['costumer_name'],
                 'alamat'       => $detail['customer']['personal']['address'],
-                'no_skpp'      => $no_skpp,
                 'perusahaan'   => $detail['customer']['work']['company_name'],
-                'no_putusan'   => $no_putusan,
                 'scoring'      => $detail['score'],
                 'jumlah_kredit'=> $detail['Plafond_usulan'],
                 'jangka_waktu' => $detail['Jangka_waktu'],
@@ -840,7 +824,7 @@ class ADKController extends Controller
                 'beban_debitur' => $detail['Premi_beban_debitur'],
                 'beban_bri'     => $detail['Premi_beban_bri'],
                 'pengadilan'    => $detail['Pengadilan_terdekat'],
-                'cif_las'       => $detail['cif_las'],
+                'cif_las'       => $detail['cif'],
                 'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=2),
                 'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=2),
                 'bil_day'       => $this->terbilang(date('d'),$style=2),
@@ -857,17 +841,17 @@ class ADKController extends Controller
             ];
             // dd($detail_sph);
 
-            // if (strtolower($fasilitas) == 'wl') {
-            //     // lempar data ke view blade
-            //     view()->share('data_sph',$detail_sph);
-            //     $pdf = PDF::loadView('internals.eform.adk._sph');
-            //     return $pdf->download('sph.pdf');
-            // } else {
+            if (strtolower($fasilitas) == 'wl') {
+                // lempar data ke view blade
+                view()->share('data_sph',$detail_sph);
+                $pdf = PDF::loadView('internals.eform.adk._sph');
+                return $pdf->download('sph.pdf');
+            } else {
                 // lempar data ke view blade
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
                 return $pdf->download('sph_pekerja_bri.pdf');
-            // }
+            }
             
         } else {
             \Session::flash('error', 'Dokumen SPH gagal didownload');
@@ -1058,5 +1042,45 @@ class ADKController extends Controller
                 return 'Bulan tidak ditemukan';
                 break;
         }
+    }
+
+    function getStatusIsSend($value) {
+        if ($value == '1') {
+            return 'Approved';
+        } else if ($value == '2') {
+            return 'Unapproved';
+        } else if ($value == '3') {
+            return 'Void';
+        } else if ($value == '4') {
+            return 'Void adk';
+        } else if ($value == '5') {
+            return 'Approved pencairan';
+        } else if ($value == '6') {
+            return 'Disbursed';
+        } else if ($value == '7') {
+            return 'Send to brinets';
+        } else if ($value == '8') {
+            return 'Agree mp';
+        } else if ($value == '9') {
+            return 'Not Agree mp';
+        }
+
+        return '-';
+    }
+
+    function getProduk($value) {
+        if ($value == '1') {
+            return 'Briguna Karya/Umum';
+        } elseif ($value == '2') {
+            return 'Briguna Purna';
+        } elseif ($value == '28') {
+            return 'Briguna Karyawan BRI';
+        } elseif ($value == '22') {
+            return 'Briguna Talangan';
+        } elseif ($value == '10') {
+            return 'Briguna Micro';
+        }
+
+        return 'Lainnya';
     }
 }

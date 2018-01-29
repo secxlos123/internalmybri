@@ -8,6 +8,27 @@ use Client;
 
 class AuditRailController extends Controller
 {
+    protected $columns = [
+      'created_at',
+      'modul_name',
+      'username',
+      'ref_number',
+      // 'branch_id',
+      'old_values',
+      'new_values',
+      'ip_address',
+      'action_location'
+    ];
+
+    public function getUser(){
+
+     /* GET UserLogin Data */
+        $users = session()->get('user');
+            foreach ($users as $user) {
+                $data = $user;
+            }
+        return $data;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +36,7 @@ class AuditRailController extends Controller
      */
     public function index()
     {
-        $data = getUser();
+        $data = $this->getUser();
 
         return view('internals.audit-rail.index', compact('data'));
     }
@@ -26,11 +47,12 @@ class AuditRailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function datatables(Request $request)
+    public function datatables(Request $request, $type)
     {
+      // var_dump($request->all());
         $sort = $request->input('order.0');
         $data = $this->getUser();
-        $eforms = Client::setEndpoint('eforms')
+        $eforms = Client::setEndpoint('auditrail/'.$type)
                 ->setHeaders([
                   'Authorization' => $data['token']
                   , 'pn' => $data['pn']
@@ -43,46 +65,68 @@ class AuditRailController extends Controller
                   'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                   'search'    => $request->input('search.value'),
                   'page'      => (int) $request->input('page') + 1,
-                  'start_date'=> $request->input('start_date'),
-                  'end_date'  => $request->input('end_date'),
-                  'status'    => $request->input('status'),
-                  'ref_number'=> $request->input('ref_number'),
-                  'customer_name'=> $request->input('customer_name'),
-                  'branch_id' => $data['branch'],
-                  'prescreening' => $request->input('prescreening'),
-                  'product' => $request->input('product')
+                  'created_at'=> $request->input('action_date'),
+                  'username'  => $request->input('username'),
+                  'modul_name'=> $request->input('modul_name'),
+                  'ref_number'=> $request->input('ref_number')
                 ])->get();
-                // echo json_encode($request->input('customer_name'));exit();
 
         foreach ($eforms['contents']['data'] as $key => $form) {
-            $form['ref_number'] = strtoupper($form['ref_number']);
-            $form['customer_name'] = strtoupper($form['customer_name']);
             $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
-            // $form['product_type'] = strtoupper($form['product_type']);
-            $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            $form['created_at'] = $form['created_at'];
+            $form['modul_name'] = strtoupper($form['modul_name']);
+            $form['username'] = strtoupper($form['username']);
+            $form['ref_number'] = ($form['ref_number']);
+            if(!empty($form['old_values'])){
+              $form['old_values'] = 
+                'Tipe Produk : '.strtoupper($form['old_values']['product_type']).'<br> 
+                 NIK : '.($form['old_values']['nik']).'<br> 
+                 ID AO : '.($form['old_values']['ao_id']).'<br>
+                 Tanggal Perjanjian : '.($form['old_values']['appointment_date']).'<br> 
+                 Latitude : '.($form['old_values']['latitude']).'<br>
+                 Longitude : '.($form['old_values']['longitude']).'<br>
+                 Alamat : '.($form['old_values']['address']).'<br>
+                 Kantor Cabang : '.($form['old_values']['branch']).'<br>
+                 No. Referensi : '.($form['old_values']['ref_number']).'<br>';  
+            }else{
+              $form['old_values'] = '';
+            }
 
-            // $verify = $form['customer']['is_verified'];
-            $verify = $form['response_status'] == 'approve' ? true : false;
-            $visit = $form['is_visited'];
-            $status = $form['response_status'];
+            if(!empty($form['new_values'])){
+              $form['new_values'] = 
+                'Tipe Produk : '.strtoupper($form['new_values']['product_type']).'<br> 
+                 NIK : '.($form['new_values']['nik']).'<br> 
+                 ID AO : '.($form['new_values']['ao_id']).'<br>
+                 Tanggal Perjanjian : '.($form['new_values']['appointment_date']).'<br> 
+                 Latitude : '.($form['new_values']['latitude']).'<br>
+                 Longitude : '.($form['new_values']['longitude']).'<br>
+                 Alamat : '.($form['new_values']['address']).'<br>
+                 Kantor Cabang : '.($form['new_values']['branch']).'<br>
+                 No. Referensi : '.($form['new_values']['ref_number']).'<br>';
+            }else{
+              $form['new_values'] = '';
+            }
 
-            $form['prescreening_status'] = view('internals.layouts.actions', [
-              'prescreening_status' => route('getLKN', $form['id']),
-              'prescreening_result' => $form['prescreening_status'],
-            ])->render();
+            // $form['action_location'] = 
+            //     ucwords(str_replace(['"', '{', '}'], ' ', (str_replace(',', '<br>', $form['action_location']))));
 
-            $form['action'] = view('internals.layouts.actions', [
-              'verified' => $verify,
-              'visited' => $visit,
-              'response_status' => $status,
+            $client = new \GuzzleHttp\Client();
+              try {
+                $location = json_decode('['. $form['action_location'] .']')[0];
+                  $latitude = $location->latitude;
+                  $longitude = $location->longitude;
 
-              'verification' => route('getVerification', $form['id']),
-              'approval' => $form['is_approved'],
-              'eform_id' => $form['id'],
-              'preview' => route('getDetail', $form['id']),
-              'lkn' => route('getLKN', $form['id']),
-            ])->render();
+                  $res = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$latitude.','.$longitude.'&key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE');
+
+                  $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
+                  foreach ($getIP->results as $index=>$value) {
+                    $form['action_location'] = $value->formatted_address;
+                    break;
+                  }
+
+              } catch (\Exception $e) {
+                  \Log::info($e);
+              }
+
             $eforms['contents']['data'][$key] = $form;
         }
 

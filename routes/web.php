@@ -319,6 +319,8 @@
 
     Route::get('dropdown/usereason', 'DropdownController@useReason');
 
+    Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
+
     Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
@@ -403,5 +405,5 @@
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
+        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
     });
