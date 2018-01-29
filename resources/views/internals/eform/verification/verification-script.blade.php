@@ -1026,6 +1026,9 @@
             {
                 $('#err-zc').html(html);
                 $('#zip_code').val('');
+            }else
+            {
+             $('#err-zc').html('');
             }
         }).fail(function(errors) {
             $('#err-zc').html(html_error);
@@ -1049,6 +1052,9 @@
             {
                 $('#err-zcd').html(html);
                 $('#zip_code_current').val('');
+            }else
+            {
+             $('#err-zcd').html('');
             }
         }).fail(function(errors) {
             $('#err-zcd').html(html_error);
@@ -1072,6 +1078,9 @@
             {
                 $('#err-zco').html(html);
                 $('#zip_code_office').val('');
+            }else
+            {
+             $('#err-zco').html('');
             }
         }).fail(function(errors) {
             $('#err-zco').html(html_error);
