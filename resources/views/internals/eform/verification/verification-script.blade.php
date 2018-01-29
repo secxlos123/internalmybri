@@ -996,6 +996,70 @@
         });
 
     });
+
+    $('#zip_code').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>'
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                document.getElementById('zip_code').value = "";
+                $(html).insertAfter(document.getElementById('zip_code'));
+            }
+        }).fail(function(errors) {
+            console.log(errors);
+        });
+        }
+    });
+
+    $('#zip_code_current').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>'
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                document.getElementById('zip_code_current').value = "";
+                $(html).insertAfter(document.getElementById('zip_code_current'));
+            }
+        }).fail(function(errors) {
+            console.log(errors);
+        });
+        }
+    });
+
+    $('#zip_code_office').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>'
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                document.getElementById('zip_code_office').value = "";
+                $(html).insertAfter(document.getElementById('zip_code_office'));
+            }
+        }).fail(function(errors) {
+            console.log(errors);
+        });
+        }
+    });
+
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>

@@ -181,7 +181,7 @@
                 delay: 250,
                 data: function (params) {
                     return {
-                        name: params.term,
+                        search: params.term,
                         page: params.page || 1
                     };
                 },
@@ -213,7 +213,7 @@
                 delay: 250,
                 data: function (params) {
                     return {
-                        name: params.term,
+                        search: params.term,
                         page: params.page || 1
                     };
                 },
