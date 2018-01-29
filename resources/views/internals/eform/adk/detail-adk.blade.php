@@ -217,7 +217,7 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label">Cetak Data SPH :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download SPH</a>
+                                                        <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak SPH</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -229,7 +229,19 @@
                                                 <div class="form-group">
                                                     <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
                                                     <div class="col-md-5">
-                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Download Form Pengajuan</a>
+                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak Form Pengajuan</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-md-5 control-label">Cetak Data PTK/IPK :</label>
+                                                    <div class="col-md-5">
+                                                        <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak PTK/IPK</a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -240,9 +252,10 @@
                         </div>
                     </div>
                 </div>
-            @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1')
+            <!-- @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1') -->
+            @elseif($detail['is_verified'] == '1')
                 <div class="text-center">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -285,7 +298,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
                     {{ csrf_field() }}
                         <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">

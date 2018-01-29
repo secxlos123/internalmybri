@@ -54,7 +54,7 @@ class LKNRequest extends FormRequest
         'area.sub_district' => 'required',
         'area.rt' => 'required|numeric',
         'area.rw' => 'required|numeric',
-        'area.zip_code' => 'required|numeric',
+        'area.zip_code' => 'required|numeric|digits:5',
         'area.distance' => 'required|numeric',
         'area.unit_type' => 'required|numeric',
         'area.distance_from' => 'required',

@@ -131,6 +131,7 @@ class ADKHistoriController extends Controller
                     if ($result['is_send'] != '0') {
                         $status    = $this->getStatusIsSend($result['is_send']);
                         $tp_produk = $this->getProduk($result['tp_produk']);
+                        $prescreening = $this->getStatusScreening($result['prescreening_status']);
 
                         $history['tgl_pengajuan'] = empty($result['created_at']) ? $result['created_at'] : date('d-m-Y',strtotime($result['created_at']));
                         $history['tgl_analisa'] = empty($result['tgl_analisa']) ? $result['tgl_analisa'] : date('d-m-Y',strtotime($result['tgl_analisa']));
@@ -142,14 +143,15 @@ class ADKHistoriController extends Controller
                         $history['ref_number']    = $result['ref_number'];
                         $history['STATUS']        = $status;
                         $history['fid_tp_produk'] = $tp_produk;
+                        $history['status_screening'] = $prescreening;
                         $history['pinca_name']    = $result['pinca_name'];
                         $history['ao_name']       = $result['ao_name'];
                         $history['namadeb']       = $result['first_name'].' '.$result['last_name'];
                         $history['action']= view('internals.layouts.actions',[
                             'detail_adk'       => $result['eform_id'],
-                            // 'is_screening'     => $result['is_screening'],
-                            // 'is_verified'      => $result['is_verified'],
-                            // 'screening_result' => 'view'
+                            'is_screening'     => $result['is_screening'],
+                            'is_verified'      => $result['is_verified'],
+                            'screening_result' => 'view'
                         ])->render();
                         $res_history[] = $history;
                     }
@@ -159,7 +161,7 @@ class ADKHistoriController extends Controller
             if (!empty($res_history)) {
                 foreach ($res_history as $index => $value) {
                     // print_r($value);exit();
-                    $getBrinets = Client::setEndpoint('api_las/index')
+                    /*$getBrinets = Client::setEndpoint('api_las/index')
                             ->setHeaders(
                                 [ 'Authorization' => $data['token'],
                                   'pn' => $data['pn']
@@ -168,12 +170,12 @@ class ADKHistoriController extends Controller
                                 'requestMethod' => 'getStatusInterface',
                                 'requestData'   => $value['id_aplikasi']
                             ])
-                            ->post('form_params');
+                            ->post('form_params');*/
                     // print_r($getBrinets);
                     $value['no_rekenings'] = '';
-                    if ($getBrinets['statusCode'] == '01') {
+                    /*if ($getBrinets['statusCode'] == '01') {
                         $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
-                    }
+                    }*/
                     $eforms['contents']['data'][] = $value;
                     $count = count($value);
                 }
@@ -188,6 +190,18 @@ class ADKHistoriController extends Controller
             }   
         }
         return response()->json($eforms['contents']);
+    }
+
+    function getStatusScreening($value) {
+        if ($value == 1) {
+            return '<a class="btn btn-success form-control-static">Hijau</a>';
+        } elseif ($value == 2) {
+            return '<a class="btn btn-warning form-control-static">Kuning</a>';
+        } elseif ($value == 3) {
+            return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
     }
 
     function getStatusIsSend($value) {

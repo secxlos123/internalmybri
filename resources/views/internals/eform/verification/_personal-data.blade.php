@@ -126,6 +126,7 @@
                                 <div class="col-md-3">
                                 @if ($type != 'preview')
                                     <input type="text" class="form-control numericOnly" name="zip_code" maxlength="5" value="{{(isset($dataCustomer['customer']['zip_code']) ? $dataCustomer['customer']['zip_code'] : old('zip_code'))}}" id="zip_code">
+                                    <span id="err-zc"></span>
                                 @else
                                     <p>{{@$dataCustomer['customer']['zip_code']}}</p>
                                 @endif
@@ -296,6 +297,7 @@
                                 <div class="col-md-3">
                                 @if ($type != 'preview')
                                     <input type="text" class="form-control numericOnly" name="zip_code_current" maxlength="5" value="{{(isset($dataCustomer['customer']['zip_code_current']) ? $dataCustomer['customer']['zip_code_current'] : old('zip_code_current'))}}" id="zip_code_current">
+                                    <span id="err-zcd"></span>
                                 @else
                                     <p>{{@$dataCustomer['customer']['zip_code_current']}}</p>
                                 @endif

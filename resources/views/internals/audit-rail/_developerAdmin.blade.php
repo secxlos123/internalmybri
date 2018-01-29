@@ -7,7 +7,7 @@
                         <label class="col-sm-4 control-label">Tanggal Aksi :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="action_date">
+                                <input type="text" class="form-control datepicker-autoclose" name="action_date" id="action_date_admin">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                 </div>
             </form>
             <div class="text-right">
-                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="filter-dev-admin">Filter</a>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
 </div>
 
 <div class="table-responsive">
-    <table id="datatable" class="table table-bordered responsive">
+    <table id="datatable-admindev" class="table table-bordered responsive">
         <thead class="bg-primary">
             <tr>
                 <th>Tanggal</th>

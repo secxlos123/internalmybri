@@ -43,6 +43,8 @@
                                         <td align="center">Nomor Rekening</td>
                                         <td align="center">Plafond</td>
                                         <td align="center">Status</td>
+                                        <td align="center">Status Prescreening</td>
+                                        <td align="center">Eform</td>
                                         <td align="center">Aksi</td>
                                     </tr>
                                 </thead>
@@ -55,6 +57,7 @@
             </div>
         </div>
     </div>
+@include('internals.eform._result-modal')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.eform.adk.script-his-adk')
@@ -72,7 +75,8 @@
             $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
             HoldOn.close();
         } else if ( $(this).attr('data-screening') == 1 ) {
-            eformId = $(this).parent().parent().children('td').eq(6).html();
+            eformId = $(this).parent().parent().children('td').eq(14).html();
+            // alert(eformId);
             $.ajax({
                 dataType: 'json',
                 type: 'POST',

@@ -156,6 +156,7 @@
                                 <div class="col-md-3">
                                 @if ($type != 'preview')
                                     <input type="text" class="form-control numericOnly" name="zip_code_office" maxlength="5" value="{{(isset($dataCustomer['customer']['zip_code_office']) ? $dataCustomer['customer']['zip_code_office'] : old('zip_code_office'))}}" id="zip_code_office">
+                                    <span id="err-zco"></span>
                                 @else
                                     <p>{{@$dataCustomer['customer']['zip_code_office']}}</p>
                                 @endif
