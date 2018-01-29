@@ -25,7 +25,6 @@ class ListUkerController extends Controller
     public function list_uker_all(Request $request)
     {
 		$data = $this->getUser();
-		print_r($data);die();
 		$listuker = Client::setEndpoint('getBranch')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -36,6 +35,7 @@ class ListUkerController extends Controller
 					'kode'=> $data['branch'],
 				])
 				->post();
+		print_r($listuker);die();
 		if($listuker['code']=='200'){
 			if($listuker['contents']['code']=='200'){
 				for($i=0;$i<count($listuker['contents']['data']);$i++){
