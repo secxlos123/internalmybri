@@ -606,6 +606,10 @@
                                                                         <p class="form-control-static" id="optimal_building_use"></p>
                                                                     </div>
                                                                 </div> 
+                                                                <!-- Preview Image -->
+                                                                <div class="img-previews">
+                                                                    <img id="preview-0" src="#" width="40%">
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
