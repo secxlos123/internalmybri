@@ -13,9 +13,9 @@
         };
 
         $('#save').on('click', function(e) {
-            HoldOn.open(options);
-            $("#form1").submit();
-            HoldOn.close();
+                HoldOn.open(options);
+                $("#form1").submit();
+                HoldOn.close();
         });
 
 
@@ -996,7 +996,92 @@
         });
 
     });
+
+    $('#zip_code').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zc').html(html);
+                $('#zip_code').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zc').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zc').html(html_error);
+            $('#zip_code').val('');
+        });
+        }
+    });
+
+    $('#zip_code_current').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zcd').html(html);
+                $('#zip_code_current').val('');
+            }else
+            {
+                kota = data.zipcodes.data[0].kecamatan;
+                $('#err-zcd').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zcd').html(html_error);
+            $('#zip_code_current').val('');
+        });
+        }
+    });
+
+    $('#zip_code_office').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zco').html(html);
+                $('#zip_code_office').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zco').html(html_valid + kota );
+            }
+        }).fail(function(errors) {
+            $('#err-zco').html(html_error);
+            $('#zip_code_office').val('');
+        });
+        }
+    });
+
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\Customer\VerificationCustomer', '#form1'); !!}

@@ -248,10 +248,18 @@
 												<div class="form-group dir_rpc">
                                                     <label class="col-md-5 control-label">DIR / RPC % :</label>
                                                     <div class="col-md-7">
-													<input type="text" class="form-control" name="dir_rpc" id="dir_rpc" value=""/>
+													<!--<input type="text" class="form-control" name="dir_rpc" id="dir_rpc" value=""/>-->
 													
-                                                       <!-- <select class="form-control" name="dir_rpc" id="dir_rpc">
-                                                        </select> -->
+                                                       <select class="form-control" name="dir_rpc" id="dir_rpc">
+													    <option disabled selected> -- select an option -- </option>
+																@if($dir_rpc!='')
+																@foreach($dir_rpc as $dir)
+																<option value="{{$dir['no']}}">
+																	{{$dir['debt_name']}}
+																</option>
+																@endforeach
+																@endif
+														</select>
 													</div>
                                                 </div>
 												
@@ -533,7 +541,6 @@
 @include('internals.layouts.foot') 
 <script type="text/javascript">
 $(document).ready(function() {
-	
 		$("#pemutus_name").select2();
 		$("#jabatan").select2();
 		$("#pemeriksa").select2();
@@ -723,7 +730,19 @@ var counter = 1;
 	}
 	function area_level_nasional(){
 		document.getElementById('area_level_div').innerHTML = "";
-			var html = '<label class="col-md-3 control-label">Area level Nasional :</label>' + 
+		var getdata;
+		 $.ajax({
+			url: 'ListUkerAll',
+			type: 'GET',
+			contentType: "application/json",
+			dataType: "json",
+			success:function(data)
+			{
+				alert(data);
+				result = data;
+			} 
+		});
+				var html = '<label class="col-md-3 control-label">Area level Nasional :</label>' + 
 					   '<div class="col-md-9">' +
 					   //'<select class="form-control" multiple="multiple" name="area_level_dropdown" id="area_level_dropdown">' +
 					   '<div class="col-md-7"><select class="form-control" multiple name="area_level_dropdown" id="area_level_dropdown">' +
@@ -913,12 +932,12 @@ var counter = 1;
 			"value": mitra_kerjasama_value4
 		});
 		
-/* 		var dir_rpc = document.getElementById("dir_rpc");
+ 		var dir_rpc = document.getElementById("dir_rpc");
 		var dir_rpc_value = dir_rpc.options[dir_rpc.selectedIndex].value;
 		formarray.push({
 			"name": "dir_rpc",
 			"value": dir_rpc_value
-		}); */
+		}); 
 		
 		/* var asuransi_jiwa = document.getElementById("asuransi_jiwa");
 		var asuransi_jiwa_value = asuransi_jiwa.options[asuransi_jiwa.selectedIndex].value;

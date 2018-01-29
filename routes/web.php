@@ -14,6 +14,7 @@
 
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+			Route::get('/ListUkerAll', ['as'=>'ListUkerAll', 'uses'=>'Mitra\ListUkerController@list_uker_all']);
 			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
 			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
@@ -318,6 +319,8 @@
 
     Route::get('dropdown/usereason', 'DropdownController@useReason');
 
+    Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
+
     Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
@@ -402,5 +405,5 @@
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
+        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
     });
