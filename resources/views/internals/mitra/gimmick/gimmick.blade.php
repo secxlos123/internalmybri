@@ -732,7 +732,7 @@ var counter = 1;
 		document.getElementById('area_level_div').innerHTML = "";
 		var getdata;
 		 $.ajax({
-			url: 'ListUker',
+			url: 'ListUkerAll',
 			type: 'GET',
 			contentType: "application/json",
 			dataType: "json",

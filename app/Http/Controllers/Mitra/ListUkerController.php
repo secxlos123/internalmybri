@@ -22,19 +22,32 @@ class ListUkerController extends Controller
             }
         return $data;
     }
-    public function list_uker(Request $request)
+    public function list_uker_all(Request $request)
     {
 		$data = $this->getUser();
+		print_r($data);die();
 		$listuker = Client::setEndpoint('getBranch')
 				->setHeaders([
 					'Authorization' => $data['token'],
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'kode' => '',
-					'keys' => 'all',
+					'keys' => 'kanwil',
+					'kode'=> $data['branch'],
 				])
 				->post();
-		return $listuker;
+		if($listuker['code']=='200'){
+			if($listuker['contents']['code']=='200'){
+				for($i=0;$i<count($listuker['contents']['data']);$i++){
+					$region[$i]['value'] = $listuker['contents']['data'][$i]['region'];
+					$region[$i]['value'] = $listuker['contents']['data'][$i]['rgdesc'];
+				}
+			}else{
+				$region = '';
+			}
+		}else{
+			$region = '';
+		}
+		return $region;
     }
 }
