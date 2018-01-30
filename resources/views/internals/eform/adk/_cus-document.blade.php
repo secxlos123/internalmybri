@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12" align="center">
         <div class="card-box">
-            <div class="tab-scroll">
+            <div class="table-responsive">
                 <table class="table table-bordered" width="100%">
                     <thead class="bg-primary">
                         <tr align="center">
