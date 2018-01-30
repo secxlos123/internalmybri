@@ -11,7 +11,6 @@
 |
 */
 /* Backend */
-
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
 			Route::get('/ListUkerAll', ['as'=>'ListUkerAll', 'uses'=>'Mitra\ListUkerController@list_uker_all']);
@@ -241,6 +240,17 @@
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
 
+        /* CRM referral */
+				Route::resource('referral', 'CRM\ReferralController');
+				Route::get('add_referral', 'CRM\ReferralController@add');
+				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
+				Route::post('store_referral', 'CRM\ReferralController@store');
+
+        /* CRM report */
+				Route::get('report/marketing', 'CRM\ReportController@marketing');
+				Route::get('report/activity', 'CRM\ReportController@activity');
+
+
 		Route::resource('mitra', 'Mitra\MitraController');
 		Route::resource('gimmick', 'Mitra\GimmickController');
 		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
@@ -341,6 +351,8 @@
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
+    Route::get('auditrail-detailactivity/{id}', ['as'=>'auditrail-detail', 'uses'=>'AuditRail\AuditRailController@detailActivity']);
+
     /* Datatables */
     Route::group(['prefix'=>'datatables'], function () {
         /*ADK*/
@@ -406,4 +418,10 @@
 
         /*Auditrail*/
         Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
+
+        Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+        Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
+
+        Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
     });

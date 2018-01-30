@@ -6,12 +6,12 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama User :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="customer_name">
+                            <input type="text" class="form-control" id="username">
                         </div>
                     </div>
                 </form>
             <div class="text-right">
-                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="filter-useractivity">Filter</a>
             </div>
         </div>
     </div>
@@ -19,22 +19,22 @@
 </div>
 
 <div class="table-responsive">
-    <table id="datatable" class="table table-bordered responsive">
-        <thead class="bg-primary">
-            <tr>
-                <th>Nama User</th>
-                <th>IP Address Terakhir</th>
-                <th>Lokasi Akses Terakhir</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr role="row" class="odd">
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="tab-scroll">
+        <table id="datatable-useractivity" class="table table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>User ID</th>
+                    <th>Nama User</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr role="row" class="odd">
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

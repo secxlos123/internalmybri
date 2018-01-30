@@ -69,6 +69,8 @@
                 {data: 'namadeb', name: 'namadeb', bSortable: true},
                 {data: 'request_amount', name: 'request_amount', bSortable: true},
                 {data: 'STATUS', name: 'STATUS', bSortable: true },
+                {data: 'status_screening', name: 'status_screening', bSortable: true },
+                {data: 'eform_id', name: 'eform_id', bSortable: false, className: 'hidden' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

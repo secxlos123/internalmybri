@@ -676,23 +676,27 @@ class ADKController extends Controller
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
-                    
                     foreach ($listVerADK as $key => $form) {
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
-                            // print_r($debitur);
-                            // print_r($form);exit();
                             // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
                             if ($value['is_send'] == '1') {
                                 $status    = $this->getStatusIsSend($value['is_send']);
                                 $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                                $prescreening = $this->getStatusScreening($value['prescreening_status']);
                                 $form['cif'] = $value['cif'];
                                 $form['eform_id'] = $value['eform_id'];
                                 $form['fid_tp_produk'] = $tp_produk;
                                 $form['STATUS'] = $status;
                                 $form['ref_number'] = $value['ref_number'];
+                                $form['status_screening'] = $prescreening;
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                                $form['action'] = view('internals.layouts.actions',['approve_adk' => $form])->render();
+                                $form['action'] = view('internals.layouts.actions',[
+                                    'approve_adk' => $form,
+                                    'is_screening'     => $value['is_screening'],
+                                    'is_verified'      => $value['is_verified'],
+                                    'screening_result' => 'view'
+                                ])->render();
                                 $eforms['contents']['data'][] = $form;
                                 $count = count($form);
                             }
@@ -842,6 +846,7 @@ class ADKController extends Controller
     }
 
     public function exportDebitur(Request $request) {
+        // return $this->exportKredit($request);
         $data = $this->getUser();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
@@ -922,6 +927,34 @@ class ADKController extends Controller
             return $pdf->download('form_pengajuan.pdf');            
         } else {
             \Session::flash('error', 'Dokumen Form Pengajuan gagal didownload');
+            return redirect()->route('adk.index');
+        }
+    }
+
+    public function exportKredit(Request $request) {
+        $data = $this->getUser();
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
+                    ->setHeaders([ 
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])
+                    ->get();
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        if (!empty($detail)) {
+            $status = $this->getStatusIsSend($detail['is_send']);
+            $detail['status_send'] = $status;
+            // dd($detail);
+            // $this->data['detail'] = $detail;
+            // return view('internals.eform.adk._report_kredit')->with($this->data);
+            /// lempar data ke view blade
+            $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
+                    ['detail' => $detail])
+                    ->setPaper('a4', 'landscape');
+            return $pdf->download('detail_kredit.pdf');            
+        } else {
+            \Session::flash('error', 'Dokumen Detail Kredit gagal didownload');
             return redirect()->route('adk.index');
         }
     }
@@ -1024,6 +1057,18 @@ class ADKController extends Controller
                 return 'Bulan tidak ditemukan';
                 break;
         }
+    }
+
+    function getStatusScreening($value) {
+        if ($value == 1) {
+            return '<a class="btn btn-success form-control-static">Hijau</a>';
+        } elseif ($value == 2) {
+            return '<a class="btn btn-warning form-control-static">Kuning</a>';
+        } elseif ($value == 3) {
+            return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
     }
 
     function getStatusIsSend($value) {
