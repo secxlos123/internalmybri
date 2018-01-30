@@ -19,7 +19,7 @@
       <div class="form-group {{ $errors->has('dp') ? ' has-error' : '' }}">
         <label>DP *:</label>
         <div class="input-group">
-         {!! Form::text('dp', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'dp','maxlength'=>'6','required'=>'','step'=>'0.4']) !!}
+         {!! Form::text('dp', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'dp','maxlength'=>'7','required'=>'','step'=>'0.4']) !!}
           <span class="input-group-addon">%</span>
         </div>
          @if ($errors->has('dp'))
