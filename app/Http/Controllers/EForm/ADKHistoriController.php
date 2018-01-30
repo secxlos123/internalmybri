@@ -161,7 +161,7 @@ class ADKHistoriController extends Controller
             if (!empty($res_history)) {
                 foreach ($res_history as $index => $value) {
                     // print_r($value);exit();
-                    /*$getBrinets = Client::setEndpoint('api_las/index')
+                    $getBrinets = Client::setEndpoint('api_las/index')
                             ->setHeaders(
                                 [ 'Authorization' => $data['token'],
                                   'pn' => $data['pn']
@@ -170,12 +170,12 @@ class ADKHistoriController extends Controller
                                 'requestMethod' => 'getStatusInterface',
                                 'requestData'   => $value['id_aplikasi']
                             ])
-                            ->post('form_params');*/
+                            ->post('form_params');
                     // print_r($getBrinets);
                     $value['no_rekenings'] = '';
-                    /*if ($getBrinets['statusCode'] == '01') {
+                    if ($getBrinets['statusCode'] == '01') {
                         $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
-                    }*/
+                    }
                     $eforms['contents']['data'][] = $value;
                     $count = count($value);
                 }

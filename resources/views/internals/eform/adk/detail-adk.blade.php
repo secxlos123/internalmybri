@@ -255,7 +255,7 @@
             <!-- @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1') -->
             @elseif($detail['is_send'] == '1' && $detail['is_verified'] == '1')
                 <div class="text-center">
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -298,7 +298,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
                     {{ csrf_field() }}
                         <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">

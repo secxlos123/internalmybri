@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}" id="eform_id">
                 <input type="hidden" name="is_verified" id="verifikasi">
-                <div class="tab-scroll">
+                <div class="table-responsive">
                     <table class="table table-bordered" width="100%">
                         <thead class="bg-primary">
                             <tr align="center">
