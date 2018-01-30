@@ -58,26 +58,7 @@ class ADKController extends Controller
         ];
 
         if (!empty($detail)) {
-            if (intval($detail['is_send']) == '1') {
-                $status = 'Approved';
-            } else if (intval($detail['is_send']) == '2') {
-                $status = 'Unapproved';
-            } else if (intval($detail['is_send']) == '3') {
-                $status = 'Void';
-            } else if (intval($detail['is_send']) == '4') {
-                $status = 'Void adk';
-            } else if (intval($detail['is_send']) == '5') {
-                $status = 'Approved pencairan';
-            } else if (intval($detail['is_send']) == '6') {
-                $status = 'Disbursed';
-            } else if (intval($detail['is_send']) == '7') {
-                $status = 'Send to brinets';
-            } else if (intval($detail['is_send']) == '8') {
-                $status = 'Agree mp';
-            } else if (intval($detail['is_send']) == '9') {
-                $status = 'Not Agree mp';
-            }
-
+            $status = $this->getStatusIsSend($detail['is_send']);
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
@@ -493,7 +474,8 @@ class ADKController extends Controller
             $update_data = [
                 'is_verified'      => $response['is_verified'],
                 'catatan_adk'      => $response['catat_adk'],
-                'is_send'          => 5,
+                // 'is_send'          => 5,
+                // 'is_send'          => 6,
                 'eform_id'         => $response['eform_id'],
                 'flag_kk'          => $kk,
                 'flag_ktp'         => $ktp,
@@ -607,8 +589,6 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');
 
-            // $putusan['statusCode'] = '01';
-            // $putusan['statusDesc'] = 'berhasil';
             if ($putusan['statusCode'] == '01') {
                 // get status interface yang sudah dikirim ke brinets
                 /*$getBrinets = Client::setEndpoint('api_las/index')
@@ -622,11 +602,12 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');*/
                 // dd($getBrinets);
-                // $getBrinets['statusCode'] = '01';
+
                 // if ($getBrinets['statusCode'] == '01') {
                     $update_data = [
                         'eform_id'    => $response['eform_id'],
-                        'is_send'     => 7,
+                        // 'is_send'     => 7,
+                        'is_send'     => 6,
                         'catatan_adk' => $response['catat_adk'],
                         // 'cif'         => $getBrinets['items'][0]['CIF'],
                         // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
@@ -700,7 +681,8 @@ class ADKController extends Controller
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // print_r($debitur);
                             // print_r($form);exit();
-                            if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                            // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                            if ($value['is_send'] == '1') {
                                 $status    = $this->getStatusIsSend($value['is_send']);
                                 $tp_produk = $this->getProduk($form['fid_tp_produk']);
                                 $form['cif'] = $value['cif'];
@@ -846,7 +828,7 @@ class ADKController extends Controller
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._sph');
                 return $pdf->download('sph.pdf');
-            } else {
+            } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'w8') {
                 // lempar data ke view blade
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
@@ -931,8 +913,8 @@ class ADKController extends Controller
             ];
             // dd($detail_sph);
 
-            // $this->data['data_sph'] = $detail_sph;
-            // return view('internals.eform.adk._debitur')->with($this->data);
+            // $this->data['detail'] = $detail;
+            // return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
             $pdf = \PDF::loadView('internals.eform.adk._debitur', 
                     ['data_sph' => $detail_sph])

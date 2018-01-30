@@ -254,24 +254,79 @@
     });
 
     $('#add_photo').click(function(){
-      var index = $('.photo').length;
-      index++;
-      $('#foto_div').append(
-        '<div class="foto">'
-            +'<div class="input-group">'
+        var index = $('.photo').length;
+        var x = $(".filestyle-foto").length;
+        index++;
+        $('#foto_div').append(
+            '<div class="foto">'
+                +'<div class="input-group">'
                 +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+index+'">'
                 +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
+                +'</div>'
             +'</div>'
-        +'</div>'
         );
-      $('.filestyle-foto').filestyle({
-        buttonText : "Unggah",
-        htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
-        placeholder: "Tidak ada file"
+        // Append image field
+        $(".img-previews").append(
+            `<img id="preview-`+ x +`" src="#" width="40%">`
+        );
+        $('.filestyle-foto').filestyle({
+            buttonText : "Unggah",
+            htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
+            placeholder: "Tidak ada file"
+        });
     });
-  });
 
     $('#foto_div').on('click', '.delete-photo', function () {
-      $(this).closest('div.foto').remove();
-  })
+        var string = $(this).closest('div.foto').find('.filestyle-foto').attr('id');
+        var id = string.substr(10, 1);
+        var id = parseInt(id) - 1;
+        $(this).closest('div.foto').remove();
+        $("#preview-"+ id).remove();
+    })
+
+    // Preview image when finish button clicked
+    $("a[href='#finish']").on("click", function(){
+        $(".filestyle-foto").each(function(key, val){
+            previewImage(this, key);
+        });
+    })
+
+    $('#zip_code').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zc').html(html);
+                $('#zip_code').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zc').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zc').html(html_error);
+            $('#zip_code').val('');
+        });
+        }
+    });
+
+    // Function for previewing image
+    function previewImage(input, key) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-'+key).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>

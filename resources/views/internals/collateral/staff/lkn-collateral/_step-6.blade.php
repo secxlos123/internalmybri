@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Foto Situasi Lapangan * :</label>
                             <div class="col-md-8" id="foto_div">
-                                <div class="input-group">
+                                <div class="foto">
                                     <input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);" name="other[image_area][1][image_data]" accept="image/*,application/pdf">
                                 </div>
                             </div>
