@@ -12,7 +12,7 @@
                         <label class="col-sm-4 control-label">Tanggal Aksi :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="action_date">
+                                <input type="text" class="form-control datepicker-autoclose" name="action_date" id="action_loginLogout_date">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
 
                 </form>
             <div class="text-right">
-                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="filter-loginLogout">Filter</a>
             </div>
         </div>
     </div>
@@ -35,22 +35,26 @@
 </div>
 
 <div class="table-responsive">
-    <table id="datatable" class="table table-bordered responsive">
-        <thead class="bg-primary">
-            <tr>
-                <th>Tanggal</th>
-                <th>Nama User</th>
-                <th>IP Address</th>
-                <th>Lokasi Akses</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr role="row" class="odd">
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="tab-scroll">
+        <table id="datatable-login-logout" class="table table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Nama User</th>
+                    <th>Role</th>
+                    <th>Nama Modul</th>
+                    <th>IP Address</th>
+                    <th>Lokasi Akses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr role="row" class="odd">
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
