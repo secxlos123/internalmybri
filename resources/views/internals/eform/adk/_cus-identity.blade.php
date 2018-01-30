@@ -299,7 +299,7 @@
                         <?php
                         }
                         ?>
-                        @if($detail['is_send'] == '1')
+                        @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')
                             <tr>
                                 <td colspan="2"></td>
                                 <td>Catatan ADK</td>

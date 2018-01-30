@@ -205,7 +205,7 @@
             </div>
 
             <!-- rekomendasi approval -->
-            @if($detail['is_send'] == '1')                    
+            @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')                    
                 <div class="text-center">
                     <div class="row">
                         <div class="col-md-6">
@@ -253,7 +253,7 @@
                     </div>
                 </div>
             <!-- @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1') -->
-            @elseif($detail['is_verified'] == '1')
+            @elseif($detail['is_send'] == '1' && $detail['is_verified'] == '1')
                 <div class="text-center">
                     <!-- <div class="row">
                         <div class="col-md-6">
