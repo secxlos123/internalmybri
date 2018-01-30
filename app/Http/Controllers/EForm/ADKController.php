@@ -676,20 +676,19 @@ class ADKController extends Controller
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
-                    
                     foreach ($listVerADK as $key => $form) {
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
-                            // print_r($debitur);
-                            // print_r($form);exit();
                             // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
                             if ($value['is_send'] == '1') {
                                 $status    = $this->getStatusIsSend($value['is_send']);
                                 $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                                $prescreening = $this->getStatusScreening($value['prescreening_status']);
                                 $form['cif'] = $value['cif'];
                                 $form['eform_id'] = $value['eform_id'];
                                 $form['fid_tp_produk'] = $tp_produk;
                                 $form['STATUS'] = $status;
                                 $form['ref_number'] = $value['ref_number'];
+                                $form['status_screening'] = $prescreening;
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
                                 $form['action'] = view('internals.layouts.actions',[
@@ -1058,6 +1057,18 @@ class ADKController extends Controller
                 return 'Bulan tidak ditemukan';
                 break;
         }
+    }
+
+    function getStatusScreening($value) {
+        if ($value == 1) {
+            return '<a class="btn btn-success form-control-static">Hijau</a>';
+        } elseif ($value == 2) {
+            return '<a class="btn btn-warning form-control-static">Kuning</a>';
+        } elseif ($value == 3) {
+            return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
     }
 
     function getStatusIsSend($value) {
