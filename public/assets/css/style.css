@@ -5577,7 +5577,7 @@ table .checkbox {
   float: right;
 }
 
-.has-bock-print .form-group, 
+.has-bock-print .form-group,
 .has-bock-print .form-group label,
 .has-bock-print .form-group .is-dropdown-select2 {
   display: inline-block;
@@ -5609,8 +5609,8 @@ table .checkbox {
     opacity: 0.1;
 }
 
-.center-steps .wizard > .steps a, 
-.center-steps .wizard > .steps a:hover, 
+.center-steps .wizard > .steps a,
+.center-steps .wizard > .steps a:hover,
 .center-steps .wizard > .steps a:active {
     display: block;
     width: auto;
@@ -5638,7 +5638,7 @@ table .checkbox {
 
 .btn-banning {
   background-color: #e27a7a !important;
-  border: 1px solid #e27a7a !important;  
+  border: 1px solid #e27a7a !important;
 }
 
 
@@ -5716,3 +5716,7 @@ and (max-device-width : 1192px) {
 * ended
 */
 /*ended iqbal emveep --------------------------------------------------------*/
+.select2-container--default .select2-selection--single .select2-selection__clear {
+    z-index: 2;
+    padding: 0px 10px;
+}

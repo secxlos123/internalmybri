@@ -210,3 +210,9 @@ function addURL(element)
     });
 }
 </script>
+
+@if ((isset($detailActivity)))
+	<a href="{!! $detailActivity !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Detail Informasi Aktivitas User" title="Detail Informasi Aktivitas User">
+	    <i class="fa fa-info" aria-hidden="true"></i>
+	</a>
+@endif
