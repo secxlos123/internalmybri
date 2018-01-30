@@ -694,8 +694,8 @@ class ADKController extends Controller
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
                                 $form['action'] = view('internals.layouts.actions',[
                                     'approve_adk' => $form,
-                                    'is_screening'     => $result['is_screening'],
-                                    'is_verified'      => $result['is_verified'],
+                                    'is_screening'     => $value['is_screening'],
+                                    'is_verified'      => $value['is_verified'],
                                     'screening_result' => 'view'
                                 ])->render();
                                 $eforms['contents']['data'][] = $form;
