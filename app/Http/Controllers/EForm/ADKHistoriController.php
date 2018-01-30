@@ -129,14 +129,16 @@ class ADKHistoriController extends Controller
             foreach ($customer as $key => $result) {
                 if (!empty($result['is_send'])) {
                     if ($result['is_send'] != '0') {
-                        $status    = $this->getStatusIsSend($result['is_send']);
-                        $tp_produk = $this->getProduk($result['tp_produk']);
+                        $status       = $this->getStatusIsSend($result['is_send']);
+                        $tp_produk    = $this->getProduk($result['tp_produk']);
                         $prescreening = $this->getStatusScreening($result['prescreening_status']);
+                        $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], -4);
+                        $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], -4);
 
-                        $history['tgl_pengajuan'] = empty($result['created_at']) ? $result['created_at'] : date('d-m-Y',strtotime($result['created_at']));
-                        $history['tgl_analisa'] = empty($result['tgl_analisa']) ? $result['tgl_analisa'] : date('d-m-Y',strtotime($result['tgl_analisa']));
-                        $history['tgl_putusan'] = empty($result['tgl_putusan']) ? $result['tgl_putusan'] : date('d-m-Y',strtotime($result['tgl_putusan']));
-                        $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'], 0, ",", ".");
+                        $history['tgl_pengajuan'] = empty($result['created_at']) ? '' : date('d-m-Y',strtotime($result['created_at']));
+                        $history['tgl_analisa'] = empty($result['tgl_analisa']) ? '' : $tgl_analisa;
+                        $history['tgl_putusan'] = empty($result['tgl_putusan']) ? '' : $tgl_putusan;
+                        $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'],0,",",".");
                         $history['cif']           = $result['cif'];
                         $history['eform_id']      = $result['eform_id'];
                         $history['id_aplikasi']   = $result['id_aplikasi'];
