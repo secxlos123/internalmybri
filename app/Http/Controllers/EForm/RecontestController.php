@@ -187,7 +187,6 @@ class RecontestController extends Controller
     {
         $data = $this->getUser();
         $newForm = $this->lknRequest($request);
-        // dd($newForm);
         $client = Client::setEndpoint('eforms/'.$id.'/recontest')
             ->setHeaders([
                 'Authorization' => $data['token']
