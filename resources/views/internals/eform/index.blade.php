@@ -1,4 +1,4 @@
-@section('title','My BRI - E-Form')
+@section('title','MyBRI - Pengajuan Kredit')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -8,13 +8,13 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="page-title-box">
-                            <h4 class="page-title">E-Form</h4>
+                            <h4 class="page-title">Pengajuan Kredit</h4>
                             <ol class="breadcrumb p-0 m-0">
                                 <li>
                                     <a href="{{url('/')}}">Dashboard</a>
                                 </li>
                                 <li class="active">
-                                    E-Form
+                                    Pengajuan Kredit
                                 </li>
                             </ol>
                             <div class="clearfix"></div>
@@ -32,7 +32,7 @@
                         <div class="card-box ">
                             <div class="add-button">
                                 @if(($data['role']=='ao') || ($data['role']=='other'))
-                                <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pengajuan Aplikasi</a>
+                                <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Pinjaman Aplikasi</a>
                                 @endif
                             </div>
                             <div id="filter" class="m-b-15">
@@ -63,28 +63,38 @@
                                                         <input type="text" class="form-control" id="customer_name">
                                                     </div>
                                                 </div>
+                                                 <div class="form-group">
+                                                    <label class="col-sm-4 control-label">AO :</label>
+                                                    <div class="col-sm-8">
+                                                         {!! Form::select('name', ['All' => ' (Semua)']+['All' => ' (Semua)'], old('name'), [
+                                                                    'class' => 'select2 name',
+                                                                    'data-placeholder' => 'Pilih Nama AO',
+                                                                    'id' => 'name'
+                                                                ]) !!}
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-4 control-label">Status Pengajuan :</label>
+                                                    <label class="col-sm-4 control-label">Status Pengajuan Kredit:</label>
                                                     <div class="col-sm-8">
                                                         <select class="form-control" id="status">
-                                                            <option selected="" value="All"> Semua</option>
-                                                            <option value="Rekomend">Pengajuan Kredit</option>
-                                                            <option value="Dispose">Disposisi Pengajuan</option>
+                                                            <option selected="" value="All"> (Semua)</option>
+                                                            <option value="Rekomend">Pengajuan</option>
+                                                            <option value="Dispose">Disposisi</option>
                                                             <option value="Initiate">Prakarsa</option>
                                                             <option value="Submit">Proses CLF</option>
-                                                            <option value="Approval1">Kredit Disetujui</option>
+                                                            <option value="Approval1">Disetujui</option>
                                                             <option value="Approval2">Rekontes Kredit</option>
-                                                            <option value="Rejected">Kredit Ditolak</option>
+                                                            <option value="Rejected"> Ditolak</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-4 control-label">Status Prescreening :</label>
+                                                    <label class="col-sm-4 control-label">Prescreening :</label>
                                                     <div class="col-sm-8">
                                                         <select id="prescreening_filter" class="form-control">
-                                                            <option selected="" value="All"> Semua</option>
+                                                            <option selected="" value="All"> (Semua)</option>
                                                             <option value="1" class="text-success">Hijau</option>
                                                             <option value="2" class="text-warning">Kuning</option>
                                                             <option value="3" class="text-danger">Merah</option>
@@ -96,7 +106,7 @@
                                                     <label class="col-sm-4 control-label">Jenis Produk :</label>
                                                     <div class="col-sm-8">
                                                         <select id="product_filter" class="form-control">
-                                                            <option selected="" value="All"> Semua</option>
+                                                            <option selected="" value="All"> (Semua)</option>
                                                             <option value="kpr">KPR</option>
                                                             <option value="briguna">BRIGUNA</option>
                                                         </select>
@@ -105,7 +115,7 @@
 
                                             </form>
                                             <div class="text-right">
-                                                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Cari</a>
                                             </div>
                                         </div>
                                     </div>
@@ -242,6 +252,7 @@
                     d.customer_name = $('#customer_name').val();
                     d.prescreening = $('#prescreening_filter').val();
                     d.product = $('#product_filter').val();
+                    d.name = $('#name').val();
                 }
             },
           aoColumns : [
@@ -256,188 +267,188 @@
                 {   data: 'ao_name', name: 'ao_name', bSortable: false },
                 {   data: 'status', name: 'status', bSortable: false },
                 {   data: 'aging', name: 'aging' },
-                {   data: 'action', name: 'action', orderable: false, searchable: false},
+                {   data: 'action', name: 'action', bSortable: false },
             ],
       });
       }
 
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
-        eformId = $(this).parent().next().html();
-
         HoldOn.open();
 
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("getPrescreening") }}',
-            data: {
-                eform : eformId
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-
-        }).done(function(data){
-            $("#result-modal .modal-body").html($('.modal-body-base').html());
-            // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
-            contents = data.response.contents;
-
-            $('.card-box.m-t-30.remove-class-prescreening').remove();
-
-            if (contents.eform.prescreening_status == "Hijau") {
-                warna = '<p class="text-success form-control-static">Hijau</p>';
-
-            } else if (contents.eform.prescreening_status == "Kuning") {
-                warna = '<p class="text-warning form-control-static">Kuning</p>';
-
-            } else if (contents.eform.prescreening_status == "Merah") {
-                warna = '<p class="text-danger form-control-static">Merah</p>';
-
-            }
-
-            pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
-            if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
-                pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
-
-            } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
-                pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
-
-            }
-
-            $("#result-modal .modal-body #prescreening-id").html(contents.eform.id);
-            $("#result-modal .modal-body #prescreening-nik").html(contents.eform.nik);
-            $("#result-modal .modal-body #prescreening-name").html(contents.eform.customer_name);
-            $("#result-modal .modal-body #prescreening-result").html(warna);
-            $("#result-modal .modal-body #prescreening-color").html(pefindo_warna);
-            $("#result-modal .modal-body #prescreening-score").html(contents.eform.pefindo_score);
-            $("#result-modal .modal-body #prescreening-notice").html(contents.eform.ket_risk);
-
-            uploadscore = contents.eform.uploadscore;
-            html = '';
-            assets = "{{asset('assets/images/download.png')}}";
-
-            if ( uploadscore != null || uploadscore != '') {
-                split = uploadscore.split(',');
-                $.each(split, function(key, value) {
-                    if (value != ''){
-                        html += '<a href="'+value+'" target="_blank"><img src="'+assets+'" width="50" class="img-responsive"></a><br/>';
-                    }
-                })
-            } else {
-                html = '<p class="form-control-static">-</p>';
-            }
-            $("#result-modal .modal-body #prescreening-image").html(html);
-
-            base = $("#result-modal .modal-body .card-box.m-t-30.after-this");
-
-            html = '';
-            $.each(contents.dhn, function(key, dhn) {
-                if (dhn.warna == "Hijau") {
-                    warna = '<p class="text-success form-control-static">Hijau</p>';
-
-                } else if (dhn.warna == "Kuning") {
-                    warna = '<p class="text-warning form-control-static">Kuning</p>';
-
-                } else if (dhn.warna == "Merah") {
-                    warna = '<p class="text-danger form-control-static">Merah</p>';
-
-                }
-
-                selected = '';
-                if (contents.eform.selected_dhn == key) {
-                    selected = ' Dipilih';
-                }
-
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"> DHN'+selected+'</h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
-            })
-
-            $.each(contents.sicd, function(key, sicd) {
-                if (sicd.bikole == 1 || sicd.bikole == '-' || sicd.bikole == null || sicd.bikole == '') {
-                    warna = '<p class="text-success form-control-static">Hijau</p>';
-
-                } else if (sicd.bikole == 2) {
-                    warna = '<p class="text-warning form-control-static">Kuning</p>';
-
-                } else if (sicd.bikole >= 3) {
-                    warna = '<p class="text-danger form-control-static">Merah</p>';
-
-                }
-
-                selected = '';
-                if (contents.eform.selected_sicd == key) {
-                    selected = ' Dipilih';
-                }
-
-                html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"> <label for="sicd'+key+'">SICD'+selected+'<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
-            })
-            $(html).insertAfter(base);
-
-            $("input[name=select_sicd]").eq(contents.eform.selected_sicd).prop('checked', true);
-            $("input[name=select_dhn]").eq(contents.eform.selected_dhn).prop('checked', true);
-
-            // $('#detail').html(data['view']);
+        if ( $(this).attr('data-verified') != 1 ) {
+            // notif for verification
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base').html()
+                );
             $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
             HoldOn.close();
 
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
+        } else if ( $(this).attr('data-screening') == 1 ) {
+            eformId = $(this).parent().parent().children('td').eq(6).html();
+
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("detailPrescreening") }}',
+                data: {
+                    eform : eformId
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+
+            }).done(function(data){
+                $("#result-modal .modal-body").html($('.modal-body-base').html());
+                    // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
+                    contents = data.response.contents;
+
+                    $('.card-box.m-t-30.remove-class-prescreening').remove();
+
+                    if (contents.eform.prescreening_status == "Hijau") {
+                        warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                    } else if (contents.eform.prescreening_status == "Kuning") {
+                        warna = '<p class="text-warning form-control-static">Kuning</p>';
+
+                    } else if (contents.eform.prescreening_status == "Merah") {
+                        warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                    }
+
+                    pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+                    if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
+                        pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                    } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
+                        pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                    }
+
+                    $("#result-modal .modal-body #prescreening-id").html(contents.eform.id);
+                    $("#result-modal .modal-body #prescreening-nik").html(contents.eform.nik);
+                    $("#result-modal .modal-body #prescreening-name").html(contents.eform.customer_name);
+                    $("#result-modal .modal-body #prescreening-result").html(warna);
+                    $("#result-modal .modal-body #prescreening-color").html(pefindo_warna);
+                    $("#result-modal .modal-body #prescreening-score").html(contents.eform.pefindo_score);
+                    $("#result-modal .modal-body #prescreening-notice").html(contents.eform.ket_risk);
+
+                    uploadscore = contents.eform.uploadscore;
+                    html = '';
+                    assets = "{{asset('assets/images/download.png')}}";
+
+                    if ( uploadscore != null || uploadscore != '') {
+                        split = uploadscore.split(',');
+                        $.each(split, function(key, value) {
+                            if (value != ''){
+                                html += '<a href="'+value+'" target="_blank"><img src="'+assets+'" width="50" class="img-responsive"></a><br/>';
+                            }
+                        })
+                    } else {
+                        html = '<p class="form-control-static">-</p>';
+                    }
+                    $("#result-modal .modal-body #prescreening-image").html(html);
+
+                    base = $("#result-modal .modal-body .card-box.m-t-30.after-this");
+
+                    html = '';
+                    $.each(contents.dhn, function(key, dhn) {
+                        if (dhn.warna == "Hijau") {
+                            warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                        } else if (dhn.warna == "Kuning") {
+                            warna = '<p class="text-warning form-control-static">Kuning</p>';
+
+                        } else if (dhn.warna == "Merah") {
+                            warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                        }
+
+                        html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"> DHN </h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
+                    })
+
+                    $.each(contents.sicd, function(key, sicd) {
+                        if (sicd.bikole == 1 || sicd.bikole == '-' || sicd.bikole == null || sicd.bikole == '') {
+                            warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                        } else if (sicd.bikole == 2) {
+                            warna = '<p class="text-warning form-control-static">Kuning</p>';
+
+                        } else if (sicd.bikole >= 3) {
+                            warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                        }
+
+                        html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"> SICD </h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+                    })
+                    $(html).insertAfter(base);
+
+                    $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 1000px;');
+                    $('#result-modal').modal('show');
+                    HoldOn.close();
+
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+
+            });
+
+        } else {
+            // notif for verification
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
             HoldOn.close();
 
-        });
+        }
     });
+</script>
 
-    $(document).on('click', '#btn-update-sicd', function(){
-        input = $("input[name=select_sicd]:checked");
-        selectedSICD = input.val();
-        sicd = input.parent()
-            .next()
-                .children('div')
-                    .children('div')
-                        .children('div')
-                            .last()
-                                .find('p').html();
-
-        input = $("input[name=select_dhn]:checked");
-        selectedDHN = input.val();
-        dhn = input.parent()
-            .next()
-                .children('div')
-                    .children('div')
-                        .children('div')
-                                .find('.dhn-color').html();
-
-        pefindo = $("#prescreening-color").children('p').html();
-        eformId = $("#prescreening-id").html();
-
-        HoldOn.open();
-
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("postPrescreening") }}',
-            data: {
-                eform_id : eformId
-                , selected_sicd : selectedSICD
-                , selected_dhn : selectedDHN
-                , sicd : sicd
-                , dhn : dhn
-                , pefindo : pefindo
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-
-        }).done(function(data){
-            $('#result-modal').modal('hide');
-            $("#btn-filter").click();
-            alert(data.response.descriptions);
-            HoldOn.close();
-
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        var lastStatusElement = null;
+        $('.select2').select2({
+            witdh : '100%',
+            allowClear: true,
         });
-    })
+
+        $('.name').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getAO")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                     //   aoId: $('#fake-aoid').val(),
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.officers.data,
+                        pagination: {
+                            more: (params.page * data.officers.per_page) < data.officers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        // $('.name').on('select2:select', function(){
+        //     $('#fake-aoid').val($(this).val());
+        // });
+    });
 </script>

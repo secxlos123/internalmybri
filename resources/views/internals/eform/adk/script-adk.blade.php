@@ -61,6 +61,7 @@
             },
             aoColumns : [
                 {data: 'tgl_pengajuan', name: 'tgl_pengajuan', bSortable: true},
+                {data: 'cif', name: 'cif', bSortable: true},
                 {data: 'id_aplikasi', name: 'id_aplikasi', bSortable: true},
                 {data: 'ref_number', name: 'ref_number', bSortable: true},
                 {data: 'fid_tp_produk', name: 'fid_tp_produk', bSortable: true},
@@ -68,8 +69,10 @@
                 {data: 'namadeb', name: 'namadeb', bSortable: true},
                 {data: 'request_amount', name: 'request_amount', bSortable: true},
                 {data: 'STATUS', name: 'STATUS', bSortable: true },
+                {data: 'status_screening', name: 'status_screening', bSortable: true },
+                {data: 'eform_id', name: 'eform_id', bSortable: false, className: 'hidden' },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
-      });
+        });
     }
 </script>

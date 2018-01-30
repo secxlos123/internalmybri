@@ -13,9 +13,9 @@
         };
 
         $('#save').on('click', function(e) {
-            HoldOn.open(options);
-            $("#form1").submit();
-            HoldOn.close();
+                HoldOn.open(options);
+                $("#form1").submit();
+                HoldOn.close();
         });
 
 
@@ -721,8 +721,8 @@
         var year = $('#year');
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         building_area.on('input', function() {
             if((price !== null) && (building_area !== null)){
@@ -740,8 +740,8 @@
             var val = $(this).val();
             var down_payment = $('#down_payment');
             var request_amount = $('#request_amount');
-            var price_without_comma = price.val().replace(',00', '');
-            var static_price = price_without_comma.replace(/\./g, '');
+            var price_without_comma = price.val();
+            var static_price = price_without_comma.replace(/\,/g, '');
 
             if(building_area.val() < 21){
                 switch (val) {
@@ -850,8 +850,8 @@
                 var dp_min = dp.attr('min');
                 var down_payment = $('#down_payment');
                 var request_amount = $('#request_amount');
-                var price_without_comma = price.val().replace(',00', '');
-                var static_price = price_without_comma.replace(/\./g, '');
+                var price_without_comma = price.val();
+                var static_price = price_without_comma.replace(/\,/g, '');
 
                 if (val < dp_min) {
                     val = dp_min;
@@ -867,8 +867,8 @@
 
         down_payment
             .on('input', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var request_amount = $('#request_amount');
@@ -901,8 +901,8 @@
                 }
             })
             .on('blur', function() {
-                var val = $(this).val().replace(',00', '').replace(/\./g, '');
-                var static_price = $('#price').val().replace(',00', '').replace(/\./g, '');
+                var val = $(this).val().replace(/\,/g, '');
+                var static_price = $('#price').val().replace(/\,/g, '');
                 var dp = $('#dp');
                 var dp_min = dp.attr('min');
                 var min = parseInt(static_price) * (dp_min/100);
@@ -949,8 +949,8 @@
         var down_payment = $('#down_payment');
         var request_amount = $('#request_amount');
         var price = $('#price');
-        var price_without_comma = price.val().replace(',00', '');
-        var static_price = price_without_comma.replace(/\./g, '');
+        var price_without_comma = price.val();
+        var static_price = price_without_comma.replace(/\,/g, '');
 
         if (parseInt(val) > 90) {
             val = 90;
@@ -996,7 +996,92 @@
         });
 
     });
+
+    $('#zip_code').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zc').html(html);
+                $('#zip_code').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zc').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zc').html(html_error);
+            $('#zip_code').val('');
+        });
+        }
+    });
+
+    $('#zip_code_current').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zcd').html(html);
+                $('#zip_code_current').val('');
+            }else
+            {
+                kota = data.zipcodes.data[0].kecamatan;
+                $('#err-zcd').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zcd').html(html_error);
+            $('#zip_code_current').val('');
+        });
+        }
+    });
+
+    $('#zip_code_office').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zco').html(html);
+                $('#zip_code_office').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zco').html(html_valid + kota );
+            }
+        }).fail(function(errors) {
+            $('#err-zco').html(html_error);
+            $('#zip_code_office').val('');
+        });
+        }
+    });
+
 </script>
 
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Customer\CompleteCustomer', '#form1'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\Customer\VerificationCustomer', '#form1'); !!}

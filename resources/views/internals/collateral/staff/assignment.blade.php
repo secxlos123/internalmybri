@@ -1,4 +1,4 @@
-@section('title','My BRI - Detail Informasi Properti')
+@section('title','MyBRI - Detail Informasi Properti')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -128,13 +128,13 @@ var longlatAction = LongLat+'&ket=ots menilai agunan';
 
     $(document).on('click', "#btn-reject", function(){
         $('#reject-modal').modal('show');
-        HoldOn.open(options);
+        // HoldOn.open(options);
     })
 
     $(document).on('click', "#btn-submit", function(){
         $('#remark').val($('#reject-modal #reason').val());
         $('#auditaction').val('menolak menilai agunan');
         $('#form1').submit();
-        HoldOn.open(options);
+        // HoldOn.open(options);
     })
 </script>

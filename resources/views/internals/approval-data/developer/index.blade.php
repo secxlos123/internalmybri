@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Approval Perubahan Data Developer')
+@section('title','MyBRI - Daftar Approval Perubahan Data Mitra Kerja')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
                 <div class="col-xs-12">
 
                     <div class="page-title-box">
-                        <h4 class="page-title">Daftar Approval Perubahan Data Developer</h4>
+                        <h4 class="page-title">Daftar Approval Perubahan Data Mitra Kerja</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
-                                Daftar Approval Perubahan Data Developer
+                                Daftar Approval Perubahan Data Mitra Kerja
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -73,8 +73,20 @@
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                </tbody>
+                                @if(count($data_apporals) > 0)
+                                    <tbody>
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1">{!! $data_apporals['company_name'] !!}</td>
+                                            <td>{!! $data_apporals['address'] !!}</td>
+                                            <td>{!! $data_apporals['city_id'] !!}</td>
+                                            <td>{!! $data_apporals['mobile_phone'] !!}</td>
+                                            <td>{!! $data_apporals['action'] !!}</td>
+                                        </tr>
+                                    </tbody>
+                                @else
+                                    <tbody>
+                                    </tbody>
+                                @endif
                             </table>
                         </div>
                     </div>

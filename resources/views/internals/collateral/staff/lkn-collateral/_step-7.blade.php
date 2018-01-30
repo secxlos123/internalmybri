@@ -32,8 +32,13 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Lokasi * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="seven[location]" maxlength="50" value="{{old('seven[location]')}}" id="location">
+                            {!! Form::select('seven[city_id]', ['' => ''], old('seven[city_id]'), [
+                                    'class' => 'select2 cities',
+                                    'data-placeholder' => '-- Pilih Kota --',
+                                ]) !!}
+                                {{-- <input type="text" class="form-control" name="seven[location]" maxlength="50" value="{{old('seven[location]')}}" id="location_step7"> --}}
                             </div>
+                            {{-- <input type="hidden" name="city_name" id="city_name"> --}}
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Alamat Agunan * :</label>

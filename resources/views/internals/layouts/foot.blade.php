@@ -79,7 +79,11 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
 <script src="{{asset('assets/js/jquery.viewbox.min.js')}}"></script>
 <!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
-
+<script type="text/javascript">
+        $('tr[data-href]').on("click", function() {
+            document.location = $(this).data('href');
+        });
+</script>
 <script type="text/javascript">
     // Handling get longitude - latitude
     $(document).ready(function(){
@@ -190,7 +194,7 @@
             (e.keyCode == 88 && e.ctrlKey === true) ||
             // Allow: backspace
             (e.keyCode === 320 && e.ctrlKey === true) ||
-            // Allow: home, end, left, right
+            // Allow: Home MyBRI, end, left, right
             (e.keyCode >= 35 && e.keyCode <= 39) )
         {
             // let it happen, don't do anything

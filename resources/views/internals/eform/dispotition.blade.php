@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Disposisi')
+@section('title','MyBRI - Form Disposisi')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -331,6 +331,39 @@
                                             </div>
                                         </div>
                                         <hr>
+                                        @if($detail['customer']['financial']['status_income'] == "Gabung Harta")
+                                        <!-- pendapatan istri-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label title ="Take Home Pay Per Bulan" class="col-md-5 control-label">Gaji/Pendapatan Pasangan :</label>
+                                                        <div class="col-md-7">
+                                                            <p class="form-control-static">
+                                                            Rp. {{ number_format($detail['customer']['financial']['salary_couple'], 2, ',','.') }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label title ="Rata-Rata Per Bulan" class="col-md-5 control-label">Pendapatan Lain Pasangan :</label>
+                                                        <div class="col-md-7">
+                                                            <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['other_salary_couple'], 2, ',','.') }}</p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Angsuran Permohonan Pasangan :</label>
+                                                        <div class="col-md-7">
+                                                            <p class="form-control-static">Rp. {{ number_format($detail['customer']['financial']['loan_installment_couple'], 2, ',','.') }}</p>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        @endif
 
                                         <!-- keluarga -->
                                         <div class="row">
@@ -366,15 +399,33 @@
                                         <div class="row">
                                             <div class="col-md-6" align="center">
                                                 <div class="card-box">
-                                                    <img src="{{$detail['customer']['other']['identity']}}" class="img-responsive">
-                                                    <p>Foto KTP</p>
+                                                    @if((pathinfo(strtolower($detail['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($detail['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($detail['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                                        @if(strpos($detail['customer']['other']['identity'], 'noimage.jpg'))
+                                                        <p>Foto KTP Kosong</p>
+                                                        @else
+                                                        <img src="@if(!empty($detail['customer']['other']['identity'])){{$detail['customer']['other']['identity']}}@endif" class="img-responsive">
+                                                        <p>Foto KTP</p>
+                                                        @endif
+                                                    @else
+                                                        <a href="@if(!empty($detail['customer']['other']['identity'])){{$detail['customer']['other']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                                        <p>Klik Untuk Lihat Foto KTP</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                             @if( ($detail['customer']['personal']['status_id']) == 2)
                                             <div class="col-md-6" align="center">
                                                 <div class="card-box">
-                                                    <img src="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" class="img-responsive">
-                                                    <p>Foto KTP Pasangan</p>
+                                                    @if((pathinfo(strtolower($detail['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($detail['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($detail['customer']['personal']['couple_identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                                        @if(strpos($detail['customer']['personal']['couple_identity'], 'noimage.jpg'))
+                                                        <p>Foto KTP Pasangan Kosong</p>
+                                                        @else
+                                                        <img src="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" class="img-responsive">
+                                                        <p>Foto KTP Pasangan</p>
+                                                        @endif
+                                                    @else
+                                                        <a href="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                                        <p>Klik Untuk Lihat Foto KTP Pasangan</p>
+                                                    @endif
                                                 </div>
                                             </div>
                                             @endif
@@ -407,7 +458,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * </label>
+                                                            <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * :</label>
                                                             <div class="col-md-7">
                                                                 <textarea class="form-control" rows="5"></textarea>
                                                             </div>

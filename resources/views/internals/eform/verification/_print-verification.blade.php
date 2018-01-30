@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Verifikasi Data Nasabah')
+@section('title','MyBRI - Form Verify Data Nasabah')
 @include('internals.layouts.head')
 <style type="text/css">
     /*body {
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Verifikasi Data Nasabah</h4>
+                        <h4 class="page-title">Verify Data Nasabah</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
@@ -51,7 +51,7 @@
                                 <a href="{{route('indexAO')}}">Pengajuan</a>
                             </li>
                             <li class="active">
-                                Verifikasi
+                                Verify
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -256,6 +256,13 @@
                                                     <label class="col-md-3 control-label">Kota * :</label>
                                                     <div class="col-md-9">
                                                         <p>{{$dataCustomer['customer']['city']}}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-md-3 control-label">Kode Pos * :</label>
+                                                    <div class="col-md-9">
+                                                        <p>{{$dataCustomer['customer']['zip_code']}}</p>
                                                     </div>
                                                 </div>
 

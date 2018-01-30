@@ -69,6 +69,25 @@
 </script>
 
 <script type="text/javascript">
+    // $(".photo").change(function(event){
+    //     alert('up');
+    //     readURL(this);
+    // });
+
+    // var $images = $('#detail-collateral-modal .gallery');
+    //     function readURL(input) {
+    //         if (input.files && input.files[0]) {
+                
+    //             $.each(input.files, function() {
+    //                 var reader = new FileReader();
+    //                 reader.onload = function (e) {           
+    //                     $images.append('<img src="'+ e.target.result+'" />')
+    //                 }
+    //                 reader.readAsDataURL(this);
+    //             });
+                
+    //         }
+    //     }
   $form_container = $('#form-lkn');
 
   $form_container.children("div").steps({
@@ -86,8 +105,7 @@
             return $form_container.valid();
           },
           onFinished: function (event, currentIndex) {
-            // $form_container.submit();
-             //step1
+            //step1
             var location = $('#location').val();
             var collateral_type = $('#collateral_type').find("option:selected").text();
             var city = $('.cities').find("option:selected").text();
@@ -219,6 +237,22 @@
 
             //step1
             $('#detail-collateral-modal').modal('show');
+            readURL($('.photo'));
+            // imagesPreview($('.photo'), '#detail-collateral-modal .gallery');
+             var $images = $('#detail-collateral-modal div.gallery');
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        
+                        $.each(input.files, function() {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {           
+                                $images.append('<img src="'+ e.target.result+'" />')
+                            }
+                            reader.readAsDataURL(this);
+                        });
+                        
+                    }
+                }
             $("#detail-collateral-modal #location").html(location);
             $("#detail-collateral-modal #collateral_type").html(collateral_type);
             $("#detail-collateral-modal #district").html(city);
@@ -305,7 +339,7 @@
             $("#detail-collateral-modal #collateral_status").html(collateral_status); 
             $("#detail-collateral-modal #on_behalf_of").html(on_behalf_of);
             $("#detail-collateral-modal #ownership_number").html(ownership_number); 
-            $("#detail-collateral-modal #location").html(location); 
+            $("#detail-collateral-modal #location").html(city); 
             $("#detail-collateral-modal #address_collateral").html(address_collateral);
             $("#detail-collateral-modal #description").html(description); 
             $("#detail-collateral-modal #ownership_status").html(ownership_status);
@@ -527,6 +561,82 @@
           $('#date_receipt').removeAttr('hidden');
         }else{
           $('#date_receipt').attr('hidden', true);
+        }
+    })
+    $('#notary_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_notary').removeAttr('hidden');
+        }else{
+          $('#date_receipt_notary').attr('hidden', true);
+        }
+    })
+    $('#takeover_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_takeover').removeAttr('hidden');
+        }else{
+          $('#date_receipt_takeover').attr('hidden', true);
+        }
+    })
+    $('#credit_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_credit').removeAttr('hidden');
+        }else{
+          $('#date_receipt_credit').attr('hidden', true);
+        }
+    })
+    $('#skmht_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_skmht').removeAttr('hidden');
+        }else{
+          $('#date_receipt_skmht').attr('hidden', true);
+        }
+    })
+    $('#imb_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_imb').removeAttr('hidden');
+        }else{
+          $('#date_receipt_imb').attr('hidden', true);
+        }
+    })
+    $('#shgb_status').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+        if(text == 'Sudah Diberikan'){
+          $('#date_receipt_shgb').removeAttr('hidden');
+        }else{
+          $('#date_receipt_shgb').attr('hidden', true);
+        }
+    })
+    $('#paripasu_flag').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+      console.log(text);
+        if(text == 'Ya'){
+          $('#bank_paripasu').removeAttr('hidden');
+        }else{
+          $('#bank_paripasu').attr('hidden', true);
+        }
+    })
+    $('#asuransi_flag').on('change', function () {
+      var id = $(this).val();
+      var text = $(this).find("option:selected").text();
+      console.log(text);
+        if(text == 'Ya'){
+          $('#company_insurance').removeAttr('hidden');
+          $('#value_insurance').removeAttr('hidden');
+        }else{
+          $('#company_insurance').attr('hidden', true);
+          $('#value_insurance').attr('hidden', true);
         }
     })
 </script>

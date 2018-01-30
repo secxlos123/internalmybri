@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Verifikasi Data Nasabah')
+@section('title','MyBRI - Form Verify Data Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -60,7 +60,7 @@
                                 <a href="{{route('indexAO')}}">Pengajuan</a>
                             </li>
                             <li class="active">
-                                Verifikasi
+                                Verify
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -97,7 +97,7 @@
                         <div class="col-md-12">
                             <div class="pull-right">
                                 @if ($type != 'preview')
-                                <button type="submit" href="javascript:void(0);" id="save" class="btn btn-orange waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Kirim Verifikasi Data</button>
+                                <button type="submit" href="javascript:void(0);" id="save" class="btn btn-orange waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Kirim Verify Data</button>
                                 @else
                                 <button type="button" class="btn waves-light waves-effect w-md m-b-20" id="print"><i class="fa fa-print"></i> Print</button>
                                 <a href="{{ url('eform') }}"><button type="button" class="btn waves-light waves-effect w-md m-b-20"> Kembali</button></a>

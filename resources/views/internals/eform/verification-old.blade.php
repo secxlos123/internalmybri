@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Verifikasi Data Nasabah')
+@section('title','MyBRI - Form Verifikasi Data Nasabah')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')

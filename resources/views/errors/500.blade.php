@@ -1,4 +1,4 @@
-@section('title','My BRI - 500 - Internal Server Error')
+@section('title','MyBRI - 500 - Internal Server Error')
 @include('internals.layouts.head')
 <div class="content">
     <div class="container">

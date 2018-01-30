@@ -1,4 +1,4 @@
-@section('title','My BRI - Form Peninjauan Properti Baru')
+@section('title','MyBRI - Form Peninjauan Properti Baru')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -6,6 +6,11 @@
 <style>
 .center-steps .wizard > .steps > ul > li {
     width: 10%;
+}
+.select2-container .select2-selection--single .select2-selection__rendered .select2-selection__clear{
+  height: 34px;
+  width: 24px;
+  right: 3px;
 }
 </style>
 
@@ -161,6 +166,76 @@
             },
         });
 
+        $('.cities').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#city_name').val(text);
+        });
+
+        $('.insurance').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getInsurance")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.insurances.data,
+                        pagination: {
+                            more: (params.page * data.insurances.per_page) < data.insurances.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.insurance').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#insurance_company_name').val(text);
+        });
+
+        $('.appraiser').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getAppraiser")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.appraisers.data,
+                        pagination: {
+                            more: (params.page * data.appraisers.per_page) < data.appraisers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.appraiser').on('change', function () {
+            var id = $(this).val();
+            var text = $(this).find("option:selected").text();
+            $('#independent_appraiser_name').val(text);
+        });
+
         $('.filestyle-foto').filestyle({
             buttonText : "Unggah",
             htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
@@ -179,24 +254,79 @@
     });
 
     $('#add_photo').click(function(){
-      var index = $('.photo').length;
-      index++;
-      $('#foto_div').append(
-        '<div class="foto">'
-            +'<div class="input-group">'
-                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/png,image/jpg,application/pdf,application/docx" id="filestyle-'+index+'">'
+        var index = $('.photo').length;
+        var x = $(".filestyle-foto").length;
+        index++;
+        $('#foto_div').append(
+            '<div class="foto">'
+                +'<div class="input-group">'
+                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+index+'">'
                 +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
+                +'</div>'
             +'</div>'
-        +'</div>'
         );
-      $('.filestyle-foto').filestyle({
-        buttonText : "Unggah",
-        htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
-        placeholder: "Tidak ada file"
+        // Append image field
+        $(".img-previews").append(
+            `<img id="preview-`+ x +`" src="#" width="40%">`
+        );
+        $('.filestyle-foto').filestyle({
+            buttonText : "Unggah",
+            htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
+            placeholder: "Tidak ada file"
+        });
     });
-  });
 
     $('#foto_div').on('click', '.delete-photo', function () {
-      $(this).closest('div.foto').remove();
-  })
+        var string = $(this).closest('div.foto').find('.filestyle-foto').attr('id');
+        var id = string.substr(10, 1);
+        var id = parseInt(id) - 1;
+        $(this).closest('div.foto').remove();
+        $("#preview-"+ id).remove();
+    })
+
+    // Preview image when finish button clicked
+    $("a[href='#finish']").on("click", function(){
+        $(".filestyle-foto").each(function(key, val){
+            previewImage(this, key);
+        });
+    })
+
+    $('#zip_code').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zc').html(html);
+                $('#zip_code').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zc').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zc').html(html_error);
+            $('#zip_code').val('');
+        });
+        }
+    });
+
+    // Function for previewing image
+    function previewImage(input, key) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview-'+key).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>

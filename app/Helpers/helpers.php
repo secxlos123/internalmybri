@@ -38,6 +38,20 @@ if (! function_exists('getUser')) {
     }
 }
 
+if (! function_exists('is_read')) {
+
+    /**
+     * GET UserLogin Data.
+     *
+     * @return object
+     */
+    function is_read(){
+        $data = session()->get('user');
+
+        return json_encode( ['pn' => $data['pn'] ,'branch_id'=> $data['branch_id'] ,'role'=> $data['role'] ,'name'=> $data['name']] );
+    }
+}
+
 if (! function_exists('checkRolesInternal')) {
 
     /**
@@ -160,7 +174,6 @@ if (! function_exists('notificationsUnread')) {
         foreach ($users as $user) {
             $data = $user;
         }
-        \Log::info($data);
         try {
             $NotificationDataUnread = Client::setEndpoint('users/notification/unread')
                 ->setHeaders([
@@ -172,9 +185,7 @@ if (! function_exists('notificationsUnread')) {
                     // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
-            \Log::info($NotificationDataUnread);
             session()->put('notificationsUnread', $NotificationDataUnread['contents']);
-            
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 
 
@@ -293,6 +304,70 @@ if (! function_exists('get_loan_history')) {
             "1" => "Pernah menunggak"
             , "2" => "Debitur baru"
             , "3" => "Tidak ada tunggakan"
+        );
+
+        if ( $key != 'all' ) {
+            return isset($data[$key]) ? $data[$key] : '-';
+        }
+
+        return $data;
+    }
+}
+
+if (! function_exists('get_visit_purpose')) {
+
+    /**
+     * Convert csv file to array.
+     *
+     * @param  string $file path to file
+     * @param  array $headers
+     * @param  string $delimiter
+     *
+     * @return array
+     */
+    function get_visit_purpose($key)
+    {
+        $data = array(
+            "prakarsa" => "Prakarsa Kredit"
+            , "negosiasi" => "Negosiasi"
+            , "pembinaan" => "Pembinaan"
+            , "penagihan" => "Penagihan"
+            , "lain" => "Lain-lain"
+        );
+
+        if ( $key != 'all' ) {
+            return isset($data[$key]) ? $data[$key] : '-';
+        }
+
+        return $data;
+    }
+}
+
+if (! function_exists('get_bank')) {
+
+    /**
+     * Convert csv file to array.
+     *
+     * @param  string $file path to file
+     * @param  array $headers
+     * @param  string $delimiter
+     *
+     * @return array
+     */
+    function get_bank($key)
+    {
+        $data = array(
+            "bri" => "BRI"
+            , "bni" => "BNI"
+            , "mandiri" => "Mandiri"
+            , "bca" => "BCA"
+            , "btn" => "BTN"
+            , "panin" => "Panin"
+            , "permata" => "Permata"
+            , "bii" => "BII"
+            , "danamon" => "Danamon"
+            , "cimb" => "CIMB"
+            , "other" => "Lainya"
         );
 
         if ( $key != 'all' ) {

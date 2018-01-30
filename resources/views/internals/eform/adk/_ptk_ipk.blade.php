@@ -52,7 +52,7 @@
   <tr>
     <td>- Suku bunga Kredit</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['suku_bunga']}} % perbulan</td>
+    <td>&nbsp;{{$data_debitur['suku_bunga']}} % pertahun</td>
   </tr>
   <tr>
     <td>- Provisi Kredit</td>
@@ -77,17 +77,26 @@
   <tr>
     <td>- Asuransi Jiwa Kredit</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['asuransi']}} %</td>
+    <td>
+      &nbsp;{{$data_debitur['asuransi']}} % &nbsp; 
+      Rp. {{number_format($data_debitur['premi_as_jiwa'], 2, ",", ".")}}
+    </td>
   </tr>
   <tr>
-    <td>   - Premi Beban BRI</td>
+    <td>- Premi Beban BRI</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['beban_bri']}} %</td>
+    <td>
+      &nbsp;{{$data_debitur['beban_bri']}} % &nbsp; 
+      Rp. {{number_format($data_debitur['premi_beban_bri'], 2, ",", ".")}}
+    </td>
   </tr>
   <tr>
-    <td>   - Premi Beban Debitur</td>
+    <td>- Premi Beban Debitur</td>
     <td align="center">:</td>
-    <td>&nbsp;{{$data_debitur['beban_debitur']}} %</td>
+    <td>
+      &nbsp;{{$data_debitur['beban_debitur']}} % &nbsp; 
+      Rp. {{number_format($data_debitur['premi_beban_debitur'], 2, ",", ".")}}
+    </td>
   </tr>
   <tr>
     <td>- Syarat-syarat lainnya</td>
@@ -97,12 +106,12 @@
   <tr>
     <td>Pejabat Pemrakarsa</td>
     <td align="center">:</td>
-    <td>&nbsp;</td>
+    <td>&nbsp;{{$data_debitur['nama_ao']}}</td>
   </tr>
   <tr>
     <td>Pejabat Pemutus</td>
     <td align="center">:</td>
-    <td>&nbsp;</td>
+    <td>&nbsp;{{$data_debitur['nama_pemutus']}}</td>
   </tr>
 </table>
 <p align="justify">

@@ -25,13 +25,12 @@ class ADKController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $data     = $this->getUser();
-        // print_r($data);exit();
+        $data = $this->getUser();
         // hanya adk yg bisa melakukan fungsi ini
         if ($data['role'] == 'adk') {
             return view('internals.eform.adk.index', compact('data'));
         } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
         }
     }
 
@@ -47,11 +46,11 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
 
-        $conten = [
+        /*$conten = [
             'nik' => '',
             'tp_produk' => '',
             'uid_pemrakarsa' => ''
-        ];
+        ];*/
         $asuransi = [
             'premi_as_jiwa' => '',
             'premi_beban_debitur' => '',
@@ -59,6 +58,7 @@ class ADKController extends Controller
         ];
 
         if (!empty($detail)) {
+            $status = $this->getStatusIsSend($detail['is_send']);
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
@@ -69,19 +69,17 @@ class ADKController extends Controller
                 'premi_beban_bri' => $premi_beban_bri
             ];
 
-            $conten = [
+            /*$conten = [
                 'nik'           => $detail['nik'],
                 'tp_produk'     => $detail['tp_produk'],
                 'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
-            ];
+            ];*/
         }
 
         // GET Form Data Debitur LAS
-        $data_debitur = Client::setEndpoint('api_las/index')
-            ->setHeaders(
-                [ 'Authorization' => $data['token'],
-                  'pn' => $data['pn']
-                ])
+        /*$data_debitur = Client::setEndpoint('api_las/index')
+            ->setHeaders(['Authorization' => $data['token'],
+                  'pn' => $data['pn']])
             ->setBody([
                 'requestMethod' => 'inquiryHistoryDebiturPerorangan',
                 'requestData'   => $conten
@@ -90,11 +88,10 @@ class ADKController extends Controller
         $debitur = [];
         if ($data_debitur['code'] == '01') {
             $debitur = $data_debitur['contents']['data'][0];
-        }
-        // dd($debitur);
+        }*/
         
         if ($data['role'] == 'adk') {
-            return view('internals.eform.adk.detail-adk', compact('data','detail','debitur','id','asuransi'));
+            return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
             return view('internals.layouts.404');
         }
@@ -110,7 +107,6 @@ class ADKController extends Controller
                 $catatan_ktp = '';
                 if (!empty($response['catatan_ktp'])) {
                     $catatan_ktp = $response['catatan_ktp'];
-                    // array_push($update_data, $catatan_ktp);
                 }
 
                 $update_data = [
@@ -126,7 +122,7 @@ class ADKController extends Controller
                                     ])
                                 ->setBody($update_data)
                                 ->post();
-                // print_r($update_briguna);exit();
+
                 if ($update_briguna['code'] == '200') {
                     return response()->json([
                         'code'     => 200,
@@ -161,7 +157,7 @@ class ADKController extends Controller
                                     ])
                                 ->setBody($update_data)
                                 ->post();
-                // print_r($update_briguna);exit();
+
                 if ($update_briguna['code'] == '200') {
                     return response()->json([
                         'code'     => 200,
@@ -196,7 +192,7 @@ class ADKController extends Controller
                                     ])
                                 ->setBody($update_data)
                                 ->post();
-                // print_r($update_briguna);exit();
+
                 if ($update_briguna['code'] == '200') {
                     return response()->json([
                         'code'     => 200,
@@ -472,12 +468,14 @@ class ADKController extends Controller
         if (!empty($response['slip_gaji'])) {
             $slip_gaji = 1;
         }
-        // print_r($response);exit();
+
         // verifikasi dokumen lengkap
         if ($response['is_verified'] == 1) {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
-                'is_send'          => 5,
+                'catatan_adk'      => $response['catat_adk'],
+                // 'is_send'          => 5,
+                // 'is_send'          => 6,
                 'eform_id'         => $response['eform_id'],
                 'flag_kk'          => $kk,
                 'flag_ktp'         => $ktp,
@@ -493,6 +491,7 @@ class ADKController extends Controller
         } else {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
+                'catatan_adk'      => $response['catat_adk'],
                 'eform_id'         => $response['eform_id'],
                 'flag_kk'          => $kk,
                 'flag_ktp'         => $ktp,
@@ -516,23 +515,22 @@ class ADKController extends Controller
         // dd($update_briguna);
         if ($update_briguna['code'] == '200') {
             if ($response['is_verified'] == 1) {
-                \Session::flash('success', 'Pengajuan berhasil di Verifikasi');
+                \Session::flash('success', 'Pengajuan berhasil diverifikasi, dokumen sudah lengkap');
                 return redirect()->route('adk.index');
             } else {
                 \Session::flash('error', 'Pengajuan ditunda, karena dokumen verifikasi belum lengkap');
                 return redirect()->route('adk.index');
             }
         } else {
-            \Session::flash('error', 'Pengajuan gagal di Verifikasi');
+            \Session::flash('error', 'Pengajuan gagal diverifikasi');
             return redirect()->route('adk.index');
         }
     }
 
     public function postApprove(Request $request) {
         $data = $this->getUser();
-        // print_r($request->all());exit();
         $response = $request->all();
-        // print_r($response);exit();
+
         // verifikasi adk dibatalkan kirim ke brinet
         if (strtolower($response['type']) == 'batal') {
             $update_data = [
@@ -541,16 +539,13 @@ class ADKController extends Controller
                 'catatan_adk' => $response['catat_adk']
             ];
             if ($response['catat_adk'] == '') {
-                // echo "masuk";
                 return response()->json([
                     'code'     => 400,
                     'message'  => 'Catatan ADK tidak boleh kosong, jika ingin dibatalkan',
                     'response' => ''
                 ]);
             }
-            // print_r($response['catat_adk']);
-            // print_r($update_data);
-            // exit();
+            // print_r($update_data);exit();
             $update_briguna = Client::setEndpoint('api_las/update')
                 ->setHeaders(
                     [ 'Authorization' => $data['token'],
@@ -574,6 +569,7 @@ class ADKController extends Controller
                 ]);
             }
         } else {
+            // flag putusan kirim ke brinets
             $conten_putusan = [
                 "id_aplikasi" => $response['id_aplikasi'],
                 "uid"         => $response['uid'],
@@ -581,7 +577,7 @@ class ADKController extends Controller
                 "catatan"     => $response['catat_adk']
             ];
             // print_r($conten_putusan);exit();
-            // flag putusan kirim ke brinets
+            
             $putusan = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
@@ -593,11 +589,9 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');
 
-            // $putusan['statusCode'] = '01';
-            // $putusan['statusDesc'] = 'berhasil';
             if ($putusan['statusCode'] == '01') {
                 // get status interface yang sudah dikirim ke brinets
-                $getBrinets = Client::setEndpoint('api_las/index')
+                /*$getBrinets = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
@@ -606,21 +600,21 @@ class ADKController extends Controller
                         'requestMethod' => 'getStatusInterface',
                         'requestData'   => $response['id_aplikasi']
                     ])
-                    ->post('form_params');
+                    ->post('form_params');*/
                 // dd($getBrinets);
-                // $getBrinets['statusCode'] = '01';
-                if ($getBrinets['statusCode'] == '01') {
+
+                // if ($getBrinets['statusCode'] == '01') {
                     $update_data = [
                         'eform_id'    => $response['eform_id'],
-                        'is_send'     => 2,
+                        // 'is_send'     => 7,
+                        'is_send'     => 6,
                         'catatan_adk' => $response['catat_adk'],
-                        'cif'         => $getBrinets['items'][0]['CIF'],
-                        'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                        'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                        // 'cif'         => $getBrinets['items'][0]['CIF'],
+                        // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
                     ];
                     // print_r($response['eform_id']);
-                    // print_r($update_data);
-                    // exit();
+                    // print_r($update_data);exit();
                     $update_briguna = Client::setEndpoint('api_las/update')
                         ->setHeaders(
                             [ 'Authorization' => $data['token'],
@@ -633,13 +627,13 @@ class ADKController extends Controller
                         \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
                         return redirect()->route('adk.index');
                     } else {
-                        \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+                        \Session::flash('error', 'Verifikasi gagal disimpan');
                         return redirect()->route('adk.index');
                     }
-                } else {
-                    \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
-                    return redirect()->route('adk.index');
-                }
+                // } else {
+                //     \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
+                //     return redirect()->route('adk.index');
+                // }
             } else {
                 \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
                 return redirect()->route('adk.index');
@@ -648,8 +642,16 @@ class ADKController extends Controller
     }
 
     public function datatables(Request $request) {
+        $eforms = ['contents' => 
+            [
+                'draw'            => $request->input('draw'),
+                'recordsTotal'    => '0',
+                'recordsFiltered' => '0',
+                'data'            => []
+            ]
+        ];
+
         $data = $this->getUser();
-        // print_r($data);exit();
         $customer = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
@@ -670,45 +672,30 @@ class ADKController extends Controller
 
             // print_r($customer);exit();
             if ($debitur['code'] == '01') {
-                \Log::info("masuk");
                 $listVerADK = $debitur['contents']['data'];
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
-                    if (intval($value['is_send']) == '1') {
-                        $status = 'Pengajuan diapprove pinca';
-                    } else if (intval($value['is_send']) == '3') {
-                        $status = 'Pengajuan ditolak pinca';
-                    } else if (intval($value['is_send']) == '4') {
-                        $status = 'Pengajuan dibatalkan approve adk';
-                    } else if (intval($value['is_send']) == '5') {
-                        $status = 'Pengajuan diapprove adk';
-                    } else if (intval($value['is_send']) == '6') {
-                        $status = 'Pengajuan pencairan diapprove pinca';
-                    }
-                    
-                    // print_r($value);exit();
                     foreach ($listVerADK as $key => $form) {
-                        // print_r($debitur);
-                        // print_r($form);exit();
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
-                            // print_r($debitur);
-                            // print_r($form);exit();
-                            if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                            // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                            if ($value['is_send'] == '1') {
+                                $status    = $this->getStatusIsSend($value['is_send']);
+                                $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                                $prescreening = $this->getStatusScreening($value['prescreening_status']);
+                                $form['cif'] = $value['cif'];
+                                $form['eform_id'] = $value['eform_id'];
+                                $form['fid_tp_produk'] = $tp_produk;
                                 $form['STATUS'] = $status;
                                 $form['ref_number'] = $value['ref_number'];
+                                $form['status_screening'] = $prescreening;
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                                $form['eform_id'] = $value['eform_id'];
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                                if ($form['fid_tp_produk'] == '1') {
-                                    $form['fid_tp_produk'] = 'Briguna Karya';
-                                } elseif ($form['fid_tp_produk'] == '10') {
-                                    $form['fid_tp_produk'] = 'Briguna Micro';
-                                } else {
-                                    $form['fid_tp_produk'] = 'Lainnya';
-                                }
-                                $form['action'] = view('internals.layouts.actions', [
-                                    'approve_adk' => $form
+                                $form['action'] = view('internals.layouts.actions',[
+                                    'approve_adk' => $form,
+                                    'is_screening'     => $value['is_screening'],
+                                    'is_verified'      => $value['is_verified'],
+                                    'screening_result' => 'view'
                                 ])->render();
                                 $eforms['contents']['data'][] = $form;
                                 $count = count($form);
@@ -717,46 +704,15 @@ class ADKController extends Controller
                     }
                 }
 
-                if (intval($count) == 0) {
-                    $eforms['contents']['draw'] = $request->input('draw');
-                    $eforms['contents']['recordsTotal'] = '0';
-                    $eforms['contents']['recordsFiltered'] = '0';
-                    $eforms['contents']['data'][] = [
-                        'tgl_pengajuan' => '-',
-                        'id_aplikasi'   => '-',
-                        'ref_number'    => '-',
-                        'fid_tp_produk' => '-',
-                        'nama_pegawai'  => '-',
-                        'namadeb'       => '-',
-                        'request_amount'=> '-',
-                        'STATUS'        => '-',
-                        'action'        => '-'
-                    ];
-                    return response()->json($eforms['contents']);
+                if (intval($count) != 0) {
+                    $eforms['contents']['total']           = $count;
+                    $eforms['contents']['draw']            = $request->input('draw');
+                    $eforms['contents']['recordsTotal']    = $eforms['contents']['total'];
+                    $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
                 }
-                $eforms['contents']['total'] = $count;
-                $eforms['contents']['draw'] = $request->input('draw');
-                $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-                $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-                return response()->json($eforms['contents']);
             }
-        } else {
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = '0';
-            $eforms['contents']['recordsFiltered'] = '0';
-            $eforms['contents']['data'][] = [
-                'tgl_pengajuan' => '-',
-                'id_aplikasi'   => '-',
-                'ref_number'    => '-',
-                'fid_tp_produk' => '-',
-                'nama_pegawai'  => '-',
-                'namadeb'       => '-',
-                'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
-            ];
-            return response()->json($eforms['contents']);
         }
+        return response()->json($eforms['contents']);
     }
 
     public function exportPTK(Request $request) {
@@ -771,15 +727,22 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $no_skpp        = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            $tgl_skpp = empty($detail['created_at']) ? '' : date('d-m-Y',strtotime($detail['created_at']));
+            $tgl_putusan = empty($detail['tgl_putusan']) ? '' : date('d-m-Y',strtotime($detail['tgl_putusan']));
+            $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_skpp;
+            $no_putusan  = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_putusan;
+            $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
+
             $detail_debitur = [
                 'name_adk'     => $data['name'],
                 'jabatan_adk'  => $data['position'],
-                'nama_debitur' => $detail['customer']['personal']['first_name'],
-                'alamat'       => $detail['customer']['personal']['address'],
                 'no_skpp'      => $no_skpp,
+                'no_putusan'   => $no_putusan,
+                'nama_debitur' => $detail['costumer_name'],
+                'alamat'       => $detail['customer']['personal']['address'],
                 'perusahaan'   => $detail['customer']['work']['company_name'],
-                'no_putusan'   => $no_skpp,
                 'scoring'      => $detail['score'],
                 'jumlah_kredit'=> $detail['Plafond_usulan'],
                 'jangka_waktu' => $detail['Jangka_waktu'],
@@ -790,7 +753,12 @@ class ADKController extends Controller
                 'angsuran'     => $detail['angsuran_usulan'],
                 'asuransi'     => $detail['Premi_asuransi_jiwa'],
                 'beban_debitur'=> $detail['Premi_beban_debitur'],
-                'beban_bri'    => $detail['Premi_beban_bri']
+                'beban_bri'    => $detail['Premi_beban_bri'],
+                'nama_ao'      => $detail['ao_name'],
+                'nama_pemutus' => $detail['pinca_name'],
+                'premi_as_jiwa'=> $premi_as_jiwa,
+                'premi_beban_debitur'=> $premi_beban_debitur,
+                'premi_beban_bri'    => $premi_beban_bri
             ];
 
             // lempar data ke view blade
@@ -816,13 +784,13 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $fasilitas   = substr($detail['Kode_fasilitas'],-2);
-            $no_skpp     = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y');
             $no_sk_awal  = $detail['no_dan_tanggal_sk_awal'];
             $no_sk_akhir = $detail['no_dan_tanggal_sk_akhir'];
             $provisi     = ($detail['Plafond_usulan'] * $detail['Provisi_kredit']) / 100;
 
             $detail_sph = [
-                'nama_debitur'  => $detail['customer']['personal']['first_name'],
+                'nama_debitur'  => $detail['costumer_name'],
                 'nama_pasangan' => $detail['customer']['personal']['couple_name'],
                 'ktp'           => $detail['customer']['personal']['nik'],
                 'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
@@ -842,7 +810,7 @@ class ADKController extends Controller
                 'beban_debitur' => $detail['Premi_beban_debitur'],
                 'beban_bri'     => $detail['Premi_beban_bri'],
                 'pengadilan'    => $detail['Pengadilan_terdekat'],
-                'cif_las'       => $detail['cif_las'],
+                'cif_las'       => $detail['cif'],
                 'bil_jangka'    => $this->terbilang($detail['Jangka_waktu'],$style=2),
                 'bil_bunga'     => $this->terbilang($detail['Suku_bunga'],$style=2),
                 'bil_day'       => $this->terbilang(date('d'),$style=2),
@@ -864,7 +832,7 @@ class ADKController extends Controller
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._sph');
                 return $pdf->download('sph.pdf');
-            } else {
+            } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'w8') {
                 // lempar data ke view blade
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
@@ -878,6 +846,7 @@ class ADKController extends Controller
     }
 
     public function exportDebitur(Request $request) {
+        // return $this->exportKredit($request);
         $data = $this->getUser();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
@@ -889,15 +858,15 @@ class ADKController extends Controller
         $detail = $formDetail['contents'];
         // dd($detail);
         if (!empty($detail)) {
-            $no_skpp    = $detail['ref_number'].'/-/'.date('m').'/'.date('Y');
+            $no_skpp    = $detail['ref_number'].'/'.date('m').'/'.date('Y');
             $detail_sph = [
-                'nama_debitur'  => $detail['customer']['personal']['first_name'],
+                'nama_debitur'  => $detail['costumer_name'],
                 'nama_pasangan' => $detail['customer']['personal']['couple_name'],
                 'nama_emergency'=> $detail['customer']['contact']['emergency_name'],
                 'tgl_lahir_deb' => $detail['customer']['personal']['birth_date'],
                 'tgl_pasangan'  => $detail['customer']['personal']['couple_birth_date'],
                 'tmpt_lahir_deb'=> $detail['customer']['personal']['birth_place'],
-                // 'tmpt_pasangan' => $detail['customer']['personal']['couple_birth_place'],
+                'tmpt_pasangan' => $detail['customer']['personal']['couple_birth_place'],
                 'ktp'           => $detail['customer']['personal']['nik'],
                 'ktp_pasangan'  => $detail['customer']['personal']['couple_nik'],
                 'jenis_kelamin' => $detail['customer']['personal']['gender'],
@@ -920,7 +889,7 @@ class ADKController extends Controller
                 'jabatan'       => $detail['customer']['work']['position'],
                 'gaji'          => $detail['Gaji_bersih_per_bulan'],
                 'jenis_pinjaman'=> $detail['tp_produk'],
-                'instansi'      => $detail['mitra'],
+                'instansi'      => $detail['mitra']['NAMA_INSTANSI'],
                 'nip'           => $detail['NIP'],
                 'status_kerja'  => $detail['Status_Pekerjaan'],
                 'nama_atasan'   => $detail['Nama_atasan_Langsung'],
@@ -949,8 +918,8 @@ class ADKController extends Controller
             ];
             // dd($detail_sph);
 
-            // $this->data['data_sph'] = $detail_sph;
-            // return view('internals.eform.adk._debitur')->with($this->data);
+            // $this->data['detail'] = $detail;
+            // return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
             $pdf = \PDF::loadView('internals.eform.adk._debitur', 
                     ['data_sph' => $detail_sph])
@@ -962,73 +931,31 @@ class ADKController extends Controller
         }
     }
 
-    public function datatablesBackup(Request $request) {
+    public function exportKredit(Request $request) {
         $data = $this->getUser();
-        // print_r($data);exit();
-        $customer = Client::setEndpoint('api_las/index')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn'            => $data['pn']
-                ])->setBody([
-                    'requestMethod' => 'eformBriguna'
-                ])->post();
-        // print_r($customer);exit();
-        if (!empty($customer)) {
-            \Log::info("masuk");
-            $form  = array();
-            $count = 0;
-            foreach ($customer as $index => $value) {
-                print_r($value);exit();
-                $form['eform_id'] = $value['eform_id'];
-                $form['request_amount'] = 'Rp '.number_format($value['plafond'], 2, ",", ".");
-                if ($value['tp_produk'] == '1') {
-                    $form['tp_produk'] = 'Briguna Karya';
-                } elseif ($value['tp_produk'] == '10') {
-                    $form['tp_produk'] = 'Briguna Micro';
-                } else {
-                    $form['tp_produk'] = 'Lainnya';
-                }
-                $form['action'] = view('internals.layouts.actions', [
-                    'approve_adk' => $form
-                ])->render();
-                $eforms['contents']['data'][] = $form;
-                $count = count($form);
-            }
-
-            if (intval($count) == 0) {
-                $eforms['contents']['draw'] = $request->input('draw');
-                $eforms['contents']['recordsTotal'] = '0';
-                $eforms['contents']['recordsFiltered'] = '0';
-                $eforms['contents']['data'][] = [
-                    'id_aplikasi'   => '-',
-                    'fid_tp_produk' => '-',
-                    'nama_pegawai'  => '-',
-                    'namadeb'       => '-',
-                    'request_amount'=> '-',
-                    'STATUS'        => '-',
-                    'action'        => '-'
-                ];
-                return response()->json($eforms['contents']);
-            }
-            $eforms['contents']['total'] = $count;
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = $eforms['contents']['total'];
-            $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-            return response()->json($eforms['contents']);   
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
+                    ->setHeaders([ 
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])
+                    ->get();
+        $detail = $formDetail['contents'];
+        // dd($detail);
+        if (!empty($detail)) {
+            $status = $this->getStatusIsSend($detail['is_send']);
+            $detail['status_send'] = $status;
+            // dd($detail);
+            // $this->data['detail'] = $detail;
+            // return view('internals.eform.adk._report_kredit')->with($this->data);
+            /// lempar data ke view blade
+            $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
+                    ['detail' => $detail])
+                    ->setPaper('a4', 'landscape');
+            return $pdf->download('detail_kredit.pdf');            
         } else {
-            $eforms['contents']['draw'] = $request->input('draw');
-            $eforms['contents']['recordsTotal'] = '0';
-            $eforms['contents']['recordsFiltered'] = '0';
-            $eforms['contents']['data'][] = [
-                'id_aplikasi'   => '-',
-                'fid_tp_produk' => '-',
-                'nama_pegawai'  => '-',
-                'namadeb'       => '-',
-                'request_amount'=> '-',
-                'STATUS'        => '-',
-                'action'        => '-'
-            ];
-            return response()->json($eforms['contents']);
+            \Session::flash('error', 'Dokumen Detail Kredit gagal didownload');
+            return redirect()->route('adk.index');
         }
     }
 
@@ -1130,5 +1057,57 @@ class ADKController extends Controller
                 return 'Bulan tidak ditemukan';
                 break;
         }
+    }
+
+    function getStatusScreening($value) {
+        if ($value == 1) {
+            return '<a class="btn btn-success form-control-static">Hijau</a>';
+        } elseif ($value == 2) {
+            return '<a class="btn btn-warning form-control-static">Kuning</a>';
+        } elseif ($value == 3) {
+            return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
+    }
+
+    function getStatusIsSend($value) {
+        if ($value == '1') {
+            return 'Approved';
+        } else if ($value == '2') {
+            return 'Unapproved';
+        } else if ($value == '3') {
+            return 'Void';
+        } else if ($value == '4') {
+            return 'Void adk';
+        } else if ($value == '5') {
+            return 'Approved pencairan';
+        } else if ($value == '6') {
+            return 'Disbursed';
+        } else if ($value == '7') {
+            return 'Send to brinets';
+        } else if ($value == '8') {
+            return 'Agree mp';
+        } else if ($value == '9') {
+            return 'Not Agree mp';
+        }
+
+        return '-';
+    }
+
+    function getProduk($value) {
+        if ($value == '1') {
+            return 'Briguna Karya/Umum';
+        } elseif ($value == '2') {
+            return 'Briguna Purna';
+        } elseif ($value == '28') {
+            return 'Briguna Karyawan BRI';
+        } elseif ($value == '22') {
+            return 'Briguna Talangan';
+        } elseif ($value == '10') {
+            return 'Briguna Micro';
+        }
+
+        return 'Lainnya';
     }
 }

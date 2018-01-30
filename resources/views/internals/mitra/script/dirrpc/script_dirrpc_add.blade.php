@@ -1,4 +1,13 @@
+
 <script type="text/javascript">
+$("#debt_name").val(<?php echo json_encode($clients['debt_name']); ?>);
+$("#penghasilan_maksimal").val(<?php echo json_encode($clients_detail['penghasilan_maksimal']); ?>);
+$("#penghasilan_minimal").val(<?php echo json_encode($clients_detail['penghasilan_minimal']); ?>);
+$("#dir_persen").val(<?php echo json_encode($clients_detail['dir_persen']); ?>);
+if(<?php echo json_encode($clients['debt_name']); ?>!=''){
+document.getElementById('debt_name').readOnly = true;
+}
+
 	function getpemeriksa(formarray){
 /* 		var area_level = $("input:radio[name=area_level]:checked").val();
 		formarray.push({
@@ -88,7 +97,19 @@ function addpemutus(countpemutus){
 			div.innerHTML = html;
 			document.getElementById('div_pemutus').appendChild(div);
 	}
-
+function empty(e) {
+  switch (e) {
+    case "":
+    case 0:
+    case "0":
+    case null:
+    case false:
+    case typeof this == "undefined":
+      return true;
+    default:
+      return false;
+  }
+}
 function addjabatan(countpemutus){
 			var html = '<label class="col-md-5 control-label">Jabatan Pemeriksa'+countpemutus+'</label><div class="col-md-7">' + 
 					   '<input type="text" class="form-control" name="jabatan'+countpemutus+'" id="jabatan'+countpemutus+'" value="" maxlength="16">'+
@@ -109,7 +130,23 @@ $(document).on('click', "#btn-save", function(){
 	length = parseInt(length)-1;
 	var formdetail = [];
 	var formarray = [];
-	var id_header = Date.now();
+	var id_header = "";
+	<?php if(!empty($_GET['no'])){?>
+//	if(<?php echo json_encode($_GET['no']); ?>){
+		id_header = <?php echo json_encode($_GET['no']); ?>;
+			formarray.push({
+			"name": "type",
+			"value": 'add_detail'
+			});
+
+	<?php }else{?>
+//	}else{
+	formarray.push({
+			"name": "type",
+			"value": 'add_normal'
+			});
+		id_header = Date.now();
+	<?php }?>
 	for(i=0;i<=length;i++){
 	var rows = table1.rows( i ).data();
 	formdetail.push(rows[0][0],rows[0][1],rows[0][2],rows[0][3],id_header
@@ -191,7 +228,11 @@ function sentform(formdata)
 		 console.log("Data added!", data);
 		 
 			var url = window.location.href;
+		<?php if(!empty($_GET['no'])){?>
+			var url = url.replace("dir_rpc_add", "dir_rpc_maintance");
+		<?php }else{?>
 			var url = url.replace("dir_rpc_add", "dir_rpc");
+		<?php }?>
 			window.location.href = url;
 		}
 		});

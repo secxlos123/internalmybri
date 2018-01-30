@@ -44,10 +44,76 @@ class CollateralStaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
       $data = $this->getUser();
-      return view('internals.collateral.staff.index', compact('data'));
+      if(!empty($request['slug']))
+        {
+          $collateral_id = $request['slug'];
+          $detailCollateral = Client::setEndpoint('collateral/collateralnotif/'.$collateral_id)
+           ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            ])->get();
+          $form_notif = $detailCollateral['contents'];
+
+          if(!empty($form_notif))
+          {  
+            $developer_id =$form_notif['developer_id'];
+            if($developer_id ==1 )
+            {
+              $form_notif['first_name'] = strtoupper($form_notif['first_name'].' '.$form_notif['last_name']);
+              $form_notif['developer_id'] = $form_notif['developer_id'];
+              $form_notif['home_location'] = strtoupper($form_notif['home_location']);
+              $form_notif['mobile_phone'] = strtoupper($form_notif['mobile_phone']);
+              $form_notif['staff_name'] = strtoupper($form_notif['staff_name']);
+              $form_notif['status'] = ucwords($form_notif['status']);
+              $form_notif['action'] = view('internals.layouts.actions', [
+                                  'status' => $form_notif['status'],
+                                  'detail_collateral' => url('staff-collateral/get-detail/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                                  'assignment_collateral' => url('staff-collateral/get-assignment/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                                  'upload_doc' => url('staff-collateral/upload-doc/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                                ])->render();
+
+            }else if( $developer_id  != 1)
+            {              
+              $form_notif['prop_name'] = strtoupper($form_notif['property']['name']);
+              $form_notif['prop_city_name'] = strtoupper($form_notif['property']['city']['name']);
+              $form_notif['prop_pic_name'] = strtoupper($form_notif['property']['pic_name']);
+              $form_notif['prop_pic_phone'] = strtoupper($form_notif['property']['pic_phone']);
+              $form_notif['staff_name'] = strtoupper($form_notif['staff_name']);
+              $form_notif['prop_types'] = count($form_notif['property']['propertyTypes']);
+              $form_notif['prop_items'] = count($form_notif['property']['propertyItems']);
+              $form_notif['status'] = ucwords($form_notif['status']);
+              $form_notif['action'] = view('internals.layouts.actions', [
+                                      'status' => $form_notif['status'],
+                                      'detail_collateral' => url('staff-collateral/get-detail/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                                      'assignment_collateral' => url('staff-collateral/get-assignment/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                                      'upload_doc' => url('staff-collateral/upload-doc/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                                    ])->render();
+            }
+              /*
+              * mark read the notification
+              */
+              
+             $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
+                    ->setHeaders([
+                      'Authorization' => $data['token']
+                      , 'pn' => $data['pn']
+                      , 'branch_id' => $data['branch']
+                  ])->get();
+            return view('internals.collateral.staff.index-notif', compact('data','form_notif')); 
+          }
+           else
+          {
+            return view('internals.collateral.staff.index', compact('data')); 
+          }
+
+        }
+        else
+        {
+          return view('internals.collateral.staff.index', compact('data')); 
+        }
     }
 
     /**
@@ -125,6 +191,7 @@ class CollateralStaffController extends Controller
         $type = '';
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
       }
+      // dd($collateral);
       return view('internals.collateral.staff.detail-property', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
 
@@ -288,7 +355,6 @@ class CollateralStaffController extends Controller
         //     , 'contents' => $pln.''.$phone.''.$pam.''.$telex
         // ];
 
-      \Log::info($request->all());
       foreach ($request->except('_token', 'collateral_type','hidden-long','hidden-lat') as $field => $value) {
         foreach ($value as $index => $data) {
           if ( $index == 'image_area' ) {
@@ -437,7 +503,7 @@ class CollateralStaffController extends Controller
         'search'    => $request->input('search.value'),
         'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
         'page'      => (int) $request->input('page') + 1,
-                // 'status'    => $request->input('status'),
+        'status'    => $request->input('status'),
                 // 'branch_id' => $data['branch']
       ])->get();
 
@@ -487,7 +553,7 @@ class CollateralStaffController extends Controller
         'search'    => $request->input('search.value'),
         'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
         'page'      => (int) $request->input('page') + 1,
-                    // 'status'    => $request->input('status'),
+        'status'    => $request->input('status'),
                     // 'branch_id' => $data['branch']
       ])->get();
                 // echo json_encode($collateral);exit();
@@ -519,7 +585,7 @@ class CollateralStaffController extends Controller
       return response()->json($collateral['contents']);
     }
 
-    /**
+     /**
      * Get detail NonIndex of collateral for getLKNagunan.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -530,7 +596,7 @@ class CollateralStaffController extends Controller
     //  dd($request->all());
       $role = $data['role'];
       $long = number_format(floatval($request['hidden-long']), 5);
-      $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
+      $detailCollateral = Client::setEndpoint('collateral/notifotsnonindex/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
@@ -553,7 +619,7 @@ class CollateralStaffController extends Controller
    //   dd($request->all());
       $role = $data['role'];
       $long = number_format(floatval($request['hidden-long']), 5);
-      $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
+      $detailCollateral = Client::setEndpoint('collateral/notifots/'.$dev_id.'/'.$prop_id)
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']

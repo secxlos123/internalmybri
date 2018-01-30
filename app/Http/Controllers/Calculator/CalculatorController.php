@@ -50,7 +50,7 @@ class CalculatorController extends Controller
       $price = $calculate['price'];
       $term = $calculate['time_period'];
       $rate = $this->convertCommatoPoint($calculate['rate']);
-      $downPayment = $calculate['dp'];
+      $downPayment = str_replace(",", "", $calculate['down_payment']);
       $priceNumber = str_replace(",", "", $price);
       $fxflterm = $calculate['time_period_total'];
       $fxterm =  $calculate['time_period_fixed'];
@@ -92,7 +92,7 @@ class CalculatorController extends Controller
           );
       }
       $response = Client::setBase('common')->setEndpoint('calculator')->setBody($calculateSend)->post(); 
-      // dd($response);
+     // dd($response);
       $rincian_pinjaman =  $response['contents']['rincian_pinjaman'];
       $detail_angsuran =   $response['contents']['detail_angsuran']; 
       return view('internals.calculator.detail', compact('rincian_pinjaman','detail_angsuran','interest_rate_type', 'data'));

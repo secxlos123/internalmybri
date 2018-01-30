@@ -1,4 +1,4 @@
-@section('title','My BRI - Daftar Profil Customer')
+@section('title','MyBRI - Daftar Profil Calon Debitur')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -9,13 +9,13 @@
                 <div class="col-xs-12">
 
                     <div class="page-title-box">
-                        <h4 class="page-title">Daftar Profil Customer</h4>
+                        <h4 class="page-title">Daftar Profil Calon Debitur</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dashboard</a>
                             </li>
                             <li class="active">
-                                Daftar Profil Customer
+                                Daftar Profil Calon Debitur
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -31,8 +31,8 @@
                         <fieldset hidden>
                             <div class="add-button">
                                 <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Customer</a> -->
-                                <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Customer</a>
+                                <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Calon Debitur</a> -->
+                                <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Calon Debitur</a>
                                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                             </div>
                         </fieldset>
@@ -77,7 +77,7 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>NIK</th>
-                                        <th>Nama Profil Customer</th>
+                                        <th>Nama Profil Calon Debitur</th>
                                         <th>Email</th>
                                         <th>Kota Tempat Tinggal</th>
                                         <th>Handphone</th>

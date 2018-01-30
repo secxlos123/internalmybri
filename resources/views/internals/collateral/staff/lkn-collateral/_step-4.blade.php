@@ -86,7 +86,7 @@
                 <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{old('environment[transportation]')}}" id="transportation">
             </div>
         </div>
-        <label class="control-label">Jarak Dari Lokasi * </label>
+        <label class="control-label">Jarak Dari Lokasi * :</label>
         <div class="is-input">
             <div class="input-group">
                 <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{old('environment[distance_from_transportation]')}}" id="distance_from_transportation">

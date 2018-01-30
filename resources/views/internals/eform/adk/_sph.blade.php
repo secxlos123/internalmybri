@@ -128,7 +128,7 @@
       Pokok pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG kepada BANK dalam jangka waktu {{$data_sph['jangka_waktu']}} ({{$data_sph['bil_jangka']}}) bulan terhitung sejak tanggal ditandatanganinya Surat Pengakuan Hutang ini.
     </li>
     <li>
-      Pokok Pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG tiap-tiap bulanan dengan angsuran yang sama besarnya yang meliputi angsuran pokok dan bunga dalam {{$data_sph['suku_bunga']}} ({{$data_sph['bil_bunga']}}) kali angsuran masing-masing sebesar Rp {{number_format($data_sph['angsuran'], 2, ",", ".")}} ({{$data_sph['bil_angsuran']}} rupiah). Angsuran tersebut harus dibayar selambat-lambatnya setiap tanggal ……… pada bulan angsuran yang bersangkutan. Dalam hal tanggal tersebut jatuh pada hari libur maka angsuran harus dibayar oleh YANG BERHUTANG pada hari kerja sebelumnya.
+      Pokok Pinjaman berikut bunganya harus dibayar kembali oleh YANG BERHUTANG tiap-tiap bulanan dengan angsuran yang sama besarnya yang meliputi angsuran pokok dan bunga dalam {{$data_sph['jangka_waktu']}} ({{$data_sph['bil_jangka']}}) kali angsuran masing-masing sebesar Rp {{number_format($data_sph['angsuran'], 2, ",", ".")}} ({{$data_sph['bil_angsuran']}} rupiah). Angsuran tersebut harus dibayar selambat-lambatnya setiap tanggal ……… pada bulan angsuran yang bersangkutan. Dalam hal tanggal tersebut jatuh pada hari libur maka angsuran harus dibayar oleh YANG BERHUTANG pada hari kerja sebelumnya.
     </li>
     <li>
       Yang berhutang wajib membayar angsuran kredit/pinjaman sesuai dengan jangka waktu dan periode angsuran yang telah disepakati. Apabila yang berhutang melakukan pelunasan maju sebelum jangka waktu yang disepakati, maka kepada debitur diwajibkan membayar :
@@ -149,7 +149,7 @@
       YANG BERHUTANG harus membayar :
       <ol type="a">
         <li>
-          Provisi sebesar {{$data_sph['provisi']}} (...................) % dari Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} ({{$data_sph['bil_pinjaman']}} rupiah) atau sebesar Rp {{number_format($data_sph['provisi_atau'], 2, ",", ".")}} ({{$data_sph['bil_prov_atau']}} rupiah).
+          Provisi sebesar {{$data_sph['provisi']}} ({{$data_sph['bil_provisi']}}) % dari Rp {{number_format($data_sph['pinjaman'], 2, ",", ".")}} ({{$data_sph['bil_pinjaman']}} rupiah) atau sebesar Rp {{number_format($data_sph['provisi_atau'], 2, ",", ".")}} ({{$data_sph['bil_prov_atau']}} rupiah).
         </li>
         <li>
           Biaya Administrasi sebesar Rp {{number_format($data_sph['biaya_adm'], 2, ",", ".")}} ({{$data_sph['bil_biaya_adm']}} rupiah). <br>
@@ -198,7 +198,7 @@
     </li>
     <li><font size='1'>9)</font></li>
   </ol>
-  <br><br><br><br><br><br>
+  <br><br><br><br><br>
 </p>
 <!-- pasal 5 -->
 <p class="justify">
@@ -383,7 +383,6 @@
       <td align="center">{{$data_sph['nama_pasangan']}}</td>
     </tr>
   </table>
-  <br><br><br>
   <?php } else { ?>
   </table>
   <br><br><br><br><br><br>

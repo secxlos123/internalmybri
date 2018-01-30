@@ -13,8 +13,16 @@
 /* Backend */
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+			Route::get('/ListUkerAll', ['as'=>'ListUkerAll', 'uses'=>'Mitra\ListUkerController@list_uker_all']);
+			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
+			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+			Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
+			Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
+			Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
+			Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
 			Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
+			Route::get('/DirRpcHapusDetail', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus_detail']);
 
     Route::post('/login',
         ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
@@ -63,11 +71,14 @@
         Route::resource('developers', 'Developer\DeveloperController');
 
         /* E-Form */
+        // New Prescreening
+        Route::get('eform/prescreening/{id}', ['as'=>'getPrescreening', 'uses'=>'EForm\AOController@getPrescreening']);
 
-        Route::post('eform/prescreening', ['as'=>'getPrescreening', 'uses'=>'EForm\EFormController@getPrescreening']);
+        Route::post('eform/prescreening/{id}', ['as'=>'postPrescreening', 'uses'=>'EForm\AOController@postPrescreening']);
 
-        Route::post('eform/submit-prescreening', ['as'=>'postPrescreening', 'uses'=>'EForm\EFormController@postPrescreening']);
+        Route::post('eform/prescreening', ['as'=>'detailPrescreening', 'uses'=>'EForm\EFormController@detailPrescreening']);
 
+        // Dispotition
         Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
         Route::post('/eform/dispotition/{id}',
@@ -77,6 +88,17 @@
             ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
         Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+
+        // Rekontes LKN
+        Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
+
+        Route::post('/eform/post-lkn-recontest/{id}',
+            ['as'=>'postLKNRecontest', 'uses'=>'EForm\RecontestController@postLKNRecontest']);
+
+        Route::get('eform/approval-recontest/{id}', ['as'=>'getApprovalRecontest', 'uses'=>'EForm\RecontestController@getApprovalRecontest']);
+
+        Route::post('/eform/post-approval-recontest/{id}',
+            ['as'=>'postApprovalRecontest', 'uses'=>'EForm\RecontestController@postApprovalRecontest']);
 
         Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
 
@@ -129,8 +151,6 @@
 
             Route::get('approval-collateral/{dev_id}/{prop_id}', ['as'=>'getApprovalCollateral', 'uses'=>'Collateral\CollateralController@approval']);
 
-            Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
-
             Route::post('postApprovalCollateral/{id}', ['as'=>'postApprovalCollateral', 'uses'=>'Collateral\CollateralController@postApprovalCollateral']);
 
             Route::post('reject-approval/{id}', ['as'=>'rejectApprovalCollateral', 'uses'=>'Collateral\CollateralController@rejectApprovalCollateral']);
@@ -175,7 +195,9 @@
 
         /*ADK*/
         Route::resource('adk', 'EForm\ADKController');
+        Route::resource('adk-histori', 'EForm\ADKHistoriController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
+        Route::get('/adk-histori/view/{id}', ['as'=>'getDetailADK', 'uses'=>'EForm\ADKHistoriController@getDetail']);
         Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
         Route::post('verifikasi', ['as'=>'verifikasi', 'uses'=>'EForm\ADKController@postVerifikasi']);
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
@@ -233,14 +255,23 @@
 		Route::resource('gimmick', 'Mitra\GimmickController');
 		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
 		Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+		Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+		Route::resource('mitra_list', 'Mitra\mitra\MitraController');
+		Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
+		Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
+		Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
+		Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
+		Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
+		Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
+		Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
 		Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
+		Route::resource('dir_rpc_edit', 'Mitra\dirrpc\EditDircontroller');
 		Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
 		Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
 		Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
 
 		Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
 		Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
-		Route::resource('hasil_scoring', 'Mitra\scoring\HasilScoringcontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
@@ -248,6 +279,8 @@
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
     });
+
+    Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
     /* Chart */
     Route::get('chartEform', 'Home\HomeController@chartEform');
@@ -296,9 +329,15 @@
 
     Route::get('dropdown/usereason', 'DropdownController@useReason');
 
+    Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
+
     Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
+
+    Route::get('getInsurance', ['as'=>'getInsurance', 'uses'=>'DropdownController@getInsurance']);
+
+    Route::get('getAppraiser', ['as'=>'getAppraiser', 'uses'=>'DropdownController@getAppraiser']);
 
     Route::get('getDeveloper', ['as'=>'getDeveloper', 'uses'=>'Developer\DeveloperController@getDeveloper']);
 
@@ -312,10 +351,13 @@
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
+    Route::get('auditrail-detailactivity/{id}', ['as'=>'auditrail-detail', 'uses'=>'AuditRail\AuditRailController@detailActivity']);
+
     /* Datatables */
     Route::group(['prefix'=>'datatables'], function () {
         /*ADK*/
         Route::get('adk-list', 'EForm\ADKController@datatables');
+        Route::get('adk-his-list', 'EForm\ADKHistoriController@datatables');
 
         /* Roles */
         Route::get('roles', 'User\RoleController@datatables');
@@ -369,10 +411,17 @@
 		/* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
+        Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        // Route::get('auditrail-list', 'AuditRail\AuditRailController@datatables');
+        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
+
+        Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+        Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
+
+        Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
     });

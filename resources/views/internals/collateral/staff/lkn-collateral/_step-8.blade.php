@@ -63,8 +63,8 @@
                             <label class="col-md-4 control-label">Penilaian Dilakukan Oleh * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('eight[appraisal_by]', array("" => "", 
-                                    "Bank" => "Bank", 
-                                    "Lembaga Penilai" => "Lembaga Penilai"), 
+                                    "bank" => "Bank", 
+                                    "independent" => "Lembaga Penilai"), 
                                     old('eight[appraisal_by]'), [
                                     'class' => 'select2 appraisal_by ',
                                     'data-placeholder' => '-- Pilih --',
@@ -75,14 +75,19 @@
                         <div class="form-group clearfix" id="independent" hidden="">
                             <label class="col-md-4 control-label">Penilai Independent * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('eight[independent_appraiser]', array("" => "", 
+                                <!-- {!! Form::select('eight[independent_appraiser]', array("" => "", 
                                     "Menggunakan Servis CLAS" => "Menggunakan Servis CLAS", 
                                     "Untuk Listing Data" => "Untuk Listing Data"), 
                                     old('eight[independent_appraiser]'), [
-                                    'class' => 'select2 independent_appraiser ',
+                                    'class' => 'select2 appraiser ',
                                     'data-placeholder' => '-- Pilih --'
+                                ]) !!} -->
+                                {!! Form::select('eight[independent_appraiser]', ['' => ''], old('eight[independent_appraiser]'), [
+                                    'class' => 'select2 appraiser',
+                                    'data-placeholder' => 'Pilih Nama Penilai'
                                 ]) !!}
                             </div>
+                            <input type="hidden" name="eight[independent_appraiser_name]" id="independent_appraiser_name">
                         </div>
                     </div>
                 </div>
@@ -100,36 +105,36 @@
                         <label class="col-md-4 control-label">Jenis Pengikatan * :</label>
                         <div class="col-md-8">
                             {!! Form::select('eight[type_binding]', array("" => "", 
-                                "Hak Tanggungan" => "Hak Tanggungan", 
-                                "Gadai" => "Gadai",
-                                "Feduciare Elgendom Overdracht" => "Feduciare Elgendom Overdracht",
-                                "SKMHT (Surat Kuasa Memberikan Hak Tanggungan)" => "SKMHT (Surat Kuasa Memberikan Hak Tanggungan)",
-                                "Cessie" => "Cessie",
-                                "Belum Diikat" => "Belum Diikat",
-                                "Lain-lain" => "Lain-lain",
-                                "Fidusia Dengan UU" => "Fidusia Dengan UU",
-                                "Fidusia Dengan PJ.08" => "Fidusia Dengan PJ.08"), 
+                                "01" => "Hak Tanggungan", 
+                                "02" => "Gadai",
+                                "03" => "Feduciare Elgendom Overdracht",
+                                "04" => "SKMHT (Surat Kuasa Memberikan Hak Tanggungan)",
+                                "05" => "Cessie",
+                                "06" => "Belum Diikat",
+                                "09" => "Lain-lain",
+                                "10" => "Fidusia Dengan UU",
+                                "11" => "Fidusia Dengan PJ.08"), 
                                 old('eight[type_binding]'), [
                                 'class' => 'select2 type_binding ',
                                 'data-placeholder' => '-- Pilih --'
                             ]) !!}
                         </div>
                     </div>
-                    <!-- <div class="form-group clearfix"> -->
-                        <!-- <label class="col-md-4 control-label">No. Bukti Pengikatan * :</label> -->
-                        <!-- <div class="col-md-8"> -->
-                            <input type="hidden" class="form-control numericOnly" name="eight[binding_number]" value="0" id="binding_number" maxlength="50">
-                        <!-- </div> -->
-                    <!-- </div> -->
-                    <!-- <div class="form-group clearfix"> -->
-                        <!-- <label class="col-md-4 control-label">Nilai Pengikatan * :</label> -->
-                        <!-- <div class="col-md-8"> -->
-                            <!-- <div class="input-group"> -->
-                                <!-- <span class="input-group-addon b-0">Rp</i></span> -->
-                                <input type="hidden" class="form-control numericOnly currency-rp" name="eight[binding_value]" maxlength="50" value="0" id="binding_value">
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
+                    <div class="form-group clearfix">
+                        <label class="col-md-4 control-label">No. Bukti Pengikatan * :</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control numericOnly" name="eight[binding_number]" value="0" id="binding_number" maxlength="50" placeholder="No. Bukti Pengikatan">
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="col-md-4 control-label">Nilai Pengikatan * :</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <span class="input-group-addon b-0">Rp</i></span>
+                                <input type="text" class="form-control numericOnly currency-rp" name="eight[binding_value]" maxlength="50" value="0" id="binding_value" placeholder="Nilai Pengikatan">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

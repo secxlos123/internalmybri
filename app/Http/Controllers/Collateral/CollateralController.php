@@ -54,10 +54,86 @@ class CollateralController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data = $this->getUser();
-        return view('internals.collateral.manager.index', compact('data'));
+        if(!empty($request['slug']))
+        {
+          $collateral_id = $request['slug'];
+          $detailCollateral = Client::setEndpoint('collateral/collateralnotif/'.$collateral_id)
+           ->setHeaders([
+            'Authorization' => $data['token']
+            , 'pn' => $data['pn']
+            ])->get();
+          $form_notif = $detailCollateral['contents'];
+          if(!empty($form_notif))
+          {  
+            $developer_id =$form_notif['developer_id'];
+            if($developer_id ==1 )
+            {
+                $form_notif['first_name'] = strtoupper($form_notif['first_name'].' '.$form_notif['last_name']);
+                $form_notif['home_location'] = strtoupper($form_notif['home_location']);
+                $form_notif['mobile_phone'] = strtoupper($form_notif['mobile_phone']);
+                $form_notif['staff_name'] = strtoupper($form_notif['staff_name']);
+                if (($form_notif['status'] == 'baru') && (!empty($form_notif['remark']))){
+                    $form_notif['status_label'] = ucwords($form_notif['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
+                }else{
+                    $form_notif['status_label'] = ucwords($form_notif['status']);
+                }
+
+                $form_notif['action'] = view('internals.layouts.actions', [
+                    'status' => $form_notif['status'],
+                    'detail' => url('collateral/detail/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                    'dispose_collateral' => url('collateral/assignment/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                    'approval_collateral' => url('collateral/approval-collateral/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                    'monitoring' => url('collateral/monitoring/'.$form_notif['developer_id'].'/'.$form_notif['property_id']),
+                ])->render();
+
+            }else if( $developer_id  != 1)
+            {              
+                $form_notif['prop_name'] = strtoupper($form_notif['property']['name']);
+                $form_notif['prop_city_name'] = strtoupper($form_notif['property']['city']['name']);
+                $form_notif['prop_pic_name'] = strtoupper($form_notif['property']['pic_name']);
+                $form_notif['prop_pic_phone'] = strtoupper($form_notif['property']['pic_phone']);
+                $form_notif['staff_name'] = strtoupper($form_notif['staff_name']);
+                $form_notif['prop_types'] = count($form_notif['property']['propertyTypes']);
+                $form_notif['prop_items'] = count($form_notif['property']['propertyItems']);
+                if (($form_notif['status'] == 'baru') && (!empty($form_notif['remark']))){
+                    $form_notif['status_label'] = ucwords($form_notif['status']).' '.'<i class="fa fa-warning text-danger" title="Penugasan ditolak" aria-hidden="true"></i>';
+                }else{
+                    $form_notif['status_label'] = ucwords($form_notif['status']);
+                }
+
+                $form_notif['action'] = view('internals.layouts.actions', [
+                    'status' => $form_notif['status'],
+                    'detail' => url('collateral/detail/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                    'dispose_collateral' => url('collateral/assignment/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                    'approval_collateral' => url('collateral/approval-collateral/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                    'monitoring' => url('collateral/monitoring/'.$form_notif['developer']['id'].'/'.$form_notif['property']['id']),
+                ])->render();
+            }
+              /*
+              * mark read the notification 
+              */
+            
+                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
+                    ->setHeaders([
+                      'Authorization' => $data['token']
+                      , 'pn' => $data['pn']
+                      , 'branch_id' => $data['branch']
+                  ])->get();
+            return view('internals.collateral.manager.index-notif', compact('data','form_notif')); 
+          }
+           else
+          {
+            return view('internals.collateral.manager.index', compact('data')); 
+          }
+
+        }
+        else
+        {
+           return view('internals.collateral.manager.index', compact('data'));
+        }
     }
 
     /**
@@ -238,8 +314,16 @@ class CollateralController extends Controller
         $prop_id = $request->input('prop_id');
 
          /* GET Data */
-        $collateral = $this->getDetail($dev_id, $prop_id, $data);
-        return response()->json(['data' => $collateral]);
+        if($dev_id == 1){
+            $type = 'nonindex';
+            $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        }else{
+            $type = '';
+            $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        }
+        $detail = isset($collateral['data']['0'])? $collateral['data']['0'] : $collateral;
+        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
+        return response()->json(['data' => $detail ]);
     }
 
     /**
@@ -253,7 +337,7 @@ class CollateralController extends Controller
         $data = $this->getUser();
 
         $reqs = [
-            'eform_id' => $request->has('eform_id')? $request->eform_id : false
+            'eform_id' => $request->has('eform_id')? $request->eform_id : 'false'
             , 'remark' => $request->input('remark')
             , 'approved_by' => $data['pn']
         ];
@@ -283,12 +367,14 @@ class CollateralController extends Controller
             $response = 'Pengajuan Properti Baru telah Ditolak';
         }
 
+        if (count($client['contents'] > 0)) {
         if(($client['contents']['status'] == 'disetujui')){
             $color = 'success';
         }elseif($client['contents']['status'] == 'ditolak'){
             $color = 'success';
         }else{
             $color = 'error';
+        }
         }
 
         if($client['code'] == 200){
@@ -359,7 +445,7 @@ class CollateralController extends Controller
                 'search'    => $request->input('search.value'),
                 'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                 'page'      => (int) $request->input('page') + 1,
-                // 'status'    => $request->input('status'),
+                'status'    => $request->input('status'),
                 // 'branch_id' => $data['branch']
             ])->get();
             // echo json_encode($collateral);exit();
@@ -415,7 +501,7 @@ class CollateralController extends Controller
                 'search'    => $request->input('search.value'),
                 'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
                 'page'      => (int) $request->input('page') + 1,
-                // 'status'    => $request->input('status'),
+                'status'    => $request->input('status'),
                 // 'branch_id' => $data['branch']
             ])->get();
             // echo json_encode($collateral);exit();

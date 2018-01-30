@@ -201,14 +201,14 @@ class AOController extends Controller
             $form['created_at'] = $form['created_at'];
 			$form['branch_id'] = $form['branch_id'];
 			$form['status_pernikahan'] = $form['customer']['personal']['status'];
-		if($form['is_screening']=='0' || $form['is_screening']==''){
-			$form['is_screening']='Belum';
-      $prescreening_icon = 'send';
-      $prescreening_color = 'success';
-    }elseif($form['is_screening']=='1'){
+		if($form['is_screening']=='1' || $form['pefindo_score'] > 0){
       $form['is_screening']='Sudah';
       $prescreening_icon = 'check';
       $prescreening_color = 'info';
+    }elseif($form['is_screening']=='0' || $form['is_screening']==''){
+      $form['is_screening']='Belum';
+      $prescreening_icon = 'send';
+      $prescreening_color = 'success';
 		}
 
 					// 	$offices = Client::setEndpoint('offices')
