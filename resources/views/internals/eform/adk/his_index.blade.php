@@ -26,7 +26,7 @@
                         <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
                     <div class="card-box">
-                        <div class="tab-scroll">
+                        <div class="table-responsive">
                             <table id="datatable-histori" class="table table-bordered" width="100%">
                                 <thead class="bg-primary">
                                     <tr>

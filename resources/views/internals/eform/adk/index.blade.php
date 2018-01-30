@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div class="tab-scroll">
+                        <div class="table-responsive">
                             <table id="datatable" class="table table-bordered" width="100%">
                                 <thead class="bg-primary">
                                     <tr>
