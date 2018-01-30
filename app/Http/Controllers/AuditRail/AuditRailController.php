@@ -38,7 +38,7 @@ class AuditRailController extends Controller
     public function index()
     {
         $data = $this->getUser();
-
+        
         return view('internals.audit-rail.index', compact('data'));
     }
 
@@ -52,7 +52,7 @@ class AuditRailController extends Controller
     {
       // var_dump($request->all());
         $sort = $request->input('order.0');
-        $data = $this->getUser();
+        $data = $this->getUser(); 
         $audits = Client::setEndpoint('auditrail/'.$type)
                 ->setHeaders([
                   'Authorization' => $data['token']
@@ -78,8 +78,8 @@ class AuditRailController extends Controller
             $form['modul_name'] = strtoupper($form['modul_name']);
             $form['username'] = strtoupper($form['username']);
             $form['role'] = strtoupper($form['role']);
-            $form['old_values'] = $this->oldData($type, $form);
-            $form['new_values'] = $this->newData($type, $form);
+            $form['old_values'] = $this->getDataArray($form['old_values']);
+            $form['new_values'] = $this->getDataArray($form['new_values']);
 
             // $form['action_location'] = 
             //     ucwords(str_replace(['"', '{', '}'], ' ', (str_replace(',', '<br>', $form['action_location']))));
@@ -187,6 +187,19 @@ class AuditRailController extends Controller
       return $form;
     }
 
+
+    public function getDataArray($dataArray){
+         $form='';
+          if(!empty($dataArray)){
+              foreach ($dataArray as $key => $value) {
+                if(!empty($key) && !empty($value)){                    
+                  $data = $key.':'.$value;
+                 $form .= $data .'<br/>';
+                }
+              }
+          }
+          return $form;
+    }
     /**
      * Get Datatables Data.
      *
@@ -251,7 +264,7 @@ class AuditRailController extends Controller
 
             // $form['action_location'] = 
             //     ucwords(str_replace(['"', '{', '}'], ' ', (str_replace(',', '<br>', $form['action_location']))));
-
+            
             $client = new \GuzzleHttp\Client();
               try {
                 $location = json_decode('['. $form['action_location'] .']')[0];
