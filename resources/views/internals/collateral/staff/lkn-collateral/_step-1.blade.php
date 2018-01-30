@@ -86,7 +86,8 @@
                             </div>
                             @if ($errors->has('area[rw]')) <p class="help-block">{{ $errors->first('area[rw]') }}</p> @endif
                             <div class="col-md-4">
-                                <input type="text" class="form-control numericOnly" placeholder="Kode Pos" name="area[zip_code]" maxlength="6" value="{{old('area.zip_code')}}" id="zip_code">
+                                <input type="text" class="form-control numericOnly" placeholder="Kode Pos" name="area[zip_code]" maxlength="5" value="{{old('area.zip_code')}}" id="zip_code">
+                                <span id="err-zc"></span>
                             </div>
                             @if ($errors->has('area[zip_code]')) <p class="help-block">{{ $errors->first('area[zip_code]') }}</p> @endif
                         </div>
