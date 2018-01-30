@@ -405,4 +405,6 @@
 
         /*Auditrail*/
         Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
+
+        Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
     });
