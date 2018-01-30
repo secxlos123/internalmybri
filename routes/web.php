@@ -11,7 +11,6 @@
 |
 */
 /* Backend */
-
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
@@ -96,7 +95,7 @@
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
 
         //this route for resend verification to nasabah
-        Route::get('/eform/resendVerification/{eform_id}', 
+        Route::get('/eform/resendVerification/{eform_id}',
             ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
 
         Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
@@ -218,6 +217,17 @@
 
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
+
+        /* CRM referral */
+				Route::resource('referral', 'CRM\ReferralController');
+				Route::get('add_referral', 'CRM\ReferralController@add');
+				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
+				Route::post('store_referral', 'CRM\ReferralController@store');
+
+        /* CRM report */
+				Route::get('report/marketing', 'CRM\ReportController@marketing');
+				Route::get('report/activity', 'CRM\ReportController@activity');
+
 
 		Route::resource('mitra', 'Mitra\MitraController');
 		Route::resource('gimmick', 'Mitra\GimmickController');

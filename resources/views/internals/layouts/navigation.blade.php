@@ -97,6 +97,20 @@
 
                                 </li>
                             @endif
+                            <li>
+                                <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
+                                <ul class="treeview-menu">
+                                  <li>
+                                    <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
+                                  </li>
+                                  <li>
+                                    <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
+                                  </li>
+                                </ul>
+                            </li>
                             <hr>
                             <li>
                                 <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Keluar </span> </a>
