@@ -377,8 +377,8 @@ class AuditRailController extends Controller
         foreach ($audits['contents']['data'] as $key => $form) {
             $form['username'] = ucwords($form['username']);
             $form['modul_name'] = ucwords($form['modul_name']);
-            $form['old_values'] = json_encode($form['old_values'], JSON_PRETTY_PRINT);
-            $form['new_values'] = json_encode($form['new_values'], JSON_PRETTY_PRINT);
+            $form['old_values'] = $this->getDataArray($form['old_values']);
+            $form['new_values'] = $this->getDataArray($form['new_values']);
             //get address location
             $client = new \GuzzleHttp\Client();
               try {

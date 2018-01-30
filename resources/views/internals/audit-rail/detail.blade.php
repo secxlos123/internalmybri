@@ -60,6 +60,7 @@
         var table1 = $('#datatable').DataTable({
                 processing : true,
                 serverSide : true,
+                searching : false,
                 lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]
