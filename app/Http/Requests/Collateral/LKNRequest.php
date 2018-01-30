@@ -168,10 +168,6 @@ class LKNRequest extends FormRequest
     {
       return [
         'environment.designated_land' => 'required',
-        'environment.designated_pln' => '',
-        'environment.designated_phone' => '',
-        'environment.designated_pam' => '',
-        'environment.designated_telex' => '',
         'environment.other_designated' => 'required',
         'environment.nearest_location' => 'required',
         'environment.other_guide' => 'required',
