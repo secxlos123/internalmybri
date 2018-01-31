@@ -122,7 +122,7 @@
                                             <label class="control-label col-md-4">Suku Bunga *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    {!! Form::text('rate', '', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'rate','maxlength'=>'7']) !!}
+                                                    {!! Form::text('rate', '', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'rate','maxlength'=>'7','step'=>'0.4']) !!}
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>
@@ -131,7 +131,7 @@
                                             <label class="control-label col-md-4">Suku Bunga Float *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    {!! Form::text('interest_rate_float', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'interest_rate_float','maxlength'=>'7']) !!}
+                                                    {!! Form::text('interest_rate_float', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'interest_rate_float','maxlength'=>'7','step'=>'0.4']) !!}
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>
@@ -140,7 +140,7 @@
                                             <label class="control-label col-md-4">Suku Bunga Fixed *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                   {!! Form::text('interest_rate_fixed', '', ['class' => 'form-control','placeholder' => '0','id'=>'interest_rate_efektif','maxlength'=>'7']) !!}
+                                                   {!! Form::text('interest_rate_fixed', '', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'interest_rate_efektif','maxlength'=>'7','step'=>'0.4']) !!}
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>
@@ -149,7 +149,7 @@
                                             <label class="control-label col-md-4">Suku Bunga Floor *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    {!! Form::text('interest_rate_floor', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'interest_rate_floor','maxlength'=>'7']) !!}
+                                                    {!! Form::text('interest_rate_floor', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'interest_rate_floor','maxlength'=>'7','step'=>'0.4']) !!}
                                                     <span class="input-group-addon">% per-tahun</span>
                                                 </div>
                                             </div>

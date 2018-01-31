@@ -183,6 +183,8 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function(){
+        $("#btn-update-sicd").removeClass('hide');
+
         $("#from").datepicker({
             todayBtn:  1,
             autoclose: true,
@@ -313,7 +315,12 @@
 
                     }
 
-                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"> DHN </h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
+                    selected = '';
+                    if (contents.eform.selected_dhn == key) {
+                        selected = ' Dipilih';
+                    }
+
+                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"> <label for="dhn'+key+'">DHN'+selected+'</label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
                 })
 
                 $.each(contents.sicd, function(key, sicd) {
@@ -328,11 +335,19 @@
 
                     }
 
-                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"> SICD </h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+                    selected = '';
+                    if (contents.eform.selected_sicd == key) {
+                        selected = ' Dipilih';
+                    }
+
+                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"> <label for="sicd'+key+'">SICD'+selected+'<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
                 })
                 $(html).insertAfter(base);
 
-                $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 1000px;');
+                $("input[name=select_sicd]").eq(contents.eform.selected_sicd).prop('checked', true);
+                $("input[name=select_dhn]").eq(contents.eform.selected_dhn).prop('checked', true);
+
+                // $('#detail').html(data['view']);
                 $('#result-modal').modal('show');
                 HoldOn.close();
 
@@ -481,6 +496,61 @@
                 body.stop().animate({scrollTop:0}, 100, 'swing', function() {
                 $('#alert-delete').html('<div class="alert alert-danger">Gagal Terhubung ke Server</div')
                 });
+
+        });
+    });
+
+    // update prescreening
+    $(document).on('click', '#btn-update-sicd', function(){
+        input = $("input[name=select_sicd]:checked");
+        selectedSICD = input.val();
+        sicd = input.parent()
+            .next()
+                .children('div')
+                    .children('div')
+                        .children('div')
+                            .last()
+                                .find('p').html();
+
+        input = $("input[name=select_dhn]:checked");
+        selectedDHN = input.val();
+        dhn = input.parent()
+            .next()
+                .children('div')
+                    .children('div')
+                        .children('div')
+                                .find('.dhn-color').html();
+
+        pefindo = $("#prescreening-color").children('p').html();
+        eformId = $("#prescreening-id").html();
+
+        HoldOn.open();
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("postPrescreeningManual") }}',
+            data: {
+                eform_id : eformId
+                , selected_sicd : selectedSICD
+                , selected_dhn : selectedDHN
+                , sicd : sicd
+                , dhn : dhn
+                , pefindo : pefindo
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+
+        }).done(function(data){
+            $('#result-modal').modal('hide');
+            $("#btn-filter").click();
+            alert(data.response.descriptions);
+            HoldOn.close();
+
+        }).fail(function(errors) {
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
 
         });
     });
