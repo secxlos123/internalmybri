@@ -372,7 +372,7 @@ class AuditRailController extends Controller
                         // , 'auditaction' => 'action name'
                         // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                         // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                    ])
+                    ])->setQuery([ 'created_at'=> $request->input('action_date')])
                     ->get();
 
         foreach ($audits['contents']['data'] as $key => $form) {
