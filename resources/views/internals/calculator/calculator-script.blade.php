@@ -88,13 +88,12 @@ $(document).ready(function(){
 });
 
 $("#dp").keyup(function(){
-  $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
- // var dp =this.value;
- // var dpPersen = dp /100;
- // var price = $("#price").inputmask('unmaskedvalue');
- // var priceint  = parseInt(price);
- // var down_payment = hitungDP(priceint,dpPersen);
-});
+   var dp =this.value;
+   var dpPersen = dp /100;
+   var price = $("#price").inputmask('unmaskedvalue');
+   var priceint  = parseInt(price);
+   var down_payment = hitungDP(priceint,dpPersen);
+  });
 
 function hitungDP(priceint,dpPersen){
   if(dpPersen > 0.99)
@@ -149,7 +148,7 @@ $("#down_payment").keyup(function(){
 $("#rate").keyup(function(e){
      var nilai = $(this).val();
      var id =  "#rate";
-     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
+     sukubunga(nilai,id,e);
 });
 
 //validasi suku bunga fixed
@@ -157,13 +156,13 @@ $("#rate").keyup(function(e){
 $("#interest_rate_efektif").keyup(function(e){
      var nilai = $(this).val();
      var id =  "#interest_rate_efektif";
-     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
+     sukubunga(nilai,id,e);
 }); 
 
 $("#interest_rate_float").keyup(function(e){
      var nilai = $(this).val();
      var id =  "#interest_rate_float";
-     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
+     sukubunga(nilai,id,e);
 }); 
 
 
