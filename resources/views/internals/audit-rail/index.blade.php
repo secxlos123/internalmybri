@@ -3,6 +3,11 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style type="text/css">
+    .small{
+        font-size: 7.5pt;
+    }
+</style>
 
 <div class="content-page">
     <div class="content">
@@ -26,15 +31,15 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#pengajuan">Pengajuan Kredit</a></li>
-                        <li><a data-toggle="tab" href="#developerAdmin">Admin Developer</a></li>
-                        <li><a data-toggle="tab" href="#schedule">Penjadwalan</a></li>
-                        <li><a data-toggle="tab" href="#collateral">Collateral</a></li>
-                        <li><a data-toggle="tab" href="#loginUser">User Login</a></li>
-                        <li><a data-toggle="tab" href="#profileEdit">Edit Profil & Ubah Password</a></li>
-                        <li><a data-toggle="tab" href="#developerAgent">Agen Developer</a></li>
-                        <li><a data-toggle="tab" href="#property">Property</a></li>
-                        <li><a data-toggle="tab" href="#activityUser">User Activity</a></li>
+                        <li class="active small"><a data-toggle="tab" href="#pengajuan">Pengajuan Kredit</a></li>
+                        <li class="small"><a data-toggle="tab" href="#developerAdmin">Admin Developer</a></li>
+                        <li class="small"><a data-toggle="tab" href="#schedule">Penjadwalan</a></li>
+                        <li class="small"><a data-toggle="tab" href="#collateral">Collateral</a></li>
+                        <li class="small"><a data-toggle="tab" href="#loginUser">User Login</a></li>
+                        <li class="small"><a data-toggle="tab" href="#profileEdit">Profil</a></li>
+                        <li class="small"><a data-toggle="tab" href="#developerAgent">Agen Developer</a></li>
+                        <li class="small"><a data-toggle="tab" href="#property">Property</a></li>
+                        <li class="small"><a data-toggle="tab" href="#activityUser">User Activity</a></li>
                     </ul>
 
                     <div class="tab-content">
