@@ -13,7 +13,8 @@
 /* Backend */
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
-			Route::get('/ListUkerAll', ['as'=>'ListUkerAll', 'uses'=>'Mitra\ListUkerController@list_uker_all']);
+			Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
+			Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
 			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
 			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
@@ -261,6 +262,7 @@
 		Route::resource('mitra_list', 'Mitra\mitra\MitraController');
 		Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
 		Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
+		Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
 		Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
 		Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
 		Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
