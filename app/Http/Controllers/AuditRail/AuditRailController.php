@@ -239,26 +239,33 @@ class AuditRailController extends Controller
             $form['ref_number'] = ($form['ref_number']);
             if(!empty($form['old_values'])){
               $form['old_values'] = 
-                (isset($form['old_values']['title']) ? 'Judul : '.($form['old_values']['title']) : '').'<br> 
-                 Tanggal Perjanjian : '.($form['old_values']['appointment_date']).'<br>'. 
-                 (isset($form['old_values']['ao_id']) ? 'ID AO : '.($form['old_values']['ao_id']) : '').'<br> 
-                 Latitude : '.($form['old_values']['latitude']).'<br>
-                 Longitude : '.($form['old_values']['longitude']).'<br>
-                 Alamat : '.($form['old_values']['address']).'<br>'.
-                 (isset($form['old_values']['ref_number']) ? 'Nomor Referensi : '.($form['old_values']['ref_number']) : '').'<br> ';  
+                (isset($form['old_values']['title']) ? 'Judul : '.($form['old_values']['title']) : '').'<br>'.
+                (isset($form['old_values']['appointment_date']) ? 'Tangal Perjanjian : '.($form['old_values']['appointment_date']) : '').'<br> '. 
+                 // Tanggal Perjanjian : '.($form['old_values']['appointment_date']).'<br>'. 
+                 (isset($form['old_values']['ao_id']) ? 'ID AO : '.($form['old_values']['ao_id']) : '').'<br>'. 
+                 (isset($form['old_values']['latitude']) ? 'Latitude : '.($form['old_values']['latitude']) : '').'<br>'.
+                 (isset($form['old_values']['longitude']) ? 'Longitude : '.($form['old_values']['longitude']) : '').'<br>'.
+                 (isset($form['old_values']['address']) ? 'Alamat : '.($form['old_values']['address']) : '').'<br>'.
+                 // Longitude : '.isset($form['old_values']['longitude']).'<br>
+                 // Alamat : '.isset($form['old_values']['address']).'<br>'.
+                 (isset($form['old_values']['ref_number']) ? 'Nomor Referensi : '.($form['old_values']['ref_number']) : '').'<br> '.
+                 (isset($form['old_values']['desc']) ? 'Deskripsi : '.($form['old_values']['desc']) : '').'<br> ';  
             }else{
               $form['old_values'] = '';
             }
 
             if(!empty($form['new_values'])){
               $form['new_values'] = 
-                (isset($form['new_values']['title']) ? 'Judul : '.($form['new_values']['title']) : '').'<br> 
-                 Tanggal Perjanjian : '.($form['new_values']['appointment_date']).'<br> '.
-                 (isset($form['new_values']['ao_id']) ? 'ID AO : '.($form['new_values']['ao_id']) : '').'<br> 
-                 Latitude : '.($form['new_values']['latitude']).'<br>
-                 Longitude : '.($form['new_values']['longitude']).'<br>
-                 Alamat : '.($form['new_values']['address']).'<br>'.
-                 (isset($form['new_values']['ref_number']) ? 'Nomor Referensi : '.($form['new_values']['ref_number']) : '').'<br> ';
+                (isset($form['new_values']['title']) ? 'Judul : '.($form['new_values']['title']) : '').'<br>'.
+                (isset($form['new_values']['appointment_date']) ? 'Tangal Perjanjian : '.($form['new_values']['appointment_date']) : '').'<br> '. 
+                 // Tanggal Perjanjian : '.($form['new_values']['appointment_date']).'<br> '.
+                 (isset($form['new_values']['ao_id']) ? 'ID AO : '.($form['new_values']['ao_id']) : '').'<br>'. 
+                (isset($form['new_values']['latitude']) ? 'Latitude : '.($form['new_values']['latitude']) : '').'<br>'.
+                 (isset($form['new_values']['longitude']) ? 'Longitude : '.($form['new_values']['longitude']) : '').'<br>'.
+                 (isset($form['new_values']['address']) ? 'Alamat : '.($form['new_values']['address']) : '').'<br>'.
+                 // Alamat : '.($form['new_values']['address']).'<br>'.
+                 (isset($form['new_values']['ref_number']) ? 'Nomor Referensi : '.($form['new_values']['ref_number']) : '').'<br> '.
+                 (isset($form['new_values']['desc']) ? 'Deskripsi : '.($form['new_values']['desc']) : '').'<br> ';
             }else{
               $form['new_values'] = '';
             }
