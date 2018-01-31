@@ -24,7 +24,7 @@
                         <label class="col-md-4 control-label">Tanggal Kunjungan *:</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="datepicker-mindate" name="date" value="{{ $eformData['appointment_date'] }}" readonly="">
+                                <input type="text" class="form-control" name="date" value="{{ $eformData['appointment_date'] }}" readonly="">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                                 @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif

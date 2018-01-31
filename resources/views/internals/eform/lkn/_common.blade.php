@@ -86,19 +86,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Bukti DP </label>
+                    <label class="col-md-6 control-label">Bukti DP :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="down_payment" accept="image/*,application/pdf">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Pajak Bumi dan Bangunan Terakhir </label>
+                    <label class="col-md-6 control-label">Pajak Bumi dan Bangunan Terakhir :</label>
                     <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_tax" accept="image/*,application/pdf">
+                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_tax" accept="image/*,application/pdf" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Dokumen Lainnya </label>
+                    <label class="col-md-6 control-label">Dokumen Lainnya :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="other_document" accept="image/*,application/pdf">
                     </div>
