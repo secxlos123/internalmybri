@@ -826,19 +826,23 @@ class ADKController extends Controller
                 'no_sk_akhir'   => $no_sk_akhir
             ];
             // dd($detail_sph);
-
-            if (strtolower($fasilitas) == 'wl') {
-                // lempar data ke view blade
+            if ($detail['baru_atau_perpanjang'] == '0') {
+                if (strtolower($fasilitas) == 'wl') {
+                    // lempar data ke view blade
+                    view()->share('data_sph',$detail_sph);
+                    $pdf = PDF::loadView('internals.eform.adk._sph');
+                    return $pdf->download('sph.pdf');
+                } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'w8') {
+                    // lempar data ke view blade
+                    view()->share('data_sph',$detail_sph);
+                    $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
+                    return $pdf->download('sph_pekerja_bri.pdf');
+                }
+            } else {
                 view()->share('data_sph',$detail_sph);
-                $pdf = PDF::loadView('internals.eform.adk._sph');
-                return $pdf->download('sph.pdf');
-            } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'w8') {
-                // lempar data ke view blade
-                view()->share('data_sph',$detail_sph);
-                $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
-                return $pdf->download('sph_pekerja_bri.pdf');
+                $pdf = PDF::loadView('internals.eform.adk._adendum');
+                return $pdf->download('addendum.pdf');
             }
-            
         } else {
             \Session::flash('error', 'Dokumen SPH gagal didownload');
             return redirect()->route('adk.index');
@@ -944,15 +948,22 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $status = $this->getStatusIsSend($detail['is_send']);
+            $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
+
+            $detail['premi_as_jiwa'] = $premi_as_jiwa;
+            $detail['premi_beban_debitur'] = $premi_beban_debitur;
+            $detail['premi_beban_bri'] = $premi_beban_bri;
             $detail['status_send'] = $status;
             // dd($detail);
-            // $this->data['detail'] = $detail;
-            // return view('internals.eform.adk._report_kredit')->with($this->data);
+            $this->data['detail'] = $detail;
+            return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
-            $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
-                    ['detail' => $detail])
-                    ->setPaper('a4', 'landscape');
-            return $pdf->download('detail_kredit.pdf');            
+            // $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
+            //         ['detail' => $detail])
+            //         ->setPaper('a4', 'landscape');
+            // return $pdf->download('detail_kredit.pdf');            
         } else {
             \Session::flash('error', 'Dokumen Detail Kredit gagal didownload');
             return redirect()->route('adk.index');
