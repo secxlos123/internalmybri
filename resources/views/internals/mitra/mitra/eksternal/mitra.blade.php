@@ -18,110 +18,38 @@
                                     <h3 class="panel-title">Mitra Kerjasama</h3>
                                 </div>
 			                        <div class="panel-body">
-										<div class="col-md-4">
-											<div id="piediv" style="width:600px; height:400px;"></div>
+										<div class="row">
+											<div class="col-md-4">
+												<div id="piediv" style="width:600px; height:400px;"></div>
+											</div>
+											<div class="col-md-4">
+												<div id="chartdiv" style="width:600px; height:400px;"></div>
+											</div>
+											<div class="col-md-4">
+												<div id="bardiv" style="width:600px; height:400px;"></div>
+											</div>
 										</div>
-										<div class="col-md-4">
-											<div id="chartdiv" style="width:600px; height:400px;"></div>
-										</div>
-										<div class="col-md-4">
-											<div id="bardiv" style="width:600px; height:400px;"></div>
-										</div>
-									</div>
-							</div>
-					</div>
-			</div>
-
-
-					<div class="row">
-                    <div class="col-md-12">
-                            @if (\Session::has('error'))
-                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                            @endif
-                            <div class="panel panel-color panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Registrasi Mitra</h3>
-                                </div>
-			                        <div class="panel-body">
-									
-																		
+																			
 									<div class="row">
 										
-                                        <div class="col-md-3">
-                                            <div class="form-horizontal">
-												<table class="display" width="100%" cellspacing="0">
-													<tr><input type="radio" id="registrasi_mitra_kerjasama"
-															   name="registrasi_mitra_kerjasama" value="registrasi_mitra">
-														<label for="registrasi_mitra_kerjasama">Registrasi Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="registrasi_mitra_kerjasama"
-															   name="registrasi_mitra_kerjasama" value="cari_calon_mitra">
-														<label for="registrasi_mitra_kerjasama">Cari calon Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="registrasi_mitra_kerjasama"
-															   name="registrasi_mitra_kerjasama" value="penilaian_mitra">
-														<label for="registrasi_mitra_kerjasama">Penilaian Kelayakan Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="registrasi_mitra_kerjasama"
-															   name="registrasi_mitra_kerjasama" value="scoring_mitra">
-														<label for="registrasi_mitra_kerjasama">Scoring Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="registrasi_mitra_kerjasama"
-															   name="registrasi_mitra_kerjasama" value="registrasi_perjanjian_mitra">
-														<label for="registrasi_mitra_kerjasama">Registrasi Perjanjian Mitra Kerjasama</label></tr><br/>
-													<tr></tr><br/>
-													<tr><button type="button" onclick="goto()" class="btn btn-orange waves-light waves-effect w-md m-b-10" data-toggle="modal" id="btn-goto">
-														<i class="mdi mdi-search"></i>Go To</button>
-													</tr>
-												</table>
+											<div class="col-md-4">
+															<input type="checkbox" id="list_pekerja_checks" name="list_pekerja_checks"/>
+																<label for="list_pekerja_checks"><font color="grey" size="4px"><b>List Pekerja</b></font>
+																</label>
+											</div>
+											<div class="col-md-4">								
+																<input type="checkbox" id="input_kolektif_checks"
+																	   name="input_kolektif_checks"/>
+																<label for="input_kolektif_checks"><font color="yellow" size="4px"></b>Input Data Kolektif<b></font></label>
+											</div>
+											<div class="col-md-4">
+																<input type="checkbox" id="input_individu_checks"
+																	name="input_individu_checks"/>
+																<label for="input_individu_checks"><font color="green" size="4px"><b>Input Data Individu</b></font></label>
 											</div>
 										</div>
-										<div class="col-md-1">
-                                            <div class="form-horizontal" >
-											</div>
-										</div>
-										
-                                        <div class="col-md-3">
-                                            <div class="form-horizontal">
-													<table>
-													<tr></tr>
-													<tr></tr>
-													<tr></tr>
-													<tr></tr>
-													<tr></tr>
-													</table>
-											</div>
-										</div>
-										<div class="col-md-1">
-                                            <div class="form-horizontal" >
-											</div>
-										</div>
-										
-                                        <div class="col-md-3">
-                                            <div class="form-horizontal">
-												<table class="display" width="100%" cellspacing="0">
-													<tr><input type="radio" id="database_mitra" onclick="info_mitra_radio()"
-															   name="database_mitra" value="info_mitra">
-														<label for="database_mitra">Informasi Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="database_mitra" onclick="penilaian_kelayakan_mitra_radio()"
-															   name="database_mitra" value="penilaian_kelayakan_mitra">
-														<label for="database_mitra">Penilaian Kelayakan Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="database_mitra" onclick="scoring_mitra_radio()"
-															   name="database_mitra" value="scoring_mitra">
-														<label for="database_mitra">Scoring Mitra Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="database_mitra" onclick="perjanjian_mitra_radio()"
-															   name="database_mitra" value="perjanjian_mitra">
-														<label for="database_mitra">Perjanjian Kerjasama</label></tr><br/>
-													<tr><input type="radio" id="database_mitra" onclick="ketentuan_internal_mitra_radio()"
-															   name="database_mitra" value="ketentuan_internal_mitra">
-														<label for="database_mitra">Ketentuan Internal</label></tr><br/>
-													<tr><input type="radio" id="database_mitra" onclick="formulir_mitra_radio()"
-															   name="database_mitra" value="formulir_mitra">
-														<label for="database_mitra">Formulir</label></tr><br/>
-													<tr><button type="button" onclick="goto2()" class="btn btn-orange waves-light waves-effect w-md m-b-10" data-toggle="modal" id="btn-goto">
-														<i class="mdi mdi-search"></i>Go To</button>
-													</tr>
-												</table>
-											</div>
-										</div>
+								
 									</div>
-								</div>
 							</div>
 					</div>
 			</div>

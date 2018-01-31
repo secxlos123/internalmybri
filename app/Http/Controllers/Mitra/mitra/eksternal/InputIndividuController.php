@@ -10,7 +10,7 @@ use Client;
 use Validator;
 
 
-class InputKolektifController extends Controller
+class InputIndividuController extends Controller
 {
     // public function __construct()
     // {
@@ -31,11 +31,21 @@ class InputKolektifController extends Controller
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'form' => 'input_data_kolektif'
+					'form' => 'input_individu'
 				])
 				->post();
 		$view = $view['contents'];
-		return view('internals.mitra.mitra.eksternal.input_kolektif',  compact('data','view'));
+		$view2 = Client::setEndpoint('GetView')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'form' => 'input_individu2'
+				])
+				->post();
+		$view2 = $view2['contents'];
+		return view('internals.mitra.mitra.eksternal.input_individu',  compact('data','view','view2'));
     }
 	
 	public function hapus(Request $request){

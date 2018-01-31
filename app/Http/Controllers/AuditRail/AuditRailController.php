@@ -38,7 +38,7 @@ class AuditRailController extends Controller
     public function index()
     {
         $data = $this->getUser();
-
+        
         return view('internals.audit-rail.index', compact('data'));
     }
 
@@ -52,7 +52,7 @@ class AuditRailController extends Controller
     {
       // var_dump($request->all());
         $sort = $request->input('order.0');
-        $data = $this->getUser();
+        $data = $this->getUser(); 
         $audits = Client::setEndpoint('auditrail/'.$type)
                 ->setHeaders([
                   'Authorization' => $data['token']
@@ -78,29 +78,30 @@ class AuditRailController extends Controller
             $form['modul_name'] = strtoupper($form['modul_name']);
             $form['username'] = strtoupper($form['username']);
             $form['role'] = strtoupper($form['role']);
-            $form['old_values'] = $this->oldData($type, $form);
-            $form['new_values'] = $this->newData($type, $form);
+            $form['old_values'] = $this->getDataArray($form['old_values']);
+            $form['new_values'] = $this->getDataArray($form['new_values']);
 
             // $form['action_location'] = 
             //     ucwords(str_replace(['"', '{', '}'], ' ', (str_replace(',', '<br>', $form['action_location']))));
+            $form['action_location'] = $this->getDataArray(json_decode($form['action_location']));
 
-            $client = new \GuzzleHttp\Client();
-              try {
-                $location = json_decode('['. $form['action_location'] .']')[0];
-                  $latitude = $location->latitude;
-                  $longitude = $location->longitude;
+            // $client = new \GuzzleHttp\Client();
+            //   try {
+            //     $location = json_decode('['. $form['action_location'] .']')[0];
+            //       $latitude = $location->latitude;
+            //       $longitude = $location->longitude;
 
-                  $res = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$latitude.','.$longitude.'&key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE');
+            //       $res = $client->request('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng='.$latitude.','.$longitude.'&key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE');
 
-                  $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
-                  foreach ($getIP->results as $index=>$value) {
-                    $form['action_location'] = $value->formatted_address;
-                    break;
-                  }
+            //       $getIP = json_decode( '[' . $res->getBody()->getContents() . ']' )[0];
+            //       foreach ($getIP->results as $index=>$value) {
+            //         $form['action_location'] = $value->formatted_address;
+            //         break;
+            //       }
 
-              } catch (\Exception $e) {
-                  \Log::info($e);
-              }
+            //   } catch (\Exception $e) {
+            //       \Log::info($e);
+            //   }
 
             $audits['contents']['data'][$key] = $form;
         }
@@ -187,6 +188,19 @@ class AuditRailController extends Controller
       return $form;
     }
 
+
+    public function getDataArray($dataArray){
+         $form ='';
+          if(!empty($dataArray)){
+              foreach ($dataArray as $key => $value) {
+                if(!empty($key) && !empty($value)){                    
+                  $data = ucwords($key).' : '.ucwords($value);
+                 $form .= $data .'<br/>';
+                }
+              }
+          }
+          return $form;
+    }
     /**
      * Get Datatables Data.
      *
@@ -251,7 +265,7 @@ class AuditRailController extends Controller
 
             // $form['action_location'] = 
             //     ucwords(str_replace(['"', '{', '}'], ' ', (str_replace(',', '<br>', $form['action_location']))));
-
+            
             $client = new \GuzzleHttp\Client();
               try {
                 $location = json_decode('['. $form['action_location'] .']')[0];
@@ -358,14 +372,15 @@ class AuditRailController extends Controller
                         // , 'auditaction' => 'action name'
                         // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                         // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-                    ])
+                    ])->setQuery([ 'created_at'=> $request->input('action_date')])
                     ->get();
 
         foreach ($audits['contents']['data'] as $key => $form) {
             $form['username'] = ucwords($form['username']);
             $form['modul_name'] = ucwords($form['modul_name']);
-            $form['old_values'] = json_encode($form['old_values'], JSON_PRETTY_PRINT);
-            $form['new_values'] = json_encode($form['new_values'], JSON_PRETTY_PRINT);
+            $form['old_values'] = $this->getDataArray($form['old_values']);
+            $form['new_values'] = $this->getDataArray($form['new_values']);
+            $form['action_location'] = $this->getDataArray(json_decode($form['action_location']));
             //get address location
             $client = new \GuzzleHttp\Client();
               try {

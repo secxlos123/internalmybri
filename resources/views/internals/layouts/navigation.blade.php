@@ -57,7 +57,7 @@
                 </li>
                 @endif
                 <li>
-                    <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
+        <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
                 </li>
                 @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
                 <!-- <li>
@@ -65,24 +65,42 @@
                 </li> -->
                 @endif
 
-                @if($data['role']=='collateral')
-                <li>
-                    <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Penilaian Agunan </span> </a>
-                </li>
-                @endif
+              
 
-                @if(($data['role']=='collateral-appraisal')|| ($data['role']=='ao'))
-                <li>
-                    <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
-                </li>
-                @endif
+                 
 
-                @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
+    
+    @if($data['role']=='adk')
+    <li>
+      <a href="{{route('adk.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Verifikasi ADK </span> </a>
+    </li>
+    @endif
+             
+     
+    @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='cs-bri'))
+    <!-- <li>
+    <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
+  </li> -->
+  @endif
+
+  @if($data['role']=='collateral')
+  <li>
+    <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Penilaian Agunan </span> </a>
+  </li>
+  @endif
+
+  @if(($data['role']=='collateral-appraisal')|| ($data['role']=='ao'))
+  <li>
+    <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
+  </li>
+  @endif
+
+  @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
                 <li class="treeview">
                     <a href="#" class="waves-effect"><i class="mdi mdi-check"></i> <span > Approval Perubahan </span> </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="{{route('approveDeveloper')}}" class="waves-effect"> <span> Mitra Kerjasama </span> </a>
+        <a href="{{route('approveDeveloper')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
                         </li>
                         <!-- <li>
                             <a href="{{route('approveThirdParty')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ke-3 </span> </a>
@@ -99,8 +117,23 @@
                 @if(($data['role']=='prescreening'))
                 <li>
                     <a href="{{ route('screening.index') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Screening </span> </a>
+
                 </li>
                 @endif
+<li>
+  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
+</li>
+<li class="treeview">
+  <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
+  <ul class="treeview-menu">
+    <li>
+      <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
+    </li>
+    <li>
+      <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
+    </li>
+  </ul>
+</li>
                 <hr>
                 <li>
                     <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Keluar </span> </a>

@@ -88,12 +88,12 @@ $(document).ready(function(){
 });
 
 $("#dp").keyup(function(){
- var dp =this.value;
- var dpPersen = dp /100;
- var price = $("#price").inputmask('unmaskedvalue');
- var priceint  = parseInt(price);
- var down_payment = hitungDP(priceint,dpPersen);
-});
+   var dp =this.value;
+   var dpPersen = dp /100;
+   var price = $("#price").inputmask('unmaskedvalue');
+   var priceint  = parseInt(price);
+   var down_payment = hitungDP(priceint,dpPersen);
+  });
 
 function hitungDP(priceint,dpPersen){
   if(dpPersen > 0.99)
@@ -173,28 +173,12 @@ $("#interest_rate_floor").keyup(function(e){
 }); 
 
 function sukubunga(nilai,id,e){
-    var rate = nilai;
-    var numberstring = $(id).val().length;  
-    if(numberstring == 1 && rate ==','){
-      $(id).val('');
-    }else if(e.keyCode==8 && numberstring == 2){
-     
-    }else if(numberstring == 2){       
-       var rate = rate+',';
-       $(id).val(rate);
-    }else if(numberstring > 2){
-      var chekKomavalue = rate.search(',');
-      console.log(chekKomavalue); 
-        var arr = rate.split("");
-        var pangjangKata = arr.length; 
-      if(chekKomavalue== -1){
-        var rate = arr[0]+arr[1]+','+arr[2];
-        $(id).val(rate);
-      }else if (pangjangKata  == 3){
-        var rate = arr[0]+arr[1];
-        $(id).val(rate);
-      }
-    }
+  var rate = nilai;
+  if(rate > 99)
+  {
+    alert('Suku Bunga tidak boleh lebih besar dari 100 %');
+    $(id).val('');
+  }
 }
 
 $("#time_period").keyup(function(e){

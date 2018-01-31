@@ -28,6 +28,26 @@
             <div class="alert alert-success">{{ \Session::get('success') }}</div>
             @endif
             <div class="row">
+                <div class="row">
+        <div class="col-md-8">
+            <div class="card-box">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Tanggal Aksi :</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control datepicker-autoclose" name="action_date" id="action_date">
+                                <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+            <div class="text-right">
+                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+            </div>
+        </div>
+    </div>
+</div>
                 <div class="col-sm-12">
                     <div class="card-box">
                         <div class="table-responsive">
@@ -57,9 +77,16 @@
     @include('internals.layouts.footer')
     @include('internals.layouts.foot')
     <script type="text/javascript">
+     $(document).on('click', "#btn-filter", function(){
+        $("#datatable").dataTable().fnDestroy();
+        reloadDataPengajuan();
+    })
+
+function reloadDataPengajuan(from, type){
         var table1 = $('#datatable').DataTable({
                 processing : true,
                 serverSide : true,
+                searching : false,
                 lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]
@@ -77,6 +104,7 @@
                             api.page.info().pages
                             );
                         d.id = '{{$user_id}}';
+                        d.action_date = $('#action_date').val();
                     }
                 },
                 aoColumns : [
@@ -89,4 +117,5 @@
                 { data: 'action_location', name: 'action_location', bSortable : false },
             ],
         });
+    }
 </script>
