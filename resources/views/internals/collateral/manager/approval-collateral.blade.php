@@ -61,8 +61,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label class="control-label">Opini * :</label>
-                                                    <textarea class="form-control" name="remark" placeholder="Tulis Opini Disini">{{ old('remark') }}</textarea>
+                                                    <label class="control-label">Catatan Rekomendasi Collateral * :</label>
+                                                    <textarea class="form-control" name="remark" placeholder="Tulis Rekomendasi Disini">{{ old('remark') }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
