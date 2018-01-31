@@ -44,7 +44,55 @@
                                                     <div class="col-md-8">
                                                     </div>
                                                 </div>
-                                                <div class="form-group area_level">
+												<div class="form-group nasional">
+													<label class="col-md-3 control-label">Area level Nasional :</label> 
+													<div class="col-md-9">
+														<div class="col-md-7">
+															<select class="form-control" multiple name="area_level_nasional_dropdown" id="area_level_nasional_dropdown">
+															</select>
+														</div>
+														<div class="col-md-2">
+															<input type="checkbox" id="area_level_dropdown_nasional_checks" name="area_level_dropdown_nasional_checks">All
+														</div>
+													</div>
+												</div>
+												<div class="form-group nasional">
+													<label class="col-md-3 control-label">Area level Kanwil :</label> 
+													<div class="col-md-9">
+														<div class="col-md-7">
+															<select class="form-control" multiple name="area_level_kanwil_dropdown" id="area_level_kanwil_dropdown">
+															</select>
+														</div>
+														<div class="col-md-2">
+															<input type="checkbox" id="area_level_dropdown_kanwil_checks" name="area_level_dropdown_kanwil_checks">All
+														</div>
+													</div>
+												</div>
+												<div class="form-group nasional">
+													<label class="col-md-3 control-label">Area level Kanca :</label> 
+													<div class="col-md-9">
+														<div class="col-md-7">
+															<select class="form-control" multiple name="area_level_kanca_dropdown" id="area_level_kanca_dropdown">
+															</select>
+														</div>
+														<div class="col-md-2">
+															<input type="checkbox" id="area_level_dropdown_kanca_checks" name="area_level_dropdown_kanca_checks">All
+														</div>
+													</div>
+												</div>
+												<div class="form-group nasional">
+													<label class="col-md-3 control-label">Area level Uker :</label> 
+													<div class="col-md-9">
+														<div class="col-md-7">
+															<select class="form-control" multiple name="area_level_uker_dropdown" id="area_level_uker_dropdown">
+															</select>
+														</div>
+														<div class="col-md-2">
+															<input type="checkbox" id="area_level_dropdown_uker_checks" name="area_level_dropdown_uker_checks">All
+														</div>
+													</div>
+												</div>
+                                                <!--<div class="form-group area_level">
                                                     <label class="col-md-3 control-label">Area Level :</label>
                                                     <div class="col-md-9">
 													   <input type="radio" id="area_level" onclick="area_level_nasional()"
@@ -60,7 +108,7 @@
 															   name="area_level" value="Unit_Kerja">
 														<label for="area_level">Unit Kerja</label>
                                                     </div>
-                                                </div>
+                                                </div>-->
 												<div id="area_level_div"></div>
                                                 <div class="form-group segmen_level">
                                                     <label class="col-md-3 control-label">Segmen Level :</label>
@@ -541,6 +589,101 @@
 @include('internals.layouts.foot') 
 <script type="text/javascript">
 $(document).ready(function() {
+
+var select2 = $("#area_level_kanwil_dropdown").select2({
+  ajax: {
+    url: "ListUkerKanwil",
+    delay: 250
+  }
+});
+select2.onSelect = (function(fn) {
+alert('heres');	
+});
+/* $("#area_level_kanwil_dropdown").on('click', function(event){
+$("#area_level_kanca_dropdown").select2({
+  ajax: {
+    url: "ListUkerKanwil2/"+$("#area_level_kanwil_dropdown").val(),
+	contentType: "application/json",
+	type: 'GET',
+	dataType: "json",
+//	data: $("#area_level_kanwil_dropdown").val(),
+    delay: 250
+  }
+});
+});
+ */
+
+	//$("#area_level_nasional_dropdown").select2().empty().append('<option value="id">text</option>').trigger('change');
+	//$("#area_level_nasional_dropdown").select2();
+//	$("#area_level_kanwil_dropdown").select2();
+//	$("#area_level_kanca_dropdown").select2();
+//	$("#area_level_uker_dropdown").select2();
+
+/* 
+		$("#area_level_dropdown_nasional_checks").click(function(){
+			if($("#area_level_dropdown_nasional_checks").is(':checked') ){
+				$("#area_level_nasional_dropdown > option").prop("selected","selected");
+				$("#area_level_nasional_dropdown").trigger("change");
+			}else{
+				$("#area_level_nasional_dropdown > option").removeAttr("selected");
+				 $("#area_level_nasional_dropdown").trigger("change");
+			 }
+		});
+		$("#area_level_dropdown_kanwil_checks").click(function(){
+	
+			
+			if($("#area_level_dropdown_kanwil_checks").is(':checked') ){
+					var $option = '';
+					var $select = $("#area_level_kanwil_dropdown");
+					$select.append('').trigger('change');
+					var val ='';
+					$select.select2({
+					  ajax: {
+						url: "ListUkerKanwil/list",
+						delay: 250
+					  }
+					});
+					var n ='';
+					val = '..';
+					$.ajax({ 
+					  type: 'GET',
+					  url: 'ListUkerKanwil/all',
+					  dataType: 'json'
+					}).then(function (data) {
+					  console.log(data);
+						data.forEach(function(element) {
+							n += '<option selected value='+element.id+'>'+element.text+'</option>';
+						});
+							$option = $(n);
+							$select.append($option).trigger('change'); // append the option and update Select2
+					});
+			}else{
+				$("#area_level_kanwil_dropdown > option").removeAttr("selected");
+				 $("#area_level_kanwil_dropdown").trigger("change");
+			 } 
+		});
+		
+		$("#area_level_dropdown_kanca_checks").click(function(){
+					var area_level_value = $('#area_level_kanwil_dropdown').val();
+
+			if($("#area_level_dropdown_kanca_checks").is(':checked') ){
+				$("#area_level_kanca_dropdown > option").prop("selected","selected");
+				$("#area_level_kanca_dropdown").trigger("change");
+			}else{
+				$("#area_level_kanca_dropdown > option").removeAttr("selected");
+				 $("#area_level_kanca_dropdown").trigger("change");
+			 }
+		});
+		$("#area_level_dropdown_uker_checks").click(function(){
+			if($("#area_level_dropdown_uker_checks").is(':checked') ){
+				$("#area_level_uker_dropdown > option").prop("selected","selected");
+				$("#area_level_uker_dropdown").trigger("change");
+			}else{
+				$("#area_level_uker_dropdown > option").removeAttr("selected");
+				 $("#area_level_uker_dropdown").trigger("change");
+			 }
+		});
+	 */
 		$("#pemutus_name").select2();
 		$("#jabatan").select2();
 		$("#pemeriksa").select2();
@@ -730,18 +873,6 @@ var counter = 1;
 	}
 	function area_level_nasional(){
 		document.getElementById('area_level_div').innerHTML = "";
-		var getdata;
-		 $.ajax({
-			url: 'ListUkerAll',
-			type: 'GET',
-			contentType: "application/json",
-			dataType: "json",
-			success:function(data)
-			{
-				alert(data);
-				result = data;
-			} 
-		});
 				var html = '<label class="col-md-3 control-label">Area level Nasional :</label>' + 
 					   '<div class="col-md-9">' +
 					   //'<select class="form-control" multiple="multiple" name="area_level_dropdown" id="area_level_dropdown">' +
