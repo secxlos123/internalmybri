@@ -1,6 +1,7 @@
+
 <!-- Modal Prescreening -->
 <div id="result-modal" class="modal fade">
-    <div class="custom-dialog" role="document" style="margin: 50px auto; width: 300px;">
+    <div class="custom-dialog" role="document" style="margin: 50px auto; width: 1000px;">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Hasil Prescreening</h4>
@@ -8,6 +9,7 @@
             <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-orange waves-effect hide" id="btn-update-sicd">Update</button>
             </div>
         </div>
     </div>
