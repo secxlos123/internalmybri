@@ -2,24 +2,19 @@
 	#padding {
 		padding: 5px 10px 5px 10px;
 	}
-
 	#padding2 {
 		padding: 2px 5px 2px 5px;
 	}
-
 	#padding6 {
 		padding: 0 10px 0 10px;
 	}
-
 	#head6 {
 		margin-top: 0px;
 		border-top: 1px solid;
 	}
-
 	#head_color {
 		background-color: yellow;
 	}
-
 	.justify {
 		text-align: justify;
 	}

@@ -291,6 +291,34 @@
         });
     })
 
+    $('#zip_code').on('input' , function() {
+        var input=$(this).val();
+        html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
+        html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        if(input.length == 5 )
+        {
+            $.ajax({
+            dataType: 'json',
+            type: 'GET',
+            url: '/dropdown/zipcodelist?search='+input,
+        }).done(function(data){
+            if(data.zipcodes.data.length == 0)
+            {
+                $('#err-zc').html(html);
+                $('#zip_code').val('');
+            }else
+            {
+             kota = data.zipcodes.data[0].kecamatan;
+             $('#err-zc').html(html_valid + kota);
+            }
+        }).fail(function(errors) {
+            $('#err-zc').html(html_error);
+            $('#zip_code').val('');
+        });
+        }
+    });
+
     // Function for previewing image
     function previewImage(input, key) {
         if (input.files && input.files[0]) {

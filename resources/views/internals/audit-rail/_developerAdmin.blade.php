@@ -42,30 +42,32 @@
 </div>
 
 <div class="table-responsive">
-    <table id="datatable-admindev" class="table table-bordered responsive">
-        <thead class="bg-primary">
-            <tr>
-                <th>Tanggal</th>
-                <th>Nama Modul</th>
-                <th>Nama User</th>
-                <th>Nama Perusahaan Mitra</th>
-                <th>Data Lama</th>
-                <th>Data Baru</th>
-                <th>IP Address</th>
-                <th>Lokasi Akses</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr role="row" class="odd">
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="tab-scroll">
+        <table id="datatable-admindev" class="table table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Nama Modul</th>
+                    <th>Nama User</th>
+                    <th>Nama Perusahaan Mitra</th>
+                    <th>Data Lama</th>
+                    <th>Data Baru</th>
+                    <th>IP Address</th>
+                    <th>Lokasi Akses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr role="row" class="odd">
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

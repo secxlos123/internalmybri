@@ -129,27 +129,31 @@ class ADKHistoriController extends Controller
             foreach ($customer as $key => $result) {
                 if (!empty($result['is_send'])) {
                     if ($result['is_send'] != '0') {
-                        $status    = $this->getStatusIsSend($result['is_send']);
-                        $tp_produk = $this->getProduk($result['tp_produk']);
+                        $status       = $this->getStatusIsSend($result['is_send']);
+                        $tp_produk    = $this->getProduk($result['tp_produk']);
+                        $prescreening = $this->getStatusScreening($result['prescreening_status']);
+                        $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], -4);
+                        $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], -4);
 
-                        $history['tgl_pengajuan'] = empty($result['created_at']) ? $result['created_at'] : date('d-m-Y',strtotime($result['created_at']));
-                        $history['tgl_analisa'] = empty($result['tgl_analisa']) ? $result['tgl_analisa'] : date('d-m-Y',strtotime($result['tgl_analisa']));
-                        $history['tgl_putusan'] = empty($result['tgl_putusan']) ? $result['tgl_putusan'] : date('d-m-Y',strtotime($result['tgl_putusan']));
-                        $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'], 0, ",", ".");
+                        $history['tgl_pengajuan'] = empty($result['created_at']) ? '' : date('d-m-Y',strtotime($result['created_at']));
+                        $history['tgl_analisa'] = empty($result['tgl_analisa']) ? '' : $tgl_analisa;
+                        $history['tgl_putusan'] = empty($result['tgl_putusan']) ? '' : $tgl_putusan;
+                        $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'],0,",",".");
                         $history['cif']           = $result['cif'];
                         $history['eform_id']      = $result['eform_id'];
                         $history['id_aplikasi']   = $result['id_aplikasi'];
                         $history['ref_number']    = $result['ref_number'];
                         $history['STATUS']        = $status;
                         $history['fid_tp_produk'] = $tp_produk;
+                        $history['status_screening'] = $prescreening;
                         $history['pinca_name']    = $result['pinca_name'];
                         $history['ao_name']       = $result['ao_name'];
                         $history['namadeb']       = $result['first_name'].' '.$result['last_name'];
                         $history['action']= view('internals.layouts.actions',[
                             'detail_adk'       => $result['eform_id'],
-                            // 'is_screening'     => $result['is_screening'],
-                            // 'is_verified'      => $result['is_verified'],
-                            // 'screening_result' => 'view'
+                            'is_screening'     => $result['is_screening'],
+                            'is_verified'      => $result['is_verified'],
+                            'screening_result' => 'view'
                         ])->render();
                         $res_history[] = $history;
                     }
@@ -188,6 +192,18 @@ class ADKHistoriController extends Controller
             }   
         }
         return response()->json($eforms['contents']);
+    }
+
+    function getStatusScreening($value) {
+        if ($value == 1) {
+            return '<a class="btn btn-success form-control-static">Hijau</a>';
+        } elseif ($value == 2) {
+            return '<a class="btn btn-warning form-control-static">Kuning</a>';
+        } elseif ($value == 3) {
+            return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
     }
 
     function getStatusIsSend($value) {
