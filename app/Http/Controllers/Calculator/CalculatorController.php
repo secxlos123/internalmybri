@@ -49,13 +49,13 @@ class CalculatorController extends Controller
       }
       $price = $calculate['price'];
       $term = $calculate['time_period'];
-      $rate = $this->convertCommatoPoint($calculate['rate']);
+      $rate = $calculate['rate'];
       $downPayment = str_replace(",", "", $calculate['down_payment']);
       $priceNumber = str_replace(",", "", $price);
       $fxflterm = $calculate['time_period_total'];
       $fxterm =  $calculate['time_period_fixed'];
-      $fxrate =  $this->convertCommatoPoint($calculate['interest_rate_fixed']);
-      $flrate =  $this->convertCommatoPoint($calculate['interest_rate_float']);
+      $fxrate =  $calculate['interest_rate_fixed'];
+      $flrate =  $calculate['interest_rate_float'];
       if($interest_rate_type== 1 || $interest_rate_type ==2){
           $calculateSend = array(
                'type' => $type,
@@ -78,7 +78,7 @@ class CalculatorController extends Controller
       } 
       else if($interest_rate_type== 4){
           $fflterm = $calculate['time_period_floor'];
-          $ffloatlrate = $this->convertCommatoPoint($calculate['interest_rate_floor']);
+          $ffloatlrate = $calculate['interest_rate_floor'];
           $calculateSend = array(
               'type' => $type,
               'price' => $priceNumber,
