@@ -138,7 +138,14 @@
                             @include('internals.eform.approval._lkn-mutation')
                         </div>
                         @endif
-                        @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
+
+                        @if(($detail['kpr']['status_property'] == 2))
+                        <div class="panel-body">
+                            @include('internals.eform.approval._lkn-investigate')
+                        </div>
+                        @endif
+
+                        @if(($detail['kpr']['status_property'] == 1) && ($detail['kpr']['developer_id'] == 1))
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-investigate')
                         </div>

@@ -26,7 +26,7 @@
             @endif
         </form>
     </div>
-    @if($detail['visit_report']['source_income'] != 'single')
+    @if(($detail['visit_report']['source_income'] != 'single') && ($detail['customer']['personal']['status_id'] == 2))
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">

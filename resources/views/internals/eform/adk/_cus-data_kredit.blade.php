@@ -5,7 +5,7 @@
                 <label class="col-md-5 control-label">Briguna Smart :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['Briguna_smart'] == '0')
+                    @if($detail['Briguna_smart'] == '1')
                         Ya
                     @else
                         Tidak
@@ -103,9 +103,9 @@
                 <label class="col-md-5 control-label">Kredit Take Over :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['kredit_take_over'] == '0')
+                    @if($detail['kredit_take_over'] == '1')
                         Ya
-                    @elseif($detail['kredit_take_over'] == '1')
+                    @elseif($detail['kredit_take_over'] == '0')
                         Tidak
                     @endif
                     </p>
