@@ -16,27 +16,27 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama User :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="customer_name">
+                            <input type="text" class="form-control" id="username1">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama Modul :</label>
                         <div class="col-sm-8">
-                           <input type="text" class="form-control" id="module_name">
+                           <input type="text" class="form-control" id="module_name1">
                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama Agen Developer :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="agent_developer">
+                            <input type="text" class="form-control" id="agent_developer1">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama Perusahaan Mitra :</label>
                         <div class="col-sm-8">
-                           <input type="text" class="form-control" id="company_name">
+                           <input type="text" class="form-control" id="company_name1">
                        </div>
                     </div>
                 </form>

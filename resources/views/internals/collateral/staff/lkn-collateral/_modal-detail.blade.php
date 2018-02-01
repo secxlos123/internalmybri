@@ -845,6 +845,7 @@
                                                                         <p class="form-control-static" id="information"></p>
                                                                     </div>
                                                                 </div> 
+
                                                                 <h5>Dokumen Notaris Developer</h5>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Status :</label>
@@ -852,6 +853,20 @@
                                                                         <p class="form-control-static" id="notary_status"></p>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date_notary"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information_notary"></p>
+                                                                    </div>
+                                                                </div> 
+
                                                                 <h5>Dokumen Take Over</h5>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Status :</label>
@@ -859,6 +874,19 @@
                                                                         <p class="form-control-static" id="takeover_status"></p>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date_takeover"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information_takeover"></p>
+                                                                    </div>
+                                                                </div> 
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -870,6 +898,20 @@
                                                                         <p class="form-control-static" id="credit_status"></p>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date_credit"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information_credit"></p>
+                                                                    </div>
+                                                                </div> 
+
                                                                 <h5>SKMHT</h5>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Status :</label>
@@ -877,6 +919,20 @@
                                                                         <p class="form-control-static" id="skmht_status"></p>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date_skmht"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information_skmht"></p>
+                                                                    </div>
+                                                                </div> 
+
                                                                 <h5>IMB</h5>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Status :</label>
@@ -884,6 +940,20 @@
                                                                         <p class="form-control-static" id="imb_status"></p>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date_imb"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information_imb"></p>
+                                                                    </div>
+                                                                </div> 
+
                                                                 <h5>SHGB</h5>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Status :</label>
@@ -891,6 +961,19 @@
                                                                         <p class="form-control-static" id="shgb_status"></p>
                                                                     </div>
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Tanggal Penelitian :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="receipt_date_shgb"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-5 control-label">Keterangan :</label>
+                                                                    <div class="col-md-7">
+                                                                        <p class="form-control-static" id="information_shgb"></p>
+                                                                    </div>
+                                                                </div> 
                                                             </form>
                                                         </div>
                                                     </div>

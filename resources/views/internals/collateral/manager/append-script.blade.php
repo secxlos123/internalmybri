@@ -126,6 +126,18 @@
                 var skmht_status = result.data.ots_nine.skmht_status;
                 var imb_status = result.data.ots_nine.imb_status;
                 var shgb_status = result.data.ots_nine.shgb_status;
+                var receipt_date_notary = result.data.ots_nine.receipt_date_notary;
+                var information_notary = result.data.ots_nine.information_notary;
+                var receipt_date_takeover = result.data.ots_nine.receipt_date_takeover;
+                var information_takeover = result.data.ots_nine.information_takeover;
+                var receipt_date_credit = result.data.ots_nine.receipt_date_credit;
+                var information_credit = result.data.ots_nine.information_credit;
+                var receipt_date_skmht = result.data.ots_nine.receipt_date_skmht;
+                var information_skmht = result.data.ots_nine.information_skmht;
+                var receipt_date_imb = result.data.ots_nine.receipt_date_imb;
+                var information_imb = result.data.ots_nine.information_imb;
+                var receipt_date_shgb = result.data.ots_nine.receipt_date_shgb;
+                var information_shgb = result.data.ots_nine.information_shgb;
 
             //step9
                 var paripasu = result.data.ots_ten.paripasu;
@@ -241,6 +253,18 @@
                 $("#detail-collateral-modal #skmht_status").html(skmht_status);
                 $("#detail-collateral-modal #imb_status").html(imb_status); 
                 $("#detail-collateral-modal #shgb_status").html(shgb_status); 
+                $("#detail-collateral-modal #receipt_date_notary").html(receipt_date_notary);
+                $("#detail-collateral-modal #information_notary").html(information_notary); 
+                $("#detail-collateral-modal #receipt_date_takeover").html(receipt_date_takeover);
+                $("#detail-collateral-modal #information_takeover").html(information_takeover); 
+                $("#detail-collateral-modal #receipt_date_credit").html(receipt_date_credit);
+                $("#detail-collateral-modal #information_credit").html(information_credit); 
+                $("#detail-collateral-modal #receipt_date_skmht").html(receipt_date_skmht);
+                $("#detail-collateral-modal #information_skmht").html(information_skmht); 
+                $("#detail-collateral-modal #receipt_date_imb").html(receipt_date_imb);
+                $("#detail-collateral-modal #information_imb").html(information_imb); 
+                $("#detail-collateral-modal #receipt_date_shgb").html(receipt_date_shgb);
+                $("#detail-collateral-modal #information_shgb").html(information_shgb); 
 
             //step9
                 $("#detail-collateral-modal #paripasu").html(paripasu); 
