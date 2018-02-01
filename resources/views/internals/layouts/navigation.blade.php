@@ -85,11 +85,6 @@
       <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span> Debitur </span> </a>
     </li>
     @endif
-    @if($data['role']=='adk')
-    <li>
-      <a href="{{route('adk.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Verifikasi ADK </span> </a>
-    </li>
-    @endif
     @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='pinca') || ($data['role']=='staff'))
     <li>
       <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
@@ -144,6 +139,7 @@
 
 </li>
 @endif
+
 <li>
   <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
 </li>
@@ -153,12 +149,14 @@
     <li>
       <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
     </li>
+
     <li>
       <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
     </li>
   </ul>
 </li>
 <hr>
+
 <li>
   <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Keluar </span> </a>
 </li>
