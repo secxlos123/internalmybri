@@ -77,6 +77,7 @@ class AuditRailController extends Controller
                   'company_name'=> $request->input('company_name'),
                   'developer'=> $request->input('developer'),
                   'staff_penilai'=> $request->input('staff_penilai'),
+                  'project_name'=> $request->input('project_name'),
                 ])->get();
                 // print_r($audits);exit();
 
