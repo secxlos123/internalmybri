@@ -74,7 +74,9 @@ class AuditRailController extends Controller
                   'created_at'=> $request->input('action_date'),
                   'username'  => $userOrAgen,
                   'modul_name'=> $request->input('modul_name'),
-                  'company_name'=> $request->input('company_name')
+                  'company_name'=> $request->input('company_name'),
+                  'developer'=> $request->input('developer'),
+                  'staff_penilai'=> $request->input('staff_penilai'),
                 ])->get();
                 // print_r($audits);exit();
 

@@ -375,8 +375,10 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#user_name2').val();
+                    d.modul_name = $('#module_name2').val();
+                    d.developer = $('#developer2').val();
+                    d.staff_penilai = $('#staff').val();
                 }
             },
             aoColumns : [
