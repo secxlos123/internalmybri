@@ -207,9 +207,10 @@
                     );
 
                     d.action_date = from;
-                    d.ref_number = $('#ref_number').val();
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#username1').val();
+                    d.company_name = $('#company_name1').val();;
+                    d.modul_name = $('#modul_name1').val();
+                    d.agent_developer = $('#agent_developer1').val();
                 }
             },
             aoColumns : [
@@ -217,7 +218,7 @@
                 {   data: 'modul_name', name: 'modul_name',  bSortable: false  },
                 {   data: 'username', name: 'username',  bSortable: false  },
                 {   data: 'username', name: 'username',  bSortable: false  },
-                {   data: 'ref_number', name: 'ref_number' },
+                {   data: 'company_name', name: 'company_name' },
                 {   data: 'old_values', name: 'old_values', bSortable: false },
                 {   data: 'new_values', name: 'new_values', bSortable: false },
                 {   data: 'ip_address', name: 'ip_address', bSortable: false },
