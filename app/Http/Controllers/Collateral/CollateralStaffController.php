@@ -600,7 +600,7 @@ class CollateralStaffController extends Controller
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' =>  $request['ket'].' via '.$role
+        , 'auditaction' => 'ots menilai agunan via '.$role
         , 'long'        => $long
         , 'lat'         => $request['hidden-lat']
       ])->get();
@@ -623,7 +623,7 @@ class CollateralStaffController extends Controller
       ->setHeaders([
         'Authorization' => $data['token']
         , 'pn'          => $data['pn']
-        , 'auditaction' => $request['ket'].' via '.$role
+        , 'auditaction' => 'ots menilai agunan via '.$role
         , 'long'        => $long
         , 'lat'         => $request['hidden-lat']
       ])->get();
