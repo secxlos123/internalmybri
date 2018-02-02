@@ -207,9 +207,10 @@
                     );
 
                     d.action_date = from;
-                    d.ref_number = $('#ref_number').val();
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#username1').val();
+                    d.company_name = $('#company_name1').val();;
+                    d.modul_name = $('#modul_name1').val();
+                    d.agent_developer = $('#agent_developer1').val();
                 }
             },
             aoColumns : [
@@ -217,7 +218,7 @@
                 {   data: 'modul_name', name: 'modul_name',  bSortable: false  },
                 {   data: 'username', name: 'username',  bSortable: false  },
                 {   data: 'username', name: 'username',  bSortable: false  },
-                {   data: 'ref_number', name: 'ref_number' },
+                {   data: 'company_name', name: 'company_name' },
                 {   data: 'old_values', name: 'old_values', bSortable: false },
                 {   data: 'new_values', name: 'new_values', bSortable: false },
                 {   data: 'ip_address', name: 'ip_address', bSortable: false },
@@ -374,8 +375,10 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#user_name2').val();
+                    d.modul_name = $('#module_name2').val();
+                    d.developer = $('#developer2').val();
+                    d.staff_penilai = $('#staff').val();
                 }
             },
             aoColumns : [
@@ -428,10 +431,11 @@
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
                     );
-
+                     d.username = $('#user_name3').val();
+                    d.modul_name = $('#module_name3').val();
+                    d.project_name = $('#project_name').val();
+                    d.company_name = $('#company_name3').val();
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
                 }
             },
             aoColumns : [
@@ -439,7 +443,7 @@
                 {   data: 'modul_name', name: 'modul_name',  bSortable: false  },
                 {   data: 'username', name: 'username',  bSortable: false  },
                 {   data: 'project_name', name: 'project_name',  bSortable: false  },
-                {   data: 'developer', name: 'developer', bSortable: false },
+                {   data: 'company_name', name: 'company_name', bSortable: false },
                 {   data: 'old_values', name: 'old_values', bSortable: false },
                 {   data: 'new_values', name: 'new_values', bSortable: false },
                 {   data: 'ip_address', name: 'ip_address', bSortable: false },
@@ -484,7 +488,7 @@
                         api.page.info().pages
                     );
 
-                    d.username = $('#username').val();
+                    d.username = $('#username_activity').val();
                 }
             },
             aoColumns : [

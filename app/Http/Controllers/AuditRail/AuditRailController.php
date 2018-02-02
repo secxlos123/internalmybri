@@ -51,6 +51,11 @@ class AuditRailController extends Controller
     public function datatables(Request $request, $type)
     {
       // var_dump($request->all());
+      // var_dump($type);
+      // die();
+    $userOrAgen = $request->input('username') ? $request->input('username') : $request->input('agent_developer');
+    \Log::info('=====================get request=========================');
+    \Log::info($userOrAgen);
         $sort = $request->input('order.0');
         $data = $this->getUser(); 
         $audits = Client::setEndpoint('auditrail/'.$type)
@@ -67,9 +72,12 @@ class AuditRailController extends Controller
                   'search'    => $request->input('search.value'),
                   'page'      => (int) $request->input('page') + 1,
                   'created_at'=> $request->input('action_date'),
-                  'username'  => $request->input('username'),
+                  'username'  => $userOrAgen,
                   'modul_name'=> $request->input('modul_name'),
-                  'ref_number'=> $request->input('ref_number')
+                  'company_name'=> $request->input('company_name'),
+                  'developer'=> $request->input('developer'),
+                  'staff_penilai'=> $request->input('staff_penilai'),
+                  'project_name'=> $request->input('project_name'),
                 ])->get();
                 // print_r($audits);exit();
 

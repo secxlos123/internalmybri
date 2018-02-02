@@ -165,7 +165,8 @@
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
-            Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+            // Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+            Route::post('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
 
             Route::post('post-scoring-form/{id}', ['as'=>'postLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@postLKNAgunan']);
 

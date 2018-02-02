@@ -210,7 +210,7 @@
             var liquidation_projection = $('#liquidation_projection').val();
             var njop = $('#njop').val();
             var appraisal_by = $('.appraisal_by').find("option:selected").text();
-            var independent_appraiser = $('.independent_appraiser').find("option:selected").text();
+            var independent_appraiser = $('.appraiser').find("option:selected").text();
             var date_assessment = $('#date_assessment').val();
             var type_binding = $('.type_binding').find("option:selected").text();
             var binding_number = $('#binding_number').val();
@@ -226,12 +226,24 @@
             var skmht_status = $('.skmht_status').find("option:selected").text();
             var imb_status = $('.imb_status').find("option:selected").text();
             var shgb_status = $('.shgb_status').find("option:selected").text();
+            var receipt_date_notary = $('#receipt_date_notary').val();
+            var information_notary = $('#information_notary').val();
+            var receipt_date_takeover = $('#receipt_date_takeover').val();
+            var information_takeover = $('#information_takeover').val();
+            var receipt_date_credit = $('#receipt_date_credit').val();
+            var information_credit = $('#information_credit').val();
+            var receipt_date_skmht = $('#receipt_date_skmht').val();
+            var information_skmht = $('#information_skmht').val();
+            var receipt_date_imb = $('#receipt_date_imb').val();
+            var information_imb = $('#information_imb').val();
+            var receipt_date_shgb = $('#receipt_date_shgb').val();
+            var information_shgb = $('#information_shgb').val();
 
             //step10
             var paripasu = $('.paripasu').find("option:selected").text();
             var paripasu_bank = $('#paripasu_bank').val();
             var insurance = $('.insurance').find("option:selected").text();
-            var insurance_company = $('.insurance_company').find("option:selected").text();
+            var insurance_company = $('.insurance').find("option:selected").text();
             var insurance_value =$('#insurance_value').val();
             var eligibility = $('.eligibility').find("option:selected").text();
 
@@ -375,6 +387,18 @@
             $("#detail-collateral-modal #skmht_status").html(skmht_status);
             $("#detail-collateral-modal #imb_status").html(imb_status); 
             $("#detail-collateral-modal #shgb_status").html(shgb_status); 
+            $("#detail-collateral-modal #receipt_date_notary").html(receipt_date_notary);
+            $("#detail-collateral-modal #information_notary").html(information_notary); 
+            $("#detail-collateral-modal #receipt_date_takeover").html(receipt_date_takeover);
+            $("#detail-collateral-modal #information_takeover").html(information_takeover); 
+            $("#detail-collateral-modal #receipt_date_credit").html(receipt_date_credit);
+            $("#detail-collateral-modal #information_credit").html(information_credit); 
+            $("#detail-collateral-modal #receipt_date_skmht").html(receipt_date_skmht);
+            $("#detail-collateral-modal #information_skmht").html(information_skmht); 
+            $("#detail-collateral-modal #receipt_date_imb").html(receipt_date_imb);
+            $("#detail-collateral-modal #information_imb").html(information_imb); 
+            $("#detail-collateral-modal #receipt_date_shgb").html(receipt_date_shgb);
+            $("#detail-collateral-modal #information_shgb").html(information_shgb); 
 
             //step10
             $("#detail-collateral-modal #paripasu").html(paripasu); 

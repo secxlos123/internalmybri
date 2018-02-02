@@ -16,13 +16,13 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama User :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="customer_name">
+                            <input type="text" class="form-control" id="user_name2">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama Modul :</label>
                         <div class="col-sm-8">
-                           <input type="text" class="form-control" id="module_name">
+                           <input type="text" class="form-control" id="module_name2">
                        </div>
                     </div>
 
@@ -35,7 +35,7 @@
                             old('developer_type'), [
                             'class' => 'select2 developer_type ',
                             'data-placeholder' => '-- Pilih --',
-                            'id' => 'developer_type'
+                            'id' => 'developer2'
                             ]) !!}
                         </div>
                     </div>

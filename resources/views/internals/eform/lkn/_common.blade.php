@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label">Pajak Bumi dan Bangunan Terakhir :</label>
+                    <label class="col-md-6 control-label">Pajak Bumi dan Bangunan Terakhir * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_tax" accept="image/*,application/pdf" required>
                     </div>
