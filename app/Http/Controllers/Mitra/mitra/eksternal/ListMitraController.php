@@ -43,7 +43,7 @@ class ListMitraController extends Controller
     {
 	    $sort = $request->input('order.0');
         $data = $this->getUser();
-        $mitra = Client::setEndpoint('mitra_list')
+        $mitra = Client::setEndpoint('list_pekerja')
 				->setHeaders([
 					'Authorization' => $data['token'],
 					'pn' => $data['pn']
@@ -52,9 +52,7 @@ class ListMitraController extends Controller
                     'search'    => $request->input('search.value'),
                     //'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'page'      => (int) $request->input('page') + 1,
-                    'jenis_mitra'=> $request->input('jenis_mitra'),
-                    'anak_perusahaan_wilayah'  => $request->input('anak_perusahaan_wilayah'),
-                    'anak_perusahaan_kabupaten'=> $request->input('anak_perusahaan_kabupaten'),
+                    'kode_mitra'=> $request->input('kode_mitra')
                 ])->get();
 		$i=1;
         foreach ($mitra['contents']['data'] as $key => $dir) {

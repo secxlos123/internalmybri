@@ -123,7 +123,7 @@ class EFormController extends Controller
             }
 
             return view('internals.eform.index-ao', compact('data','form_notif'));
-        } elseif (($data['role'] == 'mp') || ($data['role'] == 'pinca')) {
+        } elseif (($data['role'] == 'mp') || ($data['role'] == 'amp') || ($data['role'] == 'pinca') || ($data['role'] == 'pincasus') || ($data['role'] == 'wapincasus')) {
             $form_notif = [];
             if(@$request->get('ref_number') && @$request->get('slug')){
                /*
