@@ -243,6 +243,10 @@
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
 
+        /* CRM Dashboard */
+				Route::get('crm_dashboard', 'CRM\DashboardController@index');
+				Route::get('chartMarketing', 'CRM\DashboardController@chartMarketing');
+
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');
 				Route::get('add_referral', 'CRM\ReferralController@add');

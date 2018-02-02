@@ -59,7 +59,7 @@
     //init
     $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts
 }(window.jQuery),
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.MorrisCharts.init();
@@ -150,6 +150,6 @@ function reloadData1(city)
                 // {   data: 'status', name: 'status', bSortable: true },
                 {   data: 'action', name: 'action', orderable: false, searchable: false}
                 ],
-            }); 
+            });
 }
 </script>

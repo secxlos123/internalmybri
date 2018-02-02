@@ -36,7 +36,7 @@
             // ];
             // this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Pengajuan Baru'], ['#00529C']);
             $.ajax({
-                url: "{{url('chartEform')}}",
+                url: "{{url('chartMarketing')}}",
                 type: "GET",
                 dataType: "json",
                 success: function (data) {

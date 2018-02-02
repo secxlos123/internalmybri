@@ -140,6 +140,7 @@
 </li>
 @endif
 
+@if($data['role']=='collateral')
 <li>
   <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
 </li>
@@ -155,6 +156,7 @@
     </li>
   </ul>
 </li>
+@endif
 <hr>
 
 <li>
