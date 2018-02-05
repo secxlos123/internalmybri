@@ -209,7 +209,7 @@
                     d.action_date = from;
                     d.username = $('#username1').val();
                     d.company_name = $('#company_name1').val();;
-                    d.modul_name = $('#modul_name1').val();
+                    d.modul_name = $('#module_name1').val();
                     d.agent_developer = $('#agent_developer1').val();
                 }
             },
@@ -321,8 +321,7 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#username_login').val();
                 }
             },
             aoColumns : [
