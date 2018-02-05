@@ -321,8 +321,7 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#username_login').val();
                 }
             },
             aoColumns : [
