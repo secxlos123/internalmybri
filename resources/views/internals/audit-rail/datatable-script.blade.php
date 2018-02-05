@@ -152,9 +152,8 @@
                     );
 
                     d.action_date = from;
-                    d.ref_number = $('#ref_number').val();
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#userappointment_name').val();
+                    d.modul_name = $('#modul_name_appointment').val();
                 }
             },
             aoColumns : [
