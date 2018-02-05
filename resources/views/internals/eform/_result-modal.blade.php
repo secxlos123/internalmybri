@@ -62,7 +62,7 @@
         <h4 class="m-t-min30 m-b-30 header-title custom-title" data-toggle="collapse" href="#collapse1" style="cursor: pointer;">Detail Hasil Prescreening <small>(klik disini untuk detail prescreening)</small> </h4>
         <div class="panel-collapse collapse" id="collapse1">
             <div class="card-box m-t-30 after-this">
-                <h4 class="m-t-min30 m-b-30 header-title custom-title">PEFINDO</h4>
+                <h4 class="m-t-min30 m-b-30 header-title custom-title">PEFINDO / SLIK</h4>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-horizontal" role="form">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="">
-                                <label class="col-md-6 control-label"> Hasil Pefindo</label>
+                                <label class="col-md-6 control-label"> Hasil Pefindo / SLIK</label>
                                 <div class="col-md-6" id="prescreening-color">
                                     100
                                 </div>
