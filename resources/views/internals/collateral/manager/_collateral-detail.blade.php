@@ -16,25 +16,25 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">NPW Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['npw_land']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['npw_land'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['npw_land']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">NL Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['nl_land']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['nl_land'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['nl_land']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">PNPW Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnpw_land']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['pnpw_land'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnpw_land']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">PNL Tanah :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnl_land']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['pnl_land'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnl_land']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,25 +46,25 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">NPW Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['npw_building']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['npw_building'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['npw_building']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">NL Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['nl_building']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['nl_building'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['nl_building']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">PNPW Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnpw_building']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['pnpw_building'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnpw_building']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">PNL Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnl_building']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['pnl_building'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnl_building']))}} @endif</p>
                         </div>
                     </div>
                 </form>
@@ -80,25 +80,25 @@
                     <div class="form-group">
                         <label class="col-md-5 control-label">NPW Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['npw_all']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['npw_all'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['npw_all']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">NL Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['nl_all']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['nl_all'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['nl_all']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">PNPW Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnpw_all']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['pnpw_all'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnpw_all']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-5 control-label">PNL Tanah & Bangunan :</label>
                         <div class="col-md-7">
-                            <p class="form-control-static">Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnl_all']))}}</p>
+                            <p class="form-control-static">@if(!empty($collateral['ots_valuation']['pnl_all'])) Rp {{number_format(str_replace('.','',$collateral['ots_valuation']['pnl_all']))}} @endif</p>
                         </div>
                     </div>
                     <div class="form-group">
