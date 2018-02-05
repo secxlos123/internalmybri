@@ -16,7 +16,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">CRS :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['score']}} (DITERIMA)</p>
+                    <p class="form-control-static">{{$detail['score']}} 
+                        @if($detail['cutoff'] == 'Y')
+                            (DITERIMA)
+                        @else
+                            (DITOLAK)
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
