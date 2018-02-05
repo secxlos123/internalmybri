@@ -95,8 +95,9 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#admindev_name').val();
+                    d.modul_name = $('#modul_name_admindev').val();
+                    d.company_name = $('#company_name').val();
                 }
             },
             aoColumns : [
