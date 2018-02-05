@@ -203,7 +203,10 @@ class AuditRailController extends Controller
          $form ='';
           if(!empty($dataArray)){
               foreach ($dataArray as $key => $value) {
-                if(!empty($key) && !empty($value)){                    
+                if(!empty($key) && !empty($value)){       
+                  if(is_array($value)){
+                     $value = json_encode($value,JSON_PRETTY_PRINT);
+                  }             
                   $data = ucwords($key).' : '.ucwords($value);
                  $form .= $data .'<br/>';
                 }
