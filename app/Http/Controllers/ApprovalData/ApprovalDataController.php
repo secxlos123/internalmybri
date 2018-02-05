@@ -87,8 +87,8 @@ class ApprovalDataController extends Controller
                         , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])->get();
            }
-
-
+        }else{
+            $data_apporals = [];
         }
 
         return view('internals.approval-data.developer.index', compact('data','data_apporals'));
