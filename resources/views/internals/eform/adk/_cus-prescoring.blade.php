@@ -216,7 +216,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label" bgcolor="blue">DITERIMA</label>
+                <label class="col-md-6 control-label" bgcolor="blue">
+                @if($detail['cutoff'] == 'Y')
+                    DITERIMA
+                @else
+                    DITOLAK
+                @endif
+                </label>
             </div>
         </form>
     </div>

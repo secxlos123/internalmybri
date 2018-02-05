@@ -213,7 +213,7 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Catatan Pemutus :</label>
-                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_adk']?></label>
+                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_pemutus']?></label>
                                         </div>
                                     </form>
                                 </div>
