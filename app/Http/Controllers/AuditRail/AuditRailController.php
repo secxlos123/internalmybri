@@ -56,6 +56,7 @@ class AuditRailController extends Controller
     $userOrAgen = $request->input('username') ? $request->input('username') : $request->input('agent_developer');
     \Log::info('=====================get request=========================');
     \Log::info($userOrAgen);
+    \Log::info($request->all());
         $sort = $request->input('order.0');
         $data = $this->getUser(); 
         $audits = Client::setEndpoint('auditrail/'.$type)
@@ -78,6 +79,7 @@ class AuditRailController extends Controller
                   'developer'=> $request->input('developer'),
                   'staff_penilai'=> $request->input('staff_penilai'),
                   'project_name'=> $request->input('project_name'),
+                  'company_name'=> $request->input('company_name'),
                 ])->get();
                 // print_r($audits);exit();
 
@@ -201,7 +203,10 @@ class AuditRailController extends Controller
          $form ='';
           if(!empty($dataArray)){
               foreach ($dataArray as $key => $value) {
-                if(!empty($key) && !empty($value)){                    
+                if(!empty($key) && !empty($value)){       
+                  if(is_array($value)){
+                     $value = json_encode($value,JSON_PRETTY_PRINT);
+                  }             
                   $data = ucwords($key).' : '.ucwords($value);
                  $form .= $data .'<br/>';
                 }
