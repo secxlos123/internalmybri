@@ -40,7 +40,6 @@
                                     'data-placeholder' => '-- Pilih Tipe --',
                                     'id' => 'collateral_type'
                                 ]) !!}
-                                <input type="hidden" name="area[collateral_type]" id="area_collateral_type" class="form-control" value="{{$type == 'nonindex' ? $collateral['kpr_type_property'] : '1'}}">
                             </div>
                             @if ($errors->has('area[collateral_type]')) <p class="help-block">{{ $errors->first('area[collateral_type]') }}</p> @endif
                         </div>
