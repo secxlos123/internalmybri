@@ -93,23 +93,11 @@
         </li>
       @endif -->
 
-      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='wapincasus') || ($data['role']=='pincasus') || ($data['role']=='cs-bri'))
+     <!--  @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='wapincasus') || ($data['role']=='pincasus') || ($data['role']=='cs-bri'))
         <li>
           <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
         </li>
-      @endif
-
-      @if($data['role']=='collateral')
-        <li>
-          <a href="{{route('collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i> <span> Penilaian Agunan </span> </a>
-        </li>
-      @endif
-
-      @if(($data['role']=='collateral-appraisal')|| ($data['role']=='ao'))
-        <li>
-          <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
-        </li>
-      @endif
+      @endif -->
 
       @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='wapincasus') || ($data['role']=='pincasus') || ($data['role']=='staff'))
         <li class="treeview">
