@@ -825,7 +825,6 @@ class ADKController extends Controller
                     'requestData'   => $data['branch']
                 ])->post();
 
-            // print_r($customer);exit();
             if ($debitur['code'] == '01') {
                 $listVerADK = $debitur['contents']['data'];
                 $form  = array();
@@ -986,22 +985,22 @@ class ADKController extends Controller
                     // lempar data ke view blade
                     view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph');
-                    return $pdf->download('sph.pdf');
-                } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'w8') {
+                    return $pdf->download('sph_briguna_karya.pdf');
+                } else if (strtolower($fasilitas) == 'wp') {
                     // lempar data ke view blade
                     view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
-                    return $pdf->download('sph_pekerja_bri.pdf');
-                // } else if (strtolower($fasilitas) == 'wp') {
-                //     // lempar data ke view blade
-                //     view()->share('data_sph',$detail_sph);
-                //     $pdf = PDF::loadView('internals.eform.adk._sph_smart_profesi');
-                //     return $pdf->download('sph_smart.pdf');
+                    return $pdf->download('sph_briguna_pekerja_bri.pdf');
+                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8') {
+                    // lempar data ke view blade
+                    view()->share('data_sph',$detail_sph);
+                    $pdf = PDF::loadView('internals.eform.adk._sph_smart_profesi');
+                    return $pdf->download('sph_briguna_smart.pdf');
                 }
             } else {
                 view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._adendum');
-                return $pdf->download('addendum.pdf');
+                return $pdf->download('sph_addendum.pdf');
             }
         } else {
             \Session::flash('error', 'Dokumen SPH gagal didownload');
@@ -1157,12 +1156,14 @@ class ADKController extends Controller
     function kekata($x) {
         $x = abs($x);
         $angka = [
-            "","satu","dua","tiga","empat","lima",
+            "nol","","satu","dua","tiga","empat","lima",
             "enam","tujuh","delapan","sembilan","sepuluh","sebelas"
         ];
 
         $temp = "";
-        if ($x < 12) {
+        if ($x == 0) {
+            $temp = "".$angka[$x];
+        } else if ($x < 12) {
             $temp = " ".$angka[$x];
         } elseif($x < 20) {
             $temp = $this->kekata($x-10)." belas";
@@ -1244,23 +1245,35 @@ class ADKController extends Controller
 
     function getStatusIsSend($value) {
         if ($value == '1') {
-            return 'Approved';
+            return 'APPROVED';
         } else if ($value == '2') {
-            return 'Unapproved';
+            return 'UNAPPROVED';
         } else if ($value == '3') {
-            return 'Void';
+            return 'VOID';
         } else if ($value == '4') {
-            return 'Void adk';
+            return 'VOID ADK';
         } else if ($value == '5') {
-            return 'Approved pencairan';
+            return 'APPROVED PENCAIRAN';
         } else if ($value == '6') {
-            return 'Disbursed';
+            return 'DISBURSED';
         } else if ($value == '7') {
-            return 'Send to brinets';
+            return 'SEND TO BRINETS';
         } else if ($value == '8') {
-            return 'Agree mp';
+            return 'AGREE BY MP';
         } else if ($value == '9') {
-            return 'Not Agree mp';
+            return 'DITOLAK';
+        } else if ($value == '10') {
+            return 'AGREE BY AMP';
+        } else if ($value == '11') {
+            return 'AGREE BY PINCAPEM';
+        } else if ($value == '12') {
+            return 'AGREE BY PINCA';
+        } else if ($value == '13') {
+            return 'AGREE BY WAPINWIL';
+        } else if ($value == '10') {
+            return 'AGREE BY WAPINCASUS';
+        } else {
+            return 'APPROVAL';
         }
 
         return '-';

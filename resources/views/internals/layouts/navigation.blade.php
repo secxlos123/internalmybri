@@ -40,7 +40,7 @@
         <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span>Profil Debitur </span> </a>
       </li>
       @endif
-      @if($data['role']=='adk')
+      @if($data['role']=='adk' || $data['role']=='spvadk')
       <li>
         <a href="{{route('adk.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Verifikasi ADK </span> </a>
       </li>
@@ -102,20 +102,22 @@
 
 </li>
 @endif
-<li>
-  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
-</li>
-<li class="treeview">
-  <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
-  <ul class="treeview-menu">
-    <li>
-      <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
-    </li>
-    <li>
-      <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
-    </li>
-  </ul>
-</li>
+@if(($data['role']=='cs'))
+  <li>
+    <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
+  </li>
+  <li class="treeview">
+    <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
+    <ul class="treeview-menu">
+      <li>
+        <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
+      </li>
+      <li>
+        <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
+      </li>
+    </ul>
+  </li>
+@endif
 <hr>
 <li>
   <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Keluar </span> </a>
