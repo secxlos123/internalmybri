@@ -359,7 +359,7 @@
     $('#btn-batal').on('click', function(){
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
-        alert(eformId);
+        // alert(eformId);
         HoldOn.open(options);
         $.ajax({
             dataType: 'json',
