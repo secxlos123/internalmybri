@@ -208,23 +208,35 @@ class ADKHistoriController extends Controller
 
     function getStatusIsSend($value) {
         if ($value == '1') {
-            return 'Approved';
+            return 'APPROVED';
         } else if ($value == '2') {
-            return 'Unapproved';
+            return 'UNAPPROVED';
         } else if ($value == '3') {
-            return 'Void';
+            return 'VOID';
         } else if ($value == '4') {
-            return 'Void adk';
+            return 'VOID ADK';
         } else if ($value == '5') {
-            return 'Approved pencairan';
+            return 'APPROVED PENCAIRAN';
         } else if ($value == '6') {
-            return 'Disbursed';
+            return 'DISBURSED';
         } else if ($value == '7') {
-            return 'Send to brinets';
+            return 'SEND TO BRINETS';
         } else if ($value == '8') {
-            return 'Agree mp';
+            return 'AGREE BY MP';
         } else if ($value == '9') {
-            return 'Not Agree mp';
+            return 'DITOLAK';
+        } else if ($value == '10') {
+            return 'AGREE BY AMP';
+        } else if ($value == '11') {
+            return 'AGREE BY PINCAPEM';
+        } else if ($value == '12') {
+            return 'AGREE BY PINCA';
+        } else if ($value == '13') {
+            return 'AGREE BY WAPINWIL';
+        } else if ($value == '10') {
+            return 'AGREE BY WAPINCASUS';
+        } else {
+            return 'APPROVAL';
         }
 
         return '-';
