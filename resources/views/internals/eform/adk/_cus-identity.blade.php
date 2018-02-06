@@ -207,67 +207,8 @@
                                 <td><?php echo $detail['catatan_rekomendasi']?></td>
                                 <td align="center"><a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a></td>
                             </tr>
-                        <?php 
+                        <?php
                         if($detail['Payroll'] == '2') {
-                            if ($detail['customer']['personal']['status'] != '1') {
-                        ?>
-                            <tr>
-                                <td align="center">8</td>
-                                <td>KTP Pasangan</td>
-                                <td>
-                                    <?php
-                                        $image = substr($detail['customer']['personal']['couple_identity'], 0,4);
-                                        if ($image == 'http') {
-                                    ?>
-                                    <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } else {?>
-                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } ?>
-                                </td>
-                                <td align="center">
-                                    <?php if($detail['flag_couple_ktp'] == 1){ ?>
-                                        <input type="checkbox" name="ktp_pasangan" class="form-control" value="1" checked="true">
-                                    <?php } else { ?>
-                                        <input type="checkbox" name="ktp_pasangan" class="form-control">
-                                    <?php } ?>
-                                </td>
-                                <td><?php echo $detail['catatan_couple_ktp']?></td>
-                                <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
-                            </tr>
-                            <tr>
-                                <td align="center">9</td>
-                                <td>SKPU</td>
-                                <td>
-                                    <?php
-                                        $image = substr($detail['SKPG'], 0,4);
-                                        if ($image == 'http') {
-                                    ?>
-                                    <a href="<?php echo $detail['SKPG']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['SKPG']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } else {?>
-                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } ?>
-                                </td>
-                                <td align="center">
-                                    <?php if($detail['flag_skpu'] == 1){ ?>
-                                        <input type="checkbox" name="skpu" class="form-control" value="1" checked="true">
-                                    <?php } else { ?>
-                                        <input type="checkbox" name="skpu" class="form-control">
-                                    <?php } ?>
-                                </td>
-                                <td><?php echo $detail['catatan_skpu']?></td>
-                                <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
-                            </tr>
-                        <?php   
-                            }
-                        } else {
                         ?>
                             <tr>
                                 <td align="center">8</td>
@@ -297,6 +238,69 @@
                                 <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
+                            if ($detail['customer']['personal']['status'] != '1') {
+                        ?>
+                            <tr>
+                                <td align="center">9</td>
+                                <td>KTP Pasangan</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['couple_identity'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } else {?>
+                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } ?>
+                                </td>
+                                <td align="center">
+                                    <?php if($detail['flag_couple_ktp'] == 1){ ?>
+                                        <input type="checkbox" name="ktp_pasangan" class="form-control" value="1" checked="true">
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="ktp_pasangan" class="form-control">
+                                    <?php } ?>
+                                </td>
+                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                                <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
+                            </tr>
+                        <?php
+                            }
+                        } else {
+                            if ($detail['customer']['personal']['status'] != '1') {
+                        ?>
+                            <tr>
+                                <td align="center">8</td>
+                                <td>KTP Pasangan</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['couple_identity'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } else {?>
+                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } ?>
+                                </td>
+                                <td align="center">
+                                    <?php if($detail['flag_couple_ktp'] == 1){ ?>
+                                        <input type="checkbox" name="ktp_pasangan" class="form-control" value="1" checked="true">
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="ktp_pasangan" class="form-control">
+                                    <?php } ?>
+                                </td>
+                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                                <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
+                            </tr>
+                        <?php
+                            }
                         }
                         ?>
                         @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')
