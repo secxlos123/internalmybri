@@ -1163,7 +1163,7 @@ class ADKController extends Controller
         $temp = "";
         if ($x == 0) {
             $temp = "".$angka[$x];
-        else if ($x < 12) {
+        } else if ($x < 12) {
             $temp = " ".$angka[$x];
         } elseif($x < 20) {
             $temp = $this->kekata($x-10)." belas";
