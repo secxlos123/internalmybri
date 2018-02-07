@@ -163,6 +163,24 @@
                                     @if ($errors->has('zip_code_office')) <p class="help-block">{{ $errors->first('zip_code_office') }}</p> @endif
                                 </div>
                             </div>
+                            <div class="form-group" hidden="" id="kelurahan_office">
+                                <label class="col-md-4 control-label">Kelurahan Perusahaan * :</label>
+                                <div class="col-md-8">
+                                @if ($type != 'preview')
+                                    {!! Form::select('kelurahan_office', [$dataCustomer['customer']['kelurahan_office'] => $dataCustomer['customer']['kelurahan_office']], old('kelurahan_office'), [
+                                        'class' => 'select2 kelurahan_office',
+                                        'data-placeholder' => 'Pilih Keluharan',
+                                        'readonly' => true
+                                    ]) !!}
+                                @else
+                                    <p>{{$dataCustomer['customer']['kelurahan_office']}}</p>
+                                @endif
+
+                                    @if ($errors->has('kelurahan_office'))
+                                        <p class="help-block">{{ $errors->first('kelurahan_office') }}</p>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
