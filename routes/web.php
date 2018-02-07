@@ -288,7 +288,6 @@
 
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
-    });
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -435,4 +434,5 @@
         Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
         Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+        });
     });
