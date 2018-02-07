@@ -44,8 +44,8 @@
                                 , get_title('all')
                                 , old('title')
                                 , [
-                                    'class' => 'form-control '
-                                    , 'placeholder' => 'Pilih Pendidikan Terakhir'
+                                    'class' => 'select2 title'
+                                    , 'data-placeholder' => 'Pilih Pendidikan Terakhir'
                                 ]
                             ) !!}
 
@@ -59,8 +59,8 @@
                                 , get_religion('all')
                                 , old('religion')
                                 , [
-                                    'class' => 'form-control '
-                                    , 'placeholder' => 'Pilih Agama'
+                                    'class' => 'select2 religion'
+                                    , 'data-placeholder' => 'Pilih Agama'
                                 ]
                             ) !!}
 
@@ -74,8 +74,8 @@
                                 , get_loan_history('all')
                                 , old('loan_history_accounts')
                                 , [
-                                    'class' => 'form-control '
-                                    , 'placeholder' => 'Pilih Riwayat Kepemilikan Rekening Pinjaman'
+                                    'class' => 'select2 loan_history_accounts'
+                                    , 'data-placeholder' => 'Pilih Riwayat Kepemilikan Rekening Pinjaman'
                                 ]
                             ) !!}
 
@@ -103,8 +103,8 @@
                                 , get_employment('all')
                                 , old('employment_status')
                                 , [
-                                    'class' => 'form-control '
-                                    , 'placeholder' => 'Pilih Status Kepegawaian'
+                                    'class' => 'select2 employment_status'
+                                    ,'data-placeholder' => 'Pilih Status Kepegawaian'
                                 ]
                             ) !!}
 
@@ -152,16 +152,14 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Tujuan Kunjungan *:</label>
                         <div class="col-md-8">
-                            <select class="form-control" name="purpose_of_visit" title="Pilih Tujuan Kunjungan">
-                                <option value="0" disabled="" selected="">Pilih Tujuan Kunjungan</option>
-                                <option value="prakarsa">Prakarsa Kredit</option>
-                                <option value="negosiasi">Negosiasi</option>
-                                <option value="pembinaan">Pembinaan</option>
-                                <option value="penagihan">Penagihan</option>
-                                <option value="lain-lain">Lain-lain</option>
-
-                            </select>
-
+                            {!! Form::select( 'purpose_of_visit'
+                                , array("" => "" , "prakarsa" => "Prakarsa Kredit" , "negosiasi" => "Negosiasi" ,"pembinaan" => "Pembinaan" , "penagihan" => "Penagihan" , "lain-lain" => "Lain-lain" )
+                                , old('purpose_of_visit')
+                                , [
+                                    'class' => 'select2 purpose_of_visit'
+                                    ,'data-placeholder' => 'Pilih Tujuan Kunjungan'
+                                ]
+                            ) !!}
                             <div id="other-input" style="display: none;">
                                 <input type="text" class="form-control">
                             </div>
