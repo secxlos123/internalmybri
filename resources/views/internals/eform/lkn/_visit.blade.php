@@ -41,7 +41,7 @@
                         <label class="col-md-4 control-label">Pendidikan Terakhir *:</label>
                         <div class="col-md-8">
                             {!! Form::select( 'title'
-                                , get_title('all')
+                                , array_merge([""=>""],get_title('all'))
                                 , old('title')
                                 , [
                                     'class' => 'select2 title'
@@ -56,7 +56,7 @@
                         <label class="col-md-4 control-label">Agama *:</label>
                         <div class="col-md-8">
                             {!! Form::select( 'religion'
-                                , get_religion('all')
+                                , array_merge([""=>""],get_religion('all'))
                                 , old('religion')
                                 , [
                                     'class' => 'select2 religion'
@@ -71,7 +71,7 @@
                         <label class="col-md-4 control-label">Riwayat Kepemilikan Rekening Pinjaman *:</label>
                         <div class="col-md-8">
                             {!! Form::select( 'loan_history_accounts'
-                                , get_loan_history('all')
+                                , array_merge([""=>""],get_loan_history('all'))
                                 , old('loan_history_accounts')
                                 , [
                                     'class' => 'select2 loan_history_accounts'
@@ -100,7 +100,7 @@
                         <label class="col-md-4 control-label">Status Kepegawaian *:</label>
                         <div class="col-md-8">
                             {!! Form::select( 'employment_status'
-                                , get_employment('all')
+                                , array_merge([""=>""],get_employment('all'))
                                 , old('employment_status')
                                 , [
                                     'class' => 'select2 employment_status'
