@@ -266,7 +266,7 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
+                    d.username = $('#customer_name').val();
                     d.modul_name = $('#modul_name').val();
                 }
             },

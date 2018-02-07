@@ -133,7 +133,24 @@
                                     @if ($errors->has('zip_code')) <p class="help-block">{{ $errors->first('zip_code') }}</p> @endif
                                 </div>
                             </div>
+                            <div class="form-group" hidden="" id="kelurahan">
+                                <label class="col-md-3 control-label">Kelurahan KTP * :</label>
+                                <div class="col-md-9">
+                                @if ($type != 'preview')
+                                    {!! Form::select('kelurahan', [$dataCustomer['customer']['kelurahan'] => $dataCustomer['customer']['kelurahan']], old('kelurahan'), [
+                                        'class' => 'select2 kelurahan',
+                                        'data-placeholder' => 'Pilih Keluharan',
+                                        'readonly' => true
+                                    ]) !!}
+                                @else
+                                    <p>{{$dataCustomer['customer']['kelurahan']}}</p>
+                                @endif
 
+                                    @if ($errors->has('kelurahan'))
+                                        <p class="help-block">{{ $errors->first('kelurahan') }}</p>
+                                    @endif
+                                </div>
+                            </div>
                             @if ($type != 'preview')
                             <div class="form-group">
                                 <label class="col-md-3 control-label">KTP * :</label>
@@ -302,6 +319,24 @@
                                     <p>{{@$dataCustomer['customer']['zip_code_current']}}</p>
                                 @endif
                                     @if ($errors->has('zip_code_current')) <p class="help-block">{{ $errors->first('zip_code_current') }}</p> @endif
+                                </div>
+                            </div>
+                            <div class="form-group" hidden="" id="kelurahan_current">
+                                <label class="col-md-4 control-label">Kelurahan Domisili * :</label>
+                                <div class="col-md-8">
+                                @if ($type != 'preview')
+                                    {!! Form::select('kelurahan_current', [$dataCustomer['customer']['kelurahan_current'] => $dataCustomer['customer']['kelurahan_current']], old('kelurahan_current'), [
+                                        'class' => 'select2 kelurahan_current',
+                                        'data-placeholder' => 'Pilih Keluharan',
+                                        'readonly' => true
+                                    ]) !!}
+                                @else
+                                    <p>{{$dataCustomer['customer']['kecamatan_current']}} - {{$dataCustomer['customer']['kelurahan_current']}}</p>
+                                @endif
+
+                                    @if ($errors->has('kelurahan_current'))
+                                        <p class="help-block">{{ $errors->first('kelurahan_current') }}</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

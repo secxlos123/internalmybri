@@ -88,7 +88,7 @@
                                                 <div class="form-group phone {!! $errors->has('phone') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">No. Telepon :</label>
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control numericOnly" maxlength="s" name="phone" @if(!empty($dataDev['phone'])) value="{{$dataDev['phone']}}" @else value="{{old('phone')}}" @endif>
+                                                        <input type="text" class="form-control numericOnly" maxlength="12" name="phone" @if(!empty($dataDev['phone'])) value="{{$dataDev['phone']}}" @else value="{{old('phone')}}" @endif>
                                                     @if ($errors->has('phone')) <p class="help-block">{{ $errors->first('phone') }}</p> @endif
                                                     </div>
                                                 </div>

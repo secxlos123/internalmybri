@@ -299,7 +299,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Jumlah Permohonan :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">Rp {{number_format($datas['nominal'],2)}},00</p>
+                                            <p class="form-control-static">Rp {{number_format($datas['nominal'],2)}}</p>
                                         </div>
                                     </div>
                                     <!-- <div class="form-group">
