@@ -493,6 +493,8 @@
             aoColumns : [
                 {   data: 'user_id', name: 'user_id',  bSortable: false  },
                 {   data: 'username', name: 'username',  bSortable: false  },
+                {   data: 'ip_address', name: 'ip_address',  bSortable: false  },
+                {   data: 'action_location', name: 'action_location',  bSortable: false  },
                 {   data: 'action', name: 'action', bSortable: false }
             ],
         });
