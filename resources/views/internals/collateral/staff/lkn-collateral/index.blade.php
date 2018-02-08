@@ -23,7 +23,7 @@
                         <h4 class="page-title">Form Peninjauan Properti Baru</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('/')}}">Home MyBRI</a>
+                                <a href="{{route('dashboard')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('staff-collateral.index')}}">List Approval Pengajuan Properti Baru</a>
