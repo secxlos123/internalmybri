@@ -80,6 +80,7 @@ class AuditRailController extends Controller
                   'staff_penilai'=> $request->input('staff_penilai'),
                   'project_name'=> $request->input('project_name'),
                   'company_name'=> $request->input('company_name'),
+                  'ref_number'=> $request->input('ref_number'),
                 ])->get();
                 // print_r($audits);exit();
 
@@ -209,6 +210,8 @@ class AuditRailController extends Controller
                   }             
                   $data = ucwords($key).' : '.ucwords($value);
                  $form .= $data .'<br/>';
+                }else if ($key=='is_actived' && empty($value)){
+                   $form .= $key.' : '. 'false <br/>';
                 }
               }
           }
