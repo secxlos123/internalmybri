@@ -23,7 +23,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date]" value="{{old('nine[receipt_date]')}}" id="receipt_date">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date]" value="{{old('nine[receipt_date]')}}" id="receipt_date">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date_notary]" value="{{old('nine[receipt_date_notary]')}}" id="receipt_date_notary">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_notary]" value="{{old('nine[receipt_date_notary]')}}" id="receipt_date_notary">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date_takeover]" value="{{old('nine[receipt_date_takeover]')}}" id="receipt_date_takeover">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_takeover]" value="{{old('nine[receipt_date_takeover]')}}" id="receipt_date_takeover">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date_credit]" value="{{old('nine[receipt_date_credit]')}}" id="receipt_date_credit">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_credit]" value="{{old('nine[receipt_date_credit]')}}" id="receipt_date_credit">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -144,7 +144,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date_skmht]" value="{{old('nine[receipt_date_skmht]')}}" id="receipt_date_skmht">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_skmht]" value="{{old('nine[receipt_date_skmht]')}}" id="receipt_date_skmht">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date_imb]" value="{{old('nine[receipt_date_imb]')}}" id="receipt_date_imb">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_imb]" value="{{old('nine[receipt_date_imb]')}}" id="receipt_date_imb">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-autoclose" name="nine[receipt_date_shgb]" value="{{old('nine[receipt_date_shgb]')}}" id="receipt_date_shgb">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_shgb]" value="{{old('nine[receipt_date_shgb]')}}" id="receipt_date_shgb">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
