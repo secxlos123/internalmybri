@@ -236,7 +236,7 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Skor Mitra Kerjasama :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['Ket_Scoring']}})</p>
+                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['KET_Scoring']}})</p>
                 </div>
             </div>
             <div class="form-group">
