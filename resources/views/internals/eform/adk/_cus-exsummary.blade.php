@@ -34,7 +34,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['Ket_Scoring']}})</p>
+                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['KET_Scoring']}})</p>
                 </div>
             </div>
             <div class="form-group">
