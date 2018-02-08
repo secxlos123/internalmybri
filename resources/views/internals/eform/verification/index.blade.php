@@ -60,7 +60,7 @@
                                 <a href="{{route('indexAO')}}">Pengajuan</a>
                             </li>
                             <li class="active">
-                                Verify
+                                Verifikasi
                             </li>
                         </ol>
                         <div class="clearfix"></div>
