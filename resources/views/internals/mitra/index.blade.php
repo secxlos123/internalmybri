@@ -46,12 +46,12 @@ li a {
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
-                                
+
                                 <div class="page-title-box">
                                     <h4 class="page-title">MITRA KERJASAMA</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{url('/')}}">Dashboard</a>
+                                            <a href="{{url('/')}}">Home MyBRI</a>
                                         </li>
                                         <li class="active">
                                             Mitra Kerjasama
@@ -73,7 +73,7 @@ li a {
 								</ul>
 							</div>
 						</div>
-				
+
 							<br>
 							<div class="row">
 								<div class="col-sm-12">
@@ -92,25 +92,25 @@ li a {
 									</div>
 									<div class="col-sm-4 w3-content w3-section">
 										 <img src="/assets/images/mitra/frontend-mitra3.png" style="width:100%">
-									</div>								
+									</div>
 									<div class="col-sm-4 w3-content w3-section">
-										<div class="row">				
+										<div class="row">
 											<div class="col-sm-4 w3-content w3-section">
 											<button class="button button1">MITRA KERJASAMA</button>
 											</div>
-										</div>	
+										</div>
 										<br>
-										<div class="row">				
+										<div class="row">
 											<div class="col-sm-4 w3-content w3-section">
 											<button class="button button1">MAINTENANCE DATA MITRA KERJASAMA</button>
 											</div>
-										</div>	
+										</div>
 									</div>
 								</div>
 							</div>
 							<br>
 							<br>
-							
+
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="col-sm-4 w3-content w3-section">
@@ -118,19 +118,19 @@ li a {
 									</div>
 									<div class="col-sm-4 w3-content w3-section">
 										 <button class="button button1">PROMOSI BRI</button>
-									</div>								
+									</div>
 									<div class="col-sm-4 w3-content w3-section">
 										 <button class="button button1">BANTUAN</button>
 									</div>
 								</div>
 							</div>
-			
+
 						<div id="mitra_kerjasama">
 						</div>
                     </div>
                 </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 
 <script type="text/javascript">
 var myIndex = 0;
@@ -140,11 +140,11 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+       x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
     setTimeout(carousel, 3000); // Change image every 2 seconds
 }
 

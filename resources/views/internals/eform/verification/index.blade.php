@@ -54,7 +54,7 @@
                         <h4 class="page-title">Verifikasi Data Nasabah</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('indexAO')}}">Pengajuan</a>
@@ -97,7 +97,7 @@
                         <div class="col-md-12">
                             <div class="pull-right">
                                 @if ($type != 'preview')
-                                <button type="submit" href="javascript:void(0);" id="save" class="btn btn-orange waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Kirim Verify Data</button>
+                                <button type="submit" href="javascript:void(0);" id="save" class="btn btn-orange waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Verifikasi Data</button>
                                 @else
                                 <button type="button" class="btn waves-light waves-effect w-md m-b-20" id="print"><i class="fa fa-print"></i> Print</button>
                                 <a href="{{ url('eform') }}"><button type="button" class="btn waves-light waves-effect w-md m-b-20"> Kembali</button></a>
