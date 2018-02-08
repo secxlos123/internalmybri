@@ -253,6 +253,10 @@
 				Route::get('add_referral', 'CRM\ReferralController@add');
 				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
 				Route::post('store_referral', 'CRM\ReferralController@store');
+				Route::post('update_referral', 'CRM\ReferralController@update');
+
+        /* Disposisi Referral */
+				Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
         /* CRM report */
 				Route::get('report/marketing', 'CRM\ReportController@marketing');

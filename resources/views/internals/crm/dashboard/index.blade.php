@@ -26,13 +26,7 @@
             </div>
         </div>
         <div class="row">
-            @if(($data['role']=='staff') || ($data['role']=='admin'))
-                @include('internals.home.admin.index')
-            @elseif(($data['role']=='ao'))
-                @include('internals.home.ao.index')
-            @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
-                @include('internals.home.mp.index')
-            @endif
+            @include('internals.crm.dashboard.sample.index')
         </div>
     </div>
 </div>
@@ -68,13 +62,19 @@
 </div>
 
 <script type="text/javascript">
-    // $(document).ready(function(){
-    //     $("#disclaimer-modal").modal();
-    // })
+    $(document).ready(function(){
+        $("#disclaimer-modal").modal();
+    })
 </script>
 
 <script src="{{asset('assets/js/morris.min.js')}}"></script>
 <script src="{{asset('assets/js/raphael-min.js')}}"></script>
 <!-- <script src="{{asset('assets/js/jquery.morris.init.js')}}"></script> -->
 <!-- <script src="{{asset('assets/js/jquery.morris2.init.js')}}"></script> -->
-@include('internals.crm.dashboard.script')
+@if(($data['role']=='staff') || ($data['role']=='admin'))
+    @include('internals.home.admin.script')
+@elseif(($data['role']=='ao'))
+    @include('internals.home.ao.script')
+@elseif(($data['role']=='mp') || ($data['role']=='pinca'))
+    @include('internals.home.mp.script')
+@endif

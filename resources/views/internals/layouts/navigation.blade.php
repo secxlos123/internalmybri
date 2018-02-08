@@ -144,6 +144,9 @@
 <li>
   <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
 </li>
+@endif
+
+@if($data['role'] == 'amp' || $data['role'] == 'mp' || $data['role'] == 'pincapem' || $data['role'] == 'pinca')
 <li class="treeview">
   <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
   <ul class="treeview-menu">
@@ -157,6 +160,12 @@
   </ul>
 </li>
 @endif
+
+
+<li>
+  <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
+</li>
+
 
 <hr>
 
