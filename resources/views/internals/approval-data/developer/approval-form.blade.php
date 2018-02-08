@@ -11,7 +11,7 @@
                         <h4 class="page-title">Approval Perubahan Data Developer</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('approveDeveloper')}}">Daftar Approval Perubahan Data Developer</a>

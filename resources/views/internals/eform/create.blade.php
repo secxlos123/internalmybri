@@ -24,7 +24,7 @@
                         <ol class="breadcrumb p-0 m-0">
                             @if(($data['role']=='staff'))
                             <li>
-                                <a href="{{route('dashboard')}}">Dashboard</a>
+                                <a href="{{route('dashboard')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Tambah Referral
