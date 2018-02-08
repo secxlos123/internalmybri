@@ -57,20 +57,20 @@ class LKNRequest extends FormRequest
            'seller_phone' => 'required_if:use_reason,2,18',
            'selling_price' => 'required_if:use_reason,2,18',
 
-           'npwp' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'salary_slip' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'legal_bussiness_document' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'licence_of_practice' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
-           'work_letter' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'family_card' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'offering_letter' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'photo_with_customer' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
 
+           'work_letter' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
+           'npwp' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'marrital_certificate' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'divorce_certificate' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'down_payment' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
 
-           'building_tax' => 'required|mimes:jpg,jpeg,png,gif,svg,pdf',
+           'building_tax' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'photo_with_customer' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
 
            'building_permit' => 'required_if:use_reason,2,18|mimes:jpg,jpeg,png,gif,svg,pdf',
