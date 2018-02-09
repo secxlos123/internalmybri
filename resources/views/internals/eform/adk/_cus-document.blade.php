@@ -147,49 +147,6 @@
                         </tr>
                         <?php 
                         if($detail['Payroll'] == '2') {
-                            if ($detail['customer']['personal']['status'] != '1') {
-                        ?>
-                            <tr>
-                                <td align="center">8</td>
-                                <td>KTP Pasangan</td>
-                                <td>
-                                    <?php
-                                        $image = substr($detail['customer']['personal']['couple_identity'], 0,4);
-                                        if ($image == 'http') {
-                                    ?>
-                                    <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } else {?>
-                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } ?>
-                                </td>
-                                <td><?php echo $detail['catatan_couple_ktp']?></td>
-                            </tr>
-                            <tr>
-                                <td align="center">9</td>
-                                <td>SKPU</td>
-                                <td>
-                                    <?php
-                                        $image = substr($detail['SKPG'], 0,4);
-                                        if ($image == 'http') {
-                                    ?>
-                                    <a href="<?php echo $detail['SKPG']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['SKPG']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } else {?>
-                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
-                                        <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
-                                    </a>
-                                    <?php } ?>
-                                </td>
-                                <td><?php echo $detail['catatan_skpu']?></td>
-                            </tr>
-                        <?php   
-                            }
-                        } else {
                         ?>
                             <tr>
                                 <td align="center">8</td>
@@ -211,6 +168,53 @@
                                 <td><?php echo $detail['catatan_skpu']?></td>
                             </tr>
                         <?php
+                            if ($detail['customer']['personal']['status'] != '1') {
+                        ?>
+                            <tr>
+                                <td align="center">9</td>
+                                <td>KTP Pasangan</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['couple_identity'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } else {?>
+                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } ?>
+                                </td>
+                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                            </tr>
+                        <?php   
+                            }
+                        } else {
+                            if ($detail['customer']['personal']['status'] != '1') {
+                        ?>
+                            <tr>
+                                <td align="center">8</td>
+                                <td>KTP Pasangan</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['couple_identity'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } else {?>
+                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } ?>
+                                </td>
+                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                            </tr>
+                        <?php
+                            }
                         }
                         ?>
                     </tbody>

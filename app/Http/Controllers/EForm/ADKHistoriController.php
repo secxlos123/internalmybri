@@ -177,6 +177,21 @@ class ADKHistoriController extends Controller
                     $value['no_rekenings'] = '';
                     if ($getBrinets['statusCode'] == '01') {
                         $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
+                        $update_data = [
+                            'eform_id'    => $id,
+                            'is_send'     => 7,
+                            'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
+                            'cif'         => $getBrinets['items'][0]['CIF'],
+                            'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        ];
+                        // print_r($update_data);exit();
+                        $update_briguna = Client::setEndpoint('api_las/update')
+                        ->setHeaders(
+                            [ 'Authorization' => $data['token'],
+                              'pn' => $data['pn']
+                            ])
+                        ->setBody($update_data)
+                        ->post();
                     }
                     $eforms['contents']['data'][] = $value;
                     $count = count($value);
@@ -220,7 +235,7 @@ class ADKHistoriController extends Controller
         } else if ($value == '6') {
             return 'DISBURSED';
         } else if ($value == '7') {
-            return 'SEND TO BRINETS';
+            return 'SENT TO BRINETS';
         } else if ($value == '8') {
             return 'AGREE BY MP';
         } else if ($value == '9') {
