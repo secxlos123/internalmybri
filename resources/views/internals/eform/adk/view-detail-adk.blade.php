@@ -202,7 +202,25 @@
                         </div>
                     </div>
                 </div>
-            </div>           
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Catatan Pemutus :</label>
+                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_pemutus']?></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="text-center">
                 <a href="{{route('adk-histori.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
             </div>
