@@ -1255,7 +1255,7 @@ class ADKController extends Controller
         } else if ($value == '6') {
             return 'DISBURSED';
         } else if ($value == '7') {
-            return 'SEND TO BRINETS';
+            return 'SENT TO BRINETS';
         } else if ($value == '8') {
             return 'AGREE BY MP';
         } else if ($value == '9') {
