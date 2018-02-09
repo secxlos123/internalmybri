@@ -25,11 +25,15 @@
                 <tr>
                     <th>User ID</th>
                     <th>Nama User</th>
+                    <th>IP Address</th>
+                    <th>Lokasi Akses</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 <tr role="row" class="odd">
+                    <td> </td>
+                    <td> </td>
                     <td> </td>
                     <td> </td>
                     <td> </td>

@@ -293,12 +293,16 @@ class DeveloperController extends Controller
     public function actived(Request $request, $id)
     {
         $data = $this->getUser();
-
+        $log = ""; 
+        if(!empty($request['is_actived'])){
+           $is_actived = $request['is_actived'];
+           $log = ($is_actived =='true') ? 'unbanned admin dev' : 'banned admin dev';
+        }
         $developers = Client::setEndpoint("developer/{$id}/actived")
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    , 'auditaction' => 'banned admin dev'
+                    , 'auditaction' => $log
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])

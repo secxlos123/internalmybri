@@ -206,7 +206,7 @@ var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'&hidden-lat=
 function addURL(element)
 {
     $(element).attr('href', function() {
-        return this.href + LongLat;
+        return this.href;
     });
 }
 </script>
