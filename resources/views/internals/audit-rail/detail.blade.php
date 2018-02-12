@@ -77,6 +77,7 @@
     @include('internals.layouts.footer')
     @include('internals.layouts.foot')
     <script type="text/javascript">
+    reloadDataPengajuan();
      $(document).on('click', "#btn-filter", function(){
         $("#datatable").dataTable().fnDestroy();
         reloadDataPengajuan();
