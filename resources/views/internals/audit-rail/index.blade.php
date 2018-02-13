@@ -7,6 +7,16 @@
     .small{
         font-size: 7.5pt;
     }
+    .card-box > img {
+        height: 350px;
+        width: 100%;
+    }
+
+    .card-box > a {
+        height: 350px;
+        width: 100%;
+        padding-top: 50px;
+    }
 </style>
 
 <div class="content-page">
