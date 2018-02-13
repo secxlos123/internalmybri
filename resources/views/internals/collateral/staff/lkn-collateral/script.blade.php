@@ -242,7 +242,7 @@
             //step10
             var paripasu = $('.paripasu').find("option:selected").text();
             var paripasu_bank = $('#paripasu_bank').val();
-            var insurance = $('.insurance').find("option:selected").text();
+            var insurance = $('.insurance_flag').find("option:selected").text();
             var insurance_company = $('.insurance').find("option:selected").text();
             var insurance_value =$('#insurance_value').val();
             var eligibility = $('.eligibility').find("option:selected").text();
