@@ -91,6 +91,7 @@
             ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
         Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+        Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
 
         // Rekontes LKN
         Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
