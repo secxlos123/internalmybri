@@ -20,9 +20,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Nama Modul :</label>
+                        <label class="col-sm-4 control-label">Detail Aksi :</label>
                         <div class="col-sm-8">
-                           <input type="text" class="form-control" id="module_name2">
+                           <!-- <input type="text" class="form-control" id="module_name2"> 
+                           -->
+                           {!! Form::select('action_collateral', ['' => ''], old('name'), [
+                                'class' => 'select2 action_collateral',
+                                'data-placeholder' => 'Pilih Detail Aksi',
+                                'id' => 'module_name2'
+                            ]) !!}
                        </div>
                     </div>
 
@@ -61,7 +67,7 @@
             <thead class="bg-primary">
                 <tr>
                     <th>Tanggal</th>
-                    <th>Nama Modul</th>
+                    <th>Detail Aksi</th>
                     <th>Nama User</th>
                     <th>Staff Penilai</th>
                     <th>Developer</th>

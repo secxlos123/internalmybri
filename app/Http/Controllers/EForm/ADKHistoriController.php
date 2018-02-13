@@ -113,7 +113,6 @@ class ADKHistoriController extends Controller
             ]
         ];
         $data = $this->getUser();
-        // print_r($data);exit();
         $customer = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
@@ -143,12 +142,13 @@ class ADKHistoriController extends Controller
                         $history['eform_id']      = $result['eform_id'];
                         $history['id_aplikasi']   = $result['id_aplikasi'];
                         $history['ref_number']    = $result['ref_number'];
+                        $history['no_rekening']   = $result['no_rekening'];
                         $history['STATUS']        = $status;
                         $history['fid_tp_produk'] = $tp_produk;
                         $history['status_screening'] = $prescreening;
                         $history['pinca_name']    = $result['pinca_name'];
                         $history['ao_name']       = $result['ao_name'];
-                        $history['namadeb']       = $result['first_name'].' '.$result['last_name'];
+                        $history['namadeb']       =$result['first_name'].' '.$result['last_name'];
                         $history['action']= view('internals.layouts.actions',[
                             'detail_adk'       => $result['eform_id'],
                             'is_screening'     => $result['is_screening'],
@@ -162,7 +162,6 @@ class ADKHistoriController extends Controller
 
             if (!empty($res_history)) {
                 foreach ($res_history as $index => $value) {
-                    // print_r($value);exit();
                     $getBrinets = Client::setEndpoint('api_las/index')
                             ->setHeaders(
                                 [ 'Authorization' => $data['token'],
@@ -177,21 +176,24 @@ class ADKHistoriController extends Controller
                     $value['no_rekenings'] = '';
                     if ($getBrinets['statusCode'] == '01') {
                         $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
-                        $update_data = [
-                            'eform_id'    => $id,
-                            'is_send'     => 7,
-                            'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
-                            'cif'         => $getBrinets['items'][0]['CIF'],
-                            'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                        ];
-                        // print_r($update_data);exit();
-                        $update_briguna = Client::setEndpoint('api_las/update')
-                        ->setHeaders(
-                            [ 'Authorization' => $data['token'],
-                              'pn' => $data['pn']
-                            ])
-                        ->setBody($update_data)
-                        ->post();
+                        // if (!isset($value['no_rekening'])) {
+                        if (empty($detail['no_rekening']) || $detail['no_rekening'] == '') {
+                            $update_data = [
+                                'eform_id'    => $value['eform_id'],
+                                'is_send'     => 7,
+                                'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
+                                'cif'         => $getBrinets['items'][0]['CIF'],
+                                'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                            ];
+                            // print_r($update_data);exit();
+                            $update_briguna = Client::setEndpoint('api_las/update')
+                            ->setHeaders(
+                                [ 'Authorization' => $data['token'],
+                                  'pn' => $data['pn']
+                                ])
+                            ->setBody($update_data)
+                            ->post();
+                        }
                     }
                     $eforms['contents']['data'][] = $value;
                     $count = count($value);

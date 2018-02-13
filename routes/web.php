@@ -91,6 +91,7 @@
             ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
         Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+        Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
 
         // Rekontes LKN
         Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
@@ -340,6 +341,20 @@
 
     Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
 
+    Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+
+    Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
+
+    Route::get('action-detail/appointment', 'AuditRail\ActionDetailController@appointment');
+
+    Route::get('action-detail/collateral', 'AuditRail\ActionDetailController@collateral');
+
+    Route::get('action-detail/agendev', 'AuditRail\ActionDetailController@agendev');
+
+    Route::get('action-detail/property', 'AuditRail\ActionDetailController@property');
+
+    Route::get('action-detail/document', 'AuditRail\ActionDetailController@document');
+
     Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
@@ -357,6 +372,8 @@
     Route::get('renderMutation', ['as'=>'renderMutation', 'uses'=>'EForm\AOController@renderMutation']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
+
+    Route::get('audit-rail/detailDocument', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 

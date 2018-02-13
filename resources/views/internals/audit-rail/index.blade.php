@@ -7,6 +7,16 @@
     .small{
         font-size: 7.5pt;
     }
+    .card-box > img {
+        height: 350px;
+        width: 100%;
+    }
+
+    .card-box > a {
+        height: 350px;
+        width: 100%;
+        padding-top: 50px;
+    }
 </style>
 
 <div class="content-page">
@@ -40,6 +50,7 @@
                         <li class="small"><a data-toggle="tab" href="#developerAgent">Agen Developer</a></li>
                         <li class="small"><a data-toggle="tab" href="#property">Property</a></li>
                         <li class="small"><a data-toggle="tab" href="#activityUser">User Activity</a></li>
+                        <li class="small"><a data-toggle="tab" href="#documentCredit">Document Credit</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -70,6 +81,9 @@
                         <div id="activityUser" class="tab-pane fade">
                             @include('internals.audit-rail._activityUser')
                         </div>
+                        <div id="documentCredit" class="tab-pane fade">
+                            @include('internals.audit-rail._documentCredit')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,3 +94,4 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.audit-rail.datatable-script')
+@include('internals.audit-rail.select2-script')

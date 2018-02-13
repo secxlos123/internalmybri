@@ -124,82 +124,6 @@ class AuditRailController extends Controller
         return response()->json($audits['contents']);
     }
 
-    //Get data old value
-    public function oldData($type, $form){
-      if(!empty($form['old_values'])){
-        if(($type == 'property') || ($type == 'agendev') || ($type == 'admindev')){
-          $name = (isset($form['old_values']['name']) ? 'Nama Proyek : '. $form['old_values']['name'] .'<br>' : '');
-          $pks = (isset($form['old_values']['pks_number']) ? 'Nomor PKS : '. $form['old_values']['pks_number'] .'<br>': '');
-          $pic = (isset($form['old_values']['pic_name']) ? 'Nama PIC : ' . $form['old_values']['pic_name'].'<br>': '');
-          $pic_phone = (isset($form['old_values']['pic_phone']) ? 'No. Telp PIC : '.$form['old_values']['pic_phone'] .'<br>': '');
-          $longitude = (isset($form['old_values']['longitude']) ? 'Latitude : '.$form['old_values']['longitude'] .'<br>': '');
-          $latitude = (isset($form['old_values']['latitude']) ? 'Longitude : '.$form['old_values']['latitude'].'<br>' : '');
-          $address = (isset($form['old_values']['address']) ? 'Alamat : '.$form['old_values']['address'] .'<br>': '');
-          $description = (isset($form['old_values']['description']) ? 'Deskripsi : '.$form['old_values']['description'] .'<br>': '');
-          $facilities = (isset($form['old_values']['facilities']) ? 'Fasilitas : '.$form['old_values']['facilities'].'<br>' : '');
-          $mobile_phone = (isset($form['old_values']['mobile_phone']) ? 'Nomor Telepon : '.ucwords($form['old_values']['mobile_phone']).'<br>' : '');
-          $email = (isset($form['old_values']['email']) ? 'Alamat Email : '.ucwords($form['old_values']['email']).'<br>' : '');
-          $first_name = (isset($form['old_values']['first_name']) ? 'Nama : '.ucwords($form['old_values']['first_name'].' '.$form['old_values']['last_name']).'<br>' : '');
-          $form = $name.$pks.$pic.$pic_phone.$latitude.$longitude.$address.$description.$facilities.$first_name.$email.$mobile_phone;
-        }elseif($type == 'edit'){
-          $form = json_encode($form['old_values'], JSON_PRETTY_PRINT);  
-        }else{
-            (isset($form['old_values']['product_type']) ? 'Tipe Produk : '.strtoupper($form['old_values']['product_type']) : '').'<br>   
-            NIK : '.($form['old_values']['nik']).'<br> 
-            ID AO : '.($form['old_values']['ao_id']).'<br>
-            Tanggal Perjanjian : '.($form['old_values']['appointment_date']).'<br> 
-            Latitude : '.($form['old_values']['latitude']).'<br>
-            Longitude : '.($form['old_values']['longitude']).'<br>
-            Alamat : '.($form['old_values']['address']).'<br>
-            Kantor Cabang : '.($form['old_values']['branch']).'<br>'.
-            (isset($form['old_values']['ref_number']) ? 'Nomor Referensi : '.($form['old_values']['ref_number']) : '').'<br> ';  
-        }
-      }else{
-        $form = '';
-      }
-
-      return $form;
-    }
-
-    //Get data new value
-    public function newData($type, $form){
-      if(!empty($form['new_values'])){
-        if(($type == 'property') || ($type == 'agendev') || ($type == 'admindev')){
-          $name = (isset($form['new_values']['name']) ? 'Nama Proyek : '. ucwords($form['new_values']['name']) .'<br>' : '');
-          $pks = (isset($form['new_values']['pks_number']) ? 'Nomor PKS : '. $form['new_values']['pks_number'] .'<br>': '');
-          $pic = (isset($form['new_values']['pic_name']) ? 'Nama PIC : ' . ucwords($form['new_values']['pic_name']).'<br>': '');
-          $pic_phone = (isset($form['new_values']['pic_phone']) ? 'No. Telp PIC : '.$form['new_values']['pic_phone'] .'<br>': '');
-          $longitude = (isset($form['new_values']['longitude']) ? 'Latitude : '.$form['new_values']['longitude'] .'<br>': '');
-          $latitude = (isset($form['new_values']['latitude']) ? 'Longitude : '.$form['new_values']['latitude'].'<br>' : '');
-          $address = (isset($form['new_values']['address']) ? 'Alamat : '.$form['new_values']['address'] .'<br>': '');
-          $description = (isset($form['new_values']['description']) ? 'Deskripsi : '.ucwords($form['new_values']['description']) .'<br>': '');
-          $facilities = (isset($form['new_values']['facilities']) ? 'Fasilitas : '.ucwords($form['new_values']['facilities']).'<br>' : '');
-          $mobile_phone = (isset($form['new_values']['mobile_phone']) ? 'Nomor Telepon : '.ucwords($form['new_values']['mobile_phone']).'<br>' : '');
-          $email = (isset($form['new_values']['email']) ? 'Alamat Email : '.ucwords($form['new_values']['email']).'<br>' : '');
-          $first_name = (isset($form['new_values']['first_name']) ? 'Nama : '.ucwords($form['new_values']['first_name'].' '.$form['new_values']['last_name']).'<br>' : '');
-          $form = $name.$pks.$pic.$pic_phone.$latitude.$longitude.$address.$description.$facilities.$first_name.$email.$mobile_phone;
-        }elseif($type == 'edit'){
-          $form = json_encode($form['new_values'], JSON_PRETTY_PRINT);  
-        }else{
-          $form = 
-            (isset($form['new_values']['product_type']) ? 'Tipe Produk : '.strtoupper($form['new_values']['product_type']) : '').'<br>   
-            NIK : '.($form['new_values']['nik']).'<br> 
-            ID AO : '.($form['new_values']['ao_id']).'<br>
-            Tanggal Perjanjian : '.($form['new_values']['appointment_date']).'<br> 
-            Latitude : '.($form['new_values']['latitude']).'<br>
-            Longitude : '.($form['new_values']['longitude']).'<br>
-            Alamat : '.($form['new_values']['address']).'<br>
-            Kantor Cabang : '.($form['new_values']['branch']).'<br>'.
-            (isset($form['new_values']['ref_number']) ? 'Nomor Referensi : '.($form['new_values']['ref_number']) : '').'<br> ';  
-        }
-      }else{
-        $form = '';
-      }
-
-      return $form;
-    }
-
-
     public function getDataArray($dataArray){
          $form ='';
           if(!empty($dataArray)){
@@ -458,5 +382,39 @@ class AuditRailController extends Controller
         $audits['contents']['recordsFiltered'] = $audits['contents']['total'];
 
         return response()->json($audits['contents']);
+    }
+
+    public function detailDocument(Request $request)
+    {
+        $data = $this->getUser();
+        // $customerData = $this->getCustomer($request);
+        // echo json_encode($request->input('id'));die();
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('auditrail/customers/'.$request->input('nik'))
+                        ->setHeaders([
+                            'Authorization' => $data['token']
+                            , 'pn' => $data['pn']
+                            // , 'auditaction' => 'action name'
+                            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])->get();
+        $dataCustomer = $customerData['contents'];
+        // echo json_encode($dataCustomer['data']);die();
+
+        if(($customerData['code'])==200){
+            $view = (String)view('internals.audit-rail._detailDocumentCredit')
+                ->with('dataCustomer', $dataCustomer)
+                ->render();
+
+            return response()->json(['view' => $view]);
+        } else {
+            $view = (String)view('internals.eform.error')
+                ->with('dataCustomer', $dataCustomer)
+                ->render();
+
+            return response()->json(['view' => $view]);
+            // return view('internals.eform.detail-customer')
+            //     ->with('dataCustomer', $dataCustomer);
+        }
     }
 }
