@@ -458,4 +458,38 @@ class AuditRailController extends Controller
 
         return response()->json($audits['contents']);
     }
+
+    public function detailDocument(Request $request)
+    {
+        $data = $this->getUser();
+        // $customerData = $this->getCustomer($request);
+        // echo json_encode($request->input('id'));die();
+         /* GET Role Data */
+        $customerData = Client::setEndpoint('auditrail/customers/'.$request->input('nik'))
+                        ->setHeaders([
+                            'Authorization' => $data['token']
+                            , 'pn' => $data['pn']
+                            // , 'auditaction' => 'action name'
+                            , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                            , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])->get();
+        $dataCustomer = $customerData['contents'];
+        // echo json_encode($dataCustomer['data']);die();
+
+        if(($customerData['code'])==200){
+            $view = (String)view('internals.audit-rail._detailDocumentCredit')
+                ->with('dataCustomer', $dataCustomer)
+                ->render();
+
+            return response()->json(['view' => $view]);
+        } else {
+            $view = (String)view('internals.eform.error')
+                ->with('dataCustomer', $dataCustomer)
+                ->render();
+
+            return response()->json(['view' => $view]);
+            // return view('internals.eform.detail-customer')
+            //     ->with('dataCustomer', $dataCustomer);
+        }
+    }
 }
