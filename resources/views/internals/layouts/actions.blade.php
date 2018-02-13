@@ -120,7 +120,8 @@
 			</a>
 		@endif
 	@else
-		@if(($response_status == 'approve') && ($is_screening == 1))
+		@php $checkstatus = isset($response_status) ? $response_status : $status @endphp
+		@if(( $checkstatus == 'approve') && ($is_screening == 1))
 		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval">
 		    <i class="mdi mdi-check"></i>
 		</a>

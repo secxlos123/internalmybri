@@ -430,6 +430,7 @@ class AuditRailController extends Controller
             $form['old_values'] = $this->getDataArray($form['old_values']);
             $form['new_values'] = $this->getDataArray($form['new_values']);
             $form['action_location'] = $this->getDataArray(json_decode($form['action_location']));
+              $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
             //get address location
             $client = new \GuzzleHttp\Client();
               try {

@@ -11,7 +11,7 @@
                         <h4 class="page-title">Audit Trail User Activity Detail</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('auditrail.index')}}">Audit Trail</a>
@@ -66,7 +66,7 @@
                                         </tr>
                                     </thead>
                                 </table>
-                            </div>   
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,6 +77,7 @@
     @include('internals.layouts.footer')
     @include('internals.layouts.foot')
     <script type="text/javascript">
+    reloadDataPengajuan();
      $(document).on('click', "#btn-filter", function(){
         $("#datatable").dataTable().fnDestroy();
         reloadDataPengajuan();

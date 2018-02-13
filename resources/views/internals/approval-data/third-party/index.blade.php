@@ -12,7 +12,7 @@
                         <h4 class="page-title">Daftar Approval Perubahan Data Pihak Ke-3</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Daftar Approval Perubahan Data Pihak Ke-3
