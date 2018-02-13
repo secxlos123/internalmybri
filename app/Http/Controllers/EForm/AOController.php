@@ -524,7 +524,9 @@ class AOController extends Controller
                 'reverification' => route('resend_verifyData', $form['id']),
                 'screening_result' => route('getPrescreening', $form['id']), // uncomment jika service prescreening sudah lancar
                 'is_verified' => $form['customer']['is_verified'],
-                'is_screening' => $form['is_screening']
+                'is_screening' => $form['is_screening'],
+                'vip_sent' => $form['vip_sent'],
+                'vip' => route('resendVIP', $form['id'])
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
@@ -687,6 +689,34 @@ class AOController extends Controller
             \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }
+    }
+
+    /**
+     * Resend VIP function
+     *
+     * @param  \App\Http\Requests\API\v1\VisitReportRequest  $request
+     * @param integer $eform
+     * @return \Illuminate\Http\Response
+     **/
+    public function resendVIP( Request $request, $eform )
+    {
+        $data = $this->getUser();
+
+        $client = Client::setEndpoint('eforms/' . $eform . '/resend-vip')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                , 'auditaction' => 'Resend LKN VIP'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->post();
+
+        \Session::flash(
+            $client['code'] == 200 ? 'success' : 'error'
+            , $client['descriptions']
+        );
+        return redirect()->route('eform.index');
     }
 
 }
