@@ -67,6 +67,7 @@ class EFormController extends Controller
                         'ids' => $request->get('slug'),
                     ])->get();
                 $form_notif = $eforms['contents'];
+
                 $form_notif['ref_number'] = strtoupper($form_notif['ref_number']);
                 $form_notif['customer_name'] = strtoupper($form_notif['customer_name']);
                 $form_notif['created_at'] = date_format(date_create($form_notif['created_at']),"Y-m-d");
@@ -91,7 +92,6 @@ class EFormController extends Controller
                     }
 
                 $form_notif['respon_statused'] = $text;
-
                 $form_notif['prescreening_status'] = view('internals.layouts.actions', [
                   'prescreening_status' => route('getLKN', $form_notif['id']),
                   'prescreening_result' => $form_notif['prescreening_status'],
@@ -107,6 +107,8 @@ class EFormController extends Controller
                     'preview' => route('getDetail', $form_notif['id']),
                     'lkn' => route('getLKN', $form_notif['id']),
                     'screening_result' => 'view',
+                    'is_verified'=>'',
+                    'is_screening'=>'',
                 ])->render();
                 /*
                 * mark read the notification
