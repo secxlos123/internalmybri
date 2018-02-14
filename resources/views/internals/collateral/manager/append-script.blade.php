@@ -260,12 +260,12 @@
                 $("#detail-collateral-modal #districts").html(districts);
 
                 // step8
-                $("#detail-collateral-modal #liquidation_realization").html(liquidation_realization);
-                $("#detail-collateral-modal #fair_market").html(fair_market);
-                $("#detail-collateral-modal #liquidation").html(liquidation);
-                $("#detail-collateral-modal #fair_market_projection").html(fair_market_projection);
-                $("#detail-collateral-modal #liquidation_projection").html(liquidation_projection);
-                $("#detail-collateral-modal #njop").html(njop);
+                $("#detail-collateral-modal #liquidation_realization").html("Rp. "+liquidation_realization);
+                $("#detail-collateral-modal #fair_market").html("Rp. "+fair_market);
+                $("#detail-collateral-modal #liquidation").html("Rp. "+liquidation);
+                $("#detail-collateral-modal #fair_market_projection").html("Rp. "+fair_market_projection);
+                $("#detail-collateral-modal #liquidation_projection").html("Rp. "+liquidation_projection);
+                $("#detail-collateral-modal #njop").html("Rp. "+njop);
                 $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
                 if(appraisal_by != "Bank"){
                   $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
@@ -275,69 +275,69 @@
                 $("#detail-collateral-modal #date_assessment").html(date_assessment);
                 $("#detail-collateral-modal #type_binding").html(type_binding);
                 $("#detail-collateral-modal #binding_number").html(binding_number);
-                $("#detail-collateral-modal #binding_value").html(binding_value);
+                $("#detail-collateral-modal #binding_value").html("Rp. "+binding_value);
 
                 // step9
                 $("#detail-collateral-modal #certificate_status").html(certificate_status);
                 $("#detail-collateral-modal #receipt_date").html(receipt_date);
                 if ( certificate_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date").hide();
+                    $("#detail-collateral-modal #receipt_date").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date").show();
+                    $("#detail-collateral-modal #receipt_date").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information").html(information);
 
                 $("#detail-collateral-modal #notary_status").html(notary_status);
                 $("#detail-collateral-modal #receipt_date_notary").html(receipt_date_notary);
                 if ( notary_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date_notary").hide();
+                    $("#detail-collateral-modal #receipt_date_notary").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date_notary").show();
+                    $("#detail-collateral-modal #receipt_date_notary").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information_notary").html(information_notary);
 
                 $("#detail-collateral-modal #takeover_status").html(takeover_status);
                 $("#detail-collateral-modal #receipt_date_takeover").html(receipt_date_takeover);
                 if ( takeover_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date_takeover").hide();
+                    $("#detail-collateral-modal #receipt_date_takeover").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date_takeover").show();
+                    $("#detail-collateral-modal #receipt_date_takeover").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information_takeover").html(information_takeover);
 
                 $("#detail-collateral-modal #credit_status").html(credit_status);
                 $("#detail-collateral-modal #receipt_date_credit").html(receipt_date_credit);
                 if ( credit_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date_credit").hide();
+                    $("#detail-collateral-modal #receipt_date_credit").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date_credit").show();
+                    $("#detail-collateral-modal #receipt_date_credit").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information_credit").html(information_credit);
 
                 $("#detail-collateral-modal #skmht_status").html(skmht_status);
                 $("#detail-collateral-modal #receipt_date_skmht").html(receipt_date_skmht);
                 if ( skmht_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date_skmht").hide();
+                    $("#detail-collateral-modal #receipt_date_skmht").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date_skmht").show();
+                    $("#detail-collateral-modal #receipt_date_skmht").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information_skmht").html(information_skmht);
 
                 $("#detail-collateral-modal #imb_status").html(imb_status);
                 $("#detail-collateral-modal #receipt_date_imb").html(receipt_date_imb);
                 if ( imb_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date_imb").hide();
+                    $("#detail-collateral-modal #receipt_date_imb").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date_imb").show();
+                    $("#detail-collateral-modal #receipt_date_imb").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information_imb").html(information_imb);
 
                 $("#detail-collateral-modal #shgb_status").html(shgb_status);
                 $("#detail-collateral-modal #receipt_date_shgb").html(receipt_date_shgb);
                 if ( shgb_status == "Belum Diberikan" ) {
-                    $("#detail-collateral-modal #receipt_date_shgb").hide();
+                    $("#detail-collateral-modal #receipt_date_shgb").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #receipt_date_shgb").show();
+                    $("#detail-collateral-modal #receipt_date_shgb").parent().parent().show();
                 }
                 $("#detail-collateral-modal #information_shgb").html(information_shgb);
 
@@ -345,20 +345,20 @@
                 $("#detail-collateral-modal #paripasu").html(paripasu);
                 $("#detail-collateral-modal #paripasu_bank").html(paripasu_bank);
                 if ( paripasu == "Tidak" ) {
-                    $("#detail-collateral-modal #paripasu_bank").hide();
+                    $("#detail-collateral-modal #paripasu_bank").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #paripasu_bank").show();
+                    $("#detail-collateral-modal #paripasu_bank").parent().parent().show();
                 }
 
                 $("#detail-collateral-modal #insurance").html(insurance);
                 $("#detail-collateral-modal #insurance_company").html(insurance_company);
                 $("#detail-collateral-modal #insurance_value").html(insurance_value);
                 if ( insurance == "Tidak" ) {
-                    $("#detail-collateral-modal #insurance_company").hide();
-                    $("#detail-collateral-modal #insurance_value").hide();
+                    $("#detail-collateral-modal #insurance_company").parent().parent().hide();
+                    $("#detail-collateral-modal #insurance_value").parent().parent().hide();
                 } else {
-                    $("#detail-collateral-modal #insurance_company").show();
-                    $("#detail-collateral-modal #insurance_value").show();
+                    $("#detail-collateral-modal #insurance_company").parent().parent().show();
+                    $("#detail-collateral-modal #insurance_value").parent().parent().show();
                 }
 
                 $("#detail-collateral-modal #eligibility").html(eligibility);
