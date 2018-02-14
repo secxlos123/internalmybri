@@ -247,7 +247,7 @@
 
         /* CRM Dashboard */
 				Route::get('crm_dashboard', 'CRM\DashboardController@index');
-				Route::get('chartMarketing', 'CRM\DashboardController@chartMarketing');
+				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
 
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');

@@ -4,7 +4,9 @@
       <ul>
         <li class="menu-title">Navigasi Utama</li>
         <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a>
+        @if(($data['role']=='ao') || ($data['role']=='fo') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus'))
         <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a>
+        @endif
         </li>
         @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
         <li>

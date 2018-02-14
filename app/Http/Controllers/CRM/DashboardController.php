@@ -54,11 +54,18 @@ class DashboardController extends Controller
     /* GET UserLogin Data */
     $data = $this->getUser();
 
+
+    $bulan = $request->input('bulan');
+    $pemasar = $request->input('pemasar');
+    $product = $request->input('product');
+
     if ($data['role'] == 'pinca') {
-      $pn = "";
-    } else {
+      $pn = $pemasar;
+    } elseif ($data['role'] == 'ao' || $data['role'] == 'fo') {
       $pn = $data['pn'];
     }
+
+    // return $product;
 
     $chartData = Client::setEndpoint('crm/marketing_summary')
     ->setQuery(['role' => $data['role']])
@@ -68,12 +75,12 @@ class DashboardController extends Controller
       'branch' => $data['branch']
     ])
     ->setBody([
-      "product_type"=>"", //filter pruduk
-      "month"=>"",//filter bulan
+      "product_type"=>$product, //filter pruduk
+      "month"=>$bulan,//filter bulan
       "pn"=>$pn //filter officer
     ])
     ->post();
-    
+
     return $chartData['contents'];
   }
 
