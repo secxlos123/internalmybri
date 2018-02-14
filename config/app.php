@@ -186,6 +186,8 @@ return [
         /* Excel */
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        /* Google Maps */
+        // GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
     ],
 
     /*
@@ -241,7 +243,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
-
+        // 'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
     ],
 
 ];

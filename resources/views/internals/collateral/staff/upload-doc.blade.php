@@ -67,7 +67,7 @@
                                                         <img id="preview_collateral_binding_doc" src="@if(!empty($collateral['ots_doc']['collateral_binding_doc'])){{$collateral['ots_doc']['collateral_binding_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Pengikatan Agunan</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['collateral_binding_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['collateral_binding_doc'])){{$collateral['ots_doc']['collateral_binding_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Pengikatan Agunan</p>
                                                     @endif
@@ -96,7 +96,7 @@
                                                         <img id="preview_collateral_insurance_doc" src="@if(!empty($collateral['ots_doc']['collateral_insurance_doc'])){{$collateral['ots_doc']['collateral_insurance_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Polis Asuransi Agunan</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['collateral_insurance_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['collateral_insurance_doc'])){{$collateral['ots_doc']['collateral_insurance_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Polis Asuransi Agunan</p>
                                                     @endif
@@ -120,7 +120,7 @@
                                                         <img id="preview_life_insurance_doc" src="@if(!empty($collateral['ots_doc']['life_insurance_doc'])){{$collateral['ots_doc']['life_insurance_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Polis Asuransi Jiwa</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['life_insurance_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['life_insurance_doc'])){{$collateral['ots_doc']['life_insurance_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Polis Asuransi Jiwa</p>
                                                     @endif
@@ -149,7 +149,7 @@
                                                         <img id="preview_ownership_doc" src="@if(!empty($collateral['ots_doc']['ownership_doc'])){{$collateral['ots_doc']['ownership_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">SHM / SHGB / SHMRS</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['ownership_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['ownership_doc'])){{$collateral['ots_doc']['ownership_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat SHM / SHGB / SHMRS</p>
                                                     @endif
@@ -173,7 +173,7 @@
                                                         <img id="preview_building_permit_doc" src="@if(!empty($collateral['ots_doc']['building_permit_doc'])){{$collateral['ots_doc']['building_permit_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">IMB</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['building_permit_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['building_permit_doc'])){{$collateral['ots_doc']['building_permit_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat IMB</p>
                                                     @endif
@@ -197,7 +197,7 @@
                                                         <img id="preview_sales_law_doc" src="@if(!empty($collateral['ots_doc']['sales_law_doc'])){{$collateral['ots_doc']['sales_law_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">AJB / PPJB</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['sales_law_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['sales_law_doc'])){{$collateral['ots_doc']['sales_law_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat AJB / PPJB</p>
                                                     @endif
@@ -221,7 +221,7 @@
                                                         <img id="preview_property_tax_doc" src="@if(!empty($collateral['ots_doc']['property_tax_doc'])){{$collateral['ots_doc']['property_tax_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">PBB</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['property_tax_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['property_tax_doc'])){{$collateral['ots_doc']['property_tax_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat PBB</p>
                                                     @endif
@@ -245,7 +245,7 @@
                                                         <img id="preview_sale_value_doc" src="@if(!empty($collateral['ots_doc']['sale_value_doc'])){{$collateral['ots_doc']['sale_value_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">NJOP</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['sale_value_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['sale_value_doc'])){{$collateral['ots_doc']['sale_value_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat NJOP</p>
                                                     @endif
@@ -274,7 +274,7 @@
                                                         <img id="preview_progress_one_doc" src="@if(!empty($collateral['ots_doc']['progress_one_doc'])){{$collateral['ots_doc']['progress_one_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Progress 1</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['progress_one_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['progress_one_doc'])){{$collateral['ots_doc']['progress_one_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Progress 1</p>
                                                     @endif
@@ -298,7 +298,7 @@
                                                         <img id="preview_progress_two_doc" src="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Progress 2</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['progress_two_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Progress 2</p>
                                                     @endif
@@ -322,7 +322,7 @@
                                                         <img id="preview_progress_three_doc" src="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Progress 3</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['progress_three_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Progress 3</p>
                                                     @endif
@@ -346,7 +346,7 @@
                                                         <img id="preview_progress_four_doc" src="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Progress 4</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['progress_four_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Progress 4</p>
                                                     @endif
@@ -370,7 +370,7 @@
                                                         <img id="preview_progress_five_doc" src="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" width="300">
                                                         <p style="margin-left:25px">Progress 5</p>
                                                         @endif
-                                                    @else
+                                                    @elseif(!empty($collateral['ots_doc']['progress_five_doc']))
                                                         <a href="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                         <p style="margin-left:25px">Klik Untuk Lihat Progress 5</p>
                                                     @endif

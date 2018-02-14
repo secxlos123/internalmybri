@@ -23,6 +23,27 @@
 </div>
 </div>
 
-<div id="detail-user">
-    
+<div class="table-responsive">
+    <div class="tab-scroll">
+        <table id="datatable-document" class="table table-bordered">
+            <thead class="bg-primary">
+                <tr>
+                    <th>No. Ref Aplikasi</th>
+                    <th>Nama Nasabah</th>
+                    <th>Nominal</th>
+                    <th>Status</th>
+                    <th style="width: 100px">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr role="row" class="odd">
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
