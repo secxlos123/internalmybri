@@ -84,7 +84,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
@@ -115,7 +115,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable-independent" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
