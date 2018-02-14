@@ -25,7 +25,7 @@ class ActionDetailController extends Controller
     {
         $data = $this->getUser();
 
-        $pengajuan_kredit = Client::setEndpoint('auditrail/pengajuan_kredit')
+        $pengajuan_kredit = Client::setEndpoint('auditrail/list-mnpengajuan')
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
@@ -57,7 +57,7 @@ class ActionDetailController extends Controller
     {
         $data = $this->getUser();
 
-        $admindev = Client::setEndpoint('auditrail/admindev')
+        $admindev = Client::setEndpoint('auditrail/list-mnadmindev')
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
@@ -89,7 +89,7 @@ class ActionDetailController extends Controller
     {
         $data = $this->getUser();
 
-        $appointment = Client::setEndpoint('auditrail/appointment')
+        $appointment = Client::setEndpoint('auditrail/list-mnappointment')
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
@@ -121,7 +121,7 @@ class ActionDetailController extends Controller
     {
         $data = $this->getUser();
 
-        $collateral = Client::setEndpoint('auditrail/collateral')
+        $collateral = Client::setEndpoint('auditrail/list-mncollateral')
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
@@ -153,7 +153,7 @@ class ActionDetailController extends Controller
     {
         $data = $this->getUser();
 
-        $agendev = Client::setEndpoint('auditrail/agendev')
+        $agendev = Client::setEndpoint('auditrail/list-mnagendev')
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
@@ -185,7 +185,7 @@ class ActionDetailController extends Controller
     {
         $data = $this->getUser();
 
-        $property = Client::setEndpoint('auditrail/property')
+        $property = Client::setEndpoint('auditrail/list-mnproperty')
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
