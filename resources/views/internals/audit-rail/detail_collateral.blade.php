@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Approval Collateral Properti</h4>
+                        <h4 class="page-title">Dokumen Collateral Properti</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Dasboard</a>
@@ -33,11 +33,8 @@
                     @endif
                     <div class="card-box">
                         <div class="row">
-                            <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
-                            <!-- <div class="col-md-12"> -->
-                               <!--  <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : 
-                                </p> -->
+                            <h5 class="m-t-0 header-title"><b>List Dokumen Collateral Appraisal</b></h5>
+
                                 @if($type != 'nonindex')
                                 <!-- detail properti -->
                                 @include('internals.collateral.manager._detail-property')
@@ -47,11 +44,11 @@
                                 @include('internals.collateral.manager._unit-property')
                                 @else
                                 <!-- detail property -->
-                                @include('internals.collateral.manager._detail-collateral-nonindex')
+                                @include('internals.audit-rail.dokumen_collateral._detail-collateral-nonindex')
 
                                 @endif                            
                                 <!-- informasi penilaian -->
-                                @include('internals.collateral.manager._collateral-detail')
+                                @include('internals.audit-rail.dokumen_collateral._dokumen_detail_collateral')
 
                                 <div class="panel panel-default">                           
                                     <div class="panel-body">
