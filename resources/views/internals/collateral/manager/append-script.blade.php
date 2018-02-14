@@ -8,8 +8,8 @@
             type: 'GET',
             url: '{{route("detailCollateral")}}',
             data: { dev_id : dev_id, prop_id : prop_id },
-            success: function(result, data) {  
-            console.log(result); 
+            success: function(result, data) {
+            console.log(result);
 
             //step1
                 var location = result.data.ots_in_area.location;
@@ -34,7 +34,7 @@
                 var ground_level = result.data.ots_in_area.ground_level;
                 var surface_area = Math.floor(result.data.ots_in_area.surface_area);
 
-            //step2 
+            //step2
                 var letter_type = result.data.ots_letter.type;
                 var authorization_land = result.data.ots_letter.authorization_land;
                 var match_bpn = result.data.ots_letter.match_bpn;
@@ -94,7 +94,7 @@
                 var collateral_status = result.data.ots_seven.collateral_status;
                 var on_behalf_of = result.data.ots_seven.on_behalf_of;
                 var ownership_number = result.data.ots_seven.ownership_number;
-                var location = result.data.ots_seven.location;
+                var seven_location = result.data.ots_seven.location;
                 var address_collateral = result.data.ots_seven.address_collateral;
                 var description = result.data.ots_seven.description;
                 var ownership_status = result.data.ots_seven.ownership_status;
@@ -217,7 +217,7 @@
                 $("#detail-collateral-modal #collateral_status").html(collateral_status);
                 $("#detail-collateral-modal #on_behalf_of").html(on_behalf_of);
                 $("#detail-collateral-modal #ownership_number").html(ownership_number);
-                $("#detail-collateral-modal #location").html(location);
+                $("#detail-collateral-modal #seven_location").html(seven_location);
                 $("#detail-collateral-modal #address_collateral").html(address_collateral);
                 $("#detail-collateral-modal #description").html(description);
                 $("#detail-collateral-modal #ownership_status").html(ownership_status);
@@ -226,53 +226,53 @@
                 $("#detail-collateral-modal #districts").html(districts);
 
             //step7
-                $("#detail-collateral-modal #liquidation_realization").html(liquidation_realization); 
+                $("#detail-collateral-modal #liquidation_realization").html(liquidation_realization);
                 $("#detail-collateral-modal #fair_market").html(fair_market);
-                $("#detail-collateral-modal #liquidation").html(liquidation); 
-                $("#detail-collateral-modal #fair_market_projection").html(fair_market_projection); 
+                $("#detail-collateral-modal #liquidation").html(liquidation);
+                $("#detail-collateral-modal #fair_market_projection").html(fair_market_projection);
                 $("#detail-collateral-modal #liquidation_projection").html(liquidation_projection);
-                $("#detail-collateral-modal #njop").html(njop); 
+                $("#detail-collateral-modal #njop").html(njop);
                 $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
                 if(appraisal_by != "Bank"){
-                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser); 
+                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
                 }else{
-                  $("#detail-collateral-modal .independent_appraiser").hide(); 
+                  $("#detail-collateral-modal .independent_appraiser").hide();
                 }
-                $("#detail-collateral-modal #date_assessment").html(date_assessment); 
+                $("#detail-collateral-modal #date_assessment").html(date_assessment);
                 $("#detail-collateral-modal #type_binding").html(type_binding);
                 $("#detail-collateral-modal #binding_number").html(binding_number);
                 $("#detail-collateral-modal #binding_value").html(binding_value);
 
             //step8
-                $("#detail-collateral-modal #certificate_status").html(certificate_status); 
+                $("#detail-collateral-modal #certificate_status").html(certificate_status);
                 $("#detail-collateral-modal #receipt_date").html(receipt_date);
-                $("#detail-collateral-modal #information").html(information); 
-                $("#detail-collateral-modal #notary_status").html(notary_status); 
+                $("#detail-collateral-modal #information").html(information);
+                $("#detail-collateral-modal #notary_status").html(notary_status);
                 $("#detail-collateral-modal #takeover_status").html(takeover_status);
-                $("#detail-collateral-modal #credit_status").html(credit_status); 
+                $("#detail-collateral-modal #credit_status").html(credit_status);
                 $("#detail-collateral-modal #skmht_status").html(skmht_status);
-                $("#detail-collateral-modal #imb_status").html(imb_status); 
-                $("#detail-collateral-modal #shgb_status").html(shgb_status); 
+                $("#detail-collateral-modal #imb_status").html(imb_status);
+                $("#detail-collateral-modal #shgb_status").html(shgb_status);
                 $("#detail-collateral-modal #receipt_date_notary").html(receipt_date_notary);
-                $("#detail-collateral-modal #information_notary").html(information_notary); 
+                $("#detail-collateral-modal #information_notary").html(information_notary);
                 $("#detail-collateral-modal #receipt_date_takeover").html(receipt_date_takeover);
-                $("#detail-collateral-modal #information_takeover").html(information_takeover); 
+                $("#detail-collateral-modal #information_takeover").html(information_takeover);
                 $("#detail-collateral-modal #receipt_date_credit").html(receipt_date_credit);
-                $("#detail-collateral-modal #information_credit").html(information_credit); 
+                $("#detail-collateral-modal #information_credit").html(information_credit);
                 $("#detail-collateral-modal #receipt_date_skmht").html(receipt_date_skmht);
-                $("#detail-collateral-modal #information_skmht").html(information_skmht); 
+                $("#detail-collateral-modal #information_skmht").html(information_skmht);
                 $("#detail-collateral-modal #receipt_date_imb").html(receipt_date_imb);
-                $("#detail-collateral-modal #information_imb").html(information_imb); 
+                $("#detail-collateral-modal #information_imb").html(information_imb);
                 $("#detail-collateral-modal #receipt_date_shgb").html(receipt_date_shgb);
-                $("#detail-collateral-modal #information_shgb").html(information_shgb); 
+                $("#detail-collateral-modal #information_shgb").html(information_shgb);
 
             //step9
-                $("#detail-collateral-modal #paripasu").html(paripasu); 
+                $("#detail-collateral-modal #paripasu").html(paripasu);
                 $("#detail-collateral-modal #paripasu_bank").html(paripasu_bank);
-                $("#detail-collateral-modal #insurance").html(insurance); 
-                $("#detail-collateral-modal #insurance_company").html(insurance_company); 
+                $("#detail-collateral-modal #insurance").html(insurance);
+                $("#detail-collateral-modal #insurance_company").html(insurance_company);
                 $("#detail-collateral-modal #insurance_value").html(insurance_value);
-                $("#detail-collateral-modal #eligibility").html(eligibility); 
+                $("#detail-collateral-modal #eligibility").html(eligibility);
             }
         });
     })

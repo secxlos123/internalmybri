@@ -461,7 +461,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="tab-pane" id="step5">
+                                <div class="tab-pane" id="step5">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel panel-default">
@@ -575,7 +575,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="tab-pane" id="step6">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -668,7 +668,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Lokasi :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="location"></p>
+                                                                        <p class="form-control-static" id="seven_location"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
