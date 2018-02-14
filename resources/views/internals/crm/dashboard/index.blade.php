@@ -85,8 +85,8 @@
 <script src="{{asset('assets/js/raphael-min.js')}}"></script>
 <!-- <script src="{{asset('assets/js/jquery.morris.init.js')}}"></script> -->
 <!-- <script src="{{asset('assets/js/jquery.morris2.init.js')}}"></script> -->
-@if(($data['role']=='mp') || ($data['role']=='pinca'))
+@if(($data['role']=='pincapem') || ($data['role']=='ampd') || ($data['role']=='mp') || ($data['role']=='pinca'))
   @include('internals.crm.dashboard.admin.script')
-@elseif(($data['role']=='fo' || ($data['role']=='staff')))
+@elseif(($data['role']=='fo' || ($data['role']=='ao')))
   @include('internals.crm.dashboard.fo.script')
 @endif

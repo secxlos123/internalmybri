@@ -54,16 +54,16 @@ class DashboardController extends Controller
     /* GET UserLogin Data */
     $data = $this->getUser();
 
-    // if ($data['role'] == 'pinca') {
-    //   $pn = "";
-    // } else {
-    //   $pn = $data['pn'];
-    // }
-    $pn = "";
 
     $bulan = $request->input('bulan');
     $pemasar = $request->input('pemasar');
     $product = $request->input('product');
+
+    if ($data['role'] == 'pinca') {
+      $pn = $pemasar;
+    } elseif ($data['role'] == 'ao' || $data['role'] == 'fo') {
+      $pn = $data['pn'];
+    }
 
     // return $product;
 
