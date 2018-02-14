@@ -260,12 +260,12 @@
                 $("#detail-collateral-modal #districts").html(districts);
 
                 // step8
-                $("#detail-collateral-modal #liquidation_realization").html("Rp. "+liquidation_realization);
-                $("#detail-collateral-modal #fair_market").html("Rp. "+fair_market);
-                $("#detail-collateral-modal #liquidation").html("Rp. "+liquidation);
-                $("#detail-collateral-modal #fair_market_projection").html("Rp. "+fair_market_projection);
-                $("#detail-collateral-modal #liquidation_projection").html("Rp. "+liquidation_projection);
-                $("#detail-collateral-modal #njop").html("Rp. "+njop);
+                $("#detail-collateral-modal #liquidation_realization").html("Rp. <span class='currency-rp'>"+liquidation_realization+"</span>");
+                $("#detail-collateral-modal #fair_market").html("Rp. <span class='currency-rp'>"+fair_market+"</span>");
+                $("#detail-collateral-modal #liquidation").html("Rp. <span class='currency-rp'>"+liquidation+"</span>");
+                $("#detail-collateral-modal #fair_market_projection").html("Rp. <span class='currency-rp'>"+fair_market_projection+"</span>");
+                $("#detail-collateral-modal #liquidation_projection").html("Rp. <span class='currency-rp'>"+liquidation_projection+"</span>");
+                $("#detail-collateral-modal #njop").html("Rp. <span class='currency-rp'>"+njop+"</span>");
                 $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
                 if(appraisal_by != "Bank"){
                   $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
@@ -275,7 +275,7 @@
                 $("#detail-collateral-modal #date_assessment").html(date_assessment);
                 $("#detail-collateral-modal #type_binding").html(type_binding);
                 $("#detail-collateral-modal #binding_number").html(binding_number);
-                $("#detail-collateral-modal #binding_value").html("Rp. "+binding_value);
+                $("#detail-collateral-modal #binding_value").html("Rp. <span class='currency-rp'>"+binding_value+"</span>");
 
                 // step9
                 $("#detail-collateral-modal #certificate_status").html(certificate_status);
@@ -352,7 +352,7 @@
 
                 $("#detail-collateral-modal #insurance").html(insurance);
                 $("#detail-collateral-modal #insurance_company").html(insurance_company);
-                $("#detail-collateral-modal #insurance_value").html(insurance_value);
+                $("#detail-collateral-modal #insurance_value").html("Rp. <span class='currency-rp'>"+insurance_value+"</span>");
                 if ( insurance == "Tidak" ) {
                     $("#detail-collateral-modal #insurance_company").parent().parent().hide();
                     $("#detail-collateral-modal #insurance_value").parent().parent().hide();
