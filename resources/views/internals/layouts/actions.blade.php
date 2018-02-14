@@ -226,3 +226,9 @@ function addURL(element)
 	@endif
 @endif
 
+@if(isset($auditrail_detail_collateral))
+	<a href="{!! $auditrail_detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-danger bottom-margin" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	</a>
+@endif
+
