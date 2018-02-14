@@ -85,10 +85,8 @@
 <script src="{{asset('assets/js/raphael-min.js')}}"></script>
 <!-- <script src="{{asset('assets/js/jquery.morris.init.js')}}"></script> -->
 <!-- <script src="{{asset('assets/js/jquery.morris2.init.js')}}"></script> -->
-@if(($data['role']=='staff') || ($data['role']=='admin'))
-    @include('internals.crm.dashboard.admin.script')
-@elseif(($data['role']=='ao'))
-    @include('internals.home.ao.script')
-@elseif(($data['role']=='mp') || ($data['role']=='pinca'))
-    @include('internals.home.mp.script')
+@if(($data['role']=='mp') || ($data['role']=='pinca'))
+  @include('internals.crm.dashboard.admin.script')
+@elseif(($data['role']=='fo' || ($data['role']=='staff')))
+  @include('internals.crm.dashboard.fo.script')
 @endif
