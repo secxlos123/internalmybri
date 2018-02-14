@@ -378,6 +378,7 @@ function reloadDataCollateral(from, type ){
                 d.modul_name = $('#module_name2').val();
                 d.developer = $('#developer2').val();
                 d.staff_penilai = $('#staff').val();
+                d.region_name = $('.action_kanwil').val();
             }
         },
         aoColumns : [
@@ -517,5 +518,102 @@ function reloadDataUserActivity(type){
         });
 
     });
+//collaterl doc
+    $(document).on('click', "#btn-filter-doc-collateral", function(){
+        
+        $("#datatable-developer").dataTable().fnDestroy();
+        $("#datatable-non").dataTable().fnDestroy();
+      
+        reloadDatacolDeveloper();
+        reloadDatacolNon();
+    })
 
+      function reloadDatacolDeveloper()
+    {
+        tablecdev = $('#datatable-developer').DataTable({
+         processing : true,
+         serverSide : true,
+         ordering: false,
+         lengthMenu: [
+         [ 10, 25, 50, -1 ],
+         [ '10', '25', '50', 'All' ]
+         ],
+         language : {
+            infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+        },
+        ajax : { 
+ 
+            url :'{{ route("list-collateral-dev") }}',
+            data : function(d, settings){
+                var api = new $.fn.dataTable.Api(settings);
+
+                d.page = Math.min(
+                    Math.max(0, Math.round(d.start / api.page.len())),
+                    api.page.info().pages
+                    );
+                d.status = $('#status_doc_collateral').val();
+                d.created_at = $('#doc_collateral_date').val();
+                d.staff_name = $('#doc_staff').val();
+                d.manager_name = $('#doc_manager').val();
+                d.region_name = $('.doc_kanwil').val();
+            }
+        },
+        aoColumns : [
+        {   data: 'prop_name', name: 'prop_name', bSortable: false  },
+        {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
+        {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
+        {   data: 'prop_items', name: 'prop_items', bSortable: true },
+                // {   data: 'product_type', name: 'product_type' },
+                {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
+                {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
+                {   data: 'staff_name', name: 'staff_name', bSortable: false },
+                {   data: 'status', name: 'status', bSortable: true },
+                {   data: 'manager_name', name: 'manager_name', bSortable: true },
+                {   data: 'action', name: 'action', bSortable: false, bSearchable: false },
+                ],
+            });
+    }
+    function reloadDatacolNon()
+    {
+       var status = $('#status_doc_collateral').val();
+       console.log(status);
+        tablecdev = $('#datatable-non').DataTable({
+         processing : true,
+         serverSide : true,
+         ordering: false,
+         lengthMenu: [
+         [ 10, 25, 50, -1 ],
+         [ '10', '25', '50', 'All' ]
+         ],
+         language : {
+            infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+        },
+        ajax : {
+            url :'{{ route("list-collateral-non") }}',
+            data : function(d, settings){
+                var api = new $.fn.dataTable.Api(settings);
+
+                d.page = Math.min(
+                    Math.max(0, Math.round(d.start / api.page.len())),
+                    api.page.info().pages
+                    );
+                d.status = status;
+                d.created_at = $('#doc_collateral_date').val();
+                d.staff_name = $('#doc_staff').val();
+                d.manager_name = $('#doc_manager').val();
+                d.region_name = $('.doc_kanwil').val();
+            }
+        },
+         aoColumns : [
+            {   data: 'first_name', name: 'first_name', bSortable: false  },
+            {   data: 'home_location', name: 'home_location',  bSortable: false  },
+            {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
+            // {   data: 'product_type', name: 'product_type' },
+            {   data: 'staff_name', name: 'staff_name', bSortable: false },
+            {   data: 'status', name: 'status', bSortable: false },
+            {   data: 'manager_name', name: 'manager_name', bSortable: false },
+            {   data: 'action', name: 'action', orderable: false, searchable: false}
+            ],
+        });
+    }
 </script>

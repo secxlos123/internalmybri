@@ -81,6 +81,7 @@ class AuditRailController extends Controller
                   'project_name'=> $request->input('project_name'),
                   'company_name'=> $request->input('company_name'),
                   'ref_number'=> $request->input('ref_number'),
+                  'region_name'=> $request->input('region_name'),
                 ])->get();
                 // print_r($audits);exit();
 
@@ -416,5 +417,152 @@ class AuditRailController extends Controller
             // return view('internals.eform.detail-customer')
             //     ->with('dataCustomer', $dataCustomer);
         }
+    }
+    /*
+     List datatable collateral
+    */
+
+     /**
+     * Get Datatables
+     * @param $request
+     */
+    public function listCollateraldev(Request $request)
+    {
+      $sort = $request->input('order.0');
+      $data = $this->getUser();
+      $collateral = Client::setEndpoint('auditrail/list-collateral-dev')
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+      ])->setQuery([
+        'limit'     => $request->input('length'),
+        'search'    => $request->input('search.value'),
+      //  'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+        'page'      => (int) $request->input('page') + 1,
+        'status'    => $request->input('status'),
+         'created_at'    => $request->input('created_at'),
+        'manager_name'    => $request->input('manager_name'),
+        'staff_name'    => $request->input('staff_name'),
+        'region_name'    => $request->input('region_name'),
+                // 'branch_id' => $data['branch']
+      ])->get();
+      foreach ($collateral['contents']['data'] as $key => $form) {
+        $form['prop_name'] = strtoupper($form['property']['name']);
+        $form['prop_city_name'] = strtoupper($form['property']['city']['name']);
+        $form['prop_pic_name'] = strtoupper($form['property']['pic_name']);
+        $form['prop_pic_phone'] = strtoupper($form['property']['pic_phone']);
+        $form['staff_name'] = strtoupper($form['staff_name']);
+        $form['prop_types'] = count($form['property']['propertyTypes']);
+        $form['prop_items'] = count($form['property']['propertyItems']);
+        $form['status'] = ucwords($form['status']);
+        $form['action'] = view('internals.layouts.actions', [
+          'auditrail_detail_collateral' => url('auditrail/detailCollateral/'.$form['developer']['id'].'/'.$form['property']['id']),
+        ])->render();
+        $collateral['contents']['data'][$key] = $form;
+      }
+      $collateral['contents']['draw'] = $request->input('draw');
+      $collateral['contents']['recordsTotal'] = $collateral['contents']['total'];
+      $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
+      return response()->json($collateral['contents']);
+    }
+
+    /**
+     * Get Datatables Non Kerjasama
+     * @param $request
+     */
+    public function listCollateralnon(Request $request)
+    {
+      $sort = $request->input('order.0');
+      $data = $this->getUser();
+      $search =[
+        'limit'     => $request->input('length'),
+        'search'    => $request->input('search.value'),
+        'page'      => (int) $request->input('page') + 1,
+        'status'    => $request->input('status'),
+        'created_at'    => $request->input('created_at'),
+        'manager_name'    => $request->input('manager_name'),
+        'staff_name'    => $request->input('staff_name'),
+         'region_name'    => $request->input('region_name'),
+      ];
+      $collateral = Client::setEndpoint('auditrail/list-collateral-non')
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+      ])->setQuery($search)->get();
+        foreach ($collateral['contents']['data'] as $key => $form) {
+        $form['first_name'] = strtoupper($form['first_name'].' '.$form['last_name']);
+        $form['home_location'] = strtoupper($form['home_location']);
+        $form['mobile_phone'] = strtoupper($form['mobile_phone']);
+        $form['staff_name'] = strtoupper($form['staff_name']);
+        $form['status'] = ucwords($form['status']);
+        $form['action'] = view('internals.layouts.actions', [
+          'auditrail_detail_collateral' => url('auditrail/detailCollateral/'.$form['developer_id'].'/'.$form['property_id'])
+        ])->render();
+        $collateral['contents']['data'][$key] = $form;
+      }
+      $collateral['contents']['draw'] = $request->input('draw');
+      $collateral['contents']['recordsTotal'] = $collateral['contents']['total'];
+      $collateral['contents']['recordsFiltered'] = $collateral['contents']['total'];
+      return response()->json($collateral['contents']);
+    }
+
+    public function detailCollateral($dev_id, $prop_id)
+    {
+      $data = $this->getUser();
+      if($dev_id == 1){
+        $type = 'nonindex';
+        $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+        $id = $collateral['eform_id'];
+        //get data eform
+        $EformDetail = Client::setEndpoint('eforms/'.$id)
+          ->setHeaders([
+            'Authorization' => $data['token']
+            ,          'pn' => $data['pn']
+            ])->get();
+        $detail = $EformDetail['contents'];
+        $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
+          ->setHeaders([
+            'Authorization' => $data['token']
+            ,          'pn' => $data['pn']   
+            ])->get();
+        $customer = $dataCustomer['contents'];
+      }else{
+        $type = '';
+        $collateral = $this->getDetail($dev_id, $prop_id, $data);
+      }
+      return view('internals.audit-rail.detail_collateral', compact('data', 'collateral', 'detail', 'customer', 'type'));
+    }
+
+    /**
+     * Get detail of collateral.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDetailNonIndex($dev_id, $prop_id, $data)
+    {
+      $detailCollateral = Client::setEndpoint('collateral/nonindex/'.$dev_id.'/'.$prop_id)
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+      ])->get();
+
+      return $detailCollateral['contents'];
+    }
+     /**
+     * Get detail of collateral.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDetail($dev_id, $prop_id, $data)
+    {
+      $detailCollateral = Client::setEndpoint('collateral/'.$dev_id.'/'.$prop_id)
+      ->setHeaders([
+        'Authorization' => $data['token']
+        , 'pn' => $data['pn']
+      ])->get();
+
+      return $detailCollateral['contents'];
     }
 }

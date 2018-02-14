@@ -51,6 +51,7 @@
                         <li class="small"><a data-toggle="tab" href="#property">Property</a></li>
                         <li class="small"><a data-toggle="tab" href="#activityUser">User Activity</a></li>
                         <li class="small"><a data-toggle="tab" href="#documentCredit">Document Credit</a></li>
+                        <li class="small"><a data-toggle="tab" href="#dokumenCollateral">Dokumen Collateral</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -83,6 +84,9 @@
                         </div>
                         <div id="documentCredit" class="tab-pane fade">
                             @include('internals.audit-rail._documentCredit')
+                        </div>
+                        <div id="dokumenCollateral" class="tab-pane fade">
+                            @include('internals.audit-rail._dokumen_collateral')
                         </div>
                     </div>
                 </div>
