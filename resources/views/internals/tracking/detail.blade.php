@@ -139,12 +139,20 @@
                         </div>
                     </div>
                     <div class="tracking-card">
-                        <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @endif">
+                        <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @elseif($datas['status']=='Kredit Ditolak') active @endif">
                             <div class="bg-icon">
                                 <i class="ti-wallet"></i>
                             </div>
                             <div class="text-center">
-                                <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">
+                                    @if ($datas['status']=='Kredit Disetujui')
+                                    Pengajuan Diterima
+                                    @elseif($datas['status']=='Kredit Ditolak')
+                                    Kredit Ditolak
+                                    @else
+                                    Status Pengajuan
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -156,18 +164,6 @@
                             </div>
                             <div class="text-center">
                                 <p class="m-t-5 text-uppercase font-600 font-secondary">Rekontes Kredit</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if($datas['status']=='Kredit Ditolak') 
-                    <div class="tracking-card">
-                        <div class="card-box widget-box-three active">
-                            <div class="bg-icon">
-                                <i class="ti-wallet"></i>
-                            </div>
-                            <div class="text-center">
-                                <p class="m-t-5 text-uppercase font-600 font-secondary">Kredit Ditolak</p>
                             </div>
                         </div>
                     </div>
