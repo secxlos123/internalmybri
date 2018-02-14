@@ -254,6 +254,10 @@
 				Route::get('add_referral', 'CRM\ReferralController@add');
 				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
 				Route::post('store_referral', 'CRM\ReferralController@store');
+				Route::post('update_referral', 'CRM\ReferralController@update');
+
+        /* Disposisi Referral */
+				Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
         /* CRM report */
 				Route::get('report/marketing', 'CRM\ReportController@marketing');
@@ -289,6 +293,7 @@
 
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
+        Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -453,5 +458,7 @@
         Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
         Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+        Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
+        Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
         });
     });
