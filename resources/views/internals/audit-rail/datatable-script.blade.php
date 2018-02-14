@@ -544,7 +544,7 @@ function reloadDataDocument(type){
         {   data: 'ref_number', name: 'ref_number',  bSortable: false  },
         {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
         {   data: 'nominal', name: 'nominal',  bSortable: false  },
-        {   data: 'status_eform', name: 'status_eform',  bSortable: false  },
+        {   data: 'status', name: 'status',  bSortable: false  },
         {   data: 'action', name: 'action', bSortable: false }
         ],
     });

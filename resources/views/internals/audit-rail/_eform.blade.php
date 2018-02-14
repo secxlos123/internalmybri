@@ -12,6 +12,16 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Kantor Wilayah :</label>
+                        <div class="col-sm-8">
+                            {!! Form::select('kanwil', ['' => ''], old('name'), [
+                                'class' => 'select2 action_kanwil',
+                                'data-placeholder' => 'Pilih Kantor Wilayah',
+                            ]) !!}
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama User :</label>
