@@ -353,7 +353,7 @@
             $("#detail-collateral-modal #collateral_status").html(collateral_status);
             $("#detail-collateral-modal #on_behalf_of").html(on_behalf_of);
             $("#detail-collateral-modal #ownership_number").html(ownership_number);
-            $("#detail-collateral-modal #seven_location").html(city);
+            $("#detail-collateral-modal #seven_location").html(seven_location);
             $("#detail-collateral-modal #address_collateral").html(address_collateral);
             $("#detail-collateral-modal #description").html(description);
             $("#detail-collateral-modal #ownership_status").html(ownership_status);
