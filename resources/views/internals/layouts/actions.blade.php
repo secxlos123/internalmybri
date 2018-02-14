@@ -120,7 +120,8 @@
 			</a>
 		@endif
 	@else
-		@if(($response_status == 'approve') && ($is_screening == 1))
+		@php $checkstatus = isset($response_status) ? $response_status : $status @endphp
+		@if(( $checkstatus == 'approve') && ($is_screening == 1))
 		<a href="{{route('getApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval">
 		    <i class="mdi mdi-check"></i>
 		</a>
@@ -206,7 +207,7 @@ var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'&hidden-lat=
 function addURL(element)
 {
     $(element).attr('href', function() {
-        return this.href + LongLat;
+        return this.href;
     });
 }
 </script>
@@ -216,3 +217,18 @@ function addURL(element)
 	    <i class="fa fa-info" aria-hidden="true"></i>
 	</a>
 @endif
+
+@if ( isset($vip_sent) )
+	@if ( $vip_sent == false )
+		<a href="{!! $vip !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Resend Verification" title="Resend VIP">
+		    <i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
+	    </a>
+	@endif
+@endif
+
+@if(isset($auditrail_detail_collateral))
+	<a href="{!! $auditrail_detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-danger bottom-margin" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	</a>
+@endif
+

@@ -71,7 +71,12 @@
                         <label class="col-md-4 control-label">Riwayat Kepemilikan Rekening Pinjaman *:</label>
                         <div class="col-md-8">
                             {!! Form::select( 'loan_history_accounts'
-                                , array_merge([""=>""],get_loan_history('all'))
+                                , [
+                                    ""=>""
+                                    ,"1" => "Pernah menunggak"
+                                    , "2" => "Debitur baru"
+                                    , "3" => "Tidak ada tunggakan"
+                                 ]
                                 , old('loan_history_accounts')
                                 , [
                                     'class' => 'select2 loan_history_accounts'
@@ -100,7 +105,12 @@
                         <label class="col-md-4 control-label">Status Kepegawaian *:</label>
                         <div class="col-md-8">
                             {!! Form::select( 'employment_status'
-                                , array_merge([""=>""],get_employment('all'))
+                                , [  "" => ""
+                                    ,"1" => "Pegawai Tetap"
+                                    , "2" => "Kontrak"
+                                    , "3" => "Honorer"
+                                    , "4" => "Lainnya"
+                                  ]
                                 , old('employment_status')
                                 , [
                                     'class' => 'select2 employment_status'

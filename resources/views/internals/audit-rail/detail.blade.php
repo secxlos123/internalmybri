@@ -57,7 +57,7 @@
                                         <tr>
                                             <!-- <th>Nama Mitra Kerjasama</th> -->
                                             <th>Tanggal</th>
-                                            <th>Nama Modul</th>
+                                            <th>Detail Aksi</th>
                                             <th>Nama User</th>
                                             <th>Data Lama</th>
                                             <th>Data Baru</th>
@@ -77,6 +77,7 @@
     @include('internals.layouts.footer')
     @include('internals.layouts.foot')
     <script type="text/javascript">
+    reloadDataPengajuan();
      $(document).on('click', "#btn-filter", function(){
         $("#datatable").dataTable().fnDestroy();
         reloadDataPengajuan();

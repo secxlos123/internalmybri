@@ -474,7 +474,7 @@ class CollateralStaffController extends Controller
            // dd($client);
 
       if($client['code'] == 201){
-        \Session::flash('success', 'Form Penilaian Agunan telah berhasil disimpan.');
+        \Session::flash('success', 'Unggah Dokumen Pendukung Collateral Berhasil Dilakukan.');
         return redirect()->route('staff-collateral.index');
       }else{
         $error = reset($client['contents']);

@@ -42,7 +42,7 @@
                     <th>Tanggal</th>
                     <th>Nama User</th>
                     <th>Role</th>
-                    <th>Nama Modul</th>
+                    <th>Detail Aksi</th>
                     <th>IP Address</th>
                     <th>Lokasi Akses</th>
                 </tr>

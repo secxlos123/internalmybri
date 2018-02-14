@@ -3,7 +3,7 @@
     <div class="card-box m-t-30">
       <h4 class="m-t-min30 m-b-30 header-title custom-title">List Pengajuan Baru</h4>
       <div class="panel-body">
-        <!--bar properti baru-->
+        <!--bar nasabah baru-->
         <div class="row">
           <div class="col-md-6">
             <div class="panel panel-default">
@@ -12,7 +12,7 @@
                   <ul class="list-inline chart-detail-list">
                   </ul>
                 </div>
-                <div id="property-bar-stacked" style="height: 300px;"></div>
+                <div id="morris-bar-stacked" style="height: 300px;"></div>
               </div>
             </div>
           </div>
@@ -46,25 +46,22 @@
             </div>
           </div>
         </div>
-
-        <!--table properti baru-->
+        <hr>
+        <!--table nasabah baru-->
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="col-sm-2">Mulai Dari : </label>
-              <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="from" name="start_date"> </div>
-              <label class="col-sm-2">Hingga : </label>
-              <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="to" name="end_date"> </div>
-              <div class="col-sm-2">
-                <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
-              </div>
-            </div>
-          </div>
           <div class="col-md-12">
             <div class="form-horizontal">
               <div class="form-group ">
                 <div class="col-md-6">
-                  <h5><b>List Properti Baru</b></h5>
+                  <div class="form-group">
+                    <label class="col-sm-2">Mulai Dari : </label>
+                    <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="from" name="start_date"> </div>
+                    <label class="col-sm-2">Hingga : </label>
+                    <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="to" name="end_date"> </div>
+                    <div class="col-sm-2">
+                      <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                    </div>
+                  </div>
                 </div>
                 <div class="col-sm-6 text-right">
                   <a href="javascript:void(0);" class="btn btn-info waves-light waves-effect w-md" id="btn-print">Print</a>
