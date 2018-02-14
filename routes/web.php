@@ -247,13 +247,17 @@
 
         /* CRM Dashboard */
 				Route::get('crm_dashboard', 'CRM\DashboardController@index');
-				Route::get('chartMarketing', 'CRM\DashboardController@chartMarketing');
+				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
 
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');
 				Route::get('add_referral', 'CRM\ReferralController@add');
 				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
 				Route::post('store_referral', 'CRM\ReferralController@store');
+				Route::post('update_referral', 'CRM\ReferralController@update');
+
+        /* Disposisi Referral */
+				Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
         /* CRM report */
 				Route::get('report/marketing', 'CRM\ReportController@marketing');
@@ -374,7 +378,7 @@
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
 
-    Route::get('audit-rail/detailDocument', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
+    Route::get('auditrail/detailDocument/{nik}', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
@@ -448,6 +452,8 @@
         Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
         Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+        Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
         Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
