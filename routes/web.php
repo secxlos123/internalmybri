@@ -373,7 +373,7 @@
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
 
-    Route::get('audit-rail/detailDocument', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
+    Route::get('auditrail/detailDocument/{nik}', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
@@ -447,6 +447,8 @@
         Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
         Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+        Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
         Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 

@@ -384,13 +384,60 @@ class AuditRailController extends Controller
         return response()->json($audits['contents']);
     }
 
-    public function detailDocument(Request $request)
+    /**
+     * Get Datatables Data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function datatableDocument(Request $request)
+    {
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+        $nik = isset($request->nik) ? $request->nik : '0';
+
+        $audits = Client::setEndpoint('auditrail/getEformCustomer/'.$nik)
+                    ->setQuery(['limit' => 100])
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])->setQuery([ 
+                      'created_at'=> $request->input('action_date'),
+                      'limit'     => $request->input('length'),
+                      'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
+                      'search'    => $request->input('search.value'),
+                      'page'      => (int) $request->input('page') + 1,
+                      ])
+                      ->get();
+          foreach ($audits['contents']['data'] as $key => $form) {
+              $form['ref_number'] = ucwords($form['ref_number']);
+              $form['customer_name'] = ucwords($form['customer_name']);
+              $form['nominal'] = 'Rp'.number_format($form['nominal'], 2, ',', '.');
+              $form['status_eform'] = ($form['status_eform']);
+              $form['action'] = view('internals.layouts.actions', [
+                  'detailActivity' => route('detailDocument', $form['nik']),
+              ])->render();
+              $audits['contents']['data'][$key] = $form;
+          }
+
+          $audits['contents']['draw'] = $request->input('draw');
+          $audits['contents']['recordsTotal'] = $audits['contents']['total'];
+          $audits['contents']['recordsFiltered'] = $audits['contents']['total'];
+
+          return response()->json($audits['contents']);
+        }
+    }
+
+    public function detailDocument(Request $request, $nik)
     {
         $data = $this->getUser();
         // $customerData = $this->getCustomer($request);
         // echo json_encode($request->input('id'));die();
          /* GET Role Data */
-        $customerData = Client::setEndpoint('auditrail/customers/'.$request->input('nik'))
+        $customerData = Client::setEndpoint('auditrail/customers/'.$nik)
                         ->setHeaders([
                             'Authorization' => $data['token']
                             , 'pn' => $data['pn']
@@ -402,19 +449,21 @@ class AuditRailController extends Controller
         // echo json_encode($dataCustomer['data']);die();
 
         if(($customerData['code'])==200){
-            $view = (String)view('internals.audit-rail._detailDocumentCredit')
-                ->with('dataCustomer', $dataCustomer)
-                ->render();
+          return view('internals.audit-rail._detailDocumentCredit', compact('dataCustomer', 'data'));
+            // $view = (String)view('internals.audit-rail._detailDocumentCredit')
+            //     ->with('dataCustomer', $dataCustomer)
+            //     ->render();
 
-            return response()->json(['view' => $view]);
-        } else {
-            $view = (String)view('internals.eform.error')
-                ->with('dataCustomer', $dataCustomer)
-                ->render();
+            // return response()->json(['view' => $view]);
+        } 
+        // else {
+        //     $view = (String)view('internals.eform.error')
+        //         ->with('dataCustomer', $dataCustomer)
+        //         ->render();
 
-            return response()->json(['view' => $view]);
-            // return view('internals.eform.detail-customer')
-            //     ->with('dataCustomer', $dataCustomer);
-        }
+        //     return response()->json(['view' => $view]);
+        //     // return view('internals.eform.detail-customer')
+        //     //     ->with('dataCustomer', $dataCustomer);
+        // }
     }
 }
