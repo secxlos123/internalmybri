@@ -733,38 +733,38 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Likuiditas saat Realisasi :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="liquidation_realization"></p>
+                                                                        <p class="form-control-static" id="liquidation_realization"></p>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Pasar Wajar :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="fair_market"></p>
+                                                                        <p class="form-control-static" id="fair_market"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Likuidasi :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="liquidation"></p>
+                                                                        <p class="form-control-static" id="liquidation"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Proyeksi Nilai Pasar Wajar :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="fair_market_projection"></p>
+                                                                        <p class="form-control-static" id="fair_market_projection"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Proyeksi Nilai Likuidasi :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="liquidation_projection"></p>
+                                                                        <p class="form-control-static" id="liquidation_projection"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Jual Objek Pajak (NJOP) :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="njop"></p>
+                                                                        <p class="form-control-static" id="njop"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -804,7 +804,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Pengikatan :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="binding_value"></p>
+                                                                        <p class="form-control-static" id="binding_value"></p>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -1024,7 +1024,7 @@
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Asuransi :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static currency-rp" id="insurance_value"></p>
+                                                                        <p class="form-control-static" id="insurance_value"></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
