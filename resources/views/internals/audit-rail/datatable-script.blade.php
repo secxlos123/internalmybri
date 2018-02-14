@@ -501,23 +501,55 @@ function reloadDataUserActivity(type){
     });
 }
 
- //search customer detail
-    $('#filter-document').on('click', function() {
-       var modul_action_document = $('#modul_action_document').val();
+// trigger document
+var table_document = $('#datatable-document').DataTable({
+    searching : false,
+    "language": {
+        "emptyTable": "No data available in table"
+    }
+});
 
-       $.ajax({
-            dataType: 'json',
-            type: 'GET',
-            url: '{{route("detailDocument")}}',
-            data: { nik : modul_action_document }
-        }).done(function(data){
-            // console.log(data);
-            $('#detail-user').html(data['view']);
-        }).fail(function(errors) {
-            // toastr.error('Data tidak ditemukan')
-        });
+$(document).on('click', "#filter-document", function(){
+    table_document.destroy();
+    var type = 'document';
+    reloadDataDocument(type);
+})
 
+function reloadDataDocument(type){
+    table_document =  $('#datatable-'+type).DataTable({
+        searching : false,
+        processing : true,
+        serverSide : true,
+        lengthMenu: [
+        [ 10, 25, 50, -1 ],
+        [ '10', '25', '50', 'All' ]
+        ],
+        language : {
+            infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+        },
+        ajax : {
+            url : '/datatables/auditrail-'+type,
+            data : function(d, settings){
+                var api = new $.fn.dataTable.Api(settings);
+
+                d.page = Math.min(
+                    Math.max(0, Math.round(d.start / api.page.len())),
+                    api.page.info().pages
+                    );
+
+                d.nik = $('#modul_action_document').val();
+            }
+        },
+        aoColumns : [
+        {   data: 'ref_number', name: 'ref_number',  bSortable: false  },
+        {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
+        {   data: 'nominal', name: 'nominal',  bSortable: false  },
+        {   data: 'status_eform', name: 'status_eform',  bSortable: false  },
+        {   data: 'action', name: 'action', bSortable: false }
+        ],
     });
+}
+
 //collaterl doc
     $(document).on('click', "#btn-filter-doc-collateral", function(){
         
