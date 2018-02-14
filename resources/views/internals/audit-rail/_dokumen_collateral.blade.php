@@ -1,32 +1,4 @@
-@section('title','MyBRI - List Approval Pengajuan Properti Baru')
-@include('internals.layouts.head')
-@include('internals.layouts.header')
-@include('internals.layouts.navigation')
-<div class="content-page">
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="page-title-box">
-                        <h4 class="page-title">List Approval Pengajuan Properti Baru</h4>
-                        <ol class="breadcrumb p-0 m-0">
-                            <li>
-                                <a href="{{url('/')}}">Home MyBRI</a>
-                            </li>
-                            <li class="active">
-                                List Approval Pengajuan Properti Baru
-                            </li>
-                        </ol>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    @if (\Session::has('success'))
-                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
-                    @endif
-                    <div class="card-box ">
+ <div class="card-box ">
                         <div id="filter" class="m-b-15">
                             <div class="row">
                                 <div class="col-md-8">
@@ -36,7 +8,7 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Status Approval Properti :</label>
                                                 <div class="col-sm-8">
-                                                    <select class="form-control" id="status">
+                                                    <select class="form-control" id="status_doc_collateral">
                                                        <option selected="" value="" > Semua</option>
                                                         <option value="baru">Baru</option>
                                                         <option value="sedang di proses">Sedang Di Proses</option>
@@ -46,10 +18,43 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Tanggal Aksi :</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control datepicker-autoclose" name="action_date" id="doc_collateral_date">
+                                                        <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Staff Penilai :</label>
+                                                <div class="col-sm-8">
+                                                   <input type="text" class="form-control" id="doc_staff">
+                                               </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Manager :</label>
+                                                <div class="col-sm-8">
+                                                   <input type="text" class="form-control" id="doc_manager">
+                                               </div>
+                                            </div>
+                                             <div class="form-group">
+                                                <label class="col-sm-4 control-label">Kantor wilayah :</label>
+                                                <div class="col-sm-8">
+                                                 {!! Form::select('doc_kanwil', ['' => ''], old('name'), [
+                                                                            'class' => 'select2 doc_kanwil',
+                                                                            'data-placeholder' => 'Pilih Kantor Wilayah',
+                                                 ]) !!}
+                                                </div>
+                                            </div>
+
+                                          
                                         </form>
                                         <div class="text-right">
-                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                                            <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter-doc-collateral">Filter</a>
                                         </div>
                                     </div>
                                 </div>
@@ -81,8 +86,8 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll table-responsive">
-                                                                        <table id="datatable" class="table table-bordered">
+                                                                    <div class="tab-scroll">
+                                                                        <table id="datatable-developer" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
                                                                                     <th>Nama Proyek</th>
@@ -93,7 +98,8 @@
                                                                                     <th>Telepon</th>
                                                                                     <th>Staff Penilai</th>
                                                                                     <th>Status Approval</th>
-                                                                                    <th style="width: 150px">Aksi</th>
+                                                                                    <th>Manager Collateral</th>
+                                                                                    <th style="width: 150px">Detail</th>
                                                                                 </tr>
                                                                             </thead>
                                                                         </table>
@@ -112,8 +118,8 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll table-responsive">
-                                                                        <table id="datatable-independent" class="table table-bordered">
+                                                                    <div class="tab-scroll">
+                                                                        <table id="datatable-non" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
                                                                                     <th>Nama Pengaju</th>
@@ -121,7 +127,8 @@
                                                                                     <th>Telepon</th>
                                                                                     <th>Staff Penilai</th>
                                                                                     <th>Status Approval</th>
-                                                                                    <th style="width: 150px">Aksi</th>
+                                                                                    <th>Manager Collateral</th>
+                                                                                    <th style="width: 150px">Detail</th>
                                                                                 </tr>
                                                                             </thead>
                                                                         </table>
@@ -138,109 +145,4 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@include('internals.layouts.footer')
-@include('internals.layouts.foot')
-<script type="text/javascript">
-    var table1 = $('#datatable').DataTable({
-        searching: false,
-        "language": {
-            "emptyTable": "No data available in table"
-        }
-    });
-
-    $(document).on('click', "#btn-filter", function(){
-        table1.destroy();
-        reloadData1($('#from').val(), $('#to').val(), $('#status').val());
-
-        table2.destroy();
-        reloadData2($('#from').val(), $('#to').val(), $('#status').val());
-    })
-
-    function reloadData1(from, to, status)
-    {
-        table1 = $('#datatable').DataTable({
-         processing : true,
-         serverSide : true,
-         lengthMenu: [
-         [ 10, 25, 50, -1 ],
-         [ '10', '25', '50', 'All' ]
-         ],
-         language : {
-            infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-        },
-        ajax : {
-            url : '/datatables/staff-collateral',
-            data : function(d, settings){
-                var api = new $.fn.dataTable.Api(settings);
-
-                d.page = Math.min(
-                    Math.max(0, Math.round(d.start / api.page.len())),
-                    api.page.info().pages
-                    );
-                d.status = $('#status').val();
-            }
-        },
-        aoColumns : [
-        {   data: 'prop_name', name: 'prop_name', bSortable: false  },
-        {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
-        {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
-        {   data: 'prop_items', name: 'prop_items', bSortable: true },
-                // {   data: 'product_type', name: 'product_type' },
-                {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
-                {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
-                {   data: 'staff_name', name: 'staff_name', bSortable: false },
-                {   data: 'status', name: 'status', bSortable: true },
-                {   data: 'action', name: 'action', bSortable: false, bSearchable: false },
-                ],
-            });
-    }
-
-    var table2 = $('#datatable-independent').DataTable({
-        searching: false,
-        "language": {
-            "emptyTable": "No data available in table"
-        }
-    });
-
-
-    function reloadData2(from, to, status)
-    {
-        table2 = $('#datatable-independent').DataTable({
-            processing : true,
-            serverSide : true,
-            lengthMenu: [
-            [ 10, 25, 50, -1 ],
-            [ '10', '25', '50', 'All' ]
-            ],
-            language : {
-                infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-            },
-            ajax : {
-                url : '/datatables/staff-collateral/nonindex',
-                data : function(d, settings){
-                    var api = new $.fn.dataTable.Api(settings);
-
-                    d.page = Math.min(
-                        Math.max(0, Math.round(d.start / api.page.len())),
-                        api.page.info().pages
-                        );
-                    d.status = $('#status').val();
-                }
-            },
-            aoColumns : [
-            {   data: 'first_name', name: 'first_name', bSortable: false  },
-            {   data: 'home_location', name: 'home_location',  bSortable: false  },
-            {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
-            // {   data: 'product_type', name: 'product_type' },
-            {   data: 'staff_name', name: 'staff_name', bSortable: false },
-            {   data: 'status', name: 'status', bSortable: false },
-            {   data: 'action', name: 'action', orderable: false, searchable: false}
-            ],
-        });
-    }
-</script>
+ 
