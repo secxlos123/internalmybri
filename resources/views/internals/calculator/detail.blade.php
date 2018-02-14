@@ -11,7 +11,7 @@
                         <h4 class="page-title">Kalkulator Simulasi Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Kalkulator Simulasi Kredit
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="bottom-space"></div>
         </div>
@@ -88,5 +88,5 @@
 </div>
 </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot')    
+@include('internals.layouts.foot')
 @include('internals.calculator.calculator-script')

@@ -1,15 +1,71 @@
 <script type="text/javascript">
+// var chartPemasar;
+// // initMorris();
+// getMorris();
+// // getMorrisOffline();
+//
+// // function initMorris() {
+// //    chartPemasar = Morris.Bar({
+// //        barGap:4,
+// //        barSizeRatio:0.55,
+// //        element: 'morris-bar-stacked',
+// //        data: data,
+// //        xkey: 'pemasar',
+// //        ykeys: ['a', 'c', 'd', 'b'],
+// //        stacked: false,
+// //        labels: ['Prospek', 'On Progress', 'Batal', 'Done'],
+// //        hideHover: 'auto',
+// //        resize: true, //defaulted to true
+// //        gridLineColor: '#eeeeee',
+// //        barColors: ['blue','orange', 'red','green']
+// //    });
+// // }
+//
+// function setMorris(data) {
+//   chartPemasar.setData(data);
+//   console.log(data);
+//   chartPemasar = Morris.Bar({
+//       barGap:4,
+//       barSizeRatio:0.55,
+//       element: 'morris-bar-stacked',
+//       data: data,
+//       xkey: 'pemasar',
+//       ykeys: ['a', 'c', 'd', 'b'],
+//       stacked: false,
+//       labels: ['Prospek', 'On Progress', 'Batal', 'Done'],
+//       hideHover: 'auto',
+//       resize: true, //defaulted to true
+//       gridLineColor: '#eeeeee',
+//       barColors: ['blue','orange', 'red','green']
+//   });
+// }
+//
+// function getMorris() {
+//   $.ajax({
+//       url: "{{url('chartMarketing')}}",
+//       type: "GET",
+//       dataType: "json",
+//       success: function (data) {
+//           console.log(data);
+//           setMorris(data);
+//       },
+//   })
+// }
+
+
     !function($) {
         "use strict";
         var MorrisCharts = function() {};
     //creates Stacked chart
     MorrisCharts.prototype.createStackedChart  = function(element, data, xkey, ykeys, labels, lineColors) {
         Morris.Bar({
+            barGap:4,
+            barSizeRatio:0.55,
             element: element,
             data: data,
             xkey: xkey,
             ykeys: ykeys,
-            stacked: true,
+            stacked: false,
             labels: labels,
             hideHover: 'auto',
             resize: true, //defaulted to true
@@ -18,30 +74,13 @@
         });
     },
     MorrisCharts.prototype.init = function() {
-        //creating Stacked chart
-        // var $stckedData  = [
-        // { y: 'Januari', a: 45 },
-        // { y: 'Februari', a: 75, },
-        // { y: 'Maret', a: 100 },
-        // { y: 'April', a: 75, },
-        // { y: 'Mei', a: 100 },
-        // { y: 'Juni', a: 75, },
-        // { y: 'Juli', a: 50, },
-        // { y: 'Agustus', a: 75, },
-        // { y: 'September', a: 50, },
-        // { y: 'Oktober', a: 75, },
-        // { y: 'November', a: 100 },
-        // { y: 'Desember', a: 100 }
-        // ];
-        // this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Customer Baru'], ['#00529C']);
         $.ajax({
-            url: "{{url('chartCustomer')}}",
+            url: "{{url('chartMarketing')}}",
             type: "GET",
             dataType: "json",
             success: function (data) {
-                var $stckedData = data;
-
-                MorrisCharts.prototype.createStackedChart('morris-bar-stacked', $stckedData, 'month', ['value'], ['Customer Baru'], ['#00529C']);
+                console.log(data);
+                MorrisCharts.prototype.createStackedChart('morris-bar-stacked', data, 'Nama', ['Prospek', 'On Progress', 'Batal', 'Done'], ['Prospek', 'On Progress', 'Batal', 'Done'], ['blue','orange', 'red','green']);
             },
         })
 
@@ -52,7 +91,7 @@
             success: function (data) {
                 var $stckedData = data;
 
-                MorrisCharts.prototype.createStackedChart('property-bar-stacked', $stckedData, 'month', ['value'], ['Properti Baru'], ['#00529C']);
+                MorrisCharts.prototype.createStackedChart('chart-all', $stckedData, 'month', ['value'], ['Properti Baru'], ['#00529C']);
             },
         })
     },

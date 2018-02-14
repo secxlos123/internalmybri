@@ -334,6 +334,15 @@ function bardiv(){
             });
 }
 
+
+	   $('#datatable').on('click', '#btn-edit', function (e) {
+	  var data = table1.row($(this).parents('tr')).data();
+	  var kode = data['id_header'];
+	  //var no = $("#NO"+kode).val();
+      var x = window.location.href;
+	  var url = x.replace("mitra_eksternal", "list_pekerja_eksternal?kode_mitra="+kode);
+	  window.location.href = url;  
+    } );
 $("#list_pekerja_checks").click(function(){
 	
  	var url = window.location.href;
@@ -344,7 +353,7 @@ $("#list_pekerja_checks").click(function(){
 $("#input_kolektif_checks").click(function(){
 	
  	var url = window.location.href;
-	url = url.replace("mitra_eksternal", "input_kolektif_eksternal");
+	url = url.replace("mitra_eksternal", "input_data_kolektif");
 	window.location.href = url;
 
 });
@@ -397,7 +406,9 @@ $("#input_individu_checks").click(function(){
                 {   data: 'jenis_mitra', name: 'Jenis Mitra', bSortable: false  },
                 {   data: 'anak_perusahaan_wilayah', name: 'Kantor Wilayah', bSortable: false },
                 {   data: 'anak_perusahaan_kabupaten', name: 'Kantor Cabang', bSortable: false },
-                {   data: 'golongan_mitra', name: 'Perihal', bSortable: false }
+                {   data: 'golongan_mitra', name: 'Perihal', bSortable: false },
+                {   data: 'status', name: 'Status', bSortable: false },
+                {   "targets": -1,"data": null,"defaultContent": '<button type="button" class="btn btn-orange waves-light waves-effect w-md" id="btn-edit" name="btn-edit" data-toggle="modal">List Pekerja </button>' }
             ],
       });
     }

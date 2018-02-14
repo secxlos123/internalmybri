@@ -45,20 +45,20 @@
                         <h4 class="page-title">Verify Data Nasabah</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('indexAO')}}">Pengajuan</a>
                             </li>
                             <li class="active">
-                                Verify
+                                Verifikasi
                             </li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
-        
+
             <form @if(!empty($dataCustomer)) action="{{route('verifyData', $dataCustomer['customer']['id'])}}" @endif method="POST" enctype="multipart/form-data" id="form1">
                     <!--Bundle of data eform-->
                     <div class="row">
@@ -97,7 +97,7 @@
                                                         <p>{{$dataCustomer['kpr']['developer_name']}}</p>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group {{ $classNameType }} {!! $errors->has('kpr_type_property') ? 'has-error' : '' !!}" id="kpr_type_property">
                                                     <label class="control-label col-md-4">Jenis Properti *:</label>
                                                     <div class="col-md-8">

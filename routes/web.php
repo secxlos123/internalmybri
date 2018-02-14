@@ -270,6 +270,7 @@
 		Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
 		Route::resource('mitra_list', 'Mitra\mitra\MitraController');
 		Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
+		Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');
 		Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
 		Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
 		Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
@@ -291,7 +292,6 @@
 
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
-    });
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -425,6 +425,7 @@
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
         Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
+        Route::get('list_pekerja', 'Mitra\mitra\eksternal\ListMitraController@datatables');
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
@@ -437,4 +438,5 @@
         Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
         Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+        });
     });

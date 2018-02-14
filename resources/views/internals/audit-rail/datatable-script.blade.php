@@ -95,8 +95,9 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#admindev_name').val();
+                    d.modul_name = $('#modul_name_admindev').val();
+                    d.company_name = $('#company_name').val();
                 }
             },
             aoColumns : [
@@ -151,9 +152,8 @@
                     );
 
                     d.action_date = from;
-                    d.ref_number = $('#ref_number').val();
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#userappointment_name').val();
+                    d.modul_name = $('#modul_name_appointment').val();
                 }
             },
             aoColumns : [
@@ -209,7 +209,7 @@
                     d.action_date = from;
                     d.username = $('#username1').val();
                     d.company_name = $('#company_name1').val();;
-                    d.modul_name = $('#modul_name1').val();
+                    d.modul_name = $('#module_name1').val();
                     d.agent_developer = $('#agent_developer1').val();
                 }
             },
@@ -266,7 +266,7 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
+                    d.username = $('#customer_name').val();
                     d.modul_name = $('#modul_name').val();
                 }
             },
@@ -321,8 +321,7 @@
                     );
 
                     d.action_date = from;
-                    d.username = $('#username').val();
-                    d.modul_name = $('#modul_name').val();
+                    d.username = $('#username_login').val();
                 }
             },
             aoColumns : [

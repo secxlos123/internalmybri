@@ -31,7 +31,7 @@ class MitraController extends Controller
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'form' => 'mitra_kerjasama'
+					'form' => 'mitra_kerjasama_internal'
 				])
 				->post();
 		$view = $view['contents'];

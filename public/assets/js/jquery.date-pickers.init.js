@@ -46,6 +46,13 @@ jQuery(document).ready(function () {
         startDate: new Date(),
         multidateSeparator: ","
     });
+    jQuery('.datepicker-maxdate').datepicker({
+        format: "yyyy-mm-dd",
+        clearBtn: true,
+        multidate: false,
+        endDate: new Date(),
+        multidateSeparator: ","
+    });
     jQuery('#date-range').datepicker({
         toggleActive: true
     });

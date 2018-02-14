@@ -16,14 +16,27 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
+                        @if(($data['role']=='staff'))
+                        <h4 class="page-title">Tambah Referral</h4>
+                        @else
                         <h4 class="page-title">Pengajuan Pinjaman</h4>
+                        @endif
                         <ol class="breadcrumb p-0 m-0">
+                            @if(($data['role']=='staff'))
+                            <li>
+                                <a href="{{route('dashboard')}}">Home MyBRI</a>
+                            </li>
+                            <li class="active">
+                                Tambah Referral
+                            </li>
+                            @else
                             <li>
                                 <a href="{{route('eform.index')}}">Pengajuan Kredit</a>
                             </li>
                             <li class="active">
                                 Pengajuan Pinjaman
                             </li>
+                            @endif
                         </ol>
                         <div class="clearfix"></div>
                     </div>

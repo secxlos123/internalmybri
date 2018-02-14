@@ -562,12 +562,6 @@
       }
     }
 
-    $('.collateral_type').on('change', function () {
-      var id = $(this).val();
-      var text = $(this).find("option:selected").text();
-      $('#area_collateral_type').val(text);
-    })
-
     $('#appraisal_by').on('change', function () {
       var id = $(this).val();
       var text = $(this).find("option:selected").text();

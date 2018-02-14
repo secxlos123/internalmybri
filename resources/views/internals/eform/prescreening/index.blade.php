@@ -41,7 +41,7 @@
                         <div class="col-md-12">
                             <div class="panel panel-color panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Pefindo</h3>
+                                    <h3 class="panel-title">Pefindo / SLIK</h3>
                                 </div>
                                 <div class="panel-body">
                                     @foreach( json_decode($eform['pefindo_detail']) as $key => $pefindoAll )
@@ -52,7 +52,7 @@
                                             <div class="card-box">
                                                 <h4 class="header-title custom-title">
                                                     <input type="radio" id="dhn{{ $key }}{{ $pefindo->PefindoId }}" name="select_{{ $key }}_pefindo" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}>
-                                                    <label for="dhn{{ $key }}{{ $pefindo->PefindoId }}">Pefindo {{ $pefindo->PefindoId }}</label>
+                                                    <label for="dhn{{ $key }}{{ $pefindo->PefindoId }}">Pefindo / SLIK {{ $pefindo->PefindoId }}</label>
                                                 </h4>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -105,11 +105,11 @@
                         <div class="col-md-12">
                             <div class="panel panel-color panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Pefindo</h3>
+                                    <h3 class="panel-title">Pefindo / SLIK</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="card-box">
-                                        <h4 class="header-title custom-title">Pefindo</h4>
+                                        <h4 class="header-title custom-title">Pefindo / SLIK</h4>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-horizontal" role="form">
@@ -123,7 +123,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-horizontal" role="form">
                                                     <div class="">
-                                                        <label class="col-md-2"> Hasil Pefindo </label>
+                                                        <label class="col-md-2"> Hasil Pefindo  / SLIK</label>
                                                         <div class="col-md-10">: {{ $eform['pefindo_color'] }} </div>
                                                     </div>
                                                 </div>
