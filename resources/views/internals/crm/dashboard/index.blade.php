@@ -36,9 +36,9 @@
             </div>
         </div>
         <div class="row">
-          @if(($data['role']=='mp') || ($data['role']=='pinca'))
+          @if(($data['role']=='pincapem') || ($data['role']=='ampd') || ($data['role']=='mp') || ($data['role']=='pinca'))
             @include('internals.crm.dashboard.admin.index')
-          @elseif(($data['role']=='fo' || ($data['role']=='staff')))
+          @elseif(($data['role']=='ao') || ($data['role']=='fo'))
             @include('internals.crm.dashboard.fo.index')
           @endif
         </div>

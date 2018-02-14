@@ -9,6 +9,8 @@
             <div class="row">
               <div class="col-md-6">
                 <div id="chart-all" style="height: 300px;"></div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -23,8 +25,8 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Bulan :</label>
                         <div class="col-sm-6">
-                          <select class="select2" name="">
-                            <option disabled="" selected="">-- Pilih --</option>
+                          <select class="select2" id="m-bulan">
+                            <option selected="">Semua</option>
                             <option value="01">Januari</option>
                             <option value="02">Februari</option>
                             <option value="03">Maret</option>
@@ -45,8 +47,8 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Pemasar :</label>
                         <div class="col-sm-6">
-                          <select required class="form-control select2" name="officer_ref">
-                              <option disabled="" selected="">-- Pilih --</option>
+                          <select required class="form-control select2" id="m-pemasar">
+                              <option selected="">Semua</option>
                               @foreach($pemasar as $pm)
                               <option value="{{$pm['PERNR']}}">{{$pm['SNAME']}}</option>
                               @endforeach
@@ -58,8 +60,8 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Product :</label>
                         <div class="col-sm-6">
-                          <select required class="form-control select2" name="product_type">
-                              <option disabled="" selected="">-- Pilih --</option>
+                          <select required class="form-control select2" id="m-product">
+                              <option selected="">Semua</option>
                               @foreach($product as $pr)
                               <option>{{$pr['product_name']}}</option>
                               @endforeach
