@@ -55,7 +55,7 @@ class CustomerController extends Controller
             // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
             // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->get();
-        $dataCustomer = $customerData['contents']['data'];
+        $dataCustomer = isset($customerData['contents']['data']) ? $customerData['contents']['data'] : array() ;
         // dd($dataCustomer);
 
         return view('internals.customers.index', compact('data', 'dataCustomer'));
