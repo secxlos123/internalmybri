@@ -492,7 +492,7 @@ class AuditRailController extends Controller
          'created_at'    => $request->input('created_at'),
         'manager_name'    => $request->input('manager_name'),
         'staff_name'    => $request->input('staff_name'),
-        'region_name'    => $request->input('region_name'),
+        'region_id'    => $request->input('region_name'),
                 // 'branch_id' => $data['branch']
       ])->get();
       foreach ($collateral['contents']['data'] as $key => $form) {
@@ -531,7 +531,7 @@ class AuditRailController extends Controller
         'created_at'    => $request->input('created_at'),
         'manager_name'    => $request->input('manager_name'),
         'staff_name'    => $request->input('staff_name'),
-         'region_name'    => $request->input('region_name'),
+         'region_id'    => $request->input('region_name'),
       ];
       $collateral = Client::setEndpoint('auditrail/list-collateral-non')
       ->setHeaders([

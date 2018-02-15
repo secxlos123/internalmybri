@@ -79,7 +79,7 @@ class ADKHistoriController extends Controller
                 if ($getBrinets['statusCode'] == '01') {
                     $update_data = [
                         'eform_id'    => $id,
-                        'is_send'     => 7,
+                        'is_send'     => 6,
                         'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
                         'cif'         => $getBrinets['items'][0]['CIF'],
                         'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
@@ -143,6 +143,7 @@ class ADKHistoriController extends Controller
                         $history['id_aplikasi']   = $result['id_aplikasi'];
                         $history['ref_number']    = $result['ref_number'];
                         $history['no_rekening']   = $result['no_rekening'];
+                        $history['is_send']       = $result['is_send'];
                         $history['STATUS']        = $status;
                         $history['fid_tp_produk'] = $tp_produk;
                         $history['status_screening'] = $prescreening;
@@ -180,7 +181,7 @@ class ADKHistoriController extends Controller
                         if (empty($detail['no_rekening']) || $detail['no_rekening'] == '') {
                             $update_data = [
                                 'eform_id'    => $value['eform_id'],
-                                'is_send'     => 7,
+                                'is_send'     => 6,
                                 'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
                                 'cif'         => $getBrinets['items'][0]['CIF'],
                                 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
