@@ -383,6 +383,8 @@
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
 
+    Route::get('list-branch', 'AuditRail\AuditRailController@getBranch')->name('list-branch');
+
     Route::get('auditrail/detailDocument/{nik}', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
