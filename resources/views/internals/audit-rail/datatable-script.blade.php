@@ -41,6 +41,8 @@ function reloadDataPengajuan(from, type){
                 d.ref_number = $('#ref_number').val();
                 d.username = $('#username').val();
                 d.modul_name = $('#modul_name').val();
+                d.region_id = $('.action_kanwil2').val();
+                d.branch = $('.branch').val();
             }
         },
         aoColumns : [

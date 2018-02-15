@@ -253,6 +253,7 @@
         /* CRM Dashboard */
 				Route::get('crm_dashboard', 'CRM\DashboardController@index');
 				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
+				Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
 
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');
@@ -382,6 +383,8 @@
     Route::get('renderMutation', ['as'=>'renderMutation', 'uses'=>'EForm\AOController@renderMutation']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
+
+    Route::get('list-branch', 'AuditRail\AuditRailController@getBranch')->name('list-branch');
 
     Route::get('auditrail/detailDocument/{nik}', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 

@@ -4,7 +4,7 @@
       <h4 class="m-t-min30 m-b-30 header-title custom-title"></h4>
       <div class="panel-body">
         <!--bar nasabah baru-->
-        <div class="panel panel-default hide">
+        <div class="panel panel-default">
           <div class="panel-body">
             <div class="row">
               <div class="col-md-6">
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <div class="row hide">
+        <div class="row">
           <div class="col-md-12">
             <div class="panel panel-default">
               <div class="panel-body">
@@ -90,7 +90,7 @@
                 <div class="form-horizontal">
                   <div class="form-group ">
                     <div class="col-md-6">
-                      <h5><b>10 Customer Baru</b></h5>
+                      <h5><b>Marketing</b></h5>
                     </div>
                     <div class="col-sm-6 text-right">
                       <a href="javascript:void(0);" class="btn btn-info waves-light waves-effect w-md" id="btn-print">Print</a>
@@ -102,16 +102,26 @@
                   <table id="datatable" class="table table-bordered ">
                     <thead class="bg-primary">
                       <tr>
-                        <th>NIK</th>
-                        <th>Nama Profil Customer</th>
-                        <th>Email</th>
-                        <th>Kota Tempat Tinggal</th>
-                        <th>Handphone</th>
-                        <th>Jenis Kelamin</th>
+                        <th>Nama Nasabah</th>
+                        <th>Produk</th>
+                        <th>Jenis</th>
+                        <th>Target</th>
+                        <th>Pemasar</th>
+                        <th>Status</th>
                         <!-- <th>Status</th> -->
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($marketings as $m)
+                      <tr>
+                        <td>{{$m['nama']}}</td>
+                        <td>{{$m['product_type']}}</td>
+                        <td>{{$m['activity_type']}}</td>
+                        <td>{{$m['target']}}</td>
+                        <td>{{$m['pn_name']}}</td>
+                        <td>{{$m['status']}}</td>
+                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
