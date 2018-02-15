@@ -257,6 +257,34 @@
                 cache: true
             },
         });
+
+        $('.action_kanwil2').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getKanwil")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                     //   aoId: $('#fake-aoid').val(),
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.kanwil.data,
+                        pagination: {
+                            more: (params.page * data.kanwil.per_page) < data.kanwil.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
         // $('.name').on('select2:select', function(){
         //     $('#fake-aoid').val($(this).val());
         // });
