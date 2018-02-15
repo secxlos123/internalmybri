@@ -728,7 +728,10 @@ class ADKController extends Controller
                 "id_aplikasi" => $response['id_aplikasi'],
                 "uid"         => $response['uid'],
                 "flag_putusan"=> '7',
-                "catatan"     => $response['catat_adk']
+                "catatan"     => $response['catat_adk'],
+                'eform_id'    => $response['eform_id'],
+                "is_send"     => 6,
+                "catat_adk"   => $response['catat_adk']
             ];
             // print_r($conten_putusan);exit();
             
@@ -755,35 +758,34 @@ class ADKController extends Controller
                         'requestData'   => $response['id_aplikasi']
                     ])
                     ->post('form_params');*/
-                // dd($getBrinets);
 
                 // if ($getBrinets['statusCode'] == '01') {
-                    $update_data = [
-                        'eform_id'    => $response['eform_id'],
+                    // $update_data = [
+                        // 'eform_id'    => $response['eform_id'],
                         // 'is_send'     => 7,
-                        'is_send'     => 6,
-                        'catatan_adk' => $response['catat_adk'],
+                        // 'is_send'     => 6,
+                        // 'catatan_adk' => $response['catat_adk'],
                         // 'cif'         => $getBrinets['items'][0]['CIF'],
                         // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
                         // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
-                    ];
-                    // print_r($response['eform_id']);
+                    // ];
+
                     // print_r($update_data);exit();
-                    $update_briguna = Client::setEndpoint('api_las/update')
-                        ->setHeaders(
-                            [ 'Authorization' => $data['token'],
-                              'pn' => $data['pn']
-                            ])
-                        ->setBody($update_data)
-                        ->post();
-                    // dd($update_briguna);
-                    if ($update_briguna['code'] == '200') {
+                    // $update_briguna = Client::setEndpoint('api_las/update')
+                    //     ->setHeaders(
+                    //         [ 'Authorization' => $data['token'],
+                    //           'pn' => $data['pn']
+                    //         ])
+                    //     ->setBody($update_data)
+                    //     ->post();
+
+                    // if ($update_briguna['code'] == '200') {
                         \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
                         return redirect()->route('adk.index');
-                    } else {
-                        \Session::flash('error', 'Verifikasi gagal disimpan');
-                        return redirect()->route('adk.index');
-                    }
+                    // } else {
+                    //     \Session::flash('error', 'Verifikasi gagal disimpan');
+                    //     return redirect()->route('adk.index');
+                    // }
                 // } else {
                 //     \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
                 //     return redirect()->route('adk.index');
@@ -799,9 +801,22 @@ class ADKController extends Controller
         $eforms = ['contents' => 
             [
                 'draw'            => $request->input('draw'),
-                'recordsTotal'    => '0',
-                'recordsFiltered' => '0',
-                'data'            => []
+                'recordsTotal'    => '1',
+                'recordsFiltered' => '1',
+                'data'            => [
+                    // 'cif' => '123123',
+                    // 'tgl_pengajuan' => '123122',
+                    // 'id_aplikasi' => '23131',
+                    // 'ref_number'  => 'asdewqe',
+                    // 'fid_tp_produk'=> '12',
+                    // 'nama_pegawai' => 'asdsaasdd',
+                    // 'namadeb' => 'asdasd',
+                    // 'request_amount' => 'asdasdasd',
+                    // 'STATUS' => 'asdas',
+                    // 'status_screening' => 'asdasd',
+                    // 'eform_id' => '1223',
+                    // 'action' => 'asdadsa'
+                ]
             ]
         ];
 
