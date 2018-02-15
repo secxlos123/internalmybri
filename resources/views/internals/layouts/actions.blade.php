@@ -217,3 +217,18 @@ function addURL(element)
 	    <i class="fa fa-info" aria-hidden="true"></i>
 	</a>
 @endif
+
+@if ( isset($vip_sent) )
+	@if ( $vip_sent == false )
+		<a href="{!! $vip !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Resend Verification" title="Resend VIP">
+		    <i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
+	    </a>
+	@endif
+@endif
+
+@if(isset($auditrail_detail_collateral))
+	<a href="{!! $auditrail_detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-danger bottom-margin" data-original-title="Detail Informasi" title="Detail Informasi">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	</a>
+@endif
+

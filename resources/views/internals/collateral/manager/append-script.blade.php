@@ -8,10 +8,10 @@
             type: 'GET',
             url: '{{route("detailCollateral")}}',
             data: { dev_id : dev_id, prop_id : prop_id },
-            success: function(result, data) {  
-            console.log(result); 
+            success: function(result, data) {
+            console.log(result);
 
-            //step1
+                // step1
                 var location = result.data.ots_in_area.location;
                 var collateral_type = result.data.ots_in_area.collateral_type;
                 var district = result.data.ots_in_area.district;
@@ -34,7 +34,7 @@
                 var ground_level = result.data.ots_in_area.ground_level;
                 var surface_area = Math.floor(result.data.ots_in_area.surface_area);
 
-            //step2 
+                // step2
                 var letter_type = result.data.ots_letter.type;
                 var authorization_land = result.data.ots_letter.authorization_land;
                 var match_bpn = result.data.ots_letter.match_bpn;
@@ -48,7 +48,7 @@
                 var letter_duration = result.data.ots_letter.duration_land_authorization;
                 var letter_bpn_name = result.data.ots_letter.bpn_name;
 
-            //step3
+                // step3
                 var building_permit_number = result.data.ots_building.permit_number;
                 var building_permit_date = result.data.ots_building.permit_date;
                 var building_on_behalf_of = result.data.ots_building.on_behalf_of;
@@ -70,7 +70,7 @@
                 var building_west_limit = Math.floor(result.data.ots_building.west_limit);
                 var building_west_limit_from = result.data.ots_building.west_limit_from;
 
-            //step4
+                // step4
                 var designated_land = result.data.ots_environment.designated_land;
                 var designated_pln = (result.data.ots_environment.designated_pln == 1 ? 'PLN,' : '');
                 var designated_pam = (result.data.ots_environment.designated_pam == 1 ? 'PAM' : '');
@@ -82,7 +82,24 @@
                 var other_guide = result.data.ots_environment.other_guide;
                 var distance_from_transportation = Math.floor(result.data.ots_environment.distance_from_transportation);
 
-            //step5
+                // step5
+                var nl_all = result.data.ots_valuation.nl_all;
+                var nl_building = result.data.ots_valuation.nl_building;
+                var nl_land = result.data.ots_valuation.nl_land;
+                var npw_all = result.data.ots_valuation.npw_all;
+                var npw_building = result.data.ots_valuation.npw_building;
+                var npw_land = result.data.ots_valuation.npw_land;
+                var pnl_all = result.data.ots_valuation.pnl_all;
+                var pnl_building = result.data.ots_valuation.pnl_building;
+                var pnl_land = result.data.ots_valuation.pnl_land;
+                var pnpw_all = result.data.ots_valuation.pnpw_all;
+                var pnpw_building = result.data.ots_valuation.pnpw_building;
+                var pnpw_land = result.data.ots_valuation.pnpw_land;
+                var scoring_all_date = result.data.ots_valuation.scoring_all_date;
+                var scoring_building_date = result.data.ots_valuation.scoring_building_date;
+                var scoring_land_date = result.data.ots_valuation.scoring_land_date;
+
+                // step6
                 var bond_type = result.data.ots_other.bond_type;
                 var use_of_building_function = result.data.ots_other.use_of_building_function;
                 var optimal_building_use = result.data.ots_other.optimal_building_use;
@@ -90,11 +107,11 @@
                 var things_bank_must_know = result.data.ots_other.things_bank_must_know;
                 var image_condition_area = result.data.ots_other.images;
 
-            //step6
+                // step7
                 var collateral_status = result.data.ots_seven.collateral_status;
                 var on_behalf_of = result.data.ots_seven.on_behalf_of;
                 var ownership_number = result.data.ots_seven.ownership_number;
-                var location = result.data.ots_seven.location;
+                var seven_location = result.data.ots_seven.city.name;
                 var address_collateral = result.data.ots_seven.address_collateral;
                 var description = result.data.ots_seven.description;
                 var ownership_status = result.data.ots_seven.ownership_status;
@@ -102,7 +119,7 @@
                 var village = result.data.ots_seven.village;
                 var districts = result.data.ots_seven.districts;
 
-            //step7
+                // step8
                 var liquidation_realization = result.data.ots_eight.liquidation_realization;
                 var fair_market = result.data.ots_eight.fair_market;
                 var liquidation = result.data.ots_eight.liquidation;
@@ -110,13 +127,13 @@
                 var liquidation_projection = result.data.ots_eight.liquidation_projection;
                 var njop = result.data.ots_eight.njop;
                 var appraisal_by = result.data.ots_eight.appraisal_by;
-                var independent_appraiser = result.data.ots_eight.independent_appraiser;
+                var independent_appraiser = result.data.ots_eight.independent_appraiser_name;
                 var date_assessment = result.data.ots_eight.date_assessment;
-                var type_binding = result.data.ots_eight.type_binding;
+                var type_binding = result.data.ots_eight.type_binding_name;
                 var binding_number = result.data.ots_eight.binding_number;
                 var binding_value = result.data.ots_eight.binding_value;
 
-            //step8
+                // step9
                 var certificate_status = result.data.ots_nine.certificate_status;
                 var receipt_date = result.data.ots_nine.receipt_date;
                 var information = result.data.ots_nine.information;
@@ -139,15 +156,15 @@
                 var receipt_date_shgb = result.data.ots_nine.receipt_date_shgb;
                 var information_shgb = result.data.ots_nine.information_shgb;
 
-            //step9
+                // step10
                 var paripasu = result.data.ots_ten.paripasu;
                 var paripasu_bank = result.data.ots_ten.paripasu_bank;
                 var insurance = result.data.ots_ten.insurance;
-                var insurance_company = result.data.ots_ten.insurance_company;
+                var insurance_company = result.data.ots_ten.insurance_company_name;
                 var insurance_value = result.data.ots_ten.insurance_value;
                 var eligibility = result.data.ots_ten.eligibility;
 
-            //step1
+                // step1
                 $('#detail-collateral-modal').modal('show');
                 $("#detail-collateral-modal #location").html(location);
                 $("#detail-collateral-modal #collateral_type").html(collateral_type);
@@ -167,7 +184,7 @@
                 $("#detail-collateral-modal #ground_level").html(ground_level);
                 $("#detail-collateral-modal #surface_area").html(surface_area+' M<sup>2</sup>');
 
-            //step2
+                // step2
                 $("#detail-collateral-modal #letter_type").html(letter_type);
                 $("#detail-collateral-modal #letter_authorization").html(authorization_land);
                 $("#detail-collateral-modal #letter_match_bpn").html(match_bpn);
@@ -180,10 +197,10 @@
                 $("#detail-collateral-modal #letter_duration").html(letter_duration);
                 $("#detail-collateral-modal #letter_bpn_name").html(letter_bpn_name);
 
-            //step3
+                // step3
                 $("#detail-collateral-modal #building_permit_number").html(building_permit_number);
                 $("#detail-collateral-modal #building_permit_date").html(building_permit_date);
-                $("#detail-collateral-modal #building_on_behalf_of").html(match_bpn);
+                $("#detail-collateral-modal #building_on_behalf_of").html(building_on_behalf_of);
                 $("#detail-collateral-modal #building_type").html(building_type);
                 $("#detail-collateral-modal #building_count").html(building_count+' buah');
                 $("#detail-collateral-modal #building_spacious").html(building_spacious+' M<sup>2</sup>');
@@ -194,7 +211,7 @@
                 $("#detail-collateral-modal #building_south_limit").html(building_south_limit+' Meter dari '+building_south_limit_from);
                 $("#detail-collateral-modal #building_west_limit").html(building_west_limit+' Meter dari '+building_west_limit_from);
 
-            //step4
+                // step4
                 $("#detail-collateral-modal #designated_land").html(designated_land);
                 $("#detail-collateral-modal #designated").html(designated_phone+' '+designated_pln+' '+designated_telex+' '+designated_pam);
                 $("#detail-collateral-modal #other_designated").html(other_designated);
@@ -203,7 +220,24 @@
                 $("#detail-collateral-modal #other_guide").html(other_guide);
                 $("#detail-collateral-modal #distance_from_transportation").html(distance_from_transportation+' Meter');
 
-            //step5
+                // step5
+                $("#detail-collateral-modal #nl_all").html(nl_all);
+                $("#detail-collateral-modal #nl_building").html(nl_building);
+                $("#detail-collateral-modal #nl_land").html(nl_land);
+                $("#detail-collateral-modal #npw_all").html(npw_all);
+                $("#detail-collateral-modal #npw_building").html(npw_building);
+                $("#detail-collateral-modal #npw_land").html(npw_land);
+                $("#detail-collateral-modal #pnl_all").html(pnl_all);
+                $("#detail-collateral-modal #pnl_building").html(pnl_building);
+                $("#detail-collateral-modal #pnl_land").html(pnl_land);
+                $("#detail-collateral-modal #pnpw_all").html(pnpw_all);
+                $("#detail-collateral-modal #pnpw_building").html(pnpw_building);
+                $("#detail-collateral-modal #pnpw_land").html(pnpw_land);
+                $("#detail-collateral-modal #scoring_all_date").html(scoring_all_date);
+                $("#detail-collateral-modal #scoring_building_date").html(scoring_building_date);
+                $("#detail-collateral-modal #scoring_land_date").html(scoring_land_date);
+
+                // step6
                 $("#detail-collateral-modal #bond_type").html(bond_type);
                 $("#detail-collateral-modal #use_of_building_function").html(use_of_building_function);
                 $("#detail-collateral-modal #optimal_building_use").html(optimal_building_use);
@@ -213,11 +247,11 @@
                 $("#detail-collateral-modal .image_condition_area").append('<div class="card-box"><img src='+value.image_data+' class="img-responsive"><br></div>');
                 });
 
-            //step6
+                // step7
                 $("#detail-collateral-modal #collateral_status").html(collateral_status);
                 $("#detail-collateral-modal #on_behalf_of").html(on_behalf_of);
                 $("#detail-collateral-modal #ownership_number").html(ownership_number);
-                $("#detail-collateral-modal #location").html(location);
+                $("#detail-collateral-modal #seven_location").html(seven_location);
                 $("#detail-collateral-modal #address_collateral").html(address_collateral);
                 $("#detail-collateral-modal #description").html(description);
                 $("#detail-collateral-modal #ownership_status").html(ownership_status);
@@ -225,54 +259,111 @@
                 $("#detail-collateral-modal #village").html(village);
                 $("#detail-collateral-modal #districts").html(districts);
 
-            //step7
-                $("#detail-collateral-modal #liquidation_realization").html(liquidation_realization); 
-                $("#detail-collateral-modal #fair_market").html(fair_market);
-                $("#detail-collateral-modal #liquidation").html(liquidation); 
-                $("#detail-collateral-modal #fair_market_projection").html(fair_market_projection); 
-                $("#detail-collateral-modal #liquidation_projection").html(liquidation_projection);
-                $("#detail-collateral-modal #njop").html(njop); 
+                // step8
+                $("#detail-collateral-modal #liquidation_realization").html("Rp. <span class='currency-rp'>"+liquidation_realization+"</span>");
+                $("#detail-collateral-modal #fair_market").html("Rp. <span class='currency-rp'>"+fair_market+"</span>");
+                $("#detail-collateral-modal #liquidation").html("Rp. <span class='currency-rp'>"+liquidation+"</span>");
+                $("#detail-collateral-modal #fair_market_projection").html("Rp. <span class='currency-rp'>"+fair_market_projection+"</span>");
+                $("#detail-collateral-modal #liquidation_projection").html("Rp. <span class='currency-rp'>"+liquidation_projection+"</span>");
+                $("#detail-collateral-modal #njop").html("Rp. <span class='currency-rp'>"+njop+"</span>");
                 $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
                 if(appraisal_by != "Bank"){
-                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser); 
+                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
                 }else{
-                  $("#detail-collateral-modal .independent_appraiser").hide(); 
+                  $("#detail-collateral-modal .independent_appraiser").hide();
                 }
-                $("#detail-collateral-modal #date_assessment").html(date_assessment); 
+                $("#detail-collateral-modal #date_assessment").html(date_assessment);
                 $("#detail-collateral-modal #type_binding").html(type_binding);
                 $("#detail-collateral-modal #binding_number").html(binding_number);
-                $("#detail-collateral-modal #binding_value").html(binding_value);
+                $("#detail-collateral-modal #binding_value").html("Rp. <span class='currency-rp'>"+binding_value+"</span>");
 
-            //step8
-                $("#detail-collateral-modal #certificate_status").html(certificate_status); 
+                // step9
+                $("#detail-collateral-modal #certificate_status").html(certificate_status);
                 $("#detail-collateral-modal #receipt_date").html(receipt_date);
-                $("#detail-collateral-modal #information").html(information); 
-                $("#detail-collateral-modal #notary_status").html(notary_status); 
-                $("#detail-collateral-modal #takeover_status").html(takeover_status);
-                $("#detail-collateral-modal #credit_status").html(credit_status); 
-                $("#detail-collateral-modal #skmht_status").html(skmht_status);
-                $("#detail-collateral-modal #imb_status").html(imb_status); 
-                $("#detail-collateral-modal #shgb_status").html(shgb_status); 
-                $("#detail-collateral-modal #receipt_date_notary").html(receipt_date_notary);
-                $("#detail-collateral-modal #information_notary").html(information_notary); 
-                $("#detail-collateral-modal #receipt_date_takeover").html(receipt_date_takeover);
-                $("#detail-collateral-modal #information_takeover").html(information_takeover); 
-                $("#detail-collateral-modal #receipt_date_credit").html(receipt_date_credit);
-                $("#detail-collateral-modal #information_credit").html(information_credit); 
-                $("#detail-collateral-modal #receipt_date_skmht").html(receipt_date_skmht);
-                $("#detail-collateral-modal #information_skmht").html(information_skmht); 
-                $("#detail-collateral-modal #receipt_date_imb").html(receipt_date_imb);
-                $("#detail-collateral-modal #information_imb").html(information_imb); 
-                $("#detail-collateral-modal #receipt_date_shgb").html(receipt_date_shgb);
-                $("#detail-collateral-modal #information_shgb").html(information_shgb); 
+                if ( certificate_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information").html(information);
 
-            //step9
-                $("#detail-collateral-modal #paripasu").html(paripasu); 
+                $("#detail-collateral-modal #notary_status").html(notary_status);
+                $("#detail-collateral-modal #receipt_date_notary").html(receipt_date_notary);
+                if ( notary_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date_notary").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date_notary").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information_notary").html(information_notary);
+
+                $("#detail-collateral-modal #takeover_status").html(takeover_status);
+                $("#detail-collateral-modal #receipt_date_takeover").html(receipt_date_takeover);
+                if ( takeover_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date_takeover").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date_takeover").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information_takeover").html(information_takeover);
+
+                $("#detail-collateral-modal #credit_status").html(credit_status);
+                $("#detail-collateral-modal #receipt_date_credit").html(receipt_date_credit);
+                if ( credit_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date_credit").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date_credit").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information_credit").html(information_credit);
+
+                $("#detail-collateral-modal #skmht_status").html(skmht_status);
+                $("#detail-collateral-modal #receipt_date_skmht").html(receipt_date_skmht);
+                if ( skmht_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date_skmht").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date_skmht").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information_skmht").html(information_skmht);
+
+                $("#detail-collateral-modal #imb_status").html(imb_status);
+                $("#detail-collateral-modal #receipt_date_imb").html(receipt_date_imb);
+                if ( imb_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date_imb").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date_imb").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information_imb").html(information_imb);
+
+                $("#detail-collateral-modal #shgb_status").html(shgb_status);
+                $("#detail-collateral-modal #receipt_date_shgb").html(receipt_date_shgb);
+                if ( shgb_status == "Belum Diberikan" ) {
+                    $("#detail-collateral-modal #receipt_date_shgb").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #receipt_date_shgb").parent().parent().show();
+                }
+                $("#detail-collateral-modal #information_shgb").html(information_shgb);
+
+                // step10
+                $("#detail-collateral-modal #paripasu").html(paripasu);
                 $("#detail-collateral-modal #paripasu_bank").html(paripasu_bank);
-                $("#detail-collateral-modal #insurance").html(insurance); 
-                $("#detail-collateral-modal #insurance_company").html(insurance_company); 
-                $("#detail-collateral-modal #insurance_value").html(insurance_value);
-                $("#detail-collateral-modal #eligibility").html(eligibility); 
+                if ( paripasu == "Tidak" ) {
+                    $("#detail-collateral-modal #paripasu_bank").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #paripasu_bank").parent().parent().show();
+                }
+
+                $("#detail-collateral-modal #insurance").html(insurance);
+                $("#detail-collateral-modal #insurance_company").html(insurance_company);
+                $("#detail-collateral-modal #insurance_value").html("Rp. <span class='currency-rp'>"+insurance_value+"</span>");
+                if ( insurance == "Tidak" ) {
+                    $("#detail-collateral-modal #insurance_company").parent().parent().hide();
+                    $("#detail-collateral-modal #insurance_value").parent().parent().hide();
+                } else {
+                    $("#detail-collateral-modal #insurance_company").parent().parent().show();
+                    $("#detail-collateral-modal #insurance_value").parent().parent().show();
+                }
+
+                $("#detail-collateral-modal #eligibility").html(eligibility);
+
+                $('.currency-rp').inputmask({ alias : "rupiah" });
             }
         });
     })

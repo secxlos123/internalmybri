@@ -67,6 +67,7 @@ class EFormController extends Controller
                         'ids' => $request->get('slug'),
                     ])->get();
                 $form_notif = $eforms['contents'];
+
                 $form_notif['ref_number'] = strtoupper($form_notif['ref_number']);
                 $form_notif['customer_name'] = strtoupper($form_notif['customer_name']);
                 $form_notif['created_at'] = date_format(date_create($form_notif['created_at']),"Y-m-d");
@@ -91,7 +92,6 @@ class EFormController extends Controller
                     }
 
                 $form_notif['respon_statused'] = $text;
-
                 $form_notif['prescreening_status'] = view('internals.layouts.actions', [
                   'prescreening_status' => route('getLKN', $form_notif['id']),
                   'prescreening_result' => $form_notif['prescreening_status'],
@@ -107,6 +107,8 @@ class EFormController extends Controller
                     'preview' => route('getDetail', $form_notif['id']),
                     'lkn' => route('getLKN', $form_notif['id']),
                     'screening_result' => 'view',
+                    'is_verified'=>'',
+                    'is_screening'=>'',
                 ])->render();
                 /*
                 * mark read the notification
@@ -685,101 +687,4 @@ class EFormController extends Controller
          return response()->json(['response' => $client]);
     }
 
-    /**
-     * Validation KPR
-     * @param $request
-     */
-    public function kprRules($request)
-    {
-        $rules = [
-           'product_type' => 'required|in:kpr',
-           'status_property' => 'required_if:product_type,kpr,required|in:new,second',
-           'developer' => 'required_if:product_type,kpr,required_if:status_property,new',
-           'property' => 'required_if:product_type,kpr,required_if:status_property,new',
-           'price' => 'required_if:product_type,kpr,required',
-           'building_area' => 'required_if:product_type,kpr,required|numeric',
-           'home_location' => 'required_if:product_type,kpr,required',
-           'year' => 'required_if:product_type,kpr,required|numeric',
-           'active_kpr' => 'required_if:product_type,kpr,required|numeric',
-           'dp' => 'required_if:product_type,kpr,required',
-           'request_amount' => 'required_if:product_type,kpr,required',
-           'nik' => 'required',
-           'office_id' => 'required',
-           'appointment_date' => 'required|date',
-           'address' => 'required',
-           'longitude' => 'required',
-           'latitude' => 'required'
-        ];
-
-        $validator = Validator::make($request, $rules);
-        return $validator;
-    }
-
-    /**
-     * Validation KKB
-     * @param $request
-     */
-    public function kkbRules($request)
-    {
-        $rules = [
-            'kkb_application' => 'required',
-            'kkb_time_periode' => 'required',
-            'vehicle_condition' => 'required',
-            'vehicle_brand' => 'required',
-            'vehicle_price' => 'required',
-            'kkb_payment' => 'required',
-            'vehicle_type' => 'required',
-            'production_year' => 'required',
-        ];
-
-        $validator = Validator::make($request, $rules);
-        return $validator;
-    }
-
-    /**
-     * Validation briguna
-     * @param $request
-     */
-    public function brigunaRules($request)
-    {
-        $rules = [
-            'briguna_application' => 'required',
-            'briguna_time_periode' => 'required',
-            'loan_status' => 'required',
-        ];
-
-        $validator = Validator::make($request, $rules);
-        return $validator;
-    }
-
-    /**
-     * Validation britama
-     * @param $request
-     */
-    public function britamaRules($request)
-    {
-        $rules = [
-            'deposit_amount' => 'required',
-            'ebanking_fasility' => 'required',
-            'purpose_utilization' => 'required',
-        ];
-
-        $validator = Validator::make($request, $rules);
-        return $validator;
-    }
-
-    /**
-     * Validation KUR
-     * @param $request
-     */
-    public function kurRules($request)
-    {
-        $rules = [
-            'kur_application' => 'required',
-            'kur_time_periode' => 'required',
-        ];
-
-        $validator = Validator::make($request, $rules);
-        return $validator;
-    }
 }

@@ -57,7 +57,7 @@
                                         <tr>
                                             <!-- <th>Nama Mitra Kerjasama</th> -->
                                             <th>Tanggal</th>
-                                            <th>Nama Modul</th>
+                                            <th>Detail Aksi</th>
                                             <th>Nama User</th>
                                             <th>Data Lama</th>
                                             <th>Data Baru</th>
