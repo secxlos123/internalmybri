@@ -146,11 +146,11 @@
                             <div class="text-center">
                                 <p class="m-t-5 text-uppercase font-600 font-secondary">
                                     @if ($datas['status']=='Kredit Disetujui')
-                                    Pengajuan Diterima
+                                    Kredit Disetujui
                                     @elseif($datas['status']=='Kredit Ditolak')
                                     Kredit Ditolak
                                     @else
-                                    Status Pengajuan
+                                    Status Putusan Kredit
                                     @endif
                                 </p>
                             </div>
