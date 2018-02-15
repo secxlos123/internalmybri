@@ -24,7 +24,7 @@ class AuthCheckToken
         }
         if($checkToken['contents']['refreshed'] == true){
             session()->put('user.contents.token', $checkToken['contents']['token']);
-            return $next($request);
+            $request->merge(['authorization' => $checkToken['contents']['token']]);
         }else{
             return $next($request);
         }
