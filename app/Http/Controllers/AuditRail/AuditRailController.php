@@ -83,6 +83,7 @@ class AuditRailController extends Controller
                   'ref_number'=> $request->input('ref_number'),
                   'region_name'=> $request->input('region_name'),
                   'region_id' => $request->input('region_id'),
+                  'branch_id' => $request->input('branch'),
                 ])->get();
                 // print_r($audits);exit();
 
@@ -613,5 +614,32 @@ class AuditRailController extends Controller
       ])->get();
 
       return $detailCollateral['contents'];
+    }
+
+    /**
+     * get list branch name on eform
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response 
+     */
+
+    public function getBranch(Request $request)
+    {
+      $data = $this->getUser();
+      $branch = Client::setEndpoint('auditrail/getBranch')
+                ->setHeaders(['Authorization' => $data['token'], 'pn' => $data['pn']])
+                ->setQuery(['search' => $request->input('branch'), 'page' => $request->input('page')])
+                ->get();
+
+      $contents = array();
+        if (count($branch['contents'])>0) {
+            foreach ($branch['contents']['data'] as $key => $detail) {
+                $detail['text'] = $detail['branch'];
+                $detail['id'] = $detail['branch_id'];
+                $branch['contents']['data'][$key] = $detail;
+            }
+            $contents = $branch['contents'];
+        }
+        //dd($contents);
+        return response()->json(['branch' => $contents ]);
     }
 }
