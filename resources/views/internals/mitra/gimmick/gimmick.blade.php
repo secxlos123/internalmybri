@@ -590,7 +590,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-var select2 = $("#area_level_kanwil_dropdown").select2({
+var select2 = $("#area_level_nasional_dropdown").select2({
   ajax: {
     url: "ListUkerKanwil",
     delay: 250

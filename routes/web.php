@@ -14,6 +14,11 @@
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
 			Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
+			Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
+			Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
+			Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
+			Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
+			Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
 			Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
 			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
