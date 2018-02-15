@@ -285,6 +285,34 @@
                 cache: true
             },
         });
+
+        $('.branch').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("list-branch")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        branch: params.term,
+                   
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+              
+                    return {
+                        results: data.branch.data,
+                        pagination: {
+                            more: (params.page * data.branch.per_page) < data.branch.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
         // $('.name').on('select2:select', function(){
         //     $('#fake-aoid').val($(this).val());
         // });
