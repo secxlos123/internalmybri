@@ -82,6 +82,7 @@ class AuditRailController extends Controller
                   'company_name'=> $request->input('company_name'),
                   'ref_number'=> $request->input('ref_number'),
                   'region_name'=> $request->input('region_name'),
+                  'region_id' => $request->input('region_id'),
                 ])->get();
                 // print_r($audits);exit();
 
