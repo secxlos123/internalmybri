@@ -19,14 +19,12 @@ class AuthCheckToken
                       ->setHeaders(['Authorization' => session()->get('user.contents.token'),
                                     'pn' => session()->get('user.contents.pn')
                       ])->get();
-        // dd($checkToken);
-
         if($checkToken['code'] == 404){
             return redirect()->guest('/login');
         }
-        // dd($checkToken['contents']);
         if($checkToken['contents']['refreshed'] == true){
             session()->put('user.contents.token', $checkToken['contents']['token']);
+            $request->merge(['authorization' => $checkToken['contents']['token']]);
         }else{
             return $next($request);
         }

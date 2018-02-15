@@ -134,7 +134,7 @@
                                                                         <p class="form-control-static" id="position_from_road"> M<sup>2</sup></p>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -251,7 +251,7 @@
                                                                         <p class="form-control-static" id="surface_area_by_letter"></p>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -384,7 +384,7 @@
                                                                         <p class="form-control-static" id="building_west_limit"></p>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </form>
                                                         </div>
                                                     </div>
@@ -429,7 +429,7 @@
                                                                         <p class="form-control-static" id="transportation"></p>
                                                                     </div>
                                                                 </div>
-                                                                
+
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -605,7 +605,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="optimal_building_use"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <!-- Preview Image -->
                                                                 <div class="img-previews">
                                                                     <img id="preview-0" src="#" width="40%">
@@ -663,19 +663,19 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="ownership_number"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Lokasi :</label>
                                                                     <div class="col-md-7">
-                                                                        <p class="form-control-static" id="location"></p>
+                                                                        <p class="form-control-static" id="seven_location"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Alamat Agunan :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="address_collateral"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -747,37 +747,37 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="liquidation"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Proyeksi Nilai Pasar Wajar :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="fair_market_projection"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Proyeksi Nilai Likuidasi :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="liquidation_projection"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Nilai Jual Objek Pajak (NJOP) :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="njop"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Penilaian Dilakukan Oleh :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="appraisal_by"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                                 <div class="form-group independent_appraiser">
                                                                     <label class="col-md-5 control-label">Penilai Independent :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="independent_appraiser"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -844,7 +844,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
 
                                                                 <h5>Dokumen Notaris Developer</h5>
                                                                 <div class="form-group">
@@ -865,7 +865,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information_notary"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
 
                                                                 <h5>Dokumen Take Over</h5>
                                                                 <div class="form-group">
@@ -886,7 +886,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information_takeover"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -910,7 +910,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information_credit"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
 
                                                                 <h5>SKMHT</h5>
                                                                 <div class="form-group">
@@ -931,7 +931,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information_skmht"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
 
                                                                 <h5>IMB</h5>
                                                                 <div class="form-group">
@@ -952,7 +952,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information_imb"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
 
                                                                 <h5>SHGB</h5>
                                                                 <div class="form-group">
@@ -973,7 +973,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="information_shgb"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -1011,7 +1011,7 @@
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="insurance"></p>
                                                                     </div>
-                                                                </div> 
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">

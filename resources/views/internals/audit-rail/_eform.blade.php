@@ -17,8 +17,18 @@
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
                             {!! Form::select('kanwil', ['' => ''], old('name'), [
-                                'class' => 'select2 action_kanwil',
+                                'class' => 'select2 action_kanwil2',
                                 'data-placeholder' => 'Pilih Kantor Wilayah',
+                            ]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Kantor Cabang :</label>
+                        <div class="col-sm-8">
+                            {!! Form::select('branch', ['' => ''], old('name'), [
+                                'class' => 'select2 branch',
+                                'data-placeholder' => 'Pilih Kantor Cabang',
                             ]) !!}
                         </div>
                     </div>
