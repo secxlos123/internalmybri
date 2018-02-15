@@ -17,8 +17,8 @@ class AuthCheckToken
     {
         $checkToken = $this->generateToken();
         $this->redirectLogin( $checkToken );
-
-        if ( $checkToken['contents']['refreshed'] == true ) {
+        $cek = isset($checkToken['contents']['refreshed']) ? true : false;
+        if ( $cek == true ) {
             session()->put('user.contents.token', $checkToken['contents']['token']);
             $this->generateToken();
         }
