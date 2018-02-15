@@ -96,6 +96,7 @@
             ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
         Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+        Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
 
         // Rekontes LKN
         Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
@@ -251,13 +252,17 @@
 
         /* CRM Dashboard */
 				Route::get('crm_dashboard', 'CRM\DashboardController@index');
-				Route::get('chartMarketing', 'CRM\DashboardController@chartMarketing');
+				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
 
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');
 				Route::get('add_referral', 'CRM\ReferralController@add');
 				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
 				Route::post('store_referral', 'CRM\ReferralController@store');
+				Route::post('update_referral', 'CRM\ReferralController@update');
+
+        /* Disposisi Referral */
+				Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
         /* CRM report */
 				Route::get('report/marketing', 'CRM\ReportController@marketing');
@@ -293,7 +298,7 @@
 
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
-    });
+        Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -346,6 +351,20 @@
 
     Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
 
+    Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+
+    Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
+
+    Route::get('action-detail/appointment', 'AuditRail\ActionDetailController@appointment');
+
+    Route::get('action-detail/collateral', 'AuditRail\ActionDetailController@collateral');
+
+    Route::get('action-detail/agendev', 'AuditRail\ActionDetailController@agendev');
+
+    Route::get('action-detail/property', 'AuditRail\ActionDetailController@property');
+
+    Route::get('action-detail/document', 'AuditRail\ActionDetailController@document');
+
     Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
@@ -363,6 +382,8 @@
     Route::get('renderMutation', ['as'=>'renderMutation', 'uses'=>'EForm\AOController@renderMutation']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
+
+    Route::get('auditrail/detailDocument/{nik}', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 
     Route::get('getData', ['as'=>'getData', 'uses'=>'EForm\EFormController@getData']);
 
@@ -437,7 +458,12 @@
 
         Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
 
+        Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
+
         Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
         Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+        Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
+        Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+        });
     });

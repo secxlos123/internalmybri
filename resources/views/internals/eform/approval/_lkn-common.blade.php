@@ -167,7 +167,6 @@
         </div>
     </div>
 
-    @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
     <div class="col-md-6" align="center">
         <div class="card-box">
             @if((pathinfo(strtolower($detail['visit_report']['proprietary']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($detail['visit_report']['proprietary']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($detail['visit_report']['proprietary'])), PATHINFO_EXTENSION) == 'jpeg'))
@@ -199,7 +198,6 @@
             @endif
         </div>
     </div>
-    @endif
 
     <div class="col-md-6" align="center">
         <div class="card-box">

@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama User :</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="customer_name">
+                            <input type="text" class="form-control" id="username_login">
                         </div>
                     </div>
 
@@ -42,7 +42,7 @@
                     <th>Tanggal</th>
                     <th>Nama User</th>
                     <th>Role</th>
-                    <th>Nama Modul</th>
+                    <th>Detail Aksi</th>
                     <th>IP Address</th>
                     <th>Lokasi Akses</th>
                 </tr>

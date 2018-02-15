@@ -74,13 +74,13 @@
                     </div>
                 </div>
                 <div class="form-group" id="shm" @if($eformData['kpr']['developer_id'] != 1) hidden="" @endif>
-                    <label class="col-md-6 control-label">Sertifikat Hak Milik :</label>
+                    <label class="col-md-6 control-label">Sertifikat Hak Milik * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="proprietary" accept="image/*,application/pdf">
                     </div>
                 </div>
                 <div class="form-group" id="imb" @if($eformData['kpr']['developer_id'] != 1) hidden="" @endif>
-                    <label class="col-md-6 control-label">Izin Mendirikan Bangunan :</label>
+                    <label class="col-md-6 control-label">Izin Mendirikan Bangunan * :</label>
                     <div class="col-md-6">
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="building_permit" accept="image/*,application/pdf">
                     </div>

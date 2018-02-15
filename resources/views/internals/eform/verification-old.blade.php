@@ -11,7 +11,7 @@
                                     <h4 class="page-title">Verifikasi Data Nasabah</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
-                                            <a href="{{url('/')}}">Dashboard</a>
+                                            <a href="{{url('/')}}">Home MyBRI</a>
                                         </li>
                                         <li>
                                             <a href="{{route('indexAO')}}">Pengajuan</a>
@@ -37,7 +37,7 @@
                         </div> -->
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="card-box m-t-30">                                    
+                                <div class="card-box m-t-30">
                                     <h4 class="m-t-min30 m-b-30 header-title custom-title"><b>Data Pribadi</b></h4>
                                     <table class="table table-bordered">
                                         <input type="hidden" name="eform_id" value="{{$id}}">
@@ -142,7 +142,7 @@
                             <input type="hidden" name="mother_name"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['mother_name']}}" @endif id="mother_name">
                             <input type="hidden" name="phone"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['phone']}}" @endif id="phone">
                             <input type="hidden" name="mobile_phone"  @if(!empty($dataCustomer)) value="{{$dataCustomer['customer']['mobile_phone']}}" @endif id="mobile_phone">
-                            
+
                         <div class="row" @if(!empty($dataCustomer))  @if($dataCustomer['customer']['is_completed'] == false) hidden="" @endif @endif>s
                             <div class="col-md-12">
                                 <div class="pull-right">
@@ -183,5 +183,5 @@
             </div>
         </div>
 @include('internals.layouts.footer')
-@include('internals.layouts.foot') 
+@include('internals.layouts.foot')
 @include('internals.eform.verification_script')

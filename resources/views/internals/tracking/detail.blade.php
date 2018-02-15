@@ -139,12 +139,20 @@
                         </div>
                     </div>
                     <div class="tracking-card">
-                        <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @endif">
+                        <div class="card-box widget-box-three @if($datas['status']=='Kredit Disetujui') active @elseif($datas['status']=='Kredit Ditolak') active @endif">
                             <div class="bg-icon">
                                 <i class="ti-wallet"></i>
                             </div>
                             <div class="text-center">
-                                <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
+                                <p class="m-t-5 text-uppercase font-600 font-secondary">
+                                    @if ($datas['status']=='Kredit Disetujui')
+                                    Kredit Disetujui
+                                    @elseif($datas['status']=='Kredit Ditolak')
+                                    Kredit Ditolak
+                                    @else
+                                    Status Putusan Kredit
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -156,18 +164,6 @@
                             </div>
                             <div class="text-center">
                                 <p class="m-t-5 text-uppercase font-600 font-secondary">Rekontes Kredit</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if($datas['status']=='Kredit Ditolak') 
-                    <div class="tracking-card">
-                        <div class="card-box widget-box-three active">
-                            <div class="bg-icon">
-                                <i class="ti-wallet"></i>
-                            </div>
-                            <div class="text-center">
-                                <p class="m-t-5 text-uppercase font-600 font-secondary">Kredit Ditolak</p>
                             </div>
                         </div>
                     </div>
@@ -299,7 +295,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Jumlah Permohonan :</label>
                                         <div class="col-md-8">
-                                            <p class="form-control-static">Rp {{number_format($datas['nominal'],2)}},00</p>
+                                            <p class="form-control-static">Rp {{number_format($datas['nominal'],2)}}</p>
                                         </div>
                                     </div>
                                     <!-- <div class="form-group">

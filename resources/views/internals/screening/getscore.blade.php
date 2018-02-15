@@ -11,7 +11,7 @@
                         <h4 class="page-title">Prescreening</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Prescreening
@@ -38,7 +38,7 @@
 
 
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Score Pefindo / BI Checking:</label>
+                                                <label class="col-sm-4 control-label">Score Pefindo / SLIK:</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control numericOnly required" id="pefindo_score" name="pefindo_score" maxlength="3" value="{{ isset($eform['pefindo_score']) ? $eform['pefindo_score'] : '' }}" required>
                                                 </div>

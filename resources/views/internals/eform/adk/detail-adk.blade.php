@@ -213,7 +213,7 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Catatan Pemutus :</label>
-                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_adk']?></label>
+                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_pemutus']?></label>
                                         </div>
                                     </form>
                                 </div>
@@ -359,7 +359,7 @@
     $('#btn-batal').on('click', function(){
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
-        alert(eformId);
+        // alert(eformId);
         HoldOn.open(options);
         $.ajax({
             dataType: 'json',
@@ -375,8 +375,6 @@
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             }
         }).done(function(data){
-            // console.log(data);
-            // $('#result-modal-ktp').modal('hide');
             alert(data.message);
             HoldOn.close();
             if (data.code == 200) {
@@ -446,264 +444,512 @@
     })
 
     $('#btn-update-ktp').on('click', function(){
-        eformId = $("#eform_id").val();
-        ktp = $("#ktp").val();
-        catat_ktp = $("#catatan_ktp").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : ktp,
-                catatan_ktp : catat_ktp
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-ktp').modal('hide');
-            alert(data.message);
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#ktp").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            ktp = $("#val_ktp").val();
+            catat_ktp = $("#catatan_ktp").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : ktp,
+                    catatan_ktp : catat_ktp
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-ktp').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form = $('#form_ktp')[0];
+            var data = new FormData(form);
+            console.log(data);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    $('#result-modal-ktp').modal('hide');
+                    alert(data.message);
+                    HoldOn.close();
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Gagal Terhubung ke Server");
+                    HoldOn.close();
+                }
+            });
+        }
     })
 
     $('#btn-update-npwp').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_npwp = $("#catatan_npwp").val();
-        npwp = $("#npwp").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : npwp,
-                catatan_npwp : catat_npwp
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-npwp').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#npwp").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_npwp = $("#catatan_npwp").val();
+            npwp = $("#val_npwp").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : npwp,
+                    catatan_npwp : catat_npwp
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-npwp').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form1 = $('#form_npwp')[0];
+            var data1 = new FormData(form1);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data1,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (result) {
+                    $('#result-modal-npwp').modal('hide');
+                    alert(result.message);
+                    HoldOn.close();
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Gagal Terhubung ke Server");
+                    HoldOn.close();
+                }
+            });
+        }
     })
 
     $('#btn-update-gaji').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_gaji = $("#catatan_gaji").val();
-        gaji = $("#gaji").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : gaji,
-                catatan_gaji : catat_gaji
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-gaji').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#gaji").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_gaji = $("#catatan_gaji").val();
+            gaji = $("#val_gaji").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : gaji,
+                    catatan_gaji : catat_gaji
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-gaji').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form = $('#form_gaji')[0];
+            var data = new FormData(form);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-gaji').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }
     })
 
     $('#btn-update-kk').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_kk = $("#catatan_kk").val();
-        kk = $("#kk").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : kk,
-                catatan_kk : catat_kk
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-kk').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#kk").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_kk = $("#catatan_kk").val();
+            kk = $("#val_kk").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : kk,
+                    catatan_kk : catat_kk
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-kk').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form = $('#form_kk')[0];
+            var data = new FormData(form);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-kk').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }
     })
 
     $('#btn-update-sk_awal').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_sk_awal = $("#catatan_sk_awal").val();
-        sk_awal = $("#sk_awal").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : sk_awal,
-                catatan_sk_awal : catat_sk_awal
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-sk_awal').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#sk_awal").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_sk_awal = $("#catatan_sk_awal").val();
+            sk_awal = $("#val_sk_awal").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : sk_awal,
+                    catatan_sk_awal : catat_sk_awal
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-sk_awal').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form = $('#form_sk_awal')[0];
+            var data = new FormData(form);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-sk_awal').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }
     })
 
     $('#btn-update-sk_akhir').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_sk_akhir = $("#catatan_sk_akhir").val();
-        sk_akhir = $("#sk_akhir").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : sk_akhir,
-                catatan_sk_akhir : catat_sk_akhir
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-sk_akhir').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#sk_akhir").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_sk_akhir = $("#catatan_sk_akhir").val();
+            sk_akhir = $("#val_sk_akhir").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : sk_akhir,
+                    catatan_sk_akhir : catat_sk_akhir
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-sk_akhir').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }else{
+            var form = $('#form_sk_akhir')[0];
+            var data = new FormData(form);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-sk_akhir').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }
     })
 
     $('#btn-update-rekomendasi').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_rekomendasi = $("#catatan_rekomendasi").val();
-        rekomendasi = $("#rekomendasi").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : rekomendasi,
-                catatan_rekomendasi : catat_rekomendasi
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-rekomendasi').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#rekomendasi").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_rekomendasi = $("#catatan_rekomendasi").val();
+            rekomendasi = $("#val_rekomendasi").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : rekomendasi,
+                    catatan_rekomendasi : catat_rekomendasi
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-rekomendasi').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form = $('#form_rekomendasi')[0];
+            var data = new FormData(form);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-rekomendasi').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }
     })
 
     $('#btn-update-skpu').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_skpu = $("#catatan_skpu").val();
-        skpu = $("#skpu").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : skpu,
-                catatan_skpu : catat_skpu
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-skpu').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#skpu").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_skpu = $("#catatan_skpu").val();
+            skpu = $("#val_skpu").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : skpu,
+                    catatan_skpu : catat_skpu
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-skpu').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form1 = $('#form_skpu')[0];
+            // var form1 = $('form').serialize();
+            var data = new FormData(form1);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    $('#result-modal-skpu').modal('hide');
+                    alert(data.message);
+                    HoldOn.close();
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Gagal Terhubung ke Server");
+                    HoldOn.close();
+                }
+            });
+        }
     })
 
     $('#btn-update-couple_ktp').on('click', function(){
-        eformId = $("#eform_id").val();
-        catat_couple_ktp = $("#catatan_couple_ktp").val();
-        couple_ktp = $("#couple_ktp").val();
-        HoldOn.open(options);
-        $.ajax({
-            dataType: 'json',
-            type: 'POST',
-            url: '{{ route("keterangan") }}',
-            data: {
-                eform : eformId,
-                type  : couple_ktp,
-                catatan_couple_ktp : catat_couple_ktp
-            },
-            headers: {
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            }
-        }).done(function(data){
-            // console.log(data);
-            $('#result-modal-couple_ktp').modal('hide');
-            alert(data.message);            
-            HoldOn.close();
-            location.reload();
-        }).fail(function(errors) {
-            alert("Gagal Terhubung ke Server");
-            HoldOn.close();
-        });
+        var type = $("#couple_ktp").val();
+        // alert(type);
+        if (type == 'nomulti') {
+            eformId = $("#eform_id").val();
+            catat_couple_ktp = $("#catatan_couple_ktp").val();
+            couple_ktp = $("#val_couple_ktp").val();
+            HoldOn.open(options);
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '{{ route("keterangan") }}',
+                data: {
+                    eform_id : eformId,
+                    type  : couple_ktp,
+                    catatan_couple_ktp : catat_couple_ktp
+                },
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-couple_ktp').modal('hide');
+                alert(data.message);            
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        } else {
+            var form = $('#form_ktp_pasangan')[0];
+            var data = new FormData(form);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("keterangan") }}',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+            }).done(function(data){
+                // console.log(data);
+                $('#result-modal-couple_ktp').modal('hide');
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            }).fail(function(errors) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            });
+        }
     })
 </script>
 

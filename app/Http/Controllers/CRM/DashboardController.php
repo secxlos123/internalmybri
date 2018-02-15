@@ -27,7 +27,26 @@ class DashboardController extends Controller
   public function index()
   {
     $data = $this->getUser();
-    return view('internals.crm.dashboard.index', compact('data'));
+    $crmIndex = Client::setEndpoint('crm')
+    ->setHeaders([
+      'pn' => $data['pn'],
+      'branch' => $data['branch'],
+      'Authorization' => $data['token'],
+      'Content-Type' => 'application/json'
+    ])
+    ->get();
+    $getPemasar = Client::setEndpoint('crm/pemasar')
+    ->setHeaders([
+      'pn' => $data['pn'],
+      'branch' => $data['branch'],
+      'Authorization' => $data['token'],
+      'Content-Type' => 'application/json'
+    ])
+    ->post();
+    $product = $crmIndex['contents']['product_type'];
+    $pemasar = $getPemasar['contents'];
+
+    return view('internals.crm.dashboard.index', compact('data', 'product', 'pemasar'));
   }
 
   public function chartMarketing(Request $request)
@@ -35,30 +54,34 @@ class DashboardController extends Controller
     /* GET UserLogin Data */
     $data = $this->getUser();
 
-    $chartData = Client::setEndpoint('crm/marketing')
-        ->setQuery(['role' => $data['role']])
-        ->setHeaders([
-            'Authorization' => $data['token'],
-            'pn' => $data['pn'],
-            'branch' => $data['branch']
-        ])
-        ->get();
 
-    // return $chartData;
+    $bulan = $request->input('bulan');
+    $pemasar = $request->input('pemasar');
+    $product = $request->input('product');
 
-    $chart_data = array();
-    foreach ($chartData['contents'] as $chart) {
-      return $chart;
-        // $yearName = date("Y", strtotime($chart->new_date));
-        $monthName = $chart['month'];
-        $value = $chart['value'];
-
-        $chart_data[] = array(
-            'month'  => $monthName,
-            'value' => $value
-            );
+    if ($data['role'] == 'pinca') {
+      $pn = $pemasar;
+    } elseif ($data['role'] == 'ao' || $data['role'] == 'fo') {
+      $pn = $data['pn'];
     }
-    return $chart_data;
+
+    // return $product;
+
+    $chartData = Client::setEndpoint('crm/marketing_summary')
+    ->setQuery(['role' => $data['role']])
+    ->setHeaders([
+      'Authorization' => $data['token'],
+      'pn' => $data['pn'],
+      'branch' => $data['branch']
+    ])
+    ->setBody([
+      "product_type"=>$product, //filter pruduk
+      "month"=>$bulan,//filter bulan
+      "pn"=>$pn //filter officer
+    ])
+    ->post();
+
+    return $chartData['contents'];
   }
 
 }
