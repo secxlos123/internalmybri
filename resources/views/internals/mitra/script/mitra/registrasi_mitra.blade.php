@@ -1,6 +1,14 @@
 
 <script type="text/javascript">
+
+
+function testbutton(){
+	  setTimeout(function(){
+         document.getElementById('load').style.visibility="visible";
+      },1000);
+}
 $(document).ready(function() {
+	
 	//------------------all hidden---------------------------------
 		$("#induk_mitra_text").hide();
 		$("#back_induk_mitra_button").hide();
