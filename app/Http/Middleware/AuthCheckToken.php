@@ -15,43 +15,20 @@ class AuthCheckToken
      */
     public function handle($request, Closure $next)
     {
-        $checkToken = $this->generateToken();
-        $this->redirectLogin( $checkToken );
-        $cek = isset($checkToken['contents']['refreshed']) ? true : false;
-        if ( $cek == true ) {
+        $checkToken = \Client::setEndpoint('check-token')
+                      ->setHeaders(['Authorization' => session()->get('user.contents.token'),
+                                    'pn' => session()->get('user.contents.pn')
+                      ])->get();
+        if($checkToken['code'] == 404){
+            return redirect()->guest('/login');
+        }
+        if($checkToken['contents']['refreshed'] == true){
             session()->put('user.contents.token', $checkToken['contents']['token']);
-            $this->generateToken();
+            return $next($request);
+        }else{
+            return $next($request);
         }
 
         return $next($request);
-    }
-
-    /**
-     * Redirect function
-     *
-     * @param array $checkToken
-     * @return mixed
-     **/
-    public function redirectLogin( $checkToken )
-    {
-        if ( $checkToken['code'] == 404 ) {
-            return redirect()->guest('/login');
-        }
-    }
-
-    /**
-     * Generate Token
-     *
-     * @return array
-     **/
-    public function generateToken()
-    {
-        return \Client::setEndpoint('check-token')
-            ->setHeaders(
-                array(
-                    'Authorization' => session()->get('user.contents.token')
-                    ,'pn' => session()->get('user.contents.pn')
-                )
-            )->get();
     }
 }
