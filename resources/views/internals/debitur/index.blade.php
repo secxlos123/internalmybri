@@ -7,12 +7,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    
+
                     <div class="page-title-box">
                         <h4 class="page-title">Daftar Debitur</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Daftar Profil Debitur
@@ -62,7 +62,7 @@
                                                     ]) !!}
                                                 </div>
                                             </div>
-                                            
+
                                         </form>
                                         <div class="text-right">
                                             <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
@@ -94,7 +94,7 @@
         </div>
     </div>
     @include('internals.layouts.footer')
-    @include('internals.layouts.foot') 
+    @include('internals.layouts.foot')
     <script type="text/javascript">
         var table1 = $('#datatable').DataTable({
             searching: false,
@@ -147,7 +147,7 @@
                 witdh : '100%',
                 allowClear: true,
             });
-            
+
             $('.cities').select2({
                 witdh : '100%',
                 allowClear: true,

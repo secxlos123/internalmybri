@@ -12,7 +12,7 @@
                         <h4 class="page-title">Daftar Approval Perubahan Data Mitra Kerja</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Daftar Approval Perubahan Data Mitra Kerja
@@ -70,6 +70,7 @@
                                         <th>Alamat Perusahaan</th>
                                         <th>Kota</th>
                                         <th>Handphone</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -80,6 +81,7 @@
                                             <td>{!! $data_apporals['address'] !!}</td>
                                             <td>{!! $data_apporals['city_id'] !!}</td>
                                             <td>{!! $data_apporals['mobile_phone'] !!}</td>
+                                            <td>{!! $data_apporals['status'] !!}</td>
                                             <td>{!! $data_apporals['action'] !!}</td>
                                         </tr>
                                     </tbody>
@@ -133,6 +135,7 @@
                 { data: "address", name: 'address' },
                 { data: "city_id", name: 'city_id' },
                 { data: "mobile_phone", name: 'mobile_phone' },
+                { data: "status", name: 'status' },
                 { data: "action", name: 'action', bSortable: false },
                 ],
             });

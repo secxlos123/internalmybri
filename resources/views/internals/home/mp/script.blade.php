@@ -41,13 +41,13 @@
             dataType: "json",
             success: function (data) {
                 var $stckedData = data;
-
                 MorrisCharts.prototype.createStackedChart('morris-bar-stacked', $stckedData, 'month', ['value'], ['Pengajuan Baru'], ['#00529C']);
             },
         })
     },
     //init
-    $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts
+    $.MorrisCharts = new MorrisCharts,
+    $.MorrisCharts.Constructor = MorrisCharts
 }(window.jQuery),
 //initializing
 function($) {

@@ -273,7 +273,7 @@ if (! function_exists('get_employment')) {
     function get_employment($key)
     {
         $data = array(
-            "1" => "Pegawai Tetap"
+           "1" => "Pegawai Tetap"
             , "2" => "Kontrak"
             , "3" => "Honorer"
             , "4" => "Lainnya"

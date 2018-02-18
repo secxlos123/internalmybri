@@ -122,6 +122,42 @@ class ReferralController extends Controller
       }
     }
 
+    public function update(Request $request)
+    {
+      $data = $this->getUser();
+
+      $body = [
+        'ref_id' => $request->input('ref_id'),
+        'officer_ref' => $request->input('officer_ref'),
+        'officer_name' => $request->input('officer_name'),
+        'status' => 'dispo'
+      ];
+
+      // dd($body);
+      // dd($data);
+      $updateReferal = Client::setEndpoint('crm/account/update_officer_referral')
+          ->setHeaders([
+            'pn' => $data['pn'],
+            'branch' => $data['branch'],
+            'name' => $data['name'],
+            'Authorization' => $data['token'],
+            'Content-Type' => 'application/json'
+          ])
+          ->setBody($body)
+          ->post();
+
+          // dd($updateReferal);
+
+      if($updateReferal['code'] == 200){
+        \Session::flash('success', $updateReferal['descriptions']);
+        return redirect()->back();
+      }else{
+        $error = reset($updateReferal['contents']);
+        \Session::flash('error', $updateReferal['descriptions'].' '.$error);
+        return redirect()->back()->withInput($request->input());
+      }
+    }
+
     public function nikCek(Request $request)
     {
       $user = $this->getUser();
@@ -141,5 +177,32 @@ class ReferralController extends Controller
           ->post();
 
       return $nikCek;
+    }
+
+    public function disposisiReferral(Request $request)
+    {
+      $data = $this->getUser();
+      // dd(env('APP_ENV'));
+      $referrals = Client::setEndpoint('crm/account/get_referral')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->get();
+
+      $getPemasar = Client::setEndpoint('crm/pemasar')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->post();
+
+      $referral = $referrals['contents'];
+      $pemasar = $getPemasar['contents'];
+      return view('internals.crm.disposisi-referal.index', compact('data', 'referral', 'pemasar'));
     }
 }

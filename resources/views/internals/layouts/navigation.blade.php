@@ -4,6 +4,9 @@
       <ul>
         <li class="menu-title">Navigasi Utama</li>
         <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a>
+        @if(($data['role']=='ao') || ($data['role']=='fo') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus'))
+        <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a>
+        @endif
         </li>
         @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
         <li>
@@ -102,22 +105,34 @@
 
 </li>
 @endif
-@if(($data['role']=='cs'))
-  <li>
-    <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
-  </li>
-  <li class="treeview">
-    <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
-    <ul class="treeview-menu">
-      <li>
-        <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
-      </li>
-      <li>
-        <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
-      </li>
-    </ul>
-  </li>
+
+@if($data['role']=='cs')
+<li>
+  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
+</li>
 @endif
+
+@if($data['role'] == 'amp' || $data['role'] == 'mp' || $data['role'] == 'pincapem' || $data['role'] == 'pinca')
+<li class="treeview">
+  <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
+  <ul class="treeview-menu">
+    <li>
+      <a href="{{ url('report/marketing') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Marketing</span> </a>
+    </li>
+
+    <li>
+      <a href="{{ url('report/activity') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span>CRM Activity</span> </a>
+    </li>
+  </ul>
+</li>
+@endif
+
+
+<li>
+  <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
+</li>
+
+
 <hr>
 <li>
   <a href="#" id="signout" class="waves-effect"><i class="mdi mdi-logout"></i> <span> Keluar </span> </a>

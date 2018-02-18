@@ -12,6 +12,26 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Kantor Wilayah :</label>
+                        <div class="col-sm-8">
+                            {!! Form::select('kanwil', ['' => ''], old('name'), [
+                                'class' => 'select2 action_kanwil2',
+                                'data-placeholder' => 'Pilih Kantor Wilayah',
+                            ]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Kantor Cabang :</label>
+                        <div class="col-sm-8">
+                            {!! Form::select('branch', ['' => ''], old('name'), [
+                                'class' => 'select2 branch',
+                                'data-placeholder' => 'Pilih Kantor Cabang',
+                            ]) !!}
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nama User :</label>
@@ -20,9 +40,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Nama Modul :</label>
+                        <label class="col-sm-4 control-label">Detail Aksi :</label>
                         <div class="col-sm-8">
-                           <input type="text" class="form-control" id="modul_name">
+                           {!! Form::select('action_pengajuan_kredit', ['' => ''], old('name'), [
+                                'class' => 'select2 action_pengajuan_kredit',
+                                'data-placeholder' => 'Pilih Detail Aksi',
+                                'id' => 'modul_name'
+                            ]) !!}
                        </div>
                    </div>
 
@@ -47,7 +71,7 @@
             <thead class="bg-primary">
                 <tr>
                     <th>Tanggal</th>
-                    <th>Nama Modul</th>
+                    <th>Detail Aksi</th>
                     <th>Nama User</th>
                     <th>Nomor Referensi</th>
                     <th>Data Lama</th>
