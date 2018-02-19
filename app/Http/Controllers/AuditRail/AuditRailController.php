@@ -627,7 +627,7 @@ class AuditRailController extends Controller
       $data = $this->getUser();
       $branch = Client::setEndpoint('auditrail/getBranch')
                 ->setHeaders(['Authorization' => $data['token'], 'pn' => $data['pn']])
-                ->setQuery(['search' => $request->input('branch'), 'page' => $request->input('page')])
+                ->setQuery(['search' => $request->input('branch'), 'branch_id' => $request->input('branch_id'), 'page' => $request->input('page')])
                 ->get();
 
       $contents = array();
