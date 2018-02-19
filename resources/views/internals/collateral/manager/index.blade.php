@@ -122,6 +122,7 @@
                                                                                     <th>Nama Pengaju</th>
                                                                                     <th>Kota</th>
                                                                                     <th>Telepon</th>
+                                                                                    <th>Status Pengajuan</th>
                                                                                     <th>Staff Penilai</th>
                                                                                     <th>Status Approval</th>
                                                                                     <th style="width: 150px">Aksi</th>
@@ -240,6 +241,7 @@
             {   data: 'first_name', name: 'first_name', bSortable: false  },
             {   data: 'home_location', name: 'home_location',  bSortable: false  },
             {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
+            {   data: 'status_tracking', name: 'status_tracking', bSortable: false },
             // {   data: 'product_type', name: 'product_type' },
             {   data: 'staff_name', name: 'staff_name', bSortable: false },
             {   data: 'status_label', name: 'status_label', bSortable: false },
