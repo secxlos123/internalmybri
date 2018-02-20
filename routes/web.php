@@ -374,6 +374,8 @@
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
 
+    Route::get('getKanwil2', ['as'=>'getKanwil2', 'uses'=>'OfficeController@getKanwil2']);
+
     Route::get('getInsurance', ['as'=>'getInsurance', 'uses'=>'DropdownController@getInsurance']);
 
     Route::get('getAppraiser', ['as'=>'getAppraiser', 'uses'=>'DropdownController@getAppraiser']);

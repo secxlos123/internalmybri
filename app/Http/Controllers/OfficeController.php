@@ -81,4 +81,38 @@ class OfficeController extends Controller
 
         return response()->json(['kanwil' => $kanwil['contents']]);
     }
+
+    /**
+     * Get Kanwil For Auditrail
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getKanwil2(Request $request)
+    {
+        $data = $this->getUser();
+
+        $kanwil = \Client::setEndpoint('kanwil-list')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                // , 'auditaction' => 'action name'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->setQuery([
+                'name' => $request->input('name'),
+                'page' => $request->input('page')
+            ])
+            ->get();
+
+
+        foreach ($kanwil['contents']['data'] as $key => $region) {
+            if ($region['id'] = $region['branch_id']) {
+                $region['text'] = $region['region_name'];
+                $kanwil['contents']['data'][$key] = $region;
+            }
+        }
+
+        return response()->json(['kanwil' => $kanwil['contents']]);
+    }
 }
