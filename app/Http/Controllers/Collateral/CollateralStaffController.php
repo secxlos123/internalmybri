@@ -410,7 +410,7 @@ class CollateralStaffController extends Controller
       }else{
         $error = reset($client['contents']);
         \Session::flash('error', $client['descriptions'].' '.$error);
-        return redirect()->back()->withInput($request->input());
+        return redirect()->back()->withInput();
       }
     }
 

@@ -86,7 +86,6 @@
                         Janda / Duda
                     @endif
                     </p>
-                    </p>
                 </div>
             </div>
             <div class="form-group">
