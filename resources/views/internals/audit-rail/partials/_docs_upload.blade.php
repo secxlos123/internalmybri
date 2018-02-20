@@ -24,7 +24,7 @@
                             @endif
                             @else
                             <a href="@if(!empty($dataUploads['name'])){{$dataUploads['name']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
-                            <p>Klik Untuk Lihat Document</p>
+                            <p>Klik Untuk Lihat Dokumen</p>
                             @endif
                         </div>
                     </div>
