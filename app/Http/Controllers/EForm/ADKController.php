@@ -801,8 +801,8 @@ class ADKController extends Controller
         $eforms = ['contents' => 
             [
                 'draw'            => $request->input('draw'),
-                'recordsTotal'    => '1',
-                'recordsFiltered' => '1',
+                'recordsTotal'    => '0',
+                'recordsFiltered' => '0',
                 'data'            => [
                     // 'cif' => '123123',
                     // 'tgl_pengajuan' => '123122',
@@ -1024,7 +1024,6 @@ class ADKController extends Controller
     }
 
     public function exportDebitur(Request $request) {
-        // return $this->exportKredit($request);
         $data = $this->getUser();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
@@ -1131,13 +1130,13 @@ class ADKController extends Controller
             $detail['premi_beban_bri'] = $premi_beban_bri;
             $detail['status_send'] = $status;
             // dd($detail);
-            $this->data['detail'] = $detail;
-            return view('internals.eform.adk._report_kredit')->with($this->data);
+            // $this->data['detail'] = $detail;
+            // return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
-            // $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
-            //         ['detail' => $detail])
-            //         ->setPaper('a4', 'landscape');
-            // return $pdf->download('detail_kredit.pdf');            
+            $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
+                    ['detail' => $detail])
+                    ->setPaper('a4', 'landscape');
+            return $pdf->download('detail_kredit.pdf');            
         } else {
             \Session::flash('error', 'Dokumen Detail Kredit gagal didownload');
             return redirect()->route('adk.index');
