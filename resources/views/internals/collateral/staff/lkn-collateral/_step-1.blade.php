@@ -12,7 +12,7 @@
                 <div class="form-group m-t-20">
                     <div class="col-md-6">
                         <label class="control-label">Lokasi * </label>
-                        <textarea name="area[location]" id="location" class="form-control" rows="3" maxlength="250">{{ $type == 'nonindex' ? $collateral['home_location'] : $collateral['property']['address']}}</textarea>
+                        <textarea name="area[location]" id="location" class="form-control" rows="3" maxlength="250" ">{{ $type == 'nonindex' ? old('area.location',$collateral['home_location']) : old('area.location',$collateral['property']['address'])}}</textarea>
                     </div>
                     @if ($errors->has('area[location]')) <p class="help-block">{{ $errors->first('area[location]') }}</p> @endif
                     <div class="col-md-3">
@@ -35,7 +35,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Tipe KPR * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('area[collateral_type]', array("" => "", "Independent" => "Independent", "Proyek" => "Proyek"), old('area[collateral_type]'), [
+                                {!! Form::select('area[collateral_type]', array("" => "", "Independent" => "Independent", "Proyek" => "Proyek"), old('area.collateral_type'), [
                                     'class' => 'select2 area[collateral_type] ',
                                     'data-placeholder' => '-- Pilih Tipe --',
                                     'id' => 'collateral_type'
@@ -46,7 +46,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Kota/Kabupaten * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('area[city_id]', ['' => ''], old('cities'), [
+                                {!! Form::select('area[city_id]', ['' => ''], old('area.city_id'), [
                                     'class' => 'select2 cities',
                                     'data-placeholder' => '-- Pilih Kota --',
                                     'id' => 'district'
@@ -57,7 +57,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Kecamatan * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="area[district]" maxlength="30" value="{{old('area[district]')}}" id="sub_district">
+                                <input type="text" class="form-control" name="area[district]" maxlength="30" value="{{old('area.district')}}" id="sub_district">
                             </div>
                             @if ($errors->has('area[district]')) <p class="help-block">{{ $errors->first('area[district]') }}</p> @endif
                         </div>
@@ -88,12 +88,12 @@
                             <label class="col-md-4 control-label">Jarak * :</label>
                             <div class="col-md-8">
                                 <div class="bottom10">
-                                    <input type="text" class="form-control numericOnly" name="area[distance]" maxlength="5" value="{{old('area[distance]')}}" id="distance">
+                                    <input type="text" class="form-control numericOnly" name="area[distance]" maxlength="5" value="{{old('area.distance')}}" id="distance">
                                 </div>
                                 @if ($errors->has('area[distance]')) <p class="help-block">{{ $errors->first('area[distance]') }}</p> @endif
                                 <div class="row">
                                     <div class="col-md-5">
-                                        {!! Form::select('area[unit_type]', array("" => "", "1" => "Kilometer", "2" => "Meter"), old('area[unit_type]'), [
+                                        {!! Form::select('area[unit_type]', array("" => "", "1" => "Kilometer", "2" => "Meter"), old('area.unit_type'), [
                                             'class' => 'select2 unit_type ',
                                             'data-placeholder' => '-- Satuan --'
                                         ]) !!}
@@ -105,7 +105,7 @@
                                     </div>
 
                                     <div class="col-md-5">
-                                        {!! Form::select('area[distance_from]', array("" => "", "Pusat Kota" => "Pusat Kota", "Pusat Desa" => "Pusat Desa"), old('area[distance_from]'), [
+                                        {!! Form::select('area[distance_from]', array("" => "", "Pusat Kota" => "Pusat Kota", "Pusat Desa" => "Pusat Desa"), old('area.distance_from'), [
                                             'class' => 'select2 distance_from ',
                                             'data-placeholder' => '-- Lokasi --'
                                         ]) !!}
@@ -121,7 +121,7 @@
                                     "Langsung Menghadap Jalan" => "Langsung Menghadap Jalan",
                                     "Tidak Menghadap ke jalan tetapi mempunyai jalan masuk" => "Tidak Menghadap ke jalan tetapi mempunyai jalan masuk",
                                     "Untuk mencapai tanah tersebut harus melewati orang lain" => "Untuk mencapai tanah tersebut harus melewati orang lain"),
-                                    old('area[position_from_road]'), [
+                                    old('area.position_from_road'), [
                                     'class' => 'select2 position_from_road',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -135,7 +135,7 @@
                                     "Segi Empat" => "Segi Empat",
                                     "Trapesium" => "Trapesium",
                                     "Tidak Beraturan" => "Tidak Beraturan"),
-                                    old('area[ground_type]'), [
+                                    old('area.ground_type'), [
                                     'class' => 'select2 ground_type ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -148,7 +148,7 @@
                         <label class="col-md-5 control-label">Jarak Posisi Terhadap Jalan * :</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" maxlength="4" name="area[distance_of_position]" value="{{old('area[distance_of_position]')}}" id="distance_of_position">
+                                <input type="text" class="form-control numericOnly" maxlength="4" name="area[distance_of_position]" value="{{old('area.distance_of_position')}}" id="distance_of_position">
                                 <span class="input-group-addon has-ket-input">M</span>
                             </div>
                         </div>
@@ -156,31 +156,31 @@
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Batas Utara * :</label>
                         <div class="col-md-7">
-                            <input type="text" class="form-control" name="area[north_limit]" maxlength="50" value="{{old('area[north_limit]')}}" id="north_limit">
+                            <input type="text" class="form-control" name="area[north_limit]" maxlength="50" value="{{old('area.north_limit')}}" id="north_limit">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Batas Timur * :</label>
                         <div class="col-md-7">
-                            <input type="text" class="form-control" name="area[east_limit]" maxlength="50" value="{{old('area[east_limit]')}}" id="east_limit">
+                            <input type="text" class="form-control" name="area[east_limit]" maxlength="50" value="{{old('area.east_limit')}}" id="east_limit">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Batas Selatan * :</label>
                         <div class="col-md-7">
-                            <input type="text" class="form-control" name="area[south_limit]" maxlength="50" value="{{old('area[south_limit]')}}" id="south_limit">
+                            <input type="text" class="form-control" name="area[south_limit]" maxlength="50" value="{{old('area.south_limit')}}" id="south_limit">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Batas Barat * :</label>
                         <div class="col-md-7">
-                            <input type="text" class="form-control" name="area[west_limit]" maxlength="50" value="{{old('area[west_limit]')}}" id="west_limit">
+                            <input type="text" class="form-control" name="area[west_limit]" maxlength="50" value="{{old('area.west_limit')}}" id="west_limit">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Keterangan Lain * :</label>
                         <div class="col-md-7">
-                            <textarea class="form-control" rows="3" name="area[another_information]" maxlength="250" id="another_information">{{old('area[another_information]')}}</textarea>
+                            <textarea class="form-control" rows="3" name="area[another_information]" maxlength="250" id="another_information">{{old('area.another_information')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group clearfix">
@@ -190,7 +190,7 @@
                                 "Tanah Rata" => "Tanah Rata",
                                 "Bergelombang" => "Bergelombang",
                                 "Landai" => "Landai"),
-                                old('area[ground_level]'), [
+                                old('area.ground_level'), [
                                 'class' => 'select2 ground_level',
                                 'data-placeholder' => '-- Pilih --'
                             ]) !!}
@@ -200,7 +200,7 @@
                         <label class="col-md-5 control-label">Luas Tanah Sesuai Lapang * :</label>
                         <div class="col-md-7">
                             <div class="input-group" style="width: 100%;">
-                                <input type="text" class="form-control numericOnly" maxlength="4" name="area[surface_area]" value="{{old('area[surface_area]')}}" id="surface_area">
+                                <input type="text" class="form-control numericOnly" maxlength="4" name="area[surface_area]" value="{{old('area.surface_area')}}" id="surface_area">
                                 <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                             </div>
                         </div>

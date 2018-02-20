@@ -12,7 +12,7 @@
                                     "Akta Pembebanan Hak" => "Akta Pembebanan Hak", 
                                     "Fiducia Bangunan" => "Fiducia Bangunan", 
                                     "Lain-lain" => "Lain-lain"), 
-                                    old('other[bond_type]'), [
+                                    old('other.bond_type'), [
                                     'class' => 'select2 bond_type ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -24,7 +24,7 @@
                                 {!! Form::select('other[use_of_building_function]', array("" => "", 
                                     "Sesuai" => "Sesuai", 
                                     "Tidak" => "Tidak"), 
-                                    old('other[use_of_building_function]'), [
+                                    old('other.use_of_building_function'), [
                                     'class' => 'select2 use_of_building_function ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -36,7 +36,7 @@
                                 {!! Form::select('other[optimal_building_use]', array("" => "", 
                                     "Sesuai" => "Sesuai", 
                                     "Tidak" => "Tidak"), 
-                                    old('other[optimal_building_use]'), [
+                                    old('other.optimal_building_use'), [
                                     'class' => 'select2 optimal_building_use ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -48,7 +48,7 @@
                                 {!! Form::select('other[building_exchange]', array("" => "", 
                                     "Disewakan" => "Disewakan", 
                                     "Digunakan" => "Digunakan"), 
-                                    old('other[building_exchange]'), [
+                                    old('other.building_exchange'), [
                                     'class' => 'select2 building_exchange ',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -57,7 +57,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Hal-Hal Yang Perlu Diketahui Bank * :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know" maxlength="250">{{old('other[things_bank_must_know]')}}</textarea>
+                                <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know" maxlength="250">{{old('other.things_bank_must_know')}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
