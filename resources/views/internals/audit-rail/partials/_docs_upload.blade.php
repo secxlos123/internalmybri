@@ -2,10 +2,14 @@
     <div class="col-md-12">
         <div class="panel panel-color panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Dokumen Upload</h3>
+                <h3 class="panel-title">Dokumen PDF</h3>
             </div>
              @foreach( $dataUpload as $dataUploads )
-            <div class="panel-body">
+                @if(substr($dataUploads['name'], -3) != 'pdf')
+            <div class="panel-body" hidden="hidden">
+                @else
+            <div class="panel-body"
+                @endif
                 <div class="row">
                     <div class="col-md-3" align="center">
                     </div>
