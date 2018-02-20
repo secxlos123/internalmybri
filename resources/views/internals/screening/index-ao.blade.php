@@ -107,7 +107,7 @@ tr.shown td.details1-control {
         });
 
         var table1 = $('#datatable').DataTable({
-            searching: false,
+            searching: true,
             "language": {
                 "emptyTable": "No data available in table"
             }
