@@ -21,7 +21,7 @@
                     @foreach($collateral['property']['propertyItems'] as $index => $propItem)
                         <tr>
                             <td>
-                                <p class="form-control-static">{{$propItem['property_type_id']}}</p>
+                                <p class="form-control-static">{{$propItem['property_type_name']}}</p>
                             </td>
                             <td>
                                 <p class="form-control-static">{{$propItem['address']}}</p>
