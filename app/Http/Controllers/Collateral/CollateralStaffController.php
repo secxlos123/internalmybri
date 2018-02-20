@@ -267,9 +267,9 @@ class CollateralStaffController extends Controller
         $collateral = $this->getDataIndex($request, $dev_id, $prop_id, $data);
             // dd($collateral);
       }
-      if($collateral['property']['category'] == 0){
+      if($collateral['property']['category'] == 1){
         $category_name = 'Rumah Tapak';
-      }elseif($collateral['property']['category'] == 1){
+      }elseif($collateral['property']['category'] == 2){
         $category_name = 'Rumah Susun/Apartment';
       }else{
         $category_name = 'Rumah Toko';
