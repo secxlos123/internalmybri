@@ -26,6 +26,8 @@
                 @include('internals.home.ao.index')
             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
                 @include('internals.home.mp.index')
+            @else
+                @include('internals.home.others.index')
             @endif
         </div>
     </div>

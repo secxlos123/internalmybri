@@ -14,10 +14,16 @@
     /* Auth */
 			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
 			Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
+			Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
+			Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
+			Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
+			Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
+			Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
 			Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
 			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
 			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+			//Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
 			Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
 			Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
 			Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
@@ -241,6 +247,9 @@
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
+		
+		/* Fasilitas*/
+        Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
@@ -248,6 +257,7 @@
         /* CRM Dashboard */
 				Route::get('crm_dashboard', 'CRM\DashboardController@index');
 				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
+				Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
 
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');
@@ -364,6 +374,8 @@
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
 
+    Route::get('getKanwil2', ['as'=>'getKanwil2', 'uses'=>'OfficeController@getKanwil2']);
+
     Route::get('getInsurance', ['as'=>'getInsurance', 'uses'=>'DropdownController@getInsurance']);
 
     Route::get('getAppraiser', ['as'=>'getAppraiser', 'uses'=>'DropdownController@getAppraiser']);
@@ -377,6 +389,8 @@
     Route::get('renderMutation', ['as'=>'renderMutation', 'uses'=>'EForm\AOController@renderMutation']);
 
     Route::get('detailCustomer', ['as'=>'detailCustomer', 'uses'=>'EForm\EFormController@detailCustomer']);
+
+    Route::get('list-branch', 'AuditRail\AuditRailController@getBranch')->name('list-branch');
 
     Route::get('auditrail/detailDocument/{nik}', ['as'=>'detailDocument', 'uses'=>'AuditRail\AuditRailController@detailDocument']);
 

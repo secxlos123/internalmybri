@@ -257,6 +257,65 @@
                 cache: true
             },
         });
+
+        $('.action_kanwil2').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getKanwil2")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                     //   aoId: $('#fake-aoid').val(),
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    // console.log(data);
+                    return {
+                        results: data.kanwil.data,
+                        pagination: {
+                            more: (params.page * data.kanwil.per_page) < data.kanwil.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        $('.action_kanwil2').on('select2:select', function(){
+                $('#branch_id').val($(this).val());
+        });
+
+        $('.branch').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("list-branch")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        branch: params.term,
+                        branch_id: $('#branch_id').val(),
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+              
+                    return {
+                        results: data.branch.data,
+                        pagination: {
+                            more: (params.page * data.branch.per_page) < data.branch.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
         // $('.name').on('select2:select', function(){
         //     $('#fake-aoid').val($(this).val());
         // });

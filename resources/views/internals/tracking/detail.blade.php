@@ -169,7 +169,7 @@
                     </div>
                     @endif
                     <div class="tracking-card">
-                        <div class="card-box widget-box-three">
+                        <div class="card-box widget-box-three @if($datas['status']=='Pencairan') active @endif">
                             <div class="bg-icon">
                                 <i class="fa fa-usd"></i>
                             </div>
