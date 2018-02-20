@@ -8,7 +8,7 @@
                 @if(substr($dataUploads['name'], -3) != 'pdf')
             <div class="panel-body" hidden="hidden">
                 @else
-            <div class="panel-body"
+            <div class="panel-body">
                 @endif
                 <div class="row">
                     <div class="col-md-3" align="center">
