@@ -328,7 +328,7 @@ $('#btn-approve').on('click', function(){
 })
 
 $('#btn-reject').on('click', function(){
-    $('#is_approved').attr('value', true);
+    $('#is_approved').attr('value', false);
     $('#auditaction').val('Reject Kredit');
     HoldOn.open(options);
     $('#form1').submit();

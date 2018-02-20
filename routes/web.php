@@ -23,6 +23,7 @@
 			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
 			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
 			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+			//Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
 			Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
 			Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
 			Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
@@ -246,6 +247,9 @@
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
+		
+		/* Fasilitas*/
+        Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
@@ -369,6 +373,8 @@
     Route::get('getStaff', ['as'=>'getStaff', 'uses'=>'DropdownController@getStaff']);
 
     Route::get('getKanwil', ['as'=>'getKanwil', 'uses'=>'OfficeController@getKanwil']);
+
+    Route::get('getKanwil2', ['as'=>'getKanwil2', 'uses'=>'OfficeController@getKanwil2']);
 
     Route::get('getInsurance', ['as'=>'getInsurance', 'uses'=>'DropdownController@getInsurance']);
 

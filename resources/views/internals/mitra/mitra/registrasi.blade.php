@@ -4,12 +4,27 @@
 @include('internals.layouts.navigation')
   
   <!-- Modal -->
+				
+<style>
+#load{
+    width:100%;
+    height:100%;
+    position:fixed;
+    z-index:9999;
+    background:url("http://localhost:9000/assets/images/loading-image.gif") no-repeat center center rgba(0,0,0,0.25)
+}
+</style>		
+												
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
+
+            <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_scoring"> 
+			{{ csrf_field() }}
+
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">FASILITAS LAINNYA</h4>
       </div>
       <div class="modal-body">
        <div class="row">
@@ -29,9 +44,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary" id="save_modal" name="save_modal" >Save changes</button>
       </div>
     </div>
+	</form>
   </div>
 </div>
     <div class="content-page">
@@ -47,7 +63,7 @@
                             <div class="panel panel-color panel-primary">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Informasi Dasar Mitra Kerjasama</h3>
-                                </div>
+                                </div> 
 								<?php echo $view;?>
 							</div>
                     </div>
@@ -247,7 +263,7 @@
 													</div>-->
 													<div class="col-md-2">                               
 														<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-submit" name="btn-submit"><i class="mdi mdi-content-save"></i>Simpan </button>
-													</div>
+														
                                             </div>
 										</div>
 										
