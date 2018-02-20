@@ -36,8 +36,8 @@
                                 <p class="form-control-static">{{ucwords($propItem['status'])}}</p>
                             </td>
                             <td>
-                                @if ( isset($propItem['photos']) )
-                                    <img id="preview" @if(isset($propItem['photos'][$index])) src="{{$propItem['photos'][$index]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                @if ( count($propType['photos'])>0 )
+                                    <img id="preview" @if(isset($propItem['photos'][0])) src="{{$propItem['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                                 @else
                                     <img id="preview" src="{{asset('assets/images/no-image.jpg')}}" width="200">
                                 @endif
