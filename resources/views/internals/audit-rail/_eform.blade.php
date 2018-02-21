@@ -21,6 +21,7 @@
                                 'data-placeholder' => 'Pilih Kantor Wilayah',
                             ]) !!}
                         </div>
+                        <input type="hidden" class="form-control" name="branch_id" id="branch_id">
                     </div>
 
                     <div class="form-group">

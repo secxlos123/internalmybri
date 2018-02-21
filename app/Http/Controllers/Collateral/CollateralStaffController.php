@@ -58,7 +58,7 @@ class CollateralStaffController extends Controller
           $form_notif = $detailCollateral['contents'];
 
           if(!empty($form_notif))
-          {  
+          {
             $developer_id =$form_notif['developer_id'];
             if($developer_id ==1 )
             {
@@ -76,7 +76,7 @@ class CollateralStaffController extends Controller
                                 ])->render();
 
             }else if( $developer_id  != 1)
-            {              
+            {
               $form_notif['prop_name'] = strtoupper($form_notif['property']['name']);
               $form_notif['prop_city_name'] = strtoupper($form_notif['property']['city']['name']);
               $form_notif['prop_pic_name'] = strtoupper($form_notif['property']['pic_name']);
@@ -95,24 +95,24 @@ class CollateralStaffController extends Controller
               /*
               * mark read the notification
               */
-              
+
              $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
                     ->setHeaders([
                       'Authorization' => $data['token']
                       , 'pn' => $data['pn']
                       , 'branch_id' => $data['branch']
                   ])->get();
-            return view('internals.collateral.staff.index-notif', compact('data','form_notif')); 
+            return view('internals.collateral.staff.index-notif', compact('data','form_notif'));
           }
            else
           {
-            return view('internals.collateral.staff.index', compact('data')); 
+            return view('internals.collateral.staff.index', compact('data'));
           }
 
         }
         else
         {
-          return view('internals.collateral.staff.index', compact('data')); 
+          return view('internals.collateral.staff.index', compact('data'));
         }
     }
 
@@ -165,7 +165,7 @@ class CollateralStaffController extends Controller
     public function show($dev_id, $prop_id)
     {
       $data = $this->getUser();
-      
+
       if($dev_id == 1){
         $type = 'nonindex';
         $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
@@ -176,13 +176,13 @@ class CollateralStaffController extends Controller
             'Authorization' => $data['token']
             ,          'pn' => $data['pn']
             ])->get();
-        
+
         $detail = $EformDetail['contents'];
 
         $dataCustomer = Client::setEndpoint('customer/'.$detail['user_id'])
           ->setHeaders([
             'Authorization' => $data['token']
-            ,          'pn' => $data['pn']   
+            ,          'pn' => $data['pn']
             ])->get();
 
         $customer = $dataCustomer['contents'];
@@ -267,9 +267,9 @@ class CollateralStaffController extends Controller
         $collateral = $this->getDataIndex($request, $dev_id, $prop_id, $data);
             // dd($collateral);
       }
-      if($collateral['property']['category'] == 0){
+      if($collateral['property']['category'] == 1){
         $category_name = 'Rumah Tapak';
-      }elseif($collateral['property']['category'] == 1){
+      }elseif($collateral['property']['category'] == 2){
         $category_name = 'Rumah Susun/Apartment';
       }else{
         $category_name = 'Rumah Toko';
@@ -410,7 +410,7 @@ class CollateralStaffController extends Controller
       }else{
         $error = reset($client['contents']);
         \Session::flash('error', $client['descriptions'].' '.$error);
-        return redirect()->back()->withInput($request->input());
+        return redirect()->back()->withInput();
       }
     }
 
@@ -477,8 +477,9 @@ class CollateralStaffController extends Controller
         \Session::flash('success', 'Unggah Dokumen Pendukung Collateral Berhasil Dilakukan.');
         return redirect()->route('staff-collateral.index');
       }else{
-        $error = reset($client['contents']);
-        \Session::flash('error', $client['descriptions'].' '.$error);
+        // $error = reset($client['contents']);
+        // \Session::flash('error', $client['descriptions'].' '.$error);
+        \Session::flash('error', $client['descriptions']);
         return redirect()->back()->withInput($request->input());
       }
     }

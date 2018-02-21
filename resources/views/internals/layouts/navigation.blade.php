@@ -23,13 +23,13 @@
         <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span></a>
         @elseif(($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='pincapem'))
         <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
-        @elseif(($data['role']=='staff'))
+        @elseif(($data['role']=='staff')||($data['role']=='other'))
         <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span> </a>
 
         @endif
       </li>
 
-      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus'))
+      @if(($data['role']=='staff'))
       <li class="treeview">
         <a href="#" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Mitra Kerjasama </span> </a>
         <ul class="treeview-menu">
@@ -39,6 +39,8 @@
 
         </ul>
       </li>
+      @endif
+      @if(($data['role']=='ao'))
       <li>
         <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span>Profil Debitur </span> </a>
       </li>
@@ -51,7 +53,7 @@
         <a href="{{route('adk-histori.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Riwayat Paket Kredit</span> </a>
       </li>
       @endif
-      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='staff'))
+      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='staff') || ($data['role']=='other'))
       <li>
         <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
       </li>
@@ -80,7 +82,7 @@
     </li>
     @endif
 
-  @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='staff'))
+  @if(($data['role']=='staff'))
   <li class="treeview">
     <a href="#" class="waves-effect"><i class="mdi mdi-check"></i> <span > Approval Perubahan </span> </a>
     <ul class="treeview-menu">

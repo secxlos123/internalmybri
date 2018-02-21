@@ -14,7 +14,7 @@
                                     "Bangunan Perkantoran" => "Bangunan Perkantoran",
                                     "Bangunan Perumahan Penduduk" => "Bangunan Perumahan Penduduk", 
                                     "Lain-Lain" => "Lain-Lain"), 
-                                    old('environment[designated_land]'), [
+                                    old('environment.designated_land'), [
                                     'class' => 'select2  designated_land',
                                     'data-placeholder' => '-- Pilih --'
                                 ]) !!}
@@ -24,19 +24,27 @@
                             <label class="col-md-4 control-label">Fasilitas Umum Yang Ada * :</label>
                             <div class="col-md-8">
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_pln]">
+                                    <input type="checkbox" value="1" name="environment[designated_pln]" @if (old('environment.designated_pln'))
+                                        checked
+                                    @endif>
                                     <label for="pln"> PLN </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_phone]">
+                                    <input type="checkbox" value="1" name="environment[designated_phone]" @if (old('environment.designated_phone'))
+                                        checked
+                                    @endif>
                                     <label for="telepon"> Telepon </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_pam]">
+                                    <input type="checkbox" value="1" name="environment[designated_pam]" @if (old('environment.designated_pam'))
+                                        checked
+                                    @endif>
                                     <label for="pam"> PAM </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_telex]">
+                                    <input type="checkbox" value="1" name="environment[designated_telex]" @if (old('environment.designated_telex'))
+                                        checked
+                                    @endif>
                                     <label for="telex"> Telex </label>
                                 </div>
                                 <div id="other-input" style="display: none;">
@@ -47,7 +55,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Fasilitas Umum Lain * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="environment[other_designated]" maxlength="50" value="{{old('environment[other_designated]')}}" id="other_designated">
+                                <input type="text" class="form-control" name="environment[other_designated]" maxlength="50" value="{{old('environment.other_designated')}}" id="other_designated">
                             </div>
                         </div>
                     </div>
@@ -62,7 +70,7 @@
                                 "Bangunan Perkantoran" => "Bangunan Perkantoran",
                                 "Bangunan Perumahan Penduduk" => "Bangunan Perumahan Penduduk", 
                                 "Lain-Lain" => "Lain-Lain"), 
-                                old('environment[nearest_location]'), [
+                                old('environment.nearest_location'), [
                                 'class' => 'select2  nearest_location ',
                                 'data-placeholder' => '-- Pilih --'
                             ]) !!}
@@ -71,7 +79,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Petunjuk Lain * :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250" id="other_guide">{{old('environment[other_guide]')}}</textarea>
+                            <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250" id="other_guide">{{old('environment.other_guide')}}</textarea>
                         </div>
                     </div>
 
@@ -79,7 +87,7 @@
                         <label class="col-md-4 control-label">Sarana Transportasi * :</label>
                         <div class="col-md-8">
                             <div class="input-group" style="width:100%">
-                                <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{old('environment[transportation]')}}" id="transportation">
+                                <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{old('environment.transportation')}}" id="transportation">
                             </div>
                         </div>
                     </div>
@@ -87,7 +95,7 @@
                     <label class="col-md-4 control-label">Jarak Dari Lokasi * :</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                            <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{old('environment[distance_from_transportation]')}}" id="distance_from_transportation">
+                            <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{old('environment.distance_from_transportation')}}" id="distance_from_transportation">
                             <span class="input-group-addon has-ket-input">Meter</span>
                             </div>
                         </div>

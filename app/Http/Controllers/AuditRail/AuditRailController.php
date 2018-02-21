@@ -449,9 +449,17 @@ class AuditRailController extends Controller
                         ])->get();
         $dataCustomer = $customerData['contents'];
         // echo json_encode($dataCustomer['data']);die();
-
+        $imageUpload = Client::setEndpoint('auditrail/getImage/'.$nik)
+                        ->setHeaders([
+                          'Authorization' => $data['token'],
+                          'pn' => $data['pn'],
+                          'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5),
+                          'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                        ])->get();
+        $dataUpload = $imageUpload['contents'];
+        //dd($dataUpload);
         if(($customerData['code'])==200){
-          return view('internals.audit-rail._detailDocumentCredit', compact('dataCustomer', 'data'));
+          return view('internals.audit-rail._detailDocumentCredit', compact('dataCustomer', 'dataUpload', 'data'));
             // $view = (String)view('internals.audit-rail._detailDocumentCredit')
             //     ->with('dataCustomer', $dataCustomer)
             //     ->render();
@@ -627,7 +635,7 @@ class AuditRailController extends Controller
       $data = $this->getUser();
       $branch = Client::setEndpoint('auditrail/getBranch')
                 ->setHeaders(['Authorization' => $data['token'], 'pn' => $data['pn']])
-                ->setQuery(['search' => $request->input('branch'), 'page' => $request->input('page')])
+                ->setQuery(['search' => $request->input('branch'), 'branch_id' => $request->input('branch_id'), 'page' => $request->input('page')])
                 ->get();
 
       $contents = array();

@@ -131,4 +131,30 @@ class RegistrasiController extends Controller
 				->post();
 		return response()->json(['response' => $client]); 
 		}
+    public function fasilitas_store( Request $request ){
+		
+		$data = $this->getUser();
+		$arraydata = [];
+		$form_fasilitas = json_decode($request->data);
+		foreach ($form_fasilitas as $value_form) {
+			if(isset($value_form->value)){
+				$value = $value_form->value;
+			}else{
+				$value = '';
+			}
+			$name = $value_form->name;
+			$arraydata = array_merge(array($name=>$value),$arraydata);
+		}
+		$data_form = array('fasilitas_data'=>$arraydata);
+		$client = Client::setEndpoint('fasilitas_mitra')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'mitra' => $data_form
+				])
+				->post('multipart');
+		return response()->json(['response' => $client]); 
+		}
 }
