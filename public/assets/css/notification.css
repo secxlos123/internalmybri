@@ -378,6 +378,9 @@ a.notif-item:hover {
     margin: 0;
     width: 270px;
 }
+.unread_notif > .notification {
+    width: 269px;
+}
 .notification td{
     padding: 10px;
     font-size: 13px;
@@ -413,6 +416,10 @@ table.notification tr.web-notification-read {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+tr.line-notif.read-notif {
+    background-color: white;
 }
 
 tr.line-notif {
