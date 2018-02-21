@@ -123,13 +123,12 @@
 var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'?&hidden-lat='+$('input[name="hidden-lat"]').val();
 var longlatAction = LongLat+'&ket=ots menilai agunan';
     $(document).ready(function(){
-        $('#btn-approve').attributes('href', $('#btn-approve').attributes('href') + longlatAction);
-        // $('#btn-approve').on('click', function(event){
-            // event.preventDefault();
-            // window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+longlatAction);
-            // console.log(LongLat);
-            // $('#form2').submit();
-        // });
+        $('#btn-approve').on('click', function(event){
+            event.preventDefault();
+            window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+longlatAction);
+            console.log(LongLat);
+            $('#form2').submit();
+        });
     });
 
     $(document).on('click', "#btn-reject", function(){
