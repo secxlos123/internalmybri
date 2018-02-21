@@ -7,7 +7,7 @@
         <table class="notification">
             @if(count(notificationsUnread()) > 0 )
                 @foreach(notificationsUnread() as $value)
-                    <tr class="line-notif" data-href="{{ $value['url'] }}" style="background-color: {{ $value['read_at'] ? 'inherit' : 'white' }};">
+                    <tr class="line-notif" data-href="{{ $value['url'] }}" style="background-color: {{ $value['read_at'] ? 'rgba(144, 144, 160, 0.39)' : 'white' }};">
                           <td>
                               <div class="notif-ico bg-success">
                                   <i class="fa fa-bell"></i>
