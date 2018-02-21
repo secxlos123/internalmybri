@@ -38,9 +38,9 @@
     {
         table1 = $('#datatable').DataTable({
             searching : true,
-            processing : false,
+            processing : true,
             serverSide : false,
-            order : [[3, 'asc']],
+            // order : [[3, 'asc']],
             lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]
