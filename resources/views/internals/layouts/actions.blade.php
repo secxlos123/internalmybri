@@ -82,13 +82,18 @@
 	</a>
 @endif
 
-@if (!empty($submited) && $submited == true && empty($recontest) )
+@if (!empty($submited) && $submited == true && empty($recontest) && (!isset($status) || isset($status) &&  $status == 'approved'))
 	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Proses CLF
 	</span>
 	<a href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="Approval">
 	    <i class="mdi mdi-eye"></i>
 	</a>
+
+@elseif( !empty($submited) && $submited == true && isset($status) &&  $status == 'Approval1' )
+			<a onclick="addURL(this)" href="{{route('getDetailApproval', $approve['id'])}}" class="btn btn-icon btn-success waves-effect waves-light bottom-margin" data-original-title="Kredit Disetujui" title="Kredit Disetujui">
+				<i class="fa fa-check-square-o" aria-hidden="true"></i>
+			</a>
 
 @elseif( isset($recontest) && !empty($submited) && $submited == true )
 	@if( isset($status) )
