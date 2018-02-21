@@ -73,7 +73,7 @@
                     <th>Produk</th>
                     <th>Pemasar</th>
                     <th>Status</th>
-                    <th>Asign</th>
+                    <th>Assign</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -86,9 +86,9 @@
                     <td>{{$ref['status']}}</td>
                     <td style="text-align:center">
                       @if($ref['status'] == 'ref')
-                      <button value="{{$ref['ref_id']}}" class="btn btn-orange waves-light waves-effect w-md assign">Asign</button>
+                      <button value="{{$ref['ref_id']}}" class="btn btn-orange waves-light waves-effect w-md assign">Assign</button>
                       @elseif($ref['status'] == 'dispo')
-                      <button value="{{$ref['ref_id']}}" class="btn btn-teal waves-light waves-effect w-md assign">Re-Asign</button>
+                      <button value="{{$ref['ref_id']}}" class="btn btn-teal waves-light waves-effect w-md assign">Re-Assign</button>
                       @endif
                     </td>
                   </tr>
@@ -106,7 +106,7 @@
   </div>
   @include('internals.layouts.footer')
   @include('internals.layouts.foot')
-  <div id="asign-modal" class="modal fade">
+  <div id="Assign-modal" class="modal fade">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
             <form class="" action="{{url('/update_referral')}}" method="post">
@@ -161,7 +161,7 @@
     $('.assign').on('click', function(){
       var assign = $(this).val();
       $('#ref_id').val(assign);
-      $("#asign-modal").modal();
+      $("#Assign-modal").modal();
     });
 
     $('#officer_ref').on('change', function(){
