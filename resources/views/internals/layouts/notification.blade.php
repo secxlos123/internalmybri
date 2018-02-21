@@ -7,7 +7,7 @@
         <table class="notification">
             @if(count(notificationsUnread()) > 0 )
                 @foreach(notificationsUnread() as $value)
-                    <tr class="line-notif" data-href="{{ $value['url'] }}">
+                    <tr class="line-notif {{ !empty($value['read_at']) ? 'read-notif' : '' }}" data-href="{{ $value['url'] }}">
                           <td>
                               <div class="notif-ico bg-success">
                                   <i class="fa fa-bell"></i>
@@ -25,9 +25,9 @@
                     <p class="m-0"><a>Tidak Ada Data Notifikasi</a></p>
                 </li>
             @endif
-                  
+
         </table>
-        
+
         <li class="all-msgs text-center" style="display: block;">
             <p class="m-0" style="display: block;"><a> &nbsp;</a></p>
         </li>

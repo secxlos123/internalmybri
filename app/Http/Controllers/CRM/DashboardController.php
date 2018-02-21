@@ -92,7 +92,7 @@ class DashboardController extends Controller
 
     // return $product;
 
-    $chartData = Client::setEndpoint('crm/marketing_summary_v2')
+    $chartData = Client::setEndpoint('crm/marketing_summary')
     ->setQuery(['role' => $data['role']])
     ->setHeaders([
       'Authorization' => $data['token'],
@@ -116,6 +116,43 @@ class DashboardController extends Controller
 
     // return $product;
 
+    $chartData = Client::setEndpoint('crm/marketing_summary')
+    ->setQuery(['role' => $data['role']])
+    ->setHeaders([
+      'Authorization' => $data['token'],
+      'pn' => $data['pn'],
+      'branch' => $data['branch']
+    ])
+    ->setBody([
+      "product_type"=>"", //filter pruduk
+      "month"=>"",//filter bulan
+      "pn"=>"" //filter officer
+    ])
+    ->post();
+
+    $totalData = array();
+
+    $totalData[0]['Total'] = array_sum(array_column($chartData['contents'], 'Total'));
+    $totalData[0]['Prospek'] = array_sum(array_column($chartData['contents'], 'Prospek'));
+    $totalData[0]['On Progress'] = array_sum(array_column($chartData['contents'], 'On Progress'));
+    $totalData[0]['Done'] = array_sum(array_column($chartData['contents'], 'Done'));
+    $totalData[0]['Index'] = 'All';
+    // return array_column($chartData['contents'], 'Total');
+    // foreach ($chartData['contents'] as $k=>$subArray) {
+    //   unset($subArray['Nama']);
+    //   unset($subArray['Pemasar']);
+    // }
+
+    return $totalData;
+  }
+
+  public function pieChart(Request $request)
+  {
+    /* GET UserLogin Data */
+    $data = $this->getUser();
+
+    // return $product;
+
     $chartData = Client::setEndpoint('crm/marketing_summary_v2')
     ->setQuery(['role' => $data['role']])
     ->setHeaders([
@@ -130,6 +167,7 @@ class DashboardController extends Controller
     ])
     ->post();
 
+    // return $chartData;
     $totalData = array();
 
     $totalData[0]['Total'] = array_sum(array_column($chartData['contents'], 'Total'));

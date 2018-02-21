@@ -172,8 +172,8 @@
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
-            // Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
-            Route::post('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+            Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+            // Route::post('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
 
             Route::post('post-scoring-form/{id}', ['as'=>'postLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@postLKNAgunan']);
 
@@ -258,6 +258,7 @@
 				Route::get('crm_dashboard', 'CRM\DashboardController@index');
 				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
 				Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
+				Route::post('pieChart', 'CRM\DashboardController@pieChart');
 
         /* CRM referral */
 				Route::resource('referral', 'CRM\ReferralController');

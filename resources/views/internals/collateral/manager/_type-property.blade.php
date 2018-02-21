@@ -36,8 +36,8 @@
                                 <p class="form-control-static">{{$propType['name']}}</p>
                             </td> -->
                             <td>
-                                @if ( isset($propType['photos']) )
-                                <img id="preview" @if(isset($propType['photos'][$index])) src="{{$propType['photos'][$index]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                @if ( count($propType['photos'])>0 )
+                                <img id="preview" @if(isset($propType['photos'][0])) src="{{$propType['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
                                 @else
                                      <img id="preview" src="{{asset('assets/images/no-image.jpg')}}" width="200">
                                 @endif

@@ -51,6 +51,51 @@
 //       },
 //   })
 // }
+$(function() {
+
+  var data = {
+    "_token": "{{ csrf_token() }}"
+  };
+  // Create a function that will handle AJAX requests
+  function requestData(){
+    $.ajax({
+      type: "POST",
+      url: "{{url('pieChart')}}", // This is the URL to the API
+      data: data
+    })
+    .done(function( data ) {
+      console.log(data);
+      // When the response to the AJAX request comes back render the chart with new data
+      chart.setData();
+    })
+    .fail(function() {
+      // If there is no communication between the server, show an error
+      alert( "error occured" );
+    });
+  }
+  var chart = Morris.Donut({
+    element: 'pie-chart',
+    data: [
+      {label: "Friends", value: 30},
+      {label: "Allies", value: 15},
+      {label: "Enemies", value: 45},
+      {label: "Neutral", value: 10}
+    ]
+  });
+  // Request initial data for the past 7 days:
+  requestData();
+  // $('ul.ranges a').click(function(e){
+  //   e.preventDefault();
+  //   // Get the number of days from the data attribute
+  //   var el = $(this);
+  //   days = el.attr('data-range');
+  //   // Request the data and render the chart using our handy function
+  //   requestData(days, chart);
+  //   // Make things pretty to show which button/tab the user clicked
+  //   el.parent().addClass('active');
+  //   el.parent().siblings().removeClass('active');
+  // })
+});
 
 !function($) {
   "use strict";
