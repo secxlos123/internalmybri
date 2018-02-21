@@ -260,6 +260,7 @@ class CollateralStaffController extends Controller
 
       if($dev_id == 1){
         $type = 'nonindex';
+        \Log::info("awalya disini");
         $collateral = $this->getDataNonIndex($request, $dev_id, $prop_id, $data);
        // dd($collateral);
       }else{
@@ -595,6 +596,7 @@ class CollateralStaffController extends Controller
     public function getDataNonIndex($request, $dev_id, $prop_id, $data)
     {
     //  dd($request->all());
+      \Log::info("hit 1");
       $role = $data['role'];
       $long = number_format(floatval($request['hidden-long']), 5);
       $detailCollateral = Client::setEndpoint('collateral/notifotsnonindex/'.$dev_id.'/'.$prop_id)
@@ -605,6 +607,7 @@ class CollateralStaffController extends Controller
         , 'long'        => $long
         , 'lat'         => $request['hidden-lat']
       ])->get();
+      \Log::info("hit 2");
 
       return $detailCollateral['contents'];
     }
