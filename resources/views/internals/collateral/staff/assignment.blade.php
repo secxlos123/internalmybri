@@ -125,9 +125,9 @@ var longlatAction = LongLat+'&ket=ots menilai agunan';
     $(document).ready(function(){
         $('#btn-approve').on('click', function(event){
             event.preventDefault();
-            window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+longlatAction);
-            console.log(LongLat);
-            $('#form2').submit();
+            // window.location = ("{{url('staff-collateral/scoring-form/'. $collateral['developer']['id'].'/'. $collateral['property']['id'])}}"+longlatAction);
+            // console.log(LongLat);
+            // $('#form2').submit();
         });
     });
 
