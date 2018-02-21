@@ -11,7 +11,7 @@
                         <h4 class="page-title">List Approval Pengajuan Properti Baru</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 List Approval Pengajuan Properti Baru
@@ -81,7 +81,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
@@ -112,7 +112,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable-independent" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>

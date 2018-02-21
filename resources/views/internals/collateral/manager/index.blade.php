@@ -11,7 +11,7 @@
                         <h4 class="page-title">List Approval Pengajuan Properti Baru</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 List Approval Pengajuan Properti Baru
@@ -84,7 +84,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
@@ -115,13 +115,14 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable-independent" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
                                                                                     <th>Nama Pengaju</th>
                                                                                     <th>Kota</th>
                                                                                     <th>Telepon</th>
+                                                                                    <th>Status Pengajuan</th>
                                                                                     <th>Staff Penilai</th>
                                                                                     <th>Status Approval</th>
                                                                                     <th style="width: 150px">Aksi</th>
@@ -240,6 +241,7 @@
             {   data: 'first_name', name: 'first_name', bSortable: false  },
             {   data: 'home_location', name: 'home_location',  bSortable: false  },
             {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
+            {   data: 'status_tracking', name: 'status_tracking', bSortable: false },
             // {   data: 'product_type', name: 'product_type' },
             {   data: 'staff_name', name: 'staff_name', bSortable: false },
             {   data: 'status_label', name: 'status_label', bSortable: false },

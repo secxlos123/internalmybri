@@ -1,4 +1,4 @@
-@section('title','MyBRI - Dashboard')
+@section('title','MyBRI - Home MyBRI')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -10,14 +10,8 @@
                 <div class="page-title-box">
                     <h4 class="page-title">Home MyBRI </h4>
                     <ol class="breadcrumb p-0 m-0">
-                        <li>
-                            <a href="#">Home MyBRI</a>
-                        </li>
-                        <li>
-                            <a href="#">Dashboard</a>
-                        </li>
                         <li class="active">
-                            Admin
+                            Home MyBRI
                         </li>
                     </ol>
                     <div class="clearfix">
@@ -32,6 +26,8 @@
                 @include('internals.home.ao.index')
             @elseif(($data['role']=='mp') || ($data['role']=='pinca'))
                 @include('internals.home.mp.index')
+            @else
+                @include('internals.home.others.index')
             @endif
         </div>
     </div>

@@ -11,7 +11,7 @@
                                 {!! Form::select('ten[paripasu]', array("" => "", 
                                     "Ya" => "Ya", 
                                     "Tidak" => "Tidak"), 
-                                    old('ten[paripasu]'), [
+                                    old('ten.paripasu'), [
                                     'class' => 'select2 paripasu ',
                                     'data-placeholder' => '-- Pilih --',
                                     'id'=>'paripasu_flag'
@@ -23,7 +23,7 @@
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <span class="input-group-addon b-0">Rp</i></span>
-                                    <input type="text" class="form-control currency-rp numericOnly" name="ten[paripasu_bank]" maxlength="50" value="{{old('ten[paripasu_bank]')}}" id="paripasu_bank">
+                                    <input type="text" class="form-control currency-rp numericOnly" name="ten[paripasu_bank]" maxlength="50" value="{{old('ten.paripasu_bank')}}" id="paripasu_bank">
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                 {!! Form::select('ten[insurance]', array("" => "", 
                                     "Ya" => "Ya", 
                                     "Tidak" => "Tidak"), 
-                                    old('ten[insurance]'), [
+                                    old('ten.insurance'), [
                                     'class' => 'select2 insurance_flag ',
                                     'data-placeholder' => '-- Pilih --',
                                     'id'=>'asuransi_flag'
@@ -46,14 +46,7 @@
                     <div class="form-group clearfix" id="company_insurance" hidden="">
                         <label class="col-md-4 control-label">Nama Perusahaan Asuransi * :</label>
                         <div class="col-md-8">
-                            <!-- {!! Form::select('ten[insurance_company]', array("" => "", 
-                                "Menggunakan Servis CLAS" => "Menggunakan Servis CLAS", 
-                                "Untuk Listing Data" => "Untuk Listing Data"), 
-                                old('ten[insurance_company]'), [
-                                'class' => 'select2 insurance_company ',
-                                'data-placeholder' => '-- Pilih --'
-                            ]) !!} -->
-                            {!! Form::select('ten[insurance_company]', ['' => ''], old('ten[insurance_company]'), [
+                            {!! Form::select('ten[insurance_company]', ['' => ''], old('ten.insurance_company'), [
                                 'class' => 'select2 insurance',
                                 'data-placeholder' => 'Pilih Nama Perusahaan'
                             ]) !!}
@@ -65,7 +58,7 @@
                         <div class="col-md-8">
                             <div class="input-group">
                                 <span class="input-group-addon b-0">Rp</i></span>
-                                <input type="text" class="form-control currency-rp numericOnly" name="ten[insurance_value]" maxlength="50" value="{{old('ten[insurance_value]')}}" id="insurance_value">
+                                <input type="text" class="form-control currency-rp numericOnly" name="ten[insurance_value]" maxlength="50" value="{{old('ten.insurance_value')}}" id="insurance_value">
                             </div>
                         </div>
                     </div>
@@ -75,7 +68,7 @@
                             {!! Form::select('ten[eligibility]', array("" => "", 
                                 "Eligible" => "Eligible", 
                                 "Not Eligible" => "Not Eligible"), 
-                                old('ten[eligibility]'), [
+                                old('ten.eligibility'), [
                                 'class' => 'select2 eligibility ',
                                 'data-placeholder' => '-- Pilih --'
                             ]) !!}

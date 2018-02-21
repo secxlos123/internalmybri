@@ -12,7 +12,7 @@
                         <h4 class="page-title">Pengajuan Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Pengajuan Kredit
@@ -27,6 +27,9 @@
                     <div id="alert-delete">
                         @if (\Session::has('success'))
                             <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                        @endif
+                        @if (\Session::has('error'))
+                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                         @endif
                     </div>
                     <div class="card-box">

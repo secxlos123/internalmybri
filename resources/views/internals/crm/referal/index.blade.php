@@ -66,7 +66,6 @@
                     <th>Nama Referral</th>
                     <th>Referral Id</th>
                     <th>Produk</th>
-                    <th>Pemasar</th>
                     <th>Status</th>
                     <th>Poin</th>
                   </tr>
@@ -77,7 +76,6 @@
                     <td>{{$ref['name']}}</td>
                     <td>{{$ref['ref_id']}}</td>
                     <td>{{$ref['product_type']}}</td>
-                    <td>{{$ref['officer_ref']}}</td>
                     <td>{{$ref['status']}}</td>
                     <td>{{$ref['point']}}</td>
                   </tr>

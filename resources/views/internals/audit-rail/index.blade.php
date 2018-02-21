@@ -7,6 +7,16 @@
     .small{
         font-size: 7.5pt;
     }
+    .card-box > img {
+        height: 350px;
+        width: 100%;
+    }
+
+    .card-box > a {
+        height: 350px;
+        width: 100%;
+        padding-top: 50px;
+    }
 </style>
 
 <div class="content-page">
@@ -18,7 +28,7 @@
                         <h4 class="page-title">Auditrail</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Auditrail
@@ -40,6 +50,8 @@
                         <li class="small"><a data-toggle="tab" href="#developerAgent">Agen Developer</a></li>
                         <li class="small"><a data-toggle="tab" href="#property">Property</a></li>
                         <li class="small"><a data-toggle="tab" href="#activityUser">User Activity</a></li>
+                        <li class="small"><a data-toggle="tab" href="#documentCredit">Document Credit</a></li>
+                        <li class="small"><a data-toggle="tab" href="#dokumenCollateral">Dokumen Collateral</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -70,6 +82,12 @@
                         <div id="activityUser" class="tab-pane fade">
                             @include('internals.audit-rail._activityUser')
                         </div>
+                        <div id="documentCredit" class="tab-pane fade">
+                            @include('internals.audit-rail._documentCredit')
+                        </div>
+                        <div id="dokumenCollateral" class="tab-pane fade">
+                            @include('internals.audit-rail._dokumen_collateral')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -80,3 +98,4 @@
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 @include('internals.audit-rail.datatable-script')
+@include('internals.audit-rail.select2-script')

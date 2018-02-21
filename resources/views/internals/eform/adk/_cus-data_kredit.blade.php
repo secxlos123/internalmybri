@@ -16,7 +16,49 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Sandi STP :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Sandi_stp']}}</p>
+                    <p class="form-control-static">
+                        @if($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A801')
+                            Briguna PNS
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A802')
+                            Briguna Swasta
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A803')
+                            Briguna BUMN
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A804')
+                            Briguna Polisi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A805')
+                            Briguna ABRI/TNI
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A896')
+                            Briguna Koperasi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A922')
+                            Briguna Profesi Guru
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A923')
+                            Briguna Profesi Dokter
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A924')
+                            Briguna Profesi Bidan
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A925')
+                            Briguna Profesi Apoteker
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A926')
+                            Briguna Profesi Akuntan
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A927')
+                            Briguna Profesi lainnya
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A801')
+                            Briguna PNS
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A802')
+                            Briguna Swasta
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A803')
+                            Briguna BUMN
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A804')
+                            Briguna Polisi
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A805')
+                            Briguna ABRI/TNI
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A896')
+                            Briguna Koperasi
+                        @elseif(($detail['Kode_fasilitas'] == 'FWP' || $detail['Kode_fasilitas'] == 'FW8') && $detail['Sandi_stp'] == 'A301')
+                            Briguna Karya Karyawan BRI
+                        @else
+                            Briguna Kawan BRI
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -85,11 +127,11 @@
                 <label class="col-md-5 control-label">Baru/Perpanjangan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['baru_atau_perpanjang'] == '0')
-                        Kredit Baru
-                    @else
-                        Kredit Suplesi / Perpanjangan
-                    @endif
+                        @if($detail['baru_atau_perpanjang'] == '0')
+                            Kredit Baru
+                        @else
+                            Kredit Suplesi / Perpanjangan
+                        @endif
                     </p>
                 </div>
             </div>
@@ -103,11 +145,11 @@
                 <label class="col-md-5 control-label">Kredit Take Over :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['kredit_take_over'] == '1')
-                        Ya
-                    @elseif($detail['kredit_take_over'] == '0')
-                        Tidak
-                    @endif
+                        @if($detail['kredit_take_over'] == '1')
+                            Ya
+                        @elseif($detail['kredit_take_over'] == '0')
+                            Tidak
+                        @endif
                     </p>
                 </div>
             </div>
@@ -121,37 +163,37 @@
                 <label class="col-md-5 control-label">Sifat Kredit(SID) :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['Sifat_kredit'] == '10')
-                        Dalam rangka pembiayaan bersama
-                    @elseif($detail['Sifat_kredit'] == '15')
-                        Dalam rangka restrukturisasi kredit
-                    @elseif($detail['Sifat_kredit'] == '20')
-                        Penyaluran kredit melalui lembaga lain (channelling)
-                    @elseif($detail['Sifat_kredit'] == '30')
-                        Kartu kredit
-                    @elseif($detail['Sifat_kredit'] == '40')
-                        Pengambilalihan kredit
-                    @elseif($detail['Sifat_kredit'] == '45')
-                        Surat berharga dengan Note Purchase Agreement (NPA)
-                    @elseif($detail['Sifat_kredit'] == '50')
-                        Pembiayaan Musyarakah
-                    @elseif($detail['Sifat_kredit'] == '55')
-                        Pembiayaan Mudharabah
-                    @elseif($detail['Sifat_kredit'] == '60')
-                        Piutang Murabahah
-                    @elseif($detail['Sifat_kredit'] == '65')
-                        Piutang Salam
-                    @elseif($detail['Sifat_kredit'] == '70')
-                        Piutang Istishna
-                    @elseif($detail['Sifat_kredit'] == '79')
-                        Lainnya dgn PK
-                    @elseif($detail['Sifat_kredit'] == '80')
-                        Giro bersaldo debet
-                    @elseif($detail['Sifat_kredit'] == '85')
-                        Tagihan atas transaksi perdagangan
-                    @else
-                        Lainnya Tanpa PK
-                    @endif
+                        @if($detail['Sifat_kredit'] == '10')
+                            Dalam rangka pembiayaan bersama
+                        @elseif($detail['Sifat_kredit'] == '15')
+                            Dalam rangka restrukturisasi kredit
+                        @elseif($detail['Sifat_kredit'] == '20')
+                            Penyaluran kredit melalui lembaga lain (channelling)
+                        @elseif($detail['Sifat_kredit'] == '30')
+                            Kartu kredit
+                        @elseif($detail['Sifat_kredit'] == '40')
+                            Pengambilalihan kredit
+                        @elseif($detail['Sifat_kredit'] == '45')
+                            Surat berharga dengan Note Purchase Agreement (NPA)
+                        @elseif($detail['Sifat_kredit'] == '50')
+                            Pembiayaan Musyarakah
+                        @elseif($detail['Sifat_kredit'] == '55')
+                            Pembiayaan Mudharabah
+                        @elseif($detail['Sifat_kredit'] == '60')
+                            Piutang Murabahah
+                        @elseif($detail['Sifat_kredit'] == '65')
+                            Piutang Salam
+                        @elseif($detail['Sifat_kredit'] == '70')
+                            Piutang Istishna
+                        @elseif($detail['Sifat_kredit'] == '79')
+                            Lainnya dgn PK
+                        @elseif($detail['Sifat_kredit'] == '80')
+                            Giro bersaldo debet
+                        @elseif($detail['Sifat_kredit'] == '85')
+                            Tagihan atas transaksi perdagangan
+                        @else
+                            Lainnya Tanpa PK
+                        @endif
                     </p>
                 </div>
             </div>
@@ -165,97 +207,97 @@
                 <label class="col-md-5 control-label">Jenis Penggunaan(SID) :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                    @if($detail['Jenis_penggunaan'] == '10')
-                        Modal Kerja - Kredit Modal Kerja Permanen (KMKP)
-                    @elseif($detail['Jenis_penggunaan'] == '16')
-                        Modal Kerja - Kredit Umum Pedesaan (Kupedes)
-                    @elseif($detail['Jenis_penggunaan'] == '18')
-                        Modal Kerja - Kredit kelolaan
-                    @elseif($detail['Jenis_penggunaan'] == '25')
-                        Modal Kerja - Kredit Perkebunan Swasta Nasional (PSN)
-                    @elseif($detail['Jenis_penggunaan'] == '26')
-                        Modal Kerja - Kredit Ekspor
-                    @elseif($detail['Jenis_penggunaan'] == '28')
-                        Modal Kerja - Kredit Koperasi - Kredit Usaha Tani (KUT)
-                    @elseif($detail['Jenis_penggunaan'] == '32')
-                        Modal Kerja - Kredit Koperasi - Kredit kepada Koperasi Unit Desa (KUD)
-                    @elseif($detail['Jenis_penggunaan'] == '36')
-                        Modal Kerja - Kredit Koperasi - Kredit kepada Koperasi Primer untuk Anggotanya
-                    @elseif($detail['Jenis_penggunaan'] == '38')
-                        Modal Kerja - Kredit Koperasi - Lainnya
-                    @elseif($detail['Jenis_penggunaan'] == '39')
-                        Kredit modal kerja lainnya
-                    @elseif($detail['Jenis_penggunaan'] == '42')
-                        Investasi - Kredit Investasi Kecil (KIK)
-                    @elseif($detail['Jenis_penggunaan'] == '45')
-                        Investasi - PIR-BUN - Kredit Kebun Inti
-                    @elseif($detail['Jenis_penggunaan'] == '46')
-                        Investasi - PIR-BUN - Kredit Kebun Plasma
-                    @elseif($detail['Jenis_penggunaan'] == '47')
-                        Investasi - PIR-BUN - Kredit Pasca Konversi PIR-BUN
-                    @elseif($detail['Jenis_penggunaan'] == '48')
-                        Investasi - UPP - Kredit Peremajaan Rehabilitasi Perluasan Tanaman Ekspor (PRPTE)
-                    @elseif($detail['Jenis_penggunaan'] == '49')
-                        Investasi - UPP - Kredit Pasca Konversi PRPTE
-                    @elseif($detail['Jenis_penggunaan'] == '50')
-                        Investasi - UPP - Lainnya
-                    @elseif($detail['Jenis_penggunaan'] == '51')
-                        Investasi - PIR-TRANS - Kredit Kebun Inti
-                    @elseif($detail['Jenis_penggunaan'] == '52')
-                        Investasi - PIR-TRANS - Kredit Kebun Plasma
-                    @elseif($detail['Jenis_penggunaan'] == '53')
-                        Investasi - PIR-TRANS - Kredit Pasca Konversi
-                    @elseif($detail['Jenis_penggunaan'] == '54')
-                        Investasi - Kredit Perkebunan Swasta Nasional (PSN)
-                    @elseif($detail['Jenis_penggunaan'] == '55')
-                        Investasi - Bantuan Proyek - Nilai lawan valuta asing
-                    @elseif($detail['Jenis_penggunaan'] == '56')
-                        Investasi - Bantuan Proyek - Biaya lokal Rekening Dana Investasi (RDI)
-                    @elseif($detail['Jenis_penggunaan'] == '57')
-                        Investasi - Bantuan Proyek - Biaya lokal dana perbankan
-                    @elseif($detail['Jenis_penggunaan'] == '59')
-                        Investasi - Kredit kelolaan di luar bantuan proyek
-                    @elseif($detail['Jenis_penggunaan'] == '60')
-                        Investasi - Kredit Umum Pedesaan (Kupedes)
-                    @elseif($detail['Jenis_penggunaan'] == '62')
-                        Investasi - Kredit Koperasi - Kredit kepada Koperasi Primer untuk Anggotanya
-                    @elseif($detail['Jenis_penggunaan'] == '63')
-                        Investasi - Kredit Koperasi - Lainnya
-                    @elseif($detail['Jenis_penggunaan'] == '64')
-                        Investasi - DLBS - Nilai lawan valuta asing
-                    @elseif($detail['Jenis_penggunaan'] == '67')
-                        Investasi - DLBS - Kredit Rupiah
-                    @elseif($detail['Jenis_penggunaan'] == '74')
-                        Investasi - Kredit Investasi sampai dengan Rp. 75 juta
-                    @elseif($detail['Jenis_penggunaan'] == '75')
-                        Investasi - Kredit Investasi Biasa
-                    @elseif($detail['Jenis_penggunaan'] == '76')
-                        Investasi - Kredit Ekspor
-                    @elseif($detail['Jenis_penggunaan'] == '79')
-                        Investasi - Kredit Investasi Lainnya
-                    @elseif($detail['Jenis_penggunaan'] == '80')
-                        KPR Sangat Sederhana (KPRSS) dan Kredit Pemilikan Kapling Siap Bangun (PKSB)
-                    @elseif($detail['Jenis_penggunaan'] == '81')
-                        Pemilikan Rumah KPR Sederhana (KPRS) s.d. Tipe 21
-                    @elseif($detail['Jenis_penggunaan'] == '82')
-                        Pemilikan Rumah Di atas tipe 21 s.d tipe 70
-                    @elseif($detail['Jenis_penggunaan'] == '83')
-                        Pemilikan Rumah Di atas tipe 70
-                    @elseif($detail['Jenis_penggunaan'] == '85')
-                        Perbaikan/Pemugaran Rumah
-                    @elseif($detail['Jenis_penggunaan'] == '86')
-                        Kredit Kepada Guru untuk Pembelian Sepeda Motor (KPG)
-                    @elseif($detail['Jenis_penggunaan'] == '87')
-                        Kredit Mahasiswa Indonesia
-                    @elseif($detail['Jenis_penggunaan'] == '88')
-                        Kredit Rumah Toko
-                    @elseif($detail['Jenis_penggunaan'] == '89')
-                        Kredit Konsumsi Lainnya
-                    @elseif($detail['Jenis_penggunaan'] == '90')
-                        Pemilikan Rumah s/d Tipe 36
-                    @else
-                        Pemilikan Rumah Di atas Tipe 36
-                    @endif
+                        @if($detail['Jenis_penggunaan'] == '10')
+                            Modal Kerja - Kredit Modal Kerja Permanen (KMKP)
+                        @elseif($detail['Jenis_penggunaan'] == '16')
+                            Modal Kerja - Kredit Umum Pedesaan (Kupedes)
+                        @elseif($detail['Jenis_penggunaan'] == '18')
+                            Modal Kerja - Kredit kelolaan
+                        @elseif($detail['Jenis_penggunaan'] == '25')
+                            Modal Kerja - Kredit Perkebunan Swasta Nasional (PSN)
+                        @elseif($detail['Jenis_penggunaan'] == '26')
+                            Modal Kerja - Kredit Ekspor
+                        @elseif($detail['Jenis_penggunaan'] == '28')
+                            Modal Kerja - Kredit Koperasi - Kredit Usaha Tani (KUT)
+                        @elseif($detail['Jenis_penggunaan'] == '32')
+                            Modal Kerja - Kredit Koperasi - Kredit kepada Koperasi Unit Desa (KUD)
+                        @elseif($detail['Jenis_penggunaan'] == '36')
+                            Modal Kerja - Kredit Koperasi - Kredit kepada Koperasi Primer untuk Anggotanya
+                        @elseif($detail['Jenis_penggunaan'] == '38')
+                            Modal Kerja - Kredit Koperasi - Lainnya
+                        @elseif($detail['Jenis_penggunaan'] == '39')
+                            Kredit modal kerja lainnya
+                        @elseif($detail['Jenis_penggunaan'] == '42')
+                            Investasi - Kredit Investasi Kecil (KIK)
+                        @elseif($detail['Jenis_penggunaan'] == '45')
+                            Investasi - PIR-BUN - Kredit Kebun Inti
+                        @elseif($detail['Jenis_penggunaan'] == '46')
+                            Investasi - PIR-BUN - Kredit Kebun Plasma
+                        @elseif($detail['Jenis_penggunaan'] == '47')
+                            Investasi - PIR-BUN - Kredit Pasca Konversi PIR-BUN
+                        @elseif($detail['Jenis_penggunaan'] == '48')
+                            Investasi - UPP - Kredit Peremajaan Rehabilitasi Perluasan Tanaman Ekspor (PRPTE)
+                        @elseif($detail['Jenis_penggunaan'] == '49')
+                            Investasi - UPP - Kredit Pasca Konversi PRPTE
+                        @elseif($detail['Jenis_penggunaan'] == '50')
+                            Investasi - UPP - Lainnya
+                        @elseif($detail['Jenis_penggunaan'] == '51')
+                            Investasi - PIR-TRANS - Kredit Kebun Inti
+                        @elseif($detail['Jenis_penggunaan'] == '52')
+                            Investasi - PIR-TRANS - Kredit Kebun Plasma
+                        @elseif($detail['Jenis_penggunaan'] == '53')
+                            Investasi - PIR-TRANS - Kredit Pasca Konversi
+                        @elseif($detail['Jenis_penggunaan'] == '54')
+                            Investasi - Kredit Perkebunan Swasta Nasional (PSN)
+                        @elseif($detail['Jenis_penggunaan'] == '55')
+                            Investasi - Bantuan Proyek - Nilai lawan valuta asing
+                        @elseif($detail['Jenis_penggunaan'] == '56')
+                            Investasi - Bantuan Proyek - Biaya lokal Rekening Dana Investasi (RDI)
+                        @elseif($detail['Jenis_penggunaan'] == '57')
+                            Investasi - Bantuan Proyek - Biaya lokal dana perbankan
+                        @elseif($detail['Jenis_penggunaan'] == '59')
+                            Investasi - Kredit kelolaan di luar bantuan proyek
+                        @elseif($detail['Jenis_penggunaan'] == '60')
+                            Investasi - Kredit Umum Pedesaan (Kupedes)
+                        @elseif($detail['Jenis_penggunaan'] == '62')
+                            Investasi - Kredit Koperasi - Kredit kepada Koperasi Primer untuk Anggotanya
+                        @elseif($detail['Jenis_penggunaan'] == '63')
+                            Investasi - Kredit Koperasi - Lainnya
+                        @elseif($detail['Jenis_penggunaan'] == '64')
+                            Investasi - DLBS - Nilai lawan valuta asing
+                        @elseif($detail['Jenis_penggunaan'] == '67')
+                            Investasi - DLBS - Kredit Rupiah
+                        @elseif($detail['Jenis_penggunaan'] == '74')
+                            Investasi - Kredit Investasi sampai dengan Rp. 75 juta
+                        @elseif($detail['Jenis_penggunaan'] == '75')
+                            Investasi - Kredit Investasi Biasa
+                        @elseif($detail['Jenis_penggunaan'] == '76')
+                            Investasi - Kredit Ekspor
+                        @elseif($detail['Jenis_penggunaan'] == '79')
+                            Investasi - Kredit Investasi Lainnya
+                        @elseif($detail['Jenis_penggunaan'] == '80')
+                            KPR Sangat Sederhana (KPRSS) dan Kredit Pemilikan Kapling Siap Bangun (PKSB)
+                        @elseif($detail['Jenis_penggunaan'] == '81')
+                            Pemilikan Rumah KPR Sederhana (KPRS) s.d. Tipe 21
+                        @elseif($detail['Jenis_penggunaan'] == '82')
+                            Pemilikan Rumah Di atas tipe 21 s.d tipe 70
+                        @elseif($detail['Jenis_penggunaan'] == '83')
+                            Pemilikan Rumah Di atas tipe 70
+                        @elseif($detail['Jenis_penggunaan'] == '85')
+                            Perbaikan/Pemugaran Rumah
+                        @elseif($detail['Jenis_penggunaan'] == '86')
+                            Kredit Kepada Guru untuk Pembelian Sepeda Motor (KPG)
+                        @elseif($detail['Jenis_penggunaan'] == '87')
+                            Kredit Mahasiswa Indonesia
+                        @elseif($detail['Jenis_penggunaan'] == '88')
+                            Kredit Rumah Toko
+                        @elseif($detail['Jenis_penggunaan'] == '89')
+                            Kredit Konsumsi Lainnya
+                        @elseif($detail['Jenis_penggunaan'] == '90')
+                            Pemilikan Rumah s/d Tipe 36
+                        @else
+                            Pemilikan Rumah Di atas Tipe 36
+                        @endif
                     </p>
                 </div>
             </div>
@@ -284,9 +326,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">NPL Unit Kerja :</label>
+                <label class="col-md-5 control-label">Pemrakarsa :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['npl_unitkerja']}} %</p>
+                    <p class="form-control-static">{{$detail['ao_name']}}</p>
                 </div>
             </div>
             <!-- <div class="form-group">
@@ -308,7 +350,51 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Kode Fasilitas :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Kode_fasilitas']}}</p>
+                    <p class="form-control-static">
+                        @if($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A801')
+                            Briguna Karya Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A802')
+                            Briguna Karya Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A803')
+                            Briguna Karya Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A804')
+                            Briguna Karya Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A805')
+                            Briguna Karya Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A896')
+                            Briguna Karya Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A922')
+                            Briguna Karya Profesi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A923')
+                            Briguna Karya Profesi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A924')
+                            Briguna Karya Profesi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A925')
+                            Briguna Karya Profesi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A926')
+                            Briguna Karya Profesi
+                        @elseif($detail['Kode_fasilitas'] == 'FWL' && $detail['Sandi_stp'] == 'A927')
+                            Briguna Karya Profesi
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A801')
+                            Briguna Karya Smart
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A802')
+                            Briguna Karya Smart
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A803')
+                            Briguna Karya Smart
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A804')
+                            Briguna Karya Smart
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A805')
+                            Briguna Karya Smart
+                        @elseif($detail['Kode_fasilitas'] == 'FW7' && $detail['Sandi_stp'] == 'A896')
+                            Briguna Karya Smart
+                        @elseif($detail['Kode_fasilitas'] == 'FWP' && $detail['Sandi_stp'] == 'A301')
+                            Briguna Karyawan BRI Annuitas
+                        @elseif($detail['Kode_fasilitas'] == 'FW8' && $detail['Sandi_stp'] == 'A301')
+                            Briguna Smart Karyawan BRI
+                        @else
+                            Briguna Kawan
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -504,9 +590,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Pemrakarsa :</label>
+                <label class="col-md-5 control-label">NPL Unit Kerja :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['ao_name']}}</p>
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}} %</p>
                 </div>
             </div>
             <div class="form-group">

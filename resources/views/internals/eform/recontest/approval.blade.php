@@ -37,7 +37,7 @@
                         <h4 class="page-title">Approval Recontesting Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('eform.index')}}">Pengajuan Kredit</a>
@@ -188,7 +188,7 @@
                                 </form>
                                 @endif
                             </div> -->
-                            
+
                         </div>
                     </div>
 
@@ -328,7 +328,7 @@ $('#btn-approve').on('click', function(){
 })
 
 $('#btn-reject').on('click', function(){
-    $('#is_approved').attr('value', true);
+    $('#is_approved').attr('value', false);
     $('#auditaction').val('Reject Kredit');
     HoldOn.open(options);
     $('#form1').submit();

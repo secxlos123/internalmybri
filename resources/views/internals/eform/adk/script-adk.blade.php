@@ -52,7 +52,7 @@
                 url : '/datatables/adk-list',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
-
+                    // console.log(settings.json.data);
                     d.page = Math.min(
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
@@ -74,5 +74,8 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });
+        // setInterval (function test() {
+        //     location.reload();
+        // }, 1000);
     }
 </script>

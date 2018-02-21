@@ -41,7 +41,7 @@
                         @endif
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('eform.index')}}">Pengajuan Kredit</a>

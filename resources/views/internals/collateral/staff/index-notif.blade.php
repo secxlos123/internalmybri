@@ -11,7 +11,7 @@
                         <h4 class="page-title">List Approval Pengajuan Properti Baru</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 List Approval Pengajuan Properti Baru
@@ -81,7 +81,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         <table id="datatable" class="table table-bordered">
                                                                             <thead class="bg-primary">
                                                                                 <tr>
@@ -109,7 +109,7 @@
                                                                                     <td> {{ $form_notif['status'] }} </td>
                                                                                     <td> {!! $form_notif['action'] !!}  </td>
                                                                                     </tr>
-                                                                                </tbody> 
+                                                                                </tbody>
                                                                              @endif
                                                                         </table>
                                                                     </div>
@@ -127,7 +127,7 @@
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-                                                                    <div class="tab-scroll">
+                                                                    <div class="tab-scroll table-responsive">
                                                                         @If(count($form_notif) > 0 && $form_notif['developer_id'] == 1)
                                                                            <table id="datatable-independent" class="table table-bordered">
                                                                                 <thead class="bg-primary">
@@ -149,8 +149,8 @@
                                                                                     <td> {{ $form_notif['status'] }} </td>
                                                                                     <td> {!! $form_notif['action'] !!}  </td>
                                                                                     </tr>
-                                                                                </tbody>    
-                                                                            </table>  
+                                                                                </tbody>
+                                                                            </table>
                                                                         @Else
                                                                             <table id="datatable-independent" class="table table-bordered">
                                                                                 <thead class="bg-primary">
@@ -164,7 +164,7 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                             </table>
-                                                                        @Endif    
+                                                                        @Endif
                                                                     </div>
                                                                 </div>
                                                             </div>

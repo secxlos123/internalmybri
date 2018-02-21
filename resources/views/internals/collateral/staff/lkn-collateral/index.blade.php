@@ -23,7 +23,7 @@
                         <h4 class="page-title">Form Peninjauan Properti Baru</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{route('dashboard')}}">Dashboard</a>
+                                <a href="{{route('dashboard')}}">Home MyBRI</a>
                             </li>
                             <li>
                                 <a href="{{route('staff-collateral.index')}}">List Approval Pengajuan Properti Baru</a>
@@ -56,35 +56,35 @@
                                 @include('internals.collateral.staff.lkn-collateral._step-2')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 3 -->                            
+                                <!-- step 3 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-3')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 4 -->                            
+                                <!-- step 4 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-4')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 5 -->                            
+                                <!-- step 5 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-5')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 6 -->                            
+                                <!-- step 6 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-6')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 7 -->                            
+                                <!-- step 7 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-7')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 7 -->                            
+                                <!-- step 7 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-8')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 7 -->                            
+                                <!-- step 7 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-9')
 
                                 <h3>&nbsp;</h3>
-                                <!-- step 7 -->                            
+                                <!-- step 7 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-10')
 
                             </div>
@@ -112,7 +112,7 @@
             witdh : '100%',
             allowClear: true,
         });
-        
+
         $('.name').select2({
             witdh : '100%',
             allowClear: true,

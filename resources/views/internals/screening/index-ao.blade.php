@@ -20,7 +20,7 @@ tr.shown td.details1-control {
                         <h4 class="page-title">Prescreening</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Prescreening
@@ -107,7 +107,7 @@ tr.shown td.details1-control {
         });
 
         var table1 = $('#datatable').DataTable({
-            searching: false,
+            searching: true,
             "language": {
                 "emptyTable": "No data available in table"
             }

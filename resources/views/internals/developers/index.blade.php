@@ -11,7 +11,7 @@
                         <h4 class="page-title">Daftar Mitra Kerjasama</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Manajemen Mitra Kerjasama

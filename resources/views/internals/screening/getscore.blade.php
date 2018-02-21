@@ -11,7 +11,7 @@
                         <h4 class="page-title">Prescreening</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
-                                <a href="{{url('/')}}">Dashboard</a>
+                                <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
                                 Prescreening
@@ -22,6 +22,7 @@
                 </div>
             </div>
 
+								 <div id="load"></div>
             <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_scoring">
                 {{ csrf_field() }}
                 <div class="row">
@@ -64,7 +65,7 @@
 
                                             <div class="text-right">
                                                 <button type="submit" class="btn btn-success waves-light waves-effect w-md m-b-20" id="btn-save"><i class="mdi mdi-content-save"></i>Submit </button>
-
+												<img src="<?php public_path( 'assets/images/loading-image.gif' );?>" alt="Loading">
                                             </div>
                                     </div>
                                 </div>
@@ -134,7 +135,13 @@
             return false;
         });
 
+function testbutton(){
+	  setTimeout(function(){
+         document.getElementById('load').style.visibility="visible";
+      },1000);
+}
         $('#btn-save').on('click', function() {
-            HoldOn.open(options);
+			testbutton();
+            HoldOn.open(options);			
         });
     </script>
