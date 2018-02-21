@@ -50,10 +50,16 @@
                                     <span class="hidden-xs">Data Kunjungan</span>
                                 </a>
                             </li>
-                            <li class="">
+                          <!--   <li class="">
                                 <a href="#visit_docs" data-toggle="tab" aria-expanded="false">
                                     <span class="visible-xs"><i class="fa fa-list"></i></span>
                                     <span class="hidden-xs">Dokumen Kunjungan</span>
+                                </a>
+                            </li> -->
+                            <li class="">
+                                <a href="#visit_docs_upload" data-toggle="tab" aria-expanded="false">
+                                    <span class="visible-xs"><i class="fa fa-list"></i></span>
+                                    <span class="hidden-xs">Dokumen Upload</span>
                                 </a>
                             </li>
                         </ul>
@@ -75,8 +81,12 @@
                                 @include('internals.audit-rail.partials._visit_report')
                             </div>
 
-                            <div class="tab-pane" id="visit_docs">
+                            <!-- <div class="tab-pane" id="visit_docs">
                                 @include('internals.audit-rail.partials._visit_docs')
+                            </div> -->
+
+                            <div class="tab-pane" id="visit_docs_upload">
+                                @include('internals.audit-rail.partials._docs_upload')
                             </div>
                         </div>
                     </div>
