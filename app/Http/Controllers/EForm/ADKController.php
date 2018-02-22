@@ -798,6 +798,10 @@ class ADKController extends Controller
     }
 
     public function datatables(Request $request) {
+        // print_r($request->all());
+        // $sort   = $request->input('order.0');
+        // $column = $request->input('columns.'.$sort['column'].'');
+        // print_r($column['name']);exit();
         $eforms = ['contents' => 
             [
                 'draw'            => $request->input('draw'),
@@ -827,9 +831,15 @@ class ADKController extends Controller
                     'pn'            => $data['pn']
                 ])->setBody([
                     'requestMethod' => 'eformBriguna',
-                    'requestData'   => $data['branch']
+                    // 'branch_id'     => $data['branch'],
+                    // 'start'         => $request->input('start'),
+                    // 'limit'         => $request->input('length'),
+                    // 'search'        => $request->input('search.value'),
+                    // 'sort'          => $column['name'].'|'.$sort['dir'],
+                    // 'page'          => (int) $request->input('page') + 1
                 ])->post();
-
+                // print_r($customer);exit();
+        // $customer = $customer['contents'];
         if (!empty($customer)) {
             $debitur = Client::setEndpoint('api_las/index')
                 ->setHeaders([
@@ -897,7 +907,7 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $tgl_skpp = empty($detail['created_at']) ? '' : date('d-m-Y',strtotime($detail['created_at']));
-            $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], -4);
+            $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4);
             $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_skpp;
             $no_putusan  = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_putusan;
             $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
@@ -1143,6 +1153,34 @@ class ADKController extends Controller
         }
     }
 
+    public function exportImage(Request $request) {
+        $data = $this->getUser();
+        // print_r($data);
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('api_las/download_image')
+                    ->setHeaders([ 
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])
+                    ->setBody([
+                        'eform_id' => $response['eform_id']
+                    ])
+                    ->post();
+        $detail = $formDetail['contents'];
+        // dd($formDetail);
+        if (!empty($detail)) {
+            // $image_path = env('APP_URL').'/uploads/'.$detail['id_foto'];
+            // $npwp = $image_path.'/'.$detail['id_foto'].'-NPWP_nasabah.jpg';
+            // $image_path2 = env('APP_URL').'uploads/image/"146-20180207141908.jpeg';
+            // dd($image_path);
+
+            return response()->download($detail);            
+        } else {
+            \Session::flash('error', 'Dokumen Image gagal didownload');
+            return redirect()->route('adk.index');
+        }
+    }
+
     function terbilang($x, $style = 4) {
         if($x < 0) {
             $hasil = "minus ".trim($this->kekata($x));
@@ -1282,9 +1320,13 @@ class ADKController extends Controller
             return 'AGREE BY PINCA';
         } else if ($value == '13') {
             return 'AGREE BY WAPINWIL';
-        } else if ($value == '10') {
+        } else if ($value == '14') {
             return 'AGREE BY WAPINCASUS';
-        } else {
+        } else if ($value == '15') {
+            return 'NAIK KETINGKAT LEBIH TINGGI';
+        } else if ($value == '16') {
+            return 'MENGEMBALIKAN DATA KE AO';
+        } else if ($value == '0'){
             return 'APPROVAL';
         }
 

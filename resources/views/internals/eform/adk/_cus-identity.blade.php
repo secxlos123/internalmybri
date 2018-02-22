@@ -6,6 +6,9 @@
                 <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}" id="eform_id">
                 <input type="hidden" name="is_verified" id="verifikasi">
                 <div class="table-responsive">
+                    <!-- <a href="{{route('post_image', ['eform_id' => $detail['eform_id'],'id'=>'foto','image'=>'download'])}}" class="btn btn-info waves-effect waves-light bottom-margin " data-original-title="View" title="Download Image">
+                        <i class="mdi mdi-download"></i>
+                    </a> -->
                     <table class="table table-bordered" width="100%">
                         <thead class="bg-primary">
                             <tr align="center">
