@@ -30,7 +30,11 @@
 @if (isset($dispotition)  && $submited == false && $visited == false)
 	@php ( $title = ( $dispotition['ao_id'] == NULL || $dispotition['ao_id'] == '' ) ? 'Disposisi' : 'Re-Disposisi' )
 	<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.str_replace(' ','-',$dispotition['ref_number']))}}" class="btn btn-icon waves-effect waves-light btn-teal bottom-margin" data-toggle="tooltip" data-placement="top" title="{{ $title }}" data-original-title="{{ $title }}">
+		@if ($title == 'Disposisi')
 		<i class="mdi mdi-loupe"></i>
+		@else
+		<i class="mdi mdi-rotate-3d"></i>
+		@endif
 	</a>
 @endif
 
