@@ -126,17 +126,19 @@ class ADKHistoriController extends Controller
             $count = 0;
             $res_history = [];
             foreach ($customer as $key => $result) {
-                if (!empty($result['is_send'])) {
-                    if ($result['is_send'] != '0') {
+                if (isset($result['is_send'])) {
+                    // if ($result['isset(var)_send'] != '0') {
                         $status       = $this->getStatusIsSend($result['is_send']);
                         $tp_produk    = $this->getProduk($result['tp_produk']);
                         $prescreening = $this->getStatusScreening($result['prescreening_status']);
-                        $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], -4);
-                        $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], -4);
+                        $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], 4, 4);
+                        $jam_putusan  = substr($result['tgl_putusan'], 9,8);
+                        $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], 4, 4);
+                        $jam_analisa  = substr($result['tgl_analisa'], 9,8);
 
-                        $history['tgl_pengajuan'] = empty($result['created_at']) ? '' : date('d-m-Y',strtotime($result['created_at']));
-                        $history['tgl_analisa'] = empty($result['tgl_analisa']) ? '' : $tgl_analisa;
-                        $history['tgl_putusan'] = empty($result['tgl_putusan']) ? '' : $tgl_putusan;
+                        $history['tgl_pengajuan'] = !isset($result['created_at']) ? '' : date('d-m-Y',strtotime($result['created_at']));
+                        $history['tgl_analisa'] = !isset($result['tgl_analisa']) ? '' : $tgl_analisa.' '.$jam_analisa;
+                        $history['tgl_putusan'] = !isset($result['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;
                         $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'],0,",",".");
                         $history['cif']           = $result['cif'];
                         $history['eform_id']      = $result['eform_id'];
@@ -157,7 +159,7 @@ class ADKHistoriController extends Controller
                             'screening_result' => 'view'
                         ])->render();
                         $res_history[] = $history;
-                    }
+                    // }
                 }
             }
 
@@ -200,8 +202,8 @@ class ADKHistoriController extends Controller
                     $count = count($value);
                 }
             }            
-            // print_r($eforms);
-            // print_r($count);exit();
+            // print_r($eforms);exit();
+
             if (intval($count) != 0) {
                 $eforms['contents']['total']           = $count;
                 $eforms['contents']['draw']            = $request->input('draw');
@@ -251,9 +253,13 @@ class ADKHistoriController extends Controller
             return 'AGREE BY PINCA';
         } else if ($value == '13') {
             return 'AGREE BY WAPINWIL';
-        } else if ($value == '10') {
+        } else if ($value == '14') {
             return 'AGREE BY WAPINCASUS';
-        } else {
+        } else if ($value == '15') {
+            return 'NAIK KETINGKAT LEBIH TINGGI';
+        } else if ($value == '16') {
+            return 'MENGEMBALIKAN DATA KE AO';
+        } else if ($value == '0'){
             return 'APPROVAL';
         }
 

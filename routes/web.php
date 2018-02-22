@@ -12,24 +12,24 @@
 */
 /* Backend */
     /* Auth */
-			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
-			Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
-			Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
-			Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
-			Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
-			Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
-			Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
-			Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
-			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
-			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
-			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
-			//Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
-			Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
-			Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
-			Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
-			Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
-			Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
-			Route::get('/DirRpcHapusDetail', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus_detail']);
+            Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+            Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
+            Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
+            Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
+            Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
+            Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
+            Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
+            Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
+            Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
+            Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
+            Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            //Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
+            Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
+            Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
+            Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
+            Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
+            Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
+            Route::get('/DirRpcHapusDetail', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus_detail']);
 
     Route::post('/login',
         ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
@@ -172,8 +172,8 @@
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
-            Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
-            // Route::post('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+            // Route::get('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
+            Route::post('scoring-form/{dev_id}/{prop_id}', ['as'=>'getLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@getLKNAgunan']);
 
             Route::post('post-scoring-form/{id}', ['as'=>'postLKNAgunan', 'uses'=>'Collateral\CollateralStaffController@postLKNAgunan']);
 
@@ -215,6 +215,7 @@
         Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPTK']);
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
         Route::get('post_debitur/{id}', ['as'=>'post_debitur', 'uses'=>'EForm\ADKController@exportDebitur']);
+        Route::get('post_image/{id}', ['as'=>'post_image', 'uses'=>'EForm\ADKController@exportImage']);
 
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
@@ -247,57 +248,56 @@
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
-		
-		/* Fasilitas*/
+        
+        /* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
         Route::resource('screening', 'Screening\ScreeningController');
 
         /* CRM Dashboard */
-				Route::get('crm_dashboard', 'CRM\DashboardController@index');
-				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
-				Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
-				Route::post('pieChart', 'CRM\DashboardController@pieChart');
+                Route::get('crm_dashboard', 'CRM\DashboardController@index');
+                Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
+                Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
 
         /* CRM referral */
-				Route::resource('referral', 'CRM\ReferralController');
-				Route::get('add_referral', 'CRM\ReferralController@add');
-				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
-				Route::post('store_referral', 'CRM\ReferralController@store');
-				Route::post('update_referral', 'CRM\ReferralController@update');
+                Route::resource('referral', 'CRM\ReferralController');
+                Route::get('add_referral', 'CRM\ReferralController@add');
+                Route::post('cek_nik', 'CRM\ReferralController@nikCek');
+                Route::post('store_referral', 'CRM\ReferralController@store');
+                Route::post('update_referral', 'CRM\ReferralController@update');
 
         /* Disposisi Referral */
-				Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
+                Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
         /* CRM report */
-				Route::get('report/marketing', 'CRM\ReportController@marketing');
-				Route::get('report/activity', 'CRM\ReportController@activity');
+                Route::get('report/marketing', 'CRM\ReportController@marketing');
+                Route::get('report/activity', 'CRM\ReportController@activity');
 
 
-		Route::resource('mitra', 'Mitra\MitraController');
-		Route::resource('gimmick', 'Mitra\GimmickController');
-		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
-		Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
-		Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
-		Route::resource('mitra_list', 'Mitra\mitra\MitraController');
-		Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
-		Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');
-		Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
-		Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
-		Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
-		Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
-		Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
-		Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
-		Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
-		Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
-		Route::resource('dir_rpc_edit', 'Mitra\dirrpc\EditDircontroller');
-		Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
-		Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
-		Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
+        Route::resource('mitra', 'Mitra\MitraController');
+        Route::resource('gimmick', 'Mitra\GimmickController');
+        Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
+        Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+        Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+        Route::resource('mitra_list', 'Mitra\mitra\MitraController');
+        Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
+        Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');
+        Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
+        Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
+        Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
+        Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
+        Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
+        Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
+        Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
+        Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
+        Route::resource('dir_rpc_edit', 'Mitra\dirrpc\EditDircontroller');
+        Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
+        Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
+        Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
 
-		Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
-		Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
+        Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
+        Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
         Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
@@ -454,7 +454,7 @@
 
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
 
-		/* DirRpc */
+        /* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
         Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
