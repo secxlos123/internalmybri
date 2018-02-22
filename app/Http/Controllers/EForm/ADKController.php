@@ -1299,7 +1299,7 @@ class ADKController extends Controller
         } else if ($value == '2') {
             return 'UNAPPROVED';
         } else if ($value == '3') {
-            return 'VOID';
+            return 'DITOLAK';
         } else if ($value == '4') {
             return 'VOID ADK';
         } else if ($value == '5') {
