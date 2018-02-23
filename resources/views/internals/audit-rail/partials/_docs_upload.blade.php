@@ -94,6 +94,8 @@
                             Klik untuk melihat Dokumen LKN
                             @elseif(substr($dataUploads['name'], -16) == 'presrceening.pdf')
                             Klik untuk melihat Dokumen Prescreening
+                            @elseif(substr($dataUploads['name'], -13) == 'recontest.pdf')
+                            Klik untuk melihat Dokumen Rekontest
                             @elseif(substr($dataUploads['name'], -14) == 'collateral.pdf')
                             Klik untuk melihat Dokumen Collateral
                             @elseif(substr($dataUploads['name'], -18) == 'pefindo-report.pdf' || substr($dataUploads['name'], -18) == 'pefindo-report.jpg' || substr($dataUploads['name'], -18) == 'pefindo-report.png' || substr($dataUploads['name'], -19) == 'pefindo-report.jpeg' )
