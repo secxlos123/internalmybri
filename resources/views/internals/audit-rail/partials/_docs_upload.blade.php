@@ -92,7 +92,7 @@
                             Klik untuk Lihat Bukti Uang Muka
                             @elseif(substr($dataUploads['name'], -7) == 'lkn.pdf')
                             Klik untuk melihat Dokumen LKN
-                            @elseif(substr($dataUploads['name'], -16) == 'presrceening.pdf')
+                            @elseif(substr($dataUploads['name'], -16) == 'prescreening.pdf')
                             Klik untuk melihat Dokumen Prescreening
                             @elseif(substr($dataUploads['name'], -13) == 'recontest.pdf')
                             Klik untuk melihat Dokumen Rekontest
