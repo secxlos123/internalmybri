@@ -127,9 +127,13 @@ class ADKHistoriController extends Controller
             $res_history = [];
             foreach ($customer as $key => $result) {
                 if (isset($result['is_send'])) {
+                    $status = $result['status_putusan'];
+                } else {
+                    $status = $result['status_pengajuan'];
+                }
                     // if ($result['isset(var)_send'] != '0') {
-                        $status       = $this->getStatusIsSend($result['is_send']);
-                        $tp_produk    = $this->getProduk($result['tp_produk']);
+                        // $status       = $this->getStatusIsSend($result['is_send']);
+                        // $tp_produk    = $this->getProduk($result['tp_produk']);
                         $prescreening = $this->getStatusScreening($result['prescreening_status']);
                         $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], 4, 4);
                         $jam_putusan  = substr($result['tgl_putusan'], 9,8);
@@ -147,7 +151,7 @@ class ADKHistoriController extends Controller
                         $history['no_rekening']   = $result['no_rekening'];
                         $history['is_send']       = $result['is_send'];
                         $history['STATUS']        = $status;
-                        $history['fid_tp_produk'] = $tp_produk;
+                        $history['fid_tp_produk'] = $result['product'];
                         $history['status_screening'] = $prescreening;
                         $history['pinca_name']    = $result['pinca_name'];
                         $history['ao_name']       = $result['ao_name'];
@@ -160,7 +164,6 @@ class ADKHistoriController extends Controller
                         ])->render();
                         $res_history[] = $history;
                     // }
-                }
             }
 
             if (!empty($res_history)) {
@@ -188,7 +191,6 @@ class ADKHistoriController extends Controller
                                 'cif'         => $getBrinets['items'][0]['CIF'],
                                 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
                             ];
-                            // print_r($update_data);exit();
                             $update_briguna = Client::setEndpoint('api_las/update')
                             ->setHeaders(
                                 [ 'Authorization' => $data['token'],

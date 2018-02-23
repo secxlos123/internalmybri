@@ -746,9 +746,9 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');
 
-            if ($putusan['statusCode'] == '01') {
+            // if ($putusan['statusCode'] == '01') {
                 // get status interface yang sudah dikirim ke brinets
-                /*$getBrinets = Client::setEndpoint('api_las/index')
+                $getBrinets = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
@@ -757,43 +757,43 @@ class ADKController extends Controller
                         'requestMethod' => 'getStatusInterface',
                         'requestData'   => $response['id_aplikasi']
                     ])
-                    ->post('form_params');*/
+                    ->post('form_params');
 
-                // if ($getBrinets['statusCode'] == '01') {
-                    // $update_data = [
-                        // 'eform_id'    => $response['eform_id'],
+                if ($getBrinets['statusCode'] == '01') {
+                    $update_data = [
+                        'eform_id'    => $response['eform_id'],
                         // 'is_send'     => 7,
                         // 'is_send'     => 6,
                         // 'catatan_adk' => $response['catat_adk'],
-                        // 'cif'         => $getBrinets['items'][0]['CIF'],
-                        // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                        // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
-                    // ];
+                        'cif'         => $getBrinets['items'][0]['CIF'],
+                        'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                    ];
 
                     // print_r($update_data);exit();
-                    // $update_briguna = Client::setEndpoint('api_las/update')
-                    //     ->setHeaders(
-                    //         [ 'Authorization' => $data['token'],
-                    //           'pn' => $data['pn']
-                    //         ])
-                    //     ->setBody($update_data)
-                    //     ->post();
+                    $update_briguna = Client::setEndpoint('api_las/update')
+                        ->setHeaders(
+                            [ 'Authorization' => $data['token'],
+                              'pn' => $data['pn']
+                            ])
+                        ->setBody($update_data)
+                        ->post();
 
-                    // if ($update_briguna['code'] == '200') {
+                    if ($update_briguna['code'] == '200') {
                         \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
                         return redirect()->route('adk.index');
-                    // } else {
-                    //     \Session::flash('error', 'Verifikasi gagal disimpan');
-                    //     return redirect()->route('adk.index');
-                    // }
-                // } else {
-                //     \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
-                //     return redirect()->route('adk.index');
-                // }
-            } else {
-                \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
-                return redirect()->route('adk.index');
-            }
+                    } else {
+                        \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+                        return redirect()->route('adk.index');
+                    }
+                } else {
+                    \Session::flash('error', 'Hasil Inquiry DB Kosong, Id Aplikasi tidak ditemukan');
+                    return redirect()->route('adk.index');
+                }
+            // } else {
+            //     \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+            //     return redirect()->route('adk.index');
+            // }
         }
     }
 
@@ -859,13 +859,13 @@ class ADKController extends Controller
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
                             if ($value['is_send'] == '1') {
-                                $status    = $this->getStatusIsSend($value['is_send']);
-                                $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                                // $status    = $this->getStatusIsSend($value['is_send']);
+                                // $tp_produk = $this->getProduk($form['fid_tp_produk']);
                                 $prescreening = $this->getStatusScreening($value['prescreening_status']);
                                 $form['cif'] = $value['cif'];
                                 $form['eform_id'] = $value['eform_id'];
-                                $form['fid_tp_produk'] = $tp_produk;
-                                $form['STATUS'] = $status;
+                                $form['fid_tp_produk'] = $value['product'];
+                                $form['STATUS'] = $value['status_putusan'];
                                 $form['ref_number'] = $value['ref_number'];
                                 $form['status_screening'] = $prescreening;
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
