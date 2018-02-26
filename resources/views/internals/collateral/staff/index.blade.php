@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     @if (\Session::has('success'))
-                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                    <div class="alert alert-danger">{{ \Session::get('success') }}</div>
                     @endif
                     <div class="card-box ">
                         <div id="filter" class="m-b-15">
