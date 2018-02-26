@@ -168,7 +168,7 @@
                                 <td><?php echo $detail['catatan_skpu']?></td>
                             </tr>
                         <?php
-                            if ($detail['customer']['personal']['status'] != '1') {
+                            if ($detail['customer']['personal']['status'] == '2') {
                         ?>
                             <tr>
                                 <td align="center">9</td>
@@ -192,7 +192,7 @@
                         <?php   
                             }
                         } else {
-                            if ($detail['customer']['personal']['status'] != '1') {
+                            if ($detail['customer']['personal']['status'] == '2') {
                         ?>
                             <tr>
                                 <td align="center">8</td>

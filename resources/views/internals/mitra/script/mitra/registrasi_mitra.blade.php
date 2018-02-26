@@ -59,8 +59,39 @@ $(document).ready(function() {
 		
 		//----------------------------------------------------------
 });
+        $("#form_scoring").submit(function(){
+            var formData = new FormData(this);
+            $.ajax({
+                url: "/fasilitas",
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function (data) {
+                    HoldOn.close();
+                    alert(data['message']);
+                 },
+                error: function (response) {
+                    HoldOn.close();
+                    alert('gagal');
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+			
+			$('#fasilitas_lainnya').val('');
+			$('#deskripsi_fasilitas_lainnya').val('');
+			$('#nomor_pks_notaril').val('');
+			$('#nomor_perjanjian_kerjasama_bri').val('');
+			$('#nomor_perjanjian_kerjasama_ketiga').val('');
+			$('#tgl_perjanjian').val('');
+			$('#tgl_perjanjian_backdate').val('');
+			$('#ijin_prinsip').val('');
+			$('#myModal').modal('hide');
+            return false;
+        });
 
-	function getjenisbank(){
+		function getjenisbank(){
 		
 		var payroll = $("input:radio[name=payroll]:checked").val();
 		if(payroll=='bri'){

@@ -203,8 +203,9 @@ class RecontestController extends Controller
             return redirect()->route('eform.index');
 
         } else {
-            $error = reset($client['contents']);
-            \Session::flash('error', $client['descriptions'].' '.$error);
+            // $error = reset($client['contents']);
+            // \Session::flash('error', $client['descriptions'].' '.$error);
+            \Session::flash('error', $client['descriptions']);
             return redirect()->back()->withInput($request->input());
 
         }

@@ -746,9 +746,9 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');
 
-            if ($putusan['statusCode'] == '01') {
+            // if ($putusan['statusCode'] == '01') {
                 // get status interface yang sudah dikirim ke brinets
-                /*$getBrinets = Client::setEndpoint('api_las/index')
+                $getBrinets = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
@@ -757,52 +757,56 @@ class ADKController extends Controller
                         'requestMethod' => 'getStatusInterface',
                         'requestData'   => $response['id_aplikasi']
                     ])
-                    ->post('form_params');*/
+                    ->post('form_params');
 
-                // if ($getBrinets['statusCode'] == '01') {
-                    // $update_data = [
-                        // 'eform_id'    => $response['eform_id'],
+                if ($getBrinets['statusCode'] == '01') {
+                    $update_data = [
+                        'eform_id'    => $response['eform_id'],
                         // 'is_send'     => 7,
                         // 'is_send'     => 6,
                         // 'catatan_adk' => $response['catat_adk'],
-                        // 'cif'         => $getBrinets['items'][0]['CIF'],
-                        // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                        // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
-                    // ];
+                        'cif'         => $getBrinets['items'][0]['CIF'],
+                        'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                    ];
 
                     // print_r($update_data);exit();
-                    // $update_briguna = Client::setEndpoint('api_las/update')
-                    //     ->setHeaders(
-                    //         [ 'Authorization' => $data['token'],
-                    //           'pn' => $data['pn']
-                    //         ])
-                    //     ->setBody($update_data)
-                    //     ->post();
+                    $update_briguna = Client::setEndpoint('api_las/update')
+                        ->setHeaders(
+                            [ 'Authorization' => $data['token'],
+                              'pn' => $data['pn']
+                            ])
+                        ->setBody($update_data)
+                        ->post();
 
-                    // if ($update_briguna['code'] == '200') {
+                    if ($update_briguna['code'] == '200') {
                         \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
                         return redirect()->route('adk.index');
-                    // } else {
-                    //     \Session::flash('error', 'Verifikasi gagal disimpan');
-                    //     return redirect()->route('adk.index');
-                    // }
-                // } else {
-                //     \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
-                //     return redirect()->route('adk.index');
-                // }
-            } else {
-                \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
-                return redirect()->route('adk.index');
-            }
+                    } else {
+                        \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+                        return redirect()->route('adk.index');
+                    }
+                } else {
+                    \Session::flash('error', 'Hasil Inquiry DB Kosong, Id Aplikasi tidak ditemukan');
+                    return redirect()->route('adk.index');
+                }
+            // } else {
+            //     \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+            //     return redirect()->route('adk.index');
+            // }
         }
     }
 
     public function datatables(Request $request) {
+        // print_r($request->all());
+        // $sort   = $request->input('order.0');
+        // $column = $request->input('columns.'.$sort['column'].'');
+        // print_r($column['name']);exit();
         $eforms = ['contents' => 
             [
                 'draw'            => $request->input('draw'),
-                'recordsTotal'    => '1',
-                'recordsFiltered' => '1',
+                'recordsTotal'    => '0',
+                'recordsFiltered' => '0',
                 'data'            => [
                     // 'cif' => '123123',
                     // 'tgl_pengajuan' => '123122',
@@ -827,9 +831,15 @@ class ADKController extends Controller
                     'pn'            => $data['pn']
                 ])->setBody([
                     'requestMethod' => 'eformBriguna',
-                    'requestData'   => $data['branch']
+                    'requestData'   => $data['branch'],
+                    // 'start'         => $request->input('start'),
+                    // 'limit'         => $request->input('length'),
+                    // 'search'        => $request->input('search.value'),
+                    // 'sort'          => $column['name'].'|'.$sort['dir'],
+                    // 'page'          => (int) $request->input('page') + 1
                 ])->post();
-
+                // print_r($customer);exit();
+        // $customer = $customer['contents'];
         if (!empty($customer)) {
             $debitur = Client::setEndpoint('api_las/index')
                 ->setHeaders([
@@ -849,13 +859,13 @@ class ADKController extends Controller
                         if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
                             // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
                             if ($value['is_send'] == '1') {
-                                $status    = $this->getStatusIsSend($value['is_send']);
-                                $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                                // $status    = $this->getStatusIsSend($value['is_send']);
+                                // $tp_produk = $this->getProduk($form['fid_tp_produk']);
                                 $prescreening = $this->getStatusScreening($value['prescreening_status']);
                                 $form['cif'] = $value['cif'];
                                 $form['eform_id'] = $value['eform_id'];
-                                $form['fid_tp_produk'] = $tp_produk;
-                                $form['STATUS'] = $status;
+                                $form['fid_tp_produk'] = $value['product'];
+                                $form['STATUS'] = $value['status_putusan'];
                                 $form['ref_number'] = $value['ref_number'];
                                 $form['status_screening'] = $prescreening;
                                 $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
@@ -897,7 +907,7 @@ class ADKController extends Controller
         // dd($detail);
         if (!empty($detail)) {
             $tgl_skpp = empty($detail['created_at']) ? '' : date('d-m-Y',strtotime($detail['created_at']));
-            $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], -4);
+            $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4);
             $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_skpp;
             $no_putusan  = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_putusan;
             $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
@@ -1024,7 +1034,6 @@ class ADKController extends Controller
     }
 
     public function exportDebitur(Request $request) {
-        // return $this->exportKredit($request);
         $data = $this->getUser();
         $response = $request->all();
         $formDetail = Client::setEndpoint('eforms/'.$response['eform_id'])
@@ -1131,15 +1140,43 @@ class ADKController extends Controller
             $detail['premi_beban_bri'] = $premi_beban_bri;
             $detail['status_send'] = $status;
             // dd($detail);
-            $this->data['detail'] = $detail;
-            return view('internals.eform.adk._report_kredit')->with($this->data);
+            // $this->data['detail'] = $detail;
+            // return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
-            // $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
-            //         ['detail' => $detail])
-            //         ->setPaper('a4', 'landscape');
-            // return $pdf->download('detail_kredit.pdf');            
+            $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
+                    ['detail' => $detail])
+                    ->setPaper('a4', 'landscape');
+            return $pdf->download('detail_kredit.pdf');            
         } else {
             \Session::flash('error', 'Dokumen Detail Kredit gagal didownload');
+            return redirect()->route('adk.index');
+        }
+    }
+
+    public function exportImage(Request $request) {
+        $data = $this->getUser();
+        // print_r($data);
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('api_las/download_image')
+                    ->setHeaders([ 
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])
+                    ->setBody([
+                        'eform_id' => $response['eform_id']
+                    ])
+                    ->post();
+        $detail = $formDetail['contents'];
+        // dd($formDetail);
+        if (!empty($detail)) {
+            // $image_path = env('APP_URL').'/uploads/'.$detail['id_foto'];
+            // $npwp = $image_path.'/'.$detail['id_foto'].'-NPWP_nasabah.jpg';
+            // $image_path2 = env('APP_URL').'uploads/image/"146-20180207141908.jpeg';
+            // dd($image_path);
+
+            return response()->download($detail);            
+        } else {
+            \Session::flash('error', 'Dokumen Image gagal didownload');
             return redirect()->route('adk.index');
         }
     }
@@ -1262,7 +1299,7 @@ class ADKController extends Controller
         } else if ($value == '2') {
             return 'UNAPPROVED';
         } else if ($value == '3') {
-            return 'VOID';
+            return 'DITOLAK';
         } else if ($value == '4') {
             return 'VOID ADK';
         } else if ($value == '5') {
@@ -1283,9 +1320,13 @@ class ADKController extends Controller
             return 'AGREE BY PINCA';
         } else if ($value == '13') {
             return 'AGREE BY WAPINWIL';
-        } else if ($value == '10') {
+        } else if ($value == '14') {
             return 'AGREE BY WAPINCASUS';
-        } else {
+        } else if ($value == '15') {
+            return 'NAIK KETINGKAT LEBIH TINGGI';
+        } else if ($value == '16') {
+            return 'MENGEMBALIKAN DATA KE AO';
+        } else if ($value == '0'){
             return 'APPROVAL';
         }
 

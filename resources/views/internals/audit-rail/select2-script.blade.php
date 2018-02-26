@@ -262,7 +262,7 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: '{{route("getKanwil")}}',
+                url: '{{route("getKanwil2")}}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
@@ -285,6 +285,9 @@
                 cache: true
             },
         });
+        $('.action_kanwil2').on('select2:select', function(){
+                $('#branch_id').val($(this).val());
+        });
 
         $('.branch').select2({
             witdh : '100%',
@@ -296,7 +299,7 @@
                 data: function (params) {
                     return {
                         branch: params.term,
-                   
+                        branch_id: $('#branch_id').val(),
                         page: params.page || 1
                     };
                 },

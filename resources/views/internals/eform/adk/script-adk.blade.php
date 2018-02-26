@@ -38,9 +38,9 @@
     {
         table1 = $('#datatable').DataTable({
             searching : true,
-            processing : false,
+            processing : true,
             serverSide : false,
-            order : [[3, 'asc']],
+            // order : [[3, 'asc']],
             lengthMenu: [
                 [ 10, 25, 50, -1 ],
                 [ '10', '25', '50', 'All' ]
@@ -52,7 +52,7 @@
                 url : '/datatables/adk-list',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
-                    console.log(settings.json.data);
+                    // console.log(settings.json.data);
                     d.page = Math.min(
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
