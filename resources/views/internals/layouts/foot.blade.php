@@ -208,7 +208,8 @@
     });
 
     $(document).on('keypress', ".alphaOnly", function (e) {
-        var regex = new RegExp("^[a-zA-Z ]+$");
+        // var regex = new RegExp("^[a-zA-Z ]+$");
+        var regex = new RegExp("^[a-zA-Z \b\0 ]+$");
         var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
         if (regex.test(str)) {
             return true;
