@@ -270,7 +270,7 @@
                 if(appraisal_by != "Bank"){
                   $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
                 }else{
-                  $("#detail-collateral-modal .independent_appraiser").hide();
+                  $("#detail-collateral-modal .independent_appraiser").parent().parent().hide();
                 }
                 $("#detail-collateral-modal #date_assessment").html(date_assessment);
                 $("#detail-collateral-modal #type_binding").html(type_binding);

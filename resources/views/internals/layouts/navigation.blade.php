@@ -129,11 +129,11 @@
 </li>
 @endif
 
-
+@if($data['role'] == 'amp' || $data['role'] == 'mp' || $data['role'] == 'pincapem' || $data['role'] == 'pinca')
 <li>
   <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
 </li>
-
+@endif
 
 <hr>
 <li>

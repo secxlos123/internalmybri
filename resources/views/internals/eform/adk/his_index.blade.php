@@ -35,10 +35,10 @@
                                         <td align="center">ID Aplikasi</td>
                                         <td align="center">No Referensi</td>
                                         <td align="center">Produk</td>
-                                        <td align="center">Nama Pemutus</td>
-                                        <td align="center">Tanggal Putusan</td>
                                         <td align="center">Nama Pemrakarsa</td>
                                         <td align="center">Tanggal Analisa</td>
+                                        <td align="center">Nama Pemutus</td>
+                                        <td align="center">Tanggal Putusan</td>
                                         <td align="center">Nama Debitur</td>
                                         <td align="center">Nomor Rekening</td>
                                         <td align="center">Plafond</td>
