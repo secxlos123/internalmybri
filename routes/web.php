@@ -241,14 +241,18 @@
         Route::resource('debitur', 'Debitur\DebiturController');
 
         /* Collateral */
-        Route::resource('collateral', 'Collateral\CollateralController');
+        Route::group(['middleware' => 'checkrole:collateral'], function() {
+            Route::resource('collateral', 'Collateral\CollateralController');
+        });
 
         /* Collateral Staff*/
-        Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
+        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal'], function() {
+            Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
+        });
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
-        
+
         /* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
