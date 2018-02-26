@@ -52,7 +52,7 @@
 
     Route::delete('logout', 'User\LoginController@logout');
 
-    Route::group(['middleware'=> [ 'auth', 'check-token']], function () {
+    Route::group(['middleware'=> [ 'auth', 'check-token','preventBackHistory']], function () {
 
         /* Dashboard */
         Route::get('/',
@@ -439,14 +439,22 @@
         Route::get('collateral-type-property', 'Collateral\CollateralController@datatableType');
 
         /* Collateral */
-        Route::get('collateral', 'Collateral\CollateralController@datatables');
+        Route::group(['middleware' => 'checkrole:collateral'], function() {
 
-        Route::get('collateral/nonindex', 'Collateral\CollateralController@datatableNonIndex');
+            Route::get('collateral', 'Collateral\CollateralController@datatables');
+
+            Route::get('collateral/nonindex', 'Collateral\CollateralController@datatableNonIndex');
+
+        });
 
         /* Staff Collateral */
-        Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
+        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal'], function() {
 
-        Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
+            Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
+
+            Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
+
+        });
 
         // ApprovalData
         Route::get('approval-developer', 'ApprovalData\ApprovalDataController@datatableDeveloper');
