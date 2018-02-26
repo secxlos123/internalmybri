@@ -8,8 +8,12 @@ function testbutton(){
       },1000);
 }
 $(document).ready(function() {
-	
 	//------------------all hidden---------------------------------
+		$("#step0").show();
+		$("#step1").hide();
+		$("#step2").hide();
+		$("#step3").hide();
+		$("#step4").hide();
 		$("#induk_mitra_text").hide();
 		$("#back_induk_mitra_button").hide();
 		$("#induk_mitra_button").show();
@@ -59,6 +63,60 @@ $(document).ready(function() {
 		
 		//----------------------------------------------------------
 });
+
+	function lanjutback(x){
+		if(x=='0'){
+			$("#step0").show();
+			$("#step1").hide();
+			$("#step2").hide();
+			$("#step3").hide();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'first current');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'disabled');
+		}else if(x=='1'){
+			$("#step0").hide();
+			$("#step1").show();
+			$("#step2").hide();
+			$("#step3").hide();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'first current');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'disabled');
+		}else if(x=='2'){
+			$("#step0").hide();
+			$("#step1").hide();
+			$("#step2").show();
+			$("#step3").hide();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'first current');
+			$("#li-step-3").attr('class', 'disabled');
+		}else if(x=='3'){
+			$("#step0").hide();
+			$("#step1").hide();
+			$("#step2").hide();
+			$("#step3").show();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'first current');
+		}else if(x=='4'){
+			$("#step0").hide();
+			$("#step1").hide();
+			$("#step2").hide();
+			$("#step3").hide();
+			$("#step4").show();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'first current');
+		}
+	}
         $("#form_scoring").submit(function(){
             var formData = new FormData(this);
             $.ajax({
