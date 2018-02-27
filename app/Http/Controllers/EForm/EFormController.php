@@ -476,7 +476,11 @@ class EFormController extends Controller
                 if($client['code'] == 201){
                     \Session::flash('success', $client['descriptions']);
                     return redirect()->route('eform.index');
-                }else{
+                }elseif($client['code'] == 406){
+                    \Session::flash('error', $client['descriptions']);
+                    return redirect()->back()->withInput($request->input());
+                }
+                else{
                     $error = reset($client['contents']);
                     \Session::flash('error', $client['descriptions'].' '.$error);
                     return redirect()->back()->withInput($request->input());
