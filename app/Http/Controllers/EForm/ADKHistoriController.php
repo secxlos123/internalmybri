@@ -131,73 +131,73 @@ class ADKHistoriController extends Controller
                 } else {
                     $status = $result['status_pengajuan'];
                 }
-                    // if ($result['isset(var)_send'] != '0') {
-                        // $status       = $this->getStatusIsSend($result['is_send']);
-                        // $tp_produk    = $this->getProduk($result['tp_produk']);
-                        $prescreening = $this->getStatusScreening($result['prescreening_status']);
-                        $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], 4, 4);
-                        $jam_putusan  = substr($result['tgl_putusan'], 9,8);
-                        $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], 4, 4);
-                        $jam_analisa  = substr($result['tgl_analisa'], 9,8);
+                // if ($result['isset(var)_send'] != '0') {
+                    // $status       = $this->getStatusIsSend($result['is_send']);
+                    // $tp_produk    = $this->getProduk($result['tp_produk']);
+                    $prescreening = $this->getStatusScreening($result['prescreening_status']);
+                    $tgl_putusan  = substr($result['tgl_putusan'], 0, 2).'-'.substr($result['tgl_putusan'], 2, 2).'-'.substr($result['tgl_putusan'], 4, 4);
+                    $jam_putusan  = substr($result['tgl_putusan'], 9,8);
+                    $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], 4, 4);
+                    $jam_analisa  = substr($result['tgl_analisa'], 9,8);
 
-                        $history['tgl_pengajuan'] = !isset($result['created_at']) ? '' : date('d-m-Y',strtotime($result['created_at']));
-                        $history['tgl_analisa'] = !isset($result['tgl_analisa']) ? '' : $tgl_analisa.' '.$jam_analisa;
-                        $history['tgl_putusan'] = !isset($result['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;
-                        $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'],0,",",".");
-                        $history['cif']           = $result['cif'];
-                        $history['eform_id']      = $result['eform_id'];
-                        $history['id_aplikasi']   = $result['id_aplikasi'];
-                        $history['ref_number']    = $result['ref_number'];
-                        $history['no_rekening']   = $result['no_rekening'];
-                        $history['is_send']       = $result['is_send'];
-                        $history['STATUS']        = $status;
-                        $history['fid_tp_produk'] = $result['product'];
-                        $history['status_screening'] = $prescreening;
-                        $history['pinca_name']    = $result['pinca_name'];
-                        $history['ao_name']       = $result['ao_name'];
-                        $history['namadeb']       =$result['first_name'].' '.$result['last_name'];
-                        $history['action']= view('internals.layouts.actions',[
-                            'detail_adk'       => $result['eform_id'],
-                            'is_screening'     => $result['is_screening'],
-                            'is_verified'      => $result['is_verified'],
-                            'screening_result' => 'view'
-                        ])->render();
-                        $res_history[] = $history;
-                    // }
+                    $history['tgl_pengajuan'] = !isset($result['created_at']) ? '' : date('d-m-Y H:i:s',strtotime($result['created_at']));
+                    $history['tgl_analisa'] = !isset($result['tgl_analisa']) ? '' : $tgl_analisa.' '.$jam_analisa;
+                    $history['tgl_putusan'] = !isset($result['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;
+                    $history['request_amount']= 'Rp '.number_format($result['Plafond_usulan'],0,",",".");
+                    $history['cif']           = $result['cif'];
+                    $history['eform_id']      = $result['eform_id'];
+                    $history['id_aplikasi']   = $result['id_aplikasi'];
+                    $history['ref_number']    = $result['ref_number'];
+                    $history['no_rekening']   = $result['no_rekening'];
+                    $history['is_send']       = $result['is_send'];
+                    $history['STATUS']        = $status;
+                    $history['fid_tp_produk'] = $result['product'];
+                    $history['status_screening'] = $prescreening;
+                    $history['pinca_name']    = $result['pinca_name'];
+                    $history['ao_name']       = $result['ao_name'];
+                    $history['namadeb']       =$result['first_name'].' '.$result['last_name'];
+                    $history['action']= view('internals.layouts.actions',[
+                        'detail_adk'       => $result['eform_id'],
+                        'is_screening'     => $result['is_screening'],
+                        'is_verified'      => $result['is_verified'],
+                        'screening_result' => 'view'
+                    ])->render();
+                    $res_history[] = $history;
+                // }
             }
 
             if (!empty($res_history)) {
                 foreach ($res_history as $index => $value) {
-                    $getBrinets = Client::setEndpoint('api_las/index')
-                            ->setHeaders(
-                                [ 'Authorization' => $data['token'],
-                                  'pn' => $data['pn']
+                    $value['no_rekenings'] = $value['no_rekening'];
+                    if (empty($value['no_rekening']) || $value['no_rekening'] == '') {
+                        $getBrinets = Client::setEndpoint('api_las/index')
+                                ->setHeaders(
+                                    [ 'Authorization' => $data['token'],
+                                      'pn' => $data['pn']
+                                    ])
+                                ->setBody([
+                                    'requestMethod' => 'getStatusInterface',
+                                    'requestData'   => $value['id_aplikasi']
                                 ])
-                            ->setBody([
-                                'requestMethod' => 'getStatusInterface',
-                                'requestData'   => $value['id_aplikasi']
-                            ])
-                            ->post('form_params');
-                    // print_r($getBrinets);
-                    $value['no_rekenings'] = '';
-                    if ($getBrinets['statusCode'] == '01') {
-                        $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
-                        // if (!isset($value['no_rekening'])) {
-                        if (empty($detail['no_rekening']) || $detail['no_rekening'] == '') {
-                            $update_data = [
-                                'eform_id'    => $value['eform_id'],
-                                'is_send'     => 6,
-                                'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
-                                'cif'         => $getBrinets['items'][0]['CIF'],
-                                'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                            ];
-                            $update_briguna = Client::setEndpoint('api_las/update')
-                            ->setHeaders(
-                                [ 'Authorization' => $data['token'],
-                                  'pn' => $data['pn']
-                                ])
-                            ->setBody($update_data)
-                            ->post();
+                                ->post('form_params');
+                        // print_r($getBrinets);
+                        if ($getBrinets['statusCode'] == '01') {
+                            $value['no_rekenings'] = $getBrinets['items'][0]['NO_REKENING'];
+                            $value['cif'] = $getBrinets['items'][0]['CIF_LAS'];
+                            // $update_data = [
+                            //     'eform_id'    => $value['eform_id'],
+                            //     'is_send'     => 6,
+                            //     'no_rekening' => $getBrinets['items'][0]['NO_REKENING'],
+                            //     'cif'         => $getBrinets['items'][0]['CIF'],
+                            //     'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                            // ];
+                            // $update_briguna = Client::setEndpoint('api_las/update')
+                            // ->setHeaders(
+                            //     [ 'Authorization' => $data['token'],
+                            //       'pn' => $data['pn']
+                            //     ])
+                            // ->setBody($update_data)
+                            // ->post();
                         }
                     }
                     $eforms['contents']['data'][] = $value;
