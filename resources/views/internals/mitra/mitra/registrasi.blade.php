@@ -52,8 +52,9 @@
 </div>
     <div class="content-page">
         <div class="content">
-		{{ csrf_field() }}
-		<form>
+		<form action="MitraStore" method="post" enctype="multipart/form-data">
+		
+			{{ csrf_field() }}
 		<div role="application" class="wizard clearfix" id="steps-uid-0">
 			<div class="steps clearfix">
 				<ul role="tablist">
@@ -341,7 +342,7 @@
 																			<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-print" name="btn-print"><i class="mdi mdi-printer"></i>Print </button>
 																		</div>-->
 																		<div class="col-md-2">                               
-																			<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-submit" name="btn-submit"><i class="mdi mdi-content-save"></i>Simpan </button>
+																			<button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-submit" name="btn-submit"><i class="mdi mdi-content-save"></i>Simpan </button>
 																			
 																</div>
 															</div>
