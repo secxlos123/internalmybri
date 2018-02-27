@@ -868,7 +868,7 @@ class ADKController extends Controller
                                 $form['STATUS'] = $value['status_putusan'];
                                 $form['ref_number'] = $value['ref_number'];
                                 $form['status_screening'] = $prescreening;
-                                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
+                                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y H:i:s',strtotime($value['created_at']));
                                 $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
                                 $form['action'] = view('internals.layouts.actions',[
                                     'approve_adk' => $form,
