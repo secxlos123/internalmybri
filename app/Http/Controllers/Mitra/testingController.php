@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Mitra\dirrpc;
+namespace App\Http\Controllers\Mitra;
 
 use Illuminate\Http\Request;
 use Request as AjaxRequest;
