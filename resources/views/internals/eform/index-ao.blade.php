@@ -298,7 +298,7 @@
                 html = '';
                 assets = "{{asset('assets/images/download.png')}}";
 
-                if ( uploadscore != null || uploadscore != '') {
+                if ( uploadscore != null || uploadscore != '' || uploadscore != 'PDF kosong') {
                     split = uploadscore.split(',');
                     $.each(split, function(key, value) {
                         if (value != ''){

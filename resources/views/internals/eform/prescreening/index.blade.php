@@ -52,7 +52,7 @@
                                             <div class="card-box">
                                                 <h4 class="header-title custom-title">
                                                     <input type="radio" id="dhn{{ $key }}{{ $pefindo->PefindoId }}" name="select_{{ $key }}_pefindo" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}>
-                                                    <label for="dhn{{ $key }}{{ $pefindo->PefindoId }}">Pefindo / SLIK {{ $pefindo->PefindoId }}</label>
+                                                    <label for="dhn{{ $key }}{{ $pefindo->PefindoId }}">Pefindo {{ $pefindo->PefindoId }}</label>
                                                 </h4>
                                                 <div class="row">
                                                     <div class="col-md-12">
