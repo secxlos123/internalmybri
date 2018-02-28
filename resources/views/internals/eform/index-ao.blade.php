@@ -222,7 +222,7 @@
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
         prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
-        autoPrescreening = "{{ env( 'AUTO_PRESCREENING', 'false' ) }}";
+        autoPrescreening = "{{ env( 'PRESCREENING', 'manual' ) }}";
 
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
@@ -367,7 +367,7 @@
 
             });
 
-        } else if ( prescreeningStatus == '-' && autoPrescreening == 'false' ) {
+        } else if ( prescreeningStatus == '-' && autoPrescreening == 'manual' ) {
             // notif for verification
             $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
