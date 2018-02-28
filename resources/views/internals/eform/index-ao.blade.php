@@ -186,8 +186,6 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#btn-update-sicd").removeClass('hide');
-
         $("#from").datepicker({
             todayBtn:  1,
             autoclose: true,
@@ -224,10 +222,12 @@
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
         prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
+        autoPrescreening = "{{ env( 'AUTO_PRESCREENING', false ) }}";
 
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
             // notif for verification
+            $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base').html()
@@ -253,9 +253,16 @@
                 }
 
             }).done(function(data){
+                $("#btn-update-sicd").removeClass('hide');
                 $("#result-modal .modal-body").html($('.modal-body-base').html());
                 // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
                 contents = data.response.contents;
+
+                disabled = 'disabled';
+                if ( autoPrescreening == 'false' ) {
+                    disabled = '';
+
+                }
 
                 $('.card-box.m-t-30.remove-class-prescreening').remove();
 
@@ -323,7 +330,7 @@
                         selected = ' Dipilih';
                     }
 
-                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"> <label for="dhn'+key+'">DHN'+selected+'</label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
+                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"'+disabled+'> <label for="dhn'+key+'">DHN'+selected+'</label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
                 })
 
                 $.each(contents.sicd, function(key, sicd) {
@@ -343,7 +350,7 @@
                         selected = ' Dipilih';
                     }
 
-                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"> <label for="sicd'+key+'">SICD'+selected+'<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"'+disabled+'> <label for="sicd'+key+'">SICD'+selected+'<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
                 })
                 $(html).insertAfter(base);
 
@@ -360,8 +367,9 @@
 
             });
 
-        } else if ( prescreeningStatus == '-' ) {
+        } else if ( prescreeningStatus == '-' && autoPrescreening == 'false' ) {
             // notif for verification
+            $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base-none').html()
