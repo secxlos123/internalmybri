@@ -24,71 +24,73 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <div class="panel panel-color panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Data Hasil Verifikasi</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-horizontal" role="form">
-                                    <div class="">
-                                        <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['name'] }}</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-color panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Data Hasil Verifikasi</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-horizontal" role="form">
+                                        <div class="">
+                                            <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['name'] }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                   <div class="">
-                                        <label class="col-md-6 control-label"> NIK</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['nik'] }}</p>
+                                       <div class="">
+                                            <label class="col-md-6 control-label"> NIK</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['nik'] }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="">
-                                        <label class="col-md-6 control-label"> Tanggal Lahir</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['birth_date'] }}</p>
+                                        <div class="">
+                                            <label class="col-md-6 control-label"> Tanggal Lahir</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['birth_date'] }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="">
-                                        <label class="col-md-6 control-label"> Alamat</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['address'] }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @if( $eform['customer']['personal']['status_id'] == '2' )
-                            <div class="col-md-6">
-                                <div class="form-horizontal" role="form">
-                                    <div class="">
-                                        <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['couple_name'] }}</p>
-                                        </div>
-                                    </div>
-                                   <div class="">
-                                        <label class="col-md-6 control-label"> NIK</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['couple_nik'] }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="">
-                                        <label class="col-md-6 control-label"> Tanggal Lahir</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['couple_birth_date'] }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="">
-                                        <label class="col-md-6 control-label"> Alamat</label>
-                                        <div class="col-md-6">
-                                            <p class="form-control-static">{{ $eform['customer']['personal']['address'] }}</p>
+                                        <div class="">
+                                            <label class="col-md-6 control-label"> Alamat</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['address'] }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                @if( $eform['customer']['personal']['status_id'] == '2' )
+                                <div class="col-md-6">
+                                    <div class="form-horizontal" role="form">
+                                        <div class="">
+                                            <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['couple_name'] }}</p>
+                                            </div>
+                                        </div>
+                                       <div class="">
+                                            <label class="col-md-6 control-label"> NIK</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['couple_nik'] }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label class="col-md-6 control-label"> Tanggal Lahir</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['couple_birth_date'] }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label class="col-md-6 control-label"> Alamat</label>
+                                            <div class="col-md-6">
+                                                <p class="form-control-static">{{ $eform['customer']['personal']['address'] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
-                            @endif
                         </div>
                     </div>
                 </div>
