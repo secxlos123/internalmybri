@@ -222,7 +222,7 @@
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
         prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
-        autoPrescreening = "{{ env( 'AUTO_PRESCREENING', false ) }}";
+        autoPrescreening = "{{ env( 'AUTO_PRESCREENING', 'false' ) }}";
 
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
