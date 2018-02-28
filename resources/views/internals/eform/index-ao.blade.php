@@ -186,8 +186,6 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#btn-update-sicd").removeClass('hide');
-
         $("#from").datepicker({
             todayBtn:  1,
             autoclose: true,
@@ -228,6 +226,7 @@
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
             // notif for verification
+            $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base').html()
@@ -253,6 +252,7 @@
                 }
 
             }).done(function(data){
+                $("#btn-update-sicd").removeClass('hide');
                 $("#result-modal .modal-body").html($('.modal-body-base').html());
                 // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
                 contents = data.response.contents;
@@ -362,6 +362,7 @@
 
         } else if ( prescreeningStatus == '-' ) {
             // notif for verification
+            $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base-none').html()
