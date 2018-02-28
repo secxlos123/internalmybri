@@ -253,7 +253,14 @@
                 }
 
             }).done(function(data){
-                $("#btn-update-sicd").removeClass('hide');
+                if ( autoPrescreening == 'manual' ) {
+                    $("#btn-update-sicd").removeClass('hide');
+
+                } else {
+                    $("#btn-update-sicd").addClass('hide');
+
+                }
+
                 $("#result-modal .modal-body").html($('.modal-body-base').html());
                 // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
                 contents = data.response.contents;
