@@ -239,7 +239,7 @@ class CollateralStaffController extends Controller
            // dd($client);
 
       if($client['code'] == 200){
-        \Session::flash('success',  'Penilaian agunan telah berhasil ditolak.');
+        \Session::flash('error',  'Penilaian agunan telah berhasil ditolak.');
         return redirect()->route('staff-collateral.index');
       }else{
         $error = reset($client['contents']);
