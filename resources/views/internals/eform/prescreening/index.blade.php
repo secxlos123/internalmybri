@@ -26,10 +26,10 @@
 
             <div class="row">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Dokumen Pembanding</h4>
+                    <h4 class="panel-title">Dokumen Sumber</h4>
                 </div>
                 @if( isset( $eform['customer']['personal']['couple_identity'] ) )
-                    @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
+                    @if( strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg') < 0 )
                         <div class="col-md-6" align="center">
                             <div class="card-box">
                                 @if((pathinfo(strtolower($eform['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['personal']['couple_identity'])), PATHINFO_EXTENSION) == 'jpeg'))
@@ -44,7 +44,7 @@
                     @endif
                 @endif
                 @if( isset( $eform['customer']['other']['identity'] ) )
-                    @if(strpos($eform['customer']['other']['identity'], 'noimage.jpg'))
+                    @if( strpos($eform['customer']['other']['identity'], 'noimage.jpg')  < 0)
                         <div class="col-md-6" align="center">
                             <div class="card-box">
                                 @if((pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
