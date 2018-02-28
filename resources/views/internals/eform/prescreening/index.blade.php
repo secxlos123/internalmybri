@@ -24,46 +24,124 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Dokumen Pembanding</h4>
+            <div class="col-md-12">
+                <div class="panel panel-color panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Data Hasil Verifikasi</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-horizontal" role="form">
+                                    <div class="">
+                                        <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['name'] }}</p>
+                                        </div>
+                                    </div>
+                                   <div class="">
+                                        <label class="col-md-6 control-label"> NIK</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['nik'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <label class="col-md-6 control-label"> Tanggal Lahir</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['birth_date'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <label class="col-md-6 control-label"> Alamat</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['address'] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if( $eform['customer']['personal']['status_id'] == '2' )
+                            <div class="col-md-6">
+                                <div class="form-horizontal" role="form">
+                                    <div class="">
+                                        <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['couple_name'] }}</p>
+                                        </div>
+                                    </div>
+                                   <div class="">
+                                        <label class="col-md-6 control-label"> NIK</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['couple_nik'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <label class="col-md-6 control-label"> Tanggal Lahir</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['couple_birth_date'] }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <label class="col-md-6 control-label"> Alamat</label>
+                                        <div class="col-md-6">
+                                            <p class="form-control-static">{{ $eform['customer']['personal']['address'] }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-                @if( isset( $eform['customer']['personal']['couple_identity'] ) )
-                    <div class="col-md-6" align="center">
-                        <div class="card-box">
-                            @if((pathinfo(strtolower($eform['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['personal']['couple_identity'])), PATHINFO_EXTENSION) == 'jpeg'))
-                                @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
-                                    <p>KTP Pasangan Tidak Ada</p>
-                                    <img class="img-responsive" id="zoom">
-                                @else
-                                    <img src="{{$eform['customer']['personal']['couple_identity']}}" class="img-responsive" id="zoom">
-                                    <p>KTP Pasangan</p>
+            </div>
+
+            <div class="col-md-12">
+                <div class="panel panel-color panel-primary">
+                    <div class="panel-heading" data-toggle="collapse" href="#collapseImage" style="cursor: pointer;">
+                        <h3 class="panel-title">Dokumen Sumber <small>(klik disini untuk melihat detail dokumen)</small></h3>
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="collapseImage">
+                        <div class="row">
+                            @if( isset( $eform['customer']['other']['identity'] ) )
+                                <div class="col-md-6" align="center">
+                                    <div class="card-box">
+                                        @if((pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                             @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
+                                                <p>KTP Tidak Ada</p>
+                                                <img class="img-responsive" id="zoom">
+                                            @else
+                                                <img src="{{$eform['customer']['other']['identity']}}" class="img-responsive" id="zoom">
+                                                <p>KTP</p>
+                                            @endif
+                                        @else
+                                            <a href="@if(!empty($eform['customer']['other']['identity'])){{$eform['customer']['other']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                            <p>Klik Untuk Lihat KTP</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
+                            @if( $eform['customer']['personal']['status_id'] == '2' )
+                                @if( isset( $eform['customer']['personal']['couple_identity'] ) )
+                                    <div class="col-md-6" align="center">
+                                        <div class="card-box">
+                                            @if((pathinfo(strtolower($eform['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['personal']['couple_identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['personal']['couple_identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                                @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
+                                                    <p>KTP Pasangan Tidak Ada</p>
+                                                    <img class="img-responsive" id="zoom">
+                                                @else
+                                                    <img src="{{$eform['customer']['personal']['couple_identity']}}" class="img-responsive" id="zoom">
+                                                    <p>KTP Pasangan</p>
+                                                @endif
+                                            @else
+                                                <a href="@if(!empty($eform['customer']['personal']['couple_identity'])){{$eform['customer']['personal']['couple_identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                                <p>Klik Untuk Lihat KTP Pasangan</p>
+                                            @endif
+                                        </div>
+                                    </div>
                                 @endif
-                            @else
-                                <a href="@if(!empty($eform['customer']['personal']['couple_identity'])){{$eform['customer']['personal']['couple_identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
-                                <p>Klik Untuk Lihat KTP Pasangan</p>
                             @endif
                         </div>
                     </div>
-                @endif
-                @if( isset( $eform['customer']['other']['identity'] ) )
-                    <div class="col-md-6" align="center">
-                        <div class="card-box">
-                            @if((pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
-                                 @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
-                                    <p>KTP Tidak Ada</p>
-                                    <img class="img-responsive" id="zoom">
-                                @else
-                                    <img src="{{$eform['customer']['other']['identity']}}" class="img-responsive" id="zoom">
-                                    <p>KTP</p>
-                                @endif
-                            @else
-                                <a href="@if(!empty($eform['customer']['other']['identity'])){{$eform['customer']['other']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
-                                <p>Klik Untuk Lihat KTP</p>
-                            @endif
-                        </div>
-                    </div>
-                @endif
+                </div>
             </div>
 
             <form id="formLKN" method="POST" action="{{route('postPrescreening', $id)}}" enctype="multipart/form-data">
@@ -88,7 +166,7 @@
                                 <div class="panel-body">
                                     @foreach( json_decode($eform['pefindo_detail']) as $key => $pefindoAll )
                                         @if( count($pefindoAll) > 1 )
-                                            <div class="card-box-head">{{ $key == 'individual' ? 'Calon Debitur' : 'Pasangan Calon Debitur' }}</div>
+                                            <div class="card-box-head">{{ $key == 'individual' ? 'Calon Nasabah' : 'Pasangan Calon Nasabah' }}</div>
                                         @endif
                                         @foreach( $pefindoAll as $index => $pefindo )
                                             <div class="card-box">
