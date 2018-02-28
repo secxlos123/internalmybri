@@ -58,6 +58,7 @@
                                                         <div class="input-group">
                                                             <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" value="{{ old('birth_date') }}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
+                                                        <span id="birth_date-error"></span>
                                                         </div>
                                                     </div>
                                                 </div>
