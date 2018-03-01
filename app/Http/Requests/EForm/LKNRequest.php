@@ -56,6 +56,8 @@ class LKNRequest extends FormRequest
            'seller_address' => 'required_if:use_reason,2,18',
            'seller_phone' => 'required_if:use_reason,2,18',
            'selling_price' => 'required_if:use_reason,2,18',
+           'reason_for_sale' => 'required_if:use_reason,2,18',
+           'relation_with_seller'=> 'required_if:use_reason,2,18',
 
            'salary_slip' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'legal_bussiness_document' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
