@@ -113,13 +113,17 @@ class ADKHistoriController extends Controller
             ]
         ];
         $data = $this->getUser();
+        $params = [
+            'id_aplikasi' => '',
+            'branch' => $data['branch']
+        ];
         $customer = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn'            => $data['pn']
                 ])->setBody([
                     'requestMethod' => 'eformBriguna',
-                    'requestData'   => $data['branch']
+                    'requestData'   => $params
                 ])->post();
         // print_r($customer);exit();
         if (!empty($customer)) {

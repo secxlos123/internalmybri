@@ -825,23 +825,7 @@ class ADKController extends Controller
         ];
 
         $data = $this->getUser();
-        $customer = Client::setEndpoint('api_las/index')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn'            => $data['pn']
-                ])->setBody([
-                    'requestMethod' => 'eformBriguna',
-                    'requestData'   => $data['branch'],
-                    // 'start'         => $request->input('start'),
-                    // 'limit'         => $request->input('length'),
-                    // 'search'        => $request->input('search.value'),
-                    // 'sort'          => $column['name'].'|'.$sort['dir'],
-                    // 'page'          => (int) $request->input('page') + 1
-                ])->post();
-                // print_r($customer);exit();
-        // $customer = $customer['contents'];
-        if (!empty($customer)) {
-            $debitur = Client::setEndpoint('api_las/index')
+        $debitur = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn'            => $data['pn']
@@ -850,36 +834,59 @@ class ADKController extends Controller
                     'requestData'   => $data['branch']
                 ])->post();
 
-            if ($debitur['code'] == '01') {
-                $listVerADK = $debitur['contents']['data'];
+        if ($debitur['code'] == '01') {
+            $listVerADK = $debitur['contents']['data'];
+            foreach ($listVerADK as $key => $result) {
+                $id_aplikasi[] = $result['id_aplikasi'];
+            }
+
+            $params = [
+                'id_aplikasi' => $id_aplikasi,
+                'branch' => $data['branch']
+            ];
+            $customer = Client::setEndpoint('api_las/index')
+                    ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn'            => $data['pn']
+                    ])->setBody([
+                        'requestMethod' => 'eformBriguna',
+                        'requestData'   => $params,
+                        // 'start'         => $request->input('start'),
+                        // 'limit'         => $request->input('length'),
+                        // 'search'        => $request->input('search.value'),
+                        // 'sort'          => $column['name'].'|'.$sort['dir'],
+                        // 'page'          => (int) $request->input('page') + 1
+                    ])->post();
+                    // print_r($customer);exit();
+            // $customer = $customer['contents'];
+            if (!empty($customer)) {
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
-                    foreach ($listVerADK as $key => $form) {
-                        if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
-                            // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
-                            if ($value['is_send'] == '1') {
-                                // $status    = $this->getStatusIsSend($value['is_send']);
-                                // $tp_produk = $this->getProduk($form['fid_tp_produk']);
-                                $prescreening = $this->getStatusScreening($value['prescreening_status']);
-                                $form['cif'] = $value['cif'];
-                                $form['eform_id'] = $value['eform_id'];
-                                $form['fid_tp_produk'] = $value['product'];
-                                $form['STATUS'] = $value['status_putusan'];
-                                $form['ref_number'] = $value['ref_number'];
-                                $form['status_screening'] = $prescreening;
-                                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y H:i:s',strtotime($value['created_at']));
-                                $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                                $form['action'] = view('internals.layouts.actions',[
-                                    'approve_adk' => $form,
-                                    'is_screening'     => $value['is_screening'],
-                                    'is_verified'      => $value['is_verified'],
-                                    'screening_result' => 'view'
-                                ])->render();
-                                $eforms['contents']['data'][] = $form;
-                                $count = count($form);
-                            }
-                        }
+                    // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                    if ($value['is_send'] == '1') {
+                        // $status    = $this->getStatusIsSend($value['is_send']);
+                        // $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                        $prescreening = $this->getStatusScreening($value['prescreening_status']);
+                        $form['cif']  = $value['cif'];
+                        $form['STATUS'] = $value['status_putusan'];
+                        $form['namadeb']  = $value['first_name'].' '.$value['last_name'];
+                        $form['eform_id'] = $value['eform_id'];
+                        $form['ref_number']   = $value['ref_number'];
+                        $form['id_aplikasi']  = $value['id_aplikasi'];
+                        $form['nama_pegawai'] = $value['ao_name'];
+                        $form['fid_tp_produk']= $value['product'];
+                        $form['tgl_pengajuan']= empty($value['created_at']) ? $value['created_at'] : date('d-m-Y H:i:s',strtotime($value['created_at']));
+                        $form['request_amount'] = 'Rp '.number_format($value['Plafond_usulan'], 0, ",", ".");
+                        $form['status_screening'] = $prescreening;
+                        $form['action'] = view('internals.layouts.actions',[
+                            'approve_adk' => $form,
+                            'is_screening'     => $value['is_screening'],
+                            'is_verified'      => $value['is_verified'],
+                            'screening_result' => 'view'
+                        ])->render();
+                        $eforms['contents']['data'][] = $form;
+                        $count = count($form);
                     }
                 }
 
@@ -888,7 +895,7 @@ class ADKController extends Controller
                     $eforms['contents']['draw']            = $request->input('draw');
                     $eforms['contents']['recordsTotal']    = $eforms['contents']['total'];
                     $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-                }
+                } 
             }
         }
         return response()->json($eforms['contents']);
@@ -1011,7 +1018,7 @@ class ADKController extends Controller
                     view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph');
                     return $pdf->download('sph_briguna_karya.pdf');
-                } else if (strtolower($fasilitas) == 'wp') {
+                } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'zu') {
                     // lempar data ke view blade
                     view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
