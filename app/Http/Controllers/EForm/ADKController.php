@@ -1011,7 +1011,7 @@ class ADKController extends Controller
                     view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph');
                     return $pdf->download('sph_briguna_karya.pdf');
-                } else if (strtolower($fasilitas) == 'wp') {
+                } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'zu') {
                     // lempar data ke view blade
                     view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
