@@ -73,12 +73,14 @@
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
                                         Batal
                                     </button>
+                                    @if ($data['role'] == 'ao')
                                     <button type="button" class="btn btn-orange save-event waves-effect waves-light">
                                         Simpan Jadwal
                                     </button>
                                     <button type="button" class="btn btn-danger delete-event waves-effect waves-light"
                                             data-dismiss="modal">Hapus Jadwal Ini
                                     </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
