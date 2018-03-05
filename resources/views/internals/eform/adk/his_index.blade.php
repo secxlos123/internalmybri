@@ -25,6 +25,7 @@
                     @if (\Session::has('error'))
                         <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
+                    <!-- <a href="#" class="btn btn-info waves-effect waves-light bottom-margin" id="btn-refresh">Refresh</a> -->
                     <div class="card-box">
                         <div class="table-responsive">
                             <table id="datatable-histori" class="table table-bordered" width="100%">
@@ -62,6 +63,9 @@
 @include('internals.layouts.foot')
 @include('internals.eform.adk.script-his-adk')
 <script type="text/javascript">
+    $(document).on('click', "#btn-refresh", function(){
+        location.reload();
+    });
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
         HoldOn.open();
