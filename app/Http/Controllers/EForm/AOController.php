@@ -195,7 +195,7 @@ class AOController extends Controller
     {
         $application = [];
             // dd($request->all());
-        foreach ($request->all() as $field => $values) {
+        foreach ($request->except('status_property') as $field => $values) {
             if ( $field == 'mutations' ) {
                 foreach ($values as $mutationIndex => $mutations) {
                     foreach ($mutations as $key => $value) {

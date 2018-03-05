@@ -8,7 +8,7 @@
         <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a>
         @endif
         </li>
-        @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
+        @if(($data['role']=='ao') || ($data['role']=='admin-bri') || ($data['role']=='mp')|| ($data['role']=='pinca'))
         <li>
           <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Calon Debitur </span> </a>
         </li>
@@ -53,10 +53,12 @@
         <a href="{{route('adk-histori.index')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Riwayat Paket Kredit</span> </a>
       </li>
       @endif
-      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='staff') || ($data['role']=='other'))
+      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus'))
       <li>
         <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
       </li>
+      @endif
+      @if (($data['role']=='ao') || ($data['role']=='other'))
       <li>
         <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
       </li>

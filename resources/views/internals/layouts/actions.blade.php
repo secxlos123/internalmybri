@@ -155,7 +155,7 @@
 	@endif
 @endif
 
-@if ((isset($dispose_collateral)) && ($status == "baru"))
+@if ((isset($dispose_collateral)) && ($status == "baru" || $status == "ditolak"))
 	<a href="{!! $dispose_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin" data-original-title="Penugasan" title="Penugasan">
 	    <i class="fa fa-user-plus" aria-hidden="true"></i>
 	</a>
@@ -173,11 +173,17 @@
 	</a>
 @endif
 
-@if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses"))
-	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Lakukan OTS / Penolakan
-    Penugasan" title="Lakukan OTS / Penolakan
-    Penugasan">
+@if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses" || $status == "Ditolak"))
+	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakan
+    Penugasan"@else "Lakukan Kembali OTS / Penolakan
+        Penugasan" @endif title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakan
+    Penugasan"@else "Lakukan Kembali OTS / Penolakan
+        Penugasan" @endif >
+    @if ($status == "Sedang Di Proses")
 	    <i class="fa fa-briefcase" aria-hidden="true"></i>
+	@else
+		<i class="fa fa-repeat" aria-hidden="true"></i>
+    @endif
 	</a>
 @endif
 
