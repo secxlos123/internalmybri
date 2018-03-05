@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\MenuAccessor\Role::class,
         'check-token' => \App\Http\Middleware\AuthCheckToken::class,
         'checkrole' => \App\Http\Middleware\CheckRole::class,
+        'preventBackHistory' => \App\Http\Middleware\PreventBackHistory::class,
         /* End of Middleware Menu */
 
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

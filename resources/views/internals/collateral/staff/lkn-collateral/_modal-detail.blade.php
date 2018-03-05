@@ -114,265 +114,265 @@
                                                                     <label class="col-md-5 control-label">RT/RW :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="rt">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Kode Pos :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="zip_code"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Kode Pos :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="zip_code"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Jarak :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="distance"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Jarak :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="distance"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Posisi Terhadap Jalan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="position_from_road"> M<sup>2</sup></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Posisi Terhadap Jalan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="position_from_road"> M<sup>2</sup></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <form class="form-horizontal" role="form">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Bentuk Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="ground_type"></p>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <form class="form-horizontal" role="form">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Bentuk Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="ground_type"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Jarak Posisi terhadap Jalan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="distance_of_position"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Jarak Posisi terhadap Jalan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="distance_of_position"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Batas Utara :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="north_limit"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Batas Utara :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="north_limit"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Batas Timur :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="east_limit"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Batas Timur :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="east_limit"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Batas Selatan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="south_limit"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Batas Selatan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="south_limit"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Batas Barat :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="west_limit"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Batas Barat :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="west_limit"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Keterangan Lain :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="another_information"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Keterangan Lain :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="another_information"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Permukaan Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="ground_level"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Permukaan Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="ground_level"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Luas Tanah Sesuai Lapang :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="surface_area"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Luas Tanah Sesuai Lapang :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="surface_area"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="step2">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title"> Identifikasi Tanah Berdasarkan Surat Tanah</h3>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <form class="form-horizontal" role="form">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Jenis Surat Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_type"></p>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Hak Atas Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_authorization"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Kecocokan Data Dengan Kantor Anggara/BPN :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_match_bpn"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Kecocokan Pemeriksaan Lokasi Tanah Dilapangan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_match_area"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Kecocokan Batas Tanah Dilapangan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_match_limit_in_area"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Luas Tanah Berdasarkan Surat Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="surface_area_by_letter"></p>
-                                                                    </div>
-                                                                </div>
-
-                                                            </form>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <form class="form-horizontal" role="form">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">No Surat Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_number"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Tanggal Surat Tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_date"></p>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Atas Nama :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_on_behalf_on"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Masa Hak tanah :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_duration"></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Nama Kantor Anggaran/BPN :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="letter_bpn_name"></p>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane" id="step3">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Uraian Bangunan</h3>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <form class="form-horizontal" role="form">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">No Izin Mendirikan Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_permit_number"></p>
+                                    <div class="tab-pane" id="step2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title"> Identifikasi Tanah Berdasarkan Surat Tanah</h3>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <form class="form-horizontal" role="form">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Jenis Surat Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_type"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Tanggal Izin Mendirikan Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_permit_date"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Hak Atas Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_authorization"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Atas Nama Izin Mendirikan Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_on_behalf_of"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Kecocokan Data Dengan Kantor Anggara/BPN :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_match_bpn"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Jenis Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_type"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Kecocokan Pemeriksaan Lokasi Tanah Dilapangan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_match_area"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Jumlah Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_count"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Kecocokan Batas Tanah Dilapangan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_match_limit_in_area"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Luas Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_spacious"><sup>2</sup></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Luas Tanah Berdasarkan Surat Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="surface_area_by_letter"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Tahun Mendirikan Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_year"></p>
+
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <form class="form-horizontal" role="form">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">No Surat Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_number"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Uraian Bangunan :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_description"></p>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Tanggal Surat Tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_date"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Atas Nama :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_on_behalf_on"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Masa Hak tanah :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_duration"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Nama Kantor Anggaran/BPN :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="letter_bpn_name"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <form class="form-horizontal" role="form">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Batas Utara :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="building_north_limit"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="step3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title">Uraian Bangunan</h3>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <form class="form-horizontal" role="form">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">No Izin Mendirikan Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_permit_number"></p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Batas Timur :</label>
-                                                                    <div class="col-md-7">
-                                                                       <p class="form-control-static" id="building_east_limit"></p>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="form-group">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Tanggal Izin Mendirikan Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_permit_date"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Atas Nama Izin Mendirikan Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_on_behalf_of"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Jenis Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_type"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Jumlah Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_count"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Luas Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_spacious"><sup>2</sup></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Tahun Mendirikan Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_year"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Uraian Bangunan :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_description"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <form class="form-horizontal" role="form">
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Batas Utara :</label>
+                                                                        <div class="col-md-7">
+                                                                            <p class="form-control-static" id="building_north_limit"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-md-5 control-label">Batas Timur :</label>
+                                                                        <div class="col-md-7">
+                                                                         <p class="form-control-static" id="building_east_limit"></p>
+                                                                     </div>
+                                                                 </div>
+
+                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Batas Selatan :</label>
                                                                     <div class="col-md-7">
                                                                         <p class="form-control-static" id="building_south_limit"></p>
@@ -607,9 +607,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <!-- Preview Image -->
-                                                                <div class="img-previews">
-                                                                    <img id="preview-0" src="#" width="40%">
-                                                                </div>
+                                                                
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -1049,7 +1047,6 @@
                                     <div class="pull-right">
                                         <a href="#" data-dismiss="modal" class="btn btn-default waves-light waves-effect w-md m-b-20">Tutup</a>
                                         <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Ajukan</a>
-                                        <!-- <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button> -->
                                     </div>
                                 </div>
                             </div>

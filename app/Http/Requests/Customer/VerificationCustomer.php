@@ -57,7 +57,7 @@ class VerificationCustomer extends FormRequest
             'emergency_name'=>'required',
             'emergency_mobile_phone'=>'required',
             'emergency_relation'=>'required',
-            // 'dependent_amount'  => 'required|numeric',
+            'dependent_amount'  => 'required|numeric',
             // 'salary_slip'  => 'mimes:jpeg,jpg,png,gif|required|max:10000',
             // 'bank_statement'  => 'mimes:jpeg,jpg,png,gif|required|max:10000',
             // 'family_card'  => 'mimes:jpeg,jpg,png,gif|required|max:10000',
