@@ -233,13 +233,23 @@ class CollateralController extends Controller
         if($dev_id == 1){
             $type = 'nonindex';
             $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
+            $id = $collateral['eform_id'];
+            //get data eform
+            $EformDetail = Client::setEndpoint('eforms/'.$id)
+                ->setHeaders([
+                    'Authorization' => $data['token']
+                    , 'pn' => $data['pn']
+                ])
+                ->get();
+
+            $detail = $EformDetail['contents'];
         }else{
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
         }
         // dd($collateral);
 
-        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral', 'type'));
+        return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral', 'type', 'detail'));
     }
 
     /**
