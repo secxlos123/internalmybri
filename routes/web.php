@@ -22,7 +22,7 @@
             Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
             Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
             Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
-            Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
             //Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
             Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
             Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
@@ -283,6 +283,7 @@
         Route::resource('gimmick', 'Mitra\GimmickController');
         Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
         Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+        Route::resource('testing', 'Mitra\testingController');
         Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
         Route::resource('mitra_list', 'Mitra\mitra\MitraController');
         Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');

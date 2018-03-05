@@ -125,6 +125,9 @@ return $request->all();
 						}else{
 							$region = '';
 						}
+					$region['results'][0]['id'] = 'xxx';
+					$region['results'][0]['text'] = 'Tambah Data Baru (Klik Here)';
+
 		return $region;
 	}
 
