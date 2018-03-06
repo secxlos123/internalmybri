@@ -261,7 +261,7 @@
         </div>
         @endif
 
-        @if(isset($detail) && isset($customer))
+        @if(isset($detail))
         <div class="row">
                 <div class="col-md-12">
                     @if (\Session::has('error'))
@@ -278,7 +278,8 @@
                     </div>
                 </div>
             </div>
-
+        @endif
+        @if(isset($customer))
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
