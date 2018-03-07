@@ -86,9 +86,37 @@ class RegistrasiController extends Controller
             }
         return $data;
     }
+<<<<<<< HEAD
 	function mitra($mitra){
 		$file = array();
 		$datamitra = $this->dataRequest($mitra,$file);
+=======
+
+	function mitra( $mitra )
+	{
+		$data['idMitrakerja'] = $mitra['id_mitra'];
+		$data['nama_instansi'] = $mitra['anak_perusahaan_kabupaten'];
+		$data['kode'] = $mitra['kode'];
+		$data['NPL'] = '0';
+		$data['BRANCH_CODE'] = $mitra['branch'];
+		$data['Jumlah_pegawai'] = $mitra['jumlahkaryawan'];
+		$data['JENIS_INSTANSI'] = $mitra['JENIS_INSTANSI'];
+		$data['UNIT_KERJA'] = $mitra['unitkerja'];
+		$data['Scoring'] = '';
+		$data['KET_Scoring'] = '';
+		$data['jenis_bidang_usaha'] = $mitra['jenis_bidang_usaha'];
+		$data['alamat_instansi'] = $mitra['alamat_mitra'];
+		$data['alamat_instansi2'] = $mitra['alamat_mitra2']; 
+		$data['alamat_instansi3'] = $mitra['alamat_mitra3']; 
+		$data['telphone_instansi'] = $mitra['no_telp_mitra']; 
+		$data['rating_instansi'] = $mitra['rating_instansi']; 
+		$data['lembaga_pemeringkat'] = $mitra['lembaga_pemeringkat'];
+		$data['go_public'] = $mitra['go_public'];
+		$data['no_ijin_prinsip'] = $mitra['no_ijin_prinsip']; 
+		$data['date_updated'] = ''; 
+		$data['updated_by'] = $mitra['updated_by']; 
+		$data['acc_type'] = $mitra['acc_type']; 	
+>>>>>>> c93cc5e950278d7cc849af9c94be73ae6a2a0dd7
 	}
 	
 	function mitra_detail_dasar($mitra_detail_dasar){
