@@ -104,19 +104,19 @@
                         </div>
                         <div class="panel-body panel-collapse collapse" id="collapseImage">
                             <div class="row">
-                                @if( isset( $eform['customer']['other']['identity'] ) )
+                                @if( isset( $eform['customer']['personal']['identity'] ) )
                                     <div class="col-md-6" align="center">
                                         <div class="card-box">
-                                            @if((pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                            @if((pathinfo(strtolower($eform['customer']['personal']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['personal']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['personal']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
                                                  @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
                                                     <p>KTP Tidak Ada</p>
                                                     <img class="img-responsive" id="zoom">
                                                 @else
-                                                    <img src="{{$eform['customer']['other']['identity']}}" class="img-responsive" id="zoom">
+                                                    <img src="{{$eform['customer']['personal']['identity']}}" class="img-responsive" id="zoom">
                                                     <p>KTP</p>
                                                 @endif
                                             @else
-                                                <a href="@if(!empty($eform['customer']['other']['identity'])){{$eform['customer']['other']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                                <a href="@if(!empty($eform['customer']['personal']['identity'])){{$eform['customer']['personal']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
                                                 <p>Klik Untuk Lihat KTP</p>
                                             @endif
                                         </div>
