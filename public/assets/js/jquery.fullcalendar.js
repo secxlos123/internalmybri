@@ -105,6 +105,7 @@
         form.find("input[name='title']").val(calEvent.origin_title);
         form.find("input[name='guest']").val(calEvent.guest_name || '');
         form.find("textarea[name='description']").html(calEvent.desc);
+        $("#event-modal input, #event-modal textarea").prop('disabled', ( userRole == 'ao' ? false : true ));
         initializeDatePicker($('.appointment_date'), calEvent.start.format('YYYY-MM-DD'));
         initializeMapPosition(calEvent);
         $this.$modal.find(".save-event").html("Update Jadwal").attr('type', 'submit');
@@ -175,6 +176,8 @@
     },
     /* Create New */
     CalendarApp.prototype.onSelect = function (start, end, allDay,) {
+      if ( userRole == 'ao' ) {
+        $("#event-modal input, #event-modal textarea").prop('disabled', false);
         var $this = this;
             $this.$modal.modal({
                 backdrop: 'static'
@@ -257,6 +260,7 @@
 
             });
             $this.$calendarObj.fullCalendar('unselect');
+      }
     },
     CalendarApp.prototype.enableDrag = function() {
         //init events
