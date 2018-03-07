@@ -25,8 +25,9 @@
                     @if (\Session::has('error'))
                         <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
-                    <!-- <a href="#" class="btn btn-info waves-effect waves-light bottom-margin" id="btn-refresh">Refresh</a> -->
+                    
                     <div class="card-box">
+                        <a href="#" class="btn btn-info waves-effect waves-light bottom-margin" id="btn-refresh">Refresh</a>
                         <div class="table-responsive">
                             <table id="datatable-histori" class="table table-bordered" width="100%">
                                 <thead class="bg-primary">
@@ -41,6 +42,7 @@
                                         <td align="center">Nama Pemutus</td>
                                         <td align="center">Tanggal Putusan</td>
                                         <td align="center">Nama Debitur</td>
+                                        <td align="center">Tanggal Pencairan</td>
                                         <td align="center">Nomor Rekening</td>
                                         <td align="center">Plafond</td>
                                         <td align="center">Status</td>
