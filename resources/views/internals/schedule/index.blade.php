@@ -16,6 +16,7 @@
     </style>
     <script type="text/javascript">
       var aoUserID = '{{ $data['pn'] }}'
+      var userRole = '{{ $data['role'] }}'
     </script>
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
