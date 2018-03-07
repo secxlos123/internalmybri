@@ -152,7 +152,7 @@ class ADKHistoriController extends Controller
                     $history['eform_id']      = $result['eform_id'];
                     $history['id_aplikasi']   = $result['id_aplikasi'];
                     $history['ref_number']    = $result['ref_number'];
-                    $history['no_rekening']   = $result['no_rekening'];
+                    $history['no_rekenings']  = $result['no_rekening'];
                     $history['is_send']       = $result['is_send'];
                     $history['STATUS']        = $status;
                     $history['fid_tp_produk'] = $result['product'];
@@ -166,11 +166,13 @@ class ADKHistoriController extends Controller
                         'is_verified'      => $result['is_verified'],
                         'screening_result' => 'view'
                     ])->render();
-                    $res_history[] = $history;
+                    // $res_history[] = $history;
+                    $eforms['contents']['data'][] = $history;
+                    $count = count($history);
                 // }
             }
 
-            if (!empty($res_history)) {
+            /*if (!empty($res_history)) {
                 foreach ($res_history as $index => $value) {
                     $value['no_rekenings'] = $value['no_rekening'];
                     if (empty($value['no_rekening']) || $value['no_rekening'] == '') {
@@ -207,7 +209,7 @@ class ADKHistoriController extends Controller
                     $eforms['contents']['data'][] = $value;
                     $count = count($value);
                 }
-            }            
+            }*/            
             // print_r($eforms);exit();
 
             if (intval($count) != 0) {
