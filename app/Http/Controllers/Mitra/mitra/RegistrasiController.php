@@ -86,79 +86,81 @@ class RegistrasiController extends Controller
             }
         return $data;
     }
-	function mitra(mitra){
-		$data['idMitrakerja'] = mitra['id_mitra'];
-		$data['nama_instansi'] = mitra['anak_perusahaan_kabupaten'];
-		$data['kode'] = mitra['kode'];
+
+	function mitra( $mitra )
+	{
+		$data['idMitrakerja'] = $mitra['id_mitra'];
+		$data['nama_instansi'] = $mitra['anak_perusahaan_kabupaten'];
+		$data['kode'] = $mitra['kode'];
 		$data['NPL'] = '0';
-		$data['BRANCH_CODE'] = mitra['branch'];
-		$data['Jumlah_pegawai'] = mitra['jumlahkaryawan'];
-		$data['JENIS_INSTANSI'] = mitra['JENIS_INSTANSI'];
-		$data['UNIT_KERJA'] = mitra['unitkerja'];
+		$data['BRANCH_CODE'] = $mitra['branch'];
+		$data['Jumlah_pegawai'] = $mitra['jumlahkaryawan'];
+		$data['JENIS_INSTANSI'] = $mitra['JENIS_INSTANSI'];
+		$data['UNIT_KERJA'] = $mitra['unitkerja'];
 		$data['Scoring'] = '';
 		$data['KET_Scoring'] = '';
-		$data['jenis_bidang_usaha'] = mitra['jenis_bidang_usaha'];
-		$data['alamat_instansi'] = mitra['alamat_mitra'];
-		$data['alamat_instansi2'] = mitra['alamat_mitra2']; 
-		$data['alamat_instansi3'] = mitra['alamat_mitra3']; 
-		$data['telphone_instansi'] = mitra['no_telp_mitra']; 
-		$data['rating_instansi'] = mitra['rating_instansi']; 
-		$data['lembaga_pemeringkat'] = mitra['lembaga_pemeringkat'];
-		$data['go_public'] = mitra['go_public'];
-		$data['no_ijin_prinsip'] = mitra['no_ijin_prinsip']; 
+		$data['jenis_bidang_usaha'] = $mitra['jenis_bidang_usaha'];
+		$data['alamat_instansi'] = $mitra['alamat_mitra'];
+		$data['alamat_instansi2'] = $mitra['alamat_mitra2']; 
+		$data['alamat_instansi3'] = $mitra['alamat_mitra3']; 
+		$data['telphone_instansi'] = $mitra['no_telp_mitra']; 
+		$data['rating_instansi'] = $mitra['rating_instansi']; 
+		$data['lembaga_pemeringkat'] = $mitra['lembaga_pemeringkat'];
+		$data['go_public'] = $mitra['go_public'];
+		$data['no_ijin_prinsip'] = $mitra['no_ijin_prinsip']; 
 		$data['date_updated'] = ''; 
-		$data['updated_by'] = mitra['updated_by']; 
-		$data['acc_type'] = mitra['acc_type']; 	
+		$data['updated_by'] = $mitra['updated_by']; 
+		$data['acc_type'] = $mitra['acc_type']; 	
 	}
 	
-	function mitra_detail_dasar(mitra_detail_dasar){
+	function mitra_detail_dasar($mitra_detail_dasar){
 		$data = array();
-		$data['jenis_mitra '] = mitra_detail_dasar['jenis_mitra '];
-		$data['golongan_mitra '] = mitra_detail_dasar['golongan_mitra '];
-		$data['induk_mitra'] = mitra_detail_dasar['induk_mitra'];
-		$data['anak_perusahaan_wilayah'] = mitra_detail_dasar['anak_perusahaan_wilayah'];
-		$data['anak_perusahaan_kabupaten'] = mitra_detail_dasar['anak_perusahaan_kabupaten'];
-		$data['alamat_mitra'] = mitra_detail_dasar['alamat_mitra'];
-		$data['no_telp_mitra'] = mitra_detail_dasar['no_telp_mitra'];
-		$data['id_mitra'] = mitra_detail_dasar['id_mitra'];
+		$data['jenis_mitra '] = $mitra_detail_dasar['jenis_mitra '];
+		$data['golongan_mitra '] = $mitra_detail_dasar['golongan_mitra '];
+		$data['induk_mitra'] = $mitra_detail_dasar['induk_mitra'];
+		$data['anak_perusahaan_wilayah'] = $mitra_detail_dasar['anak_perusahaan_wilayah'];
+		$data['anak_perusahaan_kabupaten'] = $mitra_detail_dasar['anak_perusahaan_kabupaten'];
+		$data['alamat_mitra'] = $mitra_detail_dasar['alamat_mitra'];
+		$data['no_telp_mitra'] = $mitra_detail_dasar['no_telp_mitra'];
+		$data['id_mitra'] = $mitra_detail_dasar['id_mitra'];
 	}
-	function mitra_detail_data(mitra_detail_data){
+	function mitra_detail_data($mitra_detail_data){
 		$data = array();
-		$data['deskripsi_mitra'] = mitra_detail_data['deskripsi_mitra'];
-		$data['hp_mitra'] = mitra_detail_data['hp_mitra'];
-		$data['bendaharawan_mitra'] = mitra_detail_data['bendaharawan_mitra'];
-		$data['telp_bendaharawan_mitra'] = mitra_detail_data['telp_bendaharawan_mitra'];
-		$data['hp_bendaharawan_mitra'] = mitra_detail_data['hp_bendaharawan_mitra'];
-		$data['email'] = mitra_detail_data['email'];
-		$data['jml_pegawai'] = mitra_detail_data['jml_pegawai'];
-		$data['thn_pegawai'] = mitra_detail_data['thn_pegawai'];
-		$data['tgl_pendirian'] = mitra_detail_data['tgl_pendirian'];
-		$data['akta_pendirian'] = mitra_detail_data['akta_perubahan'];
-		$data['npwp_usaha'] = mitra_detail_data['npwp_usaha'];
-		$data['laporan_keuangan'] = mitra_detail_data['laporan_keuangan'];
-		$data['legalitas_perusahaan'] = mitra_detail_data['legalitas_perusahaan'];
+		$data['deskripsi_mitra'] = $mitra_detail_data['deskripsi_mitra'];
+		$data['hp_mitra'] = $mitra_detail_data['hp_mitra'];
+		$data['bendaharawan_mitra'] = $mitra_detail_data['bendaharawan_mitra'];
+		$data['telp_bendaharawan_mitra'] = $mitra_detail_data['telp_bendaharawan_mitra'];
+		$data['hp_bendaharawan_mitra'] = $mitra_detail_data['hp_bendaharawan_mitra'];
+		$data['email'] = $mitra_detail_data['email'];
+		$data['jml_pegawai'] = $mitra_detail_data['jml_pegawai'];
+		$data['thn_pegawai'] = $mitra_detail_data['thn_pegawai'];
+		$data['tgl_pendirian'] = $mitra_detail_data['tgl_pendirian'];
+		$data['akta_pendirian'] = $mitra_detail_data['akta_perubahan'];
+		$data['npwp_usaha'] = $mitra_detail_data['npwp_usaha'];
+		$data['laporan_keuangan'] = $mitra_detail_data['laporan_keuangan'];
+		$data['legalitas_perusahaan'] = $mitra_detail_data['legalitas_perusahaan'];
 	}
-	function mitra_detail_fasilitas(mitra_detail_fasilitas){
-		$data['jenis_pengajuan'] = mitra_detail_fasilitas['jenis_pengajuan'];
-		$data['fasilitas_bank'] = mitra_detail_fasilitas['fasilitas_bank'];
-		$data['upload_fasilitas_bank'] = mitra_detail_fasilitas['upload_fasilitas_bank'];
-		$data['ijin_perinsip'] = mitra_detail_fasilitas['ijin_perinsip'];
-		$data['upload_ijin'] = mitra_detail_fasilitas['upload_ijin'];
-		$data['daftar_ijin'] = mitra_detail_fasilitas['daftar_ijin'];
+	function mitra_detail_fasilitas($mitra_detail_fasilitas){
+		$data['jenis_pengajuan'] = $mitra_detail_fasilitas['jenis_pengajuan'];
+		$data['fasilitas_bank'] = $mitra_detail_fasilitas['fasilitas_bank'];
+		$data['upload_fasilitas_bank'] = $mitra_detail_fasilitas['upload_fasilitas_bank'];
+		$data['ijin_perinsip'] = $mitra_detail_fasilitas['ijin_perinsip'];
+		$data['upload_ijin'] = $mitra_detail_fasilitas['upload_ijin'];
+		$data['daftar_ijin'] = $mitra_detail_fasilitas['daftar_ijin'];
 	}
-	function mitra_detail_payroll(mitra_detail_payroll){
-		$data['payroll'] = mitra_detail_payroll['payroll'];
-		$data['no_rek_mitra1'] = mitra_detail_payroll['no_rek_mitra1'];
-		$data['no_cif_mitra'] = mitra_detail_payroll['no_cif_mitra'];
-		$data['tipe_account1'] = mitra_detail_payroll['tipe_account1'];
-		$data['tgl_pembayaran'] = mitra_detail_payroll['tgl_pembayaran'];
-		$data['tgl_gajian1'] = mitra_detail_payroll['tgl_gajian1'];
+	function mitra_detail_payroll($mitra_detail_payroll){
+		$data['payroll'] = $mitra_detail_payroll['payroll'];
+		$data['no_rek_mitra1'] = $mitra_detail_payroll['no_rek_mitra1'];
+		$data['no_cif_mitra'] = $mitra_detail_payroll['no_cif_mitra'];
+		$data['tipe_account1'] = $mitra_detail_payroll['tipe_account1'];
+		$data['tgl_pembayaran'] = $mitra_detail_payroll['tgl_pembayaran'];
+		$data['tgl_gajian1'] = $mitra_detail_payroll['tgl_gajian1'];
 	}
-	function mitra_pemutus(mitra_pemutus){
-		$data['pemutus_name'] = mitra_pemutus['pemutus_name'];
-		$data['pemeriksa'] = mitra_pemutus['pemeriksa'];
-		$data['jabatan'] = mitra_pemutus['jabatan'];
-		$data['jabatan_pemeriksa'] = mitra_pemutus['jabatan_pemeriksa'];
+	function mitra_pemutus($mitra_pemutus){
+		$data['pemutus_name'] = $mitra_pemutus['pemutus_name'];
+		$data['pemeriksa'] = $mitra_pemutus['pemeriksa'];
+		$data['jabatan'] = $mitra_pemutus['jabatan'];
+		$data['jabatan_pemeriksa'] = $mitra_pemutus['jabatan_pemeriksa'];
 	}
 	
     public function store( Request $request ){
