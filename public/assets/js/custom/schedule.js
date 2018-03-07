@@ -218,9 +218,10 @@ function initializeDatePicker(selector, selectedDate) {
 
 function initializeMapPosition (event) {
   setTimeout(function () {
-    marker.position = new google.maps.LatLng(event.latitude, event.longitude);
+    marker.setPosition( new google.maps.LatLng(event.latitude, event.longitude) );
     marker.setMap(map);
-    map.setCenter(new google.maps.LatLng(event.latitude, event.longitude), 5);
+    map.setCenter(new google.maps.LatLng(event.latitude, event.longitude));
+    map.setZoom(13);
   }, 1000);
 }
 
