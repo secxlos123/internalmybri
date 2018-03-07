@@ -309,10 +309,10 @@ $(document).ready(function() {
 						'<input class="form-control" name="no_cif_mitra'+countpayroll+'" id="no_cif_mitra'+countpayroll+'" value="" type="text"></div></div>' +
 						'<div class="form-group payroll'+countpayroll+'">' +
 						'<label class="col-md-4"></label><div class="col-md-6">' + 
-						'<input name="tipe_account" value="gl" type="radio">GL' +
-						'<input name="tipe_account" value="cl" type="radio">CL' +
-						'<input name="tipe_account" value="sa" type="radio">SA' +
-						'<input name="tipe_account" value="cash" type="radio">CASH</div></div>';
+						'<input name="tipe_account'+countpayroll+'" value="gl" type="radio">GL' +
+						'<input name="tipe_account'+countpayroll+'" value="cl" type="radio">CL' +
+						'<input name="tipe_account'+countpayroll+'" value="sa" type="radio">SA' +
+						'<input name="tipe_account'+countpayroll+'" value="cash" type="radio">CASH</div></div>';
 			
 			/* var html = '<label class="col-md-3 control-label">Pemeriksa'+countpemutus+'</label><div class="col-md-8">' + 
 					   '<input type="text" class="form-control" name="pemeriksa'+countpemutus+'" id="pemeriksa'+countpemutus+'" value="">'+
