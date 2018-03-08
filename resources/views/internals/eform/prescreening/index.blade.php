@@ -296,7 +296,7 @@
                             <div class="panel-body">
                                 @php( $dhnDetail = json_decode($eform['dhn_detail']) )
                                 @foreach( $dhnDetail->responseData as $index => $dhn )
-                                    @php( $class = ( $dhn->warna == "Hijau" ? "success" : ( $dhn->warna == "Kuning" ? "warning" : ( $dhn->warna == "Merah" ? "danger" : "" ) ) ) )@endphp
+                                    @php( $class = ( $dhn->warna == "Hijau" ? "success" : ( $dhn->warna == "Kuning" ? "warning" : ( $dhn->warna == "Merah" ? "danger" : "" ) ) ) )
                                     <div class="card-box">
                                         <h4 class="header-title custom-title">
                                             <input type="radio" id="dhn{{ $index }}" name="select_dhn" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}> <label for="dhn{{ $index }}">DHN {{ $index+1 }}</label>
