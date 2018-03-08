@@ -144,6 +144,7 @@ class ADKHistoriController extends Controller
                     $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], 4, 4);
                     $jam_analisa  = substr($result['tgl_analisa'], 9,8);
 
+                    $history['tgl_pencairan'] = !isset($result['tgl_pencairan']) ? '' : date('d-m-Y H:i:s',strtotime($result['tgl_pencairan']));
                     $history['tgl_pengajuan'] = !isset($result['created_at']) ? '' : date('d-m-Y H:i:s',strtotime($result['created_at']));
                     $history['tgl_analisa'] = !isset($result['tgl_analisa']) ? '' : $tgl_analisa.' '.$jam_analisa;
                     $history['tgl_putusan'] = !isset($result['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;
@@ -152,7 +153,7 @@ class ADKHistoriController extends Controller
                     $history['eform_id']      = $result['eform_id'];
                     $history['id_aplikasi']   = $result['id_aplikasi'];
                     $history['ref_number']    = $result['ref_number'];
-                    $history['no_rekening']   = $result['no_rekening'];
+                    $history['no_rekenings']  = $result['no_rekening'];
                     $history['is_send']       = $result['is_send'];
                     $history['STATUS']        = $status;
                     $history['fid_tp_produk'] = $result['product'];
@@ -166,11 +167,13 @@ class ADKHistoriController extends Controller
                         'is_verified'      => $result['is_verified'],
                         'screening_result' => 'view'
                     ])->render();
-                    $res_history[] = $history;
+                    // $res_history[] = $history;
+                    $eforms['contents']['data'][] = $history;
+                    $count = count($history);
                 // }
             }
 
-            if (!empty($res_history)) {
+            /*if (!empty($res_history)) {
                 foreach ($res_history as $index => $value) {
                     $value['no_rekenings'] = $value['no_rekening'];
                     if (empty($value['no_rekening']) || $value['no_rekening'] == '') {
@@ -207,7 +210,7 @@ class ADKHistoriController extends Controller
                     $eforms['contents']['data'][] = $value;
                     $count = count($value);
                 }
-            }            
+            }*/            
             // print_r($eforms);exit();
 
             if (intval($count) != 0) {

@@ -92,7 +92,7 @@
                                                 <div class="form-group">
                                                     Atau
                                                 </div>
-                                                <a href="javascript:void(0);" class="btn btn-primary waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Calon Debitur</a>
+                                                <a href="javascript:void(0);" class="btn btn-primary disabled waves-effect waves-light m-l-10 btn-md" id="btn-leads" ><i class="fa fa-plus-circle"></i> Tambah Calon Debitur</a>
                                             </div>
                                         </div>
                                     </div>

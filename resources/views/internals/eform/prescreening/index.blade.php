@@ -105,23 +105,23 @@
                         <div class="panel-body panel-collapse collapse" id="collapseImage">
                             <div class="row">
                                 @if( isset( $eform['customer']['other']['identity'] ) )
-                                    <div class="col-md-6" align="center">
-                                        <div class="card-box">
-                                            @if((pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
-                                                 @if(strpos($eform['customer']['personal']['couple_identity'], 'noimage.jpg'))
-                                                    <p>KTP Tidak Ada</p>
-                                                    <img class="img-responsive" id="zoom">
+                                        <div class="col-md-6" align="center">
+                                            <div class="card-box">
+                                                @if((pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($eform['customer']['other']['identity']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($eform['customer']['other']['identity'])), PATHINFO_EXTENSION) == 'jpeg'))
+                                                    @if(strpos($eform['customer']['other']['identity'], 'noimage.jpg'))
+                                                        <p>KTP Tidak Ada</p>
+                                                        <img class="img-responsive" id="zoom">
+                                                    @else
+                                                        <img src="{{$eform['customer']['other']['identity']}}" class="img-responsive" id="zoom">
+                                                        <p>KTP</p>
+                                                    @endif
                                                 @else
-                                                    <img src="{{$eform['customer']['other']['identity']}}" class="img-responsive" id="zoom">
-                                                    <p>KTP</p>
+                                                    <a href="@if(!empty($eform['customer']['other']['identity'])){{$eform['customer']['other']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                                                    <p>Klik Untuk Lihat KTP</p>
                                                 @endif
-                                            @else
-                                                <a href="@if(!empty($eform['customer']['other']['identity'])){{$eform['customer']['other']['identity']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
-                                                <p>Klik Untuk Lihat KTP</p>
-                                            @endif
+                                            </div>
                                         </div>
-                                    </div>
-                                @endif
+                                    @endif
                                 @if( $eform['customer']['personal']['status_id'] == '2' )
                                     @if( isset( $eform['customer']['personal']['couple_identity'] ) )
                                         <div class="col-md-6" align="center">
@@ -296,7 +296,7 @@
                             <div class="panel-body">
                                 @php( $dhnDetail = json_decode($eform['dhn_detail']) )
                                 @foreach( $dhnDetail->responseData as $index => $dhn )
-                                    @php( $class = ( $dhn->warna == "Hijau" ? "success" : ( $dhn->warna == "Kuning" ? "warning" : ( $dhn->warna == "Merah" ? "danger" : "" ) ) ) )
+                                    @php( $class = ( $dhn->warna == "Hijau" ? "success" : ( $dhn->warna == "Kuning" ? "warning" : ( $dhn->warna == "Merah" ? "danger" : "" ) ) ) )@endphp
                                     <div class="card-box">
                                         <h4 class="header-title custom-title">
                                             <input type="radio" id="dhn{{ $index }}" name="select_dhn" value="{{ $index }}" {{ $index == 0 ? 'checked' : '' }}> <label for="dhn{{ $index }}">DHN {{ $index+1 }}</label>

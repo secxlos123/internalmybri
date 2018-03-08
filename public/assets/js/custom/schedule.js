@@ -141,6 +141,8 @@ Schedule.prototype.loader = function (status) {
 function initialize() {
     var lng = $('#lng').val();
     var lat = $('#lat').val();
+    var disdrag = false;
+    if (userRole == 'ao') { disdrag = true }
     var latlng = new google.maps.LatLng('-6.9032739','107.5729448');
     map = new google.maps.Map(document.getElementById('map'), {
       center: latlng,
@@ -150,7 +152,7 @@ function initialize() {
     marker = new google.maps.Marker({
       map: map,
       position: latlng,
-      draggable: true
+      draggable: disdrag
       // anchorPoint: new google.maps.Point(0, -29)
    });
     var input = document.getElementById('searchInput');

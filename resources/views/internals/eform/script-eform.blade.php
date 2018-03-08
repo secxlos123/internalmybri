@@ -99,11 +99,15 @@
                         }
                     });
                     if( (data.customers.data.length) == 0 ){
+                        $('#search').addClass('disabled');
+                        $('#btn-leads').removeClass('disabled');
                         return {
                             results: '',
                         };
 
                     } else {
+                        $('#search').removeClass('disabled');
+                        $('#btn-leads').addClass('disabled');
                         params.page = params.page || 1;
                         return {
                             results: data.customers.data,
@@ -121,15 +125,15 @@
             },
         });
 
-        $('.nikSelect').on('select2:unselecting', function (e) {
-            $('#search').addClass('disabled');
-            $('#btn-leads').removeClass('disabled');
-        });
+        // $('.nikSelect').on('select2:unselecting', function (e) {
+        //     $('#search').addClass('disabled');
+        //     $('#btn-leads').removeClass('disabled');
+        // });
 
-        $('.nikSelect').on('select2:select', function (e) {
-            $('#search').removeClass('disabled');
-            $('#btn-leads').addClass('disabled');
-        });
+        // $('.nikSelect').on('select2:select', function (e) {
+        //     $('#search').removeClass('disabled');
+        //     $('#btn-leads').addClass('disabled');
+        // });
 
         $('.nikSelect').on('change', function () {
             var id = $(this).val();
