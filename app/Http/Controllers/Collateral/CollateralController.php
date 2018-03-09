@@ -396,14 +396,13 @@ class CollateralController extends Controller
             $response = 'Pengajuan Properti Baru telah Ditolak';
         }
 
-        if (count($client['contents'] > 0)) {
-        if(($client['contents']['status'] == 'disetujui')){
-            $color = 'success';
-        }elseif($client['contents']['status'] == 'ditolak'){
-            $color = 'success';
-        }else{
-            $color = 'error';
-        }
+        $color = 'error';
+        if (isset($client['contents']['status'])) {
+            if($client['contents']['status'] == 'disetujui'){
+                $color = 'success';
+            }elseif($client['contents']['status'] == 'ditolak'){
+                $color = 'success';
+            }
         }
 
         if($client['code'] == 200){
