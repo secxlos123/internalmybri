@@ -3,10 +3,10 @@
         <h4 class="panel-title">Sumber Penghasilan</h4>
     </div>
     @php
-    $visit = 'visit_report';
+    $visit = 'recontest';
         if (isset($recontest)) {
             if ($recontest == 1) {
-                $visit = 'recontest';
+                $visit = 'visit_report';
             }
         }
     @endphp
