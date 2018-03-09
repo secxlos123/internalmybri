@@ -27,12 +27,6 @@
     }
 }
 </style>
-@php
-        $visit = 'visit_report';
-        if ($recontest == 1) {
-            $visit = 'recontest';
-        }
-@endphp
 <div class="content-page">
     <div class="content">
         <div class="container">

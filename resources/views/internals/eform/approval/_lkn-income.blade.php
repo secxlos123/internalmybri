@@ -2,6 +2,14 @@
     <div class="panel-heading">
         <h4 class="panel-title">Sumber Penghasilan</h4>
     </div>
+    @php
+    $visit = 'visit_report';
+        if (isset($recontest)) {
+            if ($recontest == 1) {
+                $visit = 'recontest';
+            }
+        }
+    @endphp
     <div class="col-md-6">
         <form class="form-horizontal" role="form">
             <div class="form-group">
