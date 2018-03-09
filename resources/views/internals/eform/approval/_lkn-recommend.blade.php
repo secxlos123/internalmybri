@@ -8,10 +8,10 @@
                 <label class="col-md-5 control-label">Rekomendasi AO :</label>
                 <div class="col-md-7">
                     @php
-                        $rekon = false;
+                        $rekon = true;
                         if (isset($recontest)) {
                            if ($recontest == 1) {
-                               $rekon = true;
+                               $rekon = false;
                            }
                         }
                     @endphp
