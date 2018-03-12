@@ -155,7 +155,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">KTP * :</label>
                                 <div class="col-md-9">
-                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" id="identity" accept="image/*,application/pdf">
+                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" @if(strpos($dataCustomer['customer']['identity'], 'noimage.jpg')) name="identity" @endif id="identity" accept="image/*,application/pdf">
 
                                     @if ($errors->has('identity'))
                                         <p class="help-block">{{ $errors->first('identity') }}</p>
