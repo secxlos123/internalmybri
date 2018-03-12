@@ -85,7 +85,7 @@ class VerificationCustomer extends FormRequest
             'request_amount'    => 'required',
             // 'kpr_type'          => 'required',
             // 'kpr_type_property' => 'required',
-            'couple_identity'  => 'required_if:status,2',
+            'couple_identity'  => 'mimes:jpeg,jpg,png,gif,pdf|max:10000',
             'zip_code'=> 'required|numeric|digits:5',
             'zip_code_current' => 'required|numeric|digits:5',
             'zip_code_office' => 'required|numeric|digits:5',

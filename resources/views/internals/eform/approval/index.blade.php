@@ -27,7 +27,6 @@
     }
 }
 </style>
-
 <div class="content-page">
     <div class="content">
         <div class="container">
