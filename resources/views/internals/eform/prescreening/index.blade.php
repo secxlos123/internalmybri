@@ -64,7 +64,7 @@
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
                                         <div class="">
-                                            <label class="col-md-6 control-label"> Nama Calon Nasabah</label>
+                                            <label class="col-md-6 control-label"> Nama Pasangan Calon Nasabah</label>
                                             <div class="col-md-6">
                                                 <p class="form-control-static">{{ $eform['customer']['personal']['couple_name'] }}</p>
                                             </div>
