@@ -281,7 +281,7 @@
                             <p>Progress 2 Kosong</p>
                             @else
                             <img src="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" class="img-responsive">
-                            <p>rogress 2</p>
+                            <p>Progress 2</p>
                             @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
@@ -297,7 +297,7 @@
                             <p>Progress 3 Kosong</p>
                             @else
                             <img src="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" class="img-responsive">
-                            <p>rogress 3</p>
+                            <p>Progress 3</p>
                             @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
@@ -313,7 +313,7 @@
                             <p>Progress 4 Kosong</p>
                             @else
                             <img src="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" class="img-responsive">
-                            <p>rogress 4</p>
+                            <p>Progress 4</p>
                             @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
@@ -329,7 +329,7 @@
                             <p>Progress 5 Kosong</p>
                             @else
                             <img src="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" class="img-responsive">
-                            <p>rogress 5</p>
+                            <p>Progress 5</p>
                             @endif
                         @else
                             <a href="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
