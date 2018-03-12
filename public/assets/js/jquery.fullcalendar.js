@@ -337,7 +337,7 @@
                 $.ajax({
                   url: '/schedule/ao',
                   data: {
-                    start: start,
+                    start: start.format('YYYY-MM-DD'),
                     end: start.add(1, 'months').format('YYYY-MM-DD')
                   },
                   type: 'GET',
