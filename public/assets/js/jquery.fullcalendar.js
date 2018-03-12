@@ -331,10 +331,13 @@
             },
             eventSources: [{
               events: function (start, end, timezone, callback) {
+                if ( parseInt(start.format('D')) > 1 ) {
+                  start.add(7, 'days').format('YYYY-MM-DD');
+                }
                 $.ajax({
                   url: '/schedule/ao',
                   data: {
-                    start: start.add(1, 'months').format('YYYY-MM-DD'),
+                    start: start,
                     end: start.add(1, 'months').format('YYYY-MM-DD')
                   },
                   type: 'GET',
