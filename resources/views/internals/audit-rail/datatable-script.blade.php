@@ -52,6 +52,7 @@ function reloadDataPengajuan(from, type){
         {   data: 'ref_number', name: 'ref_number' },
         {   data: 'old_values', name: 'old_values', bSortable: false },
         {   data: 'new_values', name: 'new_values', bSortable: false },
+        {   data: 'debitur', name: 'debitur', bSortable: false },
         {   data: 'ip_address', name: 'ip_address', bSortable: false },
         {   data: 'action_location', name: 'action_location', bSortable: false }
         ],
@@ -391,6 +392,7 @@ function reloadDataCollateral(from, type ){
         {   data: 'developer', name: 'developer', bSortable: false },
         {   data: 'old_values', name: 'old_values', bSortable: false },
         {   data: 'new_values', name: 'new_values', bSortable: false },
+        {   data: 'debitur', name: 'debitur', bSortable: false },
         {   data: 'ip_address', name: 'ip_address', bSortable: false },
         {   data: 'action_location', name: 'action_location', bSortable: false }
         ],
