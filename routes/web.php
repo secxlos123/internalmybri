@@ -59,7 +59,9 @@
             ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
         /* Customers */
-        Route::resource('customers', 'Customer\CustomerController');
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,admin-bri'], function() {
+            Route::resource('customers', 'Customer\CustomerController');
+        });
 
         /* Roles */
         Route::resource('roles', 'User\RoleController');
@@ -75,7 +77,9 @@
 
         Route::get('developers/{id}/properties', ['as'=>'properties', 'uses'=>'Developer\DeveloperController@properties']);
 
-        Route::resource('developers', 'Developer\DeveloperController');
+        Route::group(['middleware' => 'checkrole:staff'], function() {
+            Route::resource('developers', 'Developer\DeveloperController');
+        });
 
         /* E-Form */
         // New Prescreening
@@ -88,35 +92,45 @@
         Route::post('eform/submit-prescreening', ['as'=>'postPrescreeningManual', 'uses'=>'EForm\EFormController@postPrescreening']);
 
         // Dispotition
-        Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
+        Route::group(['middleware' => 'checkrole:mp,pinca,admin-bri'], function() {
+            Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
-        Route::post('/eform/dispotition/{id}',
-            ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
+            Route::post('/eform/dispotition/{id}',
+                ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
+            //Approval Recontes
+            Route::get('eform/approval-recontest/{id}', ['as'=>'getApprovalRecontest', 'uses'=>'EForm\RecontestController@getApprovalRecontest']);
 
-        Route::post('/eform/postLKN/{id}',
-            ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
+            Route::post('/eform/post-approval-recontest/{id}',
+                ['as'=>'postApprovalRecontest', 'uses'=>'EForm\RecontestController@postApprovalRecontest']);
+            //Approval
+            Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
+            Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
 
-        Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
-        Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
+            Route::post('/eform/approve/{id}',
+            ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
+        });
 
-        // Rekontes LKN
-        Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
+        Route::group(['middleware' => 'checkrole:ao'], function() {
+            Route::post('/eform/postLKN/{id}',
+                ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
-        Route::post('/eform/post-lkn-recontest/{id}',
-            ['as'=>'postLKNRecontest', 'uses'=>'EForm\RecontestController@postLKNRecontest']);
+            Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+            Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
+            // Rekontes LKN
+            Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
 
-        Route::get('eform/approval-recontest/{id}', ['as'=>'getApprovalRecontest', 'uses'=>'EForm\RecontestController@getApprovalRecontest']);
-
-        Route::post('/eform/post-approval-recontest/{id}',
-            ['as'=>'postApprovalRecontest', 'uses'=>'EForm\RecontestController@postApprovalRecontest']);
-
-        Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
-
-        Route::get('/eform/verification/preview/{id}', ['as'=>'getDetail', 'uses'=>'EForm\AOController@getPreview']);
-
-        Route::get('/eform/verification/print/{id}', ['as'=>'getPrint', 'uses'=>'EForm\AOController@getPrint']);
-
-        Route::post('/eform/search-nik', ['as'=>'eform-search-nik', 'uses'=>'EForm\AOController@searchNik']);
+            Route::post('/eform/post-lkn-recontest/{id}',
+                ['as'=>'postLKNRecontest', 'uses'=>'EForm\RecontestController@postLKNRecontest']);
+            Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
+            Route::get('/eform/verification/preview/{id}', ['as'=>'getDetail', 'uses'=>'EForm\AOController@getPreview']);
+            Route::get('/eform/verification/print/{id}', ['as'=>'getPrint', 'uses'=>'EForm\AOController@getPrint']);
+            Route::post('/eform/search-nik', ['as'=>'eform-search-nik', 'uses'=>'EForm\AOController@searchNik']);
+            //this route for resend verification to nasabah
+            Route::get('/eform/resendVerification/{eform_id}',
+                ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
+            Route::post('/eform/delete',
+            ['as'=>'delete-eform', 'uses'=>'EForm\EFormController@delete']);
+        });
 
         Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
 
@@ -125,20 +139,6 @@
 
         Route::put('/eform/verifyData/{id}',
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
-
-        //this route for resend verification to nasabah
-        Route::get('/eform/resendVerification/{eform_id}',
-            ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
-
-        Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
-
-        Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
-
-        Route::post('/eform/approve/{id}',
-            ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
-
-        Route::post('/eform/delete',
-            ['as'=>'delete-eform', 'uses'=>'EForm\EFormController@delete']);
 
         Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
@@ -186,7 +186,7 @@
             Route::post('post-upload-doc/{id}', ['as'=>'postUploadDoc', 'uses'=>'Collateral\CollateralStaffController@postUploadDoc']);
         });
 
-        Route::group(['prefix'=>'approval-data'], function () {
+        Route::group(['prefix'=>'approval-data','middleware'=>'checkrole:staff'], function () {
 
             Route::get('developer', ['as'=>'approveDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalDeveloper']);
 
@@ -201,7 +201,10 @@
             Route::post('approve-data-thirdparty', ['as'=>'postApprovalDataThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataThirdParty']);
         });
 
-        Route::resource('eform', 'EForm\EFormController');
+        Route::group(['middleware' => 'checkrole:ao,other,staff'], function () {
+            Route::resource('eform', 'EForm\EFormController', ['only' => 'create']);
+        });
+        Route::resource('eform', 'EForm\EFormController', ['except' => 'create']);
         // Route::get('eform/{ref}', ['as'=>'eform.index', 'uses'=>'EForm\EFormController@index']);
 
         /*ADK*/
@@ -221,18 +224,22 @@
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
         /* Schedule */
-        Route::resource('schedule', 'Schedule\ScheduleController', [
-            'only' => ['index']
-        ]);
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca'], function() {
+            Route::resource('schedule', 'Schedule\ScheduleController', [
+                'only' => ['index']
+            ]);
+        });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
         });
 
         /* Tracking */
-        Route::resource('tracking', 'Tracking\TrackingController');
+        Route::group(['middleware' => 'checkrole:ao,other'], function() {
+            Route::resource('tracking', 'Tracking\TrackingController');
+        });
 
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
