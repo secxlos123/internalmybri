@@ -494,7 +494,7 @@
     $('#btn-add-foto-lainnya').on('click', function(){
         var count = $("#countupload").val();
         var action = $("#action").val();
-
+        alert(action);
         if (action == 'add') {
             if (count <= 6) {
                 var form1 = $('#foto_lainnya')[0];

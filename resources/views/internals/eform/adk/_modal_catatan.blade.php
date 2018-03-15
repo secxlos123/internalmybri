@@ -613,7 +613,7 @@
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="foto_lainnya">
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" id="action" name="action" value="add">
                                         <input type="hidden" id="countupload" name="countupload" value="2">
                                         <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
                                         <label class="col-md-3 control-label">Foto Lainnya :</label>
