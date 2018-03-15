@@ -742,6 +742,7 @@ class ADKController extends Controller
             $update_data = [
                 'eform_id'    => $response['eform_id'],
                 'is_send'     => 4,
+                'tgl_pencairan' => date('Y-m-d H:i:s'),
                 'catatan_adk' => $response['catat_adk']
             ];
             if ($response['catat_adk'] == '') {
