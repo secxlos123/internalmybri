@@ -407,6 +407,30 @@
         window.print();
     }
 
+    $('#btn-lainnya1').on('click', function(){
+        $('#namafoto').val('');
+    })
+
+    $('#btn-lainnya2').on('click', function(){
+        $('#namafoto2').val('');
+    })
+
+    $('#btn-lainnya3').on('click', function(){
+        $('#namafoto3').val('');
+    })
+
+    $('#btn-lainnya4').on('click', function(){
+        $('#namafoto4').val('');
+    })
+
+    $('#btn-lainnya5').on('click', function(){
+        $('#namafoto5').val('');
+    })
+
+    $('#btn-add-foto').on('click', function(){
+        $('#result-modal-add-foto').modal('show');
+    })
+
     $('#btn-ktp').on('click', function(){
         $('#result-modal-ktp').modal('show');
     })
@@ -441,6 +465,90 @@
 
     $('#btn-skpu').on('click', function(){
         $('#result-modal-skpu').modal('show');
+    })
+
+    $('#addupload').on('click', function(){
+        var countupload = $("#countupload").val();
+        var k = '<input type="text" data-placeholder="Nama file" name="namafoto'+countupload+'" class="form-control"><input type="file" class="filestyle" data-placeholder="Tidak ada file" name="uploadfoto'+countupload+'"  id="uploadfoto'+countupload+'"><br>';
+        $('#tambah').append(k);
+        $("#countupload").val(parseInt(countupload)+1);
+
+        child = $('#tambah').children();
+        if (child.length >= 1) {
+            $('#removeupload').removeClass('hide');
+        }
+        // when the add file button is clicked append
+    });
+
+    $('#removeupload').click(function() {
+        var countupload = $("#countupload").val();
+        $("#countupload").val(parseInt(countupload)-1);
+
+        child = $('#tambah').children();
+        child.last().remove();
+        if (child.length <= 1) {
+            $('#removeupload').addClass('hide');
+        }
+    });
+
+    $('#btn-add-foto-lainnya').on('click', function(){
+        var count = $("#countupload").val();
+        var action = $("#action").val();
+
+        if (action == 'add') {
+            if (count <= 6) {
+                var form1 = $('#foto_lainnya')[0];
+                var data1 = new FormData(form1);
+                HoldOn.open(options);
+                $.ajax({
+                    type: "POST",
+                    enctype: 'multipart/form-data',
+                    url: '{{ route("foto_lainnya") }}',
+                    data: data1,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    success: function (result) {
+                        $('#result-modal-add-foto').modal('hide');
+                        alert(result.message);
+                        HoldOn.close();
+                        location.reload();
+                    },
+                    error: function (e) {
+                        alert("Gagal Terhubung ke Server");
+                        HoldOn.close();
+                    }
+                });
+            } else {
+                alert("Add Foto Lainnya harus dibawah sama dengan lima file");
+                HoldOn.close();
+            }
+        } else {
+            var form1 = $('#edit_foto_lainnya')[0];
+            var data1 = new FormData(form1);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("foto_lainnya") }}',
+                data: data1,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (result) {
+                    $('#result-modal-add-foto').modal('hide');
+                    alert(result.message);
+                    HoldOn.close();
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Gagal Terhubung ke Server");
+                    HoldOn.close();
+                }
+            });
+        }
     })
 
     $('#btn-update-ktp').on('click', function(){
