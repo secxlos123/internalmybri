@@ -60,7 +60,11 @@
 
         /* Customers */
         Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,admin-bri'], function() {
-            Route::resource('customers', 'Customer\CustomerController');
+            Route::resource('customers', 'Customer\CustomerController',['only' => 'index']);
+        });
+        /* Customers */
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,staff'], function() {
+            Route::resource('customers', 'Customer\CustomerController',['except' => 'index']);
         });
 
         /* Roles */
