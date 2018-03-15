@@ -240,8 +240,6 @@
                                 <td><?php echo $detail['catatan_skpu']?></td>
                                 <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                             </tr>
-                            <tr>
-                            <td align="center">9</td>
                         <?php
                             if ($detail['customer']['personal']['status'] == '2') {
                         ?>
@@ -272,8 +270,6 @@
                                 <td><?php echo $detail['catatan_couple_ktp']?></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
-                            <tr>
-                            <td align="center">10</td>
                         <?php
                             }
                         } else {
@@ -306,14 +302,12 @@
                                 <td><?php echo $detail['catatan_couple_ktp']?></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
-                            <tr>
-                            <td align="center">9</td>
                         <?php
                             }
                         }
                         ?>
-                        
-                            <td>Foto Lainnya</td>
+                        <tr>
+                            <td colspan="2" align="center">Foto Lainnya</td>
                             <td>
                                 <?php
                                     if (!empty($detail['lainnya1']) || $detail['lainnya1'] != '') {
