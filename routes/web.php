@@ -204,7 +204,10 @@
         Route::group(['middleware' => 'checkrole:ao,other,staff'], function () {
             Route::resource('eform', 'EForm\EFormController', ['only' => 'create']);
         });
-        Route::resource('eform', 'EForm\EFormController', ['except' => 'create']);
+         Route::group(['middleware' => 'checkrole:ao,other,staff,mp,pinca'], function () {
+            Route::resource('eform', 'EForm\EFormController', ['only' => 'index']);
+        });
+        Route::resource('eform', 'EForm\EFormController', ['except' => ['create','index']]);
         // Route::get('eform/{ref}', ['as'=>'eform.index', 'uses'=>'EForm\EFormController@index']);
 
         /*ADK*/
