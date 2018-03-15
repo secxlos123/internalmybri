@@ -97,6 +97,58 @@ class ADKController extends Controller
         }
     }
 
+    public function postFotoLainnya(Request $request) {
+        $data = $this->getUser();
+        $response = $request->all();
+        // print_r($response);
+        try {
+            if ($response['action'] == 'add') {
+                $update_data = [
+                    '_token'      => $response['_token'],
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform_id'],
+                    'action'      => $response['action'],
+                    'foto'        => $response
+                ];
+            } else {
+                $update_data = [
+                    'data'        => $response,
+                    'uploadfoto'  => !isset($response['uploadfoto'])?null:$response['uploadfoto'],
+                    'uploadfoto2' => !isset($response['uploadfoto2'])?null:$response['uploadfoto2'],
+                    'uploadfoto3' => !isset($response['uploadfoto3'])?null:$response['uploadfoto3'],
+                    'uploadfoto4' => !isset($response['uploadfoto4'])?null:$response['uploadfoto4'],
+                    'uploadfoto5' => !isset($response['uploadfoto5'])?null:$response['uploadfoto5'],
+                ];
+            }
+            $newData = $this->dataRequest($update_data);
+
+            // print_r($newData);exit();
+            $update_briguna = Client::setEndpoint('api_las/foto_lainnya')
+                            ->setHeaders(
+                                [ 'Authorization' => $data['token'],
+                                  'pn' => $data['pn']
+                                ])
+                            ->setBody($newData)
+                            ->post('multipart');
+
+            if ($update_briguna['code'] == '200') {
+                return response()->json([
+                    'code'     => 200,
+                    'message'  => 'Foto Lainnya Berhasil disimpan',
+                    'response' => $update_briguna
+                ]);
+            } else {
+                return response()->json([
+                    'code'     => 400,
+                    'message'  => 'Foto Lainnya Gagal disimpan',
+                    'response' => $update_briguna
+                ]);
+            }
+        } catch (Exception $e) {
+            
+        }
+    }
+
     public function postKeterangan(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
@@ -1357,38 +1409,260 @@ class ADKController extends Controller
     }
 
     function dataRequest($request) {
-        // print_r($request->all());exit();
-        $id       = $request['eform_id'];
-        $catatan  = $request[$request['type']];
-        $verified = $request['is_verified'];
-        $imgReq   = $request['uploadfoto'];
-        $name = array([
-              'name'     => 'eform_id',
-              'contents' => $id,
-            ], [
-              'name'     => $request['type'],
-              'contents' => $catatan,
-            ], [
-              'name'     => 'is_verified',
-              'contents' => $verified,
-            ], [
-              'name'     => $request['field'],
-              'contents' => $imgReq->getClientOriginalName(),
-            ]);
-        // print_r($name);
-        if ($imgReq) {
-            $image_path = $imgReq->getPathname();
-            $image_mime = $imgReq->getmimeType();
-            $image_name = $imgReq->getClientOriginalName();
-            $image[] = [
-                'name'     => 'uploadfoto',
-                'filename' => $image_name,
-                'Mime-Type'=> $image_mime,
-                'contents' => fopen($image_path, 'r')
-            ];
+        // print_r($request);exit();
+        if (isset($request['data']['action']) == 'edit') {
+            $imgReq  = $request['data'];
+
+            $name = array([
+                  'name'     => 'eform_id',
+                  'contents' => $imgReq['eform_id'],
+                ], [
+                  'name'     => 'is_verified',
+                  'contents' => '0',
+                ]);
+
+            if ($imgReq) {
+                if (!isset($request['uploadfoto'])) {
+                    $nama_foto = substr($imgReq['lainnya1'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto']).$nama_foto;
+                    }
+                    
+                    // print_r($nama_foto);
+                    // print_r($imgReq['lainnya1']);
+                    // print_r($req_nama_foto);exit();
+                    if (isset($imgReq['namafoto']) && ($req_nama_foto == $imgReq['lainnya1'])) {
+                        $image[] = [
+                            'name' => 'lainnya1',
+                            'contents' => $imgReq['lainnya1']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'lainnya1',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    $namafoto = str_replace(' ', '-', $imgReq['namafoto']);
+                    $image[] = [
+                        'name'     => 'lainnya1',
+                        'filename' => $namafoto.'.'.$request['uploadfoto']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto2'])) {
+                    $nama_foto = substr($imgReq['lainnya2'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto2']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto2']).$nama_foto;
+                    }
+                    
+                    // print_r($nama_foto);
+                    // print_r($imgReq['lainnya1']);
+                    // print_r($req_nama_foto);exit();
+                    if (isset($imgReq['namafoto2']) && ($req_nama_foto == $imgReq['lainnya2'])) {
+                        $image[] = [
+                            'name' => 'lainnya2',
+                            'contents' => $imgReq['lainnya2']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'lainnya2',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    $namafoto = str_replace(' ', '-', $imgReq['namafoto2']);
+                    $image[] = [
+                        'name'     => 'lainnya2',
+                        'filename' => $namafoto.'.'.$request['uploadfoto2']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto2']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto2']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto3'])) {
+                    $nama_foto = substr($imgReq['lainnya3'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto3']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto3']).$nama_foto;
+                    }
+                    
+                    // print_r($nama_foto);
+                    // print_r($imgReq['lainnya1']);
+                    // print_r($req_nama_foto);exit();
+                    if (isset($imgReq['namafoto3']) && ($req_nama_foto == $imgReq['lainnya3'])) {
+                        $image[] = [
+                            'name' => 'lainnya3',
+                            'contents' => $imgReq['lainnya3']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'lainnya3',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    $namafoto = str_replace(' ', '-', $imgReq['namafoto3']);
+                    $image[] = [
+                        'name'     => 'lainnya3',
+                        'filename' => $namafoto.'.'.$request['uploadfoto3']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto3']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto3']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto4'])) {
+                    $nama_foto = substr($imgReq['lainnya4'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto4']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto4']).$nama_foto;
+                    }
+                    
+                    // print_r($nama_foto);
+                    // print_r($imgReq['lainnya1']);
+                    // print_r($req_nama_foto);exit();
+                    if (isset($imgReq['namafoto4']) && ($req_nama_foto == $imgReq['lainnya4'])) {
+                        $image[] = [
+                            'name' => 'lainnya4',
+                            'contents' => $imgReq['lainnya4']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'lainnya4',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    $namafoto = str_replace(' ', '-', $imgReq['namafoto4']);
+                    $image[] = [
+                        'name'     => 'lainnya4',
+                        'filename' => $namafoto.'.'.$request['uploadfoto4']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto4']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto4']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto5'])) {
+                    $nama_foto = substr($imgReq['lainnya5'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto5']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto5']).$nama_foto;
+                    }
+                    
+                    // print_r($nama_foto);
+                    // print_r($imgReq['lainnya1']);
+                    // print_r($req_nama_foto);exit();
+                    if (isset($imgReq['namafoto5']) && ($req_nama_foto == $imgReq['lainnya5'])) {
+                        $image[] = [
+                            'name' => 'lainnya5',
+                            'contents' => $imgReq['lainnya5']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'lainnya5',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    $namafoto = str_replace(' ', '-', $imgReq['namafoto5']);
+                    $image[] = [
+                        'name'     => 'lainnya5',
+                        'filename' => $namafoto.'.'.$request['uploadfoto5']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto5']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto5']->getPathname(), 'r')
+                    ];
+                }
+                // print_r($image);
+                // print_r($request);exit();
+            } else {
+                $image = [];
+            }
+        } else if (isset($request['type'])) {
+            $id       = $request['eform_id'];
+            $verified = $request['is_verified'];
+            $catatan = $request[$request['type']];
+            $imgReq  = $request['uploadfoto'];
+            $name = array([
+                  'name'     => 'eform_id',
+                  'contents' => $id,
+                ], [
+                  'name'     => $request['type'],
+                  'contents' => $catatan,
+                ], [
+                  'name'     => 'is_verified',
+                  'contents' => $verified,
+                ], [
+                  'name'     => $request['field'],
+                  'contents' => $imgReq->getClientOriginalName(),
+                ]);
+
+            if ($imgReq) {
+                $image_path = $imgReq->getPathname();
+                $image_mime = $imgReq->getmimeType();
+                $image_name = $imgReq->getClientOriginalName();
+                $image[] = [
+                    'name'     => 'uploadfoto',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen($image_path, 'r')
+                ];
+            } else {
+                $image = [];
+            }
         } else {
-            $image = [];
+            $id       = $request['eform_id'];
+            $verified = $request['is_verified'];
+            $imgReq  = $request['foto'];
+            $name = array([
+                  'name'     => 'eform_id',
+                  'contents' => $id,
+                ], [
+                  'name'     => 'is_verified',
+                  'contents' => $verified,
+                ]);
+            
+            if ($imgReq['uploadfoto']) {
+                $nama = str_replace(' ', '-', $imgReq['namafoto']);
+                $image_path = $imgReq['uploadfoto']->getPathname();
+                $image_mime = $imgReq['uploadfoto']->getmimeType();
+                $image_name = $nama.'.'.$imgReq['uploadfoto']->getClientOriginalExtension();
+                $image[] = [
+                    'name'     => 'lainnya1',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen($image_path, 'r')
+                ];
+                
+                for ($i=2; $i < $request['foto']['countupload']; $i++) {
+                    $names = str_replace(' ', '-', $imgReq['namafoto'.$i]);
+                    $img = $imgReq['uploadfoto'.$i];
+                    $image_path = $img->getPathname();
+                    $image_mime = $img->getmimeType();
+                    $image_name = $names.'.'.$img->getClientOriginalExtension();
+                    $image[] = [
+                        'name'     => 'lainnya'.$i,
+                        'filename' => $image_name,
+                        'Mime-Type'=> $image_mime,
+                        'contents' => fopen($image_path, 'r')
+                    ];
+                }
+                // $tes = substr('ashdasjdjasdnjasnj.jpg', -4);
+                // print_r($name);
+                // print_r($image);exit();
+            } else {
+                $image = [];
+            }
         }
+        // print_r($name);
         // print_r($image);
         // $allReq = $request->except(['_token','uploadfoto']);
         // print_r($allReq);exit();
@@ -1399,7 +1673,7 @@ class ADKController extends Controller
         //     ];
         // }
         $newCustomer = array_merge($image, $name);
-
+        // print_r($newCustomer);exit();
         return $newCustomer;
     }
 }

@@ -596,3 +596,137 @@
         </div>
     </div>
 </div>
+<div id="result-modal-add-foto" class="modal fade">
+    <div class="modal-dialog" role="document" style="margin: 100px auto; width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Foto Lainnya</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-horizontal" role="form">
+                                <?php
+                                    if (empty($detail['lainnya1']) || $detail['lainnya1'] == '') {
+                                ?>
+                                <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="foto_lainnya">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" id="countupload" name="countupload" value="2">
+                                        <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
+                                        <label class="col-md-3 control-label">Foto Lainnya :</label>
+                                        <div class="col-md-9">
+                                            <input type="text" data-placeholder="Nama file" name="namafoto" class="form-control">
+                                            <input type="file" data-placeholder="Tidak ada file" name="uploadfoto" class="filestyle">
+                                            <br><div id="tambah"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="button" class="btn btn-save"  value=" + " id="addupload"></input>
+                                            <input type="button" class="btn btn-save hide"  value=" - " id="removeupload"></input>
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php
+                                    } else {
+                                ?>
+                                <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="edit_foto_lainnya">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="hidden" id="countupload" name="countupload" value="6">
+                                        <input type="hidden" id="action" name="action" value="edit">
+                                        <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
+                                        <label class="col-md-2 control-label">Foto Lainnya 1 :</label>
+                                        <div class="col-md-8">
+                                            <input type="hidden" name="lainnya1" value="{{$detail['lainnya1']}}">
+                                            <input type="text" data-placeholder="Nama file" name="namafoto" id="namafoto" class="form-control" value="<?php 
+                                            if (!empty($detail['lainnya1']) || $detail['lainnya1'] != '') {
+                                                $lainnya1 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']);
+                                                echo str_replace('-', ' ', $lainnya1['filename']);
+                                            }
+                                            ?>">
+                                            <input type="file" data-placeholder="Tidak ada file" name="uploadfoto" class="filestyle" value="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="button" id="btn-lainnya1" value="Hapus" class="btn btn-danger">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Foto Lainnya 2 :</label>
+                                        <div class="col-md-8">
+                                            <input type="hidden" name="lainnya2" value="{{$detail['lainnya2']}}">
+                                            <input type="text" data-placeholder="Nama file" name="namafoto2" id="namafoto2" class="form-control" value="<?php 
+                                            if (!empty($detail['lainnya2']) || $detail['lainnya2'] != '') {
+                                                $lainnya2 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']);
+                                                echo str_replace('-', ' ', $lainnya2['filename']);
+                                            }
+                                            ?>">
+                                            <input type="file" data-placeholder="Tidak ada file" name="uploadfoto2" class="filestyle" value="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="button" id="btn-lainnya2" value="Hapus" class="btn btn-danger">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Foto Lainnya 3 :</label>
+                                        <div class="col-md-8">
+                                            <input type="hidden" name="lainnya3" value="{{$detail['lainnya3']}}">
+                                            <input type="text" data-placeholder="Nama file" name="namafoto3" id="namafoto3" class="form-control" value="<?php 
+                                            if (!empty($detail['lainnya3']) || $detail['lainnya3'] != '') {
+                                                $lainnya3 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']);
+                                                echo str_replace('-', ' ', $lainnya3['filename']);
+                                            }
+                                            ?>">
+                                            <input type="file" data-placeholder="Tidak ada file" name="uploadfoto3" class="filestyle" value="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="button" id="btn-lainnya3" value="Hapus" class="btn btn-danger">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Foto Lainnya 4 :</label>
+                                        <div class="col-md-8">
+                                            <input type="hidden" name="lainnya4" value="{{$detail['lainnya4']}}">
+                                            <input type="text" data-placeholder="Nama file" name="namafoto4" id="namafoto4" class="form-control" value="<?php 
+                                            if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
+                                                $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
+                                                echo str_replace('-', ' ', $lainnya4['filename']);
+                                            }
+                                            ?>">
+                                            <input type="file" data-placeholder="Tidak ada file" name="uploadfoto4" class="filestyle" value="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="button" id="btn-lainnya4" value="Hapus" class="btn btn-danger">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Foto Lainnya 5 :</label>
+                                        <div class="col-md-8">
+                                            <input type="hidden" name="lainnya5" value="{{$detail['lainnya5']}}">
+                                            <input type="text" data-placeholder="Nama file" name="namafoto5" id="namafoto5" class="form-control" value="<?php 
+                                            if (!empty($detail['lainnya5']) || $detail['lainnya5'] != '') {
+                                                $lainnya5 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']);
+                                                echo str_replace('-', ' ', $lainnya5['filename']);
+                                            }
+                                            ?>">
+                                            <input type="file" data-placeholder="Tidak ada file" name="uploadfoto5" class="filestyle" value="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']?>">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="button" id="btn-lainnya5" value="Hapus" class="btn btn-danger">
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-orange waves-effect" id="btn-add-foto-lainnya">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
