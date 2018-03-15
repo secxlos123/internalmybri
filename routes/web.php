@@ -240,7 +240,7 @@
         });
 
         /* Tracking */
-        Route::group(['middleware' => 'checkrole:ao,other'], function() {
+        Route::group(['middleware' => 'checkrole:ao,other,staff'], function() {
             Route::resource('tracking', 'Tracking\TrackingController');
         });
 
