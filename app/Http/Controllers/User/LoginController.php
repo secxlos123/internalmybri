@@ -69,6 +69,9 @@ class LoginController extends Controller
             }else if($request->pn == '70707'){
                 $role = ['role' => 'prescreening'];
                 $uker = ['uker' => 'other'];
+            }else if($request->pn == '79072'){
+                $role = ['role' => 'superadmin'];
+                $uker = ['uker' => 'other'];
             }else{
                 $role = ['role' => 'other'];
                 $uker = ['uker' => 'other'];
