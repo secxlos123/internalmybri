@@ -44,13 +44,6 @@ class ADKController extends Controller
                 ])
             ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
-
-        /*$conten = [
-            'nik' => '',
-            'tp_produk' => '',
-            'uid_pemrakarsa' => ''
-        ];*/
         $asuransi = [
             'premi_as_jiwa' => '',
             'premi_beban_debitur' => '',
@@ -62,33 +55,12 @@ class ADKController extends Controller
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
-
             $asuransi = [
                 'premi_as_jiwa' => $premi_as_jiwa,
                 'premi_beban_debitur' => $premi_beban_debitur,
                 'premi_beban_bri' => $premi_beban_bri
             ];
-
-            /*$conten = [
-                'nik'           => $detail['nik'],
-                'tp_produk'     => $detail['tp_produk'],
-                'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
-            ];*/
         }
-
-        // GET Form Data Debitur LAS
-        /*$data_debitur = Client::setEndpoint('api_las/index')
-            ->setHeaders(['Authorization' => $data['token'],
-                  'pn' => $data['pn']])
-            ->setBody([
-                'requestMethod' => 'inquiryHistoryDebiturPerorangan',
-                'requestData'   => $conten
-            ])
-            ->post();
-        $debitur = [];
-        if ($data_debitur['code'] == '01') {
-            $debitur = $data_debitur['contents']['data'][0];
-        }*/
         
         if ($data['role'] == 'adk') {
             return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi','status'));
@@ -121,7 +93,6 @@ class ADKController extends Controller
                 ];
             }
             $newData = $this->dataRequest($update_data);
-
             // print_r($newData);exit();
             $update_briguna = Client::setEndpoint('api_las/foto_lainnya')
                             ->setHeaders(
@@ -141,11 +112,15 @@ class ADKController extends Controller
                 return response()->json([
                     'code'     => 400,
                     'message'  => 'Foto Lainnya Gagal disimpan',
-                    'response' => $update_briguna
+                    'response' => ''
                 ]);
             }
         } catch (Exception $e) {
-            
+            return response()->json([
+                'code'     => 400,
+                'message'  => 'Gagal Koneksi Jaringan'.$e,
+                'response' => ''
+            ]);
         }
     }
 
@@ -676,6 +651,7 @@ class ADKController extends Controller
         }
 
         // verifikasi dokumen lengkap
+        // masih kemungkinan dipake
         /*if ($response['is_verified'] == 1) {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
@@ -860,20 +836,7 @@ class ADKController extends Controller
                 'draw'            => $request->input('draw'),
                 'recordsTotal'    => '0',
                 'recordsFiltered' => '0',
-                'data'            => [
-                    // 'cif' => '123123',
-                    // 'tgl_pengajuan' => '123122',
-                    // 'id_aplikasi' => '23131',
-                    // 'ref_number'  => 'asdewqe',
-                    // 'fid_tp_produk'=> '12',
-                    // 'nama_pegawai' => 'asdsaasdd',
-                    // 'namadeb' => 'asdasd',
-                    // 'request_amount' => 'asdasdasd',
-                    // 'STATUS' => 'asdas',
-                    // 'status_screening' => 'asdasd',
-                    // 'eform_id' => '1223',
-                    // 'action' => 'asdadsa'
-                ]
+                'data'            => []
             ]
         ];
 
@@ -916,6 +879,7 @@ class ADKController extends Controller
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
+                    // ada kemungkinan dipake
                     // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
                     if ($value['is_send'] == '1') {
                         // $status    = $this->getStatusIsSend($value['is_send']);
@@ -964,7 +928,7 @@ class ADKController extends Controller
                         ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $tgl_skpp = empty($detail['created_at']) ? '' : date('d-m-Y',strtotime($detail['created_at']));
             $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4);
@@ -1020,7 +984,7 @@ class ADKController extends Controller
                         ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $fasilitas   = substr($detail['Kode_fasilitas'],-2);
             $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y');
@@ -1064,26 +1028,21 @@ class ADKController extends Controller
                 'no_sk_awal'    => $no_sk_awal,
                 'no_sk_akhir'   => $no_sk_akhir
             ];
-            // dd($detail_sph);
+
+            // lempar data ke view blade
+            view()->share('data_sph',$detail_sph);
             if ($detail['baru_atau_perpanjang'] == '0') {
                 if (strtolower($fasilitas) == 'wl') {
-                    // lempar data ke view blade
-                    view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph');
                     return $pdf->download('sph_briguna_karya.pdf');
                 } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'zu') {
-                    // lempar data ke view blade
-                    view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
                     return $pdf->download('sph_briguna_pekerja_bri.pdf');
                 } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8') {
-                    // lempar data ke view blade
-                    view()->share('data_sph',$detail_sph);
                     $pdf = PDF::loadView('internals.eform.adk._sph_smart_profesi');
                     return $pdf->download('sph_briguna_smart.pdf');
                 }
             } else {
-                view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._adendum');
                 return $pdf->download('sph_addendum.pdf');
             }
@@ -1103,7 +1062,7 @@ class ADKController extends Controller
                     ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $no_skpp    = $detail['ref_number'].'/'.date('m').'/'.date('Y');
             $detail_sph = [
@@ -1120,7 +1079,6 @@ class ADKController extends Controller
                 'pekerjaan'     => $detail['customer']['work']['work'],
                 'alamat'        => $detail['customer']['personal']['address'],
                 'alamat_dom'    => $detail['customer']['personal']['current_address'],
-                // 'alamat_kantor' => $detail['customer']['work']['office_address'],
                 'tlp_emergency' => $detail['customer']['contact']['emergency_contact'],
                 'status'        => $detail['customer']['personal']['status'],
                 'tlp_rumah'     => $detail['customer']['personal']['phone'],
@@ -1149,7 +1107,6 @@ class ADKController extends Controller
                 'jangka_waktu'  => $detail['Jangka_waktu'],
                 'suku_bunga'    => $detail['Suku_bunga'],
                 'angsuran'      => $detail['angsuran_usulan'],
-                // baru
                 'pendidikan_terakhir' => $detail['id_Status_gelar'],
                 'nama_ao'       => $detail['ao_name'],
                 'lama_tinggal'  => $detail['lama_menetap'],
@@ -1163,10 +1120,7 @@ class ADKController extends Controller
                 'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
                 'no_skpp'       => $no_skpp
             ];
-            // dd($detail_sph);
 
-            // $this->data['detail'] = $detail;
-            // return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
             $pdf = \PDF::loadView('internals.eform.adk._debitur', 
                     ['data_sph' => $detail_sph])
@@ -1188,7 +1142,7 @@ class ADKController extends Controller
                     ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $status = $this->getStatusIsSend($detail['is_send']);
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
@@ -1199,9 +1153,7 @@ class ADKController extends Controller
             $detail['premi_beban_debitur'] = $premi_beban_debitur;
             $detail['premi_beban_bri'] = $premi_beban_bri;
             $detail['status_send'] = $status;
-            // dd($detail);
-            // $this->data['detail'] = $detail;
-            // return view('internals.eform.adk._report_kredit')->with($this->data);
+
             /// lempar data ke view blade
             $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
                     ['detail' => $detail])
@@ -1215,7 +1167,6 @@ class ADKController extends Controller
 
     public function exportImage(Request $request) {
         $data = $this->getUser();
-        // print_r($data);
         $response = $request->all();
         $formDetail = Client::setEndpoint('api_las/download_image')
                     ->setHeaders([ 
@@ -1227,7 +1178,7 @@ class ADKController extends Controller
                     ])
                     ->post();
         $detail = $formDetail['contents'];
-        // dd($formDetail);
+
         if (!empty($detail)) {
             // $image_path = env('APP_URL').'/uploads/'.$detail['id_foto'];
             // $npwp = $image_path.'/'.$detail['id_foto'].'-NPWP_nasabah.jpg';
@@ -1431,9 +1382,6 @@ class ADKController extends Controller
                         $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto']).$nama_foto;
                     }
                     
-                    // print_r($nama_foto);
-                    // print_r($imgReq['lainnya1']);
-                    // print_r($req_nama_foto);exit();
                     if (isset($imgReq['namafoto']) && ($req_nama_foto == $imgReq['lainnya1'])) {
                         $image[] = [
                             'name' => 'lainnya1',
@@ -1446,7 +1394,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto']);
+                    if (isset($imgReq['namafoto'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-1';
+                    }
+                    
                     $image[] = [
                         'name'     => 'lainnya1',
                         'filename' => $namafoto.'.'.$request['uploadfoto']->getClientOriginalExtension(),
@@ -1463,9 +1416,6 @@ class ADKController extends Controller
                         $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto2']).$nama_foto;
                     }
                     
-                    // print_r($nama_foto);
-                    // print_r($imgReq['lainnya1']);
-                    // print_r($req_nama_foto);exit();
                     if (isset($imgReq['namafoto2']) && ($req_nama_foto == $imgReq['lainnya2'])) {
                         $image[] = [
                             'name' => 'lainnya2',
@@ -1478,7 +1428,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto2']);
+                    if (isset($imgReq['namafoto2'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto2']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-2';
+                    }
+
                     $image[] = [
                         'name'     => 'lainnya2',
                         'filename' => $namafoto.'.'.$request['uploadfoto2']->getClientOriginalExtension(),
@@ -1495,9 +1450,6 @@ class ADKController extends Controller
                         $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto3']).$nama_foto;
                     }
                     
-                    // print_r($nama_foto);
-                    // print_r($imgReq['lainnya1']);
-                    // print_r($req_nama_foto);exit();
                     if (isset($imgReq['namafoto3']) && ($req_nama_foto == $imgReq['lainnya3'])) {
                         $image[] = [
                             'name' => 'lainnya3',
@@ -1510,7 +1462,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto3']);
+                    if (isset($imgReq['namafoto3'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto3']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-3';
+                    }
+                    
                     $image[] = [
                         'name'     => 'lainnya3',
                         'filename' => $namafoto.'.'.$request['uploadfoto3']->getClientOriginalExtension(),
@@ -1527,9 +1484,6 @@ class ADKController extends Controller
                         $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto4']).$nama_foto;
                     }
                     
-                    // print_r($nama_foto);
-                    // print_r($imgReq['lainnya1']);
-                    // print_r($req_nama_foto);exit();
                     if (isset($imgReq['namafoto4']) && ($req_nama_foto == $imgReq['lainnya4'])) {
                         $image[] = [
                             'name' => 'lainnya4',
@@ -1542,7 +1496,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto4']);
+                    if (isset($imgReq['namafoto4'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto4']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-4';
+                    }
+
                     $image[] = [
                         'name'     => 'lainnya4',
                         'filename' => $namafoto.'.'.$request['uploadfoto4']->getClientOriginalExtension(),
@@ -1558,10 +1517,7 @@ class ADKController extends Controller
                     } else {
                         $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto5']).$nama_foto;
                     }
-                    
-                    // print_r($nama_foto);
-                    // print_r($imgReq['lainnya1']);
-                    // print_r($req_nama_foto);exit();
+
                     if (isset($imgReq['namafoto5']) && ($req_nama_foto == $imgReq['lainnya5'])) {
                         $image[] = [
                             'name' => 'lainnya5',
@@ -1574,7 +1530,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto5']);
+                    if (isset($imgReq['namafoto5'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto5']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-5';
+                    }
+                    
                     $image[] = [
                         'name'     => 'lainnya5',
                         'filename' => $namafoto.'.'.$request['uploadfoto5']->getClientOriginalExtension(),
@@ -1582,8 +1543,6 @@ class ADKController extends Controller
                         'contents' => fopen($request['uploadfoto5']->getPathname(), 'r')
                     ];
                 }
-                // print_r($image);
-                // print_r($request);exit();
             } else {
                 $image = [];
             }
@@ -1663,16 +1622,7 @@ class ADKController extends Controller
                 $image = [];
             }
         }
-        // print_r($name);
-        // print_r($image);
-        // $allReq = $request->except(['_token','uploadfoto']);
-        // print_r($allReq);exit();
-        // foreach ($allReq as $index => $req) {
-        //     $inputData[] = [
-        //         'name'     => $index,
-        //         'contents' => $req
-        //     ];
-        // }
+
         $newCustomer = array_merge($image, $name);
         // print_r($newCustomer);exit();
         return $newCustomer;
