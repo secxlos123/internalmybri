@@ -60,7 +60,11 @@
 
         /* Customers */
         Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,admin-bri'], function() {
-            Route::resource('customers', 'Customer\CustomerController');
+            Route::resource('customers', 'Customer\CustomerController',['only' => 'index']);
+        });
+        /* Customers */
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,staff'], function() {
+            Route::resource('customers', 'Customer\CustomerController',['except' => 'index']);
         });
 
         /* Roles */
@@ -204,7 +208,10 @@
         Route::group(['middleware' => 'checkrole:ao,other,staff'], function () {
             Route::resource('eform', 'EForm\EFormController', ['only' => 'create']);
         });
-        Route::resource('eform', 'EForm\EFormController', ['except' => 'create']);
+         Route::group(['middleware' => 'checkrole:ao,other,staff,mp,pinca'], function () {
+            Route::resource('eform', 'EForm\EFormController', ['only' => 'index']);
+        });
+        Route::resource('eform', 'EForm\EFormController', ['except' => ['create','index']]);
         // Route::get('eform/{ref}', ['as'=>'eform.index', 'uses'=>'EForm\EFormController@index']);
 
         /*ADK*/
@@ -237,7 +244,7 @@
         });
 
         /* Tracking */
-        Route::group(['middleware' => 'checkrole:ao,other'], function() {
+        Route::group(['middleware' => 'checkrole:ao,other,staff'], function() {
             Route::resource('tracking', 'Tracking\TrackingController');
         });
 

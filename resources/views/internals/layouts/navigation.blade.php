@@ -58,7 +58,7 @@
         <a href="{{route('schedule.index')}}" class="waves-effect"><i class="mdi mdi-calendar-clock"></i> <span> Penjadwalan </span> </a>
       </li>
       @endif
-      @if (($data['role']=='ao') || ($data['role']=='other'))
+      @if (($data['role']=='ao') || ($data['role']=='other') || ($data['role']=='staff'))
       <li>
         <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
       </li>
