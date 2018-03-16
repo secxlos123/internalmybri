@@ -59,11 +59,11 @@
             ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
         /* Customers */
-        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,admin-bri'], function() {
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,admin-bri,superadmin'], function() {
             Route::resource('customers', 'Customer\CustomerController',['only' => 'index']);
         });
         /* Customers */
-        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,staff'], function() {
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,staff,superadmin'], function() {
             Route::resource('customers', 'Customer\CustomerController',['except' => 'index']);
         });
 
@@ -81,7 +81,7 @@
 
         Route::get('developers/{id}/properties', ['as'=>'properties', 'uses'=>'Developer\DeveloperController@properties']);
 
-        Route::group(['middleware' => 'checkrole:staff'], function() {
+        Route::group(['middleware' => 'checkrole:staff,superadmin'], function() {
             Route::resource('developers', 'Developer\DeveloperController');
         });
 
@@ -96,7 +96,7 @@
         Route::post('eform/submit-prescreening', ['as'=>'postPrescreeningManual', 'uses'=>'EForm\EFormController@postPrescreening']);
 
         // Dispotition
-        Route::group(['middleware' => 'checkrole:mp,pinca,admin-bri'], function() {
+        Route::group(['middleware' => 'checkrole:mp,pinca,admin-bri,superadmin'], function() {
             Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
             Route::post('/eform/dispotition/{id}',
@@ -114,7 +114,7 @@
             ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
         });
 
-        Route::group(['middleware' => 'checkrole:ao'], function() {
+        Route::group(['middleware' => 'checkrole:ao,superadmin'], function() {
             Route::post('/eform/postLKN/{id}',
                 ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
@@ -155,7 +155,7 @@
         Route::post('/calculator/calculate/',
             ['as'=>'postCalculate', 'uses'=>'Calculator\CalculatorController@postCalculate']);
 
-        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:collateral'], function () {
+        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:collateral,superadmin'], function () {
 
             Route::get('detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);
 
@@ -172,7 +172,7 @@
             Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
-        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal'], function () {
+        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal,superadmin'], function () {
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
@@ -190,7 +190,7 @@
             Route::post('post-upload-doc/{id}', ['as'=>'postUploadDoc', 'uses'=>'Collateral\CollateralStaffController@postUploadDoc']);
         });
 
-        Route::group(['prefix'=>'approval-data','middleware'=>'checkrole:staff'], function () {
+        Route::group(['prefix'=>'approval-data','middleware'=>'checkrole:staff,superadmin'], function () {
 
             Route::get('developer', ['as'=>'approveDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalDeveloper']);
 
@@ -205,10 +205,12 @@
             Route::post('approve-data-thirdparty', ['as'=>'postApprovalDataThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataThirdParty']);
         });
 
-        Route::group(['middleware' => 'checkrole:ao,other,staff'], function () {
+        Route::group(['middleware' => 'checkrole:ao,other,staff,superadmin'], function () {
             Route::resource('eform', 'EForm\EFormController', ['only' => 'create']);
+            /* EForms */
+            Route::get('eform/admin', 'EForm\EFormController@indexAdmin')->name('eform.indexadmin');
         });
-         Route::group(['middleware' => 'checkrole:ao,other,staff,mp,pinca'], function () {
+         Route::group(['middleware' => 'checkrole:ao,other,staff,mp,pinca,superadmin'], function () {
             Route::resource('eform', 'EForm\EFormController', ['only' => 'index']);
         });
         Route::resource('eform', 'EForm\EFormController', ['except' => ['create','index']]);
@@ -231,20 +233,20 @@
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
         /* Schedule */
-        Route::group(['middleware' => 'checkrole:ao,mp,pinca'], function() {
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
             Route::resource('schedule', 'Schedule\ScheduleController', [
                 'only' => ['index']
             ]);
         });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
         });
 
         /* Tracking */
-        Route::group(['middleware' => 'checkrole:ao,other,staff'], function() {
+        Route::group(['middleware' => 'checkrole:ao,other,staff,superadmin'], function() {
             Route::resource('tracking', 'Tracking\TrackingController');
         });
 
@@ -252,17 +254,17 @@
         Route::resource('calculator', 'Calculator\CalculatorController');
 
         /* Debitur */
-        Route::group(['middleware' => 'checkrole:ao,mp,pinca'], function() {
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
             Route::resource('debitur', 'Debitur\DebiturController');
         });
 
         /* Collateral */
-        Route::group(['middleware' => 'checkrole:collateral'], function() {
+        Route::group(['middleware' => 'checkrole:collateral,superadmin'], function() {
             Route::resource('collateral', 'Collateral\CollateralController');
         });
 
         /* Collateral Staff*/
-        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal'], function() {
+        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal,superadmin'], function() {
             Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
         });
 
@@ -273,7 +275,7 @@
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
-        Route::group(['middleware' => 'checkrole:prescreening'], function() {
+        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
             Route::resource('screening', 'Screening\ScreeningController',['only'=>'index']);
         });
 
@@ -325,7 +327,7 @@
         Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
-        Route::group(['middleware' => 'checkrole:prescreening'], function() {
+        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
             Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
         });
 
@@ -462,7 +464,7 @@
         Route::get('collateral-type-property', 'Collateral\CollateralController@datatableType');
 
         /* Collateral */
-        Route::group(['middleware' => 'checkrole:collateral'], function() {
+        Route::group(['middleware' => 'checkrole:collateral,superadmin'], function() {
 
             Route::get('collateral', 'Collateral\CollateralController@datatables');
 
@@ -471,7 +473,7 @@
         });
 
         /* Staff Collateral */
-        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal'], function() {
+        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal,superadmin'], function() {
 
             Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
 

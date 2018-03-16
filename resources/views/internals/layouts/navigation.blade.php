@@ -30,7 +30,7 @@
       </li>
       @if (($data['role']=='superadmin'))
         <li>
-          <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
+          <a href="{{route('eform.indexadmin')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
         </li>
       @endif
 
