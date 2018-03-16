@@ -251,8 +251,10 @@
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
 
-        /* Calculator */
-        Route::resource('debitur', 'Debitur\DebiturController');
+        /* Debitur */
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca'], function() {
+            Route::resource('debitur', 'Debitur\DebiturController');
+        });
 
         /* Collateral */
         Route::group(['middleware' => 'checkrole:collateral'], function() {

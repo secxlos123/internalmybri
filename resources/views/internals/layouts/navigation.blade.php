@@ -40,7 +40,7 @@
         </ul>
       </li>
       @endif
-      @if(($data['role']=='ao'))
+      @if(($data['role']=='ao')||($data['role']=='mp')||($data['role']=='pinca'))
       <li>
         <a href="{{route('debitur.index')}}" class="waves-effect"><i class="mdi mdi-account-card-details"></i> <span>Profil Debitur </span> </a>
       </li>
