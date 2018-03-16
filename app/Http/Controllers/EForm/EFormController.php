@@ -156,7 +156,7 @@ class EFormController extends Controller
                   'prescreening_result' => $form_notif['prescreening_status'],
                 ])->render();
 
-                if($form['is_recontest'] == 1){
+                if($form_notif['is_recontest'] == 1){
                   $recontest = route('getApprovalRecontest', $form_notif['id']);
                 }else{
                   $recontest = [];
