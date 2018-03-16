@@ -1394,7 +1394,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto']);
+                    if (isset($imgReq['namafoto'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-1';
+                    }
+                    
                     $image[] = [
                         'name'     => 'lainnya1',
                         'filename' => $namafoto.'.'.$request['uploadfoto']->getClientOriginalExtension(),
@@ -1423,7 +1428,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto2']);
+                    if (isset($imgReq['namafoto2'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto2']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-2';
+                    }
+
                     $image[] = [
                         'name'     => 'lainnya2',
                         'filename' => $namafoto.'.'.$request['uploadfoto2']->getClientOriginalExtension(),
@@ -1452,7 +1462,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto3']);
+                    if (isset($imgReq['namafoto3'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto3']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-3';
+                    }
+                    
                     $image[] = [
                         'name'     => 'lainnya3',
                         'filename' => $namafoto.'.'.$request['uploadfoto3']->getClientOriginalExtension(),
@@ -1481,7 +1496,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto4']);
+                    if (isset($imgReq['namafoto4'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto4']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-4';
+                    }
+
                     $image[] = [
                         'name'     => 'lainnya4',
                         'filename' => $namafoto.'.'.$request['uploadfoto4']->getClientOriginalExtension(),
@@ -1510,7 +1530,12 @@ class ADKController extends Controller
                         ];
                     }
                 } else {
-                    $namafoto = str_replace(' ', '-', $imgReq['namafoto5']);
+                    if (isset($imgReq['namafoto5'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto5']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-5';
+                    }
+                    
                     $image[] = [
                         'name'     => 'lainnya5',
                         'filename' => $namafoto.'.'.$request['uploadfoto5']->getClientOriginalExtension(),
