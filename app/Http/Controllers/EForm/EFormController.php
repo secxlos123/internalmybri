@@ -156,14 +156,29 @@ class EFormController extends Controller
                   'prescreening_result' => $form_notif['prescreening_status'],
                 ])->render();
 
+                if($form_notif['is_recontest'] == 1){
+                  $recontest = route('getApprovalRecontest', $form_notif['id']);
+                }else{
+                  $recontest = [];
+                }
+
                 $form_notif['action'] = view('internals.layouts.actions', [
-                                                    'dispose' => $form_notif['ao_name'],
-                                                    'submited' => ($form_notif['is_approved'] && $verify),
-                                                    'dispotition' => $form_notif,
-                                                    'approve' => $form_notif,
-                                                    'visited' => $visit,
-                                                    'status' => $form_notif['status_eform'],
-                                                ])->render();
+                    'dispose' => $form_notif['ao_name'],
+                    'submited' => ($form_notif['is_approved'] && $verify),
+                    'dispotition' => $form_notif,
+                    'response_status' => $form_notif['response_status'],
+                    'is_screening' => $form_notif['is_screening'],
+                    // 'screening' => route('eform.show', $form_notif['id']),
+                    'approve' => $form_notif,
+                    // 'verified' => $verify,
+                    'visited' => $visit,
+                    'status' => $form_notif['status_eform'],
+                    'recontest' => $recontest,
+                    // 'verification' => route('getVerification', $form_notif['user_id']),
+                    // 'lkn' => route('getLKN', $form_notif['id']),
+                    'screening_result' => 'view',
+                    'is_verified' => $verify,
+                ])->render();
                 /*
                 * mark read the notification
                 */
