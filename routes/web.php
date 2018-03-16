@@ -273,7 +273,11 @@
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
-        Route::resource('screening', 'Screening\ScreeningController');
+        Route::group(['middleware' => 'checkrole:prescreening'], function() {
+            Route::resource('screening', 'Screening\ScreeningController',['only'=>'index']);
+        });
+
+        Route::resource('screening', 'Screening\ScreeningController',['except'=>'index']);
 
         /* CRM Dashboard */
                 Route::get('crm_dashboard', 'CRM\DashboardController@index');
@@ -321,7 +325,9 @@
         Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
-        Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
+        Route::group(['middleware' => 'checkrole:prescreening'], function() {
+            Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
+        });
 
         /* Auditrail */
         Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
