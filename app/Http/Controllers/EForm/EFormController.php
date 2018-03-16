@@ -156,6 +156,12 @@ class EFormController extends Controller
                   'prescreening_result' => $form_notif['prescreening_status'],
                 ])->render();
 
+                if($form['is_recontest'] == 1){
+                  $recontest = route('getApprovalRecontest', $form_notif['id']);
+                }else{
+                  $recontest = [];
+                }
+
                 $form_notif['action'] = view('internals.layouts.actions', [
                     'dispose' => $form_notif['ao_name'],
                     'submited' => ($form_notif['is_approved'] && $verify),
