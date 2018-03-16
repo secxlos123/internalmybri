@@ -13,14 +13,14 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next , $role = null , $role2 = null , $role3 = null , $role4 = null , $role5 = null )
+    public function handle($request, Closure $next , $role = null , $role2 = null , $role3 = null , $role4 = null , $role5 = null , $role6 = null )
     {
         // if(env('APP_ENV') == 'local')
         // {
         //     return $next($request);
         // }
         $data = $this->getUser();
-        $roles = [$role , $role2 , $role3 , $role4 , $role5];
+        $roles = [$role , $role2 , $role3 , $role4 , $role5 , $role6 ];
         \Log::info($data);
         if (!in_array($data['role'], $roles)){
             return redirect()->route('dashboard');
