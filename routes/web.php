@@ -228,6 +228,7 @@
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
         Route::get('post_debitur/{id}', ['as'=>'post_debitur', 'uses'=>'EForm\ADKController@exportDebitur']);
         Route::get('post_image/{id}', ['as'=>'post_image', 'uses'=>'EForm\ADKController@exportImage']);
+        Route::post('foto_lainnya', ['as'=>'foto_lainnya', 'uses'=>'EForm\ADKController@postFotoLainnya']);
 
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
@@ -332,8 +333,10 @@
         });
 
         /* Auditrail */
-        Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
-        Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
+            Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
+            Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
+        });
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -501,16 +504,19 @@
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
+            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+                //
+            Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
-        Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+            Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
 
-        Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
+            Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
-        Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
+            Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
-        Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
-        Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
-        Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+            Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+            Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
+            Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+            });
         });
     });
