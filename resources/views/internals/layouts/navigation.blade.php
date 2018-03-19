@@ -117,6 +117,12 @@
 
 </li>
 @endif
+@if($data['role']=='superadmin')
+<li>
+  <a href="{{ route('auditrail.index') }}" class="waves-effect"><i class="mdi mdi-clipboard-text"></i> <span> Audit-Trail </span> </a>
+
+</li>
+@endif
 
 @if($data['role']=='cs')
 <li>

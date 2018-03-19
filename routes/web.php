@@ -333,8 +333,10 @@
         });
 
         /* Auditrail */
-        Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
-        Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
+            Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
+            Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
+        });
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -502,16 +504,19 @@
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
+            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+                //
+            Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
-        Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+            Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
 
-        Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
+            Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
-        Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
+            Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
-        Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
-        Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
-        Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+            Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+            Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
+            Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+            });
         });
     });
