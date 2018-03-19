@@ -66,8 +66,15 @@ $(document).on('click', "#btn-filter", function(){
     reloadData1();
 })
 
+$(document).ready(function(){
+    $('#btn-download').hide();
+    $('#btn-print').hide();
+});
+
 function reloadData1()
 {
+    $('#btn-download').show(1000);
+    $('#btn-print').show(1000);
     table2 = $('#datatable').DataTable({
         processing : true,
         serverSide : true,
