@@ -230,7 +230,16 @@
                         <td align="center" @if($data['prescreening_status'] == 'Kuning') style="color: orange;"@elseif($data['prescreening_status'] == 'Hijau') style="color: green;" @elseif($data['prescreening_status'] == 'Merah') style="color: red;" @else style="color: black;" @endif>{{ $data['prescreening_status'] }}</td>
                         <td>{{ $data['status'] }}</td>
                         <td>{{ $data['aging'] }}</td>
-                        <td>{{ $data['status'] }}</td>
+                        <td>@if($data['response_status'] == 'approve')
+                            Telah Disetujui
+                            @elseif($data['response_status'] == 'reject')
+                            Belum Disetujui
+                            @elseif($data['response_status'] == 'unverified')
+                            Dalam Proses
+                            @else
+                            <center>-</center>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
