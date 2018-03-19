@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Client;
+use PDF;
 
 class DropdownController extends Controller
 {
@@ -586,5 +587,30 @@ class DropdownController extends Controller
         }
 
         return response()->json(['zipcodes' => $contents]);
+    }
+
+    /**
+     * This function for generate PDF
+     * @param $type
+     * @author rangga.darmajati <rangga.darmajati@wgs.co.id>
+     */
+
+    public function generatePDF($type)
+    {
+        $data = $this->getUser();
+        $generateData = Client::setEndpoint('genaratePDF')
+                ->setHeaders([
+                    'Authorization' => $data['token'],
+                    'pn' => $data['pn']
+                ])
+                ->get();
+        $generateEform = $generateData['contents'];
+        $date = date('Y-m-d-H:i:s');
+        $pdf = PDF::loadView('pdf.dashboard', compact('generateEform'));
+        if($type != 1){
+            return $pdf->download('list_pengajuan-'.$date.'.pdf');
+        }else{
+            return $pdf->stream('list_pengajuan-'.$date.'.pdf');
+        }
     }
 }

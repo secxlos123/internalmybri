@@ -64,8 +64,8 @@
                   </div>
                 </div>
                 <div class="col-sm-6 text-right">
-                  <a href="{{ env('CLIENT_URI') }}int/genaratePDF" class="btn btn-info waves-light waves-effect w-md" id="btn-print" target="_blank">Print</a>
-                  <a href="{{ env('CLIENT_URI', 'https://127.0.0.1:8000/api/v1/') }}int/genaratePDF?type=1" class="btn btn-orange waves-light waves-effect w-md" id="btn-download">Download</a>
+                  <a href="{{ url('generatePDF/1') }}" class="btn btn-info waves-light waves-effect w-md" id="btn-print" target="_blank">Print</a>
+                  <a href="{{ url('generatePDF/2') }}" class="btn btn-orange waves-light waves-effect w-md" id="btn-download">Download</a>
                 </div>
               </div>
             </div>
