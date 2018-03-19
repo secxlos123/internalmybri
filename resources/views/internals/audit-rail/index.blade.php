@@ -54,7 +54,7 @@
                         <li class="small"><a data-toggle="tab" href="#dokumenCollateral">Dokumen Collateral</a></li>
                     </ul>
 
-                    <div class="tab-content">
+                    <div class="tab-content" style="color: black">
                         <div id="pengajuan" class="tab-pane fade in active">
                             @include('internals.audit-rail._eform')
                         </div>

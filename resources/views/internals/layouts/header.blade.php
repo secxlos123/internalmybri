@@ -28,8 +28,8 @@
                         <li>
                             <a href="#" onclick="openSide()" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
                                 <i class="mdi mdi-bell"></i>
-                                <span class="badge up bg-success"> 
-                                    {{ count( notificationsUnread() ) }}
+                                <span class="badge up bg-success badge-edit">
+                                    0
                                 </span>
                             </a>
                         </li>
@@ -51,7 +51,7 @@
                             </ul>
                         </li>
                     </ul>
-                    @include('internals.layouts.notification')  
+                    @include('internals.layouts.notification')
                 </div>
             </div>
         </div>

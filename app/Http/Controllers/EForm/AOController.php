@@ -659,7 +659,7 @@ class AOController extends Controller
             ])
             ->post();
 
-        $eform = $client['contents'];
+        $eform = $client['contents']['eform'];
 
         return view('internals.eform.prescreening.index', compact('data', 'eform', 'id'));
     }

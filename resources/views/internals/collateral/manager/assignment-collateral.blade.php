@@ -107,6 +107,7 @@
                                                                 ]) !!}
                                                             </div>
                                                             <input type="hidden" name="ao_name" id="ao_name">
+                                                            @include('form_audit._input_long_lat')
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">Catatan Penugasan * </label>
