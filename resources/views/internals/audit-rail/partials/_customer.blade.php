@@ -159,7 +159,7 @@
                             <div class="form-group">
                                 <label class="col-md-6 control-label">Pekerjaan :</label>
                                 <div class="col-md-6">
-                                    <p class="form-control-static">@if(!empty($dataCustomer['customer']['work']['customer']['work'])){{$dataCustomer['customer']['work']['customer']['work']}}@else - @endif</p>
+                                    <p class="form-control-static">@if(!empty($dataCustomer['customer']['work']['work'])){{$dataCustomer['customer']['work']['work']}}@else - @endif</p>
                                 </div>
                             </div>
                             <div class="form-group">

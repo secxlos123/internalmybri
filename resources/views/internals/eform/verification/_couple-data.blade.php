@@ -35,7 +35,7 @@
                             <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
                                 <label class="col-md-4 control-label">KTP Pasangan * :</label>
                                 <div class="col-md-8">
-                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="couple_identity" id="couple_identity" accept="image/*,application/pdf">
+                                    <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" @if(strpos($dataCustomer['customer']['couple_identity'], 'noimage.jpg')) name="couple_identity" @endif id="couple_identity" accept="image/*,application/pdf">
                                     @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
                                 </div>
                             </div>
