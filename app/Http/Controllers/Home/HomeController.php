@@ -40,13 +40,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function chartEform()
+    public function chartEform(Request $request)
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
+        $query = ['role' => $data['role']];
+        if ($request->has('startChart') && $request->has('endChart') ) {
+            $query['startChart'] = $request->input('startChart');
+            $query['endChart'] = $request->input('endChart');
+        }
 
         $chartData = Client::setEndpoint('dashboard-internal')
-            ->setQuery(['role' => $data['role']])
+            ->setQuery($query)
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
