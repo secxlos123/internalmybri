@@ -569,6 +569,7 @@ class EFormController extends Controller
 
         $dispotition = [
             'ao_id' => $request->name,
+            'pinca_note' => $request->pinca_note
         ];
 
         $client = Client::setEndpoint('eforms/'.$id.'/disposition')

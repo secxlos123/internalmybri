@@ -439,7 +439,7 @@
                                     </div>
                                     <div class="panel-body">
                                         <!-- dispose form -->
-                                        <form role="role" action="{{route('postDispotition', $id)}}" method="POST" >
+                                        <form id="formdispo" role="role" action="{{route('postDispotition', $id)}}" method="POST" >
                                         {{ csrf_field() }}
                                             <div class="row">
                                                 <div class="col-md-10">
@@ -460,7 +460,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * :</label>
                                                             <div class="col-md-7">
-                                                                <textarea class="form-control" rows="5"></textarea>
+                                                                <textarea name="pinca_note" class="form-control" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -533,3 +533,5 @@
         });
     });
 </script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\EForm\DispoRequest', '#formdispo'); !!}
