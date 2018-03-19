@@ -525,6 +525,7 @@ class AOController extends Controller
                 'screening_result' => route('getPrescreening', $form['id']), // uncomment jika service prescreening sudah lancar
                 'is_verified' => $form['customer']['is_verified'],
                 'is_screening' => $form['is_screening'],
+                'delay_prescreening' => $form['delay_prescreening'],
                 'vip_sent' => $form['vip_sent'],
                 'vip' => route('resendVIP', $form['id'])
             ])->render();
