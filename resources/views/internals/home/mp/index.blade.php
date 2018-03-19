@@ -25,19 +25,19 @@
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Mulai Dari :</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control datepicker-autoclose" id="from" name="start_date">
+                        <input type="text" class="form-control datepicker-autoclose" id="from_chart" name="start_date">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-4 control-label">Hingga :</label>
                       <div class="col-sm-6">
-                        <input type="text" class="form-control datepicker-autoclose" id="to" name="end_date">
+                        <input type="text" class="form-control datepicker-autoclose" id="to_chart" name="end_date">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-4 control-label"></label>
                       <div class="col-sm-6">
-                        <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
+                        <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter-chart">Filter</a>
                       </div>
                     </div>
                   </div>

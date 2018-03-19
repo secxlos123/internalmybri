@@ -39,7 +39,7 @@
         MorrisCharts.prototype.reload = function(){
         $("#morris-bar-stacked").empty();
           MorrisCharts.prototype.init();
-        }
+        },
         //init
         $.MorrisCharts = new MorrisCharts,
         $.MorrisCharts.Constructor = MorrisCharts
