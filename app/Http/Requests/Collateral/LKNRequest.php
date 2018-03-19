@@ -156,6 +156,7 @@ class LKNRequest extends FormRequest
         'other.building_exchange' => 'required',
         'other.things_bank_must_know' => 'required',
         'other.image_area.*.image_data' => 'required|mimes:jpeg,png,jpg,zip,pdf',
+        'other.image_area.1.image_data' => 'required|mimes:jpeg,png,jpg,zip,pdf',
         'other.image_condition_area' => 'mimes:jpeg,png,jpg,zip,pdf'
       ];
     }
@@ -172,6 +173,10 @@ class LKNRequest extends FormRequest
         'environment.nearest_location' => 'required',
         'environment.other_guide' => 'required',
         'environment.transportation' => 'required',
+        'environment.designated_pln' => 'required',
+        // 'environment.designated_phone' => 'required_if:environment.designated_pln,==,null',
+        // 'environment.designated_pam' => 'required_if:environment.designated_pln,==,null',
+        // 'environment.designated_telex' => 'required_if:environment.designated_phone,!=,null',
         'environment.distance_from_transportation' => 'required|regex:/^[\d.]+$/'
       ];
     }

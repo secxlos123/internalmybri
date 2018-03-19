@@ -180,7 +180,7 @@ class ApprovalDataController extends Controller
             // dd($detailData);
 
         if($detailData['code'] == 200){
-            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
+            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Perubahan Data Berhasil Ditolak';
             $color = ($detailData['contents']['status'] == 'approved') ? 'success' : 'error';
             \Session::flash($color, $message);
             return redirect()->route('approveDeveloper');

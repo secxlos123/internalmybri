@@ -49,7 +49,7 @@ class EFormController extends Controller
 
         $data = $this->getUser();
         // dd(env('APP_ENV'));
-        if($data['role'] == 'ao'){
+        if($data['role'] == 'ao' || $data['role'] == 'superadmin'){
             $form_notif = [];
             if(@$request->get('ref_number') && @$request->get('slug')){
                 /*
@@ -156,14 +156,29 @@ class EFormController extends Controller
                   'prescreening_result' => $form_notif['prescreening_status'],
                 ])->render();
 
+                if($form_notif['is_recontest'] == 1){
+                  $recontest = route('getApprovalRecontest', $form_notif['id']);
+                }else{
+                  $recontest = [];
+                }
+
                 $form_notif['action'] = view('internals.layouts.actions', [
-                                                    'dispose' => $form_notif['ao_name'],
-                                                    'submited' => ($form_notif['is_approved'] && $verify),
-                                                    'dispotition' => $form_notif,
-                                                    'approve' => $form_notif,
-                                                    'visited' => $visit,
-                                                    'status' => $form_notif['status_eform'],
-                                                ])->render();
+                    'dispose' => $form_notif['ao_name'],
+                    'submited' => ($form_notif['is_approved'] && $verify),
+                    'dispotition' => $form_notif,
+                    'response_status' => $form_notif['response_status'],
+                    'is_screening' => $form_notif['is_screening'],
+                    // 'screening' => route('eform.show', $form_notif['id']),
+                    'approve' => $form_notif,
+                    // 'verified' => $verify,
+                    'visited' => $visit,
+                    'status' => $form_notif['status_eform'],
+                    'recontest' => $recontest,
+                    // 'verification' => route('getVerification', $form_notif['user_id']),
+                    // 'lkn' => route('getLKN', $form_notif['id']),
+                    'screening_result' => 'view',
+                    'is_verified' => $verify,
+                ])->render();
                 /*
                 * mark read the notification
                 */
@@ -685,6 +700,69 @@ class EFormController extends Controller
             ->post();
 
          return response()->json(['response' => $client]);
+    }
+
+    /**
+     * [indexAdmin description]
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function indexAdmin(Request $request)
+    {
+        $data = $this->getUser();
+        $form_notif = [];
+            if(@$request->get('ref_number') && @$request->get('slug')){
+               /*
+                * redirect to eform with id and ref_number
+                */
+                $eforms = Client::setEndpoint('eforms/'.@$request->get('slug').'/'.@$request->get('ref_number').' ')
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])->setQuery([
+                        'ref_number' => $request->get('ref_number'),
+                        'ids' => $request->get('slug'),
+                    ])->get();
+                $form_notif = $eforms['contents'];
+                $form_notif['ref'] = strtoupper($form_notif['ref_number']);
+                $form_notif['customer_name'] = strtoupper($form_notif['customer_name']);
+                $form_notif['request_amount'] = 'Rp '.number_format($form_notif['nominal'], 2, ",", ".");
+                $form_notif['ao'] = $form_notif['ao_name'];
+
+                $verify = $form_notif['customer']['is_verified'];
+                $visit = $form_notif['is_visited'];
+
+                $form_notif['prescreening_status'] = view('internals.layouts.actions', [
+                  'prescreening_status' => route('getLKN', $form_notif['id']),
+                  'prescreening_result' => $form_notif['prescreening_status'],
+                ])->render();
+
+                $form_notif['action'] = view('internals.layouts.actions', [
+                                                    'dispose' => $form_notif['ao_name'],
+                                                    'submited' => ($form_notif['is_approved'] && $verify),
+                                                    'dispotition' => $form_notif,
+                                                    'approve' => $form_notif,
+                                                    'visited' => $visit,
+                                                    'status' => $form_notif['status_eform'],
+                                                ])->render();
+                /*
+                * mark read the notification
+                */
+                $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
+                    ->setHeaders([
+                        'Authorization' => $data['token']
+                        , 'pn' => $data['pn']
+                        , 'branch_id' => $data['branch']
+                        // , 'auditaction' => 'action name'
+                        , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                        , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    ])->get();
+            }
+
+            return view('internals.eform.index', compact('data','form_notif'));
     }
 
 }

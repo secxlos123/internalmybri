@@ -77,6 +77,7 @@
                     <th>Nomor Referensi</th>
                     <th>Data Lama</th>
                     <th>Data Baru</th>
+                    <th>Debitur</th>
                     <th>IP Address</th>
                     <th>Lokasi Akses</th>
                 </tr>
