@@ -104,4 +104,18 @@ function reloadData1(from, to, status)
             ],
         });
 }
+$('#from_chart').datepicker({
+        format: "yyyy-mm-dd",
+        endDate: new Date(),
+     autoclose: true,
+     clearBtn: true,
+     todayHighlight: true,
+});
+$('#from').datepicker({
+        format: "yyyy-mm-dd",
+        endDate: new Date(),
+     autoclose: true,
+     clearBtn: true,
+     todayHighlight: true,
+});
 </script>

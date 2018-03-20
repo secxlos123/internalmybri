@@ -225,7 +225,7 @@
                         <td align="center">{{ $data['ref_number'] }}</td>
                         <td align="center">{{ $data['customer_name'] }}</td>
                         <td align="center">Rp.{{ number_format($data['nominal']) }}</td>
-                        <td>{{ $data['created_at'] }}</td>
+                        <td align="center">{{ substr($data['created_at'], 0,-8) }}</td>
                         <td align="center">{{ $data['mobile_phone'] }}</td>
                         <td align="center" @if($data['prescreening_status'] == 'Kuning') style="color: orange;"@elseif($data['prescreening_status'] == 'Hijau') style="color: green;" @elseif($data['prescreening_status'] == 'Merah') style="color: red;" @else style="color: black;" @endif>{{ $data['prescreening_status'] }}</td>
                         <td>{{ $data['status'] }}</td>
