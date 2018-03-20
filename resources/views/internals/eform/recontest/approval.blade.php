@@ -270,7 +270,7 @@
                                         </div>
                                         @endif
                                         <div class="panel-body">
-                                            @include('internals.eform.approval._lkn-analist')
+                                            @include('internals.eform.recontest._lkn-analist-recontest')
                                         </div>
                                         <div class="panel-body">
                                             @include('internals.eform.approval._lkn-recommend')
