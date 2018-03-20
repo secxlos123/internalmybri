@@ -350,6 +350,7 @@
 
         //select2 city
         $('.cities').select2({
+            dropdownParent: $("#leads-modal"),
             witdh : '100%',
             allowClear: true,
             ajax: {
