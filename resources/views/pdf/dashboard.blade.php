@@ -197,6 +197,11 @@
     <body>
         <div class="page-content">
             <strong class="color-orange">List Pengajuan KPR <p class="color-blue">MY-BRI</p></strong>
+            @if($startdate != '-')
+            <small><b>Dari Tanggal : {{ \DateTime::createFromFormat('Y-m-d', $startdate)->format('d-m-Y') }} s/d {{ \DateTime::createFromFormat('Y-m-d', $enddate)->format('d-m-Y') }}</b></small>
+            @else
+            <small style="display: none;">Test</small>
+            @endif
             <hr>
             <table class="full-width">
                 <tbody>
@@ -220,6 +225,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                @if(count($generateEform) > 0)
                     @foreach($generateEform as $data)
                     <tr>
                         <td align="center">{{ $data['ref_number'] }}</td>
@@ -242,6 +248,11 @@
                         </td>
                     </tr>
                     @endforeach
+                @else
+                <tr>
+                    <td colspan="9" align="center">Tidak ada data</td>
+                </tr>
+                @endif
                 </tbody>
             </table>
                 

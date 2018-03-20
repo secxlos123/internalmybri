@@ -595,7 +595,7 @@ class DropdownController extends Controller
      * @author rangga.darmajati <rangga.darmajati@wgs.co.id>
      */
 
-    public function generatePDF($type)
+    public function generatePDF(Request $request,$type)
     {
         $data = $this->getUser();
         $generateData = Client::setEndpoint('genaratePDF')
@@ -603,10 +603,16 @@ class DropdownController extends Controller
                     'Authorization' => $data['token'],
                     'pn' => $data['pn']
                 ])
+                ->setQuery([
+                    'startdate' => $request->input('startdate'),
+                    'enddate' => $request->input('enddate')
+                ])
                 ->get();
         $generateEform = $generateData['contents'];
         $date = date('Y-m-d-H:i:s');
-        $pdf = PDF::loadView('pdf.dashboard', compact('generateEform'));
+        $startdate = $request->input('startdate') ? $request->input('startdate') : '-';
+        $enddate = $request->input('enddate') ? $request->input('enddate') : '-';
+        $pdf = PDF::loadView('pdf.dashboard', compact('generateEform', 'startdate', 'enddate'));
         if($type != 1){
             return $pdf->download('list_pengajuan-'.$date.'.pdf');
         }else{

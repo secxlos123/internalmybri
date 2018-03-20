@@ -66,6 +66,21 @@ $(document).on('click', "#btn-filter", function(){
     reloadData1();
     $('#btn-download').show(1000);
     $('#btn-print').show(1000);
+    var betWeenDate = '?startdate='+ $('#from').val()+'&enddate='+$('#to').val();
+    var _doc = $(document);
+    var _w = window;
+    _doc.ready(function(){
+        $('#btn-print').on('click', function(e){
+            e.preventDefault();
+            _w.location = ("{{ url('generatePDF/1') }}"+betWeenDate);
+        });
+    });
+    _doc.ready(function(){
+        $('#btn-download').on('click', function(e){
+            e.preventDefault();
+            _w.location = ("{{ url('generatePDF/2') }}"+betWeenDate);
+        });
+    });
 })
 
 $(document).ready(function(){
