@@ -389,6 +389,8 @@
 
     Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
 
+    Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
+
     Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');

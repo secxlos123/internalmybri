@@ -64,7 +64,14 @@ var table2 = $('#datatable').DataTable({
 $(document).on('click', "#btn-filter", function(){
     table2.destroy();
     reloadData1();
+    $('#btn-download').show(1000);
+    $('#btn-print').show(1000);
 })
+
+$(document).ready(function(){
+    $('#btn-download').hide();
+    $('#btn-print').hide();
+});
 
 function reloadData1()
 {
