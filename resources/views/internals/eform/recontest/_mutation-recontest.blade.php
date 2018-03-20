@@ -75,7 +75,7 @@
   </div>
 </div>
 @endforeach
-
+@endif
 <div id="mutations">
   <div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">
     <div class="row">
@@ -170,4 +170,4 @@
       </div>
     </div>
   </div>
-@endif
+

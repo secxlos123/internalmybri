@@ -7,7 +7,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Rekomendasi AO :</label>
                 <div class="col-md-7">
-                        <p class="form-control-static">{{$detail['visit_report']['recommended'] == 'yes' ? 'Ya' : 'Tidak'}}</p>
+                        <p class="form-control-static">{{$detail['recontest']['ao_recommended'] == 'yes' ? 'Ya' : 'Tidak'}}</p>
                 </div>
             </div>
         </form>
