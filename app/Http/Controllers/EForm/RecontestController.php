@@ -58,11 +58,7 @@ class RecontestController extends Controller
 
         }
 
-        if(!empty($eformData['recontest'])){
-            $recontest = 0;
-        }else{
-            $recontest = 1;
-        }
+        $recontest = 0;
         return view('internals.eform.lkn.index', compact('data', 'id', 'eformData', 'recontest'));
     }
 
@@ -244,11 +240,7 @@ class RecontestController extends Controller
 
         }
 
-        if(!empty($detail['recontest'])){
-            $recontest = 0;
-        }else{
-            $recontest = 1;
-        }
+        $recontest = 0;
 
         $type = 'fill';
 
