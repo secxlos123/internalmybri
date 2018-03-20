@@ -59,10 +59,19 @@ var table1 = $('#datatable').DataTable({
 $(document).on('click', "#btn-filter", function(){
     table1.destroy();
     reloadData1($('#city').val());
-})
+    $('#btn-download').show(1000);
+    $('#btn-print').show(1000);
+});
+
+$(document).ready(function(){
+    $('#btn-download').hide();
+    $('#btn-print').hide();
+});
 
 function reloadData1(from, to, status)
 {
+    var from = $('#from').val();
+    var to = $('#to').val();
     table1 = $('#datatable').DataTable({
      processing : true,
      serverSide : true,
