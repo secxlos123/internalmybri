@@ -144,6 +144,7 @@ class ADKHistoriController extends Controller
                     $tgl_analisa  = substr($result['tgl_analisa'], 0, 2).'-'.substr($result['tgl_analisa'], 2, 2).'-'.substr($result['tgl_analisa'], 4, 4);
                     $jam_analisa  = substr($result['tgl_analisa'], 9,8);
 
+                    $history['tgl_pencairan'] = !isset($result['tgl_pencairan']) ? '' : date('d-m-Y H:i:s',strtotime($result['tgl_pencairan']));
                     $history['tgl_pengajuan'] = !isset($result['created_at']) ? '' : date('d-m-Y H:i:s',strtotime($result['created_at']));
                     $history['tgl_analisa'] = !isset($result['tgl_analisa']) ? '' : $tgl_analisa.' '.$jam_analisa;
                     $history['tgl_putusan'] = !isset($result['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;

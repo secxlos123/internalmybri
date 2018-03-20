@@ -257,6 +257,86 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['progress_one_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['progress_one_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['progress_one_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['progress_one_doc'], 'noimage.jpg'))
+                            <p>Progress 1 Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['progress_one_doc'])){{$collateral['ots_doc']['progress_one_doc']}}@endif" class="img-responsive">
+                            <p>Progress 1</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['progress_one_doc'])){{$collateral['ots_doc']['progress_one_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Progress 1</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['progress_two_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['progress_two_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['progress_two_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['progress_two_doc'], 'noimage.jpg'))
+                            <p>Progress 2 Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" class="img-responsive">
+                            <p>Progress 2</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Progress 2</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['progress_three_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['progress_three_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['progress_three_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['progress_three_doc'], 'noimage.jpg'))
+                            <p>Progress 3 Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" class="img-responsive">
+                            <p>Progress 3</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Progress 3</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['progress_four_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['progress_four_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['progress_four_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['progress_four_doc'], 'noimage.jpg'))
+                            <p>Progress 4 Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" class="img-responsive">
+                            <p>Progress 4</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Progress 4</p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-6" align="center">
+                    <div class="card-box">
+                        @if((pathinfo(strtolower($collateral['ots_doc']['progress_five_doc']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($collateral['ots_doc']['progress_five_doc']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($collateral['ots_doc']['progress_five_doc'])), PATHINFO_EXTENSION) == 'jpeg'))
+                            @if(strpos($collateral['ots_doc']['progress_five_doc'], 'noimage.jpg'))
+                            <p>Progress 5 Kosong</p>
+                            @else
+                            <img src="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" class="img-responsive">
+                            <p>Progress 5</p>
+                            @endif
+                        @else
+                            <a href="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" target="_blank" class="img-responsive"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
+                            <p>Klik Untuk Lihat Progress 5</p>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
         @endif

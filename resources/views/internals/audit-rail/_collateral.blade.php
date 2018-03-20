@@ -83,12 +83,14 @@
                     <th>Developer</th>
                     <th>Data Lama</th>
                     <th>Data Baru</th>
+                    <th>Debitur</th>
                     <th>IP Address</th>
                     <th>Lokasi Akses</th>
                 </tr>
             </thead>
             <tbody>
                 <tr role="row" class="odd">
+                    <td> </td>
                     <td> </td>
                     <td> </td>
                     <td> </td>

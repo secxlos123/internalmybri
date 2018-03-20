@@ -5,8 +5,11 @@
     </li>
     <li class="unread_notif">
         <table class="notification">
-            @if(count(notificationsUnread()) > 0 )
-                @foreach(notificationsUnread() as $value)
+            @php( $unread = notificationsUnread() )
+            @php( $count = count($unread) )
+            @if($count > 0 )
+                @php( $count = 0 )
+                @foreach($unread as $value)
                     <tr class="line-notif {{ !empty($value['read_at']) ? 'read-notif' : '' }}" data-href="{{ $value['url'] }}">
                           <td>
                               <div class="notif-ico bg-success">
@@ -19,6 +22,9 @@
                               <p class="time-text">{{ $value['created_at'] }}</p>
                           </td>
                       </tr>
+                      @if( empty($value['read_at']) )
+                        @php( $count += 1 )
+                      @endif
                 @endforeach
             @else
                 <li class="all-msgs text-center">
@@ -34,3 +40,9 @@
     </ul>
     </li>
 </ul>
+
+@push('scripts')
+  <script type="text/javascript">
+    $(".badge-edit").html("{{ $count }}");
+  </script>
+@endpush

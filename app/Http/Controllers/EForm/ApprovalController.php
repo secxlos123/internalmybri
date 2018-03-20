@@ -80,7 +80,11 @@ class ApprovalController extends Controller
         $customer = $customerData['contents'];
         // dd($detail);
         $type = 'fill';
-        $recontest = 1;
+       if(!empty($detail['recontest'])){
+            $recontest = 0;
+        }else{
+            $recontest = 1;
+        }
 
         return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id', 'type', 'recontest'));
     }
@@ -167,7 +171,11 @@ class ApprovalController extends Controller
         $customer = $customerData['contents'];
         // dd($detail);
         $type = 'preview';
-        $recontest = 1;
+        if(!empty($detail['recontest'])){
+            $recontest = 0;
+        }else{
+            $recontest = 1;
+        }
 
         return view('internals.eform.approval.index', compact('data', 'detail', 'product', 'customer', 'id', 'type', 'recontest'));
     }

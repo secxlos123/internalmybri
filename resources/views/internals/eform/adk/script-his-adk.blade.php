@@ -34,6 +34,7 @@
                 {data: 'pinca_name', name: 'pinca_name', bSortable: true},
                 {data: 'tgl_putusan', name: 'tgl_putusan', bSortable: true},
                 {data: 'namadeb', name: 'namadeb', bSortable: true},
+                {data: 'tgl_pencairan', name: 'tgl_pencairan', bSortable: true},
                 {data: 'no_rekenings', name: 'no_rekenings', bSortable: true},
                 {data: 'request_amount', name: 'request_amount', bSortable: true},
                 {data: 'STATUS', name: 'STATUS', bSortable: true },

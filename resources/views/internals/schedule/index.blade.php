@@ -16,6 +16,7 @@
     </style>
     <script type="text/javascript">
       var aoUserID = '{{ $data['pn'] }}'
+      var userRole = '{{ $data['role'] }}'
     </script>
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -66,7 +67,9 @@
                                 </div>
                                 <div class="modal-body p-20">
                                   <div class="form"></div>
+                                  @if ($data['role'] == 'ao')
                                   <input type="text" name="" id="searchInput" class="form-control">
+                                  @endif
                                   <div class='map' id='map' style='width: 100%; height: 200px;'></div>
                                 </div>
                                 <div class="modal-footer">
