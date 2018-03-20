@@ -36,7 +36,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-icons.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/toastr.min.css')}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/morris-hover.css')}}">
+        {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/morris-hover.css')}}"> --}}
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/notification.css')}}">
 
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"> -->

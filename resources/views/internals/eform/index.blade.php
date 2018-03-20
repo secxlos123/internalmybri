@@ -386,7 +386,7 @@
                     })
                     $(html).insertAfter(base);
 
-                    $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 1000px;');
+                    $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 800px;');
                     $('#result-modal').modal('show');
                     HoldOn.close();
 
