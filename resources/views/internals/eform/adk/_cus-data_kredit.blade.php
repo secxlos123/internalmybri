@@ -200,7 +200,13 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Sektor Ekonomi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Sektor_ekonomi_sid']}}</p>
+                    <p class="form-control-static">
+                        @if(empty($detail['Sektor_ekonomi_sid_name']) || $detail['Sektor_ekonomi_sid_name'] == '')
+                            {{$detail['Sektor_ekonomi_sid']}}
+                        @else
+                            {{$detail['Sektor_ekonomi_sid_name']}}
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
