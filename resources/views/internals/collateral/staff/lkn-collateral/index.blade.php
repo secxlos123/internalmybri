@@ -295,7 +295,7 @@
         var input=$(this).val();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
