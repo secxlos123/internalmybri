@@ -1003,7 +1003,7 @@
         $(".kelurahan").html('').select2();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Silahkan Pilih Kelurahan </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
@@ -1046,7 +1046,7 @@
         $(".kelurahan_current").html('').select2();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Silahkan Pilih Kelurahan </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
@@ -1089,7 +1089,7 @@
         $(".kelurahan_office").html('').select2();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Silahkan Pilih Kelurahan </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({

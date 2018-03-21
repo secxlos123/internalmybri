@@ -175,7 +175,7 @@
         // });
     },
     /* Create New */
-    CalendarApp.prototype.onSelect = function (start, end, allDay,) {
+    CalendarApp.prototype.onSelect = function (start, end, allDay) {
       if ( userRole == 'ao' ) {
         $("#event-modal input, #event-modal textarea").prop('disabled', false);
         var $this = this;

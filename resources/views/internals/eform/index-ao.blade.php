@@ -223,6 +223,7 @@
     $(document).on('click', "#btn-prescreening", function(){
         prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
         autoPrescreening = "{{ env( 'PRESCREENING', 'manual' ) }}";
+        delayPrescreening = "{{ env( 'DELAY_PRESCREENING', 'normal' ) }}";
 
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
@@ -255,21 +256,17 @@
             }).done(function(data){
                 if ( autoPrescreening == 'manual' ) {
                     $("#btn-update-sicd").removeClass('hide');
+                    disabled = '';
 
                 } else {
                     $("#btn-update-sicd").addClass('hide');
+                    disabled = 'disabled';
 
                 }
 
                 $("#result-modal .modal-body").html($('.modal-body-base').html());
                 // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
                 contents = data.response.contents;
-
-                disabled = 'disabled';
-                if ( autoPrescreening == 'false' ) {
-                    disabled = '';
-
-                }
 
                 $('.card-box.m-t-30.remove-class-prescreening').remove();
 
@@ -366,6 +363,7 @@
 
                 // $('#detail').html(data['view']);
                 $('#result-modal').modal('show');
+                $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 800px;');
                 HoldOn.close();
 
             }).fail(function(errors) {
@@ -380,6 +378,18 @@
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
+            HoldOn.close();
+
+        } else if ( $(this).attr('data-delay') == '1' && delayPrescreening == 'delay' ) {
+            // notif for verification
+            $("#btn-update-sicd").addClass('hide');
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-delay').html()
                 );
             $('#result-modal').modal('show');
             $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
