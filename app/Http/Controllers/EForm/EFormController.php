@@ -585,7 +585,7 @@ class EFormController extends Controller
             ->post();
 
         if($client['code'] == 201){
-            \Session::flash('success', 'Disposisi Berhasil Dilakukan');
+            \Session::flash('success', $client['descriptions']);
             return redirect()->route('eform.index');
         }else{
             $error = reset($client['contents']);
