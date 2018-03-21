@@ -618,7 +618,7 @@
                                         <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
                                         <label class="col-md-3 control-label">Foto Lainnya :</label>
                                         <div class="col-md-9">
-                                            <input type="text" data-placeholder="Nama file" name="namafoto" class="form-control">
+                                            <input type="text" data-placeholder="Nama file" id="namafoto" name="namafoto" class="form-control">
                                             <input type="file" data-placeholder="Tidak ada file" name="uploadfoto" class="filestyle">
                                             <br><div id="tambah"></div>
                                         </div>

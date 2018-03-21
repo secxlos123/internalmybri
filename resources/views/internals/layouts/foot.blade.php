@@ -184,8 +184,15 @@
     });
 
     $(document).on('keydown', ".numericOnly", function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+        // curVal = $(this).val();
+        // if ( e.keyCode == 190 ) {
+        //     if ( $(this).hasClass('nonSeparator') || ( curVal[curVal.length -1] == "." ) ) {
+        //         e.preventDefault();
+        //     }
+        // }
+
+        // Allow: backspace, delete, tab, escape, enter
+        if ( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
             // Allow: Ctrl+A
             (e.keyCode == 65 && e.ctrlKey === true) ||
             // Allow: Ctrl+C
