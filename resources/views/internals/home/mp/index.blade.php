@@ -55,9 +55,9 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-sm-2">Mulai Dari : </label>
-                    <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="from" name="start_date"> </div>
+                    <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="from" name="start"> </div>
                     <label class="col-sm-2">Hingga : </label>
-                    <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="to" name="end_date"> </div>
+                    <div class="col-sm-3"> <input type="text" class="form-control datepicker-autoclose" id="to" name="end"> </div>
                     <div class="col-sm-2">
                       <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Filter</a>
                     </div>
