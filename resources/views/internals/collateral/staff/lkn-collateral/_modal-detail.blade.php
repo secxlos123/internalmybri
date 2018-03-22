@@ -4,7 +4,7 @@
     margin: 50px auto;
 }
 </style>
-<div id="detail-collateral-modal" class="modal fade">
+<div id="detail-collateral-modal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" tabindex="-1">
     <div class="modal-dialog-custom" role="document">
         <div class="modal-content">
             <div class="modal-body">
@@ -607,7 +607,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <!-- Preview Image -->
-                                                                
+                                                                <div class="img-previews">
+                                                                    <img id="preview-0" src="#" width="40%">
+                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
