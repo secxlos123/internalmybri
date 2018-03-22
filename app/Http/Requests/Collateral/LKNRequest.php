@@ -173,10 +173,10 @@ class LKNRequest extends FormRequest
         'environment.nearest_location' => 'required',
         'environment.other_guide' => 'required',
         'environment.transportation' => 'required',
-        'environment.designated_pln' => 'required',
-        // 'environment.designated_phone' => 'required_if:environment.designated_pln,==,null',
-        // 'environment.designated_pam' => 'required_if:environment.designated_pln,==,null',
-        // 'environment.designated_telex' => 'required_if:environment.designated_phone,!=,null',
+        'environment.designated_pln' => 'required_without_all:environment.designated_phone,environment.designated_pam,environment.designated_telex',
+        'environment.designated_phone' => 'required_without_all:environment.designated_pln,environment.designated_pam,environment.designated_telex',
+        'environment.designated_pam' => 'required_without_all:environment.designated_pln,environment.designated_phone,environment.designated_telex',
+        'environment.designated_telex' => 'required_without_all:environment.designated_pln,environment.designated_phone,environment.designated_pam',
         'environment.distance_from_transportation' => 'required|regex:/^[\d.]+$/'
       ];
     }
@@ -272,5 +272,20 @@ class LKNRequest extends FormRequest
         'ten.insurance_value' => 'required_if:ten.insurance,Ya|numeric',
         'ten.eligibility' => 'required',
       ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+           'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum'
+        ];
     }
 }
