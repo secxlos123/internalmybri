@@ -319,6 +319,14 @@
         }
     });
 
+    $('#building_year').datepicker({
+        minViewMode:2,
+        format:"yyyy",
+        clearBtn:true,
+        autoclose:true,
+        yearHighLight:true
+    });
+
     // Function for previewing image
     function previewImage(input, key) {
         if (input.files && input.files[0]) {
