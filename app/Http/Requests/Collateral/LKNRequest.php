@@ -87,7 +87,7 @@ class LKNRequest extends FormRequest
         'letter.number' => 'required',
         'letter.date' => 'required|date',
         'letter.on_behalf_of' => 'required',
-        'letter.duration_land_authorization' => 'date',
+        'letter.duration_land_authorization' => 'required|date|date_format:Y-m-d',
         'letter.bpn_name' => 'required'
       ];
     }
