@@ -606,10 +606,6 @@
                                                                         <p class="form-control-static" id="optimal_building_use"></p>
                                                                     </div>
                                                                 </div>
-                                                                <!-- Preview Image -->
-                                                                <div class="img-previews">
-                                                                    <img id="preview-0" src="#" width="40%">
-                                                                </div>
                                                             </form>
                                                         </div>
                                                         <div class="col-md-6">
@@ -627,6 +623,15 @@
                                                                     </div>
                                                                 </div>
                                                             </form>
+                                                        </div>
+                                                        <!-- Preview Image -->
+                                                        <div class="col-md-12">
+                                                            <label class="col-md-12 control-label">Foto Situasi Lapangan :</label>
+                                                            <div class="form-group">
+                                                                    <div class="img-previews">
+                                                                        <img id="preview-0" src="#" width="40%" class="col-md-3">
+                                                                    </div>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>

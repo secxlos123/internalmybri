@@ -270,6 +270,8 @@
     $('#add_photo').click(function(){
         var index = $('.photo').length;
         var x = $(".filestyle-foto").length;
+        console.log("index"+index);
+        console.log("x"+x);
         index++;
         if(index == 11){
             alert('Image maksimum upload 10 photo');
@@ -277,7 +279,7 @@
         $('#foto_div').append(
             '<div class="foto">'
                 +'<div class="input-group">'
-                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+index+'">'
+                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+x+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+x+'">'
                 +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
                 +'</div>'
             +'</div>'
@@ -285,166 +287,25 @@
         
         // Append image field
         $(".img-previews").append(
-            `<img id="preview-`+ index +`" src="#" width="40%">`
+            `<img id="preview-`+ x +`" src="#" width="40%" class="col-md-3">`
         );
 
-        // // File Style 2
-        $('#filestyle-'+index+'').on("change", function(){
+        // File Style 2
+        $('#filestyle-'+x+'').on("change", function(){
            // var input = this;
            // var nameIdentity = this;
             console.log(this.files);
+            console.log(x);
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                $('#preview-'+index+'').attr('src', e.target.result);
+                $('#preview-'+x+'').attr('src', e.target.result);
             }
                 reader.readAsDataURL(this.files[0]);
             }
         });
 
         }
-
-        // // This for file Style Image
-        // // File Style 2
-        // $('#filestyle-2').on("change", function(){
-        //     var input2 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input2.files);
-        //     if (input2.files && input2.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-2').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input2.files[0]);
-        //     }
-        // });
-
-        // // File Style 3
-        // $('#filestyle-3').on("change", function(){
-        //     var input3 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input3.files);
-        //     if (input3.files && input3.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-3').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input3.files[0]);
-        //     }
-        // });
-
-        // // File Style 4
-        // $('#filestyle-4').on("change", function(){
-        //     var input4 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input4.files);
-        //     if (input4.files && input4.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-4').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input4.files[0]);
-        //     }
-        // });
-
-        // // File Style 5
-        // $('#filestyle-5').on("change", function(){
-        //     var input5 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input5.files);
-        //     if (input5.files && input5.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-5').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input5.files[0]);
-        //     }
-        // });
-
-        // // File Style 6
-        // $('#filestyle-6').on("change", function(){
-        //     var input6 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input6.files);
-        //     if (input6.files && input6.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-6').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input6.files[0]);
-        //     }
-        // });
-
-        // // File Style 7
-        // $('#filestyle-7').on("change", function(){
-        //     var input7 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input7.files);
-        //     if (input7.files && input7.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-7').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input7.files[0]);
-        //     }
-        // });
-
-        // // File Style 8
-        // $('#filestyle-8').on("change", function(){
-        //     var input8 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input8.files);
-        //     if (input8.files && input8.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-8').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input8.files[0]);
-        //     }
-        // });
-
-        // // File Style 9
-        // $('#filestyle-9').on("change", function(){
-        //     var input9 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input9.files);
-        //     if (input9.files && input9.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-9').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input9.files[0]);
-        //     }
-        // });
-
-        // // File Style 10
-        // $('#filestyle-10').on("change", function(){
-        //     var input10 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input10.files);
-        //     if (input10.files && input10.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-10').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input10.files[0]);
-        //     }
-        // });
-
-        // // File Style 11
-        // $('#filestyle-11').on("change", function(){
-        //     var input11 = this;
-        //    // var nameIdentity = this;
-        //     console.log(input11.files);
-        //     if (input11.files && input11.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //         $('#preview-11').attr('src', e.target.result);
-        //     }
-        //         reader.readAsDataURL(input11.files[0]);
-        //     }
-        // });
-        // End for file Style Image
 
         $('.filestyle-foto').filestyle({
             buttonText : "Unggah",
@@ -462,11 +323,11 @@
     })
 
     // Preview image when finish button clicked
-    $("a[href='#finish']").on("click", function(){
-        $(".filestyle-foto").each(function(key, val){
-            previewImage(this, key);
-        });
-    })
+    // $("a[href='#finish']").on("click", function(){
+    //     $(".filestyle-foto").each(function(key, val){
+    //         previewImage(this, key);
+    //     });
+    // })
 
     $('#zip_code').on('input' , function() {
         var input=$(this).val();
