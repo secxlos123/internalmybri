@@ -370,9 +370,9 @@
             $("#detail-collateral-modal #njop").html(njop);
             $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
             if(appraisal_by != "Bank"){
-              $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
+                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
             }else{
-              $("#detail-collateral-modal .independent_appraiser").hide();
+                  $("#detail-collateral-modal .independent_appraiser").parent().parent().hide();
             }
             $("#detail-collateral-modal #date_assessment").html(date_assessment);
             $("#detail-collateral-modal #type_binding").html(type_binding);
