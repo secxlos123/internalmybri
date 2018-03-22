@@ -100,6 +100,7 @@
 @include('internals.layouts.foot')
 @include('internals.collateral.staff.lkn-collateral._modal-detail')
 @include('internals.collateral.staff.lkn-collateral._render-upload')
+@include('internals.collateral.staff.lkn-collateral._modal-maksimum-upload')
 <!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
 <!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
@@ -274,7 +275,7 @@
         console.log("x"+x);
         index++;
         if(index == 11){
-            alert('Image maksimum upload 10 photo');
+           $('#modal-maksimum-upload').modal('show');
         }else{
         $('#foto_div').append(
             '<div class="foto">'
