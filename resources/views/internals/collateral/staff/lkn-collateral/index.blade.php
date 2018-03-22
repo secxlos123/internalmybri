@@ -86,7 +86,7 @@
                                 <h3>&nbsp;</h3>
                                 <!-- step 7 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-10')
-
+                                @include('form_audit._input_long_lat')
                             </div>
                         </form>
                     </div>
