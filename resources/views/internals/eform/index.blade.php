@@ -214,7 +214,7 @@
             "language": {
                 "emptyTable": "No data available in table"
             },
-            [
+            aoColumns : [
                 {   data: 'ref_number', name: 'ref_number',  bSortable: false },
                 {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
                 {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
