@@ -129,7 +129,7 @@
                                             <th>No. Ref Aplikasi</th>
                                             <th>Nama Nasabah</th>
                                             <th>Nominal</th>
-                                            <th>Tanggal Pertemuan</th>
+                                            <th>Tanggal Pengajuan</th>
                                             <th>KC BRI Terdekat</th>
                                             <th>Status Prescreening</th>
                                             <th>id</th>
@@ -162,7 +162,7 @@
                                             <th>No. Ref Aplikasi</th>
                                             <th>Nama Nasabah</th>
                                             <th>Nominal</th>
-                                            <th>Tanggal Pertemuan</th>
+                                            <th>Tanggal Pengajuan</th>
                                             <th>KC BRI Terdekat</th>
                                             <th>Status Prescreening</th>
                                             <th>id</th>
