@@ -350,7 +350,35 @@
 
         //select2 city
         $('.cities').select2({
-            dropdownParent: $("#leads-modal"),
+            dropdownParent: $('#leads-modal #personal_data'),
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.cities_couple').select2({
+            dropdownParent: $('#leads-modal #couple_data'),
             witdh : '100%',
             allowClear: true,
             ajax: {
