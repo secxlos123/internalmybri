@@ -1,3 +1,9 @@
+<style type="text/css">
+ .table-condensed .focused{
+   color: red;
+   font-weight: bold;
+  } 
+</style>
 <div class="row">
   <div class="col-md-12">
     <div class="card-box m-t-30">
