@@ -3,9 +3,6 @@
    color: red;
    font-weight: bold;
   } 
-  /*.table-condensed .month .focused{
-    background-color: orange;
-  }*/
 </style>
 <div class="row">
   <div class="col-md-12">
