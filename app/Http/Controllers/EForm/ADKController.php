@@ -1032,13 +1032,13 @@ class ADKController extends Controller
             // lempar data ke view blade
             view()->share('data_sph',$detail_sph);
             if ($detail['baru_atau_perpanjang'] == '0') {
-                if (strtolower($fasilitas) == 'wl') {
+                if (strtolower($fasilitas) == 'wl' || strtolower($fasilitas) == 'wn') {
                     $pdf = PDF::loadView('internals.eform.adk._sph');
                     return $pdf->download('sph_briguna_karya.pdf');
                 } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'zu') {
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
                     return $pdf->download('sph_briguna_pekerja_bri.pdf');
-                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8') {
+                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8' || strtolower($fasilitas) == 'zn') {
                     $pdf = PDF::loadView('internals.eform.adk._sph_smart_profesi');
                     return $pdf->download('sph_briguna_smart.pdf');
                 }
