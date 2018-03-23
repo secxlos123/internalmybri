@@ -131,25 +131,17 @@
 
 <script>
     $(document).ready(function() {
-        $('#logout').on('click', function(e) {
+        $('#logout,#signout').on('click', function(e) {
             $('#out').attr('action', '{{url("logout")}}');
             $('#sign-out').modal('show');
             e.preventDefault();
         });
-    });
 
     var options = {
         theme:"sk-bounce",
         message:'Mohon tunggu sebentar.',
         textColor:"white"
     };
-
-    $(document).ready(function() {
-        $('#signout').on('click', function(e) {
-            $('#out').attr('action', '{{url("logout")}}');
-            $('#sign-out').modal('show');
-            e.preventDefault();
-        });
 
         $('#btn-logout').on('click', function() {
             HoldOn.open(options);
