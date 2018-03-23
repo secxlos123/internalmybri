@@ -12,6 +12,7 @@
     };
 
     var ajaxConfig = {
+        dropdownParent: $('#event-modal'),
         minimumInputLength: 1,
         placeholder: "Search Ref",
         ajax: {
