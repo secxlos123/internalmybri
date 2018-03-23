@@ -74,6 +74,10 @@
          textColor:"white"
     };
 
+    $('#loginForm').on('paste contextmenu', function(e) {
+    e.preventDefault();
+    });
+
     $("#loginForm").submit(function (e) {
         e.preventDefault();
         HoldOn.open(options);
