@@ -152,11 +152,19 @@ function reloadData1()
         });
 }
 $('#from_chart').datepicker({
+      minViewMode: 1,
         format: "yyyy-mm-dd",
         endDate: new Date(),
      autoclose: true,
      clearBtn: true,
      todayHighlight: true,
+});
+$('#to_chart').datepicker({
+        minViewMode: 1,
+        format: "yyyy-mm-dd",
+     autoclose: true,
+     clearBtn: true,
+     todayHighlight: true, 
 });
 $('#from').datepicker({
         format: "yyyy-mm-dd",

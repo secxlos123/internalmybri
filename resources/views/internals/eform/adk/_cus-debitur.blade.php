@@ -65,6 +65,20 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-md-5 control-label">Jenis Rekening :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                        @if($detail['jenis_rekening'] == '1')
+                            Simpanan
+                        @elseif($detail['jenis_rekening'] == '2')
+                            Pinjaman
+                        @else
+                            Tidak Ada
+                        @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-5 control-label">Domisili / Lama Menetap :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">{{$detail['lama_menetap']}} tahun</p>
@@ -122,12 +136,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Pernah Pinjam di Bank Lain :</label>
-                <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['pernah_pinjam']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-md-5 control-label">Perjanjian Pisah Harta :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
@@ -159,6 +167,20 @@
                     </p>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Pernah Pinjam di Bank Lain :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['pernah_pinjam']}}</p>
+                </div>
+            </div>
+            @if($detail['jenis_rekening'] <> '3' && !empty($detail['jenis_rekening']))
+            <div class="form-group">
+                <label class="col-md-5 control-label">Nama Bank Lainnya :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['nama_bank_lain_name']}}</p>
+                </div>
+            </div>
+            @endif
         </form>
     </div>
 </div>

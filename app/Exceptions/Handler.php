@@ -54,6 +54,9 @@ class Handler extends ExceptionHandler
         //         $message->to("rachmat.ramadhan@wgs.co.id");
         //     });
         // }
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+           return response()->view('internals.auth.login');
+        }
 
         // 404 page when a page not found
         if ($exception instanceof CustomException) {

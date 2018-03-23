@@ -531,6 +531,9 @@
         $('.name').on('select2:select', function(){
             $('#fake-aoid').val($(this).val());
         });
+        $('.name').on('select2:unselecting', function(){
+            $('#fake-aoid').val("");
+        });
     });
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
