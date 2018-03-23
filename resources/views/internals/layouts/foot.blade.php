@@ -137,12 +137,6 @@
             e.preventDefault();
         });
 
-    var options = {
-        theme:"sk-bounce",
-        message:'Mohon tunggu sebentar.',
-        textColor:"white"
-    };
-
         $('#btn-logout').on('click', function() {
             HoldOn.open(options);
         });
@@ -153,6 +147,11 @@
             }
         });
     });
+    var options = {
+        theme:"sk-bounce",
+        message:'Mohon tunggu sebentar.',
+        textColor:"white"
+    };
 
     $(document).ready(function() {
         Inputmask.extendAliases({
