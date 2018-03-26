@@ -930,11 +930,33 @@
                 format : "yyyy-mm-dd",
                 autoclose: true,
             });
+            $("#birth_date-error").hide();
         }else{
             $('#leads-modal #datepicker-date').datepicker({
                 format : "yyyy-mm-dd",
                 autoclose: true,
                 endDate: "-21y"
+            });
+            var date_val = new Date($("input[name='birth_date']").val());
+            var date_now = new Date();
+            var ages = Math.floor((date_now-date_val) / (365.25 * 24 * 60 * 60 * 1000));
+             if (ages < 21) {
+                $("#birth_date-error").show();
+            } else {
+                $("#birth_date-error").hide();
+            }
+            $('#leads-modal #datepicker-date').on('change', function() {
+                var dt_vl = new Date($("input[name='birth_date']").val());
+                var dt_nw = new Date();
+                var ags = Math.floor((dt_nw-dt_vl) / (365.25 * 24 * 60 * 60 * 1000));
+                var st = $("#leads-modal #status").val();
+                if(st == 1){
+                    if (ags < 21) {
+                        $("#birth_date-error").show();
+                    } else {
+                        $("#birth_date-error").hide();
+                    }
+                }
             });
             hideCouple();
         }
