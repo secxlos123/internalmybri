@@ -55,8 +55,8 @@ class ListController extends Controller
 				->get();
 					if($getdatamitra['code']=='200'){
 							for($i=0;$i<count($getdatamitra['contents']);$i++){
-								$region['results'][$i]['id'] = $getdatamitra['contents'][$i]['fasilitas_lainnya'];
-								$region['results'][$i]['text'] = $getdatamitra['contents'][$i]['id'];
+								$region['results'][$i]['id'] = $getdatamitra['contents'][$i]['id'];
+								$region['results'][$i]['text'] = $getdatamitra['contents'][$i]['fasilitas_lainnya'];
 							}
 						}else{
 							$region['results'][0]['id'] = '';

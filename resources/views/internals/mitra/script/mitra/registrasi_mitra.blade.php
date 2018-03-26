@@ -9,6 +9,14 @@ function testbutton(){
 }
 $(document).ready(function() {
 	//------------------all hidden---------------------------------
+	$('#tgl_pembayaran').datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
+			$('#tgl_gajian1').datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
 		$("#step0").show();
 		$("#step1").hide();
 		$("#step2").hide();
@@ -173,6 +181,7 @@ $(document).ready(function() {
 					add_text(0);
 				}
 				
+				$("#golongan_mitra_text").val($('#golongan_mitra').val());
 				$("#anak_perusahaan_kabupaten_text").val($('#golongan_mitra').val());
 			});
 			
@@ -209,6 +218,7 @@ $(document).ready(function() {
 				}
 				
 				$("#anak_perusahaan_kabupaten_text").val($('#induk_mitra').val());
+				$("#induk_mitra_text").val($('#induk_mitra').val());
 /* 				var induk_mitra = $("#induk_mitra").val();
 				if(!induk_mitra){	
 						$('#induk_mitra_button').show();
@@ -242,6 +252,7 @@ $(document).ready(function() {
 				if($('#anak_perusahaan_wilayah').val()=='xxx'){
 					add_text(2);
 				}
+				$("#anak_perusahaan_wilayah_text").val($('#anak_perusahaan_wilayah').val());
 				$("#anak_perusahaan_kabupaten_text").val($('#anak_perusahaan_wilayah').val());
 /* 				var anak_perusahaan_wilayah = $("#anak_perusahaan_wilayah").val();
 				if(!anak_perusahaan_wilayah){	
@@ -309,9 +320,13 @@ $(document).ready(function() {
 						'<input class="form-control" name="no_cif_mitra'+countpayroll+'" id="no_cif_mitra'+countpayroll+'" value="" type="text"></div></div>' +
 						'<div class="form-group payroll'+countpayroll+'">' +
 						'<label class="col-md-4"></label><div class="col-md-6">' + 
+						'<div class="col-md-3">'+
 						'<input name="tipe_account'+countpayroll+'" value="gl" type="radio">GL' +
+						'</div><div class="col-md-3">'+
 						'<input name="tipe_account'+countpayroll+'" value="cl" type="radio">CL' +
+						'</div><div class="col-md-3">'+
 						'<input name="tipe_account'+countpayroll+'" value="sa" type="radio">SA' +
+						'</div>'+
 						'<input name="tipe_account'+countpayroll+'" value="cash" type="radio">CASH</div></div>';
 			
 			/* var html = '<label class="col-md-3 control-label">Pemeriksa'+countpemutus+'</label><div class="col-md-8">' + 
@@ -340,6 +355,10 @@ $(document).ready(function() {
 			div.className = 'form-horizontal';
 			div.innerHTML = html;
 			document.getElementById('div_tgl_gajian').appendChild(div);
+			$('#tgl_gajian'+countgajian).datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
 	}
 
 		function backs_select(key){
@@ -386,10 +405,10 @@ $(document).ready(function() {
 
 		}
 		function add_text(key){
-			$("#golongan_mitra_text").val('');
+			/* $("#golongan_mitra_text").val('');
 			$("#induk_mitra_text").val('');
 			$("#anak_perusahaan_wilayah_text").val('');
-			$("#anak_perusahaan_kabupaten_text").val('');
+			$("#anak_perusahaan_kabupaten_text").val(''); */
 		if(key=='0'){		
 				$("#div_golongan_mitra_select").hide();
 				$("#div_golongan_mitra_text").show();
@@ -402,6 +421,7 @@ $(document).ready(function() {
 				document.getElementById("induk_mitra_text").readOnly = true; 
 				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
 				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
+				
 		}else if(key=='1'){			
 				$("#div_golongan_mitra_select").show();
 				$("#div_golongan_mitra_text").hide();
