@@ -48,6 +48,7 @@
 
 <!-- Calendar -->
 <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/locale/id.js') }}"></script>
 <script src="{{asset('assets/js/jquery.fullcalendar.js')}}"></script>
 
 <!-- Init js -->

@@ -330,6 +330,7 @@
                 center: 'title',
                 right: 'month'
             },
+            lang: 'id',
             eventSources: [{
               events: function (start, end, timezone, callback) {
                 if ( parseInt(start.format('D')) > 1 ) {
