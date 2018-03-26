@@ -48,6 +48,7 @@
 
 <!-- Calendar -->
 <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/locale/id.js') }}"></script>
 <script src="{{asset('assets/js/jquery.fullcalendar.js')}}"></script>
 
 <!-- Init js -->
@@ -131,21 +132,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#logout').on('click', function(e) {
-            $('#out').attr('action', '{{url("logout")}}');
-            $('#sign-out').modal('show');
-            e.preventDefault();
-        });
-    });
-
-    var options = {
-        theme:"sk-bounce",
-        message:'Mohon tunggu sebentar.',
-        textColor:"white"
-    };
-
-    $(document).ready(function() {
-        $('#signout').on('click', function(e) {
+        $('#logout,#signout').on('click', function(e) {
             $('#out').attr('action', '{{url("logout")}}');
             $('#sign-out').modal('show');
             e.preventDefault();
@@ -161,6 +148,11 @@
             }
         });
     });
+    var options = {
+        theme:"sk-bounce",
+        message:'Mohon tunggu sebentar.',
+        textColor:"white"
+    };
 
     $(document).ready(function() {
         Inputmask.extendAliases({
@@ -184,8 +176,15 @@
     });
 
     $(document).on('keydown', ".numericOnly", function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+        // curVal = $(this).val();
+        // if ( e.keyCode == 190 ) {
+        //     if ( $(this).hasClass('nonSeparator') || ( curVal[curVal.length -1] == "." ) ) {
+        //         e.preventDefault();
+        //     }
+        // }
+
+        // Allow: backspace, delete, tab, escape, enter
+        if ( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
             // Allow: Ctrl+A
             (e.keyCode == 65 && e.ctrlKey === true) ||
             // Allow: Ctrl+C

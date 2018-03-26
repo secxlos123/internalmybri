@@ -211,7 +211,21 @@
             order : [[3, 'asc']],
             "language": {
                 "emptyTable": "No data available in table"
-            }
+            },
+          aoColumns : [
+                {   data: 'ref_number', name: 'ref_number', bSortable: false },
+                {   data: 'customer_name', name: 'customer_name', bSortable: false  },
+                {   data: 'request_amount', name: 'request_amount', bSortable: false  },
+                {   data: 'created_at', name: 'created_at', className: 'hidden' },
+                {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
+                {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
+                {   data: 'status', name: 'created_at', bSortable: false },
+                {   data: 'aging', name: 'aging' },
+                {   data: 'appointment_date', name: 'appointment_date', bSortable: false},
+                {   data: 'response_status', name: 'response_status', bSortable: false},
+                {   data: 'action', name: 'action', bSortable: false }
+            ]
         });
 
     $(document).on('click', "#btn-filter", function(){
@@ -223,6 +237,7 @@
     $(document).on('click', "#btn-prescreening", function(){
         prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
         autoPrescreening = "{{ env( 'PRESCREENING', 'manual' ) }}";
+        delayPrescreening = "{{ env( 'DELAY_PRESCREENING', 'normal' ) }}";
 
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
@@ -255,21 +270,17 @@
             }).done(function(data){
                 if ( autoPrescreening == 'manual' ) {
                     $("#btn-update-sicd").removeClass('hide');
+                    disabled = '';
 
                 } else {
                     $("#btn-update-sicd").addClass('hide');
+                    disabled = 'disabled';
 
                 }
 
                 $("#result-modal .modal-body").html($('.modal-body-base').html());
                 // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
                 contents = data.response.contents;
-
-                disabled = 'disabled';
-                if ( autoPrescreening == 'false' ) {
-                    disabled = '';
-
-                }
 
                 $('.card-box.m-t-30.remove-class-prescreening').remove();
 
@@ -366,6 +377,7 @@
 
                 // $('#detail').html(data['view']);
                 $('#result-modal').modal('show');
+                $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 800px;');
                 HoldOn.close();
 
             }).fail(function(errors) {
@@ -380,6 +392,18 @@
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
+            HoldOn.close();
+
+        } else if ( $(this).attr('data-delay') == '1' && delayPrescreening == 'delay' ) {
+            // notif for verification
+            $("#btn-update-sicd").addClass('hide');
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-delay').html()
                 );
             $('#result-modal').modal('show');
             $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');

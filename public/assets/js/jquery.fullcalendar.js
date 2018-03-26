@@ -12,6 +12,7 @@
     };
 
     var ajaxConfig = {
+        dropdownParent: $('#event-modal'),
         minimumInputLength: 1,
         placeholder: "Search Ref",
         ajax: {
@@ -175,7 +176,7 @@
         // });
     },
     /* Create New */
-    CalendarApp.prototype.onSelect = function (start, end, allDay,) {
+    CalendarApp.prototype.onSelect = function (start, end, allDay) {
       if ( userRole == 'ao' ) {
         $("#event-modal input, #event-modal textarea").prop('disabled', false);
         var $this = this;
@@ -329,6 +330,7 @@
                 center: 'title',
                 right: 'month'
             },
+            lang: 'id',
             eventSources: [{
               events: function (start, end, timezone, callback) {
                 if ( parseInt(start.format('D')) > 1 ) {

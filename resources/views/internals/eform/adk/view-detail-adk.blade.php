@@ -212,7 +212,23 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Catatan Pemutus :</label>
-                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_pemutus']?></label>
+                                            <label class="col-md-5 control-label">{{$detail['catatan_pemutus']}}</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Catatan ADK :</label>
+                                            <label class="col-md-5 control-label">{{ $detail['catatan_adk']}}</label>
                                         </div>
                                     </form>
                                 </div>

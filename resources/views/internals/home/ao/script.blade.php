@@ -19,26 +19,14 @@
             },
 
         MorrisCharts.prototype.init = function() {
-            //creating Stacked chart
-            // var $stckedData  = [
-            //     { y: 'Januari', a: 45 },
-            //     { y: 'Februari', a: 75, },
-            //     { y: 'Maret', a: 100 },
-            //     { y: 'April', a: 75, },
-            //     { y: 'Mei', a: 100 },
-            //     { y: 'Juni', a: 75, },
-            //     { y: 'Juli', a: 50, },
-            //     { y: 'Agustus', a: 75, },
-            //     { y: 'September', a: 50, },
-            //     { y: 'Oktober', a: 75, },
-            //     { y: 'November', a: 100 },
-            //     { y: 'Desember', a: 100 }
-            // ];
-            // this.createStackedChart('morris-bar-stacked', $stckedData, 'y', ['a'], ['Pengajuan Baru'], ['#00529C']);
             $.ajax({
                 url: "{{url('chartEform')}}",
                 type: "GET",
                 dataType: "json",
+                data:{
+                    startChart : $('#from_chart').val(),
+                    endChart : $('#to_chart').val()
+                },
                 success: function (data) {
                     var $stckedData = data;
 
@@ -47,6 +35,10 @@
                 },
             })
 
+        },
+        MorrisCharts.prototype.reload = function(){
+        $("#morris-bar-stacked").empty();
+          MorrisCharts.prototype.init();
         },
         //init
         $.MorrisCharts = new MorrisCharts,
@@ -57,6 +49,9 @@
     function($) {
         "use strict";
         $.MorrisCharts.init();
+        $(document).on('click', "#btn-filter-chart", function(){
+        $.MorrisCharts.reload();
+        })
     }(window.jQuery);
 
 var table2 = $('#datatable').DataTable({
@@ -69,7 +64,29 @@ var table2 = $('#datatable').DataTable({
 $(document).on('click', "#btn-filter", function(){
     table2.destroy();
     reloadData1();
+    $('#btn-download').show(1000);
+    $('#btn-print').show(1000);
+    var betWeenDate = '?startdate='+ $('#from').val()+'&enddate='+$('#to').val();
+    var _doc = $(document);
+    var _w = window;
+    _doc.ready(function(){
+        $('#btn-print').on('click', function(e){
+            e.preventDefault();
+            _w.location = ("{{ url('generatePDF/1') }}"+betWeenDate);
+        });
+    });
+    _doc.ready(function(){
+        $('#btn-download').on('click', function(e){
+            e.preventDefault();
+            _w.location = ("{{ url('generatePDF/2') }}"+betWeenDate);
+        });
+    });
 })
+
+$(document).ready(function(){
+    $('#btn-download').hide();
+    $('#btn-print').hide();
+});
 
 function reloadData1()
 {
@@ -94,8 +111,8 @@ function reloadData1()
                     api.page.info().pages
                     );
 
-                    // d.start_date = $('#from').val();
-                    // d.end_date = $('#to').val();
+                    d.start_date = $('#from').val();
+                    d.end_date = $('#to').val();
                     // d.status = $('#status').val();
                     // d.ref_number = $('#ref_number').val();
                     // d.customer_name = $('#customer_name').val();
@@ -134,4 +151,26 @@ function reloadData1()
             ],
         });
 }
+$('#from_chart').datepicker({
+      minViewMode: 1,
+        format: "yyyy-mm-dd",
+        endDate: new Date(),
+     autoclose: true,
+     clearBtn: true,
+     todayHighlight: true,
+});
+$('#to_chart').datepicker({
+        minViewMode: 1,
+        format: "yyyy-mm-dd",
+     autoclose: true,
+     clearBtn: true,
+     todayHighlight: true, 
+});
+$('#from').datepicker({
+        format: "yyyy-mm-dd",
+        endDate: new Date(),
+     autoclose: true,
+     clearBtn: true,
+     todayHighlight: true,
+});
 </script>

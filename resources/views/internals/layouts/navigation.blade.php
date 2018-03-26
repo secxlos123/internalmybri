@@ -24,7 +24,7 @@
         @elseif(($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='pincapem'))
         <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
         @elseif(($data['role']=='staff')||($data['role']=='other'))
-        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span> </a>
+        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Tambah Referral </span> </a>
 
         @endif
       </li>
@@ -127,6 +127,12 @@
 @if(($data['role']=='prescreening') || ($data['role']=='superadmin'))
 <li>
   <a href="{{ route('screening.index') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Screening </span> </a>
+
+</li>
+@endif
+@if($data['role']=='superadmin')
+<li>
+  <a href="{{ route('auditrail.index') }}" class="waves-effect"><i class="mdi mdi-clipboard-text"></i> <span> Audit-Trail </span> </a>
 
 </li>
 @endif

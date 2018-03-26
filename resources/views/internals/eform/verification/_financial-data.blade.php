@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label title ="Anak Dalam Tanggungan" class="col-md-4 control-label">Jumlah Tanggungan :</label>
+                                        <label title ="Anak Dalam Tanggungan" class="col-md-4 control-label">Jumlah Tanggungan * :</label>
                                         <div class="col-md-8">
                                         @if ($type != 'preview')
                                             <input type="text" class="form-control numericOnly" name="dependent_amount" maxlength="2" value="{{(isset($dataCustomer['customer']['dependent_amount']) ? $dataCustomer['customer']['dependent_amount'] : old('dependent_amount'))}}">

@@ -25,7 +25,7 @@ class LKNRequest extends FormRequest
     {
         return [
            'amount' => 'required',
-           'npwp_number' => 'required',
+           'npwp_number' => 'required|string|min:20',
            'purpose_of_visit' => 'required',
            'visit_result' => 'required',
 
@@ -100,6 +100,7 @@ class LKNRequest extends FormRequest
         return [
             "amount.required" => "Jumlah yang diajukan harus diisi",
             "npwp_number.required" => "Nomor NPWP harus diisi",
+            "npwp_number.min" => "Nomor NPWP Belum Lengkap",
             "visit_result.required" => "Hasil Kunjungan harus diisi",
             "purpose_of_visit.required" => "Tujuan Kunjungan harus diisi",
             "source.required" => "Sumber Penghasilan harus diisi",

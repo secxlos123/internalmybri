@@ -1032,13 +1032,13 @@ class ADKController extends Controller
             // lempar data ke view blade
             view()->share('data_sph',$detail_sph);
             if ($detail['baru_atau_perpanjang'] == '0') {
-                if (strtolower($fasilitas) == 'wl') {
+                if (strtolower($fasilitas) == 'wl' || strtolower($fasilitas) == 'wn') {
                     $pdf = PDF::loadView('internals.eform.adk._sph');
                     return $pdf->download('sph_briguna_karya.pdf');
                 } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'zu') {
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
                     return $pdf->download('sph_briguna_pekerja_bri.pdf');
-                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8') {
+                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8' || strtolower($fasilitas) == 'zn') {
                     $pdf = PDF::loadView('internals.eform.adk._sph_smart_profesi');
                     return $pdf->download('sph_briguna_smart.pdf');
                 }
@@ -1402,7 +1402,7 @@ class ADKController extends Controller
                     
                     $image[] = [
                         'name'     => 'lainnya1',
-                        'filename' => $namafoto.'.'.$request['uploadfoto']->getClientOriginalExtension(),
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto']->getmimeType(),
                         'contents' => fopen($request['uploadfoto']->getPathname(), 'r')
                     ];
@@ -1436,7 +1436,7 @@ class ADKController extends Controller
 
                     $image[] = [
                         'name'     => 'lainnya2',
-                        'filename' => $namafoto.'.'.$request['uploadfoto2']->getClientOriginalExtension(),
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto2']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto2']->getmimeType(),
                         'contents' => fopen($request['uploadfoto2']->getPathname(), 'r')
                     ];
@@ -1470,7 +1470,7 @@ class ADKController extends Controller
                     
                     $image[] = [
                         'name'     => 'lainnya3',
-                        'filename' => $namafoto.'.'.$request['uploadfoto3']->getClientOriginalExtension(),
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto3']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto3']->getmimeType(),
                         'contents' => fopen($request['uploadfoto3']->getPathname(), 'r')
                     ];
@@ -1504,7 +1504,7 @@ class ADKController extends Controller
 
                     $image[] = [
                         'name'     => 'lainnya4',
-                        'filename' => $namafoto.'.'.$request['uploadfoto4']->getClientOriginalExtension(),
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto4']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto4']->getmimeType(),
                         'contents' => fopen($request['uploadfoto4']->getPathname(), 'r')
                     ];
@@ -1538,7 +1538,7 @@ class ADKController extends Controller
                     
                     $image[] = [
                         'name'     => 'lainnya5',
-                        'filename' => $namafoto.'.'.$request['uploadfoto5']->getClientOriginalExtension(),
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto5']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto5']->getmimeType(),
                         'contents' => fopen($request['uploadfoto5']->getPathname(), 'r')
                     ];
@@ -1594,7 +1594,7 @@ class ADKController extends Controller
                 $nama = str_replace(' ', '-', $imgReq['namafoto']);
                 $image_path = $imgReq['uploadfoto']->getPathname();
                 $image_mime = $imgReq['uploadfoto']->getmimeType();
-                $image_name = $nama.'.'.$imgReq['uploadfoto']->getClientOriginalExtension();
+                $image_name = ucfirst($nama).'.'.$imgReq['uploadfoto']->getClientOriginalExtension();
                 $image[] = [
                     'name'     => 'lainnya1',
                     'filename' => $image_name,
@@ -1607,7 +1607,7 @@ class ADKController extends Controller
                     $img = $imgReq['uploadfoto'.$i];
                     $image_path = $img->getPathname();
                     $image_mime = $img->getmimeType();
-                    $image_name = $names.'.'.$img->getClientOriginalExtension();
+                    $image_name = ucfirst($names).'.'.$img->getClientOriginalExtension();
                     $image[] = [
                         'name'     => 'lainnya'.$i,
                         'filename' => $image_name,

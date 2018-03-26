@@ -149,7 +149,7 @@
 		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 		</a>
 	@else
-		<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" data-delay="{{ ($delay_prescreening) ? $delay_prescreening : 0 }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
 		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 		</a>
 	@endif

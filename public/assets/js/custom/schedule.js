@@ -131,7 +131,7 @@ Schedule.prototype.refresh = function () {
 
 Schedule.prototype.loader = function (status) {
   if (status) {
-    HoldOn.open(options)
+    HoldOn.open()
   } else {
     HoldOn.close()
   }

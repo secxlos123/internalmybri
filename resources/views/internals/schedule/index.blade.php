@@ -108,4 +108,5 @@
         lat: "{{ env('DEF_LAT', '-6.21670') }}",
         long: "{{ env('DEF_LONG', '106.81350') }}",
     };
+    $('#calendar').fullcalendar({});
 </script>

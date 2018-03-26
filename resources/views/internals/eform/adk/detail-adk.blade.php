@@ -213,7 +213,23 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Catatan Pemutus :</label>
-                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_pemutus']?></label>
+                                            <label class="col-md-5 control-label">{{$detail['catatan_pemutus']}}</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Catatan ADK :</label>
+                                            <label class="col-md-5 control-label">{{ $detail['catatan_adk']}}</label>
                                         </div>
                                     </form>
                                 </div>
@@ -398,9 +414,59 @@
         $('#verifikasi').val('0');
     })
 
-    $('#form1').on('keyup keypress', function(e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) { e.preventDefault(); return false; }
+    $('#namafoto').on('change', function() {
+        var fn = $("#namafoto").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto2').on('change', function() {
+        var fn = $("#namafoto2").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto2").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto3').on('change', function() {
+        var fn = $("#namafoto3").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto3").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto4').on('change', function() {
+        var fn = $("#namafoto4").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto4").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto5').on('change', function() {
+        var fn = $("#namafoto5").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto5").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
     });
 
     function printPage() {
@@ -469,7 +535,7 @@
 
     $('#addupload').on('click', function(){
         var countupload = $("#countupload").val();
-        var k = '<input type="text" data-placeholder="Nama file" name="namafoto'+countupload+'" class="form-control"><input type="file" class="filestyle" data-placeholder="Tidak ada file" name="uploadfoto'+countupload+'"  id="uploadfoto'+countupload+'"><br>';
+        var k = '<input type="text" data-placeholder="Nama file" name="namafoto'+countupload+'" id="namafoto'+countupload+'" class="form-control"><input type="file" class="filestyle" data-placeholder="Tidak ada file" name="uploadfoto'+countupload+'"  id="uploadfoto'+countupload+'"><br>';
         $('#tambah').append(k);
         $("#countupload").val(parseInt(countupload)+1);
 
@@ -478,6 +544,49 @@
             $('#removeupload').removeClass('hide');
         }
         // when the add file button is clicked append
+        $('#namafoto2').on('change', function() {
+            var fn = $("#namafoto2").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto2").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+
+        $('#namafoto3').on('change', function() {
+            var fn = $("#namafoto3").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto3").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+
+        $('#namafoto4').on('change', function() {
+            var fn = $("#namafoto4").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto4").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+
+        $('#namafoto5').on('change', function() {
+            var fn = $("#namafoto5").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto5").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
     });
 
     $('#removeupload').click(function() {
