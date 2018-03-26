@@ -24,7 +24,7 @@
         @elseif(($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='pincapem'))
         <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
         @elseif(($data['role']=='staff')||($data['role']=='other'))
-        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span> </a>
+        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> @if(($data['role']=='staff'))<span> Tambah Referral </span>@else <span> Pengajuan Kredit </span>  @endif </a>
 
         @endif
       </li>
