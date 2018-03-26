@@ -23,9 +23,10 @@
             Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
             Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
             Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\PerjanjianController@store']);
             //Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
             Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
-            Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
+            Route::post('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
             Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
             Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
             Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
@@ -314,7 +315,9 @@
         Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
         Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
         Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
+        Route::resource('calon_mitra_approval', 'Mitra\mitra\CalonMitraApprovalController');
         Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
+        Route::resource('approval_mitra', 'Mitra\mitra\ApprovalController');
         Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
         Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
         Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
@@ -496,6 +499,8 @@
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
         Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
+        Route::get('calon_mitra_list', 'Mitra\mitra\CalonMitraController@datatables');
+        Route::get('mitra_approval_list', 'Mitra\mitra\CalonMitraApprovalController@datatables');
         Route::get('list_pekerja', 'Mitra\mitra\eksternal\ListMitraController@datatables');
 
 

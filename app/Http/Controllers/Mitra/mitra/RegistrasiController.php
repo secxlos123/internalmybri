@@ -24,6 +24,7 @@ class RegistrasiController extends Controller
      */
     public function index()
     {
+		
 		$data = $this->getUser();
 		$view = Client::setEndpoint('GetView')
 				->setHeaders([
@@ -90,13 +91,14 @@ class RegistrasiController extends Controller
 		$file = array();
 
 		$data[] = [
+					'lo_mitra' => 'mitra',
 					'idMitrakerja' => $mitra['id_mitra'],
-					'nama_instansi' => $mitra['anak_perusahaan_kabupaten'],
+					'NAMA_INSTANSI' => $mitra['anak_perusahaan_kabupaten_text'],
 					'kode' => '',
 					'NPL'=>'0',
 					'BRANCH_CODE'=>$users['branch'],
 					'Jumlah_pegawai'=>$mitra['jml_pegawai'],
-					'JENIS_INSTANSI'=>$mitra['golongan_mitra'],
+					'JENIS_INSTANSI'=>$mitra['golongan_mitra_text'],
 					'UNIT_KERJA'=>$users['uker'],
 					'Scoring'=>'70',
 					'KET_Scoring'=>'Diterima',
@@ -104,7 +106,7 @@ class RegistrasiController extends Controller
 					'alamat_instansi'=>$mitra['alamat_mitra'],
 					'alamat_instansi2'=>$mitra['alamat_mitra'],
 					'alamat_instansi3'=>$mitra['alamat_mitra'],
-					'telphone_instansi'=>$mitra['no_telp_mitra'],
+					'telephone_instansi'=>$mitra['no_telp_mitra'],
 					'rating_instansi'=>'',
 					'lembaga_pemeringkat'=>'',
 					'go_public'=>'',
@@ -119,14 +121,17 @@ class RegistrasiController extends Controller
 	function mitra_detail_dasar($mitra_detail_dasar){
 		$file = array();
 		$data[] = [
-					'jenis_mitra ' => $mitra_detail_dasar['jenis_mitra'],
-					'golongan_mitra ' => $mitra_detail_dasar['golongan_mitra'],
-					'induk_mitra' => $mitra_detail_dasar['induk_mitra'],
-					'anak_perusahaan_wilayah' => $mitra_detail_dasar['anak_perusahaan_wilayah'],
-					'anak_perusahaan_kabupaten' => $mitra_detail_dasar['anak_perusahaan_kabupaten'],
+					'lo_mitra' => 'mitra_detail_dasar',
+					'status' => 'pengajuan',
+					'jenis_mitra' => $mitra_detail_dasar['jenis_mitra'],
+					'golongan_mitra' => $mitra_detail_dasar['golongan_mitra_text'],
+					'induk_mitra' => $mitra_detail_dasar['induk_mitra_text'],
+					'anak_perusahaan_wilayah' => $mitra_detail_dasar['anak_perusahaan_wilayah_text'],
+					'anak_perusahaan_kabupaten' => $mitra_detail_dasar['anak_perusahaan_kabupaten_text'],
 					'alamat_mitra' => $mitra_detail_dasar['alamat_mitra'],
 					'no_telp_mitra' => $mitra_detail_dasar['no_telp_mitra'],
-					'id_mitra' => $mitra_detail_dasar['id_mitra']
+					'id_mitra' => $mitra_detail_dasar['id_mitra'],
+					'id_header' => $mitra_detail_dasar['id_mitra']
 				];		
 		$datamitra = $this->dataRequest($data,$file);
 		return $datamitra;
@@ -134,6 +139,7 @@ class RegistrasiController extends Controller
 	function mitra_detail_data($mitra_detail_data){
 		$file = array();
 		$data[] = [
+					'lo_mitra' => 'mitra_detail_data',
 					'deskripsi_mitra' => $mitra_detail_data['deskripsi_mitra'],
 					'hp_mitra' => $mitra_detail_data['hp_mitra'],
 					'bendaharawan_mitra' => $mitra_detail_data['bendaharawan_mitra'],
@@ -145,6 +151,7 @@ class RegistrasiController extends Controller
 					'tgl_pendirian' => $mitra_detail_data['tgl_pendirian'],
 					'akta_pendirian' => $mitra_detail_data['akta_perubahan'],
 					'npwp_usaha' => $mitra_detail_data['npwp_usaha'],	
+					'id_header' => $mitra_detail_data['id_mitra']
 				];		
 		$file[] = [
 					'laporan_keuangan' => $mitra_detail_data['laporan_keuangan'],
@@ -157,10 +164,12 @@ class RegistrasiController extends Controller
 		
 		$file = array();
 		$data[] = [
+					'lo_mitra' => 'mitra_detail_fasilitas',
 					'jenis_pengajuan' => $mitra_detail_fasilitas['jenis_pengajuan'],
 					'fasilitas_bank' => $mitra_detail_fasilitas['fasilitas_bank'],
 					'ijin_perinsip' => $mitra_detail_fasilitas['ijin_perinsip'],
-					'daftar_ijin' => $mitra_detail_fasilitas['daftar_ijin']
+					'daftar_ijin' => $mitra_detail_fasilitas['daftar_ijin'],
+					'id_header' => $mitra_detail_fasilitas['id_mitra']
 				];		
 		$file[] = [
 					'upload_fasilitas_bank' => $mitra_detail_fasilitas['upload_fasilitas_bank'],
@@ -172,12 +181,14 @@ class RegistrasiController extends Controller
 	function mitra_detail_payroll($mitra_detail_payroll){
 		$file = array();
 		$data[] = [
+					'lo_mitra' => 'mitra_detail_payroll',
 					'payroll' => $mitra_detail_payroll['payroll'],
 					'no_rek_mitra1' => $mitra_detail_payroll['no_rek_mitra1'],
 					'no_cif_mitra' => $mitra_detail_payroll['no_cif_mitra'],
 					'tipe_account1' => $mitra_detail_payroll['tipe_account1'],
 					'tgl_pembayaran' => $mitra_detail_payroll['tgl_pembayaran'],
 					'tgl_gajian1' => $mitra_detail_payroll['tgl_gajian1'],
+					'id_header' => $mitra_detail_payroll['id_mitra']
 				];		
 		$datamitra = $this->dataRequest($data,$file);
 		return $datamitra;
@@ -185,10 +196,12 @@ class RegistrasiController extends Controller
 	function mitra_pemutus($mitra_pemutus){
 		$file = array();
 		$data[] = [
+					'lo_mitra' => 'mitra_pemutus',
 					'pemutus_name' => $mitra_pemutus['pemutus_name'],
 					'pemeriksa' => $mitra_pemutus['pemeriksa'],
 					'jabatan' => $mitra_pemutus['jabatan'],
 					'jabatan_pemeriksa' => $mitra_pemutus['jabatan_pemeriksa'],
+					'id_header' => $mitra_pemutus['id_mitra']
 				];		
 		$datamitra = $this->dataRequest($data,$file);
 		return $datamitra;
@@ -197,11 +210,12 @@ class RegistrasiController extends Controller
 	
 	  public function dataRequest($request,$file)
     {
-		$excepted[] = '_token';
+		$image = [];
+			$allReq = $request[0];
 		if(count($file)!='0'){
-		foreach($file as $uploadname=>$uploadfile){
-        $imgReq = $request[$uploadname];
-        if ($imgReq) {
+		foreach($file[0] as $uploadname=>$uploadfile){
+        $imgReq = $file[0][$uploadname];
+        if ($imgReq) {			
             $image_path = $imgReq->getPathname();
             $image_mime = $imgReq->getmimeType();
             $image_name = $imgReq->getClientOriginalName();
@@ -211,12 +225,11 @@ class RegistrasiController extends Controller
                   'Mime-Type'=> $image_mime,
                   'contents' => fopen( $image_path, 'r' ),
                 ];
-			$excepted[] = $uploadname;
         } else {
           $image = [];
         };
-		}}
-			$allReq = $request->except($excepted);
+		}
+		}
           foreach ($allReq as $index => $req) {
 						$inputData[] = [
 							  'name'     => $index,
@@ -228,18 +241,47 @@ class RegistrasiController extends Controller
         return $filedata;
     }
 
+	public function ceknull($request){
+		foreach ($request as $index => $req) {
+			if($req==''){
+				if($index!='btn-submit'){
+				return 'Data '.$index.' kosong, mohon di cek Kembali';
+			}
+			}
+		}
+	}
     public function store( Request $request ){
+        $id_file = date('YmdHis');
+		$ceknull = $this->ceknull($request->all());
+		if($ceknull==''){
 		$users = $this->getUser();
 		$baseRequest = $request->all();
-		$c = $baseRequest['legalitas_perusahaan'];
-		$mitra = ['mitra'=>$this->mitra($baseRequest,$users)];
-		//$mitra = ['mitra_detail_dasar'=>$this->mitra_detail_dasar($baseRequest)];
-		//$mitra = ['mitra_detail_data'=>$this->mitra_detail_data($baseRequest)];
-		//$mitra = ['mitra_detail_fasilitas'=>$this->mitra_detail_fasilitas($baseRequest)];
-		//$mitra = ['mitra_detail_payroll'=>$this->mitra_detail_payroll($baseRequest)];
-		//$mitra = ['mitra_pemutus'=>$this->mitra_pemutus($baseRequest)];
-		print($mitra);die();
-		$client = Client::setEndpoint('register_mitra')
+		//$c = $baseRequest['legalitas_perusahaan'];
+		$mitra[0]['name'] = 'mitra';
+		$mitra[0]['contents'] = $this->mitra($baseRequest,$users);
+		//$mitra[]['mitra'] = $this->mitra($baseRequest,$users);
+		
+		$mitra[1]['name'] = 'mitra_detail_dasar';
+		$mitra[1]['contents'] = $this->mitra_detail_dasar($baseRequest);
+		//$mitra[]['mitra_detail_dasar'] = $this->mitra_detail_dasar($baseRequest);
+		
+		$mitra[2]['name'] = 'mitra_detail_data';
+		$mitra[2]['contents'] = $this->mitra_detail_data($baseRequest);
+		//$mitra[]['mitra_detail_data'] = $this->mitra_detail_data($baseRequest);
+		
+		
+		$mitra[3]['name'] = 'mitra_detail_fasilitas';
+		$mitra[3]['contents'] = $this->mitra_detail_fasilitas($baseRequest);
+		//$mitra[]['mitra_detail_fasilitas'] = $this->mitra_detail_fasilitas($baseRequest);
+		
+		$mitra[4]['name'] = 'mitra_detail_payroll';
+		$mitra[4]['contents'] = $this->mitra_detail_payroll($baseRequest);
+		//$mitra[]['mitra_detail_payroll'] = $this->mitra_detail_payroll($baseRequest);
+		
+		$mitra[5]['name'] = 'mitra_pemutus';
+		$mitra[5]['contents'] = $this->mitra_pemutus($baseRequest);
+		//$mitra[]['mitra_pemutus'] = $this->mitra_pemutus($baseRequest);
+		/* $client = Client::setEndpoint('register_mitra')
 				->setHeaders([
 					'Authorization' => $users['token'],
 					'pn' => $users['pn']
@@ -247,9 +289,29 @@ class RegistrasiController extends Controller
 				->setBody([
 					'mitra' => $mitra
 				])
-				->post();
-		return response()->json(['response' => $client]); 
+				->post(); */
+//			print_r($mitra);die();
+//			print_r($mitra[5]['contents']);die();
+		foreach($mitra as $mitradata){
+				$mitradata['contents'][count($mitradata['contents'])] = ['name'=>'id_file','contents'=>$id_file];
+				$client = Client::setEndpoint('register_mitra')
+				 ->setHeaders([
+					  'Authorization' => $users['token']
+					  , 'pn' =>  $users['pn']
+					  , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+					  , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+				  ])->setBody($mitradata['contents'])
+				 ->post('multipart');
 		}
+//			return response()->json(['response' => $client]); 
+			header("Location: ".env('APP_URL')."/calon_mitra?i=".base64_encode($client['message'])."&k=".base64_encode($client['contents']));
+			die();
+		}else{
+			header("Location: ".env('APP_URL')."/calon_mitra?i=".base64_encode($client['message'])."&k=".base64_encode($client['contents']));
+			die();
+//			return response()->json(['response' => $ceknull]); 
+		}
+	}
     public function fasilitas_store( Request $request ){
 		
 		$data = $this->getUser();

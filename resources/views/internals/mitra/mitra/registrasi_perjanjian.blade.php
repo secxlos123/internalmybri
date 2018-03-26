@@ -5,8 +5,9 @@
   
     <div class="content-page">
         <div class="content">
+		
+		<form action="PerjanjianStore" method="post" enctype="multipart/form-data">
 		{{ csrf_field() }}
-		<form>
 		
 			
 			<div class="row">
@@ -74,15 +75,15 @@
                                             <div class="form-horizontal">
                                                 <div class="form-group tgl_register">
                                                     <div class="col-md-8">
-														 <input type="radio" id="penilaian_mitra_radio" onclick="penilaian_mitra_register()"
-															   name="penilaian_mitra_radio" value="register_mitra">
-														<label for="penilaian_mitra_radio">Register Mitra Kerjasama</label>
-													   <input type="radio" id="penilaian_mitra_radio" onclick="penilaian_mitra_kelayakan()"
-															   name="penilaian_mitra_radio" value="penilaian_kelayakan">
-														<label for="penilaian_mitra_radio">Penilaian Kelayakan</label>
-													   <input type="radio" id="penilaian_mitra_radio" onclick="penilaian_mitra_rks()"
-															   name="penilaian_mitra_radio" value="softcopy_rks">
-														<label for="penilaian_mitra_radio">Softcopy RKS</label>
+														 <input type="radio" id="penilaian_mitra_register_radio"
+															   name="penilaian_mitra_register_radio" value="register_mitra">
+														<label for="penilaian_mitra_register_radio">Register Mitra Kerjasama</label>
+													   <input type="radio" id="penilaian_mitra_kelayakan_radio"
+															   name="penilaian_mitra_kelayakan_radio" value="penilaian_kelayakan">
+														<label for="penilaian_mitra_kelayakan_radio">Penilaian Kelayakan</label>
+													   <input type="radio" id="penilaian_mitra_rks_radio" onclick="penilaian_mitra_rks()"
+															   name="penilaian_mitra_rks_radio" value="softcopy_rks">
+														<label for="penilaian_mitra_rks_radio">Softcopy RKS</label>
 													  
                                                     </div>
                                                 </div>
@@ -121,7 +122,7 @@
                                                 <div class="form-group pemutus_name">
                                                     <label class="col-md-3 control-label">Pemutus (PN/Nama) :</label>
                                                     <div class="col-md-8">
-													<select class="form-control" name="pemutus_name" id="pemutus_name">' +
+													<select class="form-control" name="pemutus_name_perjanjian" id="pemutus_name_perjanjian">' +
 														   <option value="Signer1" >Signer1</option>
 														   <option value="Signer2">Signer2</option>
 														   <option value="Signer3">Signer3</option>
@@ -147,7 +148,7 @@
                                                 <div class="form-group jabatan">
                                                     <label class="col-md-5 control-label">Jabatan Pemutus :</label>
                                                     <div class="col-md-7">
-													<select class="form-control" name="jabatan" id="jabatan">' +
+													<select class="form-control" name="jabatan_perjanjian" id="jabatan_perjanjian">' +
 														   <option value="Dikeksi" >Dikeksi</option>
 														   <option value="Kabag">Kabag</option>
 														   <option value="Kadiv">Kadiv</option>
@@ -167,7 +168,7 @@
                                                 <div class="form-group pemeriksa">
                                                     <label class="col-md-3 control-label">Pemeriksa (PN/Nama) :</label>
                                                     <div class="col-md-8">
-													<select class="form-control" name="pemeriksa" id="pemeriksa">' +
+													<select class="form-control" name="pemeriksa_perjanjian" id="pemeriksa_perjanjian">' +
 														   <option value="checker1" >checker1</option>
 														   <option value="checker2">checker2</option>
 														   <option value="checker3">checker3</option>
@@ -193,7 +194,7 @@
                                                     <label class="col-md-5 control-label">Jabatan Pemeriksa :</label>
                                                     <div class="col-md-7">
 													
-													<select class="form-control" name="jabatan_pemeriksa" id="jabatan_pemeriksa">' +
+													<select class="form-control" name="jabatan_pemeriksa_perjanjian" id="jabatan_pemeriksa_perjanjian">' +
 														   <option value="Dikeksi" >Dikeksi</option>
 														   <option value="Kabag">Kabag</option>
 														   <option value="Kadiv">Kadiv</option>
@@ -223,7 +224,7 @@
 														<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-print" name="btn-print"><i class="mdi mdi-printer"></i>Print </button>
 													</div>-->
 													<div class="col-md-2">                               
-														<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save" name="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
+														<button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save" name="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
 													</div>
                                             </div>
 										</div>
@@ -270,4 +271,4 @@
 	</div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-@include('internals.mitra.script.dirrpc.script_dirrpc') 
+@include('internals.mitra.script.mitra.registrasi_perjanjian') 
