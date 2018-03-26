@@ -160,7 +160,7 @@
                                                 <div class="form-group couple_nik {!! $errors->has('couple_nik') ? 'has-error' : '' !!}">
                                                     <label class="col-md-3 control-label">NIK * :</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control numericOnly" name="couple_nik" id="nik" value="{{ old('couple_nik') }}" maxlength="16">
+                                                        <input type="text" class="form-control numericOnly" name="couple_nik" id="couple_nik" value="{{ old('couple_nik') }}" maxlength="16">
                                                         @if ($errors->has('couple_nik')) <p class="help-block">{{ $errors->first('couple_nik') }}</p> @endif
                                                     </div>
                                                 </div>
