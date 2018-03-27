@@ -45,7 +45,7 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    {!! Form::text('dp', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'dp','maxlength'=>'7','required'=>'','step'=>'0.4']) !!}
+                                                    {!! Form::text('dp', '', ['class' => 'form-control  ','placeholder' => '0','id'=>'dp','maxlength'=>'7','required'=>'','step'=>'0.4']) !!}
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>
