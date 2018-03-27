@@ -1,10 +1,6 @@
 <section>
     <div class="row">
         <div class="col-md-12">
-            <!-- <h4 class="m-t-0 header-title"><b>Selesai</b></h4> -->
-            <!-- <p class="text-muted m-b-30 font-13">
-                Pilih produk pembiayaan
-            </p> -->
             <input type="hidden" name="product_type" value="kpr" id="product_type">
             <div class="row">
                 <div class="col-md-12">
@@ -12,21 +8,6 @@
                         <li id="li_kpr" class="active">
                             <a href="#kpr" data-toggle="tab" aria-expanded="true">KPR</a>
                         </li>
-                        <!-- <li id="li_kkb" class="disabled">
-                            <a href="#kkb" data-toggle="tab" aria-expanded="false">KKB</a>
-                        </li>
-                        <li id="li_briguna" class="disabled">
-                            <a href="#briguna" data-toggle="tab" aria-expanded="false">BRIGUNA</a>
-                        </li>
-                        <li id="li_britama" class="disabled">
-                            <a href="#britama" data-toggle="tab" aria-expanded="false">BRITAMA</a>
-                        </li>
-                        <li id="li_kur" class="disabled">
-                            <a href="#kur" data-toggle="tab" aria-expanded="false">KUR/KUPEDES</a>
-                        </li>
-                        <li id="li_kartu" class="disabled">
-                            <a href="#kartu" data-toggle="tab" aria-expanded="false">KARTU KREDIT</a>
-                        </li> -->
                     </ul>
                     <div class="tab-content br-n pn">
                         <div id="kpr" class="tab-pane active">
@@ -42,7 +23,6 @@
                                                     'data-bri' => '',
                                                     'id' => 'jenis_kpr'
                                                 ]) !!}
-                                                {{-- <input type="hidden" name="status_property" value="new"> --}}
                                                 @if ($errors->has('status_property')) <p class="help-block">{{ $errors->first('status_property') }}</p> 
                                                 @endif
                                             </div>
@@ -131,7 +111,6 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
                                                     <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{old('price')}}" maxlength="16" id="price" readonly="">
-                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                                 </div>
                                             </div>
@@ -183,7 +162,6 @@
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
                                                     <input type="text" class="form-control numericOnly currency-rp" name="down_payment" value="{{old('down_payment')}}" maxlength="16" id="down_payment">
-                                                    <!-- <span class="input-group-addon">,00</span> -->
                                                     @if ($errors->has('down_payment')) <p class="help-block">{{ $errors->first('down_payment') }}</p> @endif
                                                 </div><br>
                                                 <div class="input-group">
@@ -206,21 +184,6 @@
                                             </div>
                                         </div>
                                         <br>
-                                        <!-- <div class="form-group">
-                                            <label class="control-label col-md-4">Catatan :</label>
-                                            <div class="col-md-8">
-                                                <div class="input-group">
-                                                    <p class="control-label" >1. Jika KPR aktif ke-1, maka minimal uang muka 0 %</p><br>
-                                                </div>
-                                                <div class="input-group">
-                                                    <p class="control-label" >2. Jika KPR aktif ke-2, maka minimal uang muka 10 %</p><br>
-                                                </div>
-                                                <div class="input-group">
-                                                    <p class="control-label">Kondisi Luas Bangunan</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                         -->
                                     </div>
                                 </div>
                             </div>

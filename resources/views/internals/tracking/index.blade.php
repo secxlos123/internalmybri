@@ -27,10 +27,6 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box ">
-                        <!-- <div class="add-button">
-                            <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                            <a href="{{route('downloadTracking')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
-                        </div> -->
                         <div id="filter">
                             <div class="row">
                                 <div class="col-md-6">
@@ -120,7 +116,6 @@
 
         $(document).on('click', "#btn-filter", function(){
             table1.destroy();
-            // console.log($('.cities').val());
             reloadData1( $('#status').val());
         })
 

@@ -36,17 +36,6 @@ class DebiturController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
-        // dd(session()->get('user.contents'));
-
-        // /* GET Role Data */
-        // $debiturData = Client::setEndpoint('debitur-list')
-        //               ->setQuery(['limit' => 100])
-        //               ->setHeaders([
-        //                   'Authorization' => $data['token'],
-        //                   'pn' => $data['pn']
-        //               ])->get();
-        // $dataDebitur = $debiturData['contents']['data'];
-        // // dd($dataCustomer);
 
         return view('internals.debitur.index', compact('data', 'dataDebitur'));
     }
@@ -88,21 +77,16 @@ class DebiturController extends Controller
                         ->setHeaders([
                             'Authorization' => $data['token']
                             , 'pn' => $data['pn']
-                            // , 'auditaction' => 'action name'
-                            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                         ])
                         ->get();
 
         $dataCustomer = $customerData['contents'][0];
-        // dd($dataCustomer);
 
         return view('internals.debitur.detail', compact('data', 'dataCustomer'));
     }
 
     public function datatables(Request $request)
     {
-      // dd($request->input('city_id'));
         $sort = $request->input('order.0');
         $data = $this->getUser();
 
@@ -110,7 +94,6 @@ class DebiturController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([

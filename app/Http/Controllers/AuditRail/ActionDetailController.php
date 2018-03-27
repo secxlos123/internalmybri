@@ -29,7 +29,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -38,7 +37,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($pengajuan_kredit);
         $contents = array();
         if (count($pengajuan_kredit['contents'])>0) {
             foreach ($pengajuan_kredit['contents']['data'] as $key => $detail) {
@@ -61,7 +59,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -70,7 +67,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($admindev);
         $contents = array();
         if (count($admindev['contents'])>0) {
             foreach ($admindev['contents']['data'] as $key => $detail) {
@@ -93,7 +89,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -102,7 +97,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($appointment);
         $contents = array();
         if (count($appointment['contents'])>0) {
             foreach ($appointment['contents']['data'] as $key => $detail) {
@@ -125,7 +119,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -134,7 +127,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($collateral);
         $contents = array();
         if (count($collateral['contents'])>0) {
             foreach ($collateral['contents']['data'] as $key => $detail) {
@@ -157,7 +149,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -166,7 +157,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($agendev);
         $contents = array();
         if (count($agendev['contents'])>0) {
             foreach ($agendev['contents']['data'] as $key => $detail) {
@@ -189,7 +179,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -198,7 +187,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($property);
         $contents = array();
         if (count($property['contents'])>0) {
             foreach ($property['contents']['data'] as $key => $detail) {
@@ -221,7 +209,6 @@ class ActionDetailController extends Controller
         	->setHeaders([
 	        	'Authorization' => $data['token']
 	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         	])
@@ -230,7 +217,6 @@ class ActionDetailController extends Controller
                 'page'   => $request->input('page')
             ])
             ->get();
-            // dd($document);
         $contents = array();
         if (count($document['contents'])>0) {
             foreach ($document['contents']['data'] as $key => $detail) {

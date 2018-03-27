@@ -16,18 +16,15 @@
                     </div>
                     @if ($errors->has('area[location]')) <p class="help-block">{{ $errors->first('area[location]') }}</p> @endif
                     <div class="col-md-3">
-                        <!-- <label class="control-label">Latitude</label> -->
                         <input type="hidden" name="area[latitude]" id="lat" class="form-control" readonly="" name="ground_lat" value="{{ env('DEF_LAT', '-6.21670') }}">
                     </div>
                     @if ($errors->has('area[latitude]')) <p class="help-block">{{ $errors->first('area[latitude]') }}</p> @endif
                     <div class="col-md-3">
-                        <!-- <label class="control-label">Longitude</label> -->
                         <input type="hidden" name="area[longtitude]" id="lng" class="form-control" readonly="" name="ground_long" value="{{ env('DEF_LONG', '106.81350') }}">
                     </div>
                     @if ($errors->has('area[longtitude]')) <p class="help-block">{{ $errors->first('area[longtitude]') }}</p> @endif
                 </div>
             </div>
-        <!-- </div> -->
             <hr>
             <div class="row">
                 <div class="col-md-6">

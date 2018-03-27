@@ -31,7 +31,6 @@
             <fieldset hidden>
               <div class="add-button">
                 <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Customer</a> -->
                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Customer</a>
                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
               </div>
@@ -144,9 +143,6 @@
                 </tbody>
               </table>
             </div>
-            <!-- <div class="text-right">
-            <a href="{{url('/add_Report')}}" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Buat Report</a>
-          </div> -->
         </div>
       </div>
     </div>
@@ -228,7 +224,6 @@
       {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
       {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
       {   data: 'created_at', name: 'created_at' },
-      // {   data: 'product_type', name: 'product_type' },
       {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
       {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
       {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },

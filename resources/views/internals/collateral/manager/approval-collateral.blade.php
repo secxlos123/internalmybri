@@ -34,10 +34,6 @@
                     <div class="card-box">
                         <div class="row">
                             <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
-                            <!-- <div class="col-md-12"> -->
-                               <!--  <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : 
-                                </p> -->
                                 @if($type != 'nonindex')
                                 <!-- detail properti -->
                                 @include('internals.collateral.manager._detail-property')
@@ -121,7 +117,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -136,7 +131,6 @@
     
     $(document).on('click', "#btn-approve", function(){
         $('#is_approved').attr('value', true);
-        console.log($('#is_approved').val());
         $('#form1').submit();
         HoldOn.open(options);
     })

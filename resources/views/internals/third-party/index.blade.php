@@ -28,7 +28,6 @@
                 <div class="col-sm-12">
                     <div class="card-box">
                         <div class="add-button">
-                            <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                             <a href="{{route('third-party.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Pihak Ketiga</a>
                         </div>
                         <div id="filter">
@@ -58,7 +57,6 @@
                             <table id="datatable" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <!-- <th>Nama Pihak Ketiga</th> -->
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Kota</th>
@@ -114,7 +112,6 @@
 
             $(document).on('click', "#btn-filter", function(){
                 table1.destroy();
-            // console.log($('.cities').val());
             reloadData1( $('.cities').val());
         })
 
@@ -165,10 +162,6 @@
             });
             }
 
-        // $('#btn-filter').on('click', function () {
-        //     table1.fnDraw();
-        // });
-
         $(document).on('click', '.status input[type=checkbox]', function(e){
             e.preventDefault();
             var val = $(this).is(':checked');
@@ -193,7 +186,6 @@
                 }
             })
             .done(function (response) {
-               //table.fnDraw();
                $('#confirm').modal('hide');
                $("#btn-filter").click();
            });

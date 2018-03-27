@@ -11,10 +11,6 @@ use Validator;
 
 class ScreeningController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('eform', ['except' => ['datatables', 'getCustomer', 'detailCustomer']]);
-    // }
 
     protected $columns = [
         'ref_number',
@@ -47,7 +43,6 @@ class ScreeningController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        // dd(env('APP_ENV'));
 
         return view('internals.screening.index-ao', compact('data'));
     }
@@ -64,7 +59,6 @@ class ScreeningController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
@@ -78,12 +72,10 @@ class ScreeningController extends Controller
                     'branch_id' => $data['branch']
                 ])->get();
 
-            // dd($eforms);
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
             $form['request_amount'] = 'Rp '.number_format($form['nominal'], 2, ",", ".");
-            // $form['product_type'] = strtoupper($form['product_type']);
             $form['branch_id'] = $form['branch_id'];
             $form['ao'] = $form['ao_name'];
 
@@ -95,12 +87,8 @@ class ScreeningController extends Controller
                 'dispose' => $form['ao_name'],
                 'submited' => $form['is_approved'],
                 'dispotition' => $form,
-                // 'screening' => route('eform.show', $form['id']),
                 'approve' => $form,
-                // 'verified' => $verify,
                 'visited' => $visit,
-                // 'verification' => route('getVerification', $form['user_id']),
-                // 'lkn' => route('getLKN', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }

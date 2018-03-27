@@ -192,13 +192,6 @@
                                                              @if ($errors->has('couple_name')) <p class="help-block">{{ $errors->first('couple_name') }}</p> @endif
                                                         </div>
                                                     </div>
-                                                   <!--  <div class="form-group couple_identity {!! $errors->has('couple_identity') ? 'has-error' : '' !!}">
-                                                        <label class="col-md-3 control-label">KTP Pasangan * :</label>
-                                                        <div class="col-md-9">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="identity" accept="image/png,image/jpeg,image/gif">
-                                                            @if ($errors->has('couple_identity')) <p class="help-block">{{ $errors->first('couple_identity') }}</p> @endif
-                                                        </div>
-                                                    </div> -->
 
                                                 </div>
                                             </div>
@@ -481,12 +474,6 @@
                                                             <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="marrital_certificate">
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
-                                                        <div class="col-md-6">
-                                                            <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                                                        </div>
-                                                    </div> -->
                                                     <div class="form-group" id="separate_certificate">
                                                         <label class="col-md-6 control-label">Akta Pisah Harta :</label>
                                                         <div class="col-md-6">
@@ -505,7 +492,6 @@
                             <div class="col-md-12">
                                 <div class="pull-right">
                                     <a href="#" onclick="goPrev()" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                                    <!-- <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a> -->
                                     <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
                             </div>
@@ -515,23 +501,6 @@
             </form>
 
                  <!-- Modals Save -->
-       <!--  <div id="save" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <p>Apakah Anda yakin ingin menambah Profil Calon Debitur "<b id="name"></b>" ?</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btnSave" class="btn btn-orange waves-effect waves-light">Simpan</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">

@@ -103,7 +103,6 @@ function hitungDP(priceint,dpPersen){
     dpPersen = 0;
     priceint = 0;
   }
-  console.log(dpPersen);
   var down_payment = priceint * dpPersen;
   var price_platform = priceint - down_payment;
   $("#down_payment").val(down_payment);
@@ -212,7 +211,6 @@ function  validation_timeperiod(nilai,id){
        nilai = defaultJangkaWaktu;
     }
     $(id).val(nilai);
-    console.log(nilai);
 }
 
 function isInteger(evt)

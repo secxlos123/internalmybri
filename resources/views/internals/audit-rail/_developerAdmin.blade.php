@@ -27,7 +27,6 @@
                                 'data-placeholder' => 'Pilih Detail Aksi',
                                 'id' => 'modul_name_admindev'
                             ]) !!}
-                           <!-- <input type="text" class="form-control" id="modul_name_admindev"> -->
                        </div>
                    </div>
 

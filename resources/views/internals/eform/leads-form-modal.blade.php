@@ -216,7 +216,6 @@
                         <div class="col-md-12">
                             <div class="pull-right">
                                 <a href="#" data-dismiss="modal" class="btn btn-default waves-light waves-effect w-md m-b-20">Batal</a>
-                                <!-- <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a> -->
                                 <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
                             </div>
                         </div>
