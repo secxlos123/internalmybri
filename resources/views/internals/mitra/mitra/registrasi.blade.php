@@ -51,7 +51,9 @@
   </div>
 </div>
     <div class="content-page">
+
         <div class="content">
+	
 		<form action="MitraStore" method="post" enctype="multipart/form-data">
 		
 			{{ csrf_field() }}

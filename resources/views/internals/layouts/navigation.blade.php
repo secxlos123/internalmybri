@@ -83,7 +83,20 @@
       <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
     </li>
     @endif
-
+ @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
+	<li class="treeview">
+		<a href="#" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span > Mitra </span> </a>
+			<ul class="treeview-menu">
+				<li>
+					<a href="{{route('mitra_list.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Mitra List </span> </a>
+				</li>
+				<li>
+					<a href="{{route('calon_mitra.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Calon Mitra </span> </a>
+				</li>
+			</ul>
+		</a>
+	</li>
+@endif
   @if(($data['role']=='staff') || ($data['role']=='superadmin'))
   <li class="treeview">
     <a href="#" class="waves-effect"><i class="mdi mdi-check"></i> <span > Approval Perubahan </span> </a>
@@ -134,6 +147,7 @@
   <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
 </li>
 @endif
+
 
 <hr>
 <li>

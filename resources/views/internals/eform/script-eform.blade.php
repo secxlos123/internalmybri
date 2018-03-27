@@ -333,7 +333,7 @@
 
         //select2 city
         $('.cities').select2({
-            dropdownParent: $('#leads-modal #personal_data'),
+            //dropdownParent: $('#leads-modal #personal_data'),
             witdh : '100%',
             allowClear: true,
             ajax: {

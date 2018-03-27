@@ -10,7 +10,7 @@ use Client;
 use Validator;
 
 
-class PenilaianKelayakanController extends Controller
+class ApprovalController extends Controller
 {
     // public function __construct()
     // {
@@ -42,11 +42,21 @@ class PenilaianKelayakanController extends Controller
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'form' => 'penilaian_kelayakan'
+					'form' => 'approval_simpanan'
 				])
 				->post();
 		$view = $view['contents'];
-		return view('internals.mitra.mitra.penilaian_kelayakan',  compact('data','view','mitra_list'));
+		$view2 = Client::setEndpoint('GetView')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'form' => 'approval_pinjaman'
+				])
+				->post();		
+		$view2 = $view2['contents'];
+		return view('internals.mitra.mitra.approval_mitra',  compact('data','view','view2','mitra_list'));
 		}
     }
 	

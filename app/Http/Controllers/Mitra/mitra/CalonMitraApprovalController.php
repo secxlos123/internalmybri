@@ -10,7 +10,7 @@ use Client;
 use Validator;
 
 
-class Registrasi_PerjanjianController extends Controller
+class CalonMitraApprovalController extends Controller
 {
     // public function __construct()
     // {
@@ -25,40 +25,23 @@ class Registrasi_PerjanjianController extends Controller
     public function index()
     {
 		$data = $this->getUser();
+		$message = '';
+		$key = '';
 		if(isset($_GET['i'])){
-		$id_header = base64_decode($_GET['i']);
-		$mitra_list = Client::setEndpoint('mitraall')
-				->setHeaders([
-					'Authorization' => $data['token'],
-					'pn' => $data['pn']
-				])
-				->setBody([
-					'id_header' => $id_header
-				])
-				->post();
+			$message = base64_decode($_GET['i']);
+			$key = base64_decode($_GET['k']);
 		
-		$data = $this->getUser();
 		$view = Client::setEndpoint('GetView')
 				->setHeaders([
 					'Authorization' => $data['token'],
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'form' => 'registrasi_perjanjian'
+					'form' => 'calon_mitra_approval'
 				])
 				->post();
 		$view = $view['contents'];
-		$view2 = Client::setEndpoint('GetView')
-				->setHeaders([
-					'Authorization' => $data['token'],
-					'pn' => $data['pn']
-				])
-				->setBody([
-					'form' => 'registrasi_perjanjian2'
-				])
-				->post();
-		$view2 = $view2['contents'];
-		return view('internals.mitra.mitra.registrasi_perjanjian',  compact('data','view','view2','mitra_list'));
+		return view('internals.mitra.mitra.calon_mitra_approval',  compact('data','view','message','key'));
 		}
     }
 	
@@ -88,12 +71,12 @@ class Registrasi_PerjanjianController extends Controller
 				->post();
 		return response()->json(['response' => $client]);
 	}
+	
     public function datatables(Request $request)
     {
-		$act = $request->act;
 	    $sort = $request->input('order.0');
         $data = $this->getUser();
-        $dirrpc = Client::setEndpoint('dirrpc')
+        $mitra = Client::setEndpoint('mitra_list')
 				->setHeaders([
 					'Authorization' => $data['token'],
 					'pn' => $data['pn']
@@ -102,37 +85,48 @@ class Registrasi_PerjanjianController extends Controller
                     'search'    => $request->input('search.value'),
                     //'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                     'page'      => (int) $request->input('page') + 1,
-                    'nama_debt'=> $request->input('nama_debt'),
-                    'payroll'  => $request->input('payroll'),
-                    'debt_name'=> $request->input('gimmick_name'),
-                    'act'    => $act,
+                    'jenis_mitra'=> $request->input('jenis_mitra'),
+                    'anak_perusahaan_wilayah'  => $request->input('anak_perusahaan_wilayah'),
+                    'anak_perusahaan_kabupaten'=> $request->input('anak_perusahaan_kabupaten'),
                 ])->get();
-		$i=1;
-        foreach ($dirrpc['contents']['data'] as $key => $dir) {
-            $dir['debt_name'] = strtoupper($dir['debt_name']);
-            $dir['nomor'] = strtoupper($i);
-           // $dir['dir_persen'] = strtoupper($dir['dir_persen']);
-		    if($act=='search'){
-				$k = '<input type="hidden" value="'.$dir['no'].'" id="no'.$i.'" name="no'.$i.'"/>';
-				$dir['maintance'] = strtoupper('<button type="button" class="btn btn-orange waves-light waves-effect w-md" id="btn-edit" name="btn-edit" data-toggle="modal">Maintance </button>');	
-				$dir['action'] = strtoupper('<button type="button" class="btn btn-orange waves-light waves-effect w-md" id="btn-hapus" name="btn-hapus" data-toggle="modal">Hapus </button>'.$k);
-			}elseif($act=='maintance'){
-				$k = '<input type="hidden" value="'.$dir['id_detail'].'" id="no'.$i.'" name="no'.$i.'"/>';
-				$dir['penghasilan_maksimal'] = strtoupper($dir['penghasilan_maksimal']);
-				$dir['penghasilan_minimal'] = strtoupper($dir['penghasilan_minimal']);
-				$dir['dir_persen'] = strtoupper($dir['dir_persen']);
-				$dir['maintance'] = strtoupper('');	
-				$dir['action'] = strtoupper('<button type="button" class="btn btn-orange waves-light waves-effect w-md" id="btn-hapus" name="btn-hapus" data-toggle="modal">Hapus </button><button type="button" class="btn btn-orange waves-light waves-effect w-md" id="btn-edit" name="btn-edit" data-toggle="modal">Ubah </button>'.$k);
+		$i=1;        
+        foreach ($mitra['contents']['data'] as $key => $dir) {
+			if($dir['status']=='perjanjian'){
+				$actiontext = 'Approval';
+				$btntext = 'btn-approval';	
+				$actionstatus = '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="'.$btntext.'" name="'.$btntext.'"><i class="mdi mdi-pencil"></i>'.$actiontext.' </button>';
+				$actionhapus = '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="btn-delete" name="btn-delete"><i class="mdi mdi-delete"></i>Hapus </button>';				
+			}elseif($dir['status']=='approval'){
+				$actiontext = 'Success';
+				$btntext = 'btn-Success';			
+				$actionstatus = 'Success';
+				$actionhapus = '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="btn-delete" name="btn-delete"><i class="mdi mdi-delete"></i>Hapus </button>';
 			}
-            $dirrpc['contents']['data'][$key] = $dir;
+			
+			if($dir['status']=='perjanjian' || $dir['status']=='approval'){
+            $dir['no'] = strtoupper($i);
+			$dir['noid'] = strtoupper($dir['idMitrakerja']);
+           // $dir['dir_persen'] = strtoupper($dir['dir_persen']);
+				$k = '<input type="hidden" value="'.$dir['no'].'" id="no'.$i.'" name="no'.$i.'"/>';
+				$dir['NAMA_INSTANSI'] = strtoupper($dir['NAMA_INSTANSI']);
+				$dir['UNIT_KERJA'] = strtoupper($dir['UNIT_KERJA']);
+				$dir['nomor_perjanjian_kerjasama_bri'] = strtoupper($dir['nomor_perjanjian_kerjasama_bri']);
+				$dir['golongan_mitra'] = strtoupper($dir['golongan_mitra']);
+				$dir['status'] = strtoupper($dir['status']);
+				$dir['action_status'] = $actionstatus;
+				$dir['perihal'] = '';
+				$dir['rm'] = '';
+				$dir['action_hapus'] = $actionhapus;
+            $mitra['contents']['data'][$key] = $dir;
 			$i = $i+1;
+			}
         }
 
-        $dirrpc['contents']['draw'] = $request->input('draw');
-        $dirrpc['contents']['recordsTotal'] = $dirrpc['contents']['total'];
-        $dirrpc['contents']['recordsFiltered'] = $dirrpc['contents']['total'];
+        $mitra['contents']['draw'] = $request->input('draw');
+        $mitra['contents']['recordsTotal'] = $mitra['contents']['total'];
+        $mitra['contents']['recordsFiltered'] = $mitra['contents']['total'];
 
-        return response()->json($dirrpc['contents']);
+        return response()->json($mitra['contents']);
     }
 
     public function getUser(){

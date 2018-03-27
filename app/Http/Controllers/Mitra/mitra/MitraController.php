@@ -24,6 +24,12 @@ class MitraController extends Controller
      */
     public function index()
     {
+		$message = '';
+		$key = '';
+		if(isset($_GET['i'])){
+			$message = base64_decode($_GET['i']);
+			$key = base64_decode($_GET['k']);
+		}
 		$data = $this->getUser();
 		$view = Client::setEndpoint('GetView')
 				->setHeaders([
@@ -45,7 +51,7 @@ class MitraController extends Controller
 				])
 				->post();
 		$view2 = $view2['contents'];
-		return view('internals.mitra.mitra.mitra',  compact('data','view','view2'));
+		return view('internals.mitra.mitra.mitra',  compact('data','view','view2','message','key'));
     }
 	
    
@@ -66,18 +72,36 @@ class MitraController extends Controller
                     'anak_perusahaan_wilayah'  => $request->input('anak_perusahaan_wilayah'),
                     'anak_perusahaan_kabupaten'=> $request->input('anak_perusahaan_kabupaten'),
                 ])->get();
-		$i=1;
+		$i=1;        
         foreach ($mitra['contents']['data'] as $key => $dir) {
+			if($dir['status']=='pengajuan'){
+				$actiontext = 'Penilaian';
+				$btntext = 'btn-penilaian';
+			}elseif($dir['status']=='penilaian'){
+				$actiontext = 'Perjanjian';
+				$btntext = 'btn-perjanjian';
+			}elseif($dir['status']=='perjanjian'){
+				$actiontext = 'Approval';
+				$btntext = 'btn-approval';			
+			}
+			$actionstatus = '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="'.$btntext.'" name="'.$btntext.'"><i class="mdi mdi-pencil"></i>'.$actiontext.' </button>';
+			$actionhapus = '<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-5" data-toggle="modal" id="btn-delete" name="btn-delete"><i class="mdi mdi-delete"></i>Hapus </button>';
+			
+			if($dir['status']!='approval'){
             $dir['no'] = strtoupper($i);
+			$dir['noid'] = strtoupper($dir['idMitrakerja']);
            // $dir['dir_persen'] = strtoupper($dir['dir_persen']);
 				$k = '<input type="hidden" value="'.$dir['no'].'" id="no'.$i.'" name="no'.$i.'"/>';
-				$dir['jenis_mitra'] = strtoupper($dir['jenis_mitra']);
-				$dir['anak_perusahaan_wilayah'] = strtoupper($dir['anak_perusahaan_wilayah']);
-				$dir['anak_perusahaan_kabupaten'] = strtoupper($dir['anak_perusahaan_kabupaten']);
+				$dir['NAMA_INSTANSI'] = strtoupper($dir['NAMA_INSTANSI']);
+				$dir['UNIT_KERJA'] = strtoupper($dir['UNIT_KERJA']);
+				$dir['nomor_perjanjian_kerjasama_bri'] = strtoupper($dir['nomor_perjanjian_kerjasama_bri']);
 				$dir['golongan_mitra'] = strtoupper($dir['golongan_mitra']);
 				$dir['status'] = strtoupper($dir['status']);
+				$dir['action_status'] = $actionstatus;
+				$dir['action_hapus'] = $actionhapus;
             $mitra['contents']['data'][$key] = $dir;
 			$i = $i+1;
+			}
         }
 
         $mitra['contents']['draw'] = $request->input('draw');

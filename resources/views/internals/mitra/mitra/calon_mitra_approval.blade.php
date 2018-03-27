@@ -53,4 +53,4 @@
 	</div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-@include('internals.mitra.script.mitra.calon_mitra') 
+@include('internals.mitra.script.mitra.calon_mitra_approval') 
