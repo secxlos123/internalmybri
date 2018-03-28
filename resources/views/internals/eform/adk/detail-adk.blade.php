@@ -373,8 +373,12 @@
     })
 
     $('#btn-batal').on('click', function(){
+        id = $("#id_aplikasi").val();
+        uid = $("#uid").val();
+        pinca = $("#pinca").val();
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
+        pinca_posisi = $("#pinca_posisi").val();
         // alert(eformId);
         HoldOn.open(options);
         $.ajax({
@@ -382,10 +386,13 @@
             type: 'POST',
             url: '{{ route("post_adk") }}',
             data: {
-
+                uid  : uid,
+                pinca_name  : pinca,
+                id_aplikasi : id,
                 eform_id  : eformId,
                 type      : 'batal',
-                catat_adk : catatan_adk
+                catat_adk : catatan_adk,
+                pinca_position  : pinca_posisi
             },
             headers: {
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"

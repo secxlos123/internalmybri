@@ -712,17 +712,16 @@ class ADKController extends Controller
     public function postApprove(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
-        print_r($response);exit();
         // verifikasi adk dibatalkan kirim ke brinet
         if (strtolower($response['type']) == 'batal') {
             $conten_putusan = [
+                'eform_id'    => $response['eform_id'],
                 "id_aplikasi" => $response['id_aplikasi'],
                 "uid"         => $response['uid'],
                 "flag_putusan"=> '2',
                 "catatan"     => $response['catat_adk'],
-                'eform_id'    => $response['eform_id'],
-                "is_send"     => 3,
-                "catat_adk"   => $response['catat_adk']
+                "pinca_name"    => $response['pinca_name'],
+                "pinca_position"=> $response['pinca_position']
             ];
             // print_r($conten_putusan);exit();
             $putusan = Client::setEndpoint('api_las/index')
@@ -737,10 +736,10 @@ class ADKController extends Controller
                     ->post('form_params');
 
             $update_data = [
-                'eform_id'    => $response['eform_id'],
-                'is_send'     => 4,
-                'tgl_pencairan' => date('Y-m-d H:i:s'),
-                'catatan_adk' => $response['catat_adk']
+                "eform_id"    => $response['eform_id'],
+                "is_send"     => 4,
+                "tgl_pencairan" => date('Y-m-d H:i:s'),
+                "catatan_adk" => $response['catat_adk']
             ];
             if ($response['catat_adk'] == '') {
                 return response()->json([
