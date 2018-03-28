@@ -712,9 +712,30 @@ class ADKController extends Controller
     public function postApprove(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
-
+        print_r($response);exit();
         // verifikasi adk dibatalkan kirim ke brinet
         if (strtolower($response['type']) == 'batal') {
+            $conten_putusan = [
+                "id_aplikasi" => $response['id_aplikasi'],
+                "uid"         => $response['uid'],
+                "flag_putusan"=> '2',
+                "catatan"     => $response['catat_adk'],
+                'eform_id'    => $response['eform_id'],
+                "is_send"     => 3,
+                "catat_adk"   => $response['catat_adk']
+            ];
+            // print_r($conten_putusan);exit();
+            $putusan = Client::setEndpoint('api_las/index')
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->setBody([
+                        'requestMethod' => 'putusSepakat',
+                        'requestData'   => $conten_putusan
+                    ])
+                    ->post('form_params');
+
             $update_data = [
                 'eform_id'    => $response['eform_id'],
                 'is_send'     => 4,
@@ -1384,12 +1405,12 @@ class ADKController extends Controller
                     
                     if (isset($imgReq['namafoto']) && ($req_nama_foto == $imgReq['lainnya1'])) {
                         $image[] = [
-                            'name' => 'lainnya1',
+                            'name' => 'foto_lainnya1',
                             'contents' => $imgReq['lainnya1']
                         ];
                     } else {
                         $image[] = [
-                            'name' => 'lainnya1',
+                            'name' => 'foto_lainnya1',
                             'contents' => null
                         ];
                     }
@@ -1401,7 +1422,7 @@ class ADKController extends Controller
                     }
                     
                     $image[] = [
-                        'name'     => 'lainnya1',
+                        'name'     => 'foto_lainnya1',
                         'filename' => ucfirst($namafoto).'.'.$request['uploadfoto']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto']->getmimeType(),
                         'contents' => fopen($request['uploadfoto']->getPathname(), 'r')
@@ -1418,12 +1439,12 @@ class ADKController extends Controller
                     
                     if (isset($imgReq['namafoto2']) && ($req_nama_foto == $imgReq['lainnya2'])) {
                         $image[] = [
-                            'name' => 'lainnya2',
+                            'name' => 'foto_lainnya2',
                             'contents' => $imgReq['lainnya2']
                         ];
                     } else {
                         $image[] = [
-                            'name' => 'lainnya2',
+                            'name' => 'foto_lainnya2',
                             'contents' => null
                         ];
                     }
@@ -1435,7 +1456,7 @@ class ADKController extends Controller
                     }
 
                     $image[] = [
-                        'name'     => 'lainnya2',
+                        'name'     => 'foto_lainnya2',
                         'filename' => ucfirst($namafoto).'.'.$request['uploadfoto2']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto2']->getmimeType(),
                         'contents' => fopen($request['uploadfoto2']->getPathname(), 'r')
@@ -1452,12 +1473,12 @@ class ADKController extends Controller
                     
                     if (isset($imgReq['namafoto3']) && ($req_nama_foto == $imgReq['lainnya3'])) {
                         $image[] = [
-                            'name' => 'lainnya3',
+                            'name' => 'foto_lainnya3',
                             'contents' => $imgReq['lainnya3']
                         ];
                     } else {
                         $image[] = [
-                            'name' => 'lainnya3',
+                            'name' => 'foto_lainnya3',
                             'contents' => null
                         ];
                     }
@@ -1469,7 +1490,7 @@ class ADKController extends Controller
                     }
                     
                     $image[] = [
-                        'name'     => 'lainnya3',
+                        'name'     => 'foto_lainnya3',
                         'filename' => ucfirst($namafoto).'.'.$request['uploadfoto3']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto3']->getmimeType(),
                         'contents' => fopen($request['uploadfoto3']->getPathname(), 'r')
@@ -1486,12 +1507,12 @@ class ADKController extends Controller
                     
                     if (isset($imgReq['namafoto4']) && ($req_nama_foto == $imgReq['lainnya4'])) {
                         $image[] = [
-                            'name' => 'lainnya4',
+                            'name' => 'foto_lainnya4',
                             'contents' => $imgReq['lainnya4']
                         ];
                     } else {
                         $image[] = [
-                            'name' => 'lainnya4',
+                            'name' => 'foto_lainnya4',
                             'contents' => null
                         ];
                     }
@@ -1503,7 +1524,7 @@ class ADKController extends Controller
                     }
 
                     $image[] = [
-                        'name'     => 'lainnya4',
+                        'name'     => 'foto_lainnya4',
                         'filename' => ucfirst($namafoto).'.'.$request['uploadfoto4']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto4']->getmimeType(),
                         'contents' => fopen($request['uploadfoto4']->getPathname(), 'r')
@@ -1520,12 +1541,12 @@ class ADKController extends Controller
 
                     if (isset($imgReq['namafoto5']) && ($req_nama_foto == $imgReq['lainnya5'])) {
                         $image[] = [
-                            'name' => 'lainnya5',
+                            'name' => 'foto_lainnya5',
                             'contents' => $imgReq['lainnya5']
                         ];
                     } else {
                         $image[] = [
-                            'name' => 'lainnya5',
+                            'name' => 'foto_lainnya5',
                             'contents' => null
                         ];
                     }
@@ -1537,7 +1558,7 @@ class ADKController extends Controller
                     }
                     
                     $image[] = [
-                        'name'     => 'lainnya5',
+                        'name'     => 'foto_lainnya5',
                         'filename' => ucfirst($namafoto).'.'.$request['uploadfoto5']->getClientOriginalExtension(),
                         'Mime-Type'=> $request['uploadfoto5']->getmimeType(),
                         'contents' => fopen($request['uploadfoto5']->getPathname(), 'r')
