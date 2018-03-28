@@ -90,12 +90,6 @@
                                                             <p class="form-control-static">{{$detail['branch']}}</p>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nama Nasabah :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$detail['customer_name']}}</p>
-                                                        </div>
-                                                    </div> -->
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Tanggal Pertemuan :</label>
                                                         <div class="col-md-7">
@@ -516,7 +510,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {

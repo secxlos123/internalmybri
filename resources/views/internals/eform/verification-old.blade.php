@@ -27,14 +27,6 @@
                         @if (\Session::has('success'))
                             <div class="alert alert-success">{{ \Session::get('success') }}</div>
                         @endif
-                        <!-- <div class="row" @if(!empty($dataCustomer)) @if($dataCustomer['customer']['is_completed'] == true) hidden="" @endif @endif>
-                            <div class="col-md-12">
-                                <div class="add-button">
-                                    <p class="col-md-2">Lengkapi Data Nasabah</p>
-                                    <a @if(!empty($dataCustomer)) href="{{url('eform/verification/'.$id.'/completeData/'.$dataCustomer['customer']['id'])}}" @else href="{{url('eform/verification/'.$id.'/completeData/1')}}" @endif class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-pencil"></i> Lengkapi Data</a>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card-box m-t-30">
@@ -148,9 +140,6 @@
                                 <div class="pull-right">
                                     <button type="submit" href="javascript:void(0);" id="save" class="btn btn-default waves-light waves-effect w-md m-b-20"><i class="mdi mdi-content-save"></i> Simpan</button>
                                 </div>
-                                <!-- <div class="col-md-1 pull-right">
-                                    <button type="submit" href="javascript:void(0);" id="save" class="btn waves-effect waves-light btn-orange"><i class="mdi mdi-content-save"></i> Verifikasi</button>
-                                </div> -->
                             </div>
                         </div>
                     </form>

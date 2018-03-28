@@ -441,13 +441,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -459,8 +457,5 @@
             },
         });
 
-        // $('.name').on('select2:select', function(){
-        //     $('#fake-aoid').val($(this).val());
-        // });
     });
 </script>

@@ -180,5 +180,4 @@
             var citi_id = e.params.data.id;
         });
 
-    // TableManageButtons.init();
 </script>

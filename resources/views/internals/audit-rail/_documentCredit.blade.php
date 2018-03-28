@@ -6,7 +6,6 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">NIK atau Nama Calon Debitur :</label>
                         <div class="col-sm-8">
-                            <!-- <input type="text" class="form-control" id="username_activity"> -->
                             {!! Form::select('action_document', ['' => ''], old('name'), [
                                 'class' => 'select2 action_document',
                                 'data-placeholder' => 'Pilih NIK atau Nama Calon Debitur',

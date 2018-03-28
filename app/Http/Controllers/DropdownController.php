@@ -2,46 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Client;
+use Illuminate\Http\Request;
 use PDF;
 
 class DropdownController extends Controller
 {
 
-	public function getUser()
-	{
-		/* GET UserLogin Data */
-		$users = session()->get('user');
+    public function getUser()
+    {
+        /* GET UserLogin Data */
+        $users = session()->get('user');
 
-		foreach ($users as $user) {
-			$data = $user;
-		}
+        foreach ($users as $user) {
+            $data = $user;
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
     public function properties(Request $request)
     {
         $data = $this->getUser();
 
         $properties = Client::setEndpoint('dropdown/properties')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+            ])
             ->setQuery([
                 'dev_id' => $request->input('dev_id'),
                 'search' => $request->input('name'),
-                'page'   => $request->input('page')
+                'page' => $request->input('page'),
             ])
             ->get();
-            // dd($properties);
         $contents = array();
-        if (count($properties['contents'])>0) {
+        if (count($properties['contents']) > 0) {
             foreach ($properties['contents']['data'] as $key => $prop) {
                 $prop['text'] = $prop['prop_name'];
                 $prop['id'] = $prop['prop_id'];
@@ -50,7 +48,7 @@ class DropdownController extends Controller
             $contents = $properties['contents'];
         }
 
-        return response()->json(['properties' => $contents ]);
+        return response()->json(['properties' => $contents]);
     }
 
     public function types(Request $request)
@@ -58,21 +56,20 @@ class DropdownController extends Controller
         $data = $this->getUser();
 
         $types = Client::setEndpoint('dropdown/types')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+            ])
             ->setQuery([
                 'property_id' => $request->input('prop_id'),
                 'search' => $request->input('name'),
-                'page'   => $request->input('page')
+                'page' => $request->input('page'),
             ])
             ->get();
         $contents = array();
-        if (count($types['contents'])>0) {
+        if (count($types['contents']) > 0) {
             foreach ($types['contents']['data'] as $key => $type) {
                 $type['text'] = $type['name'];
                 $type['id'] = $type['id'];
@@ -81,7 +78,7 @@ class DropdownController extends Controller
             $contents = $types['contents'];
         }
 
-        return response()->json(['types' => $contents ]);
+        return response()->json(['types' => $contents]);
     }
 
     public function units(Request $request)
@@ -89,22 +86,21 @@ class DropdownController extends Controller
         $data = $this->getUser();
 
         $units = Client::setEndpoint('dropdown/units')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+            ])
             ->setQuery([
                 'property_type_id' => $request->input('prop_type_id'),
                 'search' => $request->input('name'),
-                'page'   => $request->input('page'),
-                'is_available' => true
+                'page' => $request->input('page'),
+                'is_available' => true,
             ])
             ->get();
         $contents = array();
-        if (count($units['contents'])>0) {
+        if (count($units['contents']) > 0) {
             foreach ($units['contents']['data'] as $key => $type) {
                 $type['text'] = $type['address'];
                 $type['id'] = $type['id'];
@@ -113,7 +109,7 @@ class DropdownController extends Controller
             $contents = $units['contents'];
         }
 
-        return response()->json(['units' => $contents ]);
+        return response()->json(['units' => $contents]);
     }
 
     public function birth_place(Request $request)
@@ -123,25 +119,23 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'name' => $request->input('name'),
-                'page' => $request->input('page')
-            ])
+            'name' => $request->input('name'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($cities['contents'])>0) {
+        if (count($cities['contents']) > 0) {
             foreach ($cities['contents']['data'] as $key => $city) {
                 $city['text'] = $city['name'];
-                // $city['id'] = $city['name'];
                 $cities['contents']['data'][$key] = $city;
             }
             $contents = $cities['contents'];
         }
 
-        return response()->json(['cities' => $contents ]);
+        return response()->json(['cities' => $contents]);
     }
 
     public function jobs(Request $request)
@@ -151,16 +145,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($jobs['contents'])>0) {
+        if (count($jobs['contents']) > 0) {
             foreach ($jobs['contents']['data'] as $key => $job) {
                 $job['text'] = $job['name'];
                 $jobs['contents']['data'][$key] = $job;
@@ -168,7 +161,7 @@ class DropdownController extends Controller
             $contents = $jobs['contents'];
         }
 
-        return response()->json(['jobs' => $contents ]);
+        return response()->json(['jobs' => $contents]);
     }
 
     public function job_types(Request $request)
@@ -178,16 +171,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($job_types['contents'])>0) {
+        if (count($job_types['contents']) > 0) {
             foreach ($job_types['contents']['data'] as $key => $type) {
                 $type['text'] = $type['name'];
                 $job_types['contents']['data'][$key] = $type;
@@ -195,7 +187,7 @@ class DropdownController extends Controller
             $contents = $job_types['contents'];
         }
 
-        return response()->json(['job_types' => $contents ]);
+        return response()->json(['job_types' => $contents]);
     }
 
     public function job_fields(Request $request)
@@ -205,16 +197,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($job_fields['contents'])>0) {
+        if (count($job_fields['contents']) > 0) {
             foreach ($job_fields['contents']['data'] as $key => $field) {
                 $field['text'] = $field['name'];
                 $job_fields['contents']['data'][$key] = $field;
@@ -222,7 +213,7 @@ class DropdownController extends Controller
             $contents = $job_fields['contents'];
         }
 
-        return response()->json(['job_fields' => $contents ]);
+        return response()->json(['job_fields' => $contents]);
     }
 
     public function positions(Request $request)
@@ -232,16 +223,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($positions['contents'])>0) {
+        if (count($positions['contents']) > 0) {
             foreach ($positions['contents']['data'] as $key => $position) {
                 $position['text'] = $position['name'];
                 $positions['contents']['data'][$key] = $position;
@@ -249,7 +239,7 @@ class DropdownController extends Controller
             $contents = $positions['contents'];
         }
 
-        return response()->json(['positions' => $contents ]);
+        return response()->json(['positions' => $contents]);
     }
 
     public function citizenship(Request $request)
@@ -259,16 +249,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($citizenship['contents'])>0) {
+        if (count($citizenship['contents']) > 0) {
             foreach ($citizenship['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $citizenship['contents']['data'][$key] = $czen;
@@ -286,16 +275,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($kppType['contents'])>0) {
+        if (count($kppType['contents']) > 0) {
             foreach ($kppType['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $kppType['contents']['data'][$key] = $czen;
@@ -303,7 +291,7 @@ class DropdownController extends Controller
             $contents = $kppType['contents'];
         }
 
-        return response()->json(['kppType' => $contents ]);
+        return response()->json(['kppType' => $contents]);
     }
 
     public function typeFinanced(Request $request)
@@ -313,16 +301,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($typeFinanced['contents'])>0) {
+        if (count($typeFinanced['contents']) > 0) {
             foreach ($typeFinanced['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $typeFinanced['contents']['data'][$key] = $czen;
@@ -330,7 +317,7 @@ class DropdownController extends Controller
             $contents = $typeFinanced['contents'];
         }
 
-        return response()->json(['typeFinanced' => $contents ]);
+        return response()->json(['typeFinanced' => $contents]);
     }
 
     public function economySectors(Request $request)
@@ -340,17 +327,16 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page'),
-                'limit' => 5
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+            'limit' => 5,
+        ])
             ->get();
         $contents = array();
-        if (count($economySector['contents'])>0) {
+        if (count($economySector['contents']) > 0) {
             foreach ($economySector['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $economySector['contents']['data'][$key] = $czen;
@@ -358,7 +344,7 @@ class DropdownController extends Controller
             $contents = $economySector['contents'];
         }
 
-        return response()->json(['economySector' => $contents ]);
+        return response()->json(['economySector' => $contents]);
     }
 
     public function projectList(Request $request)
@@ -368,22 +354,21 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($projectList['contents'])>0) {
+        if (count($projectList['contents']) > 0) {
             foreach ($projectList['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $projectList['contents']['data'][$key] = $czen;
             }
             $contents = $projectList['contents'];
-        }    
+        }
 
         return response()->json(['projectList' => $contents]);
     }
@@ -395,16 +380,15 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
         $contents = array();
-        if (count($programList['contents'])>0) {
+        if (count($programList['contents']) > 0) {
             foreach ($programList['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $programList['contents']['data'][$key] = $czen;
@@ -422,21 +406,20 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])->setQuery([
-                'search' => $request->input('search'),
-                'page' => $request->input('page')
-            ])
+            'search' => $request->input('search'),
+            'page' => $request->input('page'),
+        ])
             ->get();
 
         $contents = array();
-        if (count($useReason['contents'])>0) {
+        if (count($useReason['contents']) > 0) {
             foreach ($useReason['contents']['data'] as $key => $czen) {
                 $czen['text'] = $czen['name'];
                 $useReason['contents']['data'][$key] = $czen;
-                }
+            }
             $contents = $useReason['contents'];
         }
 
@@ -456,18 +439,17 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])
             ->setQuery([
                 'name' => $request->input('name'),
                 'page' => $request->input('page'),
-                'region_id' => $request->input('region_id')
+                'region_id' => $request->input('region_id'),
             ])
             ->get();
         $contents = array();
-        if ( count($staffs['contents'])>0){
+        if (count($staffs['contents']) > 0) {
             foreach ($staffs['contents']['data'] as $key => $staff) {
                 if ($staff['id'] = $staff['id']) {
                     $staff['text'] = $staff['name'];
@@ -493,9 +475,8 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])
             ->setQuery([
                 'search' => $request->input('search'),
@@ -503,7 +484,7 @@ class DropdownController extends Controller
             ])
             ->get();
         $contents = array();
-        if ( count($insurances['contents'])>0){
+        if (count($insurances['contents']) > 0) {
             foreach ($insurances['contents']['data'] as $key => $insurance) {
                 if ($insurance['id'] = $insurance['id']) {
                     $insurance['text'] = $insurance['name'];
@@ -529,9 +510,8 @@ class DropdownController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])
             ->setQuery([
                 'search' => $request->input('search'),
@@ -539,7 +519,7 @@ class DropdownController extends Controller
             ])
             ->get();
         $contents = array();
-        if ( count($appraisers['contents'])>0){
+        if (count($appraisers['contents']) > 0) {
             foreach ($appraisers['contents']['data'] as $key => $appraiser) {
                 if ($appraiser['id'] = $appraiser['id']) {
                     $appraiser['text'] = $appraiser['name'];
@@ -559,16 +539,14 @@ class DropdownController extends Controller
      */
     public function getZipCode(Request $request)
     {
-        \Log::info($request);
         $data = $this->getUser();
 
         $zipcodes = Client::setEndpoint('zipcode-list')
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
             ])
             ->setQuery([
                 'search' => $request->input('search'),
@@ -576,7 +554,7 @@ class DropdownController extends Controller
             ])
             ->get();
         $contents = array();
-        if ( count($zipcodes['contents'])>0){
+        if (count($zipcodes['contents']) > 0) {
             foreach ($zipcodes['contents']['data'] as $key => $zipcode) {
                 if ($zipcode['id'] = $zipcode['id']) {
                     $zipcode['text'] = $zipcode['kota'];
@@ -595,28 +573,28 @@ class DropdownController extends Controller
      * @author rangga.darmajati <rangga.darmajati@wgs.co.id>
      */
 
-    public function generatePDF(Request $request,$type)
+    public function generatePDF(Request $request, $type)
     {
         $data = $this->getUser();
         $generateData = Client::setEndpoint('genaratePDF')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn' => $data['pn']
-                ])
-                ->setQuery([
-                    'startdate' => $request->input('startdate'),
-                    'enddate' => $request->input('enddate')
-                ])
-                ->get();
+            ->setHeaders([
+                'Authorization' => $data['token'],
+                'pn' => $data['pn'],
+            ])
+            ->setQuery([
+                'startdate' => $request->input('startdate'),
+                'enddate' => $request->input('enddate'),
+            ])
+            ->get();
         $generateEform = $generateData['contents'];
         $date = date('Y-m-d-H:i:s');
         $startdate = $request->input('startdate') ? $request->input('startdate') : '-';
         $enddate = $request->input('enddate') ? $request->input('enddate') : '-';
         $pdf = PDF::loadView('pdf.dashboard', compact('generateEform', 'startdate', 'enddate'));
-        if($type != 1){
-            return $pdf->download('list_pengajuan-'.$date.'.pdf');
-        }else{
-            return $pdf->stream('list_pengajuan-'.$date.'.pdf');
+        if ($type != 1) {
+            return $pdf->download('list_pengajuan-' . $date . '.pdf');
+        } else {
+            return $pdf->stream('list_pengajuan-' . $date . '.pdf');
         }
     }
 }

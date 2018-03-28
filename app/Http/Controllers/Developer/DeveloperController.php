@@ -10,10 +10,6 @@ use Client;
 
 class DeveloperController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('developers', ['except' => ['datatables', 'actived']]);
-    // }
 
     protected $columns = [
         'name',
@@ -51,7 +47,6 @@ class DeveloperController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        // dd($data);
         return view('internals.developers.index', compact('data'));
     }
 
@@ -121,7 +116,6 @@ class DeveloperController extends Controller
         $email = strtolower($request->email);
         $request->merge(['email'=>$email]);
         $newDev = $this->devRequest($request, $data);
-        // dd($newDev);
 
         $client = Client::setEndpoint('developer')
            ->setHeaders([
@@ -133,7 +127,6 @@ class DeveloperController extends Controller
             ])
            ->setBody($newDev)
            ->post('multipart');
-           // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah disimpan.');
@@ -166,9 +159,6 @@ class DeveloperController extends Controller
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])
                     ->get();
 
@@ -185,7 +175,6 @@ class DeveloperController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
@@ -213,11 +202,6 @@ class DeveloperController extends Controller
     {
         $data = $this->getUser();
 
-         /* GET User Data */
-        // $userData = Client::setEndpoint('developer/'.$id)->setQuery(['limit' => 100])->setHeaders(['Authorization' => $data['token']])->get();
-
-        // $dataDev = $userData['contents'];
-
         return view('internals.developers.property-detail', compact('data', 'dataDev', 'id'));
     }
 
@@ -236,9 +220,6 @@ class DeveloperController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->get();
 
@@ -270,7 +251,6 @@ class DeveloperController extends Controller
            ->setBody($newDev)
            ->put('multipart');
 
-        // dd($client);
         if($client['code'] == 200){
             \Session::flash('success', 'Data Developer sudah diubah.');
             return redirect()->route('developers.index');
@@ -326,7 +306,6 @@ class DeveloperController extends Controller
             ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
@@ -335,12 +314,10 @@ class DeveloperController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-            // dd($developers);
 
         foreach ($developers['contents']['data'] as $key => $dev) {
             $dev['text'] = $dev['company_name'];
             $dev['id'] = $dev['dev_id'];
-            // $dev['data-bri'] = $dev['bri'];
 
             $developers['contents']['data'][$key] = $dev;
         }
@@ -363,7 +340,6 @@ class DeveloperController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
@@ -375,7 +351,6 @@ class DeveloperController extends Controller
                     'page'      => (int) $request->input('page') + 1,
                     'without_independent' => true
                 ])->get();
-        // dd($developers);
 
         foreach ($developers['contents']['data'] as $key => $developer) {
             $developer['action'] = view('internals.layouts.actions', [

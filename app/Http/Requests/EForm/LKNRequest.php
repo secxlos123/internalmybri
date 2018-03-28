@@ -40,17 +40,6 @@ class LKNRequest extends FormRequest
            'project_list' => 'required',
            'program_list' => 'required',
            'use_reason' => 'required',
-
-           // 'mutations' => 'required_if:source,nonfixed',
-
-           // 'mutations.*.bank' => 'required_if:source,nonfixed',
-           // 'mutations.*.number' => 'required_if:source,nonfixed',
-           // 'mutations.*.file' => 'required_if:source,nonfixed|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
-           // 'mutations.*.tables' => 'required_if:source,nonfixed',
-           // 'mutations.*.tables.*.date' => 'required_if:source,nonfixed',
-           // 'mutations.*.tables. amount'=> 'required_if:source,nonfixed',
-           // 'mutations.*.tables.*.type' => 'required_if:source,nonfixed',
-           // 'mutations.*.tables.*.note' => '',
            'seller_name' => 'required_if:status_property,1,2',
            'seller_address' => 'required_if:status_property,1,2',
            'seller_phone' => 'required_if:status_property,1,2',

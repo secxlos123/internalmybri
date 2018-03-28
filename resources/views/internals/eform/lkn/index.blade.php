@@ -2,7 +2,6 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script> -->
 <style type="text/css">
 .card-box > img {
     height: 350px;
@@ -103,17 +102,6 @@
                         </div>
                     </div>
                     @endif
-
-            <!-- <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-color panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Data Keluarga</h3>
-                        </div>
-                        @include('internals.eform.lkn._family')
-                    </div>
-                </div>
-            </div> -->
 
             <!--kpp-->
             <div class="row">
@@ -279,8 +267,6 @@
 @if($recontest == 0)
 @include('internals.eform.recontest.script-recontest')
 @endif
-<!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&callback=initMap"></script> -->
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     @if($recontest == 1)
     {!! JsValidator::formRequest('App\Http\Requests\EForm\LKNRequest', '#formLKN'); !!}
@@ -302,7 +288,6 @@
                 $("#formLKN").submit();
                 HoldOn.close();
             });
-            // $('.status_property')..select2('readonly',true);
         });
     </script>
 

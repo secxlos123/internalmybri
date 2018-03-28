@@ -36,12 +36,6 @@
         </div>
     </div>
 
-    <!-- <div class="col-md-6" align="center">
-        <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['license_of_practice'])){{$detail['visit_report']['license_of_practice']}}@endif" class="img-responsive">
-            <p>Izin Praktek</p>
-        </div>
-    </div> -->
 
     <div class="col-md-6" align="center">
         <div class="card-box">

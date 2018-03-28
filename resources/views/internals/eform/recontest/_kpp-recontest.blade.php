@@ -2,28 +2,24 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-horizontal" role="form">
-                <!-- <input type="hidden" name="use_reason_id" id="use_reason_id" value=""> -->
                 <input type="hidden" name="id_prescreening" id="id_prescreening" value="12">
                 <div class="form-group {!! $errors->has('kpp_type') ? 'has-error' : '' !!}" id="kpp_type">
                     <label class="col-md-4 control-label">KPP :</label>
                     <div class="col-md-8">
                         <p class="form-control-static"> {{$eformData['visit_report']['kpp_type_name']}}</p>
                     </div>
-                    <!-- <input type="hidden" name="kpp_type_name" id="new_kpp_type"> -->
                 </div>
                 <div class="form-group {!! $errors->has('type_financed') ? 'has-error' : '' !!}" id="type_financed">
                     <label class="col-md-4 control-label">Jenis Dibiayai :</label>
                     <div class="col-md-8">
                         <p class="form-control-static"> {{$eformData['visit_report']['type_financed_name']}}</p>
                     </div>
-                    <!-- <input type="hidden" name="type_financed_name" id="new_type_financed"> -->
                 </div>
                 <div class="form-group {!! $errors->has('economy_sector') ? 'has-error' : '' !!}" id="economy_sector">
                     <label class="col-md-4 control-label">Sektor Ekonomi :</label>
                     <div class="col-md-8">
                         <p class="form-control-static"> {{$eformData['visit_report']['economy_sector_name']}}</p>
                     </div>
-                    <!-- <input type="hidden" name="economy_sector_name" id="new_economy_sector"> -->
                 </div>
             </div>
         </div>
