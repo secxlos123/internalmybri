@@ -1,5 +1,3 @@
-<!-- <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script> -->
-<!-- <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->
 <script type="text/javascript">
   function initialize() {
     var lng = $('#lng').val();
@@ -14,7 +12,6 @@
       map: map,
       position: latlng,
       draggable: true
-      // anchorPoint: new google.maps.Point(0, -29)
     });
     var input = document.getElementById('searchInput');
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
@@ -69,25 +66,6 @@
 </script>
 
 <script type="text/javascript">
-    // $(".photo").change(function(event){
-    //     alert('up');
-    //     readURL(this);
-    // });
-
-    // var $images = $('#detail-collateral-modal .gallery');
-    //     function readURL(input) {
-    //         if (input.files && input.files[0]) {
-
-    //             $.each(input.files, function() {
-    //                 var reader = new FileReader();
-    //                 reader.onload = function (e) {
-    //                     $images.append('<img src="'+ e.target.result+'" />')
-    //                 }
-    //                 reader.readAsDataURL(this);
-    //             });
-
-    //         }
-    //     }
   $form_container = $('#form-lkn');
 
   $form_container.children("div").steps({
@@ -108,7 +86,6 @@
             //step1
             var location = $('#location').val();
             var collateral_type = $('#collateral_type').find("option:selected").text();
-            // var city = $('.cities').find("option:selected").text();
             var city = $('select[name="area[city_id]"]').find("option:selected").text();
             var subdistrict = $('#sub_district').val();
             var rt = $('#rt').val();
@@ -195,7 +172,6 @@
             var collateral_status = $('.collateral_status_').find("option:selected").text();
             var on_behalf_of = $('#on_behalf_of').val();
             var ownership_number = $('#ownership_number').val();
-            // var seven_location = $('#location').val();
             var seven_location = $('select[name="seven[city_id]"]').find("option:selected").text();
             var address_collateral = $('#address_collateral').val();
             var description = $('#description').val();
@@ -252,7 +228,6 @@
             //step1
             $('#detail-collateral-modal').modal('show');
             readURL($('.photo'));
-            // imagesPreview($('.photo'), '#detail-collateral-modal .gallery');
              var $images = $('#detail-collateral-modal div.gallery');
                 function readURL(input) {
                     if (input.files && input.files[0]) {
@@ -694,7 +669,6 @@
     $('#paripasu_flag').on('change', function () {
       var id = $(this).val();
       var text = $(this).find("option:selected").text();
-      console.log(text);
         if(text == 'Ya'){
           $('#bank_paripasu').removeAttr('hidden');
         }else{
@@ -704,7 +678,6 @@
     $('#asuransi_flag').on('change', function () {
       var id = $(this).val();
       var text = $(this).find("option:selected").text();
-      console.log(text);
         if(text == 'Ya'){
           $('#company_insurance').removeAttr('hidden');
           $('#value_insurance').removeAttr('hidden');

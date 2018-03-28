@@ -88,7 +88,6 @@
                     <th>Status</th>
                     <th>Aging (hari)</th>
                     <th>Status Data Nasabah</th>
-                    {{-- <th>Catatan Disposisi</th> --}}
                     <th style="width: 100px">Aksi</th>
                   </tr>
                 </thead>

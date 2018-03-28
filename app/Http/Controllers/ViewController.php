@@ -12,10 +12,6 @@ use Validator;
 
 class DirRpcController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('leads', ['except' => ['datatables']]);
-    // }
 
     /**
      * Display a listing of the resource.

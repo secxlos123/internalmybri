@@ -71,7 +71,6 @@
                     <th>Kota Tempat Tinggal</th>
                     <th>Handphone</th>
                     <th>Jenis Kelamin</th>
-                    <!-- <th>Status</th> -->
                   </tr>
                 </thead>
                 <tbody>

@@ -62,13 +62,10 @@
                     dataType: 'json',
                     success: function (data) {
                        $btn.button('reset');
-                       console.log(data);
-                       // var win = window.open(data.url);
                        window.location = data.url;
                     },
                     error: function(response){
                         $btn.button('reset');
-                        console.log(response);
                     }
                 });
         });

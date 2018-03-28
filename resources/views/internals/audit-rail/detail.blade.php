@@ -55,7 +55,6 @@
                                 <table id="datatable" class="table table-bordered">
                                     <thead class="bg-primary">
                                         <tr>
-                                            <!-- <th>Nama Mitra Kerjasama</th> -->
                                             <th>Tanggal</th>
                                             <th>Detail Aksi</th>
                                             <th>Nama User</th>

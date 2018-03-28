@@ -205,9 +205,6 @@ tr.shown td.details1-control {
             {   data: 'request_amount', name: 'request_amount', bSortable: false  },
             {   data: 'created_at', name: 'created_at', bSortable: false  },
             {   data: 'is_screening', name: 'is_screening', bSortable: false  },
-//                {   data: 'ref_number', name: 'ref_number', bSortable: false  },
- //               {   data: 'nik', name: 'nik', bSortable: false  },
-//                {   data: 'customer_name', name: 'customer_name' },
 
 
 {   data: 'status_pernikahan', name: 'status_pernikahan', bSortable: false  },
@@ -237,76 +234,5 @@ tr.shown td.details1-control {
         }
     } );
         }
-    // var resizefunc = [];
-    // $(document).ready(function () {
-    //     var lastStatusElement = null;
-    //     // $('#datatable').hide();
-
-
-    //     // $('#filter').on('click', function () {
-    //     // var table = $('#datatable').dataTable({
-    //     //     searching : false,
-    //     //     processing : true,
-    //     //     serverSide : true,
-    //     //     lengthMenu: [
-    //     //         [ 10, 25, 50, -1 ],
-    //     //         [ '10', '25', '50', 'All' ]
-    //     //     ],
-    //     //     language : {
-    //     //         infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-    //     //     },
-    //     //     ajax : {
-    //     //         url : '/datatables/eform-ao',
-    //     //         data : function(d, settings){
-    //     //             var api = new $.fn.dataTable.Api(settings);
-
-    //     //             d.page = Math.min(
-    //     //                 Math.max(0, Math.round(d.start / api.page.len())),
-    //     //                 api.page.info().pages
-    //     //             );
-
-    //     //             d.office_id = $('.offices').val();
-    //     //         }
-    //     //     },
-    //     //     aoColumns : [
-    //     //         {   data: 'ref', name: 'ref', bSortable: false },
-    //     //         {   data: 'customer_name', name: 'customer_name', bSortable: false  },
-    //     //         {   data: 'request_amount', name: 'request_amount', bSortable: false  },
-    //     //         {   data: 'created_at', name: 'created_at' },
-    //     //         {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
-    //     //         {   data: 'prescreening_status',
-    //     //             name: 'prescreening_status',
-    //     //             bSortable: false,
-    //     //             mRender: function (data, type, full) {
-    //     //                 if(full.prescreening_status == 'Hijau'){
-    //     //                     color = 'text-success';
-    //     //                     text = 'Hijau';
-    //     //                 }else if(full.prescreening_status == 'Kuning'){
-    //     //                     color = 'text-warning';
-    //     //                     text = 'Kuning';
-    //     //                 }else if(full.prescreening_status == 'Merah'){
-    //     //                     color = 'text-danger';
-    //     //                     text = 'Merah';
-    //     //                 }else {
-    //     //                     color = '';
-    //     //                     text = 'Pengajuan Baru';
-    //     //                 }
-    //     //                 return `<td class="align-middle"><p class="${color}">${text}</p></td>`;
-    //     //             },
-    //     //             createdCell:  function (td, cellData, rowData, row, col) {
-    //     //                 $(td).attr('class', 'status');
-    //     //             }},
-    //     //         {   data: 'status', name: 'status' },
-    //     //         {   data: 'aging', name: 'aging' },
-    //     //         {   data: 'action', name: 'action', bSortable: false },
-    //     //     ],
-
-    //     // });
-
-    //     //     // table.fnDraw();
-    //     // });
-
-    // });
-
-    // TableManageButtons.init();
+    
 </script>

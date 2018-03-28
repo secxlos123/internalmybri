@@ -1,4 +1,5 @@
 <script type="text/javascript">
+$('#table1').hide();
 function goto(){
 	var key = $("input:radio[name=registrasi_mitra_kerjasama]:checked").val();
  	var url = window.location.href;
@@ -48,17 +49,18 @@ function goto(){
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
                     );
-                    d.mitra = mitra;
-                    d.anak_perusahaan_wilayah = kantor_wilayah;
-                    d.anak_perusahaan_kabupaten = kantor_cabang;
+                   d.NAMA_INSTANSI = mitra;
+                    d.UNIT_KERJA = kantor_wilayah;
+                   // d.anak_perusahaan_kabupaten = kantor_cabang;
                 }
             },
           aoColumns : [
-                {   data: 'no', name: 'no', bSortable: false },
-                {   data: 'jenis_mitra', name: 'Jenis Mitra', bSortable: false  },
-                {   data: 'anak_perusahaan_wilayah', name: 'Kantor Wilayah', bSortable: false },
-                {   data: 'anak_perusahaan_kabupaten', name: 'Kantor Cabang', bSortable: false },
-                {   data: 'golongan_mitra', name: 'Perihal', bSortable: false }
+                  {   data: 'no', name: 'no', bSortable: false },
+                {   data: 'NAMA_INSTANSI', name: 'NAMA_INSTANSI', bSortable: false  },
+                {   data: 'UNIT_KERJA', name: 'UNIT_KERJA', bSortable: false },
+                {   data: 'nomor_perjanjian_kerjasama_bri', name: 'no_perjanjian_kerjasama', bSortable: false },
+                {   data: 'golongan_mitra', name: 'Perihal', bSortable: false },
+                {   data: 'status', name: 'status', orderable: false, searchable: false}
             ],
       });
     }
@@ -94,16 +96,16 @@ function table_mitra2(mitra,kantor_wilayah,kantor_cabang)
                         Math.max(0, Math.round(d.start / api.page.len())),
                         api.page.info().pages
                     );
-                    d.mitra = mitra;
-                    d.anak_perusahaan_wilayah = kantor_wilayah;
-                    d.anak_perusahaan_kabupaten = kantor_cabang;
+                    d.NAMA_INSTANSI = mitra;
+                    d.UNIT_KERJA = kantor_wilayah;
+                   // d.anak_perusahaan_kabupaten = kantor_cabang;
                 }
             },
           aoColumns : [
                 {   data: 'no', name: 'no', bSortable: false },
-                {   data: 'jenis_mitra', name: 'Jenis Mitra', bSortable: false  },
-                {   data: 'anak_perusahaan_wilayah', name: 'Kantor Wilayah', bSortable: false },
-                {   data: 'anak_perusahaan_kabupaten', name: 'Kantor Cabang', bSortable: false },
+                {   data: 'NAMA_INSTANSI', name: 'NAMA_INSTANSI', bSortable: false  },
+                {   data: 'UNIT_KERJA', name: 'UNIT_KERJA', bSortable: false },
+                {   data: 'nomor_perjanjian_kerjasama_bri', name: 'no_perjanjian_kerjasama', bSortable: false },
                 {   data: 'golongan_mitra', name: 'Perihal', bSortable: false },
                 {   data: 'status', name: 'status', orderable: false, searchable: false}
             ],

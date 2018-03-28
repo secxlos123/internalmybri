@@ -8,10 +8,6 @@ use Client;
 
 class HomeController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('dashboard');
-    // }
 
 	public function getUser(){
      /* GET UserLogin Data */
@@ -60,7 +56,6 @@ class HomeController extends Controller
 
         $chart_data = array();
         foreach ($chartData['contents']['chart'] as $chart) {
-            // $yearName = date("Y", strtotime($chart->new_date));
             $monthName = $chart['month'];
             $value = $chart['value'];
 
@@ -92,7 +87,6 @@ class HomeController extends Controller
 
         $chart_data = array();
         foreach ($chartData['contents']['customer']['chart'] as $chart) {
-            // $yearName = date("Y", strtotime($chart->new_date));
             $monthName = $chart['month'];
             $value = $chart['value'];
 
@@ -124,7 +118,6 @@ class HomeController extends Controller
 
         $chart_data = array();
         foreach ($chartData['contents']['property']['chart'] as $chart) {
-            // $yearName = date("Y", strtotime($chart->new_date));
             $monthName = $chart['month'];
             $value = $chart['value'];
 

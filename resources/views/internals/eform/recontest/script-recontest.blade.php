@@ -34,7 +34,6 @@
   });
 
 $('#div_other_doc').on('click', '.delete-photo', function () {
-  // console.log('no');
   $(this).closest('div.docs').remove();
 })
 </script>

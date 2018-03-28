@@ -88,12 +88,13 @@ $(document).ready(function(){
 });
 
 $("#dp").keyup(function(){
-   var dp =this.value;
-   var dpPersen = dp /100;
-   var price = $("#price").inputmask('unmaskedvalue');
-   var priceint  = parseInt(price);
-   var down_payment = hitungDP(priceint,dpPersen);
-  });
+    $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,2})?$"});
+    var dp =this.value;
+    var dpPersen = dp /100;
+    var price = $("#price").inputmask('unmaskedvalue');
+    var priceint  = parseInt(price);
+    var down_payment = hitungDP(priceint,dpPersen)
+});
 
 function hitungDP(priceint,dpPersen){
   if(dpPersen > 0.99)
@@ -103,7 +104,6 @@ function hitungDP(priceint,dpPersen){
     dpPersen = 0;
     priceint = 0;
   }
-  console.log(dpPersen);
   var down_payment = priceint * dpPersen;
   var price_platform = priceint - down_payment;
   $("#down_payment").val(down_payment);
@@ -146,20 +146,23 @@ $("#down_payment").keyup(function(){
 
 //validasi nomer suku bunga
 $("#rate").keyup(function(e){
+     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
      var nilai = $(this).val();
      var id =  "#rate";
-     sukubunga(nilai,id,e);
+     //sukubunga(nilai,id,e);
 });
 
 //validasi suku bunga fixed
 
 $("#interest_rate_efektif").keyup(function(e){
+     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
      var nilai = $(this).val();
      var id =  "#interest_rate_efektif";
-     sukubunga(nilai,id,e);
+     //sukubunga(nilai,id,e);
 }); 
 
 $("#interest_rate_float").keyup(function(e){
+     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
      var nilai = $(this).val();
      var id =  "#interest_rate_float";
      sukubunga(nilai,id,e);
@@ -167,6 +170,7 @@ $("#interest_rate_float").keyup(function(e){
 
 
 $("#interest_rate_floor").keyup(function(e){
+     $(this).inputmask('Regex', {regex: "^[0-9]{1,2}(\\.\\d{1,4})?$"});
      var nilai = $(this).val();
      var id =  "#interest_rate_floor";
      sukubunga(nilai,id,e);
@@ -212,7 +216,6 @@ function  validation_timeperiod(nilai,id){
        nilai = defaultJangkaWaktu;
     }
     $(id).val(nilai);
-    console.log(nilai);
 }
 
 function isInteger(evt)

@@ -35,12 +35,6 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Detail Informasi Approval Collateral Appraisal</b></h5>
-                                <!-- <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : {{$collateral['property']['pic_phone']}}
-                                </p>
-                                @if (\Session::has('error'))
-                                 <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                                @endif -->
                                 @if($type != 'nonindex')
                                     <!-- detail properti -->
                                     @include('internals.collateral.manager._detail-property')
@@ -70,8 +64,6 @@
                                             <input type="hidden" name="dev_id" id="dev_id" value="{{$collateral['developer']['id']}}">
                                             <input type="hidden" name="prop_id" id="prop_id" value="{{$collateral['property']['id']}}">
                                             <div class="text-center">
-                                                <!-- <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Setujui</button>
-                                                <a href="javascript:void(0);" class="btn btn-danger waves-light waves-effect w-md m-b-20" id="btn-reject">Tolak</a> -->
                                                 <a href="{{URL::previous()}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                                             </div>
                                         </form>
@@ -115,7 +107,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -127,9 +118,6 @@
             },
         });
     });
-    // $(document).on('click', "#view-detail", function(){
-    //     $('#detail-collateral-modal').modal('show');
-    // })
 
     $(document).on('click', "#btn-approve", function(){
         $('#is_approved').attr('value', true);

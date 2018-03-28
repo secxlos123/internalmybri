@@ -108,7 +108,6 @@
                         <th>Target</th>
                         <th>Pemasar</th>
                         <th>Status</th>
-                        <!-- <th>Status</th> -->
                       </tr>
                     </thead>
                     <tbody>

@@ -119,7 +119,6 @@
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
                             <input type="text" class="form-control numericOnly currency-rp" value="{{($eformData['kpr']['dp'] / 100) * $eformData['kpr']['price']}}" maxlength="16" id="down_payment" readonly="">
-                            <!-- <span class="input-group-addon">,00</span> -->
                         </div><br>
                         <div class="input-group">
                             <input type="text" class="form-control" value="{{$eformData['kpr']['dp']}}" maxlength="16" readonly="">

@@ -53,32 +53,20 @@ class ApprovalController extends Controller
           ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])
           ->get();
 
         $detail = $formDetail['contents'];
-        // dd($detail);
-        // foreach ($request->all() as $index) {
-        //     $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
-        //     $application[] = $this->returnContent( $name, $data, $tableKey );
-        //   }
 
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
           ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])
           ->get();
 
         $customer = $customerData['contents'];
-        // dd($detail);
         $type = 'fill';
 
         $recontest = 1;
@@ -94,7 +82,6 @@ class ApprovalController extends Controller
     public function postApproval(Request $request, $id)
     {
         $data = $this->getUser();
-        // dd($request->all());
         $approve = [
           'pros' => $request->pros,
           'cons' => $request->cons,
@@ -141,32 +128,19 @@ class ApprovalController extends Controller
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                       ])
                     ->get();
 
         $detail = $formDetail['contents'];
-        // dd($detail);
-        // foreach ($request->all() as $index) {
-        //     $name = $baseName . '[' . $tablesIndex . '][' . $tableKey . ']';
-        //     $application[] = $this->returnContent( $name, $data, $tableKey );
-        //   }
-
         /*GET DETAIL CUST*/
         $customerData = Client::setEndpoint('customer/'.$detail['user_id'])
                         ->setHeaders([
                           'Authorization' => $data['token']
                           , 'pn' => $data['pn']
-                          // , 'auditaction' => 'action name'
-                          // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                          // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                         ])
                         ->get();
 
         $customer = $customerData['contents'];
-        // dd($detail);
         $type = 'preview';
         $recontest = 1;
 

@@ -192,13 +192,6 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
 
-// $(function(){
-//         $('.zoom').toggle(
-//               function() { $(this).animate({width: "100%"}, 500)},
-//                function() { $(this).animate({width: "50px"}, 500); }
-//         );
-//   });
-
 var options = {
     theme:"sk-bounce",
     message:'Mohon tunggu sebentar.',
@@ -230,14 +223,12 @@ function printPage() {
 }
 
 $('#no').on('change',function(){
-        // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').hide();
         }
     });
 
 $('#yes').on('change',function(){
-        // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').show();
         }

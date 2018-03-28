@@ -30,7 +30,6 @@
                 success: function (data) {
                     var $stckedData = data;
 
-                    console.log(data);
                     MorrisCharts.prototype.createStackedChart('morris-bar-stacked', $stckedData, 'month', ['value'], ['Pengajuan Baru'], ['#00529C']);
                 },
             })
@@ -113,9 +112,6 @@ function reloadData1()
 
                     d.start_date = $('#from').val();
                     d.end_date = $('#to').val();
-                    // d.status = $('#status').val();
-                    // d.ref_number = $('#ref_number').val();
-                    // d.customer_name = $('#customer_name').val();
                 }
             },
             aoColumns : [
@@ -146,7 +142,6 @@ function reloadData1()
                 return text;
             }
         },
-            //{   data: 'aging', name: 'aging' },
             {   data: 'action', name: 'action', orderable: false, searchable: false}
             ],
         });

@@ -237,7 +237,6 @@
 											<td>
 												<div class="input-group">
 													<p class="form-control-static">Rp. {{ number_format($bank['amount'], 2, ",", ".") }}</p>
-													<!-- <span class="input-group-addon">,00</span> -->
 												</div>
 											</td>
 											<td>

@@ -36,7 +36,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">DATA FASILITAS</h3>
                                 </div>
-								<?php echo $view5?>
+								<?php echo $view5; ?>
 							</div>
                     </div>
 
@@ -51,7 +51,9 @@
   </div>
 </div>
     <div class="content-page">
+
         <div class="content">
+	
 		<form action="MitraStore" method="post" enctype="multipart/form-data">
 		
 			{{ csrf_field() }}
@@ -246,20 +248,12 @@
 																			   <option value="Signer3">Signer3</option>
 																			   <option value="Signer4">Signer4</option>
 																	   </select>
-																			<!--<input type="text" class="form-control" name="pemutus_name" id="pemutus_name" value="{{ old('pemutus_name') }}" >-->
 																			<input type="hidden" class="form-control" name="countpemutus" id="countpemutus" value="1">
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="col-md-1">
-																<!--<div class="form-horizontal" >
-																	<div class="form-group button">
-																		<div class="col-md-1">
-																			<button type="button" onclick="addinput()" class="btn btn-orange waves-light waves-effect w-md m-b-10" data-toggle="modal" id="btn-tambah"><i class="mdi mdi-plus"></i> </button>
-																		</div>
-																	</div>
-																</div>-->
 															</div>
 															<div class="col-md-6">
 																<div class="form-horizontal">
@@ -272,7 +266,6 @@
 																			   <option value="Kadiv">Kadiv</option>
 																			   <option value="Wakadiv">Wakadiv</option>
 																	   </select>
-																			<!--<input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ old('jabatan') }}">-->
 																		</div>
 																	</div>
 																 </div>
@@ -292,19 +285,11 @@
 																			   <option value="checker3">checker3</option>
 																			   <option value="checker4">checker4</option>
 																	   </select>
-																			<!--<input type="text" class="form-control" name="pemutus_name" id="pemutus_name" value="{{ old('pemutus_name') }}" >-->
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div class="col-md-1">
-																<!--<div class="form-horizontal" >
-																	<div class="form-group button">
-																		<div class="col-md-1">
-																			<button type="button" onclick="addinput()" class="btn btn-orange waves-light waves-effect w-md m-b-10" data-toggle="modal" id="btn-tambah"><i class="mdi mdi-plus"></i> </button>
-																		</div>
-																	</div>
-																</div>-->
 															</div>
 															<div class="col-md-6">
 																<div class="form-horizontal">
@@ -318,7 +303,6 @@
 																			   <option value="Kadiv">Kadiv</option>
 																			   <option value="Wakadiv">Wakadiv</option>
 																	   </select>
-																			<!--<input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ old('jabatan') }}">-->
 																		</div>
 																	</div>
 																 </div>
@@ -335,12 +319,7 @@
 															
 															<div class="col-lg-6">
 																<div class="form-group submit3">
-																		<!--<div class="col-md-2">                               
-																			<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-download" name="btn-download"><i class="mdi mdi-download"></i>Unduh </button>
-																		</div>
-																		<div class="col-md-2">                               
-																			<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-print" name="btn-print"><i class="mdi mdi-printer"></i>Print </button>
-																		</div>-->
+																		
 																		<div class="col-md-2">                               
 																			<button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-submit" name="btn-submit"><i class="mdi mdi-content-save"></i>Simpan </button>
 																			

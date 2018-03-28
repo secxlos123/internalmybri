@@ -25,7 +25,6 @@ function getSchedule() {
 }
 
 function storeSchedule() {
-    console.log('masuk sini')
 }
 
 function loader(show) {

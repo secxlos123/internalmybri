@@ -97,7 +97,6 @@ class RoleController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
@@ -128,9 +127,6 @@ class RoleController extends Controller
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])
                     ->get();
 
@@ -154,9 +150,6 @@ class RoleController extends Controller
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])
                     ->get();
 
@@ -182,7 +175,6 @@ class RoleController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
@@ -210,7 +202,6 @@ class RoleController extends Controller
         $client = Client::setEndpoint('role/'.$id)->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
             , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
             , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
         ])->deleted();
@@ -226,7 +217,6 @@ class RoleController extends Controller
                 ->setHeaders([
                     'Authorization' => $user['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
@@ -240,7 +230,6 @@ class RoleController extends Controller
 
         foreach ($roles['contents']['data'] as $key => $role) {
             $role['slug'] = strtoupper($role['slug']);
-            // $delete = ! $role['is_default'] ? route('roles.destroy', $role['id']) : null;
             $delete = route('roles.destroy', $role['id']);
             $role['action'] = view('internals.layouts.actions', [
                 'edit' => route('roles.edit', $role['id']),
