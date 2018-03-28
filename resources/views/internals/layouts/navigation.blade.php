@@ -14,9 +14,6 @@
         </li>
         @endif
         @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='cs-bri') || ($data['role']=='superadmin'))
-        <!-- <li>
-        <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
-      </li> -->
       @endif
       <li>
         @if(($data['role']=='ao') || ($data['role']=='superadmin'))
@@ -24,7 +21,7 @@
         @elseif(($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='pincapem'))
         <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
         @elseif(($data['role']=='staff')||($data['role']=='other'))
-        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Tambah Referral </span> </a>
+        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> @if(($data['role']=='staff'))<span> Tambah Referral </span>@else <span> Pengajuan Kredit </span>  @endif </a>
 
         @endif
       </li>
@@ -71,11 +68,6 @@
       <li>
         <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
       </li>
-      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='cs-bri'))
-      <!-- <li>
-      <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
-    </li> -->
-    @endif
 
     @if(($data['role']=='collateral') || ($data['role']=='superadmin'))
     <li>
@@ -112,18 +104,10 @@
       <li>
         <a href="{{route('approveDeveloper')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
       </li>
-      <!-- <li>
-      <a href="{{route('approveThirdParty')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ke-3 </span> </a>
-    </li> -->
   </ul>
 </li>
 @endif
-<!-- <li>
-<a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
-</li>
-<li>
-<a href="{{route('roles.index')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>
-</li> -->
+
 @if(($data['role']=='prescreening') || ($data['role']=='superadmin'))
 <li>
   <a href="{{ route('screening.index') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Screening </span> </a>

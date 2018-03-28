@@ -10,11 +10,6 @@ use Client;
 
 class CustomerController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('leads', ['except' => ['datatables']]);
-    // }
-
     protected $columns = [
         'nik',
         'name',
@@ -43,7 +38,6 @@ class CustomerController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
-        // dd(session()->get('user.contents'));
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
@@ -51,12 +45,8 @@ class CustomerController extends Controller
           ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->get();
         $dataCustomer = isset($customerData['contents']['data']) ? $customerData['contents']['data'] : array() ;
-        // dd($dataCustomer);
 
         return view('internals.customers.index', compact('data', 'dataCustomer'));
     }
@@ -293,20 +283,11 @@ class CustomerController extends Controller
               , 'lat' => $request['hidden-lat']
           ])->setBody($newCustomer)
          ->post('multipart');
-         // dd($client);
-         // if($client['code'] == 200){
-         //    \Session::flash('success', $client['descriptions']);
-         //    return redirect()->back();
-         // }else{
-         //    \Session::flash('error', $client['descriptions']);
-         //    return redirect()->back();
-         // }
 
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];
 
         if($codeResponse == 201){
-            // session()->put('user', $client);
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse, 'data' => $client['contents']]);
         }elseif($codeResponse == 422){
             return response()->json($client);
@@ -338,8 +319,6 @@ class CustomerController extends Controller
                         ->get();
 
         $dataCustomer = $customerData['contents'];
-        // dd($dataCustomer);
-        // dd(($dataCustomer['personal']['status'] == 0) ? 'Lajang' : '');
 
         return view('internals.customers.detail', compact('data', 'dataCustomer'));
     }
@@ -360,9 +339,6 @@ class CustomerController extends Controller
           ->setHeaders([
             'Authorization' => $data['token']
             , 'pn' => $data['pn']
-            // , 'auditaction' => 'action name'
-            // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-            // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->get();
 
         $dataCustomer = $customerData['data'];
@@ -386,7 +362,6 @@ class CustomerController extends Controller
           ->setHeaders([
               'Authorization' => $data['token']
               , 'pn' => $data['pn']
-              // , 'auditaction' => 'action name'
               , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
               , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])->setBody($newCustomer)
@@ -411,22 +386,18 @@ class CustomerController extends Controller
     public function verifyCustomer(Request $request, $eform_id, $customer_id)
     {
         $data = $this->getUser();
-        // dd($request->all());
 
         $newCustomer = $this->customerRequest($request);
-        // dd($newCustomer);
 
         $client = Client::setEndpoint('customer/'.$customer_id)
          ->setHeaders([
               'Authorization' => $data['token']
               , 'pn' => $data['pn']
-              // , 'auditaction' => 'action name'
               , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
               , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
           ])
          ->setBody($newCustomer)
          ->put('multipart');
-         // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', 'Data berhasil dilengkapi!');
@@ -439,7 +410,6 @@ class CustomerController extends Controller
 
     public function datatables(Request $request)
     {
-      // dd($request->input('city_id'));
         $sort = $request->input('order.0');
         $data = $this->getUser();
 
@@ -447,7 +417,6 @@ class CustomerController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([

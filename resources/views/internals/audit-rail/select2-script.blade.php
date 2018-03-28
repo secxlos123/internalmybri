@@ -16,13 +16,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.pengajuan_kredit.data,
                         pagination: {
@@ -44,13 +42,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.admindev.data,
                         pagination: {
@@ -72,13 +68,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.appointment.data,
                         pagination: {
@@ -100,13 +94,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.agendev.data,
                         pagination: {
@@ -128,13 +120,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.property.data,
                         pagination: {
@@ -156,13 +146,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.document.data,
                         pagination: {
@@ -184,13 +172,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.collateral.data,
                         pagination: {
@@ -212,13 +198,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.kanwil.data,
                         pagination: {
@@ -240,13 +224,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.kanwil.data,
                         pagination: {
@@ -268,13 +250,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.kanwil.data,
                         pagination: {
@@ -316,8 +296,5 @@
                 cache: true
             },
         });
-        // $('.name').on('select2:select', function(){
-        //     $('#fake-aoid').val($(this).val());
-        // });
     });
 </script>

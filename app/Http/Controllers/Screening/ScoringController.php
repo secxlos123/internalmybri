@@ -10,10 +10,6 @@ use Client;
 
 class ScoringController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('leads', ['except' => ['datatables']]);
-    // }
 
     protected $columns = [
         'id',
@@ -38,7 +34,6 @@ class ScoringController extends Controller
     {
         /* GET UserLogin Data */
         $data = $this->getUser();
-        // dd(session()->get('user.contents'));
 
         /* GET Role Data */
         $customerData = Client::setEndpoint('customer')
@@ -46,12 +41,8 @@ class ScoringController extends Controller
                       ->setHeaders([
                           'Authorization' => $data['token']
                           , 'pn' => $data['pn']
-                          // , 'auditaction' => 'action name'
-                          // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                          // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                       ])->get();
         $dataCustomer = $customerData['contents']['data'];
-        // dd($dataCustomer);
 
         return view('internals.customers.index', compact('data', 'dataCustomer'));
     }
@@ -80,10 +71,6 @@ class ScoringController extends Controller
               'name'     => 'id',
               'contents' => $id,
             ],
-            // [
-            //   'name'     => 'is_screening',
-            //   'contents' => '1',
-            // ],
             [
               'name'     => 'pefindo_score',
               'contents' => $pefindo_score,
@@ -147,10 +134,6 @@ class ScoringController extends Controller
               'name'     => 'id',
               'contents' => $id,
             ],
-            // [
-            //   'name'     => 'is_screening',
-            //   'contents' => '1',
-            // ],
             [
               'name'     => 'pefindo_score',
               'contents' => $pefindo_score,
@@ -197,7 +180,6 @@ class ScoringController extends Controller
      */
     public function store(ScoringRequest $request)
     {
-        // return response()->json(['message' => "salah", 'code' => 500]);
         $data = $this->getUser();
 
     $countu = $request->countupload;
@@ -207,7 +189,6 @@ class ScoringController extends Controller
     $newCustomer = $this->dataRequest($request);
 
     }
-    // dd($newCustomer);
         $client = Client::setEndpoint('scorings')
          ->setHeaders([
               'Authorization' => $data['token']
@@ -237,7 +218,6 @@ class ScoringController extends Controller
 
     public function datatables(Request $request)
     {
-      // dd($request->input('city_id'));
         $sort = $request->input('order.0');
         $data = $this->getUser();
 
@@ -245,7 +225,6 @@ class ScoringController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([

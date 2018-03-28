@@ -100,14 +100,6 @@
                         <p class="form-control-static">{{$eformData['ref_number'] }}</p>
                     </div>
                 </div>
-               <!--  <div class="form-group">
-                    <label class="col-md-4 control-label">Jumlah Permohonan :</label>
-                    <div class="col-md-8">
-                        <div class="input-group">
-                            <p class="form-control-static">Rp. {{number_format($eformData['nominal'], 2, ",", ".")}}</p>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Jenis Permohonan :</label>
                     <div class="col-md-8">

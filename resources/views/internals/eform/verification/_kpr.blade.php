@@ -128,7 +128,6 @@
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
                                         <input type="text" class="form-control numericOnly currency-rp " id="price" name="price" value="{{$dataCustomer['kpr']['price']}}" maxlength="16" readonly="">
-                                        <!-- <span class="input-group-addon">,00</span> -->
                                         @if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
                                     </div>
                                     @else
@@ -200,7 +199,6 @@
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
                                         <input type="text" class="form-control numericOnly currency-rp" value="{{($dataCustomer['kpr']['dp'] / 100) * $dataCustomer['kpr']['price']}}" maxlength="16" id="down_payment">
-                                        <!-- <span class="input-group-addon">,00</span> -->
                                     </div><br>
                                     @else
                                         <p>Rp {{number_format(($dataCustomer['kpr']['dp'] / 100) * $dataCustomer['kpr']['price'], 2, ",", ".")}}</p>
@@ -224,7 +222,6 @@
                                     <div class="input-group">
                                         <span class="input-group-addon">Rp</span>
                                         <input type="text" class="form-control numericOnly currency-rp" name="request_amount" value="{{$dataCustomer['kpr']['request_amount']}}" maxlength="16" id="request_amount" readonly="">
-                                        <!-- <span class="input-group-addon">,00</span> -->
                                         @if ($errors->has('request_amount')) <p class="help-block">{{ $errors->first('request_amount') }}</p> @endif
                                     </div>
                                     @else
@@ -233,21 +230,6 @@
                                 </div>
                             </div>
                             <br>
-                            <!-- <div class="form-group">
-                                <label class="control-label col-md-4">Catatan :</label>
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <p class="control-label" >1. Jika KPR aktif ke-1, maka minimal uang muka 0 %</p><br>
-                                    </div>
-                                    <div class="input-group">
-                                        <p class="control-label" >2. Jika KPR aktif ke-2, maka minimal uang muka 10 %</p><br>
-                                    </div>
-                                    <div class="input-group">
-                                        <p class="control-label">Kondisi Luas Bangunan</p>
-                                    </div>
-                                </div>
-                            </div>
-                             -->
                         </div>
                     </div>
                 </div>

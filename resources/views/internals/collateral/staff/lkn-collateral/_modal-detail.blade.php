@@ -411,12 +411,6 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <!-- <div class="form-group">
-                                                                    <label class="col-md-5 control-label">Fasilitas Umum Yang Ada :</label>
-                                                                    <div class="col-md-7">
-                                                                        <p class="form-control-static" id="designated">Telepon</p>
-                                                                    </div>
-                                                                </div> -->
                                                                 <div class="form-group">
                                                                     <label class="col-md-5 control-label">Fasilitas Umum Lain :</label>
                                                                     <div class="col-md-7">

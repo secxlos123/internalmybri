@@ -22,11 +22,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <!-- <div class="pull-right"> -->
                     <button type="button" class="btn btn-orange waves-effect" id="btn-delete-this">Hapus Pengajuan</button>
-                    <!-- <button type="button" class="btn btn-info waves-effect" id="btn-delete-all">Hapus Semua Pengajuan Customer</button> -->
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                <!-- </div> -->
             </div>
         </div>
     </div>

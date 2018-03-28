@@ -101,8 +101,6 @@
 @include('internals.collateral.staff.lkn-collateral._modal-detail')
 @include('internals.collateral.staff.lkn-collateral._render-upload')
 @include('internals.collateral.staff.lkn-collateral._modal-maksimum-upload')
-<!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
-<!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
@@ -256,9 +254,6 @@
 
       // File Style 0
         $('#filestyle-0').on("change", function(){
-            //var input = this;
-            //var nameIdentity = this;
-            console.log(this.files);
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -271,8 +266,6 @@
     $('#add_photo').click(function(){
         var index = $('.photo').length;
         var x = $(".filestyle-foto").length;
-        console.log("index"+index);
-        console.log("x"+x);
         index++;
         if(index == 11){
            $('#modal-maksimum-upload').modal('show');
@@ -293,10 +286,6 @@
 
         // File Style 2
         $('#filestyle-'+x+'').on("change", function(){
-           // var input = this;
-           // var nameIdentity = this;
-            console.log(this.files);
-            console.log(x);
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -322,13 +311,6 @@
         $(this).closest('div.foto').remove();
         $("#preview-"+ id).remove();
     })
-
-    // Preview image when finish button clicked
-    // $("a[href='#finish']").on("click", function(){
-    //     $(".filestyle-foto").each(function(key, val){
-    //         previewImage(this, key);
-    //     });
-    // })
 
     $('#zip_code').on('input' , function() {
         var input=$(this).val();

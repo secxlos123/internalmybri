@@ -1,9 +1,6 @@
 <?php
 
-use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use Illuminate\Support\Facades\Storage;
-
-if (! function_exists('name_separator')) {
+if (!function_exists('name_separator')) {
 
     /**
      * Return an array of first name and last name from given full name.
@@ -19,14 +16,15 @@ if (! function_exists('name_separator')) {
     }
 }
 
-if (! function_exists('getUser')) {
+if (!function_exists('getUser')) {
 
     /**
      * GET UserLogin Data.
      *
      * @return object
      */
-    function getUser(){
+    function getUser()
+    {
         /*  */
         $users = session()->get('user');
 
@@ -38,21 +36,22 @@ if (! function_exists('getUser')) {
     }
 }
 
-if (! function_exists('is_read')) {
+if (!function_exists('is_read')) {
 
     /**
      * GET UserLogin Data.
      *
      * @return object
      */
-    function is_read(){
+    function is_read()
+    {
         $data = session()->get('user');
 
-        return json_encode( ['pn' => $data['pn'] ,'branch_id'=> $data['branch_id'] ,'role'=> $data['role'] ,'name'=> $data['name']] );
+        return json_encode(['pn' => $data['pn'], 'branch_id' => $data['branch_id'], 'role' => $data['role'], 'name' => $data['name']]);
     }
 }
 
-if (! function_exists('checkRolesInternal')) {
+if (!function_exists('checkRolesInternal')) {
 
     /**
      * Generate pdf file.
@@ -63,32 +62,32 @@ if (! function_exists('checkRolesInternal')) {
      *
      * @return array
      */
-    function checkRolesInternal($hilfm ,$posisi)
+    function checkRolesInternal($hilfm, $posisi)
     {
-        if( in_array( intval($hilfm), [ 37, 38, 39, 41, 42, 43 ] ) ) {
-            $ArrRole = ['role' =>'ao','branch_id' => $hilfm ];
-        } else if( in_array( intval($hilfm), [ 21, 49, 50, 51 ] ) ) {
-            $ArrRole = ['role' =>'mp','branch_id' => $hilfm ];
-        } else if( in_array( intval($hilfm), [ 5, 11, 12, 14, 19 ] ) ) {
-            $ArrRole = ['role' =>'pinca','branch_id' => $hilfm ];
-        } else if( in_array( intval($hilfm), [ 59 ] ) ) {
-            $ArrRole = ['role' =>'prescreening','branch_id' => $hilfm ];
-            if( in_array( strtolower($posisi), [ 'collateral appraisal', 'collateral manager' ] ) ){
+        if (in_array(intval($hilfm), [37, 38, 39, 41, 42, 43])) {
+            $ArrRole = ['role' => 'ao', 'branch_id' => $hilfm];
+        } else if (in_array(intval($hilfm), [21, 49, 50, 51])) {
+            $ArrRole = ['role' => 'mp', 'branch_id' => $hilfm];
+        } else if (in_array(intval($hilfm), [5, 11, 12, 14, 19])) {
+            $ArrRole = ['role' => 'pinca', 'branch_id' => $hilfm];
+        } else if (in_array(intval($hilfm), [59])) {
+            $ArrRole = ['role' => 'prescreening', 'branch_id' => $hilfm];
+            if (in_array(strtolower($posisi), ['collateral appraisal', 'collateral manager'])) {
                 $role = str_replace(' ', '-', strtolower($posisi));
             }
-        } else if( in_array( intval($hilfm), [26] ) ) {
-            $ArrRole = ['role' =>'staff','branch_id' => $hilfm ];
-        } else if( in_array( intval($hilfm), [18] ) ) {
-            $ArrRole = ['role' =>'collateral','branch_id' => $hilfm ];
+        } else if (in_array(intval($hilfm), [26])) {
+            $ArrRole = ['role' => 'staff', 'branch_id' => $hilfm];
+        } else if (in_array(intval($hilfm), [18])) {
+            $ArrRole = ['role' => 'collateral', 'branch_id' => $hilfm];
         } else {
-            $ArrRole = ['role' =>'null','branch_id' => $hilfm ];
+            $ArrRole = ['role' => 'null', 'branch_id' => $hilfm];
         }
 
         return $ArrRole;
-        }
     }
+}
 
-if (! function_exists('getUsers')) {
+if (!function_exists('getUsers')) {
     /**
      * Get logged user info.
      *
@@ -98,14 +97,14 @@ if (! function_exists('getUsers')) {
     function getUsers()
     {
         $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        foreach ($users as $user) {
+            $data = $user;
+        }
         return $data;
     }
 }
 
-if (! function_exists('branchs')) {
+if (!function_exists('branchs')) {
     /**
      * Get logged user info.
      *
@@ -115,16 +114,15 @@ if (! function_exists('branchs')) {
     function branchs()
     {
         $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+        foreach ($users as $user) {
+            $data = $user;
+        }
         $branchs = checkRolesInternal($data['branch']);
         return $branchs;
     }
 }
 
-
-if (! function_exists('getNotification')) {
+if (!function_exists('getNotification')) {
     /**
      * Get logged user info.
      *
@@ -143,25 +141,19 @@ if (! function_exists('getNotification')) {
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    , 'branch_id' => $data['branch']
-                    // , 'auditaction' => 'action name'
-                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    , 'branch_id' => $data['branch'],
                 ])->get();
             session()->put('notifications', $NotificationData['contents']);
             return $Arrnotification = $NotificationData['contents'];
 
-
         } catch (ClientException $e) {
-            \Log::info(Psr7\str($e->getRequest()));
             if ($e->hasResponse()) {
-                \Log::info(Psr7\str($e->getResponse()));
             }
         }
     }
 }
 
-if (! function_exists('notificationsUnread')) {
+if (!function_exists('notificationsUnread')) {
     /**
      * Get logged user info.
      *
@@ -180,25 +172,19 @@ if (! function_exists('notificationsUnread')) {
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
                     , 'branchid' => $data['branch']
-                    , 'role' => $data['role']
-                    // , 'auditaction' => 'action name'
-                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+                    , 'role' => $data['role'],
                 ])->get();
             session()->put('notificationsUnread', $NotificationDataUnread['contents']);
             return $ArrnotificationUnread = $NotificationDataUnread['contents'];
 
-
         } catch (ClientException $e) {
-            \Log::info(Psr7\str($e->getRequest()));
             if ($e->hasResponse()) {
-                \Log::info(Psr7\str($e->getResponse()));
             }
         }
     }
 }
 
-if (! function_exists('get_religion')) {
+if (!function_exists('get_religion')) {
 
     /**
      * Convert csv file to array.
@@ -216,10 +202,10 @@ if (! function_exists('get_religion')) {
             , "HIN" => "HINDU"
             , "ISL" => "ISLAM"
             , "KRI" => "KRISTEN"
-            , "ZZZ" => "LAINNYA"
+            , "ZZZ" => "LAINNYA",
         );
 
-        if ( $key != 'all' ) {
+        if ($key != 'all') {
             return isset($data[$key]) ? $data[$key] : '-';
         }
 
@@ -227,7 +213,7 @@ if (! function_exists('get_religion')) {
     }
 }
 
-if (! function_exists('get_title')) {
+if (!function_exists('get_title')) {
 
     /**
      * Convert csv file to array.
@@ -244,14 +230,13 @@ if (! function_exists('get_title')) {
             "S1" => "Sarjana"
             , "S2" => "Master"
             , "S3" => "Doktor"
-            // , "SE" => "Sekolah"
             , "SD" => "SD"
             , "SM" => "SMP"
             , "SU" => "SMU/SMK"
-            , "ZZ" => "Diploma"
+            , "ZZ" => "Diploma",
         );
 
-        if ( $key != 'all' ) {
+        if ($key != 'all') {
             return isset($data[$key]) ? $data[$key] : '-';
         }
 
@@ -259,7 +244,7 @@ if (! function_exists('get_title')) {
     }
 }
 
-if (! function_exists('get_employment')) {
+if (!function_exists('get_employment')) {
 
     /**
      * Convert csv file to array.
@@ -273,13 +258,13 @@ if (! function_exists('get_employment')) {
     function get_employment($key)
     {
         $data = array(
-           "1" => "Pegawai Tetap"
+            "1" => "Pegawai Tetap"
             , "2" => "Kontrak"
             , "3" => "Honorer"
-            , "4" => "Lainnya"
+            , "4" => "Lainnya",
         );
 
-        if ( $key != 'all' ) {
+        if ($key != 'all') {
             return isset($data[$key]) ? $data[$key] : '-';
         }
 
@@ -287,7 +272,7 @@ if (! function_exists('get_employment')) {
     }
 }
 
-if (! function_exists('get_loan_history')) {
+if (!function_exists('get_loan_history')) {
 
     /**
      * Convert csv file to array.
@@ -303,10 +288,10 @@ if (! function_exists('get_loan_history')) {
         $data = array(
             "1" => "Pernah menunggak"
             , "2" => "Debitur baru"
-            , "3" => "Tidak ada tunggakan"
+            , "3" => "Tidak ada tunggakan",
         );
 
-        if ( $key != 'all' ) {
+        if ($key != 'all') {
             return isset($data[$key]) ? $data[$key] : '-';
         }
 
@@ -314,7 +299,7 @@ if (! function_exists('get_loan_history')) {
     }
 }
 
-if (! function_exists('get_visit_purpose')) {
+if (!function_exists('get_visit_purpose')) {
 
     /**
      * Convert csv file to array.
@@ -332,10 +317,10 @@ if (! function_exists('get_visit_purpose')) {
             , "negosiasi" => "Negosiasi"
             , "pembinaan" => "Pembinaan"
             , "penagihan" => "Penagihan"
-            , "lain" => "Lain-lain"
+            , "lain" => "Lain-lain",
         );
 
-        if ( $key != 'all' ) {
+        if ($key != 'all') {
             return isset($data[$key]) ? $data[$key] : '-';
         }
 
@@ -343,7 +328,7 @@ if (! function_exists('get_visit_purpose')) {
     }
 }
 
-if (! function_exists('get_bank')) {
+if (!function_exists('get_bank')) {
 
     /**
      * Convert csv file to array.
@@ -367,10 +352,10 @@ if (! function_exists('get_bank')) {
             , "bii" => "BII"
             , "danamon" => "Danamon"
             , "cimb" => "CIMB"
-            , "other" => "Lainya"
+            , "other" => "Lainya",
         );
 
-        if ( $key != 'all' ) {
+        if ($key != 'all') {
             return isset($data[$key]) ? $data[$key] : '-';
         }
 
