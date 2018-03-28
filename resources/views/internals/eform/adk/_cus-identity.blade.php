@@ -3,6 +3,10 @@
         <div class="card-box">
             <form class="form-horizontal" role="form" action="{{route('verifikasi')}}" method="POST">
                 {{ csrf_field() }}
+                <input type="hidden" id="pinca" value="{{$detail['pinca_name']}}">
+                <input type="hidden" id="pinca_posisi" value="{{$detail['pinca_position']}}">
+                <input type="hidden" id="id_aplikasi" value="{{$detail['id_aplikasi']}}">
+                <input type="hidden" id="uid" value="{{$detail['uid']}}">
                 <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}" id="eform_id">
                 <input type="hidden" name="is_verified" id="verifikasi">
                 <div class="table-responsive">
