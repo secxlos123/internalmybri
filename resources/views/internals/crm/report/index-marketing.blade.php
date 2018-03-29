@@ -165,7 +165,7 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function(){
 
     $("#start").datepicker({
@@ -250,7 +250,7 @@
       ],
     });
   }
-</script>
+</script> -->
 <script type="text/javascript">
   $('#kanwil').on('change', function(){
     $('#kanca').html('');

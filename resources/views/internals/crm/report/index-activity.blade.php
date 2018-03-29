@@ -98,7 +98,7 @@
                 </div>
               </div>
             </div>
-            <div class="tab-scroll table-responsive">
+            <div class="tab-scroll table-responsive" id="table-activity">
               <table id="datatable" class="table table-bordered">
                 <thead class="bg-primary text-center">
                   <tr>
@@ -145,7 +145,7 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function(){
 
     $("#from").datepicker({
@@ -229,7 +229,7 @@
       ],
     });
   }
-</script>
+</script> -->
 <script type="text/javascript">
   $('#kanwil').on('change', function(){
     $('#kanca').html('');
@@ -337,7 +337,7 @@
 
     }).done(function(data){
       console.log(data);
-      $('#table-marketing').html(data);
+      $('#table-activity').html(data);
       $('#datatable').dataTable();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");

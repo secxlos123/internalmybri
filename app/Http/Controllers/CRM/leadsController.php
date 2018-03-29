@@ -136,7 +136,7 @@ class leadsController extends Controller
         if ($info['tipe_nasabah'] == "I") {
           return view('internals.crm.leads.detail', compact('data', 'portfolio', 'info', "marketing"));
         } else {
-          dd($info);
+          return view('internals.crm.leads.detail_non_i', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
         }
         // dd($customer);
 
@@ -202,7 +202,7 @@ class leadsController extends Controller
         if ($info['tipe_nasabah'] == "I") {
           return view('internals.crm.leads.detail', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
         } else {
-          dd($info);
+          return view('internals.crm.leads.detail_non_i', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
         }
         // dd($customer['contents']);
       }
