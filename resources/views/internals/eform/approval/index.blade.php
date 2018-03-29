@@ -27,7 +27,6 @@
     }
 }
 </style>
-
 <div class="content-page">
     <div class="content">
         <div class="container">
@@ -193,13 +192,6 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
 
-// $(function(){
-//         $('.zoom').toggle(
-//               function() { $(this).animate({width: "100%"}, 500)},
-//                function() { $(this).animate({width: "50px"}, 500); }
-//         );
-//   });
-
 var options = {
     theme:"sk-bounce",
     message:'Mohon tunggu sebentar.',
@@ -210,7 +202,7 @@ $('#btn-approve').on('click', function(){
     $('#auditaction').val('Approval Kredit');
     HoldOn.open(options);
     $('#form1').submit();
-    // HoldOn.close();
+    HoldOn.close();
 })
 
 $('#btn-reject').on('click', function(){
@@ -218,7 +210,7 @@ $('#btn-reject').on('click', function(){
     $('#auditaction').val('Reject Kredit');
     HoldOn.open(options);
     $('#form1').submit();
-    // HoldOn.close();
+    HoldOn.close();
 })
 
 $('#form1').on('keyup keypress', function(e) {
@@ -231,14 +223,12 @@ function printPage() {
 }
 
 $('#no').on('change',function(){
-        // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').hide();
         }
     });
 
 $('#yes').on('change',function(){
-        // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').show();
         }

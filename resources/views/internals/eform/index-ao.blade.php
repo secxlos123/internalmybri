@@ -34,9 +34,7 @@
                     </div>
                     <div class="card-box">
                         <div class="add-button">
-                            <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                             <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Kredit</a>
-                            <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                         </div>
                         <div id="filter" class="m-b-15">
                             <div class="row">
@@ -186,8 +184,6 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#btn-update-sicd").removeClass('hide');
-
         $("#from").datepicker({
             todayBtn:  1,
             autoclose: true,
@@ -213,7 +209,21 @@
             order : [[3, 'asc']],
             "language": {
                 "emptyTable": "No data available in table"
-            }
+            },
+          aoColumns : [
+                {   data: 'ref_number', name: 'ref_number', bSortable: false },
+                {   data: 'customer_name', name: 'customer_name', bSortable: false  },
+                {   data: 'request_amount', name: 'request_amount', bSortable: false  },
+                {   data: 'created_at', name: 'created_at', className: 'hidden' },
+                {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
+                {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
+                {   data: 'status', name: 'created_at', bSortable: false },
+                {   data: 'aging', name: 'aging' },
+                {   data: 'appointment_date', name: 'appointment_date', bSortable: false},
+                {   data: 'response_status', name: 'response_status', bSortable: false},
+                {   data: 'action', name: 'action', bSortable: false }
+            ]
         });
 
     $(document).on('click', "#btn-filter", function(){
@@ -224,10 +234,13 @@
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
         prescreeningStatus = $(this).parent().parent().children('td').eq(5).children('p').html();
+        autoPrescreening = "{{ env( 'PRESCREENING', 'manual' ) }}";
+        delayPrescreening = "{{ env( 'DELAY_PRESCREENING', 'normal' ) }}";
 
         HoldOn.open();
         if ( $(this).attr('data-verified') != 1 ) {
             // notif for verification
+            $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base').html()
@@ -253,6 +266,16 @@
                 }
 
             }).done(function(data){
+                if ( autoPrescreening == 'manual' ) {
+                    $("#btn-update-sicd").removeClass('hide');
+                    disabled = '';
+
+                } else {
+                    $("#btn-update-sicd").addClass('hide');
+                    disabled = 'disabled';
+
+                }
+
                 $("#result-modal .modal-body").html($('.modal-body-base').html());
                 // sicd.bikole: 1 = hijau; 2 = kuning; dst = merah
                 contents = data.response.contents;
@@ -291,7 +314,7 @@
                 html = '';
                 assets = "{{asset('assets/images/download.png')}}";
 
-                if ( uploadscore != null || uploadscore != '') {
+                if ( uploadscore != null || uploadscore != '' || uploadscore != 'PDF kosong') {
                     split = uploadscore.split(',');
                     $.each(split, function(key, value) {
                         if (value != ''){
@@ -323,7 +346,7 @@
                         selected = ' Dipilih';
                     }
 
-                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"> <label for="dhn'+key+'">DHN'+selected+'</label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
+                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="dhn'+key+'" name="select_dhn" value="'+key+'"'+disabled+'> <label for="dhn'+key+'">DHN'+selected+'</label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Hasil DHN </label><div class="col-md-6 dhn-color">'+warna+'</div></div></div></div></div></div>';
                 })
 
                 $.each(contents.sicd, function(key, sicd) {
@@ -343,7 +366,7 @@
                         selected = ' Dipilih';
                     }
 
-                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"> <label for="sicd'+key+'">SICD'+selected+'<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
+                    html += '<div class="card-box m-t-30 remove-class-prescreening"><h4 class="m-t-min30 m-b-30 header-title custom-title" id="success"><input type="radio" id="sicd'+key+'" name="select_sicd" value="'+key+'"'+disabled+'> <label for="sicd'+key+'">SICD'+selected+'<label></h4><div class="row"><div class="col-md-6"><div class="form-horizontal" role="form"><div class=""><label class="col-md-6 control-label"> Nama Nasabah </label><div class="col-md-6"><p class="form-control-static">'+(sicd.nama_debitur==null ? '-' : sicd.nama_debitur)+'</p></div></div><div class=""><label class="col-md-6 control-label"> NIK </label><div class="col-md-6"><p class="form-control-static">'+(sicd.no_identitas==null ? '-' : sicd.no_identitas)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Tanggal Lahir </label><div class="col-md-6"><p class="form-control-static">'+(sicd.tgl_lahir==null ? '-' : sicd.tgl_lahir)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Kolektibilitas </label><div class="col-md-6"><p class="form-control-static">'+(sicd.bikole==null ? '-' : sicd.bikole)+'</p></div></div><div class=""><label class="col-md-6 control-label"> Hasil SICD </label><div class="col-md-6">'+warna+'</div></div></div></div></div></div>';
                 })
                 $(html).insertAfter(base);
 
@@ -352,6 +375,7 @@
 
                 // $('#detail').html(data['view']);
                 $('#result-modal').modal('show');
+                $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 800px;');
                 HoldOn.close();
 
             }).fail(function(errors) {
@@ -360,11 +384,24 @@
 
             });
 
-        } else if ( prescreeningStatus == '-' ) {
+        } else if ( prescreeningStatus == '-' && autoPrescreening == 'manual' ) {
             // notif for verification
+            $("#btn-update-sicd").addClass('hide');
             $("#result-modal .modal-body")
                 .html(
                     $('.modal-text-base-none').html()
+                );
+            $('#result-modal').modal('show');
+            $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
+
+            HoldOn.close();
+
+        } else if ( $(this).attr('data-delay') == '1' && delayPrescreening == 'delay' ) {
+            // notif for verification
+            $("#btn-update-sicd").addClass('hide');
+            $("#result-modal .modal-body")
+                .html(
+                    $('.modal-text-base-delay').html()
                 );
             $('#result-modal').modal('show');
             $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
@@ -452,7 +489,6 @@
                         return text;
                     }
                 },
-                //{   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false }
             ],
       });
@@ -468,7 +504,6 @@
      //post Delete
     $(document).on('click', "#btn-delete-this", function(){
         eformId = $('#delete-modal #id').val();
-        // console.log(eformId);
         HoldOn.open();
 
         $.ajax({
@@ -485,7 +520,6 @@
         }).done(function(data){
             $('#delete-modal').modal('hide');
             $('#btn-filter').click();
-            // alert(data.response.descriptions);
             HoldOn.close();
             var body = $("html, body");
                 body.stop().animate({scrollTop:0}, 100, 'swing', function() {
@@ -493,7 +527,6 @@
                 });
 
         }).fail(function(errors) {
-            // alert("Gagal Terhubung ke Server");
             HoldOn.close();
             var body = $("html, body");
                 body.stop().animate({scrollTop:0}, 100, 'swing', function() {

@@ -31,7 +31,6 @@ class TrackingController extends Controller
     public function index()
     {
            $data = $this->getUser();
-        // dd($user);
         return view('internals.tracking.index', compact('data'));
     }
 
@@ -65,20 +64,15 @@ class TrackingController extends Controller
     public function show($id)
     {
         $data = $this->getUser();
-        // dd($user);
          /* GET Detail Data */
         $userData = Client::setEndpoint('tracking/'.$id)
                     ->setHeaders([
                         'Authorization' => $data['token']
                         , 'pn' => $data['pn']
-                        // , 'auditaction' => 'action name'
-                        // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                        // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])
                     ->get();
 
         $datas = $userData['contents'];
-        // dd($datas);
 
         return view('internals.tracking.detail', compact('data', 'datas'));
     }
@@ -130,7 +124,6 @@ class TrackingController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
@@ -141,7 +134,6 @@ class TrackingController extends Controller
                     'status'    => $request->input('status')
                 ])->get();
         foreach ($eforms['contents']['data'] as $key => $form) {
-            // dd($form['kpr']['developer_id']);
             $form['ref_number'] = strtoupper($form['ref_number']);
             $form['nama_pemohon'] = $form['nama_pemohon'];
             $form['developer_name'] = strtoupper($form['developer_name']);
@@ -174,7 +166,6 @@ class TrackingController extends Controller
             $excel->sheet('Rekapitulasi Data Tracking', function($sheet) use($data, $request){
                     // Set paper orientation
                     $sheet->setOrientation('landscape');
-                    // $sheet->setAllBorders('thin');
                     // Set title cell
                     $sheet->setPageMargin(0.25);
                     $sheet->row(1, array('Rekapitulasi Data Tracking'));
@@ -210,7 +201,6 @@ class TrackingController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();

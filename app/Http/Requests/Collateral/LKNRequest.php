@@ -87,7 +87,7 @@ class LKNRequest extends FormRequest
         'letter.number' => 'required',
         'letter.date' => 'required|date',
         'letter.on_behalf_of' => 'required',
-        'letter.duration_land_authorization' => 'date',
+        'letter.duration_land_authorization' => 'required|date|date_format:Y-m-d',
         'letter.bpn_name' => 'required'
       ];
     }
@@ -156,6 +156,7 @@ class LKNRequest extends FormRequest
         'other.building_exchange' => 'required',
         'other.things_bank_must_know' => 'required',
         'other.image_area.*.image_data' => 'required|mimes:jpeg,png,jpg,zip,pdf',
+        'other.image_area.1.image_data' => 'required|mimes:jpeg,png,jpg,zip,pdf',
         'other.image_condition_area' => 'mimes:jpeg,png,jpg,zip,pdf'
       ];
     }
@@ -172,6 +173,10 @@ class LKNRequest extends FormRequest
         'environment.nearest_location' => 'required',
         'environment.other_guide' => 'required',
         'environment.transportation' => 'required',
+        'environment.designated_pln' => 'required_without_all:environment.designated_phone,environment.designated_pam,environment.designated_telex',
+        'environment.designated_phone' => 'required_without_all:environment.designated_pln,environment.designated_pam,environment.designated_telex',
+        'environment.designated_pam' => 'required_without_all:environment.designated_pln,environment.designated_phone,environment.designated_telex',
+        'environment.designated_telex' => 'required_without_all:environment.designated_pln,environment.designated_phone,environment.designated_pam',
         'environment.distance_from_transportation' => 'required|regex:/^[\d.]+$/'
       ];
     }
@@ -267,5 +272,20 @@ class LKNRequest extends FormRequest
         'ten.insurance_value' => 'required_if:ten.insurance,Ya|numeric',
         'ten.eligibility' => 'required',
       ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+           'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum'
+        ];
     }
 }

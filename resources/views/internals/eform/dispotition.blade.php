@@ -90,12 +90,6 @@
                                                             <p class="form-control-static">{{$detail['branch']}}</p>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="form-group">
-                                                        <label class="col-md-5 control-label">Nama Nasabah :</label>
-                                                        <div class="col-md-7">
-                                                            <p class="form-control-static">{{$detail['customer_name']}}</p>
-                                                        </div>
-                                                    </div> -->
                                                     <div class="form-group">
                                                         <label class="col-md-5 control-label">Tanggal Pertemuan :</label>
                                                         <div class="col-md-7">
@@ -439,7 +433,7 @@
                                     </div>
                                     <div class="panel-body">
                                         <!-- dispose form -->
-                                        <form role="role" action="{{route('postDispotition', $id)}}" method="POST" >
+                                        <form id="formdispo" role="role" action="{{route('postDispotition', $id)}}" method="POST" >
                                         {{ csrf_field() }}
                                             <div class="row">
                                                 <div class="col-md-10">
@@ -460,7 +454,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">Catatan {{($detail['ao_id'] == NULL || $detail['ao_id'] == '' ? 'Disposisi' : 'Re-Disposisi')}} * :</label>
                                                             <div class="col-md-7">
-                                                                <textarea class="form-control" rows="5"></textarea>
+                                                                <textarea name="pinca_note" class="form-control" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -516,7 +510,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -531,5 +524,10 @@
         $('.name').on('select2:select', function(){
             $('#fake-aoid').val($(this).val());
         });
+        $('.name').on('select2:unselecting', function(){
+            $('#fake-aoid').val("");
+        });
     });
 </script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! JsValidator::formRequest('App\Http\Requests\EForm\DispoRequest', '#formdispo'); !!}

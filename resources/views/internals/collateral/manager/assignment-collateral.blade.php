@@ -35,9 +35,6 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="m-t-0 header-title"><b>Form Penugasan Collateral Appraisal</b></h5>
-                                <!-- <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : 
-                                </p> -->
                                 @if($type != 'nonindex')
                                     <!-- detail properti -->
                                     @include('internals.collateral.manager._detail-property')
@@ -62,9 +59,6 @@
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="form-horizontal" role="form">
-                                                        <!-- <div class="form-group" id="kanwil_select">
-                                                            <label class="col-md-5 control-label">Pilih Kantor Wilayah * :</label>
-                                                            <div class="col-md-7">
                                                                 {!! Form::select('kanwil', ['' => ''], old('kanwil'), [
                                                                     'class' => 'select2 kanwil',
                                                                     'data-placeholder' => 'Pilih Kantor Wilayah'
@@ -107,6 +101,7 @@
                                                                 ]) !!}
                                                             </div>
                                                             <input type="hidden" name="ao_name" id="ao_name">
+                                                            @include('form_audit._input_long_lat')
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-5">Catatan Penugasan * </label>
@@ -173,7 +168,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -240,7 +234,6 @@
             var text = $(this).find("option:selected").text();
 
             $('#ao_name').val(text);
-            // console.log(text);
             $('.ao_id').select2({
                 witdh : '100%',
                 allowClear: true,
@@ -257,7 +250,6 @@
                     },
                     processResults: function (data, params) {
                         params.page = params.page || 1;
-                        // console.log(data);
                         return {
                             results: data.officers.data,
                             pagination: {
@@ -277,34 +269,6 @@
             $('#ao_name').val(text);
         });
 
-        // $('.kanwil').select2({
-        //     witdh : '100%',
-        //     allowClear: true,
-        //     ajax: {
-        //         url: '{{route("getKanwil")}}',
-        //         dataType: 'json',
-        //         delay: 250,
-        //         data: function (params) {
-        //             return {
-        //                 name: params.term,
-        //                 page: params.page || 1
-        //             };
-        //         },
-        //         processResults: function (data, params) {
-        //             params.page = params.page || 1;
-        //             // console.log(data);
-        //             return {
-        //                 results: data.kanwil.data,
-        //                 pagination: {
-        //                     more: (params.page * data.kanwil.per_page) < data.kanwil.total
-        //                 }
-        //             };
-        //         },
-        //         cache: true
-        //     },
-        // });
-
-        // $('.kanwil').on('change', function () {
             var id = $('#kanwil').val();
             $('.staff_id').select2({
                     witdh : '100%',
@@ -322,7 +286,6 @@
                         },
                         processResults: function (data, params) {
                             params.page = params.page || 1;
-                            // console.log(data);
                             return {
                                 results: data.staffs.data,
                                 pagination: {
@@ -334,7 +297,6 @@
                     },
             });
         });
-    // });
 </script>
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Collateral\AssignmentRequest', '#form-assignment'); !!}

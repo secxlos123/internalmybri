@@ -11,7 +11,6 @@
 		var bank = "0";
 	$(document).on('click', '.add-row', function () {
 		var row = $(this).data('row');
-		// console.log(row);
 		var	index = $('.count-row').length;
 	    $('#accountTable'+row).append(
 	    			'<tr data-tr="'+index+'">'
@@ -98,7 +97,6 @@
 	$('.use_reason').on('change', function(){
 		$('#use_reason_id').val($(this).val());
         var project = $('.project_list').val();
-		// console.log($(this).val());
         if(($(this).val() == 2) || ($(this).val() == 18) || (project == 1)){
             $('#shm').removeAttr('hidden');
             $('#imb').removeAttr('hidden');
@@ -130,7 +128,6 @@
         });
 
 		$('.kpp_type').select2({
-            // width : '100%',
             allowClear: true,
             ajax: {
                 url: '/dropdown/kpptypelist',
@@ -144,7 +141,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.kppType.data,
                         pagination: {
@@ -161,7 +157,6 @@
         });
 
         $('.type_financed').select2({
-            // width : '100%',
             allowClear: true,
             ajax: {
                 url: '/dropdown/typefinanced',
@@ -175,7 +170,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.typeFinanced.data,
                         pagination: {
@@ -192,7 +186,6 @@
         });
 
         $('.economy_sector').select2({
-            // width : '100%',
             allowClear: true,
             ajax: {
                 url: '/dropdown/economysectors',
@@ -206,7 +199,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.economySector.data,
                         pagination: {
@@ -223,7 +215,6 @@
         });
 
         $('.project_list').select2({
-            // width : '100%',
             allowClear: true,
             ajax: {
                 url: '/dropdown/projectlist',
@@ -237,7 +228,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.projectList.data,
                         pagination: {
@@ -254,7 +244,6 @@
         });
 
         $('.program_list').select2({
-            // width : '100%',
             allowClear: true,
             ajax: {
                 url: '/dropdown/programlist',
@@ -268,7 +257,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.programList.data,
                         pagination: {
@@ -285,7 +273,6 @@
         });
 
         $('.use_reason').select2({
-            // width : '100%',
             allowClear: true,
             ajax: {
                 url: '/dropdown/usereason',
@@ -299,7 +286,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.useReason.data,
                         pagination: {

@@ -93,7 +93,6 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    console.log(response);
                     $("#permission tbody").html("");
                     $.each(response, function (index, value){
                         if(value == true){
@@ -111,7 +110,6 @@
                     $("#view-modal #slug").html(slug);
                 },
                 error: function(result){
-                    console.log('error');
                 }
             });
         });

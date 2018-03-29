@@ -22,8 +22,6 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Detail Aksi :</label>
                         <div class="col-sm-8">
-                           <!-- <input type="text" class="form-control" id="module_name2"> 
-                           -->
                            {!! Form::select('action_collateral', ['' => ''], old('name'), [
                                 'class' => 'select2 action_collateral',
                                 'data-placeholder' => 'Pilih Detail Aksi',
@@ -83,12 +81,14 @@
                     <th>Developer</th>
                     <th>Data Lama</th>
                     <th>Data Baru</th>
+                    <th>Debitur</th>
                     <th>IP Address</th>
                     <th>Lokasi Akses</th>
                 </tr>
             </thead>
             <tbody>
                 <tr role="row" class="odd">
+                    <td> </td>
                     <td> </td>
                     <td> </td>
                     <td> </td>

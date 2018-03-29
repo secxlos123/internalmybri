@@ -23,7 +23,7 @@
                     <label class="col-md-4 control-label">Tanggal Kunjungan :</label>
                     <div class="col-md-8">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="datepicker-mindate" name="date" value="{{ $recontest == 1 ? $eformData['appointment_date'] : date('Y-m-d') }}" readonly="">
+                            <input type="text" class="form-control" name="date" value="{{ $eformData['appointment_date'] }}" readonly="">
                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                         </div>
                         @if ($errors->has('date')) <p class="help-block">{{ $errors->first('date') }}</p> @endif
@@ -100,14 +100,6 @@
                         <p class="form-control-static">{{$eformData['ref_number'] }}</p>
                     </div>
                 </div>
-               <!--  <div class="form-group">
-                    <label class="col-md-4 control-label">Jumlah Permohonan :</label>
-                    <div class="col-md-8">
-                        <div class="input-group">
-                            <p class="form-control-static">Rp. {{number_format($eformData['nominal'], 2, ",", ".")}}</p>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="form-group">
                     <label class="col-md-4 control-label">Jenis Permohonan :</label>
                     <div class="col-md-8">

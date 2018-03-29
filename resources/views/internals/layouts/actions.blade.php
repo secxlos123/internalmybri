@@ -30,7 +30,11 @@
 @if (isset($dispotition)  && $submited == false && $visited == false)
 	@php ( $title = ( $dispotition['ao_id'] == NULL || $dispotition['ao_id'] == '' ) ? 'Disposisi' : 'Re-Disposisi' )
 	<a href="{{url('/eform/dispotition/'.$dispotition['id'].'/'.str_replace(' ','-',$dispotition['ref_number']))}}" class="btn btn-icon waves-effect waves-light btn-teal bottom-margin" data-toggle="tooltip" data-placement="top" title="{{ $title }}" data-original-title="{{ $title }}">
+		@if ($title == 'Disposisi')
 		<i class="mdi mdi-loupe"></i>
+		@else
+		<i class="mdi mdi-rotate-3d"></i>
+		@endif
 	</a>
 @endif
 
@@ -145,13 +149,13 @@
 		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 		</a>
 	@else
-		<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
+		<a href="javascript:void(0);" data-url="{{ $screening_result }}" data-verified="{{ $is_verified }}" data-screening="{{ $is_screening }}" data-delay="{{ ($delay_prescreening) ? $delay_prescreening : 0 }}" class="btn btn-primary bottom-margin" data-original-title="Prescreening" title="Prescreening" id="btn-prescreening">
 		    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 		</a>
 	@endif
 @endif
 
-@if ((isset($dispose_collateral)) && ($status == "baru"))
+@if ((isset($dispose_collateral)) && ($status == "baru" || $status == "ditolak"))
 	<a href="{!! $dispose_collateral !!}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin" data-original-title="Penugasan" title="Penugasan">
 	    <i class="fa fa-user-plus" aria-hidden="true"></i>
 	</a>
@@ -169,11 +173,17 @@
 	</a>
 @endif
 
-@if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses"))
-	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Lakukan OTS / Penolakan
-    Penugasan" title="Lakukan OTS / Penolakan
-    Penugasan">
+@if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses" || $status == "Ditolak"))
+	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakan
+    Penugasan"@else "Lakukan Kembali OTS / Penolakan
+        Penugasan" @endif title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakan
+    Penugasan"@else "Lakukan Kembali OTS / Penolakan
+        Penugasan" @endif >
+    @if ($status == "Sedang Di Proses")
 	    <i class="fa fa-briefcase" aria-hidden="true"></i>
+	@else
+		<i class="fa fa-repeat" aria-hidden="true"></i>
+    @endif
 	</a>
 @endif
 

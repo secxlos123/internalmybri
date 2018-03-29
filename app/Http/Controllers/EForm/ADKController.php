@@ -27,7 +27,7 @@ class ADKController extends Controller
     public function index() {
         $data = $this->getUser();
         // hanya adk yg bisa melakukan fungsi ini
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.index', compact('data'));
         } else {
             return view('errors.404');
@@ -44,13 +44,6 @@ class ADKController extends Controller
                 ])
             ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
-
-        /*$conten = [
-            'nik' => '',
-            'tp_produk' => '',
-            'uid_pemrakarsa' => ''
-        ];*/
         $asuransi = [
             'premi_as_jiwa' => '',
             'premi_beban_debitur' => '',
@@ -62,38 +55,72 @@ class ADKController extends Controller
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
-
             $asuransi = [
                 'premi_as_jiwa' => $premi_as_jiwa,
                 'premi_beban_debitur' => $premi_beban_debitur,
                 'premi_beban_bri' => $premi_beban_bri
             ];
-
-            /*$conten = [
-                'nik'           => $detail['nik'],
-                'tp_produk'     => $detail['tp_produk'],
-                'uid_pemrakarsa'=> $detail['uid_pemrakarsa']
-            ];*/
         }
-
-        // GET Form Data Debitur LAS
-        /*$data_debitur = Client::setEndpoint('api_las/index')
-            ->setHeaders(['Authorization' => $data['token'],
-                  'pn' => $data['pn']])
-            ->setBody([
-                'requestMethod' => 'inquiryHistoryDebiturPerorangan',
-                'requestData'   => $conten
-            ])
-            ->post();
-        $debitur = [];
-        if ($data_debitur['code'] == '01') {
-            $debitur = $data_debitur['contents']['data'][0];
-        }*/
         
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
+        }
+    }
+
+    public function postFotoLainnya(Request $request) {
+        $data = $this->getUser();
+        $response = $request->all();
+        // print_r($response);
+        try {
+            if ($response['action'] == 'add') {
+                $update_data = [
+                    '_token'      => $response['_token'],
+                    'is_verified' => 0,
+                    'eform_id'    => $response['eform_id'],
+                    'action'      => $response['action'],
+                    'foto'        => $response
+                ];
+            } else {
+                $update_data = [
+                    'data'        => $response,
+                    'uploadfoto'  => !isset($response['uploadfoto'])?null:$response['uploadfoto'],
+                    'uploadfoto2' => !isset($response['uploadfoto2'])?null:$response['uploadfoto2'],
+                    'uploadfoto3' => !isset($response['uploadfoto3'])?null:$response['uploadfoto3'],
+                    'uploadfoto4' => !isset($response['uploadfoto4'])?null:$response['uploadfoto4'],
+                    'uploadfoto5' => !isset($response['uploadfoto5'])?null:$response['uploadfoto5'],
+                ];
+            }
+            $newData = $this->dataRequest($update_data);
+            // print_r($newData);exit();
+            $update_briguna = Client::setEndpoint('api_las/foto_lainnya')
+                            ->setHeaders(
+                                [ 'Authorization' => $data['token'],
+                                  'pn' => $data['pn']
+                                ])
+                            ->setBody($newData)
+                            ->post('multipart');
+
+            if ($update_briguna['code'] == '200') {
+                return response()->json([
+                    'code'     => 200,
+                    'message'  => 'Foto Lainnya Berhasil disimpan',
+                    'response' => $update_briguna
+                ]);
+            } else {
+                return response()->json([
+                    'code'     => 400,
+                    'message'  => 'Foto Lainnya Gagal disimpan',
+                    'response' => ''
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'code'     => 400,
+                'message'  => 'Gagal Koneksi Jaringan'.$e,
+                'response' => ''
+            ]);
         }
     }
 
@@ -624,6 +651,7 @@ class ADKController extends Controller
         }
 
         // verifikasi dokumen lengkap
+        // masih kemungkinan dipake
         /*if ($response['is_verified'] == 1) {
             $update_data = [
                 'is_verified'      => $response['is_verified'],
@@ -684,13 +712,34 @@ class ADKController extends Controller
     public function postApprove(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
-
         // verifikasi adk dibatalkan kirim ke brinet
         if (strtolower($response['type']) == 'batal') {
-            $update_data = [
+            $conten_putusan = [
                 'eform_id'    => $response['eform_id'],
-                'is_send'     => 4,
-                'catatan_adk' => $response['catat_adk']
+                "id_aplikasi" => $response['id_aplikasi'],
+                "uid"         => $response['uid'],
+                "flag_putusan"=> '2',
+                "catatan"     => $response['catat_adk'],
+                "pinca_name"    => $response['pinca_name'],
+                "pinca_position"=> $response['pinca_position']
+            ];
+            // print_r($conten_putusan);exit();
+            $putusan = Client::setEndpoint('api_las/index')
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->setBody([
+                        'requestMethod' => 'putusSepakat',
+                        'requestData'   => $conten_putusan
+                    ])
+                    ->post('form_params');
+
+            $update_data = [
+                "eform_id"    => $response['eform_id'],
+                "is_send"     => 4,
+                "tgl_pencairan" => date('Y-m-d H:i:s'),
+                "catatan_adk" => $response['catat_adk']
             ];
             if ($response['catat_adk'] == '') {
                 return response()->json([
@@ -746,9 +795,9 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');
 
-            if ($putusan['statusCode'] == '01') {
+            // if ($putusan['statusCode'] == '01') {
                 // get status interface yang sudah dikirim ke brinets
-                /*$getBrinets = Client::setEndpoint('api_las/index')
+                $getBrinets = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
                           'pn' => $data['pn']
@@ -757,81 +806,62 @@ class ADKController extends Controller
                         'requestMethod' => 'getStatusInterface',
                         'requestData'   => $response['id_aplikasi']
                     ])
-                    ->post('form_params');*/
+                    ->post('form_params');
 
-                // if ($getBrinets['statusCode'] == '01') {
-                    // $update_data = [
-                        // 'eform_id'    => $response['eform_id'],
+                if ($getBrinets['statusCode'] == '01') {
+                    $update_data = [
+                        'eform_id'    => $response['eform_id'],
                         // 'is_send'     => 7,
                         // 'is_send'     => 6,
                         // 'catatan_adk' => $response['catat_adk'],
-                        // 'cif'         => $getBrinets['items'][0]['CIF'],
-                        // 'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
-                        // 'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
-                    // ];
+                        'cif'         => $getBrinets['items'][0]['CIF'],
+                        'cif_las'     => $getBrinets['items'][0]['CIF_LAS'],
+                        'no_rekening' => $getBrinets['items'][0]['NO_REKENING']
+                    ];
 
                     // print_r($update_data);exit();
-                    // $update_briguna = Client::setEndpoint('api_las/update')
-                    //     ->setHeaders(
-                    //         [ 'Authorization' => $data['token'],
-                    //           'pn' => $data['pn']
-                    //         ])
-                    //     ->setBody($update_data)
-                    //     ->post();
+                    $update_briguna = Client::setEndpoint('api_las/update')
+                        ->setHeaders(
+                            [ 'Authorization' => $data['token'],
+                              'pn' => $data['pn']
+                            ])
+                        ->setBody($update_data)
+                        ->post();
 
-                    // if ($update_briguna['code'] == '200') {
+                    if ($update_briguna['code'] == '200') {
                         \Session::flash('success', 'Verifikasi '.$putusan['statusDesc'].' dikirim ke Brinets');
                         return redirect()->route('adk.index');
-                    // } else {
-                    //     \Session::flash('error', 'Verifikasi gagal disimpan');
-                    //     return redirect()->route('adk.index');
-                    // }
-                // } else {
-                //     \Session::flash('error', 'Brinets tidak menemukan Id Aplikasi');
-                //     return redirect()->route('adk.index');
-                // }
-            } else {
-                \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
-                return redirect()->route('adk.index');
-            }
+                    } else {
+                        \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+                        return redirect()->route('adk.index');
+                    }
+                } else {
+                    \Session::flash('error', 'Hasil Inquiry DB Kosong, Id Aplikasi tidak ditemukan');
+                    return redirect()->route('adk.index');
+                }
+            // } else {
+            //     \Session::flash('error', 'Verifikasi gagal dikirim ke Brinets');
+            //     return redirect()->route('adk.index');
+            // }
         }
     }
 
     public function datatables(Request $request) {
+        // print_r($request->all());
+        // $sort   = $request->input('order.0');
+        // $column = $request->input('columns.'.$sort['column'].'');
+        // print_r($column['name']);exit();
         $eforms = ['contents' => 
             [
                 'draw'            => $request->input('draw'),
                 'recordsTotal'    => '0',
                 'recordsFiltered' => '0',
-                'data'            => [
-                    // 'cif' => '123123',
-                    // 'tgl_pengajuan' => '123122',
-                    // 'id_aplikasi' => '23131',
-                    // 'ref_number'  => 'asdewqe',
-                    // 'fid_tp_produk'=> '12',
-                    // 'nama_pegawai' => 'asdsaasdd',
-                    // 'namadeb' => 'asdasd',
-                    // 'request_amount' => 'asdasdasd',
-                    // 'STATUS' => 'asdas',
-                    // 'status_screening' => 'asdasd',
-                    // 'eform_id' => '1223',
-                    // 'action' => 'asdadsa'
-                ]
+                'data'            => []
             ]
         ];
 
         $data = $this->getUser();
-        $customer = Client::setEndpoint('api_las/index')
-                ->setHeaders([
-                    'Authorization' => $data['token'],
-                    'pn'            => $data['pn']
-                ])->setBody([
-                    'requestMethod' => 'eformBriguna',
-                    'requestData'   => $data['branch']
-                ])->post();
-
-        if (!empty($customer)) {
-            $debitur = Client::setEndpoint('api_las/index')
+        $debitur = Client::setEndpoint('api_las/index')
                 ->setHeaders([
                     'Authorization' => $data['token'],
                     'pn'            => $data['pn']
@@ -840,36 +870,60 @@ class ADKController extends Controller
                     'requestData'   => $data['branch']
                 ])->post();
 
-            if ($debitur['code'] == '01') {
-                $listVerADK = $debitur['contents']['data'];
+        if ($debitur['code'] == '01') {
+            $listVerADK = $debitur['contents']['data'];
+            foreach ($listVerADK as $key => $result) {
+                $id_aplikasi[] = $result['id_aplikasi'];
+            }
+
+            $params = [
+                'id_aplikasi' => $id_aplikasi,
+                'branch' => $data['branch']
+            ];
+            $customer = Client::setEndpoint('api_las/index')
+                    ->setHeaders([
+                        'Authorization' => $data['token'],
+                        'pn'            => $data['pn']
+                    ])->setBody([
+                        'requestMethod' => 'eformBriguna',
+                        'requestData'   => $params,
+                        // 'start'         => $request->input('start'),
+                        // 'limit'         => $request->input('length'),
+                        // 'search'        => $request->input('search.value'),
+                        // 'sort'          => $column['name'].'|'.$sort['dir'],
+                        // 'page'          => (int) $request->input('page') + 1
+                    ])->post();
+                    // print_r($customer);exit();
+            // $customer = $customer['contents'];
+            if (!empty($customer)) {
                 $form  = array();
                 $count = 0;
                 foreach ($customer as $index => $value) {
-                    foreach ($listVerADK as $key => $form) {
-                        if (intval($value['id_aplikasi']) == intval($form['id_aplikasi'])) {
-                            // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
-                            if ($value['is_send'] == '1') {
-                                $status    = $this->getStatusIsSend($value['is_send']);
-                                $tp_produk = $this->getProduk($form['fid_tp_produk']);
-                                $prescreening = $this->getStatusScreening($value['prescreening_status']);
-                                $form['cif'] = $value['cif'];
-                                $form['eform_id'] = $value['eform_id'];
-                                $form['fid_tp_produk'] = $tp_produk;
-                                $form['STATUS'] = $status;
-                                $form['ref_number'] = $value['ref_number'];
-                                $form['status_screening'] = $prescreening;
-                                $form['tgl_pengajuan'] = empty($value['created_at']) ? $value['created_at'] : date('d-m-Y',strtotime($value['created_at']));
-                                $form['request_amount'] = 'Rp '.number_format($form['plafond'], 0, ",", ".");
-                                $form['action'] = view('internals.layouts.actions',[
-                                    'approve_adk' => $form,
-                                    'is_screening'     => $value['is_screening'],
-                                    'is_verified'      => $value['is_verified'],
-                                    'screening_result' => 'view'
-                                ])->render();
-                                $eforms['contents']['data'][] = $form;
-                                $count = count($form);
-                            }
-                        }
+                    // ada kemungkinan dipake
+                    // if (intval($value['is_send']) == '1' || intval($value['is_send']) == '3' || intval($value['is_send']) == '6') {
+                    if ($value['is_send'] == '1') {
+                        // $status    = $this->getStatusIsSend($value['is_send']);
+                        // $tp_produk = $this->getProduk($form['fid_tp_produk']);
+                        $prescreening = $this->getStatusScreening($value['prescreening_status']);
+                        $form['cif']  = $value['cif'];
+                        $form['STATUS'] = $value['status_putusan'];
+                        $form['namadeb']  = $value['first_name'].' '.$value['last_name'];
+                        $form['eform_id'] = $value['eform_id'];
+                        $form['ref_number']   = $value['ref_number'];
+                        $form['id_aplikasi']  = $value['id_aplikasi'];
+                        $form['nama_pegawai'] = $value['ao_name'];
+                        $form['fid_tp_produk']= $value['product'];
+                        $form['tgl_pengajuan']= empty($value['created_at']) ? $value['created_at'] : date('d-m-Y H:i:s',strtotime($value['created_at']));
+                        $form['request_amount'] = 'Rp '.number_format($value['Plafond_usulan'], 0, ",", ".");
+                        $form['status_screening'] = $prescreening;
+                        $form['action'] = view('internals.layouts.actions',[
+                            'approve_adk' => $form,
+                            'is_screening'     => $value['is_screening'],
+                            'is_verified'      => $value['is_verified'],
+                            'screening_result' => 'view'
+                        ])->render();
+                        $eforms['contents']['data'][] = $form;
+                        $count = count($form);
                     }
                 }
 
@@ -878,7 +932,7 @@ class ADKController extends Controller
                     $eforms['contents']['draw']            = $request->input('draw');
                     $eforms['contents']['recordsTotal']    = $eforms['contents']['total'];
                     $eforms['contents']['recordsFiltered'] = $eforms['contents']['total'];
-                }
+                } 
             }
         }
         return response()->json($eforms['contents']);
@@ -894,10 +948,10 @@ class ADKController extends Controller
                         ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $tgl_skpp = empty($detail['created_at']) ? '' : date('d-m-Y',strtotime($detail['created_at']));
-            $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], -4);
+            $tgl_putusan  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4);
             $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_skpp;
             $no_putusan  = 'PTK/'.$detail['ref_number'].'/'.date('m').'/'.date('Y').'/  '.$tgl_putusan;
             $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
@@ -950,7 +1004,7 @@ class ADKController extends Controller
                         ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $fasilitas   = substr($detail['Kode_fasilitas'],-2);
             $no_skpp     = $detail['ref_number'].'/'.date('m').'/'.date('Y');
@@ -994,26 +1048,21 @@ class ADKController extends Controller
                 'no_sk_awal'    => $no_sk_awal,
                 'no_sk_akhir'   => $no_sk_akhir
             ];
-            // dd($detail_sph);
+
+            // lempar data ke view blade
+            view()->share('data_sph',$detail_sph);
             if ($detail['baru_atau_perpanjang'] == '0') {
-                if (strtolower($fasilitas) == 'wl') {
-                    // lempar data ke view blade
-                    view()->share('data_sph',$detail_sph);
+                if (strtolower($fasilitas) == 'wl' || strtolower($fasilitas) == 'wn') {
                     $pdf = PDF::loadView('internals.eform.adk._sph');
                     return $pdf->download('sph_briguna_karya.pdf');
-                } else if (strtolower($fasilitas) == 'wp') {
-                    // lempar data ke view blade
-                    view()->share('data_sph',$detail_sph);
+                } else if (strtolower($fasilitas) == 'wp' || strtolower($fasilitas) == 'zu') {
                     $pdf = PDF::loadView('internals.eform.adk._sph_pekerja_bri');
                     return $pdf->download('sph_briguna_pekerja_bri.pdf');
-                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8') {
-                    // lempar data ke view blade
-                    view()->share('data_sph',$detail_sph);
+                } else if (strtolower($fasilitas) == 'w7' || strtolower($fasilitas) == 'w8' || strtolower($fasilitas) == 'zn') {
                     $pdf = PDF::loadView('internals.eform.adk._sph_smart_profesi');
                     return $pdf->download('sph_briguna_smart.pdf');
                 }
             } else {
-                view()->share('data_sph',$detail_sph);
                 $pdf = PDF::loadView('internals.eform.adk._adendum');
                 return $pdf->download('sph_addendum.pdf');
             }
@@ -1033,7 +1082,7 @@ class ADKController extends Controller
                     ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $no_skpp    = $detail['ref_number'].'/'.date('m').'/'.date('Y');
             $detail_sph = [
@@ -1050,7 +1099,6 @@ class ADKController extends Controller
                 'pekerjaan'     => $detail['customer']['work']['work'],
                 'alamat'        => $detail['customer']['personal']['address'],
                 'alamat_dom'    => $detail['customer']['personal']['current_address'],
-                // 'alamat_kantor' => $detail['customer']['work']['office_address'],
                 'tlp_emergency' => $detail['customer']['contact']['emergency_contact'],
                 'status'        => $detail['customer']['personal']['status'],
                 'tlp_rumah'     => $detail['customer']['personal']['phone'],
@@ -1079,7 +1127,6 @@ class ADKController extends Controller
                 'jangka_waktu'  => $detail['Jangka_waktu'],
                 'suku_bunga'    => $detail['Suku_bunga'],
                 'angsuran'      => $detail['angsuran_usulan'],
-                // baru
                 'pendidikan_terakhir' => $detail['id_Status_gelar'],
                 'nama_ao'       => $detail['ao_name'],
                 'lama_tinggal'  => $detail['lama_menetap'],
@@ -1093,10 +1140,7 @@ class ADKController extends Controller
                 'bil_pinjaman'  => $this->terbilang($detail['Plafond_usulan'],$style=3),
                 'no_skpp'       => $no_skpp
             ];
-            // dd($detail_sph);
 
-            // $this->data['detail'] = $detail;
-            // return view('internals.eform.adk._report_kredit')->with($this->data);
             /// lempar data ke view blade
             $pdf = \PDF::loadView('internals.eform.adk._debitur', 
                     ['data_sph' => $detail_sph])
@@ -1118,7 +1162,7 @@ class ADKController extends Controller
                     ])
                     ->get();
         $detail = $formDetail['contents'];
-        // dd($detail);
+
         if (!empty($detail)) {
             $status = $this->getStatusIsSend($detail['is_send']);
             $premi_as_jiwa = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
@@ -1129,9 +1173,7 @@ class ADKController extends Controller
             $detail['premi_beban_debitur'] = $premi_beban_debitur;
             $detail['premi_beban_bri'] = $premi_beban_bri;
             $detail['status_send'] = $status;
-            // dd($detail);
-            // $this->data['detail'] = $detail;
-            // return view('internals.eform.adk._report_kredit')->with($this->data);
+
             /// lempar data ke view blade
             $pdf = \PDF::loadView('internals.eform.adk._report_kredit', 
                     ['detail' => $detail])
@@ -1139,6 +1181,33 @@ class ADKController extends Controller
             return $pdf->download('detail_kredit.pdf');            
         } else {
             \Session::flash('error', 'Dokumen Detail Kredit gagal didownload');
+            return redirect()->route('adk.index');
+        }
+    }
+
+    public function exportImage(Request $request) {
+        $data = $this->getUser();
+        $response = $request->all();
+        $formDetail = Client::setEndpoint('api_las/download_image')
+                    ->setHeaders([ 
+                        'Authorization' => $data['token'],
+                        'pn' => $data['pn']
+                    ])
+                    ->setBody([
+                        'eform_id' => $response['eform_id']
+                    ])
+                    ->post();
+        $detail = $formDetail['contents'];
+
+        if (!empty($detail)) {
+            // $image_path = env('APP_URL').'/uploads/'.$detail['id_foto'];
+            // $npwp = $image_path.'/'.$detail['id_foto'].'-NPWP_nasabah.jpg';
+            // $image_path2 = env('APP_URL').'uploads/image/"146-20180207141908.jpeg';
+            // dd($image_path);
+
+            return response()->download($detail);            
+        } else {
+            \Session::flash('error', 'Dokumen Image gagal didownload');
             return redirect()->route('adk.index');
         }
     }
@@ -1261,7 +1330,7 @@ class ADKController extends Controller
         } else if ($value == '2') {
             return 'UNAPPROVED';
         } else if ($value == '3') {
-            return 'VOID';
+            return 'DITOLAK';
         } else if ($value == '4') {
             return 'VOID ADK';
         } else if ($value == '5') {
@@ -1282,9 +1351,13 @@ class ADKController extends Controller
             return 'AGREE BY PINCA';
         } else if ($value == '13') {
             return 'AGREE BY WAPINWIL';
-        } else if ($value == '10') {
+        } else if ($value == '14') {
             return 'AGREE BY WAPINCASUS';
-        } else {
+        } else if ($value == '15') {
+            return 'NAIK KETINGKAT LEBIH TINGGI';
+        } else if ($value == '16') {
+            return 'MENGEMBALIKAN DATA KE AO';
+        } else if ($value == '0'){
             return 'APPROVAL';
         }
 
@@ -1308,49 +1381,270 @@ class ADKController extends Controller
     }
 
     function dataRequest($request) {
-        // print_r($request->all());exit();
-        $id       = $request['eform_id'];
-        $catatan  = $request[$request['type']];
-        $verified = $request['is_verified'];
-        $imgReq   = $request['uploadfoto'];
-        $name = array([
-              'name'     => 'eform_id',
-              'contents' => $id,
-            ], [
-              'name'     => $request['type'],
-              'contents' => $catatan,
-            ], [
-              'name'     => 'is_verified',
-              'contents' => $verified,
-            ], [
-              'name'     => $request['field'],
-              'contents' => $imgReq->getClientOriginalName(),
-            ]);
-        // print_r($name);
-        if ($imgReq) {
-            $image_path = $imgReq->getPathname();
-            $image_mime = $imgReq->getmimeType();
-            $image_name = $imgReq->getClientOriginalName();
-            $image[] = [
-                'name'     => 'uploadfoto',
-                'filename' => $image_name,
-                'Mime-Type'=> $image_mime,
-                'contents' => fopen($image_path, 'r')
-            ];
-        } else {
-            $image = [];
-        }
-        // print_r($image);
-        // $allReq = $request->except(['_token','uploadfoto']);
-        // print_r($allReq);exit();
-        // foreach ($allReq as $index => $req) {
-        //     $inputData[] = [
-        //         'name'     => $index,
-        //         'contents' => $req
-        //     ];
-        // }
-        $newCustomer = array_merge($image, $name);
+        // print_r($request);exit();
+        if (isset($request['data']['action']) == 'edit') {
+            $imgReq  = $request['data'];
 
+            $name = array([
+                  'name'     => 'eform_id',
+                  'contents' => $imgReq['eform_id'],
+                ], [
+                  'name'     => 'is_verified',
+                  'contents' => '0',
+                ]);
+
+            if ($imgReq) {
+                if (!isset($request['uploadfoto'])) {
+                    $nama_foto = substr($imgReq['lainnya1'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto']).$nama_foto;
+                    }
+                    
+                    if (isset($imgReq['namafoto']) && ($req_nama_foto == $imgReq['lainnya1'])) {
+                        $image[] = [
+                            'name' => 'foto_lainnya1',
+                            'contents' => $imgReq['lainnya1']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'foto_lainnya1',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    if (isset($imgReq['namafoto'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-1';
+                    }
+                    
+                    $image[] = [
+                        'name'     => 'foto_lainnya1',
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto2'])) {
+                    $nama_foto = substr($imgReq['lainnya2'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto2']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto2']).$nama_foto;
+                    }
+                    
+                    if (isset($imgReq['namafoto2']) && ($req_nama_foto == $imgReq['lainnya2'])) {
+                        $image[] = [
+                            'name' => 'foto_lainnya2',
+                            'contents' => $imgReq['lainnya2']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'foto_lainnya2',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    if (isset($imgReq['namafoto2'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto2']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-2';
+                    }
+
+                    $image[] = [
+                        'name'     => 'foto_lainnya2',
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto2']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto2']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto2']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto3'])) {
+                    $nama_foto = substr($imgReq['lainnya3'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto3']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto3']).$nama_foto;
+                    }
+                    
+                    if (isset($imgReq['namafoto3']) && ($req_nama_foto == $imgReq['lainnya3'])) {
+                        $image[] = [
+                            'name' => 'foto_lainnya3',
+                            'contents' => $imgReq['lainnya3']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'foto_lainnya3',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    if (isset($imgReq['namafoto3'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto3']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-3';
+                    }
+                    
+                    $image[] = [
+                        'name'     => 'foto_lainnya3',
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto3']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto3']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto3']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto4'])) {
+                    $nama_foto = substr($imgReq['lainnya4'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto4']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto4']).$nama_foto;
+                    }
+                    
+                    if (isset($imgReq['namafoto4']) && ($req_nama_foto == $imgReq['lainnya4'])) {
+                        $image[] = [
+                            'name' => 'foto_lainnya4',
+                            'contents' => $imgReq['lainnya4']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'foto_lainnya4',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    if (isset($imgReq['namafoto4'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto4']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-4';
+                    }
+
+                    $image[] = [
+                        'name'     => 'foto_lainnya4',
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto4']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto4']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto4']->getPathname(), 'r')
+                    ];
+                }
+
+                if (!isset($request['uploadfoto5'])) {
+                    $nama_foto = substr($imgReq['lainnya5'], -4);
+                    if ($nama_foto == 'jpeg') {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto5']).'.'.$nama_foto;
+                    } else {
+                        $req_nama_foto = str_replace(' ', '-', $imgReq['namafoto5']).$nama_foto;
+                    }
+
+                    if (isset($imgReq['namafoto5']) && ($req_nama_foto == $imgReq['lainnya5'])) {
+                        $image[] = [
+                            'name' => 'foto_lainnya5',
+                            'contents' => $imgReq['lainnya5']
+                        ];
+                    } else {
+                        $image[] = [
+                            'name' => 'foto_lainnya5',
+                            'contents' => null
+                        ];
+                    }
+                } else {
+                    if (isset($imgReq['namafoto5'])) {
+                        $namafoto = str_replace(' ', '-', $imgReq['namafoto5']);
+                    } else {
+                        $namafoto = 'Foto-Lainnya-5';
+                    }
+                    
+                    $image[] = [
+                        'name'     => 'foto_lainnya5',
+                        'filename' => ucfirst($namafoto).'.'.$request['uploadfoto5']->getClientOriginalExtension(),
+                        'Mime-Type'=> $request['uploadfoto5']->getmimeType(),
+                        'contents' => fopen($request['uploadfoto5']->getPathname(), 'r')
+                    ];
+                }
+            } else {
+                $image = [];
+            }
+        } else if (isset($request['type'])) {
+            $id       = $request['eform_id'];
+            $verified = $request['is_verified'];
+            $catatan = $request[$request['type']];
+            $imgReq  = $request['uploadfoto'];
+            $name = array([
+                  'name'     => 'eform_id',
+                  'contents' => $id,
+                ], [
+                  'name'     => $request['type'],
+                  'contents' => $catatan,
+                ], [
+                  'name'     => 'is_verified',
+                  'contents' => $verified,
+                ], [
+                  'name'     => $request['field'],
+                  'contents' => $imgReq->getClientOriginalName(),
+                ]);
+
+            if ($imgReq) {
+                $image_path = $imgReq->getPathname();
+                $image_mime = $imgReq->getmimeType();
+                $image_name = $imgReq->getClientOriginalName();
+                $image[] = [
+                    'name'     => 'uploadfoto',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen($image_path, 'r')
+                ];
+            } else {
+                $image = [];
+            }
+        } else {
+            $id       = $request['eform_id'];
+            $verified = $request['is_verified'];
+            $imgReq  = $request['foto'];
+            $name = array([
+                  'name'     => 'eform_id',
+                  'contents' => $id,
+                ], [
+                  'name'     => 'is_verified',
+                  'contents' => $verified,
+                ]);
+            
+            if ($imgReq['uploadfoto']) {
+                $nama = str_replace(' ', '-', $imgReq['namafoto']);
+                $image_path = $imgReq['uploadfoto']->getPathname();
+                $image_mime = $imgReq['uploadfoto']->getmimeType();
+                $image_name = ucfirst($nama).'.'.$imgReq['uploadfoto']->getClientOriginalExtension();
+                $image[] = [
+                    'name'     => 'lainnya1',
+                    'filename' => $image_name,
+                    'Mime-Type'=> $image_mime,
+                    'contents' => fopen($image_path, 'r')
+                ];
+                
+                for ($i=2; $i < $request['foto']['countupload']; $i++) {
+                    $names = str_replace(' ', '-', $imgReq['namafoto'.$i]);
+                    $img = $imgReq['uploadfoto'.$i];
+                    $image_path = $img->getPathname();
+                    $image_mime = $img->getmimeType();
+                    $image_name = ucfirst($names).'.'.$img->getClientOriginalExtension();
+                    $image[] = [
+                        'name'     => 'lainnya'.$i,
+                        'filename' => $image_name,
+                        'Mime-Type'=> $image_mime,
+                        'contents' => fopen($image_path, 'r')
+                    ];
+                }
+                // $tes = substr('ashdasjdjasdnjasnj.jpg', -4);
+                // print_r($name);
+                // print_r($image);exit();
+            } else {
+                $image = [];
+            }
+        }
+
+        $newCustomer = array_merge($image, $name);
+        // print_r($newCustomer);exit();
         return $newCustomer;
     }
 }

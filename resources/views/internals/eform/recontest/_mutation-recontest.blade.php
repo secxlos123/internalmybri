@@ -75,7 +75,7 @@
   </div>
 </div>
 @endforeach
-
+@endif
 <div id="mutations">
   <div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">
     <div class="row">
@@ -137,7 +137,6 @@
                 <div class="input-group">
                   <span class="input-group-addon">Rp</span>
                   <input type="text" class="form-control numericOnly currency-rp" name="mutations[0][tables][0][amount]" maxlength="16">
-                  <!-- <span class="input-group-addon">,00</span> -->
                 </div>
               </td>
               <td>
@@ -170,4 +169,4 @@
       </div>
     </div>
   </div>
-@endif
+

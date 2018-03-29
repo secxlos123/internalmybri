@@ -51,7 +51,6 @@ class ApprovalDataController extends Controller
                         ->setHeaders([
                             'Authorization' => $data['token']
                             , 'pn' => $data['pn']
-                            // , 'auditaction' => 'action name'
                             , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                             , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                         ])->setQuery([
@@ -109,7 +108,6 @@ class ApprovalDataController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
@@ -146,14 +144,12 @@ class ApprovalDataController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->get();
 
         $detail = $detailData['contents'];
-        // dd($detail);
 
         return view('internals.approval-data.third-party.approval-form', compact('data', 'detail'));
     }
@@ -177,10 +173,9 @@ class ApprovalDataController extends Controller
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
             ->post();
-            // dd($detailData);
 
         if($detailData['code'] == 200){
-            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Data Berhasil Ditolak';
+            $message = ($detailData['contents']['status'] == 'approved') ? 'Data Berhasil Disimpan' : 'Perubahan Data Berhasil Ditolak';
             $color = ($detailData['contents']['status'] == 'approved') ? 'success' : 'error';
             \Session::flash($color, $message);
             return redirect()->route('approveDeveloper');
@@ -204,7 +199,6 @@ class ApprovalDataController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
@@ -235,9 +229,6 @@ class ApprovalDataController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
                 'limit'     => $request->input('length'),
                 'search'    => $request->input('search.value'),
@@ -278,7 +269,6 @@ class ApprovalDataController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([

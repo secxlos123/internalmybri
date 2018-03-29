@@ -26,7 +26,6 @@ class AuthLogin extends FormRequest
         return [
             'pn' => 'required',
             'password' => 'required',
-            // 'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 
@@ -40,8 +39,6 @@ class AuthLogin extends FormRequest
         return [
             'pn.required' => 'PN harus diisi',
             'password.required'  => 'Password harus diisi',
-            // 'g-recaptcha-response.required'  => 'Captcha harus diisi',
-            // 'g-recaptcha-response.recaptcha'  => 'Captcha harus diisi dengan benar'
         ];
     }
 }

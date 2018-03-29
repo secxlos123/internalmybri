@@ -52,6 +52,7 @@ function reloadDataPengajuan(from, type){
         {   data: 'ref_number', name: 'ref_number' },
         {   data: 'old_values', name: 'old_values', bSortable: false },
         {   data: 'new_values', name: 'new_values', bSortable: false },
+        {   data: 'debitur', name: 'debitur', bSortable: false },
         {   data: 'ip_address', name: 'ip_address', bSortable: false },
         {   data: 'action_location', name: 'action_location', bSortable: false }
         ],
@@ -391,6 +392,7 @@ function reloadDataCollateral(from, type ){
         {   data: 'developer', name: 'developer', bSortable: false },
         {   data: 'old_values', name: 'old_values', bSortable: false },
         {   data: 'new_values', name: 'new_values', bSortable: false },
+        {   data: 'debitur', name: 'debitur', bSortable: false },
         {   data: 'ip_address', name: 'ip_address', bSortable: false },
         {   data: 'action_location', name: 'action_location', bSortable: false }
         ],
@@ -597,7 +599,6 @@ function reloadDataDocument(type){
         {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
         {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
         {   data: 'prop_items', name: 'prop_items', bSortable: true },
-                // {   data: 'product_type', name: 'product_type' },
                 {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
                 {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
                 {   data: 'staff_name', name: 'staff_name', bSortable: false },
@@ -610,7 +611,6 @@ function reloadDataDocument(type){
     function reloadDatacolNon()
     {
        var status = $('#status_doc_collateral').val();
-       console.log(status);
         tablecdev = $('#datatable-non').DataTable({
          processing : true,
          serverSide : true,
@@ -642,7 +642,6 @@ function reloadDataDocument(type){
             {   data: 'first_name', name: 'first_name', bSortable: false  },
             {   data: 'home_location', name: 'home_location',  bSortable: false  },
             {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
-            // {   data: 'product_type', name: 'product_type' },
             {   data: 'staff_name', name: 'staff_name', bSortable: false },
             {   data: 'status', name: 'status', bSortable: false },
             {   data: 'manager_name', name: 'manager_name', bSortable: false },

@@ -99,11 +99,15 @@
                         }
                     });
                     if( (data.customers.data.length) == 0 ){
+                        $('#search').addClass('disabled');
+                        $('#btn-leads').removeClass('disabled');
                         return {
                             results: '',
                         };
 
                     } else {
+                        $('#search').removeClass('disabled');
+                        $('#btn-leads').addClass('disabled');
                         params.page = params.page || 1;
                         return {
                             results: data.customers.data,
@@ -114,28 +118,14 @@
                     }
 
                     var text = $(this).find("option:selected").text();
-                        // $('#new_developer_name').val(text);
-                        console.log(text);
                 },
                 cache: true
             },
         });
 
-        $('.nikSelect').on('select2:unselecting', function (e) {
-            $('#search').addClass('disabled');
-            $('#btn-leads').removeClass('disabled');
-        });
-
-        $('.nikSelect').on('select2:select', function (e) {
-            $('#search').removeClass('disabled');
-            $('#btn-leads').addClass('disabled');
-        });
-
         $('.nikSelect').on('change', function () {
             var id = $(this).val();
             var text = $(this).find("option:selected").text();
-            // $('#nik_customer').val(text);
-            // console.log(text);
         });
 
         //select2 developer
@@ -220,7 +210,6 @@
                     },
                     processResults: function (data, params) {
                         params.page = params.page || 1;
-                        // console.log(data);
                         return {
                             results: data.properties.data,
                             pagination: {
@@ -250,7 +239,6 @@
             $("textarea[name='home_location']").val("").html("");
 
             $('#new_property_name').val(text);
-            // console.log(text);
             $('.property_type').select2({
                 witdh : '100%',
                 allowClear: true,
@@ -267,7 +255,6 @@
                     },
                     processResults: function (data, params) {
                         params.page = params.page || 1;
-                        // console.log(data);
                         return {
                             results: data.types.data,
                             pagination: {
@@ -346,6 +333,35 @@
 
         //select2 city
         $('.cities').select2({
+            //dropdownParent: $('#leads-modal #personal_data'),
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/cities',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.cities.data,
+                        pagination: {
+                            more: (params.page * data.cities.per_page) < data.cities.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
+        $('.cities_couple').select2({
+            dropdownParent: $('#leads-modal #couple_data'),
             witdh : '100%',
             allowClear: true,
             ajax: {
@@ -382,10 +398,8 @@
                 url: '{{route("detailCustomer")}}',
                 data: { nik : nik }
             }).done(function(data){
-                // console.log(data);
                 $('#detail').html(data['view']);
             }).fail(function(errors) {
-                // toastr.error('Data tidak ditemukan')
             });
 
         });
@@ -419,7 +433,6 @@
             var request_amount = $('#request_amount');
             var price_without_comma = price.val();
             var static_price = price_without_comma.replace(/\,/g, '');
-            console.log(static_price);
             if(building_area.val() < 21){
                 switch (val) {
                     case '1':
@@ -447,7 +460,6 @@
                         request_amount.val(amount.toFixed(0));
                         break;
                 }
-                // console.log('22');
             }if((building_area.val() >= 22) || (building_area <= 70)){
                 switch (val) {
                     case '1':
@@ -475,7 +487,6 @@
                         request_amount.val(amount.toFixed(0));
                         break;
                 }
-                // console.log('23');
             }if(building_area.val() > 70){
                 switch (val) {
                     case '1':
@@ -503,7 +514,6 @@
                         request_amount.val(amount.toFixed(0));
                         break;
                 }
-                // console.log('70');
             }
 
         });
@@ -531,7 +541,6 @@
                 }
 
                 payment = (val / 100) * static_price;
-                // down_payment.val(payment);
                 amount = static_price - payment;
                 down_payment.val(Math.round(payment));
                 request_amount.val(amount.toFixed(0));
@@ -699,7 +708,6 @@
         }
 
         payment = (val / 100) * static_price;
-        // down_payment.val(payment);
         amount = static_price - payment;
         down_payment.val(Math.round(payment));
         request_amount.val(amount.toFixed(0));
@@ -724,23 +732,19 @@
     });
 
     $(document).on('click', '#changeDistance', function (e) {
-        console.log("reset office");
         $('.offices').empty().select2({
             witdh : '100%',
             allowClear: true,
         });
 
-        console.log("get params");
         var distance = $('#distance1').val();
         var long = $('#lng').val();
         var lat = $('#lat').val();
-        console.log("get office");
         get_offices(distance, long, lat);
     });
 
     $(document).ready(function(){
         $('.offices').on('select2:select', function (e) {
-            console.log(e.params.data);
             var alamat = e.params.data.address;
             $('#branch_address').val(alamat).html(alamat).trigger('change');
             var text = $(this).find("option:selected").text();
@@ -782,7 +786,6 @@
 
     //showing modal create leads
     $(document).on('click', '#btn-leads', function(){
-       console.log("salah masuk");
        $('#leads-modal').modal('show');
     })
 
@@ -794,21 +797,14 @@
     $("#form_data_personal").submit(function(e){
         var formData = new FormData(this);
         var status = $("select[name='status']").val();
-        // console.log(status);
-        // console.log($("input[name='birth_date']").val());
-        // console.log(formData);
-
         var dob = new Date($("input[name='birth_date']").val());
         var today = new Date();
         var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
-        // console.log(age);
         doSomething = 1;
-        console.log(status);
+        var html = '<p class="error-help-block" style="display:block;">Umur harus lebih dari 21 tahun.</p>';
         if (status == 1) {
             if (age < 21) {
-                // $(".birth_date").removeClass("has-success");
-                // $(".birth_date").addClass("has-error");
-                $("#birth_date_div div.col-md-9").append('<span id="birth_date-error" class="error-help-block" style="display:block;">Umur harus lebih dari 21 tahun.</span>');
+                $("#birth_date-error").html(html);
                 HoldOn.close();
                 doSomething = 2;
             } else {
@@ -817,15 +813,12 @@
         }
 
         if (doSomething == 1) {
-        console.log('ajax');
         $.ajax({
             url: "/customers",
             type: 'POST',
             data: formData,
             async: false,
             success: function (data) {
-                console.log(data);
-                // toastr["success"]("Data Berhasil disimpan");
                 $('#divForm').removeClass('alert alert-success');
                 $('#divForm').html("");
 
@@ -837,11 +830,6 @@
                     $("#nik").html('<option value="'+nik+'">'+nik+'</option>');
                     $("#select2-nik-container").replaceWith('<span class="select2-selection__rendered" id="select2-nik-container" title="'+nik+'"><span class="select2-selection__clear">×</span>'+nik+'</span>');
                     $("#search").click();
-                    // $("a[href='#finish']").click();
-                    // currentClass = $('body').attr('class');
-                    // $('body').attr('class', currentClass+' modal-open');
-                    // console.log("pas submit data");
-
                     $('#divForm').addClass('alert alert-success');
                     $('#divForm').html('Data Berhasil Ditambahkan');
 
@@ -849,7 +837,6 @@
                     setTimeout(
                         function(){
                             $.each(data.contents, function(key, value) {
-                                // console.log(key);
                                 $("#form_data_personal").find(".form-group." + key).eq(0).addClass('has-error');
                                 $("#form_data_personal").find("span#"+key+"-error").eq(0).html(value);
                             });
@@ -860,8 +847,6 @@
                 HoldOn.close();
             },
             error: function (response) {
-                // console.log(response)
-                // toastr["error"]("Data Gagal disimpan");
                 HoldOn.close();
             },
             cache: false,
@@ -869,12 +854,11 @@
             processData: false
         });
         }else{
-            console.log('not ajax');
             $("#birth_date_div").removeClass("has-success");
             $("#birth_date_div").addClass("has-error");
-            $("#birth_date_div span#birth_date-error").css({ display: "block", color: "red" });
+            $("#birth_date-error").css({ display: "block", color: "red" });
 
-            $("#birth_date_div span#birth_date-error").html("Umur harus lebih dari 21 tahun.");
+            $("#birth_date-error").html("Umur harus lebih dari 21 tahun.");
             HoldOn.close();
         }
 
@@ -896,11 +880,33 @@
                 format : "yyyy-mm-dd",
                 autoclose: true,
             });
+            $("#birth_date-error").hide();
         }else{
             $('#leads-modal #datepicker-date').datepicker({
                 format : "yyyy-mm-dd",
                 autoclose: true,
                 endDate: "-21y"
+            });
+            var date_val = new Date($("input[name='birth_date']").val());
+            var date_now = new Date();
+            var ages = Math.floor((date_now-date_val) / (365.25 * 24 * 60 * 60 * 1000));
+             if (ages < 21) {
+                $("#birth_date-error").show();
+            } else {
+                $("#birth_date-error").hide();
+            }
+            $('#leads-modal #datepicker-date').on('change', function() {
+                var dt_vl = new Date($("input[name='birth_date']").val());
+                var dt_nw = new Date();
+                var ags = Math.floor((dt_nw-dt_vl) / (365.25 * 24 * 60 * 60 * 1000));
+                var st = $("#leads-modal #status").val();
+                if(st == 1){
+                    if (ags < 21) {
+                        $("#birth_date-error").show();
+                    } else {
+                        $("#birth_date-error").hide();
+                    }
+                }
             });
             hideCouple();
         }
@@ -912,5 +918,4 @@
         autoclose: true,
     });
 
-    // $('#datepicker-date').datepicker("setDate",  "{{date('Y-m-d', strtotime('-21 years'))}}");
 </script>

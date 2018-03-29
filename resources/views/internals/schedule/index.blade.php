@@ -16,6 +16,7 @@
     </style>
     <script type="text/javascript">
       var aoUserID = '{{ $data['pn'] }}'
+      var userRole = '{{ $data['role'] }}'
     </script>
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -66,19 +67,23 @@
                                 </div>
                                 <div class="modal-body p-20">
                                   <div class="form"></div>
+                                  @if ($data['role'] == 'ao')
                                   <input type="text" name="" id="searchInput" class="form-control">
+                                  @endif
                                   <div class='map' id='map' style='width: 100%; height: 200px;'></div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
                                         Batal
                                     </button>
+                                    @if ($data['role'] == 'ao')
                                     <button type="button" class="btn btn-orange save-event waves-effect waves-light">
                                         Simpan Jadwal
                                     </button>
                                     <button type="button" class="btn btn-danger delete-event waves-effect waves-light"
                                             data-dismiss="modal">Hapus Jadwal Ini
                                     </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -103,4 +108,5 @@
         lat: "{{ env('DEF_LAT', '-6.21670') }}",
         long: "{{ env('DEF_LONG', '106.81350') }}",
     };
+    $('#calendar').fullcalendar({});
 </script>

@@ -25,7 +25,7 @@ class LKNRequest extends FormRequest
     {
         return [
            'amount' => 'required',
-           'npwp_number' => 'required',
+           'npwp_number' => 'required|string|min:20',
            'purpose_of_visit' => 'required',
            'visit_result' => 'required',
 
@@ -40,22 +40,12 @@ class LKNRequest extends FormRequest
            'project_list' => 'required',
            'program_list' => 'required',
            'use_reason' => 'required',
-
-           // 'mutations' => 'required_if:source,nonfixed',
-
-           // 'mutations.*.bank' => 'required_if:source,nonfixed',
-           // 'mutations.*.number' => 'required_if:source,nonfixed',
-           // 'mutations.*.file' => 'required_if:source,nonfixed|mimes:jpg,jpeg,png,gif,svg,rar,pdf,zip',
-           // 'mutations.*.tables' => 'required_if:source,nonfixed',
-           // 'mutations.*.tables.*.date' => 'required_if:source,nonfixed',
-           // 'mutations.*.tables. amount'=> 'required_if:source,nonfixed',
-           // 'mutations.*.tables.*.type' => 'required_if:source,nonfixed',
-           // 'mutations.*.tables.*.note' => '',
-
-           'seller_name' => 'required_if:use_reason,2,18',
-           'seller_address' => 'required_if:use_reason,2,18',
-           'seller_phone' => 'required_if:use_reason,2,18',
-           'selling_price' => 'required_if:use_reason,2,18',
+           'seller_name' => 'required_if:status_property,1,2',
+           'seller_address' => 'required_if:status_property,1,2',
+           'seller_phone' => 'required_if:status_property,1,2',
+           'selling_price' => 'required_if:status_property,1,2',
+           'reason_for_sale' => 'required_if:status_property,1,2',
+           'relation_with_seller'=> 'required_if:status_property,1,2',
 
            'salary_slip' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'legal_bussiness_document' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
@@ -64,8 +54,8 @@ class LKNRequest extends FormRequest
            'offering_letter' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
            'photo_with_customer' => 'required_unless:use_reason,13|mimes:jpg,jpeg,png,gif,svg,pdf',
 
-           'work_letter' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
-           'npwp' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
+           'work_letter' => 'required_if:source,fixed|mimes:jpg,jpeg,png,gif,svg,pdf',
+           'npwp' => 'required|mimes:jpg,jpeg,png,gif,svg,pdf',
            'marrital_certificate' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'divorce_certificate' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
            'down_payment' => 'mimes:jpg,jpeg,png,gif,svg,pdf',
@@ -99,6 +89,7 @@ class LKNRequest extends FormRequest
         return [
             "amount.required" => "Jumlah yang diajukan harus diisi",
             "npwp_number.required" => "Nomor NPWP harus diisi",
+            "npwp_number.min" => "Nomor NPWP Belum Lengkap",
             "visit_result.required" => "Hasil Kunjungan harus diisi",
             "purpose_of_visit.required" => "Tujuan Kunjungan harus diisi",
             "source.required" => "Sumber Penghasilan harus diisi",

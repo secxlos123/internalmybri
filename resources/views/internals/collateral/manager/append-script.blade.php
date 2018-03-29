@@ -9,7 +9,6 @@
             url: '{{route("detailCollateral")}}',
             data: { dev_id : dev_id, prop_id : prop_id },
             success: function(result, data) {
-            console.log(result);
 
                 // step1
                 var location = result.data.ots_in_area.location;

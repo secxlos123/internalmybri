@@ -86,7 +86,7 @@
                                 <h3>&nbsp;</h3>
                                 <!-- step 7 -->
                                 @include('internals.collateral.staff.lkn-collateral._step-10')
-
+                                @include('form_audit._input_long_lat')
                             </div>
                         </form>
                     </div>
@@ -100,8 +100,7 @@
 @include('internals.layouts.foot')
 @include('internals.collateral.staff.lkn-collateral._modal-detail')
 @include('internals.collateral.staff.lkn-collateral._render-upload')
-<!-- {!! Html::style( 'assets/css/dropzone.min.css' ) !!} -->
-<!-- {!! Html::script( 'assets/js/dropzone.min.js' ) !!} -->
+@include('internals.collateral.staff.lkn-collateral._modal-maksimum-upload')
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Collateral\LKNRequest', '#form-lkn'); !!}
 @include('internals.collateral.staff.lkn-collateral.script')
@@ -253,22 +252,51 @@
         HoldOn.close();
     });
 
+      // File Style 0
+        $('#filestyle-0').on("change", function(){
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#preview-0').attr('src', e.target.result);
+            }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
     $('#add_photo').click(function(){
         var index = $('.photo').length;
         var x = $(".filestyle-foto").length;
         index++;
+        if(index == 11){
+           $('#modal-maksimum-upload').modal('show');
+        }else{
         $('#foto_div').append(
             '<div class="foto">'
                 +'<div class="input-group">'
-                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+index+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+index+'">'
+                +'<input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" name="other[image_area]['+x+'][image_data]" accept="image/*,application/pdf" id="filestyle-'+x+'">'
                 +'<span class="input-group-addon b-0" style="padding: 1px 1px;background-color: #eee0;"><a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger delete-photo" title="Delete Photo">Hapus</a></span>'
                 +'</div>'
             +'</div>'
         );
+        
         // Append image field
         $(".img-previews").append(
-            `<img id="preview-`+ x +`" src="#" width="40%">`
+            `<img id="preview-`+ x +`" src="#" width="40%" class="col-md-3">`
         );
+
+        // File Style 2
+        $('#filestyle-'+x+'').on("change", function(){
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                $('#preview-'+x+'').attr('src', e.target.result);
+            }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        }
+
         $('.filestyle-foto').filestyle({
             buttonText : "Unggah",
             htmlIcon : '<span class="icon-span-filestyle fa fa-cloud-upload"></span>',
@@ -279,23 +307,16 @@
     $('#foto_div').on('click', '.delete-photo', function () {
         var string = $(this).closest('div.foto').find('.filestyle-foto').attr('id');
         var id = string.substr(10, 1);
-        var id = parseInt(id) - 1;
+        var id = parseInt(id);
         $(this).closest('div.foto').remove();
         $("#preview-"+ id).remove();
-    })
-
-    // Preview image when finish button clicked
-    $("a[href='#finish']").on("click", function(){
-        $(".filestyle-foto").each(function(key, val){
-            previewImage(this, key);
-        });
     })
 
     $('#zip_code').on('input' , function() {
         var input=$(this).val();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Kode Pos valid : </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
@@ -317,6 +338,14 @@
             $('#zip_code').val('');
         });
         }
+    });
+
+    $('#building_year').datepicker({
+        minViewMode:2,
+        format:"yyyy",
+        clearBtn:true,
+        autoclose:true,
+        yearHighLight:true
     });
 
     // Function for previewing image

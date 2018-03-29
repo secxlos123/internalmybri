@@ -168,7 +168,7 @@
                                 <td><?php echo $detail['catatan_skpu']?></td>
                             </tr>
                         <?php
-                            if ($detail['customer']['personal']['status'] != '1') {
+                            if ($detail['customer']['personal']['status'] == '2') {
                         ?>
                             <tr>
                                 <td align="center">9</td>
@@ -192,7 +192,7 @@
                         <?php   
                             }
                         } else {
-                            if ($detail['customer']['personal']['status'] != '1') {
+                            if ($detail['customer']['personal']['status'] == '2') {
                         ?>
                             <tr>
                                 <td align="center">8</td>
@@ -217,6 +217,96 @@
                             }
                         }
                         ?>
+                        <tr>
+                            <td align="center">Foto Lainnya</td>
+                            <td>
+                                <?php
+                                    if (!empty($detail['lainnya1']) || $detail['lainnya1'] != '') {
+                                        $lainnya1 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']);
+                                        echo str_replace('-', ' ', $lainnya1['filename']);
+                                    }
+                                    $image = substr($detail['lainnya1'], 0,4);
+                                    if ($image == 'http') {
+                                ?>
+                                <a href="<?php echo $detail['lainnya1']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['lainnya1']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']; ?>" width="100" height="100">
+                                </a>
+                                <?php 
+                                    }
+                                    if (!empty($detail['lainnya2']) || $detail['lainnya2'] != '') {
+                                        $lainnya2 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']);
+                                        echo str_replace('-', ' ', $lainnya2['filename']);
+                                    }
+                                    $image = substr($detail['lainnya2'], 0,4);
+                                    if ($image == 'http') {
+                                ?>
+                                <a href="<?php echo $detail['lainnya2']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['lainnya2']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']; ?>" width="100" height="100">
+                                </a>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <?php
+                                    if (!empty($detail['lainnya3']) || $detail['lainnya3'] != '') {
+                                        $lainnya3 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']);
+                                        echo str_replace('-', ' ', $lainnya3['filename']);
+                                    }
+                                    $image = substr($detail['lainnya3'], 0,4);
+                                    if ($image == 'http') {
+                                ?>
+                                <a href="<?php echo $detail['lainnya3']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['lainnya3']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']; ?>" width="100" height="100">
+                                </a>
+                                <?php 
+                                    }
+                                    if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
+                                        $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
+                                        echo str_replace('-', ' ', $lainnya4['filename']);
+                                    }
+                                    $image = substr($detail['lainnya4'], 0,4);
+                                    if ($image == 'http') {
+                                ?>
+                                <a href="<?php echo $detail['lainnya4']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['lainnya4']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" width="100" height="100">
+                                </a>
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <?php
+                                    if (!empty($detail['lainnya5']) || $detail['lainnya5'] != '') {
+                                        $lainnya5 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']);
+                                        echo str_replace('-', ' ', $lainnya5['filename']);
+                                    }
+
+                                    $image = substr($detail['lainnya5'], 0,4);
+                                    if ($image == 'http') {
+                                ?>
+                                <a href="<?php echo $detail['lainnya5']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['lainnya5']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']; ?>" width="100" height="100">
+                                </a>
+                                <?php } ?>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

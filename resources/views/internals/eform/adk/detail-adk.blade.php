@@ -213,7 +213,23 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label class="col-md-5 control-label">Catatan Pemutus :</label>
-                                            <label class="col-md-5 control-label"><?php echo $detail['catatan_pemutus']?></label>
+                                            <label class="col-md-5 control-label">{{$detail['catatan_pemutus']}}</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Catatan ADK :</label>
+                                            <label class="col-md-5 control-label">{{ $detail['catatan_adk']}}</label>
                                         </div>
                                     </form>
                                 </div>
@@ -357,8 +373,12 @@
     })
 
     $('#btn-batal').on('click', function(){
+        id = $("#id_aplikasi").val();
+        uid = $("#uid").val();
+        pinca = $("#pinca").val();
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
+        pinca_posisi = $("#pinca_posisi").val();
         // alert(eformId);
         HoldOn.open(options);
         $.ajax({
@@ -366,10 +386,13 @@
             type: 'POST',
             url: '{{ route("post_adk") }}',
             data: {
-
+                uid  : uid,
+                pinca_name  : pinca,
+                id_aplikasi : id,
                 eform_id  : eformId,
                 type      : 'batal',
-                catat_adk : catatan_adk
+                catat_adk : catatan_adk,
+                pinca_position  : pinca_posisi
             },
             headers: {
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
@@ -398,14 +421,88 @@
         $('#verifikasi').val('0');
     })
 
-    $('#form1').on('keyup keypress', function(e) {
-        var keyCode = e.keyCode || e.which;
-        if (keyCode === 13) { e.preventDefault(); return false; }
+    $('#namafoto').on('change', function() {
+        var fn = $("#namafoto").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto2').on('change', function() {
+        var fn = $("#namafoto2").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto2").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto3').on('change', function() {
+        var fn = $("#namafoto3").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto3").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto4').on('change', function() {
+        var fn = $("#namafoto4").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto4").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
+    });
+
+    $('#namafoto5').on('change', function() {
+        var fn = $("#namafoto5").val();
+        var regex = /^[0-9a-zA-Z\_]+$/
+        var action = regex.test(fn);
+        if (action != true) { 
+            $("#namafoto5").val('');
+            alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+            return false; 
+        }
     });
 
     function printPage() {
         window.print();
     }
+
+    $('#btn-lainnya1').on('click', function(){
+        $('#namafoto').val('');
+    })
+
+    $('#btn-lainnya2').on('click', function(){
+        $('#namafoto2').val('');
+    })
+
+    $('#btn-lainnya3').on('click', function(){
+        $('#namafoto3').val('');
+    })
+
+    $('#btn-lainnya4').on('click', function(){
+        $('#namafoto4').val('');
+    })
+
+    $('#btn-lainnya5').on('click', function(){
+        $('#namafoto5').val('');
+    })
+
+    $('#btn-add-foto').on('click', function(){
+        $('#result-modal-add-foto').modal('show');
+    })
 
     $('#btn-ktp').on('click', function(){
         $('#result-modal-ktp').modal('show');
@@ -441,6 +538,133 @@
 
     $('#btn-skpu').on('click', function(){
         $('#result-modal-skpu').modal('show');
+    })
+
+    $('#addupload').on('click', function(){
+        var countupload = $("#countupload").val();
+        var k = '<input type="text" data-placeholder="Nama file" name="namafoto'+countupload+'" id="namafoto'+countupload+'" class="form-control"><input type="file" class="filestyle" data-placeholder="Tidak ada file" name="uploadfoto'+countupload+'"  id="uploadfoto'+countupload+'"><br>';
+        $('#tambah').append(k);
+        $("#countupload").val(parseInt(countupload)+1);
+
+        child = $('#tambah').children();
+        if (child.length >= 1) {
+            $('#removeupload').removeClass('hide');
+        }
+        // when the add file button is clicked append
+        $('#namafoto2').on('change', function() {
+            var fn = $("#namafoto2").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto2").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+
+        $('#namafoto3').on('change', function() {
+            var fn = $("#namafoto3").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto3").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+
+        $('#namafoto4').on('change', function() {
+            var fn = $("#namafoto4").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto4").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+
+        $('#namafoto5').on('change', function() {
+            var fn = $("#namafoto5").val();
+            var regex = /^[0-9a-zA-Z\_]+$/
+            var action = regex.test(fn);
+            if (action != true) { 
+                $("#namafoto5").val('');
+                alert('inputan harus huruf ataupun angka, tidak boleh menggunakan spesial caracter');
+                return false; 
+            }
+        });
+    });
+
+    $('#removeupload').click(function() {
+        var countupload = $("#countupload").val();
+        $("#countupload").val(parseInt(countupload)-1);
+
+        child = $('#tambah').children();
+        child.last().remove();
+        if (child.length <= 1) {
+            $('#removeupload').addClass('hide');
+        }
+    });
+
+    $('#btn-add-foto-lainnya').on('click', function(){
+        var count = $("#countupload").val();
+        var action = $("#action").val();
+
+        if (action == 'add') {
+            if (count <= 6) {
+                var form1 = $('#foto_lainnya')[0];
+                var data1 = new FormData(form1);
+                HoldOn.open(options);
+                $.ajax({
+                    type: "POST",
+                    enctype: 'multipart/form-data',
+                    url: '{{ route("foto_lainnya") }}',
+                    data: data1,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    success: function (result) {
+                        $('#result-modal-add-foto').modal('hide');
+                        alert(result.message);
+                        HoldOn.close();
+                        location.reload();
+                    },
+                    error: function (e) {
+                        alert("Gagal Terhubung ke Server");
+                        HoldOn.close();
+                    }
+                });
+            } else {
+                alert("Add Foto Lainnya harus dibawah sama dengan lima file");
+                HoldOn.close();
+            }
+        } else {
+            var form1 = $('#edit_foto_lainnya')[0];
+            var data1 = new FormData(form1);
+            HoldOn.open(options);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '{{ route("foto_lainnya") }}',
+                data: data1,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (result) {
+                    $('#result-modal-add-foto').modal('hide');
+                    alert(result.message);
+                    HoldOn.close();
+                    location.reload();
+                },
+                error: function (e) {
+                    alert("Gagal Terhubung ke Server");
+                    HoldOn.close();
+                }
+            });
+        }
     })
 
     $('#btn-update-ktp').on('click', function(){

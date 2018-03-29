@@ -8,28 +8,34 @@ function testbutton(){
       },1000);
 }
 $(document).ready(function() {
-	
 	//------------------all hidden---------------------------------
-		$("#induk_mitra_text").hide();
-		$("#back_induk_mitra_button").hide();
-		$("#induk_mitra_button").show();
-		$("#anak_perusahaan_wilayah_text").hide();
-		$("#back_anak_perusahaan_wilayah_button").hide();
-		$("#anak_perusahaan_wilayah_button").show();
-		$("#anak_perusahaan_kabupaten_text").hide();
-		$("#back_anak_perusahaan_kabupaten_button").hide();
-		$("#anak_perusahaan_kabupaten_button").show();
+	$('#tgl_pembayaran').datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
+			$('#tgl_gajian1').datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
+		$("#step0").show();
+		$("#step1").hide();
+		$("#step2").hide();
+		$("#step3").hide();
+		$("#step4").hide();
+		$("#div_golongan_mitra_text").hide();
+		$("#div_induk_mitra_text").hide();
+		$("#div_anak_perusahaan_wilayah_text").hide();
+		$("#div_anak_perusahaan_kabupaten_text").hide();
+		
 		$('#div_bank_payroll').hide();
 		$("#btn_modal_fasilitas").hide();
 		//=========================================================
 		
 		//------------------all show-----------------------------
-		$('#induk_mitra').next(".select2-container").show();
-		$("#induk_mitra_button_add").hide();
-		$('#anak_perusahaan_wilayah').next(".select2-container").show();
-		$("#anak_perusahaan_wilayah_button_add").hide();
-		$('#anak_perusahaan_kabupaten').next(".select2-container").show();
-		$("#anak_perusahaan_kabupaten_button_add").hide();
+		$("#div_golongan_mitra_select").show();
+		$("#div_induk_mitra_select").show();
+		$("#div_anak_perusahaan_wilayah_select").show();
+		$("#div_anak_perusahaan_kabupaten_select").show();
 		
 		$("#bank_payroll").select2({
 			  ajax: {
@@ -59,6 +65,60 @@ $(document).ready(function() {
 		
 		//----------------------------------------------------------
 });
+
+	function lanjutback(x){
+		if(x=='0'){
+			$("#step0").show();
+			$("#step1").hide();
+			$("#step2").hide();
+			$("#step3").hide();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'first current');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'disabled');
+		}else if(x=='1'){
+			$("#step0").hide();
+			$("#step1").show();
+			$("#step2").hide();
+			$("#step3").hide();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'first current');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'disabled');
+		}else if(x=='2'){
+			$("#step0").hide();
+			$("#step1").hide();
+			$("#step2").show();
+			$("#step3").hide();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'first current');
+			$("#li-step-3").attr('class', 'disabled');
+		}else if(x=='3'){
+			$("#step0").hide();
+			$("#step1").hide();
+			$("#step2").hide();
+			$("#step3").show();
+			$("#step4").hide();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'first current');
+		}else if(x=='4'){
+			$("#step0").hide();
+			$("#step1").hide();
+			$("#step2").hide();
+			$("#step3").hide();
+			$("#step4").show();
+			$("#li-step-0").attr('class', 'disabled');
+			$("#li-step-1").attr('class', 'disabled');
+			$("#li-step-2").attr('class', 'disabled');
+			$("#li-step-3").attr('class', 'first current');
+		}
+	}
         $("#form_scoring").submit(function(){
             var formData = new FormData(this);
             $.ajax({
@@ -117,9 +177,29 @@ $(document).ready(function() {
 				type: 'GET',
 			  }
 			}).change(function () {
+				if($('#golongan_mitra').val()=='xxx'){
+					add_text(0);
+				}
+				
+				$("#golongan_mitra_text").val($('#golongan_mitra').val());
+				$("#anak_perusahaan_kabupaten_text").val($('#golongan_mitra').val());
 			});
 			
 		
+	}
+	function text_list(x){
+		if(x=='0'){
+			$('#induk_mitra_text').val($('#golongan_mitra_text').val());
+			$('#anak_perusahaan_wilayah_text').val($('#golongan_mitra_text').val());
+			$('#anak_perusahaan_kabupaten_text').val($('#golongan_mitra_text').val());
+		}else if(x=='1'){
+			$('#anak_perusahaan_wilayah_text').val($('#induk_mitra_text').val());
+			$('#anak_perusahaan_kabupaten_text').val($('#induk_mitra_text').val());
+		}else if(x=='2'){
+			$('#anak_perusahaan_kabupaten_text').val($('#anak_perusahaan_wilayah_text').val());
+		}else if(x=='3'){
+			
+		}
 	}
 	function jenisinduk(){
 		$('#induk_mitra').val(null).trigger('change');		
@@ -133,7 +213,12 @@ $(document).ready(function() {
 				type: 'GET',
 			  }
 			}).change(function () {
-
+				if($('#induk_mitra').val()=='xxx'){
+						add_text(1);
+				}
+				
+				$("#anak_perusahaan_kabupaten_text").val($('#induk_mitra').val());
+				$("#induk_mitra_text").val($('#induk_mitra').val());
 /* 				var induk_mitra = $("#induk_mitra").val();
 				if(!induk_mitra){	
 						$('#induk_mitra_button').show();
@@ -164,6 +249,11 @@ $(document).ready(function() {
 				type: 'GET',
 			  }
 			}).change(function () {
+				if($('#anak_perusahaan_wilayah').val()=='xxx'){
+					add_text(2);
+				}
+				$("#anak_perusahaan_wilayah_text").val($('#anak_perusahaan_wilayah').val());
+				$("#anak_perusahaan_kabupaten_text").val($('#anak_perusahaan_wilayah').val());
 /* 				var anak_perusahaan_wilayah = $("#anak_perusahaan_wilayah").val();
 				if(!anak_perusahaan_wilayah){	
 						$('#induk_mitra_button').show();
@@ -194,7 +284,10 @@ $(document).ready(function() {
 				type: 'GET',
 			  }
 			}).change(function () {
-
+					if($('#anak_perusahaan_kabupaten').val()=='xxx'){
+						add_text(3);
+					}
+				$("#anak_perusahaan_kabupaten_text").val($('#anak_perusahaan_kabupaten').val());
 /* 				var anak_perusahaan_kabupaten = $("#anak_perusahaan_kabupaten").val();
 				if(!anak_perusahaan_kabupaten){	
 						$('#induk_mitra_button').show();
@@ -227,10 +320,14 @@ $(document).ready(function() {
 						'<input class="form-control" name="no_cif_mitra'+countpayroll+'" id="no_cif_mitra'+countpayroll+'" value="" type="text"></div></div>' +
 						'<div class="form-group payroll'+countpayroll+'">' +
 						'<label class="col-md-4"></label><div class="col-md-6">' + 
-						'<input name="tipe_account" value="gl" type="radio">GL' +
-						'<input name="tipe_account" value="cl" type="radio">CL' +
-						'<input name="tipe_account" value="sa" type="radio">SA' +
-						'<input name="tipe_account" value="cash" type="radio">CASH</div></div>';
+						'<div class="col-md-3">'+
+						'<input name="tipe_account'+countpayroll+'" value="gl" type="radio">GL' +
+						'</div><div class="col-md-3">'+
+						'<input name="tipe_account'+countpayroll+'" value="cl" type="radio">CL' +
+						'</div><div class="col-md-3">'+
+						'<input name="tipe_account'+countpayroll+'" value="sa" type="radio">SA' +
+						'</div>'+
+						'<input name="tipe_account'+countpayroll+'" value="cash" type="radio">CASH</div></div>';
 			
 			/* var html = '<label class="col-md-3 control-label">Pemeriksa'+countpemutus+'</label><div class="col-md-8">' + 
 					   '<input type="text" class="form-control" name="pemeriksa'+countpemutus+'" id="pemeriksa'+countpemutus+'" value="">'+
@@ -258,140 +355,115 @@ $(document).ready(function() {
 			div.className = 'form-horizontal';
 			div.innerHTML = html;
 			document.getElementById('div_tgl_gajian').appendChild(div);
+			$('#tgl_gajian'+countgajian).datepicker({
+                format : "yyyy-mm-dd",
+                autoclose: true,
+            });
 	}
-	function add_induk_mitra(key){
-		if(key=='1'){			
-			if(!$('#induk_mitra').val() && $('#golongan_mitra').val() ){
-				$("#induk_mitra_text").show();
-				$("#back_induk_mitra_button").show();
-				$('#induk_mitra').next(".select2-container").hide();
-				$("#induk_mitra_button").hide();
-				
-				$("#anak_perusahaan_wilayah_text").show();
-				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
-				$('#anak_perusahaan_wilayah').next(".select2-container").hide();
-				
-				$("#anak_perusahaan_kabupaten_text").show();
-				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-				}else if($('#golongan_mitra').val() ){
-				$("#induk_mitra_text").show();
-				$("#back_induk_mitra_button").show();
-				$('#induk_mitra').next(".select2-container").hide();
-				$("#induk_mitra_button").hide();
-				
-				$("#anak_perusahaan_wilayah_text").show();
-				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
-				$('#anak_perusahaan_wilayah').next(".select2-container").hide();
-				
-				$("#anak_perusahaan_kabupaten_text").show();
-				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-				}			
-		}else if(key=='2'){
-			if($('#golongan_mitra').val() ){
-				$("#induk_mitra_text").show();
-				$("#back_induk_mitra_button").show();
-				$('#induk_mitra').next(".select2-container").hide();
-				$("#induk_mitra_button").hide();
-				
-				$("#anak_perusahaan_wilayah_text").show();
-				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
-				$('#anak_perusahaan_wilayah').next(".select2-container").hide();
-				
-				$("#anak_perusahaan_kabupaten_text").show();
-				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-				}			
-		}else if(key=='3'){
-			
-			$("#induk_mitra_text").hide();
-			$("#back_induk_mitra_button").hide();
-			$('#induk_mitra').next(".select2-container").show();
-			$("#induk_mitra_button").show();
-			
-			
 
-			$("#anak_perusahaan_wilayah_text").hide();
-			document.getElementById("anak_perusahaan_wilayah_text").readOnly = false; 
-			$('#anak_perusahaan_wilayah').next(".select2-container").show();
-			
-			$("#anak_perusahaan_kabupaten_text").hide();
-			document.getElementById("anak_perusahaan_kabupaten_text").readOnly = false; 
-			$('#anak_perusahaan_kabupaten').next(".select2-container").show();
-		}
-	}
-	function add_wilayah(key){
-		if(key=='1'){
-			if($('#induk_mitra').val() && $('#golongan_mitra').val() && !$('#anak_perusahaan_wilayah').val()){		
-				$("#anak_perusahaan_wilayah_text").show();
-				$("#back_anak_perusahaan_wilayah_button").show();
-				$('#anak_perusahaan_wilayah').next(".select2-container").hide();
-				$("#anak_perusahaan_wilayah_button").hide();
+		function backs_select(key){
+		if(key=='0'){		
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").show();
+				$("#div_induk_mitra_text").hide();
+				$("#div_anak_perusahaan_wilayah_select").show();
+				$("#div_anak_perusahaan_wilayah_text").hide();
+				$("#div_anak_perusahaan_kabupaten_select").show();
+				$("#div_anak_perusahaan_kabupaten_text").hide();
 				
-				$("#anak_perusahaan_kabupaten_text").show();
-				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-			}else if($('#induk_mitra').val() && $('#golongan_mitra').val()){		
-				$("#anak_perusahaan_wilayah_text").show();
-				$("#back_anak_perusahaan_wilayah_button").show();
-				$('#anak_perusahaan_wilayah').next(".select2-container").hide();
-				$("#anak_perusahaan_wilayah_button").hide();
-				
-				$("#anak_perusahaan_kabupaten_text").show();
-				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-			}
-		}else if(key=='2'){
-			if($('#induk_mitra').val() && $('#golongan_mitra').val()){		
-				$("#anak_perusahaan_wilayah_text").show();
-				$("#back_anak_perusahaan_wilayah_button").show();
-				$('#anak_perusahaan_wilayah').next(".select2-container").hide();
-				$("#anak_perusahaan_wilayah_button_add").hide();
-				
-				$("#anak_perusahaan_kabupaten_text").show();
-				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-			}
+		}else if(key=='1'){			
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").show();
+				$("#div_induk_mitra_text").hide();
+				$("#div_anak_perusahaan_wilayah_select").show();
+				$("#div_anak_perusahaan_wilayah_text").hide();
+				$("#div_anak_perusahaan_kabupaten_select").show();
+				$("#div_anak_perusahaan_kabupaten_text").hide();
+
+		}else if(key=='2'){			
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").show();
+				$("#div_induk_mitra_text").hide();
+				$("#div_anak_perusahaan_wilayah_select").show();
+				$("#div_anak_perusahaan_wilayah_text").hide();
+				$("#div_anak_perusahaan_kabupaten_select").show();
+				$("#div_anak_perusahaan_kabupaten_text").hide();
+
 		}else if(key=='3'){
-			$("#anak_perusahaan_wilayah_text").hide();
-			$("#back_anak_perusahaan_wilayah_button").hide();
-			$('#anak_perusahaan_wilayah').next(".select2-container").show();
-			$("#anak_perusahaan_wilayah_button").show();
-			
-			$("#anak_perusahaan_kabupaten_text").hide();
-			document.getElementById("anak_perusahaan_kabupaten_text").readOnly = false; 
-			$('#anak_perusahaan_kabupaten').next(".select2-container").show();			
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").show();
+				$("#div_induk_mitra_text").hide();
+				$("#div_anak_perusahaan_wilayah_select").show();
+				$("#div_anak_perusahaan_wilayah_text").hide();
+				$("#div_anak_perusahaan_kabupaten_select").show();
+				$("#div_anak_perusahaan_kabupaten_text").hide();
+		}
+
+		}
+		function add_text(key){
+			/* $("#golongan_mitra_text").val('');
+			$("#induk_mitra_text").val('');
+			$("#anak_perusahaan_wilayah_text").val('');
+			$("#anak_perusahaan_kabupaten_text").val(''); */
+		if(key=='0'){		
+				$("#div_golongan_mitra_select").hide();
+				$("#div_golongan_mitra_text").show();
+				$("#div_induk_mitra_select").hide();
+				$("#div_induk_mitra_text").show();
+				$("#div_anak_perusahaan_wilayah_select").hide();
+				$("#div_anak_perusahaan_wilayah_text").show();
+				$("#div_anak_perusahaan_kabupaten_select").hide();
+				$("#div_anak_perusahaan_kabupaten_text").show();
+				document.getElementById("induk_mitra_text").readOnly = true; 
+				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
+				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
+				
+		}else if(key=='1'){			
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").hide();
+				$("#div_induk_mitra_text").show();
+				$("#div_anak_perusahaan_wilayah_select").hide();
+				$("#div_anak_perusahaan_wilayah_text").show();
+				$("#div_anak_perusahaan_kabupaten_select").hide();
+				$("#div_anak_perusahaan_kabupaten_text").show();
+				document.getElementById("induk_mitra_text").readOnly = false; 
+				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
+				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
+
+		}else if(key=='2'){			
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").show();
+				$("#div_induk_mitra_text").hide();
+				$("#div_anak_perusahaan_wilayah_select").hide();
+				$("#div_anak_perusahaan_wilayah_text").show();
+				$("#div_anak_perusahaan_kabupaten_select").hide();
+				$("#div_anak_perusahaan_kabupaten_text").show();
+				document.getElementById("induk_mitra_text").readOnly = true; 
+				document.getElementById("anak_perusahaan_wilayah_text").readOnly = false; 
+				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = true; 
+
+		}else if(key=='3'){
+				$("#div_golongan_mitra_select").show();
+				$("#div_golongan_mitra_text").hide();
+				$("#div_induk_mitra_select").show();
+				$("#div_induk_mitra_text").hide();
+				$("#div_anak_perusahaan_wilayah_select").show();
+				$("#div_anak_perusahaan_wilayah_text").hide();
+				$("#div_anak_perusahaan_kabupaten_select").hide();
+				$("#div_anak_perusahaan_kabupaten_text").show();
+				document.getElementById("induk_mitra_text").readOnly = true; 
+				document.getElementById("anak_perusahaan_wilayah_text").readOnly = true; 
+				document.getElementById("anak_perusahaan_kabupaten_text").readOnly = false; 
 		}
 	}
 	
-	function add_kabupaten(key){
-		if(key=='1'){
-			if($('#induk_mitra').val() && $('#golongan_mitra').val() && $('#anak_perusahaan_wilayah').val() && !$('#anak_perusahaan_kabupaten').val()){
-				$("#anak_perusahaan_kabupaten_text").show();
-				$("#back_anak_perusahaan_kabupaten_button").show();
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-				$("#anak_perusahaan_kabupaten_button").show();
-			}else if($('#induk_mitra').val() && $('#golongan_mitra').val() && $('#anak_perusahaan_wilayah').val()){
-				$("#anak_perusahaan_kabupaten_text").show();
-				$("#back_anak_perusahaan_kabupaten_button").show();
-				$("#anak_perusahaan_kabupaten_button").hide();
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-			}
-		}else if(key=='2'){
-			if($('#induk_mitra').val() && $('#golongan_mitra').val() && $('#anak_perusahaan_wilayah').val()){
-				$("#anak_perusahaan_kabupaten_text").show();
-				$("#back_anak_perusahaan_kabupaten_button").show();
-				$("#anak_perusahaan_kabupaten_button_add").show();
-				$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-			}
-		}else if(key=='3'){
-			$("#anak_perusahaan_kabupaten_text").show();
-			$("#back_anak_perusahaan_kabupaten_button").show();
-			$('#anak_perusahaan_kabupaten').next(".select2-container").hide();
-			$("#anak_perusahaan_kabupaten_button").hide();
-		}		
-	}
+	
 	
 	function getpemeriksa(formarray){
 /* 		var area_level = $("input:radio[name=area_level]:checked").val();
@@ -476,6 +548,7 @@ function empty(e) {
       return false;
   }
 }
+
 function addjabatan(countpemutus){
 			var html = '<label class="col-md-5 control-label">Jabatan Pemeriksa'+countpemutus+'</label><div class="col-md-7">' + 
 					   '<input type="text" class="form-control" name="jabatan'+countpemutus+'" id="jabatan'+countpemutus+'" value="" maxlength="16">'+
@@ -485,6 +558,7 @@ function addjabatan(countpemutus){
 			div.innerHTML = html;
 			document.getElementById('div_jabatan').appendChild(div);
 }
+
 
 function adddetail(formdetail){	
 	var id_detail = Date.now();
@@ -758,14 +832,129 @@ function addapprovalpemutus(formarray){
 		});
 		return formarray;
 }
-$(document).on('click', "#btn-submit", function(){
-	var formdetail = [];
-	var formheader = [];
-	var formpemutus = [];
-	var formarray = [];
-	formheader = addheader(formheader);
-	formdetail = adddetail(formdetail);
-	formpemutus = addapprovalpemutus(formpemutus);
+
+
+function add_mitra_detail_dasar(mitra_detail_dasar,id_detail){
+	mitra_detail_dasar.push({
+		"name" : "id",
+		"value" : id_detail
+	});
+	var jenis_mitra = $("input:radio[name=jenis_mitra]:checked").val();
+		mitra_detail_dasar.push({
+			"name": "jenis_mitra",
+			"value": jenis_mitra
+		});
+	mitra_detail_dasar.push({
+		"name" : "golongan_mitra",
+		"value" : golongan_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "induk_mitra",
+		"value" : induk_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "anak_perusahaan_wilayah",
+		"value" : anak_perusahaan_wilayah
+	});
+	mitra_detail_dasar.push({
+		"name" : "anak_perusahaan_kabupaten",
+		"value" : anak_perusahaan_kabupaten
+	});
+	mitra_detail_dasar.push({
+		"name" : "alamat_mitra",
+		"value" : alamat_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "no_telp_mitra",
+		"value" : no_telp_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "id_mitra",
+		"value" : id_mitra
+	});
+}
+
+function add_mitra_detail_data(mitra_detail_data,id_detail){
+	mitra_detail_dasar.push({
+		"name" : "id",
+		"value" : id_detail
+	});
+	mitra_detail_dasar.push({
+		"name" : "deskripsi_mitra",
+		"value" : deskripsi_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "hp_mitra",
+		"value" : hp_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "bendaharawan_mitra",
+		"value" : bendaharawan_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "telp_bendaharawan_mitra",
+		"value" : telp_bendaharawan_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "hp_bendaharawan_mitra",
+		"value" : hp_bendaharawan_mitra
+	});
+	mitra_detail_dasar.push({
+		"name" : "email",
+		"value" : email
+	});
+	mitra_detail_dasar.push({
+		"name" : "jml_pegawai",
+		"value" : jml_pegawai
+	});
+	mitra_detail_dasar.push({
+		"name" : "thn_pegawai",
+		"value" : thn_pegawai
+	});
+	mitra_detail_dasar.push({
+		"name" : "tgl_pendirian",
+		"value" : tgl_pendirian
+	});
+	mitra_detail_dasar.push({
+		"name" : "akta_pendirian",
+		"value" : akta_pendirian
+	});
+	mitra_detail_dasar.push({
+		"name" : "akta_perubahan",
+		"value" : akta_perubahan
+	});
+	mitra_detail_dasar.push({
+		"name" : "npwp_usaha",
+		"value" : npwp_usaha
+	});
+	var laporan_keuangan =  $('input[type=file]')[0].files[0];
+	mitra_detail_dasar.push({
+		"name" : "laporan_keuangan",
+		"value" : laporan_keuangan
+	});
+	var legalitas_perusahaan  =  $('input[type=file]')[0].files[0];
+	mitra_detail_dasar.push({
+		"name" : "legalitas_perusahaan ",
+		"value" : legalitas_perusahaan 
+	});
+	
+}
+
+$(document).on('click', "#btn-submits", function(){
+	var id_detail = Date.now();
+	var mitra_detail_dasar = [];
+	var mitra_detail_data = [];
+	var mitra_detail_fasilitas = [];
+	var mitra_detail_fasilitas_perbankan = [];
+	var mitra_detail_payroll = [];
+	var mitra_pemutus = [];
+	
+	mitra_detail_dasar = add_mitra_detail_dasar(mitra_detail_dasar,id_detail);
+	mitra_detail_data = add_mitra_detail_data(mitra_detail_data,id_detail);
+	mitra_detail_fasilitas = add_mitra_detail_fasilitas(mitra_detail_fasilitas,id_detail);
+	mitra_detail_payroll = add_mitra_detail_payroll(mitra_detail_payroll,id_detail);
+	mitra_pemutus = add_mitra_pemutus(mitra_pemutus,id_detail);
+
 	formarray.push({
 			"name": "formheader",
 			"value": JSON.stringify(formheader)

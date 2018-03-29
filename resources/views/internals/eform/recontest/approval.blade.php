@@ -163,31 +163,6 @@
 
 
                             <!-- rekomendasi approval -->
-                            <!-- <div class="no-print">
-                                @if($recontest == 1)
-                                <form class="form-horizontal" role="form" action="{{route('postApproval', $id)}}" method="POST" id="form1">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="is_approved" id="is_approved">
-                                    <input type="hidden" name="auditaction" id="auditaction">
-                                    @if($recontest == 1)
-                                    @include('internals.eform.approval._recommendation')
-                                    @else
-                                    @include('internals.eform.recontest._recommendation-recontest')
-                                    @endif
-                                </form>
-                                @else
-                                <form class="form-horizontal" role="form" action="{{route('postApprovalRecontest', $id)}}" method="POST" id="form1">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="is_approved" id="is_approved">
-                                    <input type="hidden" name="auditaction" id="auditaction">
-                                    @if($recontest == 1)
-                                    @include('internals.eform.approval._recommendation')
-                                    @else
-                                    @include('internals.eform.recontest._recommendation-recontest')
-                                    @endif
-                                </form>
-                                @endif
-                            </div> -->
 
                         </div>
                     </div>
@@ -254,7 +229,7 @@
                                             @include('internals.eform.approval._lkn-visit-recontest')
                                         </div>
                                         <div class="panel-body">
-                                            @include('internals.eform.approval._lkn-income')
+                                            @include('internals.eform.recontest._lkn-income-recontest')
                                         </div>
                                         <div class="panel-body">
                                             @include('internals.eform.approval._lkn-kpp')
@@ -270,10 +245,10 @@
                                         </div>
                                         @endif
                                         <div class="panel-body">
-                                            @include('internals.eform.approval._lkn-analist')
+                                            @include('internals.eform.recontest._lkn-analist-recontest')
                                         </div>
                                         <div class="panel-body">
-                                            @include('internals.eform.approval._lkn-recommend')
+                                            @include('internals.eform.recontest._lkn-recommend-recontest')
                                         </div>
                                         <div class="panel-body">
                                             @include('internals.eform.recontest._lkn-recontest-docs')
@@ -307,13 +282,6 @@
 @include('internals.layouts.foot')
 <script type="text/javascript">
 
-// $(function(){
-//         $('.zoom').toggle(
-//               function() { $(this).animate({width: "100%"}, 500)},
-//                function() { $(this).animate({width: "50px"}, 500); }
-//         );
-//   });
-
 var options = {
     theme:"sk-bounce",
     message:'Mohon tunggu sebentar.',
@@ -345,14 +313,12 @@ function printPage() {
 }
 
 $('#no').on('change',function(){
-        // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').hide();
         }
     });
 
 $('#yes').on('change',function(){
-        // console.log('sini');
         if ($(this).is(':checked')) {
             $('#btn-approve').show();
         }

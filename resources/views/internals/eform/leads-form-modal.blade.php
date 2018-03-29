@@ -14,7 +14,7 @@
             <div class="modal-body">
                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_data_personal">
                     {{ csrf_field() }}
-                    <div class="row">
+                    <div class="row" id="personal_data">
                         <div class="col-md-12">
                             @if (\Session::has('error'))
                             <div class="alert alert-danger">{{ \Session::get('error') }}</div>
@@ -59,6 +59,7 @@
                                                             <input type="text" class="form-control datepicker-date" id="datepicker-date" name="birth_date" value="{{ old('birth_date') }}">
                                                             <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                                         </div>
+                                                        <span id="birth_date-error"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
@@ -159,7 +160,7 @@
                                                 <div class="form-group couple_nik {!! $errors->has('couple_nik') ? 'has-error' : '' !!}">
                                                     <label class="col-md-3 control-label">NIK * :</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control numericOnly" name="couple_nik" id="nik" value="{{ old('couple_nik') }}" maxlength="16">
+                                                        <input type="text" class="form-control numericOnly" name="couple_nik" id="couple_nik" value="{{ old('couple_nik') }}" maxlength="16">
                                                         @if ($errors->has('couple_nik')) <p class="help-block">{{ $errors->first('couple_nik') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -174,7 +175,7 @@
                                                     <label class="col-md-3 control-label">Tempat Lahir * :</label>
                                                     <div class="col-md-9">
                                                         {!! Form::select('couple_birth_place_id', ['' => ''], old('cities'), [
-                                                        'class' => 'select2 cities',
+                                                        'class' => 'select2 cities_couple',
                                                         'data-placeholder' => 'Pilih Kota',
                                                         'readonly' => true,
                                                         'style' => "width:100%"
@@ -215,7 +216,6 @@
                         <div class="col-md-12">
                             <div class="pull-right">
                                 <a href="#" data-dismiss="modal" class="btn btn-default waves-light waves-effect w-md m-b-20">Batal</a>
-                                <!-- <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a> -->
                                 <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
                             </div>
                         </div>

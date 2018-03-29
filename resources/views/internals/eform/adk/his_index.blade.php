@@ -25,7 +25,9 @@
                     @if (\Session::has('error'))
                         <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                     @endif
+                    
                     <div class="card-box">
+                        <a href="#" class="btn btn-info waves-effect waves-light bottom-margin" id="btn-refresh">Refresh</a>
                         <div class="table-responsive">
                             <table id="datatable-histori" class="table table-bordered" width="100%">
                                 <thead class="bg-primary">
@@ -35,11 +37,12 @@
                                         <td align="center">ID Aplikasi</td>
                                         <td align="center">No Referensi</td>
                                         <td align="center">Produk</td>
-                                        <td align="center">Nama Pemutus</td>
-                                        <td align="center">Tanggal Putusan</td>
                                         <td align="center">Nama Pemrakarsa</td>
                                         <td align="center">Tanggal Analisa</td>
+                                        <td align="center">Nama Pemutus</td>
+                                        <td align="center">Tanggal Putusan</td>
                                         <td align="center">Nama Debitur</td>
+                                        <td align="center">Tanggal Pencairan</td>
                                         <td align="center">Nomor Rekening</td>
                                         <td align="center">Plafond</td>
                                         <td align="center">Status</td>
@@ -62,6 +65,9 @@
 @include('internals.layouts.foot')
 @include('internals.eform.adk.script-his-adk')
 <script type="text/javascript">
+    $(document).on('click', "#btn-refresh", function(){
+        location.reload();
+    });
     //show modal CRS
     $(document).on('click', "#btn-prescreening", function(){
         HoldOn.open();

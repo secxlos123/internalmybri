@@ -50,7 +50,6 @@
                         <div class="input-group">
                             <span class="input-group-addon">Rp</span>
                             <input type="text" class="form-control numericOnly currency-rp" name="nominal" maxlength="12">
-                            <!-- <span class="input-group-addon">,00</span> -->
                         </div>
                       </td>
                       <td>

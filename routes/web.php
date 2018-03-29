@@ -12,24 +12,25 @@
 */
 /* Backend */
     /* Auth */
-			Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
-			Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
-			Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
-			Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
-			Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
-			Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
-			Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
-			Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
-			Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
-			Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
-			Route::get('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
-			//Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
-			Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
-			Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
-			Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
-			Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
-			Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
-			Route::get('/DirRpcHapusDetail', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus_detail']);
+            Route::get('/GimmickStore', ['as'=>'GimmickStore', 'uses'=>'Mitra\GimmickController@store']);
+            Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
+            Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
+            Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
+            Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
+            Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
+            Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
+            Route::get('/ListUkerKanwil2', ['as'=>'ListUkerKanwil2', 'uses'=>'Mitra\ListUkerController@list_uker_tester2']);
+            Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
+            Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
+            Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\PerjanjianController@store']);
+            //Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
+            Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
+            Route::post('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
+            Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
+            Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
+            Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
+            Route::get('/DirRpcHapusDetail', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus_detail']);
 
     Route::post('/login',
         ['as'=>'postLogin', 'uses'=>'User\LoginController@postLogin']);
@@ -52,14 +53,20 @@
 
     Route::delete('logout', 'User\LoginController@logout');
 
-    Route::group(['middleware'=> [ 'auth', 'check-token']], function () {
+    Route::group(['middleware'=> [ 'auth', 'check-token','preventBackHistory']], function () {
 
         /* Dashboard */
         Route::get('/',
             ['as'=>'dashboard', 'uses'=>'Home\HomeController@index']);
 
         /* Customers */
-        Route::resource('customers', 'Customer\CustomerController');
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,admin-bri,superadmin'], function() {
+            Route::resource('customers', 'Customer\CustomerController',['only' => 'index']);
+        });
+        /* Customers */
+        Route::group(['middleware' => 'checkrole:ao,pinca,mp,other,staff,superadmin'], function() {
+            Route::resource('customers', 'Customer\CustomerController',['except' => 'index']);
+        });
 
         /* Roles */
         Route::resource('roles', 'User\RoleController');
@@ -75,7 +82,9 @@
 
         Route::get('developers/{id}/properties', ['as'=>'properties', 'uses'=>'Developer\DeveloperController@properties']);
 
-        Route::resource('developers', 'Developer\DeveloperController');
+        Route::group(['middleware' => 'checkrole:staff,superadmin'], function() {
+            Route::resource('developers', 'Developer\DeveloperController');
+        });
 
         /* E-Form */
         // New Prescreening
@@ -88,35 +97,45 @@
         Route::post('eform/submit-prescreening', ['as'=>'postPrescreeningManual', 'uses'=>'EForm\EFormController@postPrescreening']);
 
         // Dispotition
-        Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
+        Route::group(['middleware' => 'checkrole:mp,pinca,admin-bri,superadmin'], function() {
+            Route::get('eform/dispotition/{id}/{ref}', ['as'=>'getDispotition', 'uses'=>'EForm\EFormController@getDispotition']);
 
-        Route::post('/eform/dispotition/{id}',
-            ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
+            Route::post('/eform/dispotition/{id}',
+                ['as'=>'postDispotition', 'uses'=>'EForm\EFormController@postDispotition']);
+            //Approval Recontes
+            Route::get('eform/approval-recontest/{id}', ['as'=>'getApprovalRecontest', 'uses'=>'EForm\RecontestController@getApprovalRecontest']);
 
-        Route::post('/eform/postLKN/{id}',
-            ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
+            Route::post('/eform/post-approval-recontest/{id}',
+                ['as'=>'postApprovalRecontest', 'uses'=>'EForm\RecontestController@postApprovalRecontest']);
+            //Approval
+            Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
+            Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
 
-        Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
-        Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
+            Route::post('/eform/approve/{id}',
+            ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
+        });
 
-        // Rekontes LKN
-        Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
+        Route::group(['middleware' => 'checkrole:ao,superadmin'], function() {
+            Route::post('/eform/postLKN/{id}',
+                ['as'=>'postLKN', 'uses'=>'EForm\AOController@postLKN']);
 
-        Route::post('/eform/post-lkn-recontest/{id}',
-            ['as'=>'postLKNRecontest', 'uses'=>'EForm\RecontestController@postLKNRecontest']);
+            Route::get('eform/lkn/{id}', ['as'=>'getLKN', 'uses'=>'EForm\AOController@getLKN']);
+            Route::get('eform/resend-vip/{id}', ['as'=>'resendVIP', 'uses'=>'EForm\AOController@resendVIP']);
+            // Rekontes LKN
+            Route::get('eform/recontest/{id}', ['as'=>'getRecontest', 'uses'=>'EForm\RecontestController@getRecontest']);
 
-        Route::get('eform/approval-recontest/{id}', ['as'=>'getApprovalRecontest', 'uses'=>'EForm\RecontestController@getApprovalRecontest']);
-
-        Route::post('/eform/post-approval-recontest/{id}',
-            ['as'=>'postApprovalRecontest', 'uses'=>'EForm\RecontestController@postApprovalRecontest']);
-
-        Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
-
-        Route::get('/eform/verification/preview/{id}', ['as'=>'getDetail', 'uses'=>'EForm\AOController@getPreview']);
-
-        Route::get('/eform/verification/print/{id}', ['as'=>'getPrint', 'uses'=>'EForm\AOController@getPrint']);
-
-        Route::post('/eform/search-nik', ['as'=>'eform-search-nik', 'uses'=>'EForm\AOController@searchNik']);
+            Route::post('/eform/post-lkn-recontest/{id}',
+                ['as'=>'postLKNRecontest', 'uses'=>'EForm\RecontestController@postLKNRecontest']);
+            Route::get('/eform/verification/{id}', ['as'=>'getVerification', 'uses'=>'EForm\AOController@getVerification']);
+            Route::get('/eform/verification/preview/{id}', ['as'=>'getDetail', 'uses'=>'EForm\AOController@getPreview']);
+            Route::get('/eform/verification/print/{id}', ['as'=>'getPrint', 'uses'=>'EForm\AOController@getPrint']);
+            Route::post('/eform/search-nik', ['as'=>'eform-search-nik', 'uses'=>'EForm\AOController@searchNik']);
+            //this route for resend verification to nasabah
+            Route::get('/eform/resendVerification/{eform_id}',
+                ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
+            Route::post('/eform/delete',
+            ['as'=>'delete-eform', 'uses'=>'EForm\EFormController@delete']);
+        });
 
         Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
 
@@ -125,20 +144,6 @@
 
         Route::put('/eform/verifyData/{id}',
             ['as'=>'verifyData', 'uses'=>'EForm\AOController@verifyData']);
-
-        //this route for resend verification to nasabah
-        Route::get('/eform/resendVerification/{eform_id}',
-            ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
-
-        Route::get('/eform/approval/{id}', ['as'=>'getApproval', 'uses'=>'EForm\ApprovalController@getApproval']);
-
-        Route::get('/eform/approval/preview/{id}', ['as'=>'getDetailApproval', 'uses'=>'EForm\ApprovalController@getPreview']);
-
-        Route::post('/eform/approve/{id}',
-            ['as'=>'postApproval', 'uses'=>'EForm\ApprovalController@postApproval']);
-
-        Route::post('/eform/delete',
-            ['as'=>'delete-eform', 'uses'=>'EForm\EFormController@delete']);
 
         Route::get('/eform-ao', ['as'=>'indexAO', 'uses'=>'EForm\AOController@index']);
 
@@ -151,7 +156,7 @@
         Route::post('/calculator/calculate/',
             ['as'=>'postCalculate', 'uses'=>'Calculator\CalculatorController@postCalculate']);
 
-        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:collateral'], function () {
+        Route::group(['prefix'=>'collateral','middleware'=>'checkrole:collateral,superadmin'], function () {
 
             Route::get('detail/{dev_id}/{prop_id}', ['as'=>'collateralDetail', 'uses'=>'Collateral\CollateralController@detail']);
 
@@ -168,7 +173,7 @@
             Route::get('monitoring/{dev_id}/{prop_id}', ['as'=>'getMonitoring', 'uses'=>'Collateral\CollateralController@getMonitoring']);
         });
 
-        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal'], function () {
+        Route::group(['prefix'=>'staff-collateral' , 'middleware'=>'checkrole:ao,collateral-appraisal,superadmin'], function () {
 
             Route::get('get-detail/{dev_id}/{prop_id}', ['as'=>'collateralStaffDetail', 'uses'=>'Collateral\CollateralStaffController@show']);
 
@@ -186,7 +191,7 @@
             Route::post('post-upload-doc/{id}', ['as'=>'postUploadDoc', 'uses'=>'Collateral\CollateralStaffController@postUploadDoc']);
         });
 
-        Route::group(['prefix'=>'approval-data'], function () {
+        Route::group(['prefix'=>'approval-data','middleware'=>'checkrole:staff,superadmin'], function () {
 
             Route::get('developer', ['as'=>'approveDeveloper', 'uses'=>'ApprovalData\ApprovalDataController@indexApprovalDeveloper']);
 
@@ -201,7 +206,15 @@
             Route::post('approve-data-thirdparty', ['as'=>'postApprovalDataThirdParty', 'uses'=>'ApprovalData\ApprovalDataController@postApprovalDataThirdParty']);
         });
 
-        Route::resource('eform', 'EForm\EFormController');
+        Route::group(['middleware' => 'checkrole:ao,other,staff,superadmin'], function () {
+            Route::resource('eform', 'EForm\EFormController', ['only' => 'create']);
+            /* EForms */
+            Route::get('eform/admin', 'EForm\EFormController@indexAdmin')->name('eform.indexadmin');
+        });
+         Route::group(['middleware' => 'checkrole:ao,other,staff,mp,pinca,superadmin'], function () {
+            Route::resource('eform', 'EForm\EFormController', ['only' => 'index']);
+        });
+        Route::resource('eform', 'EForm\EFormController', ['except' => ['create','index']]);
         // Route::get('eform/{ref}', ['as'=>'eform.index', 'uses'=>'EForm\EFormController@index']);
 
         /*ADK*/
@@ -215,26 +228,33 @@
         Route::get('post_pdf/{id}', ['as'=>'post_pdf', 'uses'=>'EForm\ADKController@exportPTK']);
         Route::get('post_sph/{id}', ['as'=>'post_sph', 'uses'=>'EForm\ADKController@exportSPH']);
         Route::get('post_debitur/{id}', ['as'=>'post_debitur', 'uses'=>'EForm\ADKController@exportDebitur']);
+        Route::get('post_image/{id}', ['as'=>'post_image', 'uses'=>'EForm\ADKController@exportImage']);
+        Route::post('foto_lainnya', ['as'=>'foto_lainnya', 'uses'=>'EForm\ADKController@postFotoLainnya']);
 
         /* Pihak Ke -3 (Third Party) */
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
         /* Schedule */
-        Route::resource('schedule', 'Schedule\ScheduleController', [
-            'only' => ['index']
-        ]);
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
+            Route::resource('schedule', 'Schedule\ScheduleController', [
+                'only' => ['index']
+            ]);
+        });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
         });
 
         /* Tracking */
-        Route::resource('tracking', 'Tracking\TrackingController');
+        Route::group(['middleware' => 'checkrole:ao,other,staff,superadmin'], function() {
+            Route::resource('tracking', 'Tracking\TrackingController');
+        });
 
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
+
 
 				/* Calculator DPLK */
         Route::resource('calculatordplk', 'CalculatorDPLK\CalculatorDPLKController');
@@ -242,11 +262,20 @@
         /* Calculator */
         Route::resource('debitur', 'Debitur\DebiturController');
 
+        /* Debitur */
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
+            Route::resource('debitur', 'Debitur\DebiturController');
+        });
+
         /* Collateral */
-        Route::resource('collateral', 'Collateral\CollateralController');
+        Route::group(['middleware' => 'checkrole:collateral,superadmin'], function() {
+            Route::resource('collateral', 'Collateral\CollateralController');
+        });
 
         /* Collateral Staff*/
-        Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
+        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal,superadmin'], function() {
+            Route::resource('staff-collateral', 'Collateral\CollateralStaffController');
+        });
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
@@ -255,75 +284,85 @@
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
-        Route::resource('screening', 'Screening\ScreeningController');
+        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
+            Route::resource('screening', 'Screening\ScreeningController',['only'=>'index']);
+        });
+
+        Route::resource('screening', 'Screening\ScreeningController',['except'=>'index']);
 
         /* CRM Dashboard */
-				Route::get('crm_dashboard', 'CRM\DashboardController@index');
-				Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
-				Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
-				Route::post('pieChart', 'CRM\DashboardController@pieChart');
+                Route::get('crm_dashboard', 'CRM\DashboardController@index');
+                Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
+                Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
 
         /* CRM referral */
-				Route::resource('referral', 'CRM\ReferralController');
-				Route::get('add_referral', 'CRM\ReferralController@add');
-				Route::post('cek_nik', 'CRM\ReferralController@nikCek');
-				Route::post('store_referral', 'CRM\ReferralController@store');
-				Route::post('update_referral', 'CRM\ReferralController@update');
+                Route::resource('referral', 'CRM\ReferralController');
+                Route::get('add_referral', 'CRM\ReferralController@add');
+                Route::post('cek_nik', 'CRM\ReferralController@nikCek');
+                Route::post('store_referral', 'CRM\ReferralController@store');
+                Route::post('update_referral', 'CRM\ReferralController@update');
 
-        /* CRM Disposisi Referral */
-				Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
+								/* CRM Disposisi Referral */
+								Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
-        /* CRM report */
-				Route::get('report/marketing', 'CRM\ReportController@marketing');
-				Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
-				Route::post('report/list-fo', 'CRM\ReportController@listFo');
-				Route::post('report/list-fo-kanca', 'CRM\ReportController@listFoKanca');
-				Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
-				Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
-				Route::get('report/activity', 'CRM\ReportController@activity');
+				        /* CRM report */
+								Route::get('report/marketing', 'CRM\ReportController@marketing');
+								Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
+								Route::post('report/list-fo', 'CRM\ReportController@listFo');
+								Route::post('report/list-fo-kanca', 'CRM\ReportController@listFoKanca');
+								Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
+								Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
+								Route::get('report/activity', 'CRM\ReportController@activity');
 
-				/* CRM marketing */
-				Route::get('marketing', 'CRM\marketingController@index');
-				Route::get('marketing_detail', 'CRM\marketingController@detail');
-				Route::get('marketing/create', 'CRM\marketingController@create');
-				Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
-				Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
+								/* CRM marketing */
+								Route::get('marketing', 'CRM\marketingController@index');
+								Route::get('marketing_detail', 'CRM\marketingController@detail');
+								Route::get('marketing/create', 'CRM\marketingController@create');
+								Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
+								Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
 
-				/* CRM marketing */
-				Route::get('leads', 'CRM\leadsController@index');
-				Route::get('leads_detail', 'CRM\leadsController@detail');
+								/* CRM marketing */
+								Route::get('leads', 'CRM\leadsController@index');
+								Route::get('leads_detail', 'CRM\leadsController@detail');
 
 
-		Route::resource('mitra', 'Mitra\MitraController');
-		Route::resource('gimmick', 'Mitra\GimmickController');
-		Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
-		Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
-		Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
-		Route::resource('mitra_list', 'Mitra\mitra\MitraController');
-		Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
-		Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');
-		Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
-		Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
-		Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
-		Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
-		Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
-		Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
-		Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
-		Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
-		Route::resource('dir_rpc_edit', 'Mitra\dirrpc\EditDircontroller');
-		Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
-		Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
-		Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
+        Route::resource('mitra', 'Mitra\MitraController');
+        Route::resource('gimmick', 'Mitra\GimmickController');
+        Route::get('gimmick_list', 'Mitra\GimmickController@gimmick_list');
+        Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
+        Route::resource('testing', 'Mitra\testingController');
+        Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+        Route::resource('mitra_list', 'Mitra\mitra\MitraController');
+        Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
+        Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');
+        Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
+        Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
+        Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
+        Route::resource('calon_mitra_approval', 'Mitra\mitra\CalonMitraApprovalController');
+        Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
+        Route::resource('approval_mitra', 'Mitra\mitra\ApprovalController');
+        Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
+        Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
+        Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
+        Route::resource('dir_rpc_add', 'Mitra\dirrpc\AddDirRpcontroller');
+        Route::resource('dir_rpc_edit', 'Mitra\dirrpc\EditDircontroller');
+        Route::resource('dir_rpc_maintance', 'Mitra\dirrpc\MaintanceRpcController');
+        Route::resource('dir_rpc_add_umum', 'Mitra\dirrpc\AddDirUmumRpcontroller');
+        Route::resource('dir_rpc_add_profesi', 'Mitra\dirrpc\AddDirProfesiRpcontroller');
 
-		Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
-		Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
+        Route::resource('scoring_mitra', 'Mitra\scoring\ScoringMitraController');
+        Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
-        Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
+        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
+            Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
+        });
 
         /* Auditrail */
-        Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
-        Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
+            Route::resource('auditrail', 'AuditRail\AuditRailController', [ 'only' => ['index'] ]);
+            Route::get('auditrail/detailCollateral/{developers_id}/{property_id}', ['as'=>'auditCollateral', 'uses'=>'AuditRail\AuditRailController@detailCollateral']);
+        });
 
     Route::get('detailCollateral', ['as'=>'detailCollateral', 'uses'=>'Collateral\CollateralController@detailCollateral']);
 
@@ -375,6 +414,8 @@
     Route::get('dropdown/usereason', 'DropdownController@useReason');
 
     Route::get('dropdown/zipcodelist', 'DropdownController@getZipCode');
+
+    Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
     Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
 
@@ -454,14 +495,22 @@
         Route::get('collateral-type-property', 'Collateral\CollateralController@datatableType');
 
         /* Collateral */
-        Route::get('collateral', 'Collateral\CollateralController@datatables');
+        Route::group(['middleware' => 'checkrole:collateral,superadmin'], function() {
 
-        Route::get('collateral/nonindex', 'Collateral\CollateralController@datatableNonIndex');
+            Route::get('collateral', 'Collateral\CollateralController@datatables');
+
+            Route::get('collateral/nonindex', 'Collateral\CollateralController@datatableNonIndex');
+
+        });
 
         /* Staff Collateral */
-        Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
+        Route::group(['middleware' => 'checkrole:ao,collateral-appraisal,superadmin'], function() {
 
-        Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
+            Route::get('staff-collateral', 'Collateral\CollateralStaffController@datatables');
+
+            Route::get('staff-collateral/nonindex', 'Collateral\CollateralStaffController@datatableNonIndex');
+
+        });
 
         // ApprovalData
         Route::get('approval-developer', 'ApprovalData\ApprovalDataController@datatableDeveloper');
@@ -473,26 +522,31 @@
 
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
 
-		/* DirRpc */
+        /* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
         Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
+        Route::get('calon_mitra_list', 'Mitra\mitra\CalonMitraController@datatables');
+        Route::get('mitra_approval_list', 'Mitra\mitra\CalonMitraApprovalController@datatables');
         Route::get('list_pekerja', 'Mitra\mitra\eksternal\ListMitraController@datatables');
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
 
         /*Auditrail*/
-        Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
+            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+                //
+            Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
-        Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+            Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
 
-        Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
+            Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
-        Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
+            Route::get('auditrail-useractivity', 'AuditRail\AuditRailController@datatableUserActivity');
 
-        Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
-        Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
-        Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+            Route::get('detail-audit', 'AuditRail\AuditRailController@datatableDetail');
+            Route::get('list-collateral-dev', ['as'=>'list-collateral-dev','uses'=>'AuditRail\AuditRailController@listCollateraldev']);
+            Route::get('list-collateral-non', 'AuditRail\AuditRailController@listCollateralnon')->name('list-collateral-non');
+            });
         });
     });

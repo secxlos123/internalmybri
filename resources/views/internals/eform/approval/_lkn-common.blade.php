@@ -36,12 +36,6 @@
         </div>
     </div>
 
-    <!-- <div class="col-md-6" align="center">
-        <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['license_of_practice'])){{$detail['visit_report']['license_of_practice']}}@endif" class="img-responsive">
-            <p>Izin Praktek</p>
-        </div>
-    </div> -->
 
     <div class="col-md-6" align="center">
         <div class="card-box">
@@ -167,6 +161,7 @@
         </div>
     </div>
 
+    @if ((intval($detail['kpr']['status_property']) != 1 && intval($detail['kpr']['developer_id']) != 1) || intval($detail['kpr']['developer_id']) == 1 )
     <div class="col-md-6" align="center">
         <div class="card-box">
             @if((pathinfo(strtolower($detail['visit_report']['proprietary']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($detail['visit_report']['proprietary']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($detail['visit_report']['proprietary'])), PATHINFO_EXTENSION) == 'jpeg'))
@@ -198,6 +193,7 @@
             @endif
         </div>
     </div>
+    @endif
 
     <div class="col-md-6" align="center">
         <div class="card-box">

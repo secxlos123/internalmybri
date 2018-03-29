@@ -51,6 +51,24 @@
                     <p class="form-control-static">{{$detail['Suku_bunga']}} % pertahun</p>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Jenis Pinjaman :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                        @if($detail['jenis_pinjaman_id'] == '1' || $detail['jenis_pinjaman_id'] == '' || $detail['jenis_pinjaman_id'] == 'null' || empty($detail['jenis_pinjaman_id']))
+                            Briguna Karya
+                        @elseif($detail['jenis_pinjaman_id'] == '4')
+                            Briguna Talangan
+                        @elseif($detail['jenis_pinjaman_id'] == '5')
+                            Briguna Pekerja BRI
+                        @elseif($detail['jenis_pinjaman_id'] == '2')
+                            Briguna Umum
+                        @else
+                            Briguna Purna
+                        @endif
+                    </p>
+                </div>
+            </div>
         </form>  
     </div>
     <div class="col-md-6">
@@ -81,13 +99,25 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Payroll :</label>
+                <label class="col-md-5 control-label">Status Payroll :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
                         @if($detail['Payroll'] == '1')
                             Bank BRI
                         @else
                             Non Bank BRI
+                        @endif
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-5 control-label">Nomor Rekening Simpanan :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">
+                        @if($detail['Payroll'] == '1')
+                            {{$detail['no_rek_simpanan']}}
+                        @else
+                            -
                         @endif
                     </p>
                 </div>

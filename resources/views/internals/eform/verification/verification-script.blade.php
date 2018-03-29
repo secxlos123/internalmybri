@@ -28,7 +28,6 @@
                 $('#join_val').val('single');
             }
         });
-           // console.log($('#status').val());
         if($('#status').val() == 2){
             $('#marrital_certificate').show();
             $('#couple_data').show();
@@ -47,7 +46,6 @@
                 $('#marrital_certificate').show();
                 $('#couple_data').show();
                 $('#join_income').show();
-                // $('#couple_financial').show();
             }else if(this.value == 3){
                 $('#separate_certificate').show();
                 $('#couple_data').hide();
@@ -403,7 +401,6 @@
                 $("div#kpr_type_property").removeClass('hide');
 
             }else{
-                // console.log('sini');
                 $('#price').attr('readonly', true);
                 $('#home_location').attr('readonly', true);
                 $('#building_area').attr('readonly', true);
@@ -431,7 +428,6 @@
                     },
                     processResults: function (data, params) {
                         params.page = params.page || 1;
-                        // console.log(data);
                         return {
                             results: data.properties.data,
                             pagination: {
@@ -461,7 +457,6 @@
             $("textarea[name='home_location']").val("").html("");
 
             $('#new_property_name').val(text);
-            // console.log(text);
             $('.property_type').select2({
                 witdh : '100%',
                 allowClear: true,
@@ -478,7 +473,6 @@
                     },
                     processResults: function (data, params) {
                         params.page = params.page || 1;
-                        // console.log(data);
                         return {
                             results: data.types.data,
                             pagination: {
@@ -708,11 +702,6 @@
         return false;
     });
 
-    // function printPage() {
-    //     // window.print();
-
-    // }
-
     //disable select kpr
         var price = $('#price');
         var building_area = $('#building_area');
@@ -772,7 +761,6 @@
                         request_amount.val(amount);
                         break;
                 }
-                // console.log('22');
             }if((building_area.val() >= 22) || (building_area <= 70)){
                 switch (val) {
                     case '1':
@@ -800,7 +788,6 @@
                         down_payment.val(payment);
                         break;
                 }
-                // console.log('23');
             }if(building_area.val() > 70){
                 switch (val) {
                     case '1':
@@ -831,7 +818,6 @@
                         request_amount.val(amount);
                         break;
                 }
-                // console.log('70');
             }
 
         });
@@ -968,15 +954,11 @@
        //search customer detail
     $('#print').on('click', function() {
        var id = $('#id').val();
-       console.log(id);
        $.ajax({
             dataType: 'json',
             type: 'GET',
             url: '{{url("eform/verification/print")}}/'+id,
-            // data: { nik : nik }
         }).done(function(data){
-            console.log(data);
-            // $('#detail').html(data['view']);
             var frame1 = $('<iframe />');
                frame1[0].name = "frame1";
                frame1.css({ "position": "absolute", "top": "-1000000px" });
@@ -991,8 +973,6 @@
                    frame1.remove();
                }, 500);
         }).fail(function(errors) {
-            console.log(errors);
-            // toastr.error('Data tidak ditemukan')
         });
 
     });
@@ -1003,7 +983,7 @@
         $(".kelurahan").html('').select2();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Silahkan Pilih Kelurahan </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
@@ -1046,7 +1026,7 @@
         $(".kelurahan_current").html('').select2();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Silahkan Pilih Kelurahan </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({
@@ -1089,7 +1069,7 @@
         $(".kelurahan_office").html('').select2();
         html = '<p class="help-block" style="color:red;" > Kode Pos tidak valid</p>';
         html_valid = '<p class="help-block" style="color:green;" > Silahkan Pilih Kelurahan </p>';
-        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Melangami Ganguan</p>';
+        html_error = '<p class="help-block" style="color:red;" >Server Kode pos Sedang Mengalami Gangguan</p>';
         if(input.length == 5 )
         {
             $.ajax({

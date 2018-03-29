@@ -5,11 +5,6 @@
                 <h3 class="panel-title">Dokumen Yang di Upload Nasabah</h3>
             </div>
              @foreach( $dataUpload as $dataUploads )
-               <!--  @if(substr($dataUploads['name'], -3) != 'pdf')
-            <div class="panel-body" hidden="hidden">
-                @else
-            <div class="panel-body">
-                @endif -->
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3" align="center">
@@ -50,6 +45,12 @@
                             <a href="@if(!empty($dataUploads['name'])){{$dataUploads['name']}}@endif" target="_blank" class="img-responsive">Surat Kerja</a>
                             @elseif(substr($dataUploads['name'], -16) == 'down_payment.pdf' || substr($dataUploads['name'], -16) == 'down_payment.jpg' || substr($dataUploads['name'], -16) == 'down_payment.png' || substr($dataUploads['name'], -17) == 'down_payment.jpeg' )
                             <a href="@if(!empty($dataUploads['name'])){{$dataUploads['name']}}@endif" target="_blank" class="img-responsive">Bukti Uang Muka</a>
+                            @elseif(substr($dataUploads['name'], -18) == 'pefindo-report.pdf' || substr($dataUploads['name'], -18) == 'pefindo-report.jpg' || substr($dataUploads['name'], -18) == 'pefindo-report.png' || substr($dataUploads['name'], -19) == 'pefindo-report.jpeg' )
+                            <a href="@if(!empty($dataUploads['name'])){{$dataUploads['name']}}@endif" target="_blank" class="img-responsive">Laporan Pefindo</a>
+                            @elseif(substr($dataUploads['name'], -19) == 'building_permit.pdf' || substr($dataUploads['name'], -19) == 'building_permit.jpg' || substr($dataUploads['name'], -19) == 'building_permit.png' || substr($dataUploads['name'], -20) == 'building_permit.jpeg' )
+                            <a href="@if(!empty($dataUploads['name'])){{$dataUploads['name']}}@endif" target="_blank" class="img-responsive">Surat Izin Mendirikan Bangunan</a>
+                            @elseif(substr($dataUploads['name'], -15) == 'proprietary.pdf' || substr($dataUploads['name'], -15) == 'proprietary.jpg' || substr($dataUploads['name'], -15) == 'proprietary.png' || substr($dataUploads['name'], -16) == 'proprietary.jpeg' )
+                            <a href="@if(!empty($dataUploads['name'])){{$dataUploads['name']}}@endif" target="_blank" class="img-responsive">Surat Hak Milik</a>
                             @endif
                             </p>
                             @endif
@@ -86,10 +87,18 @@
                             Klik untuk Lihat Bukti Uang Muka
                             @elseif(substr($dataUploads['name'], -7) == 'lkn.pdf')
                             Klik untuk melihat Dokumen LKN
-                            @elseif(substr($dataUploads['name'], -16) == 'presrceening.pdf')
+                            @elseif(substr($dataUploads['name'], -16) == 'prescreening.pdf')
                             Klik untuk melihat Dokumen Prescreening
+                            @elseif(substr($dataUploads['name'], -13) == 'recontest.pdf')
+                            Klik untuk melihat Dokumen Rekontest
                             @elseif(substr($dataUploads['name'], -14) == 'collateral.pdf')
                             Klik untuk melihat Dokumen Collateral
+                            @elseif(substr($dataUploads['name'], -18) == 'pefindo-report.pdf' || substr($dataUploads['name'], -18) == 'pefindo-report.jpg' || substr($dataUploads['name'], -18) == 'pefindo-report.png' || substr($dataUploads['name'], -19) == 'pefindo-report.jpeg' )
+                            Klik untuk melihat Dokumen Pefindo
+                            @elseif(substr($dataUploads['name'], -19) == 'building_permit.pdf' || substr($dataUploads['name'], -19) == 'building_permit.jpg' || substr($dataUploads['name'], -19) == 'building_permit.png' || substr($dataUploads['name'], -20) == 'building_permit.jpeg' )
+                            Klik untuk melihat Dokumen Izin Mendirikan Bangunan
+                            @elseif(substr($dataUploads['name'], -15) == 'proprietary.pdf' || substr($dataUploads['name'], -15) == 'proprietary.jpg' || substr($dataUploads['name'], -15) == 'proprietary.png' || substr($dataUploads['name'], -16) == 'proprietary.jpeg' )
+                            Klik untuk melihat Dokumen Hak Milik
                             @endif
                             </p>
                             @endif
