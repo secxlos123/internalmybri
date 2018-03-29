@@ -27,7 +27,7 @@ class ADKController extends Controller
     public function index() {
         $data = $this->getUser();
         // hanya adk yg bisa melakukan fungsi ini
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.index', compact('data'));
         } else {
             return view('errors.404');
@@ -62,10 +62,10 @@ class ADKController extends Controller
             ];
         }
         
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
         }
     }
 
