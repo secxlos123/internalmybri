@@ -3,9 +3,15 @@
     <div id="sidebar-menu">
       <ul>
         <li class="menu-title">Navigasi Utama</li>
-        <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a>
+        <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a></li>
         @if(($data['role']=='ao') || ($data['role']=='fo') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus'))
-        <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a>
+        <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a></li>
+        @endif
+        @if(($data['role']=='ao') || ($data['role']=='fo'))
+        <li><a href="{{('/leads')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Leads </span> </a></li>
+        @endif
+        @if(($data['role']=='ao') || ($data['role']=='fo'))
+        <li><a href="{{('/marketing')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Marketing </span> </a></li>
         @endif
         </li>
         @if(($data['role']=='ao') || ($data['role']=='admin-bri') || ($data['role']=='mp')|| ($data['role']=='pinca')||($data['role']=='other') || ($data['role']=='superadmin'))
@@ -65,8 +71,17 @@
         <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
       </li>
       @endif
-      <li>
-        <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
+      <li class="treeview">
+        <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Kalkulator </span> </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kal. Kredit</span> </a>
+          </li>
+
+          <li>
+            <a href="{{route('calculatordplk.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kal. DPLK</span> </a>
+          </li>
+        </ul>
       </li>
 
     @if(($data['role']=='collateral') || ($data['role']=='superadmin'))

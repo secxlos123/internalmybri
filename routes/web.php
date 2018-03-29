@@ -255,6 +255,13 @@
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
 
+
+				/* Calculator DPLK */
+        Route::resource('calculatordplk', 'CalculatorDPLK\CalculatorDPLKController');
+
+        /* Calculator */
+        Route::resource('debitur', 'Debitur\DebiturController');
+
         /* Debitur */
         Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
             Route::resource('debitur', 'Debitur\DebiturController');
@@ -273,7 +280,7 @@
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
 
-        /* Fasilitas*/
+		/* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
@@ -295,12 +302,28 @@
                 Route::post('store_referral', 'CRM\ReferralController@store');
                 Route::post('update_referral', 'CRM\ReferralController@update');
 
-        /* Disposisi Referral */
-                Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
+								/* CRM Disposisi Referral */
+								Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
-        /* CRM report */
-                Route::get('report/marketing', 'CRM\ReportController@marketing');
-                Route::get('report/activity', 'CRM\ReportController@activity');
+				        /* CRM report */
+								Route::get('report/marketing', 'CRM\ReportController@marketing');
+								Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
+								Route::post('report/list-fo', 'CRM\ReportController@listFo');
+								Route::post('report/list-fo-kanca', 'CRM\ReportController@listFoKanca');
+								Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
+								Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
+								Route::get('report/activity', 'CRM\ReportController@activity');
+
+								/* CRM marketing */
+								Route::get('marketing', 'CRM\marketingController@index');
+								Route::get('marketing_detail', 'CRM\marketingController@detail');
+								Route::get('marketing/create', 'CRM\marketingController@create');
+								Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
+								Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
+
+								/* CRM marketing */
+								Route::get('leads', 'CRM\leadsController@index');
+								Route::get('leads_detail', 'CRM\leadsController@detail');
 
 
         Route::resource('mitra', 'Mitra\MitraController');

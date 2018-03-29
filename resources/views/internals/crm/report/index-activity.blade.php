@@ -2,6 +2,11 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style>
+  .select2-selection__clear {
+    display: none;
+  }
+</style>
 <div class="content-page">
   <div class="content">
     <div class="container">
@@ -40,11 +45,14 @@
                 <div class="col-md-8">
                   <div class="card-box">
                     <form class="form-horizontal" role="form">
+
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="kanwil" name="kanwil">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="kanwil" name="kanwil">
+                            @foreach($kanwil['data'] as $kw)
+                            <option value="{{$kw['region_id']}}"> {{$kw['region_name']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
@@ -52,26 +60,32 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Cabang :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="kacab" name="kacab">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="kanca" name="kacab">
+                            <option value="">Semua</option>
+                            @foreach($kanca as $k)
+                            <option value="{{$k['mainbr']}}">{{$k['mbdesc']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="col-sm-4 control-label">Unit Kerja :</label>
                         <div class="col-sm-8">
                           <select class="form-control" id="uker" name="uker">
                             <option selected="" value="All"> Semua</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
-                        <label class="col-sm-4 control-label">Finding Officer :</label>
+                        <label class="col-sm-4 control-label">Pemasar :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="status">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="pemasar">
+                            <option selected="" value=""> Semua</option>
+                            @foreach($fo as $f)
+                            <option value="{{$f['PERNR']}}">{{$f['SNAME']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
@@ -91,55 +105,36 @@
                     <th>No</th>
                     <th>Wilayah</th>
                     <th>Cabang</th>
-                    <th>Unit Kerja</th>
                     <th>Nama FO</th>
                     <th>Activity</th>
                     <th>Tujuan</th>
                     <th>Tanggal</th>
-                    <th>Durasi</th>
                     <th>Alamat</th>
                     <th>Jenis Marketing</th>
                     <th>Nama Nasabah</th>
-                    <th>Catatan</th>
-                    <th>Status</th>
+                    <th>Deskripsi</th>
                     <th>Hasil Activity</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php $i = 1; ?>
+                  @foreach($reports as $report)
                   <tr>
-                    <td>1</td>
-                    <td>DKI</td>
-                    <td>Sudirman</td>
-                    <td>KC. Sudirman</td>
-                    <td>Oktifial Pangestuti</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>On Progress</td>
-                    <td>success</td>
+                    <td>{{$i}}</td>
+                    <td>{{$report['wilayah']}}</td>
+                    <td>{{$report['cabang']}}</td>
+                    <td>{{$report['fo_name']}}</td>
+                    <td>{{$report['activity']}}</td>
+                    <td>{{$report['tujuan']}}</td>
+                    <td>{{$report['tanggal']}}</td>
+                    <td>{{$report['alamat']}}</td>
+                    <td>{{$report['marketing_type']}}</td>
+                    <td>{{$report['nama']}}</td>
+                    <td>{{$report['desc']}}</td>
+                    <td>{{$report['result']}}</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>DKI</td>
-                    <td>Sudirman</td>
-                    <td>KC. Sudirman</td>
-                    <td>Oktifial Pangestuti</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>On Progress</td>
-                    <td>success</td>
-                  </tr>
+                  <?php $i++ ?>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -234,4 +229,119 @@
       ],
     });
   }
+</script>
+<script type="text/javascript">
+  $('#kanwil').on('change', function(){
+    $('#kanca').html('');
+    var region = $('#kanwil').val();
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-kanca") }}',
+        data: {
+            region : region
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['mainbr'] + '">' + data[x]['mbdesc'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#kanca').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#kanwil').on('change', function(){
+    $('#pemasar').html('');
+    var region = $('#kanwil').val();
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-fo") }}',
+        data: {
+            region : region
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['PERNR'] + '">' + data[x]['SNAME'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#pemasar').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#kanca').on('change', function(){
+    var branch = $('#kanca').val();
+    $('#pemasar').html('');
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-fo-kanca") }}',
+        data: {
+            branch : branch
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['PERNR'] + '">' + data[x]['SNAME'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#pemasar').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#btn-filter').on('click', function() {
+    var kanwil = $('#kanwil').val();
+    var kanca = $('#kanca').val();
+    var pemasar = $('#pemasar').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    // console.log(kanwil);
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("report/list-report-activity") }}',
+        data: {
+            region : kanwil,
+            branch : kanca,
+            pn : pemasar,
+            start: start,
+            end: end
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      $('#table-marketing').html(data);
+      $('#datatable').dataTable();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
 </script>
