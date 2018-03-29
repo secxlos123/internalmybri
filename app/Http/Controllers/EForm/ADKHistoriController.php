@@ -26,7 +26,7 @@ class ADKHistoriController extends Controller
     public function index() {
         $data = $this->getUser();
         // hanya adk yg bisa melakukan fungsi ini
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.his_index', compact('data'));
         } else {
             return view('errors.404');
@@ -96,10 +96,10 @@ class ADKHistoriController extends Controller
             }            
         }
         
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.view-detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
         }
     }
 
