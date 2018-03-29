@@ -114,6 +114,8 @@ class DashboardController extends Controller
     /* GET UserLogin Data */
     $data = $this->getUser();
 
+    $bulan = $request->input('bulan');
+
     // return $product;
 
     $chartData = Client::setEndpoint('crm/marketing_summary')
@@ -125,7 +127,7 @@ class DashboardController extends Controller
     ])
     ->setBody([
       "product_type"=>"", //filter pruduk
-      "month"=>"",//filter bulan
+      "month"=>$bulan,//filter bulan
       "pn"=>"" //filter officer
     ])
     ->post();

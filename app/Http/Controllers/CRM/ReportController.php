@@ -40,121 +40,247 @@ class ReportController extends Controller
      */
     public function marketing()
     {
+      // return 'ehe'; die();
       $data = $this->getUser();
       // dd(env('APP_ENV'));
-      $referrals = Client::setEndpoint('crm/account/get_referral')
+      // dd($data);
+      $report = Client::setEndpoint('crm/report_marketings')
       ->setHeaders([
         'pn' => $data['pn'],
         'branch' => $data['branch'],
         'Authorization' => $data['token'],
         'Content-Type' => 'application/json'
       ])
-      ->get();
-      $referral = $referrals['contents'];
-      return view('internals.crm.report.index-marketing', compact('data', 'referral'));
+      ->setBody([
+        "region"=>"A", //mandatory
+        "branch"=>"", //jika branch kosong maka filter seluruh branch per kanwil
+        "pn"=>"" //
+      ])
+      ->post();
+      $reports = $report['contents'];
+
+      $listKanwil = Client::setEndpoint('crm/branch/list_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+      ])
+      ->post();
+      $kanwil = $listKanwil['contents'];
+
+      $listKanca = Client::setEndpoint('crm/branch/list_kanca_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'region' => "A"
+      ])
+      ->post();
+      // dd($listKanca);
+      $kanca = $listKanca['contents']['responseData'];
+
+      $data = $this->getUser();
+      // return $request->region;
+      $listFo = Client::setEndpoint('crm/pemasar_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'region' => "A"
+      ])
+      ->post();
+
+      $fo = $listFo['contents'];
+      // dd($fo);
+      return view('internals.crm.report.index-marketing', compact('data', 'reports', 'kanwil', 'kanca', 'fo'));
+    }
+
+    public function listReportMarketing(Request $request)
+    {
+      $data = $this->getUser();
+      // dd(env('APP_ENV'));
+      // return $request->all();
+      $report = Client::setEndpoint('crm/report_marketings')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        "region"=>$request->region, //mandatory
+        "branch"=>$request->branch, //jika branch kosong maka filter seluruh branch per kanwil
+        "pn"=>$request->pn, //
+        "start_date"=>$request->start,
+        "end_date"=>$request->end
+      ])
+      ->post();
+      $reports = $report['contents'];
+      // return count($reports);
+      $data = [
+        'reports' => $reports
+      ];
+      // $kanca = $listKanca['contents']['responseData'];
+      return view('internals.crm.report.list-marketing')->with($data);
+    }
+
+    public function listKanca(Request $request)
+    {
+      $data = $this->getUser();
+      // return $request->region;
+      $list = Client::setEndpoint('crm/branch/list_kanca_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'region' => $request->region
+      ])
+      ->post();
+
+      return $list['contents']['responseData'];
+    }
+
+    public function listFo(Request $request)
+    {
+      $data = $this->getUser();
+      // return $request->region;
+      $list = Client::setEndpoint('crm/pemasar_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'region' => $request->region
+      ])
+      ->post();
+      // return $list['c'];
+      return $list['contents'];
+    }
+
+    public function listFoKanca(Request $request)
+    {
+      $data = $this->getUser();
+      // return $request->region;
+      $list = Client::setEndpoint('crm/pemasar_cabang')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'branch' => $request->branch
+      ])
+      ->post();
+      // return $list['c'];
+      return $list['contents'];
     }
 
     public function activity()
     {
       $data = $this->getUser();
       // dd(env('APP_ENV'));
-      $referrals = Client::setEndpoint('crm/account/get_referral')
+      // dd($data);
+      $report = Client::setEndpoint('crm/report_activities')
       ->setHeaders([
         'pn' => $data['pn'],
         'branch' => $data['branch'],
         'Authorization' => $data['token'],
         'Content-Type' => 'application/json'
       ])
-      ->get();
-      $referral = $referrals['contents'];
-      return view('internals.crm.report.index-activity', compact('data', 'referral'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-    public function add()
-    {
-      $data = $this->getUser();
-      $crmIndex = Client::setEndpoint('crm')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->get();
-      $getPemasar = Client::setEndpoint('crm/pemasar')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
+      ->setBody([
+        "region"=>"A", //mandatory
+        "branch"=>"", //jika branch kosong maka filter seluruh branch per kanwil
+        "pn"=>"" //
       ])
       ->post();
-      $product = $crmIndex['contents']['product_type'];
-      $pemasar = $getPemasar['contents'];
+      $reports = $report['contents'];
+      $listKanwil = Client::setEndpoint('crm/branch/list_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+      ])
+      ->post();
+      $kanwil = $listKanwil['contents'];
 
-      return view('internals.crm.referal.add', compact('data', 'product', 'pemasar'));
+      $listKanca = Client::setEndpoint('crm/branch/list_kanca_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'region' => "A"
+      ])
+      ->post();
+      // dd($listKanca);
+      $kanca = $listKanca['contents']['responseData'];
+
+      $data = $this->getUser();
+      // return $request->region;
+      $listFo = Client::setEndpoint('crm/pemasar_kanwil')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        'region' => "A"
+      ])
+      ->post();
+
+      $fo = $listFo['contents'];
+      // dd($fo);
+      return view('internals.crm.report.index-activity', compact('data', 'reports', 'kanwil', 'kanca', 'fo'));
     }
 
-    public function store(Request $request)
+    public function listReportActivity(Request $request)
     {
       $data = $this->getUser();
-
-      $body = [
-        'nik' => $request->input('nik'),
-        'name' => $request->input('name'),
-        'phone' => $request->input('phone'),
-        'address' => $request->input('address'),
-        'product_type' => $request->input('product_type'),
-        'officer_ref' => $request->input('officer_ref'),
-        'note' => $request->input('note'),
-        'status' => 'ref'
-      ];
-
-      // dd($body);
-      $storeReferal = Client::setEndpoint('crm/account/store_referral')
-          ->setHeaders([
-            'pn' => $data['pn'],
-            'branch' => $data['branch'],
-            'Authorization' => $data['token'],
-            'Content-Type' => 'application/json'
-          ])
-          ->setBody($body)
-          ->post();
-
-      if($storeReferal['code'] == 201){
-        \Session::flash('success', $storeReferal['descriptions']);
-        return redirect()->route('referral.index');
-      }else{
-        $error = reset($storeReferal['contents']);
-        \Session::flash('error', $storeReferal['descriptions'].' '.$error);
-        return redirect()->back()->withInput($request->input());
-      }
-    }
-
-    public function nikCek(Request $request)
-    {
-      $user = $this->getUser();
-
+      // dd(env('APP_ENV'));
+      // return $request->all();
+      $report = Client::setEndpoint('crm/report_activities')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        "region"=>$request->region, //mandatory
+        "branch"=>$request->branch, //jika branch kosong maka filter seluruh branch per kanwil
+        "pn"=>$request->pn, //
+        "start_date"=>$request->start,
+        "end_date"=>$request->end
+      ])
+      ->post();
+      $reports = $report['contents'];
+      // return count($reports);
       $data = [
-          'nik' => $request->input('nik'),
+        'reports' => $reports
       ];
-
-      $nikCek = Client::setEndpoint('crm/account/customer_nik')
-          ->setHeaders([
-              'pn' => $user['pn'],
-              'branch' => $user['branch'],
-              'Authorization' => $user['token'],
-              'Content-Type' => 'application/json'
-          ])
-          ->setBody($data)
-          ->post();
-
-      return $nikCek;
+      // $kanca = $listKanca['contents']['responseData'];
+      return view('internals.crm.report.list-activity')->with($data);
     }
+
 }

@@ -91,7 +91,7 @@
       dataType: "json",
       success: function (data) {
         console.log(data);
-        MorrisCharts.prototype.createStackedChart('morris-bar-stacked', data, 'Nama', ['Total', 'Prospek', 'On Progress', 'Done'], ['Total', 'Prospek', 'On Progress', 'Done'], ['blue','orange', 'yellow', 'green']);
+        MorrisCharts.prototype.createStackedChart('morris-bar-stacked', data, 'Nama', ['Total', 'Prospek', 'On Progress', 'Done'], ['Leads', 'Prospect', 'Sales Offered', 'Sales Closed'], ['blue','orange', 'yellow', 'green']);
       },
     });
     $.ajax({
@@ -101,7 +101,7 @@
       dataType: "json",
       success: function (data) {
         console.log(data);
-        MorrisCharts.prototype.createStackedChart('chart-all', data, 'Index', ['Total', 'Prospek', 'On Progress', 'Done'], ['Total', 'Prospek', 'On Progress', 'Done'], ['blue','orange', 'yellow', 'green']);
+        MorrisCharts.prototype.createStackedChart('chart-all', data, 'Index', ['Total', 'Prospek', 'On Progress', 'Done'], ['Leads', 'Prospect', 'Sales Offered', 'Sales Closed'], ['blue','orange', 'yellow', 'green']);
       },
     });
   },

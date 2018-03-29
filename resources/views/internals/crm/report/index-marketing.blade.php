@@ -2,6 +2,11 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style>
+  .select2-selection__clear {
+    display: none;
+  }
+</style>
 <div class="content-page">
   <div class="content">
     <div class="container">
@@ -44,18 +49,20 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Tanggal :</label>
                         <div class="col-sm-4">
-                          <input type="text" placeholder="Awal" class="form-control" id="from" name="start_date">
+                          <input type="text" placeholder="Awal" class="form-control" id="start" name="start_date">
                         </div>
                         <div class="col-sm-4">
-                          <input type="text" placeholder="Akhir" class="form-control" id="to" name="end_date">
+                          <input type="text" placeholder="Akhir" class="form-control" id="end" name="end_date">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="kanwil" name="kanwil">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="kanwil" name="kanwil">
+                            @foreach($kanwil['data'] as $kw)
+                            <option value="{{$kw['region_id']}}"> {{$kw['region_name']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
@@ -63,26 +70,32 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Cabang :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="kacab" name="kacab">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="kanca" name="kacab">
+                            <option value="">Semua</option>
+                            @foreach($kanca as $k)
+                            <option value="{{$k['mainbr']}}">{{$k['mbdesc']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="col-sm-4 control-label">Unit Kerja :</label>
                         <div class="col-sm-8">
                           <select class="form-control" id="uker" name="uker">
                             <option selected="" value="All"> Semua</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Pemasar :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="status">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="pemasar">
+                            <option selected="" value=""> Semua</option>
+                            @foreach($fo as $f)
+                            <option value="{{$f['PERNR']}}">{{$f['SNAME']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
@@ -95,7 +108,7 @@
                 </div>
               </div>
             </div>
-            <div class="tab-scroll table-responsive">
+            <div class="tab-scroll table-responsive" id="table-marketing">
               <table id="datatable" class="table table-bordered">
                 <thead class="bg-primary text-center">
                   <tr>
@@ -104,7 +117,6 @@
                     <th rowspan="2">Tahun</th>
                     <th rowspan="2">Wilayah</th>
                     <th rowspan="2">Cabang</th>
-                    <th rowspan="2">Unit Kerja</th>
                     <th rowspan="2">Nama Pemasar</th>
                     <th rowspan="2">Produk</th>
                     <th rowspan="2">Jenis</th>
@@ -120,40 +132,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php $i = 1; ?>
+                  @foreach($reports as $report)
                   <tr>
-                    <td>1</td>
-                    <td>Desember</td>
-                    <td>2016</td>
-                    <td>DKI</td>
-                    <td>Sudirman</td>
-                    <td>KC. Sudirman</td>
-                    <td>Oktifial Pangestuti</td>
-                    <td>Giro</td>
-                    <td>Akuisisi</td>
-                    <td>Eka Putra</td>
-                    <td>100.000.000</td>
-                    <td>1092-1290-1290</td>
-                    <td>93.000.000</td>
-                    <td>21-2-2018</td>
-                    <td>On Progress</td>
+                    <td>{{$i}}</td>
+                    <td>{{$report['bulan']}}</td>
+                    <td>{{$report['tahun']}}</td>
+                    <td>{{$report['wilayah']}}</td>
+                    <td>{{$report['cabang']}}</td>
+                    <td>{{$report['fo_name']}}</td>
+                    <td>{{$report['product_type']}}</td>
+                    <td>{{$report['activity_type']}}</td>
+                    <td>{{$report['nama']}}</td>
+                    <td>{{$report['target']}}</td>
+                    <td>{{$report['rekening']}}</td>
+                    <td>{{$report['volume_rekening']}}</td>
+                    <td>{{$report['target_closing_date']}}</td>
+                    <td>{{$report['status']}}</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Januari</td>
-                    <td>2017</td>
-                    <td>DKI</td>
-                    <td>Sudirman</td>
-                    <td>KC. Sudirman</td>
-                    <td>Achmad Aliyudin</td>
-                    <td>Giro</td>
-                    <td>Akuisisi</td>
-                    <td>Farra Ghea Fauzea</td>
-                    <td>200.000.000</td>
-                    <td>1092-1290-1290</td>
-                    <td>300.000.000</td>
-                    <td>22-2-2018</td>
-                    <td>On Progress</td>
-                  </tr>
+                  <?php $i++ ?>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -170,7 +168,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-    $("#from").datepicker({
+    $("#start").datepicker({
       todayBtn:  1,
       autoclose: true,
       todayHighlight: true,
@@ -180,7 +178,7 @@
       $('#to').datepicker('setStartDate', minDate);
     });
 
-    $("#to").datepicker({
+    $("#end").datepicker({
       autoclose: true,
       format: 'yyyy-mm-dd',
     }).on('changeDate', function (selected) {
@@ -252,4 +250,119 @@
       ],
     });
   }
+</script>
+<script type="text/javascript">
+  $('#kanwil').on('change', function(){
+    $('#kanca').html('');
+    var region = $('#kanwil').val();
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-kanca") }}',
+        data: {
+            region : region
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['mainbr'] + '">' + data[x]['mbdesc'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#kanca').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#kanwil').on('change', function(){
+    $('#pemasar').html('');
+    var region = $('#kanwil').val();
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-fo") }}',
+        data: {
+            region : region
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['PERNR'] + '">' + data[x]['SNAME'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#pemasar').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#kanca').on('change', function(){
+    var branch = $('#kanca').val();
+    $('#pemasar').html('');
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-fo-kanca") }}',
+        data: {
+            branch : branch
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['PERNR'] + '">' + data[x]['SNAME'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#pemasar').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#btn-filter').on('click', function() {
+    var kanwil = $('#kanwil').val();
+    var kanca = $('#kanca').val();
+    var pemasar = $('#pemasar').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    // console.log(kanwil);
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("report/list-report-marketing") }}',
+        data: {
+            region : kanwil,
+            branch : kanca,
+            pn : pemasar,
+            start: start,
+            end: end
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      $('#table-marketing').html(data);
+      $('#datatable').dataTable();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
 </script>
