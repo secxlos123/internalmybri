@@ -63,7 +63,7 @@
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
                                         <div class="">
-                                            <label class="col-md-6 control-label"> Nama Pasangan<br/>Calon Nasabah</label>
+                                            <label class="col-md-6 control-label"> Nama Pasangan Calon Nasabah</label>
                                             <div class="col-md-6">
                                                 <p class="form-control-static">{{ $eform['customer']['personal']['couple_name'] }}</p>
                                             </div>
@@ -168,9 +168,7 @@
                                 </div>
                                 <div class="panel-body">
                                     @foreach( json_decode($eform['pefindo_detail']) as $key => $pefindoAll )
-                                        @if( count($pefindoAll) > 1 )
-                                            <div class="card-box-head">{{ $key == 'individual' ? 'Calon Nasabah' : 'Pasangan Calon Nasabah' }}</div>
-                                        @endif
+                                        <div class="card-box-head">{{ $key == 'individual' ? 'Calon Nasabah' : 'Pasangan Calon Nasabah' }}</div>
                                         @if( count($pefindoAll) == 0 )
                                             <div class="card-box">
                                                 <div class="row">
