@@ -59,9 +59,9 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
-                          <select class="form-control select2" id="kanwil" name="kanwil">
+                          <select class="form-control select2" id="kanwil" name="kanwil" {{($regionList == "disable") ? "disabled" : ""}}>
                             @foreach($kanwil['data'] as $kw)
-                            <option value="{{$kw['region_id']}}"> {{$kw['region_name']}}</option>
+                            <option value="{{$kw['region_id']}}" {{($kw['region_id'] == $region) ? "selected" : ""}}> {{$kw['region_name']}}</option>
                             @endforeach
                           </select>
                         </div>
@@ -70,10 +70,10 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Cabang :</label>
                         <div class="col-sm-8">
-                          <select class="form-control select2" id="kanca" name="kacab">
+                          <select class="form-control select2" id="kanca" name="kacab" {{($branchList == "disable") ? "disabled" : ""}}>
                             <option value="">Semua</option>
                             @foreach($kanca as $k)
-                            <option value="{{$k['mainbr']}}">{{$k['mbdesc']}}</option>
+                            <option value="{{$k['mainbr']}}" {{($k['mainbr'] == $branch) ? "selected" : ""}}>{{$k['mbdesc']}}</option>
                             @endforeach
                           </select>
                         </div>
@@ -252,9 +252,31 @@
   }
 </script> -->
 <script type="text/javascript">
+
+  $("#start").datepicker({
+    todayBtn:  1,
+    autoclose: true,
+    todayHighlight: true,
+    format: 'yyyy-mm-dd',
+  }).on('changeDate', function (selected) {
+    var minDate = new Date(selected.date.valueOf());
+    $('#to').datepicker('setStartDate', minDate);
+  });
+
+  $("#end").datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+  }).on('changeDate', function (selected) {
+    var maxDate = new Date(selected.date.valueOf());
+    $('#from').datepicker('setEndDate', maxDate);
+  });
+
   $('#kanwil').on('change', function(){
+    HoldOn.open(options);
     $('#kanca').html('');
+    $('#pemasar').html('');
     var region = $('#kanwil').val();
+
     $.ajax({
         dataType: 'json',
         type: 'POST',
@@ -277,11 +299,7 @@
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
     });
-  });
 
-  $('#kanwil').on('change', function(){
-    $('#pemasar').html('');
-    var region = $('#kanwil').val();
     $.ajax({
         dataType: 'json',
         type: 'POST',
@@ -301,21 +319,29 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#pemasar').html("<option value=''>Semua</option>"+options);
+      HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
     });
   });
 
+  // $('#kanwil').on('change', function(){
+  //
+  // });
+
   $('#kanca').on('change', function(){
+    HoldOn.open(options);
     var branch = $('#kanca').val();
+    var region = $('#kanwil').val();
     $('#pemasar').html('');
     $.ajax({
         dataType: 'json',
         type: 'POST',
         url: '{{ url("report/list-fo-kanca") }}',
         data: {
-            branch : branch
+            branch : branch,
+            region : region
         },
         headers: {
             "X-CSRF-TOKEN": "{{ csrf_token() }}"
@@ -329,6 +355,7 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#pemasar').html("<option value=''>Semua</option>"+options);
+      HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
@@ -336,12 +363,13 @@
   });
 
   $('#btn-filter').on('click', function() {
+    HoldOn.open(options);
     var kanwil = $('#kanwil').val();
     var kanca = $('#kanca').val();
     var pemasar = $('#pemasar').val();
     var start = $('#start').val();
     var end = $('#end').val();
-    // console.log(kanwil);
+    console.log(start);
     $.ajax({
         type: 'POST',
         url: '{{ url("report/list-report-marketing") }}',
@@ -360,6 +388,7 @@
       console.log(data);
       $('#table-marketing').html(data);
       $('#datatable').dataTable();
+      HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();

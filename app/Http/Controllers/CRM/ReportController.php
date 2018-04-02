@@ -44,6 +44,50 @@ class ReportController extends Controller
       $data = $this->getUser();
       // dd(env('APP_ENV'));
       // dd($data);
+      // dd($region);
+      // dd($data);
+      if ($data['uker'] == "KP") {
+        $regionList = "able";
+        $region = "A";
+        $branch = "";
+        $branchList = "able";
+      } elseif ($data['uker'] == "KW") {
+        $regionList = Client::setEndpoint('crm/branch/list_uker_kanca')
+        ->setHeaders([
+          'pn' => $data['pn'],
+          'branch' => $data['branch'],
+          'Authorization' => $data['token'],
+          'Content-Type' => 'application/json'
+        ])
+        ->setBody([
+          "branch_code"=>$data['branch']
+        ])
+        ->post();
+        $regions = array_column($regionList['contents']['responseData'], 'region');
+        $region = $regions[0];
+        $branch = $data['branch'];
+        $regionList = "disable";
+        $branchList = "able";
+      } else {
+        $regionList = Client::setEndpoint('crm/branch/list_uker_kanca')
+        ->setHeaders([
+          'pn' => $data['pn'],
+          'branch' => $data['branch'],
+          'Authorization' => $data['token'],
+          'Content-Type' => 'application/json'
+        ])
+        ->setBody([
+          "branch_code"=>$data['branch']
+        ])
+        ->post();
+        $regions = array_column($regionList['contents']['responseData'], 'region');
+        $region = $regions[0];
+        $branch = $data['branch'];
+        $regionList = "disable";
+        $branchList = "disable";
+      }
+      // dd($region);
+
       $report = Client::setEndpoint('crm/report_marketings')
       ->setHeaders([
         'pn' => $data['pn'],
@@ -52,8 +96,8 @@ class ReportController extends Controller
         'Content-Type' => 'application/json'
       ])
       ->setBody([
-        "region"=>"A", //mandatory
-        "branch"=>"", //jika branch kosong maka filter seluruh branch per kanwil
+        "region"=>$region, //mandatory
+        "branch"=>$branch, //jika branch kosong maka filter seluruh branch per kanwil
         "pn"=>"" //
       ])
       ->post();
@@ -79,7 +123,7 @@ class ReportController extends Controller
         'Content-Type' => 'application/json'
       ])
       ->setBody([
-        'region' => "A"
+        'region' => $region
       ])
       ->post();
       // dd($listKanca);
@@ -95,13 +139,13 @@ class ReportController extends Controller
         'Content-Type' => 'application/json'
       ])
       ->setBody([
-        'region' => "A"
+        'region' => $region
       ])
       ->post();
 
       $fo = $listFo['contents'];
       // dd($fo);
-      return view('internals.crm.report.index-marketing', compact('data', 'reports', 'kanwil', 'kanca', 'fo'));
+      return view('internals.crm.report.index-marketing', compact('data', 'reports', 'kanwil', 'kanca', 'fo', 'region', 'regionList', 'branch', 'branchList'));
     }
 
     public function listReportMarketing(Request $request)
@@ -118,7 +162,7 @@ class ReportController extends Controller
       ])
       ->setBody([
         "region"=>$request->region, //mandatory
-        "branch"=>$request->branch, //jika branch kosong maka filter seluruh branch per kanwil
+        "branch"=>"00".$request->branch, //jika branch kosong maka filter seluruh branch per kanwil
         "pn"=>$request->pn, //
         "start_date"=>$request->start,
         "end_date"=>$request->end
@@ -175,6 +219,21 @@ class ReportController extends Controller
     {
       $data = $this->getUser();
       // return $request->region;
+      if ($request->branch == "") {
+        $list = Client::setEndpoint('crm/pemasar_kanwil')
+        ->setHeaders([
+          'pn' => $data['pn'],
+          'branch' => $data['branch'],
+          'Authorization' => $data['token'],
+          'Content-Type' => 'application/json'
+        ])
+        ->setBody([
+          'region' => $request->region
+        ])
+        ->post();
+
+        return $list['contents'];
+      }
       $list = Client::setEndpoint('crm/pemasar_cabang')
       ->setHeaders([
         'pn' => $data['pn'],
