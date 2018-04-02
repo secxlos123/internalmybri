@@ -33,9 +33,9 @@
       <td>{{$report['product_type']}}</td>
       <td>{{$report['activity_type']}}</td>
       <td>{{$report['nama']}}</td>
-      <td>{{$report['target']}}</td>
+      <td>Rp. {{$report['target']}}</td>
       <td>{{$report['rekening']}}</td>
-      <td>{{$report['volume_rekening']}}</td>
+      <td>Rp. {{$report['volume_rekening']}}</td>
       <td>{{$report['target_closing_date']}}</td>
       <td>{{$report['status']}}</td>
     </tr>
