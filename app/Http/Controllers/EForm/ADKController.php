@@ -1619,27 +1619,34 @@ class ADKController extends Controller
                   'name'     => 'is_verified',
                   'contents' => $verified,
                 ]);
-            
             if ($imgReq['uploadfoto']) {
-                $nama = str_replace(' ', '-', $imgReq['namafoto']);
+                if (isset($imgReq['namafoto'])) {
+                    $nama = str_replace(' ', '-', $imgReq['namafoto']);
+                } else {
+                    $nama = 'Foto-Lainnya-1';
+                }
                 $image_path = $imgReq['uploadfoto']->getPathname();
                 $image_mime = $imgReq['uploadfoto']->getmimeType();
                 $image_name = ucfirst($nama).'.'.$imgReq['uploadfoto']->getClientOriginalExtension();
                 $image[] = [
-                    'name'     => 'lainnya1',
+                    'name'     => 'foto_lainnya1',
                     'filename' => $image_name,
                     'Mime-Type'=> $image_mime,
                     'contents' => fopen($image_path, 'r')
                 ];
                 
                 for ($i=2; $i < $request['foto']['countupload']; $i++) {
-                    $names = str_replace(' ', '-', $imgReq['namafoto'.$i]);
+                    if (isset($imgReq['namafoto'.$i])) {
+                        $names = str_replace(' ', '-', $imgReq['namafoto'.$i]);
+                    } else {
+                        $names = 'Foto-Lainnya-'.$i;
+                    }
                     $img = $imgReq['uploadfoto'.$i];
                     $image_path = $img->getPathname();
                     $image_mime = $img->getmimeType();
                     $image_name = ucfirst($names).'.'.$img->getClientOriginalExtension();
                     $image[] = [
-                        'name'     => 'lainnya'.$i,
+                        'name'     => 'foto_lainnya'.$i,
                         'filename' => $image_name,
                         'Mime-Type'=> $image_mime,
                         'contents' => fopen($image_path, 'r')
