@@ -265,8 +265,18 @@ class ADKHistoriController extends Controller
         } else if ($value == '14') {
             return 'AGREE BY WAPINCASUS';
         } else if ($value == '15') {
-            return 'NAIK KETINGKAT LEBIH TINGGI';
+            return 'NAIK KETINGKAT LEBIH TINGGI BY AMP';
         } else if ($value == '16') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY MP';
+        } else if ($value == '17') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY PINCAPEM';
+        } else if ($value == '18') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY PINCA';
+        } else if ($value == '19') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY WAPINWIL';
+        } else if ($value == '20') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY WAPINCASUS';
+        } else if ($value == '21') {
             return 'MENGEMBALIKAN DATA KE AO';
         } else if ($value == '0'){
             return 'APPROVAL';

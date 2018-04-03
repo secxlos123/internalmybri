@@ -55,6 +55,10 @@
                             Briguna Koperasi
                         @elseif(($detail['Kode_fasilitas'] == 'FWP' || $detail['Kode_fasilitas'] == 'FW8') && $detail['Sandi_stp'] == 'A301')
                             Briguna Karya Karyawan BRI
+                        @elseif($detail['Kode_fasilitas'] == 'FZN' && $detail['Sandi_stp'] == 'A898')
+                            Briguna Umum
+                        @elseif($detail['Kode_fasilitas'] == 'FWN' && $detail['Sandi_stp'] == 'A898')
+                            Briguna Umum
                         @else
                             Briguna Kawan BRI
                         @endif
@@ -397,6 +401,10 @@
                             Briguna Karyawan BRI Annuitas
                         @elseif($detail['Kode_fasilitas'] == 'FW8' && $detail['Sandi_stp'] == 'A301')
                             Briguna Smart Karyawan BRI
+                        @elseif($detail['Kode_fasilitas'] == 'FZN' && $detail['Sandi_stp'] == 'A898')
+                            Briguna Smart Umum
+                        @elseif($detail['Kode_fasilitas'] == 'FWN' && $detail['Sandi_stp'] == 'A898')
+                            Briguna Umum Annuitas
                         @else
                             Briguna Kawan
                         @endif
