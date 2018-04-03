@@ -6,6 +6,10 @@
   .select2-selection__clear {
     display: none;
   }
+  #datatable th{
+    vertical-align: middle;
+    text-align: center;
+  }
 </style>
 <div class="content-page">
   <div class="content">
@@ -102,6 +106,7 @@
 
                     </form>
                     <div class="text-right">
+                      <button class="btn btn-primary waves-light waves-effect w-md" id="btn-export-excel">Export Excel</button>
                       <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Cari</a>
                     </div>
                   </div>
@@ -144,9 +149,9 @@
                     <td>{{$report['product_type']}}</td>
                     <td>{{$report['activity_type']}}</td>
                     <td>{{$report['nama']}}</td>
-                    <td>{{$report['target']}}</td>
+                    <td>Rp. {{$report['target']}}</td>
                     <td>{{$report['rekening']}}</td>
-                    <td>{{$report['volume_rekening']}}</td>
+                    <td>Rp. {{$report['volume_rekening']}}</td>
                     <td>{{$report['target_closing_date']}}</td>
                     <td>{{$report['status']}}</td>
                   </tr>
@@ -252,7 +257,7 @@
   }
 </script> -->
 <script type="text/javascript">
-
+  $('#datatable').dataTable();
   $("#start").datepicker({
     todayBtn:  1,
     autoclose: true,
@@ -388,6 +393,48 @@
       console.log(data);
       $('#table-marketing').html(data);
       $('#datatable').dataTable();
+      HoldOn.close();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  // export excel
+
+  $('#btn-export-excel').on('click', function() {
+    HoldOn.open(options);
+    var kanwil = $('#kanwil').val();
+    var kanca = $('#kanca').val();
+    var pemasar = $('#pemasar').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    // var a = document.createElement("a");
+    // a.href = '{{ url("report/marketing/export") }}'+'?region='+kanwil+'&branch='+kanca+'&pn='+pemasar+'&start='+start+'&end='+end;
+    console.log(start);
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("report/marketing/export") }}',
+        data: {
+            region : kanwil,
+            branch : kanca,
+            pn : pemasar,
+            start: start,
+            end: end,
+            tipe: "pdf"
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(response){
+      console.log(response);
+      var a = document.createElement("a");
+      a.href = response.file;
+      a.download = response.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
       HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
