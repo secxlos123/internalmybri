@@ -49,9 +49,9 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
-                          <select class="form-control select2" id="kanwil" name="kanwil">
+                          <select class="form-control select2" id="kanwil" name="kanwil" {{($regionList == "disable") ? "disabled" : ""}}>
                             @foreach($kanwil['data'] as $kw)
-                            <option value="{{$kw['region_id']}}"> {{$kw['region_name']}}</option>
+                            <option value="{{$kw['region_id']}}" {{($kw['region_id'] == $region) ? "selected" : ""}}> {{$kw['region_name']}}</option>
                             @endforeach
                           </select>
                         </div>
@@ -60,10 +60,10 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Cabang :</label>
                         <div class="col-sm-8">
-                          <select class="form-control select2" id="kanca" name="kacab">
+                          <select class="form-control select2" id="kanca" name="kacab" {{($branchList == "disable") ? "disabled" : ""}}>
                             <option value="">Semua</option>
                             @foreach($kanca as $k)
-                            <option value="{{$k['mainbr']}}">{{$k['mbdesc']}}</option>
+                            <option value="{{$k['mainbr']}}" {{($k['mainbr'] == $branch) ? "selected" : ""}}>{{$k['mbdesc']}}</option>
                             @endforeach
                           </select>
                         </div>
@@ -232,7 +232,9 @@
 </script> -->
 <script type="text/javascript">
   $('#kanwil').on('change', function(){
+    HoldOn.open(options);
     $('#kanca').html('');
+    $('#pemasar').html('');
     var region = $('#kanwil').val();
     $.ajax({
         dataType: 'json',
@@ -252,15 +254,12 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#kanca').html("<option value=''>Semua</option>"+options);
+        HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
     });
-  });
 
-  $('#kanwil').on('change', function(){
-    $('#pemasar').html('');
-    var region = $('#kanwil').val();
     $.ajax({
         dataType: 'json',
         type: 'POST',
@@ -287,6 +286,7 @@
   });
 
   $('#kanca').on('change', function(){
+    HoldOn.open(options);
     var branch = $('#kanca').val();
     $('#pemasar').html('');
     $.ajax({
@@ -308,6 +308,7 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#pemasar').html("<option value=''>Semua</option>"+options);
+      HoldOn.clos();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
@@ -315,6 +316,7 @@
   });
 
   $('#btn-filter').on('click', function() {
+    HoldOn.open(options);
     var kanwil = $('#kanwil').val();
     var kanca = $('#kanca').val();
     var pemasar = $('#pemasar').val();
@@ -339,6 +341,7 @@
       console.log(data);
       $('#table-activity').html(data);
       $('#datatable').dataTable();
+      HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();

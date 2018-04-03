@@ -18,6 +18,7 @@ class CollateralController extends Controller
         'prop_pic_phone',
         'staff_name',
         'status_label',
+        'aging',
         'action',
     ];
 
@@ -27,6 +28,7 @@ class CollateralController extends Controller
         'mobile_phone',
         'staff_name',
         'status_label',
+        'aging',
         'action',
     ];
 
@@ -66,7 +68,7 @@ class CollateralController extends Controller
             ])->get();
           $form_notif = $detailCollateral['contents'];
           if(!empty($form_notif))
-          {  
+          {
             $developer_id =$form_notif['developer_id'];
             if($developer_id ==1 )
             {
@@ -89,7 +91,7 @@ class CollateralController extends Controller
                 ])->render();
 
             }else if( $developer_id  != 1)
-            {              
+            {
                 $form_notif['prop_name'] = strtoupper($form_notif['property']['name']);
                 $form_notif['prop_city_name'] = strtoupper($form_notif['property']['city']['name']);
                 $form_notif['prop_pic_name'] = strtoupper($form_notif['property']['pic_name']);
@@ -112,20 +114,20 @@ class CollateralController extends Controller
                 ])->render();
             }
               /*
-              * mark read the notification 
+              * mark read the notification
               */
-            
+
                 $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
                     ->setHeaders([
                       'Authorization' => $data['token']
                       , 'pn' => $data['pn']
                       , 'branch_id' => $data['branch']
                   ])->get();
-            return view('internals.collateral.manager.index-notif', compact('data','form_notif')); 
+            return view('internals.collateral.manager.index-notif', compact('data','form_notif'));
           }
            else
           {
-            return view('internals.collateral.manager.index', compact('data')); 
+            return view('internals.collateral.manager.index', compact('data'));
           }
 
         }

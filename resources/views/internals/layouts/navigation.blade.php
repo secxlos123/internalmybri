@@ -142,7 +142,7 @@
 </li>
 @endif
 
-@if($data['role_user'] == 'amp' || $data['role_user'] == 'mp' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'pinca')
+@if($data['role_user'] != 'ao' || $data['role_user'] != 'fo' || $data['role_user'] != 'mantri' || $data['role_user'] != 'cs' || $data['role_user'] != 'ro')
 <li class="treeview">
   <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
   <ul class="treeview-menu">
