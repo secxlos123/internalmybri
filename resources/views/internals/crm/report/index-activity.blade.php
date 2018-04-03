@@ -6,6 +6,10 @@
   .select2-selection__clear {
     display: none;
   }
+  #datatable th{
+    vertical-align: middle;
+    text-align: center;
+  }
 </style>
 <div class="content-page">
   <div class="content">
@@ -45,6 +49,16 @@
                 <div class="col-md-8">
                   <div class="card-box">
                     <form class="form-horizontal" role="form">
+
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Tanggal :</label>
+                        <div class="col-sm-4">
+                          <input type="text" placeholder="Awal" class="form-control" id="start" name="start_date">
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" placeholder="Akhir" class="form-control" id="end" name="end_date">
+                        </div>
+                      </div>
 
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
@@ -92,6 +106,7 @@
 
                     </form>
                     <div class="text-right">
+                      <a href="javascript:void(0);" class="btn btn-primary waves-light waves-effect w-md" id="btn-export-excel">Export Excel</a>
                       <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Cari</a>
                     </div>
                   </div>
@@ -231,6 +246,25 @@
   }
 </script> -->
 <script type="text/javascript">
+  $('#datatable').dataTable();
+  $("#start").datepicker({
+    todayBtn:  1,
+    autoclose: true,
+    todayHighlight: true,
+    format: 'yyyy-mm-dd',
+  }).on('changeDate', function (selected) {
+    var minDate = new Date(selected.date.valueOf());
+    $('#to').datepicker('setStartDate', minDate);
+  });
+
+  $("#end").datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+  }).on('changeDate', function (selected) {
+    var maxDate = new Date(selected.date.valueOf());
+    $('#from').datepicker('setEndDate', maxDate);
+  });
+
   $('#kanwil').on('change', function(){
     HoldOn.open(options);
     $('#kanca').html('');
@@ -341,6 +375,48 @@
       console.log(data);
       $('#table-activity').html(data);
       $('#datatable').dataTable();
+      HoldOn.close();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  // export excel
+
+  $('#btn-export-excel').on('click', function() {
+    HoldOn.open(options);
+    var kanwil = $('#kanwil').val();
+    var kanca = $('#kanca').val();
+    var pemasar = $('#pemasar').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    // var a = document.createElement("a");
+    // a.href = '{{ url("report/marketing/export") }}'+'?region='+kanwil+'&branch='+kanca+'&pn='+pemasar+'&start='+start+'&end='+end;
+    console.log(start);
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("report/activity/export") }}',
+        data: {
+            region : kanwil,
+            branch : kanca,
+            pn : pemasar,
+            start: start,
+            end: end,
+            tipe: "pdf"
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(response){
+      console.log(response);
+      var a = document.createElement("a");
+      a.href = response.file;
+      a.download = response.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
       HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");

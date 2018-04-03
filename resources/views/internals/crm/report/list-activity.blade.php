@@ -11,8 +11,7 @@
       <th>Alamat</th>
       <th>Jenis Marketing</th>
       <th>Nama Nasabah</th>
-      <!-- <th>Catatan</th>
-      <th>Status</th> -->
+      <th>Deskripsi</th>
       <th>Hasil Activity</th>
     </tr>
   </thead>
@@ -30,8 +29,7 @@
       <td>{{$report['alamat']}}</td>
       <td>{{$report['marketing_type']}}</td>
       <td>{{$report['nama']}}</td>
-      <!-- <td>{{$report['wilayah']}}</td>
-      <td>{{$report['wilayah']}}</td> -->
+      <td>{{$report['desc']}}</td>
       <td>{{$report['result']}}</td>
     </tr>
     <?php $i++ ?>

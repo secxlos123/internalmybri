@@ -313,6 +313,8 @@
 								Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
 								Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
 								Route::get('report/activity', 'CRM\ReportController@activity');
+								Route::post('report/marketing/export', 'CRM\ReportController@exportMarketing');
+								Route::post('report/activity/export', 'CRM\ReportController@exportActivity');
 
 								/* CRM marketing */
 								Route::get('marketing', 'CRM\marketingController@index');
