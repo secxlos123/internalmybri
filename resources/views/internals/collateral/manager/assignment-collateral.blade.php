@@ -64,7 +64,7 @@
                                                                     'data-placeholder' => 'Pilih Kantor Wilayah'
                                                                 ]) !!}
                                                             </div>
-                                                        </div> -->
+                                                        </div>
                                                              <input type="hidden" name="kanwil" id="kanwil" value="{{$collateral['property']['region_id']}}">
                                                         <div class="form-group" id="staff_select">
                                                             <label class="col-md-5 control-label">Nama Staff * :</label>
