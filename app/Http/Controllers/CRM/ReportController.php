@@ -446,7 +446,7 @@ class ReportController extends Controller
       //
       // $data = unset($data['catatan']);
       // return $data;
-      $myFile= Excel::create("Report_Marketing".date("Y-m-d H:i:s"), function($excel) use($array) {
+      $myFile= Excel::create("Report_Marketing-".date("Y-m-d_H:i:s"), function($excel) use($array) {
         $excel->setTitle('Report Marketing');
         $excel->sheet('sheet 1', function($sheet) use($array) {
           $sheet->mergeCells('A1:N1');
@@ -461,9 +461,9 @@ class ReportController extends Controller
         });
       });
 
-      $myFile = $myFile->string('xls'); //change xlsx for the format you want, default is xls
+      $myFile = $myFile->string('xlsx'); //change xlsx for the format you want, default is xls
       $response =  array(
-        'name' => "Report Marketing - ".date("Y-m-d H:i:s"), //no extention needed
+        'name' => "Report_Marketing-".date("Y-m-d_H:i:s"), //no extention needed
         'file' => "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,".base64_encode($myFile) //mime type of used format
       );
       return response()->json($response);
@@ -515,8 +515,8 @@ class ReportController extends Controller
       //
       // $data = unset($data['catatan']);
       // return $data;
-      $myFile= Excel::create("Report_Activity".date("Y-m-d H:i:s"), function($excel) use($array) {
-        $excel->setTitle('Report Activity');
+      $myFile= Excel::create("Report_Activity-".date("Y-m-d_H:i:s"), function($excel) use($array) {
+        $excel->setTitle('Report_Activity');
         $excel->sheet('sheet 1', function($sheet) use($array) {
           $sheet->mergeCells('A1:L1');
           $sheet->row(1, function ($row) {
@@ -530,9 +530,9 @@ class ReportController extends Controller
         });
       });
 
-      $myFile = $myFile->string('xls'); //change xlsx for the format you want, default is xls
+      $myFile = $myFile->string('xlsx'); //change xlsx for the format you want, default is xls
       $response =  array(
-        'name' => "Report Activity - ".date("Y-m-d H:i:s"), //no extention needed
+        'name' => "Report_Activity-".date("Y-m-d_H:i:s"), //no extention needed
         'file' => "data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,".base64_encode($myFile) //mime type of used format
       );
       return response()->json($response);
