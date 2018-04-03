@@ -66,7 +66,7 @@ class ReportController extends Controller
         ->post();
         $regions = array_column($regionList['contents']['responseData'], 'region');
         $region = $regions[0];
-        $branch = $data['branch'];
+        $branch = "";
         $regionList = "disable";
         $branchList = "able";
       } else {
@@ -87,7 +87,7 @@ class ReportController extends Controller
         $regionList = "disable";
         $branchList = "disable";
       }
-      // dd($region);
+      // dd($branch);
 
       $report = Client::setEndpoint('crm/report_marketings')
       ->setHeaders([
@@ -280,7 +280,7 @@ class ReportController extends Controller
         ->post();
         $regions = array_column($regionList['contents']['responseData'], 'region');
         $region = $regions[0];
-        $branch = $data['branch'];
+        $branch = "";
         $regionList = "disable";
         $branchList = "able";
       } else {
