@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">Gaji Tetap Perbulan (Briguna Umum) :</label>
+                <label class="col-md-6 control-label">Gaji Pensiun (Briguna Umum) :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. {{ number_format($detail['gaji_pensiun'], 2, ",", ".") }}</p>
                 </div>
@@ -223,7 +223,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">Gaji Bersih Perbulan (Briguna Umum) :</label>
+                <label class="col-md-6 control-label">Gaji Bersih Pensiun (Briguna Umum) :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. 
                     {{number_format($detail['gaji_bersih_pensiun'], 2, ",", ".")}}</p>
