@@ -34,15 +34,18 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['KET_Scoring']}})</p>
+                    <p class="form-control-static">
+                        {{$detail['mitra']['Scoring']}}
+                        @if($detail['mitra']['KET_Scoring'] != "" || !empty($detail['mitra']['KET_Scoring']) || $detail['mitra']['KET_Scoring'] != "null") 
+                            ({{$detail['mitra']['KET_Scoring']}})
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Status Pengajuan :</label>
+                <label class="col-md-5 control-label">Status Pengajuan Kredit :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">
-                        {{$detail['status']}}
-                    </p>
+                    <p class="form-control-static">{{$status}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -80,7 +83,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Plafond :</label>
+                <label class="col-md-5 control-label">Jumlah Permohonan Kredit :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">Rp. {{ number_format($detail['Plafond_usulan'], 2, ",", ".") }}
                     </p>
@@ -123,15 +126,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Angsuran :</label>
+                <label class="col-md-5 control-label">Angsuran Sesuai Plafond Kredit yang di Usulkan :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">Rp. {{ number_format($detail['angsuran_usulan'], 2, ",", ".") }}</p>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-5 control-label">Status :</label>
+                <label class="col-md-5 control-label">Portofolio Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$status}}</p>
+                    <p class="form-control-static"> -/- </p>
                 </div>
             </div>
         </form>
