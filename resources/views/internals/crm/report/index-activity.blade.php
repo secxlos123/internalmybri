@@ -288,7 +288,6 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#kanca').html("<option value=''>Semua</option>"+options);
-        HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
@@ -313,6 +312,7 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#pemasar').html("<option value=''>Semua</option>"+options);
+      HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();
@@ -342,7 +342,7 @@
       }
       // console.log("<option value=''>Semua</option>"+options);
       $('#pemasar').html("<option value=''>Semua</option>"+options);
-      HoldOn.clos();
+      HoldOn.close();
     }).fail(function(errors){
         alert("Gagal Terhubung ke Server");
         HoldOn.close();

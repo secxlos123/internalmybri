@@ -103,7 +103,7 @@ class ReportController extends Controller
       ])
       ->post();
       $reports = $report['contents'];
-
+      // dd($reports);
       $listKanwil = Client::setEndpoint('crm/branch/list_kanwil')
       ->setHeaders([
         'pn' => $data['pn'],
@@ -115,7 +115,7 @@ class ReportController extends Controller
       ])
       ->post();
       $kanwil = $listKanwil['contents'];
-
+      // dd($kanwil);
       $listKanca = Client::setEndpoint('crm/branch/list_kanca_kanwil')
       ->setHeaders([
         'pn' => $data['pn'],
@@ -127,11 +127,8 @@ class ReportController extends Controller
         'region' => $region
       ])
       ->post();
-      // dd($listKanca);
       $kanca = $listKanca['contents']['responseData'];
-
-      $data = $this->getUser();
-      // return $request->region;
+      // dd($kanca);
       $listFo = Client::setEndpoint('crm/pemasar_kanwil')
       ->setHeaders([
         'pn' => $data['pn'],
