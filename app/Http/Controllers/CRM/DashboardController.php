@@ -71,7 +71,23 @@ class DashboardController extends Controller
       $marketings = $marketing['contents'];
     }
 
-    return view('internals.crm.dashboard.index', compact('data', 'product', 'pemasar', 'marketings'));
+    $tableMarketings = Client::setEndpoint('crm/marketing_summary')
+    ->setQuery(['role' => $data['role']])
+    ->setHeaders([
+      'Authorization' => $data['token'],
+      'pn' => $data['pn'],
+      'branch' => $data['branch']
+    ])
+    ->setBody([
+      "product_type"=>"", //filter pruduk
+      "month"=>"",//filter bulan
+      "pn"=>"" //filter officer
+    ])
+    ->post();
+
+    $tableMarketing = $tableMarketings['contents'];
+
+    return view('internals.crm.dashboard.index', compact('data', 'product', 'pemasar', 'marketings', 'tableMarketing'));
   }
 
   public function chartMarketing(Request $request)
@@ -105,6 +121,7 @@ class DashboardController extends Controller
       "pn"=>$pn //filter officer
     ])
     ->post();
+    // $chartData;
 
     return $chartData['contents'];
   }
@@ -184,6 +201,32 @@ class DashboardController extends Controller
     // }
 
     return $totalData;
+  }
+
+  public function detailMarketing(Request $request)
+  {
+    /* GET UserLogin Data */
+    $data = $this->getUser();
+    // return $request->pn;
+    $marketings = Client::setEndpoint('crm/marketing/by_branch')
+    ->setHeaders([
+      'pn' => $data['pn'],
+      'branch' => $data['branch'],
+      'Authorization' => $data['token'],
+      'Content-Type' => 'application/json'
+    ])
+    ->post();
+    $marketing = $marketings['contents'];
+    $mark = array_filter($marketing, function ($var) use($request){
+      return ($var['status'] == substr("00000000".$request->pn, -8));
+    });
+
+    return $mark;
+    $data = [
+      'marketings' => $marketing
+    ];
+    // $kanca = $listKanca['contents']['responseData'];
+    return $data;
   }
 
 }
