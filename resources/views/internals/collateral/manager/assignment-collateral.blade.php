@@ -59,14 +59,17 @@
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="form-horizontal" role="form">
+                                                    <label class="col-md-5 control-label">Pilih Kantor Wilayah * :</label>
+                                                    <div class="col-md-7">
+
                                                                 {!! Form::select('kanwil', ['' => ''], old('kanwil'), [
                                                                     'class' => 'select2 kanwil',
                                                                     'data-placeholder' => 'Pilih Kantor Wilayah'
                                                                 ]) !!}
-                                                            </div>
+                                                    </div>
                                                         </div>
                                                              <input type="hidden" name="kanwil" id="kanwil" value="{{$collateral['property']['region_id']}}">
-                                                        <div class="form-group" id="staff_select">
+                                                        <div class="form-horizontal" id="staff_select">
                                                             <label class="col-md-5 control-label">Nama Staff * :</label>
                                                             <div class="col-md-7">
                                                                 {!! Form::select('staff_id', ['' => ''], old('staff_id'), [
@@ -77,13 +80,13 @@
                                                             </div>
                                                             <input type="hidden" name="staff_name" id="staff_name">
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-horizontal">
                                                             <label class="control-label col-md-5">AO Cabang </label>
                                                             <div class="col-md-7">
                                                                 <input type="checkbox" name="ao_select" class="checkbox checkbox-single checkbox-primary" value="0" id="ao_select">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group" id="office" hidden="">
+                                                        <div class="form-horizontal" id="office" hidden="">
                                                             <label class="col-md-5 control-label">Pilih Kantor Cabang * :</label>
                                                             <div class="col-md-7">
                                                                 {!! Form::select('offices', ['' => ''], old('offices'), [
@@ -92,7 +95,7 @@
                                                                 ]) !!}
                                                             </div>
                                                         </div>
-                                                        <div class="form-group" hidden="" id="ao_id">
+                                                        <div class="form-horizontal" hidden="" id="ao_id">
                                                             <label class="col-md-5 control-label">Nama AO * :</label>
                                                             <div class="col-md-7">
                                                                 {!! Form::select('ao_id', ['' => ''], old('ao_id'), [
@@ -103,14 +106,14 @@
                                                             <input type="hidden" name="ao_name" id="ao_name">
                                                             @include('form_audit._input_long_lat')
                                                         </div>
-                                                        <div class="form-group">
+                                                        <div class="form-horizontal">
                                                             <label class="control-label col-md-5">Catatan Penugasan * </label>
                                                             <div class="col-md-7">
                                                                 <textarea class="form-control" rows="5" name="remark" maxlength="250"></textarea>
                                                             </div>
                                                         </div>
                                                         @if(($collateral['status'] == 'baru')&&(!empty($collateral['remark'])))
-                                                        <div class="form-group">
+                                                        <div class="form-horizontal">
                                                             <label class="control-label col-md-5">Keterangan : </label>
                                                             <div class="col-md-7">
                                                                 <p>Penugasan sebelumnya telah ditolak dikarenakan {{$collateral['remark']}}</p>
