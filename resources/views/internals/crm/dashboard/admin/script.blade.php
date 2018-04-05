@@ -319,4 +319,28 @@ $(document).ready(function() {
 //                 ],
 //             });
 // }
+
+$(document).ready(function(){
+  $('.sMarketing').on('click', function(){
+    HoldOn.open(options);
+    var pn = $(this).attr('data-pn');
+    $.ajax({
+      type: 'POST',
+      url: '{{ url("detail_marketing") }}',
+      data: {
+        pn : pn
+      },
+      headers: {
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+      }
+
+    }).done(function(response){
+      console.log(response);
+      HoldOn.close();
+    }).fail(function(errors){
+      alert("Gagal Terhubung ke Server");
+      HoldOn.close();
+    });
+  });
+});
 </script>

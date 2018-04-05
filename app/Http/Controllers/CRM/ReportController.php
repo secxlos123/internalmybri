@@ -152,7 +152,7 @@ class ReportController extends Controller
       // dd(env('APP_ENV'));
       // return $request->all();
       if ($request->branch != "") {
-        $branch = "00".$request->branch;
+        $branch = substr("00000".$request->branch, -5);
       } else {
         $branch = "";
       }
@@ -365,7 +365,7 @@ class ReportController extends Controller
       // dd(env('APP_ENV'));
       // return $request->all();
       if ($request->branch != "") {
-        $branch = "00".$request->branch;
+        $branch = substr("00000".$request->branch, -5);
       } else {
         $branch = "";
       }
@@ -401,7 +401,7 @@ class ReportController extends Controller
       // dd(env('APP_ENV'));
       // return $request->all();
       if ($request->branch != "") {
-        $branch = "00".$request->branch;
+        $branch = substr("00000".$request->branch, -5);
       } else {
         $branch = "";
       }
@@ -472,7 +472,7 @@ class ReportController extends Controller
       // dd(env('APP_ENV'));
       // return $request->all();
       if ($request->branch != "") {
-        $branch = "00".$request->branch;
+        $branch = substr("00000".$request->branch, -5);
       } else {
         $branch = "";
       }

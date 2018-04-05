@@ -177,7 +177,34 @@
                 </div>
               </div>
             </div>
+            @if($data['uker'] == "KC")
             <div class="tab-scroll">
+              <table id="datatable" class="table table-bordered ">
+                <thead class="bg-primary">
+                  <tr>
+                    <th>Pemasar</th>
+                    <th>Leads</th>
+                    <th>Prospect</th>
+                    <th>Sales Offered</th>
+                    <th>Sales Closed</th>
+                    <!-- <th>Status</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($tableMarketing as $m)
+                  <tr>
+                    <td><a href="javascript:void(0);" data-pn="{{$m['Pemasar']}}" class="sMarketing">{{$m['Nama']}}</a></td>
+                    <td>{{$m['Total']}}</td>
+                    <td>{{$m['Prospek']}}</td>
+                    <td>{{$m['On Progress']}}</td>
+                    <td>{{$m['Done']}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+            @endif
+            <div class="tab-scroll hide">
               <table id="datatable" class="table table-bordered ">
                 <thead class="bg-primary">
                   <tr>
