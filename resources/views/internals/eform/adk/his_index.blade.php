@@ -81,7 +81,7 @@
             $("#result-modal .custom-dialog").attr('style', 'margin: 50px auto; width: 300px;');
             HoldOn.close();
         } else if ( $(this).attr('data-screening') == 1 ) {
-            eformId = $(this).parent().parent().children('td').eq(14).html();
+            eformId = $(this).parent().parent().children('td').eq(15).html();
             // alert(eformId);
             $.ajax({
                 dataType: 'json',
