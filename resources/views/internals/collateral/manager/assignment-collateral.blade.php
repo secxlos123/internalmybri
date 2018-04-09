@@ -124,7 +124,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-10">
                                                     <div class="form-group pull-right">
                                                         <button class="btn btn-orange waves-effect waves-light" type="submit">Tugaskan</button>
                                                     </div>
