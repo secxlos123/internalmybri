@@ -241,7 +241,7 @@
             ]);
         });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin,pinca'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
