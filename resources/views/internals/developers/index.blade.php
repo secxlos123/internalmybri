@@ -52,7 +52,7 @@
                                                         <option value="0|49"> < 50 </option>
                                                         <option value="50|100"> 50 - 100 </option>
                                                         <option value="100|200"> 100 - 200 </option>
-                                                        <option value="200|400"> > 200 </option>
+                                                        <option value="200|10000000"> > 200 </option>
                                                     </select>
                                                 </div>
                                             </div>
