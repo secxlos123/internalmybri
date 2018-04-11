@@ -315,6 +315,19 @@ class LKNRequest extends FormRequest
            'area.another_information.required' => 'Kolom Keterangan lain wajib diisi!',
            'area.surface_area.required' => 'Kolom Luas Tanah Sesuai Lapangan wajib diisi!',
            // End Message for Step 1
+           // Message for Step 2
+           'letter.type.required' => 'Kolom Jenis Surat tanah harus diisi!',
+           'letter.authorization_land.required' => 'Kolom Hak Surat Tanah wajib diisi!',
+           'letter.match_bpn.required' => 'Kolom Kecocokan Data dengan Kantor Anggaran/BPN wajib diisi!',
+           'letter.match_area.required' => 'Kolom Kecocokan Pemeriksaan Lokasi Tanah Lapangan wajib diisi!',
+           'letter.match_limit_in_area.required' => 'Kolom Kecocokan Batas Tanah Lapangan wajib diisi!',
+           'letter.surface_area_by_letter.required' => 'Kolom Luas Tanah Berdasarkan Surat Tanah wajib diisi!',
+           'letter.number.required' => 'Kolom Nomor Surat tanah wajib diisi!',
+           'letter.date.required' => 'Kolom Tanggal Surat Tanah wajib diisi!',
+           'letter.on_behalf_of.required' => 'Kolom Atas Nama wajib diisi!',
+           'letter.duration_land_authorization.required' => 'Kolom Masa Hak Tanah wajib diisi!',
+           'letter.bpn_name.required' => 'Kolom Nama Kantor Anggaran/BPN wajib diisi!',
+           // End Message for Step 2
         ];
     }
 }
