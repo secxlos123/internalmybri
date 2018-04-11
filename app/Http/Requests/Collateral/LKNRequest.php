@@ -282,10 +282,6 @@ class LKNRequest extends FormRequest
     public function messages()
     {
         return [
-           'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
            // Mesage for Step 1
            'area.collateral_type.required' => 'Kolom Tipe Kpr wajib diisi!',
            'area.city_id.required' => 'Kolom Kota/Kabupaten wajib diisi!',
@@ -346,6 +342,19 @@ class LKNRequest extends FormRequest
            'building.west_limit.required' => 'Kolom Batas Barat wajib diisi!',
            'building.west_limit_from.required' => 'Kolom Batas Dari Bangunan wajib diisi!',
            // End Message for Step 3
+           // Message for Step 4
+           'environment.designated_land.required' => 'Kolom Peruntukan Tanah wajib diisi!',
+           'environment.other_designated.required' => 'Kolom Fasilitas Umum lain wajib diisi!',
+           'environment.nearest_location.required' => 'Kolom Lingkungan terdekat dari Lokasi sebagian Besar wajib diisi!',
+           'environment.other_guide.required' => 'Kolom Petunjuk Lain wajib diisi!',
+           'environment.transportation.required' => 'Kolom Sarana Transportasi wajib diisi!',
+           'environment.distance_from_transportation.required' => 'Kolom Jarak Dari Lokasi wajib diisi!',
+           'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           // End Message for Step 4
+           
         ];
     }
 }
