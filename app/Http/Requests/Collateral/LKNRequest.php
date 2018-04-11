@@ -328,6 +328,24 @@ class LKNRequest extends FormRequest
            'letter.duration_land_authorization.required' => 'Kolom Masa Hak Tanah wajib diisi!',
            'letter.bpn_name.required' => 'Kolom Nama Kantor Anggaran/BPN wajib diisi!',
            // End Message for Step 2
+           // Message for Step 3
+           'building.permit_number.required' => 'Kolom No Izin Mendirikan Bangunan wajib diisi!',
+           'building.permit_date.required' => 'Kolom Tanggal izin Mendirikan Bangunan wajib diisi!',
+           'building.on_behalf_of.required' => 'Kolom Atas Nama Izin Mendirikan Bangunan wajib diisi!',
+           'building.type.required' => 'Kolom Jenis Bangunan wajib diisi!',
+           'building.count.required' => 'Kolom Jumlah Bangunan wajib diisi!',
+           'building.spacious.required' => 'Kolom Luas Bangunan wajib diisi!',
+           'building.year.required' => 'Kolom Tahun Mendirikan Bangunan wajib diisi!',
+           'building.description.required' => 'Kolom Uraian Bangunan wajib diisi!',
+           'building.north_limit.required' => 'Kolom Batas utara wajib diisi!',
+           'building.north_limit_from.required' => 'Kolom Batas Dari Bangunan wajib diisi!',
+           'building.east_limit.required' => 'Kolom Batas Timur wajib diisi!',
+           'building.east_limit_from.required' => 'Kolom Batas Dari Bangunan wajib diisi!',
+           'building.south_limit.required' => 'Kolom Batas Selatan wajib diisi!',
+           'building.south_limit_from.required' => 'Kolom Batas Dari Bangunan wajib diisi!',
+           'building.west_limit.required' => 'Kolom Batas Barat wajib diisi!',
+           'building.west_limit_from.required' => 'Kolom Batas Dari Bangunan wajib diisi!',
+           // End Message for Step 3
         ];
     }
 }
