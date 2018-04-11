@@ -285,7 +285,36 @@ class LKNRequest extends FormRequest
            'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
            'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
            'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum'
+           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           // Mesage for Step 1
+           'area.collateral_type.required' => 'Kolom Tipe Kpr wajib diisi!',
+           'area.city_id.required' => 'Kolom Kota/Kabupaten wajib diisi!',
+           'area.location.required' => 'Kolom Alamat wajib diisi!',
+           'area.latitude' => 'required',
+           'area.longtitude' => 'required',
+           'area.district.required' => 'Kolom Kecematan wajib diisi!',
+           'area.sub_district.required' => 'Kolom Kelurahan/Desa wajib diisi!',
+           'area.rt.required' => 'Kolom Rt wajib diisi!',
+           'area.rt.numeric' => 'Inputan Kolom Rt harus berupa angka!',
+           'area.rw.required' => 'Kolom Rw wajib diisi!',
+           'area.rw.numeric' => 'Inputan Kolom Rw harus berupa angka!',
+           'area.zip_code.required' => 'Kolom Kode Pos wajib diisi!',
+           'area.zip_code.numeric' => 'Inputan Kolom Kode Pos harus berupa angka!',
+           'area.zip_code.digits' => 'Minimal Input 5 angka',
+           'area.distance.required' => 'Kolom Jarak wajib diisi!',
+           'area.unit_type.required' => 'Kolom Satuan wajib diisi!',
+           'area.distance_from.required' => 'Kolom Lokasi wajib diisi!',
+           'area.position_from_road.required' => 'Kolom Posisi terhadap jalan wajib diisi!',
+           'area.ground_type.required' => 'Kolom Bentuk tanah wajib diisi!',
+           'area.ground_level.required' => 'Kolom Permukaan tanah wajib diisi!',
+           'area.distance_of_position.required' => 'Kolom Jarak posisi terhadap jalan wajib diisi!',
+           'area.north_limit.required' => 'Kolom Batas utara wajib diisi!',
+           'area.east_limit.required' => 'Kolom Batas timur wajib diisi!',
+           'area.south_limit.required' => 'Kolom Batas selatan wajib diisi!',
+           'area.west_limit.required' => 'Kolom Batas barat wajib diisi!',
+           'area.another_information.required' => 'Kolom Keterangan lain wajib diisi!',
+           'area.surface_area.required' => 'Kolom Luas Tanah Sesuai Lapangan wajib diisi!',
+           // End Message for Step 1
         ];
     }
 }
