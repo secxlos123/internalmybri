@@ -282,10 +282,6 @@ class LKNRequest extends FormRequest
     public function messages()
     {
         return [
-           'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
-           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
            // Mesage for Step 1
            'area.collateral_type.required' => 'Kolom Tipe Kpr wajib diisi!',
            'area.city_id.required' => 'Kolom Kota/Kabupaten wajib diisi!',
@@ -346,6 +342,35 @@ class LKNRequest extends FormRequest
            'building.west_limit.required' => 'Kolom Batas Barat wajib diisi!',
            'building.west_limit_from.required' => 'Kolom Batas Dari Bangunan wajib diisi!',
            // End Message for Step 3
+           // Message for Step 4
+           'environment.designated_land.required' => 'Kolom Peruntukan Tanah wajib diisi!',
+           'environment.other_designated.required' => 'Kolom Fasilitas Umum lain wajib diisi!',
+           'environment.nearest_location.required' => 'Kolom Lingkungan terdekat dari Lokasi sebagian Besar wajib diisi!',
+           'environment.other_guide.required' => 'Kolom Petunjuk Lain wajib diisi!',
+           'environment.transportation.required' => 'Kolom Sarana Transportasi wajib diisi!',
+           'environment.distance_from_transportation.required' => 'Kolom Jarak Dari Lokasi wajib diisi!',
+           'environment.designated_pln.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_phone.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_pam.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           'environment.designated_telex.required_without_all' => 'Pilih Salah Satu Fasilitas Umum',
+           // End Message for Step 4
+           // Message for Step 5
+           'valuation.scoring_land_date.required' => 'Kolom Tanggal Penilaian Tanah wajib diisi!',
+           'valuation.npw_land.required' => 'Kolom NPW Tanah wajib diisi!',
+           'valuation.nl_land.required' => 'Kolom NL Tanah wajib diisi!',
+           'valuation.pnpw_land.required' => 'Kolom PNPW Tanah wajib diisi!',
+           'valuation.pnl_land.required' => 'Kolom PNL Tanah wajib diisi!',
+           'valuation.scoring_building_date.required' => 'Kolom Tanggal Penilaian Bangunan wajib diisi!',
+           'valuation.npw_building.required' => 'Kolom NPW Bangunan wajib diisi!',
+           'valuation.nl_building.required' => 'Kolom NL Bangunan wajib diisi!',
+           'valuation.pnpw_building.required' => 'Kolom PNPW Bangunan wajib diisi!',
+           'valuation.pnl_building.required' => 'Kolom PNL Bangunan wajib diisi!',
+           'valuation.scoring_all_date.required' => 'Kolom Tanggal Penilaian Tanah dan bangunan wajib diisi!',
+           'valuation.npw_all.required' => 'Kolom NPW Tanah dan Bangunan wajib diisi!',
+           'valuation.nl_all.required' => 'Kolom NL Tanah dan Bangunan wajib diisi!',
+           'valuation.pnpw_all.required' => 'Kolom PNPW Tanah dan Bangunan wajib diisi!',
+           'valuation.pnl_all.required' => 'Kolom PNL Tanah dan Bangunan wajib diisi!'
+           // End Message for Step 5
         ];
     }
 }
