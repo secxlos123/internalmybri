@@ -15,13 +15,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        @if(($data['role']=='staff'))
+                        @if(($data['role']=='staff') || ($data['role']=='superadmin'))
                         <h4 class="page-title">Tambah Referral</h4>
                         @else
                         <h4 class="page-title">Pengajuan Pinjaman</h4>
                         @endif
                         <ol class="breadcrumb p-0 m-0">
-                            @if(($data['role']=='staff'))
+                            @if(($data['role']=='staff') || ($data['role']=='superadmin'))
                             <li>
                                 <a href="{{route('dashboard')}}">Home MyBRI</a>
                             </li>
@@ -116,7 +116,7 @@
                                     <input type="hidden" name="unit" id="branch_id" @if(!empty($office)) value="{{$office['unit']}}" @endif>
                                 @endif
                                 </section>
-                            @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")||($data['uker'] == "KP")))
+                            @if(!(($data['uker'] == "KC")||($data['uker'] == "KCP")))
                                 <h3>Penjadwalan</h3>
 
                                 <section>
