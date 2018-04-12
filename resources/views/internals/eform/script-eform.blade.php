@@ -918,4 +918,9 @@
         autoclose: true,
     });
 
+    $('#datepicker-mindate').datepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+    });
+
 </script>

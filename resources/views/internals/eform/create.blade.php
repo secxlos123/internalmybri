@@ -107,7 +107,7 @@
                                     <input type="hidden" class="form-control" name="ao_id" value="{{ $data['pn'] }}">
                                 @endif
 
-                                @if((($data['uker'] == "KC")||($data['uker'] == "KCP")||($data['uker'] == "KP")))
+                                @if((($data['uker'] == "KC")||($data['uker'] == "KCP")))
                                     <input type="hidden" class="form-control" id="datepicker-mindate" name="appointment_date" value="{{date('Y-m-d')}}">
                                     <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>
                                     <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" @if(!empty($office)) value="{{$office['long']}}" @endif>
