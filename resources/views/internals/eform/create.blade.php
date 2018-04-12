@@ -152,7 +152,7 @@
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
                                                     <label class="control-label">Lokasi</label>
-                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
+                                                    <textarea name="address" id="location" class="form-control"  rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>
