@@ -65,6 +65,15 @@ function table_mitra2(mitra,kantor_wilayah,kantor_cabang)
                    // d.anak_perusahaan_kabupaten = kantor_cabang;
                 }
             },
+			  dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'My button',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Button activated' );
+                }
+            }
+        ],
           aoColumns : [
                 {   data: 'noid', name: 'noid', bSortable: false },
                 {   data: 'NAMA_INSTANSI', name: 'NAMA_INSTANSI', bSortable: false  },
