@@ -36,9 +36,7 @@
                                     'class' => 'select2 cities',
                                     'data-placeholder' => '-- Pilih Kota --',
                                 ]) !!}
-                                {{-- <input type="text" class="form-control" name="seven[location]" maxlength="50" value="{{old('seven[location]')}}" id="location_step7"> --}}
                             </div>
-                            {{-- <input type="hidden" name="city_name" id="city_name"> --}}
                         </div>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Alamat Agunan * :</label>
@@ -52,7 +50,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Deskripsi * :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4" name="seven[description]" id="description" maxlength="250">{{old('seven.description')}}</textarea>
+                            <textarea class="form-control" rows="4" name="seven[description]" id="description">{{old('seven.description')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group clearfix">

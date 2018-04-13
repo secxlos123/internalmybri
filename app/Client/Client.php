@@ -91,7 +91,6 @@ class Client
      */
     public function uri()
     {
-        // return config('restapi.uri').$this->endpoint;
         return $this->uri . $this->base . $this->endpoint;
     }
 
@@ -220,7 +219,6 @@ class Client
             $body = $e->getResponse()->getBody();
             $response = json_decode($body->getContents(), true);
         } catch (ServerException $e) {
-            // \Log::info($e->getRequest()->getBody());
             abort(500);
         }
 

@@ -32,17 +32,6 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-horizontal" role="form">
-                                        <!-- <div class="form-group">
-                                            <label class="col-md-4 control-label">KPR Aktif *:</label>
-                                            <div class="col-md-8">
-                                                <select class="form-control " name="active_kpr" id="active_kpr">
-                                                    <option value="0" selected=""> Pilih </option>
-                                                    <option value="1"> 1 </option>
-                                                    <option value="2"> 2 </option>
-                                                    <option value="3"> > 2 </option>
-                                                </select>
-                                            </div>
-                                        </div> -->
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Harga Rumah *:</label>
                                             <div class="col-md-8">
@@ -56,7 +45,7 @@
                                             <label class="control-label col-md-4">Uang Muka *:</label>
                                             <div class="col-md-8">
                                                 <div class="input-group">
-                                                    {!! Form::text('dp', '', ['class' => 'form-control numericOnly ','placeholder' => '0','id'=>'dp','maxlength'=>'7','required'=>'','step'=>'0.4']) !!}
+                                                    {!! Form::text('dp', '', ['class' => 'form-control  ','placeholder' => '0','id'=>'dp','maxlength'=>'7','required'=>'','step'=>'0.4']) !!}
                                                     <span class="input-group-addon">%</span>
                                                     @if ($errors->has('dp')) <p class="help-block">{{ $errors->first('dp') }}</p> @endif
                                                 </div><br>

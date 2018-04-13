@@ -22,72 +22,6 @@
                 </div>
             </div>
 
-            <!-- <div class="row tracking-widget">
-                <div class="col-md-3">
-                    <div class="card-box widget-box-three active">
-                        <div class="bg-icon pull-left">
-                            <i class="fa fa-envelope"></i>
-                        </div>
-                        <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Aplikasi Telah Diterima</p>
-                        </div>
-                    </div>
-                    <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-box widget-box-three">
-                        <div class="bg-icon pull-left">
-                            <i class="fa fa-file"></i>
-                        </div>
-                        <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Disposisi Pengajuan</p>
-                        </div>
-                    </div>
-                    <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-box widget-box-three">
-                        <div class="bg-icon pull-left">
-                            <i class="fa fa-user"></i>
-                        </div>
-                        <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Proses Prakarsa Pengajuan</p>
-                        </div>
-                    </div>
-                    <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-box widget-box-three">
-                        <div class="bg-icon pull-left">
-                            <i class="ti-archive"></i>
-                        </div>
-                        <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Proses CLF</p>
-                        </div>
-                    </div>
-                    <span><i class="mdi mdi-arrow-right-bold-circle"></i></span>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-box widget-box-three">
-                        <div class="bg-icon pull-left">
-                            <i class="fa fa-file"></i>
-                        </div>
-                        <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Pengajuan Diterima</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card-box widget-box-three">
-                        <div class="bg-icon pull-left">
-                            <i class="fa fa-usd"></i>
-                        </div>
-                        <div class="text-right">
-                            <p class="m-t-5 text-uppercase font-600 font-secondary">Pencairan</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             @php ( $className = ($datas['kpr']['status_property'] == "1" && $datas['kpr']['developer_id'] != ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
             @php ( $classNameType = ($datas['kpr']['status_property'] != "1" || $datas['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
             @php ( $classKPRType = ($datas['kpr']['status_property'] != "1" && $datas['kpr']['developer_id'] == ENV('DEVELOPER_KEY', 1)) ? '' : 'hide' )
@@ -298,24 +232,6 @@
                                             <p class="form-control-static">Rp {{number_format($datas['nominal'],2)}}</p>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label class="col-md-4 control-label">Nama AO / Officer :</label>
-                                        <div class="col-md-8">
-                                            <p class="form-control-static">{{$datas['ao_name']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Kantor Cabang :</label>
-                                        <div class="col-md-8">
-                                            <p class="form-control-static">{{$datas['branch']}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Status Aplikasi :</label>
-                                        <div class="col-md-8">
-                                            <p class="form-control-static"><mark>{{$datas['status']}}</mark></p>
-                                        </div>
-                                    </div> -->
                                 </form>
                             </div>
                         </div>

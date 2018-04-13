@@ -5,11 +5,6 @@
                 <h3 class="panel-title">Dokumen Yang di Upload Nasabah</h3>
             </div>
              @foreach( $dataUpload as $dataUploads )
-               <!--  @if(substr($dataUploads['name'], -3) != 'pdf')
-            <div class="panel-body" hidden="hidden">
-                @else
-            <div class="panel-body">
-                @endif -->
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3" align="center">

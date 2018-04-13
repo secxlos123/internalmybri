@@ -3,9 +3,15 @@
     <div id="sidebar-menu">
       <ul>
         <li class="menu-title">Navigasi Utama</li>
-        <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a>
-        @if(($data['role']=='ao') || ($data['role']=='fo') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus'))
-        <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a>
+        <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a></li>
+        @if(($data['role_user']=='ao') || ($data['role_user']=='fo') || ($data['role_user']=='mp') || ($data['role_user']=='amp') || ($data['role_user']=='pinca') || ($data['role_user']=='pincasus'))
+        <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a></li>
+        @endif
+        @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
+        <li><a href="{{('/leads')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Leads </span> </a></li>
+        @endif
+        @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
+        <li><a href="{{('/marketing')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Marketing </span> </a></li>
         @endif
         </li>
         @if(($data['role']=='ao') || ($data['role']=='admin-bri') || ($data['role']=='mp')|| ($data['role']=='pinca')||($data['role']=='other') || ($data['role']=='superadmin'))
@@ -14,17 +20,14 @@
         </li>
         @endif
         @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='cs-bri') || ($data['role']=='superadmin'))
-        <!-- <li>
-        <a href="properti.html" class="waves-effect"><i class="mdi mdi-city"></i> <span> Properti </span> </a>
-      </li> -->
-      @endif
+        @endif
       <li>
         @if(($data['role']=='ao') || ($data['role']=='superadmin'))
         <a href="{{route('eform.index')}}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Pengajuan Kredit </span></a>
         @elseif(($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='pincapem'))
         <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span style="font-size: 9pt;"> Rekomendasi & Disposisi </span> </a>
         @elseif(($data['role']=='staff')||($data['role']=='other'))
-        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> <span> Tambah Referral </span> </a>
+        <a href="{{route('eform.index')}}" class="waves-effect inline-block-menu"><i class="mdi mdi-file-document-box"></i> @if(($data['role']=='staff'))<span> Tambah Referral </span>@else <span> Pengajuan Kredit </span>  @endif </a>
 
         @endif
       </li>
@@ -68,14 +71,18 @@
         <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
       </li>
       @endif
-      <li>
-        <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kalkulator </span> </a>
+      <li class="treeview">
+        <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Kalkulator </span> </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kal. Kredit</span> </a>
+          </li>
+
+          <li>
+            <a href="{{route('calculatordplk.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kal. DPLK</span> </a>
+          </li>
+        </ul>
       </li>
-      @if(($data['role']=='ao') || ($data['role']=='mp') || ($data['role']=='amp') || ($data['role']=='pinca') || ($data['role']=='pincasus') || ($data['role']=='wapincasus') || ($data['role']=='cs-bri'))
-      <!-- <li>
-      <a href="{{route('third-party.index')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ketiga </span> </a>
-    </li> -->
-    @endif
 
     @if(($data['role']=='collateral') || ($data['role']=='superadmin'))
     <li>
@@ -112,18 +119,10 @@
       <li>
         <a href="{{route('approveDeveloper')}}" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span> Developer </span> </a>
       </li>
-      <!-- <li>
-      <a href="{{route('approveThirdParty')}}" class="waves-effect"><i class="mdi mdi-numeric-3-box-multiple-outline"></i> <span> Pihak Ke-3 </span> </a>
-    </li> -->
   </ul>
 </li>
 @endif
-<!-- <li>
-<a href="{{route('users.index')}}" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> Manajemen User </span> </a>
-</li>
-<li>
-<a href="{{route('roles.index')}}" class="waves-effect"><i class="mdi mdi-sitemap"></i> <span> Manajemen Role </span> </a>
-</li> -->
+
 @if(($data['role']=='prescreening') || ($data['role']=='superadmin'))
 <li>
   <a href="{{ route('screening.index') }}" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span> Screening </span> </a>
@@ -137,13 +136,13 @@
 </li>
 @endif
 
-@if($data['role']=='cs')
+@if($data['role_user']=='cs')
 <li>
   <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
 </li>
 @endif
 
-@if($data['role'] == 'amp' || $data['role'] == 'mp' || $data['role'] == 'pincapem' || $data['role'] == 'pinca')
+@if($data['role_user'] != 'ao' || $data['role_user'] != 'fo' || $data['role_user'] != 'mantri' || $data['role_user'] != 'cs' || $data['role_user'] != 'ro')
 <li class="treeview">
   <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
   <ul class="treeview-menu">
@@ -158,7 +157,7 @@
 </li>
 @endif
 
-@if($data['role'] == 'amp' || $data['role'] == 'mp' || $data['role'] == 'pincapem' || $data['role'] == 'pinca')
+@if($data['role_user'] == 'amp' || $data['role_user'] == 'mp' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'pinca')
 <li>
   <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
 </li>

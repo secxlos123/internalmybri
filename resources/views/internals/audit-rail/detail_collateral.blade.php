@@ -95,7 +95,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -110,7 +109,6 @@
     
     $(document).on('click', "#btn-approve", function(){
         $('#is_approved').attr('value', true);
-        console.log($('#is_approved').val());
         $('#form1').submit();
         HoldOn.open(options);
     })

@@ -8,10 +8,6 @@ use Client;
 
 class AOController extends Controller
 {
-  // public function __construct()
-  //   {
-  //       $this->middleware('eform', ['except' => ['datatables']]);
-  //   }
 
 	protected $columns = [
         'ref_number',
@@ -112,9 +108,6 @@ class AOController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
-                    // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                    // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->get();
         $eform = $eform['contents'];
         return view('internals.screening.getscore', compact('data','id','eform'));
@@ -177,7 +170,6 @@ class AOController extends Controller
                 ->setHeaders([
                   'Authorization' => $data['token']
                   , 'pn' => $data['pn']
-                  // , 'auditaction' => 'action name'
                   , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                   , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
@@ -211,29 +203,10 @@ class AOController extends Controller
       $prescreening_color = 'success';
 		}
 
-					// 	$offices = Client::setEndpoint('offices')
-					// 	->setHeaders([
-					// 		'Authorization' => $data['token'],
-					// 		'pn' => $data['pn']
-					// 	])->setQuery([
-					// 		'branch' => $form['branch_id'],
-					// 		'distance' => 1,
-					// 		'long' => 106.81350,
-					// 		'lat' => -6.21670
-					// 	])
-					// 	->get();
-					// $office = [];
-
-				 //   if(!empty($offices['contents']['data'])){
-					//   $office = $offices['contents']['data'][0];
-					// }
-      // $form['branchs'] = $office['unit'];
-
 			$form['branchs'] = '';
 
             $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];
-        //before $status = $form['response_status'];
 			$status = $form['status'];
             $form['action'] = view('internals.layouts.actions', [
 
@@ -250,14 +223,12 @@ class AOController extends Controller
             $form['customer_name'] = '';
             $form['birth_date'] = '';
             $form['created_at'] = '';
-            // $form['product_type'] = strtoupper($form['product_type']);
             $form['request_amount'] = '';
             $form['created_at'] = '';
 			$form['branch_id'] = '';
 			$form['is_screning']='';
             $verify = '';
             $visit = '';
-        //before $status = $form['response_status'];
 		$status = $form['status'];
 
             $form['action'] = view('internals.layouts.actions', [

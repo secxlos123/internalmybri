@@ -57,7 +57,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Hal-Hal Yang Perlu Diketahui Bank * :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know" maxlength="250">{{old('other.things_bank_must_know')}}</textarea>
+                                <textarea class="form-control" rows="4" name="other[things_bank_must_know]" id="things_bank_must_know">{{old('other.things_bank_must_know')}}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -67,9 +67,6 @@
                                     <input type="file" class="filestyle-foto photo" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file" id="filestyle-0" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);" name="other[image_area][1][image_data]" accept="image/*,application/pdf">
                                 </div>
                             </div>
-                            <!-- <div class="img-previews">
-                                    <img id="preview-0" src="#" width="40%">
-                            </div> -->
                                 <a href="javascript:void(0)" class="btn btn-info" title="Tambah Foto" id="add_photo">+ Tambah Foto</a> 
                         </div>
                     </div>

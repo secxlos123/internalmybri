@@ -109,17 +109,6 @@
                                                     <p class="form-control-static">{{$detail['new']['mobile_phone']}}</p>
                                                 </td>
                                             </tr>
-                                            <!-- <tr>
-                                                <td>
-                                                    <p class="form-control-static">Logo Perusahaan</p>
-                                                </td>
-                                                <td>
-                                                    <img id="preview" src="{{$detail['old']['image']}}" width="200">
-                                                </td>
-                                                <td>
-                                                    <img id="preview" src="{{$detail['new']['logo']}}" width="200">
-                                                </td>
-                                            </tr> -->
                                             <tr>
                                                 <td>
                                                     <p class="form-control-static">Ringkasan</p>

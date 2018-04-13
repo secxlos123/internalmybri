@@ -22,7 +22,6 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Detail Aksi :</label>
                         <div class="col-sm-8">
-                         <!-- <input type="text" class="form-control" id="modul_name_appointment"> -->
                          {!! Form::select('action_appointment', ['' => ''], old('name'), [
                                 'class' => 'select2 action_appointment',
                                 'data-placeholder' => 'Pilih Detail Aksi',

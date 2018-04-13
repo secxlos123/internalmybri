@@ -16,10 +16,8 @@
             return $form_container.valid();
         },
         onFinished: function (event, currentIndex) {
-           // $form_container.submit();
 
                 var request_amount = $('#request_amount').val();
-                // console.log(request_amount);
                 var year = $('#year').val();
                 var office = $('#office').val();
                 var appointment_date = $('#datepicker-mindate').val();
@@ -43,7 +41,6 @@
                     url: '/getData',
                     data: { nik : nik },
                     success: function(result, data) {
-                        console.log(result);
                         var nik = result.data.nik;
                         var full_name = (result.data.first_name ? result.data.first_name : '')+' '+(result.data.last_name ? result.data.last_name : '');
                         var email = result.data.email;
@@ -84,9 +81,6 @@
                         }
 
                         $('#view-modal').modal('show');
-                        // currentClass = $('body').attr('class');
-                        // $('body').attr('class', currentClass+' modal-open');
-                        // console.log("pas validasi data");
                         $("#view-modal #request_amount").html('Rp '+request_amount);
                         $("#view-modal #year").html(year+' tahun');
                         $("#view-modal #month").html(year+' bulan');
@@ -188,7 +182,6 @@
                         $("#view-modal #lokasi_bangunan").html(lokasi_rumah);
                     },
                     error: function(result, data){
-                        console.log('error');
                     }
                });
                 return false;

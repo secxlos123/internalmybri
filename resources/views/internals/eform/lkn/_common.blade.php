@@ -21,12 +21,6 @@
                         <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="legal_bussiness_document" accept="image/*,application/pdf">
                     </div>
                 </div>
-                <!-- <div class="form-group">
-                    <label class="col-md-6 control-label">Izin Praktek * :</label>
-                    <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="glyphicon glyphicon-folder-open" data-placeholder="Tidak ada file" name="license_of_practice">
-                    </div>
-                </div> -->
                 <div class="form-group" id="work_letter">
                     <label class="col-md-6 control-label">Surat Keterangan Kerja * :</label>
                     <div class="col-md-6">
@@ -47,12 +41,6 @@
                     </div>
                 </div>
                 @endif
-                <!-- <div class="form-group">
-                    <label class="col-md-6 control-label">Dokumen Legal Usaha / Izin Praktek :</label>
-                    <div class="col-md-6">
-                        <input type="file" class="filestyle" data-buttontext="Unggah" data-buttonname="btn-default" data-iconname="fa fa-cloud-upload" data-placeholder="Tidak ada file">
-                    </div>
-                </div> -->
                 @if(($eformData['customer']['financial']['status_finance'] != "Join Income") && ($eformData['customer']['personal']['status_id'] == 2 ))
                 <div class="form-group" id="separate_certificate">
                     <label class="col-md-6 control-label">Akta Pisah Harta :</label>

@@ -42,11 +42,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group text-center m-t-30">
-                                            <div class="col-sm-12">
-                                                <a href="{{url('/forgot-password')}}" class="text-muted"><i class="fa fa-lock m-r-5"></i> Lupa kata sandi?</a>
-                                            </div>
-                                        </div> -->
                                         <div class="form-group account-btn text-center m-t-10">
                                             <div class="col-xs-12">
                                                 <button class="btn w-md btn-bordered btn-primary waves-effect waves-light" type="submit" id="loginButton" data-loading-text="Loading...">Masuk</button>
@@ -81,7 +76,6 @@
     $("#loginForm").submit(function (e) {
         e.preventDefault();
         HoldOn.open(options);
-        // var $btn = $('#loginButton').button('loading');
 
         $.ajax({
             url: "{!! route('postLogin') !!}",
@@ -89,9 +83,7 @@
             data: $(this).serialize(),
             dataType: 'json',
             success: function (data) {
-               // $btn.button('reset');
                HoldOn.close();
-               // console.log(data);
                if(data.code >= 400){
                 $('.divError').html('<div class="alert alert-danger">' +data.message + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>');
                }else{
@@ -99,7 +91,6 @@
                }
             },
             error: function(response){
-                // $btn.button('reset');
                 HoldOn.close();
             }
         });

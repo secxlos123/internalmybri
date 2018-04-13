@@ -118,8 +118,6 @@ function reloadData1(from, to, status)
     {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
     {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
     {   data: 'created_at', name: 'created_at' },
-            // {   data: 'product_type', name: 'product_type' },
-            // {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
             {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
             {   data: 'ao_name', name: 'ao_name', bSortable: false },
             {   data: 'status', name: 'status', bSortable: false },

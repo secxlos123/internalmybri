@@ -26,7 +26,7 @@ class ADKHistoriController extends Controller
     public function index() {
         $data = $this->getUser();
         // hanya adk yg bisa melakukan fungsi ini
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.his_index', compact('data'));
         } else {
             return view('errors.404');
@@ -96,10 +96,10 @@ class ADKHistoriController extends Controller
             }            
         }
         
-        if ($data['role'] == 'adk') {
+        if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             return view('internals.eform.adk.view-detail-adk', compact('data','detail','id','asuransi','status'));
         } else {
-            return view('internals.layouts.404');
+            return view('errors.404');
         }
     }
 
@@ -265,8 +265,18 @@ class ADKHistoriController extends Controller
         } else if ($value == '14') {
             return 'AGREE BY WAPINCASUS';
         } else if ($value == '15') {
-            return 'NAIK KETINGKAT LEBIH TINGGI';
+            return 'NAIK KETINGKAT LEBIH TINGGI BY AMP';
         } else if ($value == '16') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY MP';
+        } else if ($value == '17') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY PINCAPEM';
+        } else if ($value == '18') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY PINCA';
+        } else if ($value == '19') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY WAPINWIL';
+        } else if ($value == '20') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY WAPINCASUS';
+        } else if ($value == '21') {
             return 'MENGEMBALIKAN DATA KE AO';
         } else if ($value == '0'){
             return 'APPROVAL';

@@ -118,16 +118,21 @@ $(function() {
     });
   },
 
-  MorrisCharts.prototype.init = function(bulan, pemasar, product) {
+  MorrisCharts.prototype.init = function(bulan, pemasar, product, bulanTotal) {
     console.log(bulan);
     console.log(pemasar);
     console.log(product);
+    console.log(bulanTotal);
     var data = {
       "_token": "{{ csrf_token() }}",
       "bulan": (bulan != "Semua")? bulan : "",
       "pemasar": (pemasar != "Semua")? pemasar : "",
       "product": (product != "Semua")? product : ""
     };
+    var dataTotal = {
+      "_token": "{{ csrf_token() }}",
+      "bulan": (bulanTotal != "Semua")? bulanTotal : ""
+    }
     console.log(data);
     $.ajax({
       url: "{{url('chartMarketing')}}",
@@ -136,17 +141,17 @@ $(function() {
       dataType: "json",
       success: function (data) {
         console.log(data);
-        MorrisCharts.prototype.createStackedChart('morris-bar-stacked', data, 'Nama', ['Total', 'Prospek', 'On Progress', 'Done'], ['Total', 'Prospek', 'On Progress', 'Done'], ['blue','orange', 'yellow', 'green']);
+        MorrisCharts.prototype.createStackedChart('morris-bar-stacked', data, 'Nama', ['Total', 'Prospek', 'On Progress', 'Done'], ['Leads', 'Prospect', 'Sales Offered', 'Sales Closed'], ['blue','orange', 'yellow', 'green']);
       },
     });
     $.ajax({
       url: "{{url('chartTotal')}}",
       type: "POST",
-      data: data,
+      data: dataTotal,
       dataType: "json",
       success: function (data) {
         console.log(data);
-        MorrisCharts.prototype.createStackedChart('chart-all', data, 'Index', ['Total', 'Prospek', 'On Progress', 'Done'], ['Total', 'Prospek', 'On Progress', 'Done'], ['blue','orange', 'yellow', 'green']);
+        MorrisCharts.prototype.createStackedChart('chart-all', data, 'Index', ['Total', 'Prospek', 'On Progress', 'Done'], ['Leads', 'Prospect', 'Sales Offered', 'Sales Closed'], ['blue','orange', 'yellow', 'green']);
       },
     });
   },
@@ -157,7 +162,8 @@ $(function() {
 function($) {
   "use strict";
 
-  $('#m-bulan').on('change', function(){
+  $('#a-bulan').on('change', function(){
+    var bulanTotal =  $('#a-bulan').val();
     var bulan =  $('#m-bulan').val();
     var pemasar = $('#m-pemasar').val();
     var product = $('#m-product').val();
@@ -168,11 +174,28 @@ function($) {
     // ];
       $("#morris-bar-stacked").empty();
       $("#chart-all").empty();
-      $.MorrisCharts.init(bulan, pemasar, product);
+      $.MorrisCharts.init(bulan, pemasar, product, bulanTotal);
+      console.log();
+  });
+
+  $('#m-bulan').on('change', function(){
+    var bulanTotal =  $('#a-bulan').val();
+    var bulan =  $('#m-bulan').val();
+    var pemasar = $('#m-pemasar').val();
+    var product = $('#m-product').val();
+    // var data = [
+    //   "bulan" : bulan,
+    //   "pemasar" : pemasar,
+    //   "product" : product
+    // ];
+      $("#morris-bar-stacked").empty();
+      $("#chart-all").empty();
+      $.MorrisCharts.init(bulan, pemasar, product, bulanTotal);
       console.log();
   });
 
   $('#m-pemasar').on('change', function(){
+    var bulanTotal =  $('#a-bulan').val();
     var bulan =  $('#m-bulan').val();
     var pemasar = $('#m-pemasar').val();
     var product = $('#m-product').val();
@@ -183,11 +206,12 @@ function($) {
     // ];
       $("#morris-bar-stacked").empty();
       $("#chart-all").empty();
-      $.MorrisCharts.init(bulan, pemasar, product);
-      console.log(bulan, pemasar, product);
+      $.MorrisCharts.init(bulan, pemasar, product, bulanTotal);
+      console.log();
   });
 
   $('#m-product').on('change', function(){
+    var bulanTotal =  $('#a-bulan').val();
     var bulan =  $('#m-bulan').val();
     var pemasar = $('#m-pemasar').val();
     var product = $('#m-product').val();
@@ -198,8 +222,8 @@ function($) {
     // ];
       $("#morris-bar-stacked").empty();
       $("#chart-all").empty();
-      $.MorrisCharts.init(bulan, pemasar, product);
-      console.log(bulan, pemasar, product);
+      $.MorrisCharts.init(bulan, pemasar, product, bulanTotal);
+      console.log();
   });
   $.MorrisCharts.init();
   // console.log('test');
@@ -295,4 +319,28 @@ $(document).ready(function() {
 //                 ],
 //             });
 // }
+
+$(document).ready(function(){
+  $('.sMarketing').on('click', function(){
+    HoldOn.open(options);
+    var pn = $(this).attr('data-pn');
+    $.ajax({
+      type: 'POST',
+      url: '{{ url("detail_marketing") }}',
+      data: {
+        pn : pn
+      },
+      headers: {
+        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+      }
+
+    }).done(function(response){
+      console.log(response);
+      HoldOn.close();
+    }).fail(function(errors){
+      alert("Gagal Terhubung ke Server");
+      HoldOn.close();
+    });
+  });
+});
 </script>

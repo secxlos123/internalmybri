@@ -31,7 +31,6 @@
                         <fieldset hidden>
                             <div class="add-button">
                                 <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                                <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Calon Debitur</a> -->
                                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Calon Debitur</a>
                                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
                             </div>
@@ -179,36 +178,6 @@
             },
         });
 
-        // var table = $('#datatable').dataTable({
-        //     "processing": true,
-        //     "serverSide": true,
-        //     "ajax" : {
-        //         url : '/datatables/customers',
-        //         data : function(d, settings){
-        //             var api = new $.fn.dataTable.Api(settings);
-
-        //             d.page = Math.min(
-        //                 Math.max(0, Math.round(d.start / api.page.len())),
-        //                 api.page.info().pages
-        //             );
-
-        //             d.office_id = $('.offices').val();
-        //         }
-        //     },
-        //     "aoColumns" : [
-        //         { data: "nik", name: 'nik' },
-        //         { data: "name", name: 'name' },
-        //         { data: "email", name: 'email' },
-        //         { data: "city", name: 'city' },
-        //         { data: "phone", name: 'phone' },
-        //         { data: "gender", name: 'gender' },
-        //         { data: "action", name: 'action', bSortable: false },
-        //     ],
-        // });
-
-        // $('#btn-filter').on('click', function () {
-        //     table.fnDraw();
     });
 
-    // TableManageButtons.init();
 </script>

@@ -209,11 +209,34 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="col-md-5 control-label">Catatan Pemutus :</label>
-                                            <label class="col-md-5 control-label">{{$detail['catatan_pemutus']}}</label>
+                                            <?php
+                                                if (!empty($detail['tgl_putusan'])) {
+                                                    $tanggal  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4).' '.substr($detail['tgl_putusan'], 9,8);
+                                                } else {
+                                                    $tanggal = '-';
+                                                }
+                                                
+                                                echo "Tanggal Putusan : ".$tanggal."<br>";
+                                            ?>
+                                            Catatan Pemutus : {{$detail['catatan_pemutus']}}
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <?php
+                                                if (!empty($detail['tgl_pencairan'])) {
+                                                    $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_pencairan']));
+                                                } else {
+                                                    $tanggal = '-';
+                                                }
+                                                echo "Tanggal Pencairan : ".$tanggal."<br>";
+                                            ?>
+                                            Catatan ADK : {{$detail['catatan_adk']}}
                                         </div>
                                     </form>
                                 </div>
@@ -228,8 +251,15 @@
                                 <div class="col-md-12">
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label class="col-md-5 control-label">Catatan ADK :</label>
-                                            <label class="col-md-5 control-label">{{ $detail['catatan_adk']}}</label>
+                                            <?php
+                                                if (!empty($detail['tgl_disposisi'])) {
+                                                    $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_disposisi']));
+                                                } else {
+                                                    $tanggal = '-';
+                                                }
+                                                echo "Tanggal Disposisi : ".$tanggal."<br>";
+                                            ?>
+                                            Catatan Disposisi : {{$detail['pinca_note']}}
                                         </div>
                                     </form>
                                 </div>
@@ -373,8 +403,12 @@
     })
 
     $('#btn-batal').on('click', function(){
+        id = $("#id_aplikasi").val();
+        uid = $("#uid").val();
+        pinca = $("#pinca").val();
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
+        pinca_posisi = $("#pinca_posisi").val();
         // alert(eformId);
         HoldOn.open(options);
         $.ajax({
@@ -382,10 +416,13 @@
             type: 'POST',
             url: '{{ route("post_adk") }}',
             data: {
-
+                uid  : uid,
+                pinca_name  : pinca,
+                id_aplikasi : id,
                 eform_id  : eformId,
                 type      : 'batal',
-                catat_adk : catatan_adk
+                catat_adk : catatan_adk,
+                pinca_position  : pinca_posisi
             },
             headers: {
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"

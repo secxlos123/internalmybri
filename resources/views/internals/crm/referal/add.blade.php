@@ -85,17 +85,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!-- <div class="form-group gender {!! $errors->has('pemasar') ? 'has-error' : '' !!}">
-                                            <label class="col-md-3 control-label">Pemasar * :</label>
-                                            <div class="col-md-9">
-                                                <select required class="form-control select2" name="officer_ref">
-                                                    <option disabled="" selected="">-- Pilih --</option>
-                                                    @foreach($pemasar as $pm)
-                                                    <option value="{{$pm['PERNR']}}">{{$pm['SNAME']}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> -->
                                         <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Note * :</label>
                                             <div class="col-md-9">
@@ -104,12 +93,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- <div class="modal-body p-20">
-                                          <div class="form"></div>
-                                          <input type="text" name="" id="searchInput" class="form-control">
-                                          <div class='map' id='map' style='width: 100%; height: 200px;'></div>
-                                        </div> -->
 
                                     </div>
                                 </div>

@@ -14,11 +14,11 @@ class CollateralController extends Controller
         'prop_city_name',
         'prop_types',
         'prop_items',
-        // 'branch_id',
         'prop_pic_name',
         'prop_pic_phone',
         'staff_name',
         'status_label',
+        'aging',
         'action',
     ];
 
@@ -28,6 +28,7 @@ class CollateralController extends Controller
         'mobile_phone',
         'staff_name',
         'status_label',
+        'aging',
         'action',
     ];
 
@@ -67,7 +68,7 @@ class CollateralController extends Controller
             ])->get();
           $form_notif = $detailCollateral['contents'];
           if(!empty($form_notif))
-          {  
+          {
             $developer_id =$form_notif['developer_id'];
             if($developer_id ==1 )
             {
@@ -90,7 +91,7 @@ class CollateralController extends Controller
                 ])->render();
 
             }else if( $developer_id  != 1)
-            {              
+            {
                 $form_notif['prop_name'] = strtoupper($form_notif['property']['name']);
                 $form_notif['prop_city_name'] = strtoupper($form_notif['property']['city']['name']);
                 $form_notif['prop_pic_name'] = strtoupper($form_notif['property']['pic_name']);
@@ -113,20 +114,20 @@ class CollateralController extends Controller
                 ])->render();
             }
               /*
-              * mark read the notification 
+              * mark read the notification
               */
-            
+
                 $reads = Client::setEndpoint('users/notification/read/'.@$request->get('slug').'/'.@$request->get('type'))
                     ->setHeaders([
                       'Authorization' => $data['token']
                       , 'pn' => $data['pn']
                       , 'branch_id' => $data['branch']
                   ])->get();
-            return view('internals.collateral.manager.index-notif', compact('data','form_notif')); 
+            return view('internals.collateral.manager.index-notif', compact('data','form_notif'));
           }
            else
           {
-            return view('internals.collateral.manager.index', compact('data')); 
+            return view('internals.collateral.manager.index', compact('data'));
           }
 
         }
@@ -148,9 +149,6 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
 
         return $detailCollateral['contents'];
@@ -168,9 +166,6 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
 
         return $detailCollateral['contents'];
@@ -216,7 +211,6 @@ class CollateralController extends Controller
         }
 
 
-        // dd($collateral);
         return view('internals.collateral.manager.detail', compact('data', 'collateral', 'detail', 'customer', 'type'));
     }
 
@@ -228,8 +222,6 @@ class CollateralController extends Controller
     public function assignment($dev_id, $prop_id)
     {
         $data = $this->getUser();
-        // echo json_encode($collateral);die();
-        // $type = ($dev_id == 1 ? 'nonindex' : '');
         if($dev_id == 1){
             $type = 'nonindex';
             $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
@@ -247,7 +239,6 @@ class CollateralController extends Controller
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
         }
-        // dd($collateral);
 
         return view('internals.collateral.manager.assignment-collateral', compact('data', 'collateral', 'type', 'detail'));
     }
@@ -268,7 +259,6 @@ class CollateralController extends Controller
         ,   'remark' => $request->remark
         ,   'is_staff' => (isset($request->ao_select) ? 0 : 1)
         ];
-        // dd($disposition);
 
         $client = Client::setEndpoint('collateral/disposition/'.$id)
             ->setHeaders([
@@ -300,7 +290,6 @@ class CollateralController extends Controller
         $data = $this->getUser();
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
 
-        // $type = ($dev_id == 1 ? 'nonindex' : '');
         if($dev_id == 1){
             $type = 'nonindex';
             $collateral = $this->getDetailNonIndex($dev_id, $prop_id, $data);
@@ -327,7 +316,6 @@ class CollateralController extends Controller
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
         }
-        // dd($collateral);
         return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral', 'type', 'detail', 'customer'));
     }
 
@@ -351,7 +339,6 @@ class CollateralController extends Controller
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
         }
         $detail = isset($collateral['data']['0'])? $collateral['data']['0'] : $collateral;
-        // $collateral = $this->getDetail($dev_id, $prop_id, $data);
         return response()->json(['data' => $detail ]);
     }
 
@@ -427,11 +414,7 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
-                // , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-                // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->get();
-            //count percentage
             $keys = 0 ;
             $findme   = 'noimage.jpg';
             if(!empty($detailCollateral['contents']['ots_doc'])){
@@ -465,7 +448,6 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
@@ -474,9 +456,7 @@ class CollateralController extends Controller
                 'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
                 'page'      => (int) $request->input('page') + 1,
                 'status'    => $request->input('status'),
-                // 'branch_id' => $data['branch']
             ])->get();
-            // echo json_encode($collateral);exit();
 
         foreach ($collateral['contents']['data'] as $key => $form) {
             $form['prop_name'] = strtoupper($form['property']['name']);
@@ -521,7 +501,6 @@ class CollateralController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
@@ -530,9 +509,7 @@ class CollateralController extends Controller
                 'sort'      => $this->columnNonIndex[$sort['column']] .'|'. $sort['dir'],
                 'page'      => (int) $request->input('page') + 1,
                 'status'    => $request->input('status'),
-                // 'branch_id' => $data['branch']
             ])->get();
-            // echo json_encode($collateral);exit();
 
         foreach ($collateral['contents']['data'] as $key => $form) {
             $form['first_name'] = strtoupper($form['first_name'].' '.$form['last_name']);
@@ -574,23 +551,6 @@ class CollateralController extends Controller
         $prop_id = $request->prop_id;
 
         $collateral = $this->getDetail($dev_id, $prop_id, $data);
-
-        // $collateral = Client::setEndpoint('collateral')
-        //         ->setHeaders([
-        //             'Authorization' => $data['token']
-        //             , 'pn' => $data['pn']
-        //             // , 'auditaction' => 'action name'
-        //             , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
-        //             , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        //         ])->setQuery([
-        //             'limit'     => $request->input('length'),
-        //             'search'    => $request->input('search.value'),
-        //             'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],
-        //             'page'      => (int) $request->input('page') + 1,
-        //             // 'status'    => $request->input('status'),
-        //             // 'branch_id' => $data['branch']
-        //         ])->get();
-        // echo json_encode($collateral['property']['propertyTypes']);exit();
         foreach ($collateral['property']['propertyTypes'] as $key => $form) {
             $form['name'] = strtoupper($form['name']);
             $form['building'] = strtoupper($form['building_area']);
@@ -600,10 +560,6 @@ class CollateralController extends Controller
 
             $collateral['property']['propertyTypes'][$key] = $form;
         }
-
-        // $collateral['contents']['draw'] = $request->input('draw');
-        // $collateral['contents']['recordsTotal'] = count($collateral['property']['propertyTypes']);
-        // $collateral['contents']['recordsFiltered'] = count($collateral['property']['propertyTypes']);
 
         return response()->json($collateral['property']['propertyTypes']);
     }
