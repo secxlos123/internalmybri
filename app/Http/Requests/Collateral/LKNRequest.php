@@ -391,8 +391,23 @@ class LKNRequest extends FormRequest
            'seven.ownership_status.required' => 'Kolom Status Bukti Kepemilikan wajib diisi!',
            'seven.date_evidence.required' => 'Kolom Tanggal Bukti wajib diisi!',
            'seven.village.required' => 'Kolom Kelurahan/Desa wajib diisi!',
-           'seven.districts.required' => 'Kolom Kecamatan wajib diisi!'
-           // Ens Message For Step 7
+           'seven.districts.required' => 'Kolom Kecamatan wajib diisi!',
+           // End Message For Step 7
+           // Message For Step 8
+           'eight.liquidation_realization.required' => 'Kolom Nilai Likuiditas saat Realisasi wajib diisi!',
+           'eight.fair_market.required' => 'Kolom Nilai wajar pasar wajib diisi!',
+           'eight.liquidation.required' => 'Kolom Nilai Likuidasi wajib diisi!',
+           'eight.fair_market_projection.required' => 'Kolom Proyeksi Nilai Pasar Wajar wajib diisi!',
+           'eight.liquidation_projection.required' => 'Kolom Nilai Likuidasi wajib diisi!',
+           'eight.njop.required' => 'Kolom Nilai Jual Objek Pajak (NJOP) wajib diisi!',
+           'eight.appraisal_by.required' => 'Kolom Penilaian Dilakukan Oleh wajib diisi!',
+           'eight.independent_appraiser.required_if' => 'Kolom Penilaian Independent wajib diisi!',
+           'eight.independent_appraiser_name.required_if' => 'Kolom Nama Penilaian Independent wajib diisi!',
+           'eight.date_assessment.required' => 'Kolom Tanggal Penilaian Terakhir wajib diisi!',
+           'eight.type_binding.required' => 'Kolom Jenis Pengikatan wajib diisi!',
+           'eight.binding_number.required' => 'Kolom No.Bukti Pengikatan wajib diisi!',
+           'eight.binding_value.required' => 'Kolom Nilai Pengikatan wajib diisi!',
+           // End Message For Step 8
         ];
     }
 }
