@@ -123,7 +123,7 @@
                                 <div class="col-md-8">
                                     <div class="col-md-4">
                                     @if ($type != 'preview')
-                                        <input type="number" class="form-control" name="work_duration" maxlength="3" min="0" value="{{(isset($dataCustomer['customer']['work_duration']) ? $dataCustomer['customer']['work_duration'] : old('work_duration'))}}">
+                                        <input type="text" class="form-control numericOnly" name="work_duration" maxlength="3" min="0" value="{{(isset($dataCustomer['customer']['work_duration']) ? $dataCustomer['customer']['work_duration'] : old('work_duration'))}}">
                                     @else
                                         <p>{{@$dataCustomer['customer']['work_duration']}}</p>
                                     @endif
