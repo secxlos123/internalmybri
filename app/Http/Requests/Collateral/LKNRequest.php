@@ -288,7 +288,7 @@ class LKNRequest extends FormRequest
            'area.location.required' => 'Kolom Alamat wajib diisi!',
            'area.latitude' => 'required',
            'area.longtitude' => 'required',
-           'area.district.required' => 'Kolom Kecematan wajib diisi!',
+           'area.district.required' => 'Kolom Kecamatan wajib diisi!',
            'area.sub_district.required' => 'Kolom Kelurahan/Desa wajib diisi!',
            'area.rt.required' => 'Kolom Rt wajib diisi!',
            'area.rt.numeric' => 'Inputan Kolom Rt harus berupa angka!',
@@ -381,6 +381,18 @@ class LKNRequest extends FormRequest
            'other.image_area.*.image_data.mimes' => 'Format Foto harus, jpeg, png, jpg, zip, pdf',
            'other.image_condition_area.mimes' => 'Format Foto harus, jpeg, png, jpg, zip, pdf',
            // End Message For Step 6
+           // Message For Step 7
+           'seven.collateral_status.required' => 'Kolom Status Agunan wajib diisi!',
+           'seven.on_behalf_of.required' => 'Kolom Atas Nama wajib diisi!',
+           'seven.ownership_number.required' => 'Kolom No.Bukti Kepemilikan wajib diisi!',
+           'seven.city_id.required' => 'Kolom Lokasi wajib diisi!',
+           'seven.address_collateral.required' => 'Kolom Alamat Agunan wajib diisi!',
+           'seven.description.required' => 'Kolom Deskripsi wajib diisi!',
+           'seven.ownership_status.required' => 'Kolom Status Bukti Kepemilikan wajib diisi!',
+           'seven.date_evidence.required' => 'Kolom Tanggal Bukti wajib diisi!',
+           'seven.village.required' => 'Kolom Kelurahan/Desa wajib diisi!',
+           'seven.districts.required' => 'Kolom Kecamatan wajib diisi!'
+           // Ens Message For Step 7
         ];
     }
 }
