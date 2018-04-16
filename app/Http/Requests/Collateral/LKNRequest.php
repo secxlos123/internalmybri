@@ -408,6 +408,38 @@ class LKNRequest extends FormRequest
            'eight.binding_number.required' => 'Kolom No.Bukti Pengikatan wajib diisi!',
            'eight.binding_value.required' => 'Kolom Nilai Pengikatan wajib diisi!',
            // End Message For Step 8
+           // Message For Step 9
+           'nine.certificate_status.required' => 'Kolom Pemecahan Sertifikat Status wajib diisi!',
+           'nine.receipt_date.required_if' => 'Kolom Tanggal Penelitian Pemecahan Sertifikat wajib diisi!',
+           'nine.information.required_if' => 'Kolom Keterangan Pemecahan Sertifikat Status wajib diisi!',
+           'nine.notary_status.required' => 'Kolom Dokumen Notaris Developer Status wajib diisi!',
+           'nine.takeover_status.required' => 'Kolom Dokumen Take Over Status wajib diisi!',
+           'nine.credit_status.required' => 'Kolom Perjanjian Kredit Status wajib diisi!',
+           'nine.skmht_status.required' => 'Kolom SKMHT Status wajib diisi!',
+           'nine.imb_status.required' => 'Kolom IMB Status wajib diisi!',
+           'nine.shgb_status.required' => 'Kolom SHGB Status wajib diisi!',
+           'nine.receipt_date_notary.required_if'=>'Kolom Tanggal Penelitian Dokumen Notaris Developer wajib diisi!',
+           'nine.information_notary.required_if'=>'Kolom Keterangan Dokumen Notaris Developer wajib diisi!',
+           'nine.receipt_date_takeover.required_if'=>'Kolom Tanggal Penelitian Dokumen Take Over wajib diisi!',
+           'nine.information_takeover.required_if'=>'Kolom Keterangan Dokumen Take Over wajib diisi! ',
+           'nine.receipt_date_credit.required_if'=>'Kolom Tanggal Penelitian Perjanjian Kredit wajib diisi!',
+           'nine.information_credit.required_if'=>'Kolom Keterangan Perjanjian Kredit wajib diisi!',
+           'nine.receipt_date_skmht.required_if'=>'Kolom Tanggal Penelitian SKMHT wajib diisi!',
+           'nine.information_skmht.required_if'=>'Kolom Keterangan SKMHT wajib diisi!',
+           'nine.receipt_date_imb.required_if'=>'Kolom Tanggal Penelitian IMB wajib diisi!',
+           'nine.information_imb.required_if'=>'Kolom Keterangan IMB wajib diisi!',
+           'nine.receipt_date_shgb.required_if'=>'Kolom Tanggal Penelitian SHGB wajib diisi!',
+           'nine.information_shgb.required_if' =>'Kolom Keterangan SHGB wajib diisi!',
+           // End Message For Step 9
+           // Message For Step 10
+           'ten.paripasu.required' => 'Kolom Paripasu wajib diisi!',
+           'ten.paripasu_bank.required_if' => 'Kolom Nilai Paripasu Agunan wajib diisi!',
+           'ten.insurance.required' => 'Kolom Asuransi wajib diisi!',
+           'ten.insurance_company.required_if' => 'Kolom Nama Perusahaan Asuransi wajib diisi!',
+           'ten.insurance_company_name.required_if' => 'Kolom Nama Perusahaan Asuransi wajib diisi!',
+           'ten.insurance_value.required_if' => 'Kolom Nilai Asuransi wajib diisi!',
+           'ten.eligibility.required' => 'Kolom Eligibility wajib diisi!',
+           // End Message For Step 10
         ];
     }
 }
