@@ -369,8 +369,18 @@ class LKNRequest extends FormRequest
            'valuation.npw_all.required' => 'Kolom NPW Tanah dan Bangunan wajib diisi!',
            'valuation.nl_all.required' => 'Kolom NL Tanah dan Bangunan wajib diisi!',
            'valuation.pnpw_all.required' => 'Kolom PNPW Tanah dan Bangunan wajib diisi!',
-           'valuation.pnl_all.required' => 'Kolom PNL Tanah dan Bangunan wajib diisi!'
+           'valuation.pnl_all.required' => 'Kolom PNL Tanah dan Bangunan wajib diisi!',
            // End Message for Step 5
+           // Message For Step 6
+           'other.bond_type.required' => 'Kolom Jenis Ikatan wajib diisi!',
+           'other.use_of_building_function.required' => 'Kolom Penggunaan Bangungan Sesuai Fungsinya wajib diisi!',
+           'other.optimal_building_use.required' => 'Kolom Penggunaan Bangunan secara optimal wajib diisi!',
+           'other.building_exchange.required' => 'Kolom Peruntukan Bangunan wajib diisi!',
+           'other.things_bank_must_know.required' => 'Kolom Hal-hal yang harus diketahui Bank wajib diisi!',
+           'other.image_area.*.image_data.required' => 'Kolom Foto Situasi Lapangan wajib diisi!',
+           'other.image_area.*.image_data.mimes' => 'Format Foto harus, jpeg, png, jpg, zip, pdf',
+           'other.image_condition_area.mimes' => 'Format Foto harus, jpeg, png, jpg, zip, pdf',
+           // End Message For Step 6
         ];
     }
 }
