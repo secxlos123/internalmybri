@@ -156,6 +156,7 @@ class ReportController extends Controller
       } else {
         $branch = "";
       }
+      // dd($branch);
       $report = Client::setEndpoint('crm/report_marketings')
       ->setHeaders([
         'pn' => $data['pn'],

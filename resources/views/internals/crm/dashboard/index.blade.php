@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="row">
-          @if(($data['role']=='pincapem') || ($data['role']=='ampd') || ($data['role']=='mp') || ($data['role']=='pinca'))
+          @if(($data['role']=='pincapem') || ($data['role']=='pinwil') || ($data['role']=='ampd') || ($data['role']=='mp') || ($data['role']=='pinca'))
             @include('internals.crm.dashboard.admin.index')
           @elseif(($data['role']=='ao') || ($data['role']=='fo'))
             @include('internals.crm.dashboard.fo.index')
@@ -49,7 +49,7 @@
 
 <script src="{{asset('assets/js/morris.min.js')}}"></script>
 <script src="{{asset('assets/js/raphael-min.js')}}"></script>
-@if(($data['role']=='pincapem') || ($data['role']=='ampd') || ($data['role']=='mp') || ($data['role']=='pinca'))
+@if(($data['role']=='pincapem') || ($data['role']=='pinwil') || ($data['role']=='ampd') || ($data['role']=='mp') || ($data['role']=='pinca'))
   @include('internals.crm.dashboard.admin.script')
 @elseif(($data['role']=='fo' || ($data['role']=='ao')))
   @include('internals.crm.dashboard.fo.script')
