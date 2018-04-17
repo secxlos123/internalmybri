@@ -10,7 +10,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['customer']['personal']['identity']) || $detail['customer']['personal']['identity'] == '') {
+                                    if (empty($detail['customer']['personal']['identity']) || $detail['customer']['personal']['identity'] == '' || $detail['customer']['personal']['identity'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_ktp">
                                     {{ csrf_field() }}
@@ -78,7 +78,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['NPWP_nasabah'])) {
+                                    if (empty($detail['NPWP_nasabah']) || $detail['NPWP_nasabah'] == '' || $detail['NPWP_nasabah'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_npwp">
                                     {{ csrf_field() }}
@@ -146,7 +146,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['SLIP_GAJI'])) {
+                                    if (empty($detail['SLIP_GAJI']) || $detail['SLIP_GAJI'] == '' || $detail['SLIP_GAJI'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_gaji">
                                     {{ csrf_field() }}
@@ -212,7 +212,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['KK'])) {
+                                    if (empty($detail['KK']) || $detail['KK'] == '' || $detail['KK'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_kk">
                                     {{ csrf_field() }}
@@ -278,7 +278,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['SK_AWAL'])) {
+                                    if (empty($detail['SK_AWAL']) || $detail['SK_AWAL'] == '' || $detail['SK_AWAL'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_sk_awal">
                                     {{ csrf_field() }}
@@ -344,7 +344,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['SK_AKHIR'])) {
+                                    if (empty($detail['SK_AKHIR']) || $detail['SK_AKHIR'] == '' || $detail['SK_AKHIR'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_sk_akhir">
                                     {{ csrf_field() }}
@@ -410,7 +410,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['REKOMENDASI'])) {
+                                    if (empty($detail['REKOMENDASI']) || $detail['REKOMENDASI'] == '' || $detail['REKOMENDASI'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_rekomendasi">
                                     {{ csrf_field() }}
@@ -476,7 +476,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['SKPG'])) {
+                                    if (empty($detail['SKPG']) || $detail['SKPG'] == '' || $detail['SKPG'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_skpu">
                                     {{ csrf_field() }}
@@ -542,7 +542,7 @@
                         <div class="col-md-12">
                             <div class="form-horizontal" role="form">
                                 <?php
-                                    if (empty($detail['customer']['personal']['couple_identity'])) {
+                                    if (empty($detail['customer']['personal']['couple_identity']) || $detail['customer']['personal']['couple_identity'] == '' || $detail['customer']['personal']['couple_identity'] == 'null') {
                                 ?>
                                 <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" id="form_ktp_pasangan">
                                     {{ csrf_field() }}
