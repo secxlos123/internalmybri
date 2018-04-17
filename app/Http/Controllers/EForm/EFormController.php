@@ -43,7 +43,7 @@ class EFormController extends Controller
     {
 
         $data = $this->getUser();
-        if ($data['role'] == 'ao' || $data['role'] == 'superadmin') {
+        if ($data['role'] == 'ao') {
             $form_notif = [];
             if (@$request->get('ref_number') && @$request->get('slug')) {
                 /*

@@ -31,23 +31,7 @@
 		<?php }} ?>
 		{{ csrf_field() }}
 		<form>
-		
-					<div class="row">
-                    <div class="col-md-12">
-                            @if (\Session::has('error'))
-                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                            @endif
-                            <div class="panel panel-color panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Mitra Kerjasama</h3>
-                                </div>
-			                        <div class="panel-body">
-									</div>
-							</div>
-					</div>
-			</div>
-
-
+		<!--
 					<div class="row">
                     <div class="col-md-12">
                             @if (\Session::has('error'))
@@ -140,7 +124,9 @@
 							</div>
 					</div>
 			</div>
-
+		
+		
+		!-->
 			<div class="row" id="table1">
                     <div class="col-md-12">
                             @if (\Session::has('error'))

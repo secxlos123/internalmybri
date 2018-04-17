@@ -50,7 +50,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Deskripsi * :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="4" name="seven[description]" id="description" maxlength="250">{{old('seven.description')}}</textarea>
+                            <textarea class="form-control" rows="4" name="seven[description]" id="description">{{old('seven.description')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group clearfix">
