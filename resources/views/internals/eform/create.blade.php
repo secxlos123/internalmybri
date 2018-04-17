@@ -15,13 +15,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        @if(($data['role']=='staff'))
+                        @if(($data['role']=='staff') || ($data['role']=='superadmin'))
                         <h4 class="page-title">Tambah Referral</h4>
                         @else
                         <h4 class="page-title">Pengajuan Pinjaman</h4>
                         @endif
                         <ol class="breadcrumb p-0 m-0">
-                            @if(($data['role']=='staff'))
+                            @if(($data['role']=='staff') || ($data['role']=='superadmin'))
                             <li>
                                 <a href="{{route('dashboard')}}">Home MyBRI</a>
                             </li>
@@ -152,7 +152,7 @@
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
                                                     <label class="control-label">Lokasi</label>
-                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
+                                                    <textarea name="address" id="location" class="form-control"  rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>

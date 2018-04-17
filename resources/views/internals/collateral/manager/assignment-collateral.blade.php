@@ -58,7 +58,7 @@
                                         {{ csrf_field() }}
                                             <div class="row">
                                                 <div class="col-md-10">
-                                                    <div class="form-horizontal" role="form">
+                                                    <!-- <div class="form-horizontal" role="form">
                                                     <label class="col-md-5 control-label">Pilih Kantor Wilayah * :</label>
                                                     <div class="col-md-7">
 
@@ -67,7 +67,7 @@
                                                                     'data-placeholder' => 'Pilih Kantor Wilayah'
                                                                 ]) !!}
                                                     </div>
-                                                        </div>
+                                                        </div> -->
                                                              <input type="hidden" name="kanwil" id="kanwil" value="{{$collateral['property']['region_id']}}">
                                                         <div class="form-horizontal" id="staff_select">
                                                             <label class="col-md-5 control-label">Nama Staff * :</label>
@@ -124,7 +124,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-10">
                                                     <div class="form-group pull-right">
                                                         <button class="btn btn-orange waves-effect waves-light" type="submit">Tugaskan</button>
                                                     </div>

@@ -241,7 +241,7 @@
             ]);
         });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin,pinca'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
@@ -341,6 +341,7 @@
         Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
         Route::resource('testing', 'Mitra\testingController');
         Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+        Route::resource('settinguser', 'Management\ManagementUserController');
         Route::resource('mitra_list', 'Mitra\mitra\MitraController');
         Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
         Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');

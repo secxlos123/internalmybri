@@ -177,7 +177,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-5 control-label">Keterangan Lain * :</label>
                         <div class="col-md-7">
-                            <textarea class="form-control" rows="3" name="area[another_information]" maxlength="250" id="another_information">{{old('area.another_information')}}</textarea>
+                            <textarea class="form-control" rows="3" name="area[another_information]" id="another_information">{{old('area.another_information')}}</textarea>
                         </div>
                     </div>
                     <div class="form-group clearfix">
