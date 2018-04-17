@@ -105,7 +105,7 @@
 										<div class="col-md-1">
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(1)" class="btn btn-orange waves-light waves-effect w-md">Lanjut</button>
+											<button type="button" onclick="lanjutback(1)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-right-bold"></i>Lanjut</button>
 										</div>
 									</div>
 							</section>
@@ -125,16 +125,14 @@
 													<?php echo $view2;?>
 												</div>
 										</div>
-
-									</div>
 									<div class="row">
 										<div class="col-md-8">
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(0)" class="btn btn-orange waves-light waves-effect w-md">Back</button>
+											<button type="button" onclick="lanjutback(0)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-left-bold"></i>Back</button>
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(2)" class="btn btn-orange waves-light waves-effect w-md">Lanjut</button>
+											<button type="button" onclick="lanjutback(2)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-right-bold"></i>Lanjut</button>
 										</div>
 									</div>
 							</section>
@@ -160,10 +158,10 @@
 										<div class="col-md-8">
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(1)" class="btn btn-orange waves-light waves-effect w-md">Back</button>
+											<button type="button" onclick="lanjutback(1)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-left-bold"></i>Back</button>
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(3)" class="btn btn-orange waves-light waves-effect w-md">Lanjut</button>
+											<button type="button" onclick="lanjutback(3)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-right-bold"></i>Lanjut</button>
 										</div>
 									</div>
 							</section>
@@ -191,7 +189,7 @@
 											<button type="button" onclick="lanjutback(2)" class="btn btn-orange waves-light waves-effect w-md">Back</button>
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(4)" class="btn btn-orange waves-light waves-effect w-md">Lanjut</button>
+											<button type="button" onclick="lanjutback(4)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-right-bold"></i>Lanjut</button>
 										</div>
 									</div>
 							</section>
@@ -368,7 +366,7 @@
 										<div class="col-md-8">
 										</div>
 										<div class="col-md-1">
-											<button type="button" onclick="lanjutback(3)" class="btn btn-orange waves-light waves-effect w-md">Back</button>
+											<button type="button" onclick="lanjutback(3)" class="btn btn-orange waves-light waves-effect w-md"><i class="mdi mdi-arrow-left-bold"></i>Back</button>
 										</div>
 									</div>
 							</section>
