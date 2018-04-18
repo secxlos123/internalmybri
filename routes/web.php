@@ -23,7 +23,9 @@
             Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
             Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
             Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
-            Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\PerjanjianController@store']);
+            Route::post('/ApprovalStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
+            Route::post('/ApprovalPKSStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalPKSController@store']);
+            Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
             //Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
             Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
             Route::post('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
@@ -345,6 +347,7 @@
         Route::resource('calon_mitra_approval', 'Mitra\mitra\CalonMitraApprovalController');
         Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
         Route::resource('approval_mitra', 'Mitra\mitra\ApprovalController');
+        Route::resource('approval_mitra_pks', 'Mitra\mitra\ApprovalPKSController');
         Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
         Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
         Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');

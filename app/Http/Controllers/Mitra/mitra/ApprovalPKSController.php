@@ -10,7 +10,7 @@ use Client;
 use Validator;
 
 
-class ApprovalController extends Controller
+class ApprovalPKSController extends Controller
 {
     // public function __construct()
     // {
@@ -56,7 +56,7 @@ class ApprovalController extends Controller
 				])
 				->post();		
 		$view2 = $view2['contents'];
-		return view('internals.mitra.mitra.approval_mitra',  compact('data','view','view2','mitra_list'));
+		return view('internals.mitra.mitra.approval_mitra_pks',  compact('data','view','view2','mitra_list'));
 		}
     }
 	
