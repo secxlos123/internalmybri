@@ -51,51 +51,51 @@
 //       },
 //   })
 // }
-$(function() {
-
-  var data = {
-    "_token": "{{ csrf_token() }}"
-  };
-  // Create a function that will handle AJAX requests
-  function requestData(){
-    $.ajax({
-      type: "POST",
-      url: "{{url('pieChart')}}", // This is the URL to the API
-      data: data
-    })
-    .done(function( data ) {
-      console.log(data);
-      // When the response to the AJAX request comes back render the chart with new data
-      chart.setData();
-    })
-    .fail(function() {
-      // If there is no communication between the server, show an error
-      alert( "error occured" );
-    });
-  }
-  var chart = Morris.Donut({
-    element: 'pie-chart',
-    data: [
-      {label: "Friends", value: 30},
-      {label: "Allies", value: 15},
-      {label: "Enemies", value: 45},
-      {label: "Neutral", value: 10}
-    ]
-  });
-  // Request initial data for the past 7 days:
-  requestData();
-  // $('ul.ranges a').click(function(e){
-  //   e.preventDefault();
-  //   // Get the number of days from the data attribute
-  //   var el = $(this);
-  //   days = el.attr('data-range');
-  //   // Request the data and render the chart using our handy function
-  //   requestData(days, chart);
-  //   // Make things pretty to show which button/tab the user clicked
-  //   el.parent().addClass('active');
-  //   el.parent().siblings().removeClass('active');
-  // })
-});
+// $(function() {
+//
+//   var data = {
+//     "_token": "{{ csrf_token() }}"
+//   };
+//   // Create a function that will handle AJAX requests
+//   function requestData(){
+//     $.ajax({
+//       type: "POST",
+//       url: "{{url('pieChart')}}", // This is the URL to the API
+//       data: data
+//     })
+//     .done(function( data ) {
+//       console.log(data);
+//       // When the response to the AJAX request comes back render the chart with new data
+//       chart.setData();
+//     })
+//     .fail(function() {
+//       // If there is no communication between the server, show an error
+//       alert( "error occured" );
+//     });
+//   }
+//   var chart = Morris.Donut({
+//     element: 'pie-chart',
+//     data: [
+//       {label: "Friends", value: 30},
+//       {label: "Allies", value: 15},
+//       {label: "Enemies", value: 45},
+//       {label: "Neutral", value: 10}
+//     ]
+//   });
+//   // Request initial data for the past 7 days:
+//   requestData();
+//   // $('ul.ranges a').click(function(e){
+//   //   e.preventDefault();
+//   //   // Get the number of days from the data attribute
+//   //   var el = $(this);
+//   //   days = el.attr('data-range');
+//   //   // Request the data and render the chart using our handy function
+//   //   requestData(days, chart);
+//   //   // Make things pretty to show which button/tab the user clicked
+//   //   el.parent().addClass('active');
+//   //   el.parent().siblings().removeClass('active');
+//   // })
+// });
 
 !function($) {
   "use strict";
@@ -108,6 +108,8 @@ $(function() {
       element: element,
       data: data,
       xkey: xkey,
+      xLabelAngle: 270,
+      gridTextSize: 10,
       ykeys: ykeys,
       stacked: false,
       labels: labels,
@@ -119,6 +121,7 @@ $(function() {
   },
 
   MorrisCharts.prototype.init = function(bulan, pemasar, product, bulanTotal) {
+    HoldOn.open(options);
     console.log(bulan);
     console.log(pemasar);
     console.log(product);
@@ -142,6 +145,7 @@ $(function() {
       success: function (data) {
         console.log(data);
         MorrisCharts.prototype.createStackedChart('morris-bar-stacked', data, 'Nama', ['Total', 'Prospek', 'On Progress', 'Done'], ['Leads', 'Prospect', 'Sales Offered', 'Sales Closed'], ['blue','orange', 'yellow', 'green']);
+        HoldOn.close();
       },
     });
     $.ajax({
@@ -152,6 +156,7 @@ $(function() {
       success: function (data) {
         console.log(data);
         MorrisCharts.prototype.createStackedChart('chart-all', data, 'Index', ['Total', 'Prospek', 'On Progress', 'Done'], ['Leads', 'Prospect', 'Sales Offered', 'Sales Closed'], ['blue','orange', 'yellow', 'green']);
+        // HoldOn.close();
       },
     });
   },
@@ -321,26 +326,108 @@ $(document).ready(function() {
 // }
 
 $(document).ready(function(){
-  $('.sMarketing').on('click', function(){
-    HoldOn.open(options);
-    var pn = $(this).attr('data-pn');
-    $.ajax({
-      type: 'POST',
-      url: '{{ url("detail_marketing") }}',
-      data: {
-        pn : pn
-      },
-      headers: {
-        "X-CSRF-TOKEN": "{{ csrf_token() }}"
-      }
-
-    }).done(function(response){
-      console.log(response);
-      HoldOn.close();
-    }).fail(function(errors){
-      alert("Gagal Terhubung ke Server");
-      HoldOn.close();
+  function back(){
+    // console.log('test');
+    $('.backBtn').on('click', function(){
+      var thisClass = $('#'+$(this).attr('data-class'));
+      var thisPrev = thisClass.prev();
+      thisPrev.removeClass('hidden');
+      thisClass.addClass('hidden');
     });
+  }
+  function sMarketing(){
+    $('.sMarketing').on('click', function(){
+      HoldOn.open(options);
+      var pn = $(this).attr('data-pn');
+      var branch = $(this).attr('data-branch');
+      $.ajax({
+        type: 'POST',
+        url: '{{ url("detail_marketing") }}',
+        data: {
+          pn : pn,
+          branch : branch
+        },
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+      }).done(function(response){
+        console.log(response);
+        $('#list-fo').addClass('hidden');
+        $('#list-detail-fo').html(response);
+        $('#list-detail-fo').removeClass('hidden');
+        $('#detail-marketing').dataTable();
+        HoldOn.close();
+        back();
+      }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+      });
+    });
+  }
+
+  function sBranch() {
+    $('.sBranch').on('click', function(){
+      HoldOn.open(options);
+      var branch = $(this).attr('data-branch');
+      $.ajax({
+        type: 'POST',
+        url: '{{ url("detail_branch") }}',
+        data: {
+          branch : branch
+        },
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+      }).done(function(response){
+        console.log(response);
+        $('#list-branch').addClass('hidden');
+        $('#list-fo').html(response);
+        $('#list-fo').removeClass('hidden');
+        $('#detail-branch').dataTable();
+        HoldOn.close();
+        sMarketing();
+        back();
+      }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+      });
+    });
+  }
+
+  sMarketing();
+  sBranch();
+  back();
+
+  $('.paginate_button').on('click', function(){
+    sMarketing();
+    sBranch();
   });
+  // $('.sMarketing').on('click', function(){
+  //   HoldOn.open(options);
+  //   var pn = $(this).attr('data-pn');
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '{{ url("detail_marketing") }}',
+  //     data: {
+  //       pn : pn
+  //     },
+  //     headers: {
+  //       "X-CSRF-TOKEN": "{{ csrf_token() }}"
+  //     }
+  //
+  //   }).done(function(response){
+  //     console.log(response);
+  //     $('#list-fo').addClass('hidden');
+  //     $('#list-detail-fo').append(response);
+  //     $('#detail-marketing').dataTable();
+  //     HoldOn.close();
+  //   }).fail(function(errors){
+  //     alert("Gagal Terhubung ke Server");
+  //     HoldOn.close();
+  //   });
+  // });
+
 });
 </script>

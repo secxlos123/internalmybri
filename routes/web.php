@@ -296,7 +296,8 @@
                 Route::get('crm_dashboard', 'CRM\DashboardController@index');
                 Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
 								Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
-                Route::post('detail_marketing', 'CRM\DashboardController@detailMarketing');
+								Route::post('detail_marketing', 'CRM\DashboardController@detailMarketing');
+                Route::post('detail_branch', 'CRM\DashboardController@detailBranch');
 
         /* CRM referral */
                 Route::resource('referral', 'CRM\ReferralController');
@@ -329,6 +330,11 @@
 								/* CRM marketing */
 								Route::get('leads', 'CRM\leadsController@index');
 								Route::get('leads_detail', 'CRM\leadsController@detail');
+                Route::post('leads_kelolaan', 'CRM\LeadsController@kelolaan');
+                Route::post('leads_leads', 'CRM\LeadsController@leads');
+                Route::post('leads_customer', 'CRM\LeadsController@customers');
+                Route::post('leads_cpp', 'CRM\LeadsController@cpps');
+                Route::post('leads_referral', 'CRM\LeadsController@referrals');
 
 
         Route::resource('mitra', 'Mitra\MitraController');

@@ -19,85 +19,7 @@ class leadsController extends Controller
     {
       $data = $this->getUser();
 
-      $leadKpr = Client::setEndpoint('crm/account/leads')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->setBody([
-        "type_usulan"=>"kpr"
-      ])
-      ->post();
-
-      $leadKkb = Client::setEndpoint('crm/account/leads')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->setBody([
-        "type_usulan"=>"kkb"
-      ])
-      ->post();
-      // dd($leadKkb);
-      $leads = $leadKpr['contents'];
-
-      $customer = Client::setEndpoint('crm/account/customer')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->get();
-      // dd($customer);
-      $customers = $customer['contents'];
-
-      $kelolaan = Client::setEndpoint('crm/account/existing_fo')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->setBody([
-        "kode_kanwil" => "",
-        "main_branch" => ""
-      ])
-      ->post();
-      // dd($kelolaan);
-      if(is_array($kelolaan['contents'])){
-        $kelolaans = $kelolaan['contents'];
-      } else {
-        $kelolaans = [];
-      }
-
-      $referral = Client::setEndpoint('crm/account/get_referral_by_officer')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->get();
-      // dd($referral['contents']);
-      $referrals = $referral['contents'];
-
-      $cpp = Client::setEndpoint('crm/new_customer')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->get();
-      // dd($cpp);
-      $cpps = $cpp['contents'];
-
-      return view('internals.crm.leads.index', compact('data', 'leads', 'customers', 'kelolaans', 'referrals', 'cpps'));
+      return view('internals.crm.leads.index', compact('data'));
     }
 
     public function detail(Request $request)
@@ -207,6 +129,117 @@ class leadsController extends Controller
         // dd($customer['contents']);
       }
 
+    }
+
+    public function kelolaan(Request $request)
+    {
+      $data = $this->getUser();
+
+      $kelolaan = Client::setEndpoint('crm/account/existing_fo')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        "kode_kanwil" => "",
+        "main_branch" => ""
+      ])
+      ->post();
+      // dd($kelolaan);
+      if(is_array($kelolaan['contents'])){
+        $kelolaans = $kelolaan['contents'];
+      } else {
+        $kelolaans = [];
+      }
+      $data = [
+        'kelolaans' => $kelolaans
+      ];
+
+      return view('internals.crm.leads.kelolaan')->with($data);
+    }
+
+    public function leads(Request $request)
+    {
+      $data = $this->getUser();
+      // dd($request->type_usulan);
+      $lead = Client::setEndpoint('crm/account/leads')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        "type_usulan"=>$request->type_usulan
+      ])
+      ->post();
+      $leads = $lead['contents'];
+      $data = [
+        'leads' => $leads
+      ];
+      return view('internals.crm.leads.leads')->with($data);
+    }
+
+    public function customers(Request $request)
+    {
+      $data = $this->getUser();
+
+      $customer = Client::setEndpoint('crm/account/customer')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->get();
+      // dd($customer);
+      $customers = $customer['contents'];
+      $data = [
+        'customers' => $customers
+      ];
+      return view('internals.crm.leads.customer')->with($data);
+    }
+
+    public function cpps(Request $request)
+    {
+      $data = $this->getUser();
+
+      $cpp = Client::setEndpoint('crm/new_customer')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->get();
+      // dd($cpp);
+      $cpps = $cpp['contents'];
+      $data = [
+        'cpps' => $cpps
+      ];
+      return view('internals.crm.leads.cpp')->with($data);
+    }
+
+    public function referrals(Request $request)
+    {
+      $data = $this->getUser();
+
+      $referral = Client::setEndpoint('crm/account/get_referral_by_officer')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->get();
+      // dd($referral['contents']);
+      $referrals = $referral['contents'];
+      $data = [
+        'referrals' => $referrals
+      ];
+      return view('internals.crm.leads.referral')->with($data);
     }
 
 }
