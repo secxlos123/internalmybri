@@ -3,6 +3,9 @@
         <h4 class="panel-title">Mutasi</h4>
     </div>
 </div>
+<?php 
+dd($detail['recontest']['mutations']);
+ ?>
 @if( count($detail['recontest']['mutations']) >= 1 )
 @foreach($detail['recontest']['mutations'] as $mutation)
 <div id="mutations" class="mutations">
