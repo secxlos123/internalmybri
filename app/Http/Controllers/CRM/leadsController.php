@@ -39,8 +39,11 @@ class leadsController extends Controller
           "nik" => $request->nik
         ])
         ->post();
-
-        $activities = Client::setEndpoint('crm/activity/by_customer')
+        // dd($customer);
+        $info = $customer['contents']['info'][0];
+        $portfolio = $customer['contents']['portfolio'];
+        // dd($info);
+        $activity = Client::setEndpoint('crm/activity/by_customer')
         ->setHeaders([
           'pn' => $data['pn'],
           'branch' => $data['branch'],
@@ -48,15 +51,32 @@ class leadsController extends Controller
           'Content-Type' => 'application/json'
         ])
         ->setBody([
-          "nik" => $request->nik,
-          "cif" => ""
+          "nik" => "",
+          "cif" => $info['cifno']
+        ])
+        ->post();
+        // dd($activities);
+
+        $activities = $activity['contents'];
+        // dd($activity);
+        $marketing = Client::setEndpoint('crm/marketing/by_branch')
+        ->setHeaders([
+          'pn' => $data['pn'],
+          'branch' => $data['branch'],
+          'Authorization' => $data['token'],
+          'Content-Type' => 'application/json'
         ])
         ->post();
 
-        $activity = $activities['contents'];
-
+        $marketings = $marketing['contents'];
+        $cif = $info['cifno'];
+        $marketingsFiltered = array_filter($marketings, function ($var) use ($cif) {
+          return ($var['cif'] == $cif);
+        });
+        // dd($marketingsFiltered);
+        // dd($info['tipe_nasabah']);
         if ($info['tipe_nasabah'] == "I") {
-          return view('internals.crm.leads.detail', compact('data', 'portfolio', 'info', "marketing"));
+          return view('internals.crm.leads.detail', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
         } else {
           return view('internals.crm.leads.detail_non_i', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
         }
@@ -245,7 +265,7 @@ class leadsController extends Controller
     public function newCustomer(Request $request)
     {
       $data = $this->getUser();
-      
+
       $newCustomer = Client::setEndpoint('crm/new_customer')
       ->setHeaders([
         'pn' => $data['pn'],
