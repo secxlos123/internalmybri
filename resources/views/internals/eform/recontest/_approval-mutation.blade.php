@@ -3,7 +3,7 @@
         <h4 class="panel-title">Mutasi</h4>
     </div>
 </div>
-@if( $detail['recontest']['mutations']['tables']['note'] !== NULL )
+@if( isset($detail['recontest']['mutations']) )
 @foreach($detail['recontest']['mutations'] as $mutation)
 <div id="mutations" class="mutations">
     <div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">
@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="form-control-static">{{$bank['type'] ? $bank['type'] : '-' }}</p>
+                                <p class="form-control-static"> - </p>
                             </td>
                             <td>
                                 <p class="form-control-static">{{$bank['note'] ? $bank['note'] : '-' }}</p>
