@@ -48,12 +48,18 @@ class LoginController extends Controller
             if($request->pn == '66777'){
                 $role = ['role' => 'ao'];
                 $uker = ['uker' => 'KC'];
-            }else if($request->pn == '68881'){
+            } elseif($request->pn == '163502'){
+                $role = ['role' => 'fo'];
+                $uker = ['uker' => 'KC'];
+            } else if($request->pn == '68881' || $request->pn == '72220'){
                 $role = ['role' => 'mp'];
                 $uker = ['uker' => 'KC'];
-            }else if($request->pn == '16181'){
+            }else if($request->pn == '16181' || $request->pn == '14762' || $request->pn == '15949'){
                 $role = ['role' => 'pinca'];
                 $uker = ['uker' => 'KC'];
+            }else if($request->pn == '68478' || $request->pn == '88759'){
+                $role = ['role' => 'pinwil'];
+                $uker = ['uker' => 'KW'];
             }else if($request->pn == '70828'){
                 $role = ['role' => 'collateral'];
                 $uker = ['uker' => 'other'];
@@ -64,7 +70,6 @@ class LoginController extends Controller
                 $role = ['role' => 'staff'];
                 $uker = ['uker' => 'other'];
             }
-
             $user =array_merge($client['contents'], $uker, $role);
         }
         $codeResponse = $client['code'];
@@ -101,7 +106,7 @@ class LoginController extends Controller
             , 'pn' => $data['pn']
             , 'auditaction' => 'logout internal'
             , 'long' => $request['hidden-long']
-            , 'lat' => $request['hidden-lat'] 
+            , 'lat' => $request['hidden-lat']
         ])->deleted();
 
         session()->flush();

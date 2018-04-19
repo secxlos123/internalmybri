@@ -13,6 +13,9 @@
   .panel-head span{
     color: #f7941e;
   }
+  .select2-selection__clear {
+    display: none;
+  }
 </style>
 <div class="content-page">
     <div class="content">
@@ -51,25 +54,25 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#crossSell" data-toggle="tab" aria-expanded="true">
+                                            <a href="#crossSell" data-toggle="tab" aria-expanded="true" id="leadsBtn">
                                                 <span class="visible-xs"><i class="fa fa-exchange"></i></span>
                                                 <span class="hidden-xs">Cross Sell</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#myBri" data-toggle="tab" aria-expanded="true">
+                                            <a href="#myBri" data-toggle="tab" aria-expanded="true" id="customersBtn">
                                                 <span class="visible-xs"><i class="fa fa-check-square"></i></span>
                                                 <span class="hidden-xs">My BRI</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#cpp" data-toggle="tab" aria-expanded="true">
+                                            <a href="#cpp" data-toggle="tab" aria-expanded="true" id="cppsBtn">
                                                 <span class="visible-xs"><i class="fa fa-ban"></i></span>
                                                 <span class="hidden-xs">CPP</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#referral" data-toggle="tab" aria-expanded="true">
+                                            <a href="#referral" data-toggle="tab" aria-expanded="true" id="referralsBtn">
                                                 <span class="visible-xs"><i class="fa fa-ban"></i></span>
                                                 <span class="hidden-xs">Referral</span>
                                             </a>
@@ -83,28 +86,8 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                              @foreach($kelolaans as $kl)
-                                                              <a href="{{url('/leads_detail?cif='.$kl['CIFNO']).'&nik='.''}}">
-                                                                <div class="col-md-12">
-                                                                  <div class="panel panel-default">
-                                                                    <div class="panel-head">
-                                                                      <div class="row">
-                                                                        <div class="col-md-6">
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <div class="text-right"></div>
-                                                                        </div>
-                                                                        <div class="clearfix"></div>
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="panel-body">
-                                                                      <div class="actvity_type">{{$kl['short_name']}}</div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </a>
-                                                              @endforeach
+                                                              <div id="kelolaans">
+                                                              </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,28 +100,13 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                              @foreach($leads as $l)
-                                                              <a href="{{url('/leads_detail?cif='.$l['CIF']).'&nik='.''}}">
-                                                                <div class="col-md-12">
-                                                                  <div class="panel panel-default">
-                                                                    <div class="panel-head">
-                                                                      <div class="row">
-                                                                        <div class="col-md-6">
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <div class="text-right"></div>
-                                                                        </div>
-                                                                        <div class="clearfix"></div>
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="panel-body">
-                                                                      <div class="actvity_type">{{$l['nama']}}</div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </a>
-                                                              @endforeach
+                                                              <div class="col-md-6" style="margin-bottom:20px; padding-left:0px;">
+                                                                <select class="form-control select2" name="" id="selectLeads">
+                                                                  <option value="kpr">KPR</option>
+                                                                  <option value="kkb">KKB</option>
+                                                                </select>
+                                                              </div>
+                                                              <div id="leads" style="margin-top:60px;"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -151,28 +119,7 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                              @foreach($customers as $c)
-                                                              <a href="{{url('/leads_detail?cif='.''.'&nik='.$c['nik'])}}">
-                                                                <div class="col-md-12">
-                                                                  <div class="panel panel-default">
-                                                                    <div class="panel-head">
-                                                                      <div class="row">
-                                                                        <div class="col-md-6">
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <div class="text-right"></div>
-                                                                        </div>
-                                                                        <div class="clearfix"></div>
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="panel-body">
-                                                                      <div class="actvity_type">{{$c['first_name']}} {{$c['last_name']}}</div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </a>
-                                                              @endforeach
+                                                              <div id="customers"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -185,28 +132,7 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                              @foreach($cpps as $c)
-                                                              <a href="{{url('/leads_detail?cif='.''.'&nik='.$c['nik'])}}">
-                                                                <div class="col-md-12">
-                                                                  <div class="panel panel-default">
-                                                                    <div class="panel-head">
-                                                                      <div class="row">
-                                                                        <div class="col-md-6">
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <div class="text-right"></div>
-                                                                        </div>
-                                                                        <div class="clearfix"></div>
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="panel-body">
-                                                                      <div class="actvity_type">{{$c['name']}}</div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </a>
-                                                              @endforeach
+                                                              <div id="cpps"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -219,28 +145,7 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div class="row">
-                                                              @foreach($referrals as $r)
-                                                              <a href="{{url('/leads_detail?cif='.''.'&nik='.$r['nik'])}}">
-                                                                <div class="col-md-12">
-                                                                  <div class="panel panel-default">
-                                                                    <div class="panel-head">
-                                                                      <div class="row">
-                                                                        <div class="col-md-6">
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <div class="text-right"></div>
-                                                                        </div>
-                                                                        <div class="clearfix"></div>
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="panel-body">
-                                                                      <div class="actvity_type">{{$r['name']}}</div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </a>
-                                                              @endforeach
+                                                              <div id="referrals"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -259,3 +164,4 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.crm.leads.script')

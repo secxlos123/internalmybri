@@ -124,4 +124,4 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-@include('internals.mitra.script.mitra.approval_mitra')
+@include('internals.mitra.script.mitra.approval_mitra_pks')
