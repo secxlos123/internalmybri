@@ -3,10 +3,7 @@
         <h4 class="panel-title">Mutasi</h4>
     </div>
 </div>
-<?php 
-dd($detail['recontest']['mutations']);
- ?>
-@if( count($detail['recontest']['mutations']) >= 1 )
+@if( isset($detail['recontest']['mutations']) )
 @foreach($detail['recontest']['mutations'] as $mutation)
 <div id="mutations" class="mutations">
     <div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">
@@ -53,19 +50,19 @@ dd($detail['recontest']['mutations']);
                         <tr>
                             <td>
                                 <div class="input-group">
-                                    <p class="form-control-static">{{$bank['date']}}</p>
+                                    <p class="form-control-static">{{$bank['date'] ? $bank['date'] : '-'}}</p>
                                 </div>
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <p class="form-control-static">Rp. {{ number_format($bank['amount'], 2, ",", ".") }}</p>
+                                    <p class="form-control-static">Rp. {{ number_format($bank['amount'], 2, ",", ".") ? number_format($bank['amount'], 2, ",", ".") : '-' }}</p>
                                 </div>
                             </td>
                             <td>
-                                <p class="form-control-static">{{$bank['type']}}</p>
+                                <p class="form-control-static">{{$bank['type'] ? $bank['type'] : '-' }}</p>
                             </td>
                             <td>
-                                <p class="form-control-static">{{$bank['note']}}</p>
+                                <p class="form-control-static">{{$bank['note'] ? $bank['note'] : '-' }}</p>
                             </td>
                         </tr>
                     </tbody>
