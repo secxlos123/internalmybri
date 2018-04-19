@@ -325,7 +325,7 @@
 								Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
 								Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
 
-								/* CRM marketing */
+								/* CRM Leads */
 								Route::get('leads', 'CRM\leadsController@index');
 								Route::get('leads_detail', 'CRM\leadsController@detail');
                 Route::post('leads_kelolaan', 'CRM\LeadsController@kelolaan');
@@ -333,6 +333,7 @@
                 Route::post('leads_customer', 'CRM\LeadsController@customers');
                 Route::post('leads_cpp', 'CRM\LeadsController@cpps');
                 Route::post('leads_referral', 'CRM\LeadsController@referrals');
+                Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
 
 
         Route::resource('mitra', 'Mitra\MitraController');

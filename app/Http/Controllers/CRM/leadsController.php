@@ -242,4 +242,27 @@ class leadsController extends Controller
       return view('internals.crm.leads.referral')->with($data);
     }
 
+    public function newCustomer(Request $request)
+    {
+      $data = $this->getUser();
+      
+      $newCustomer = Client::setEndpoint('crm/new_customer')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->setBody([
+        "nama"=>$request->nama,
+        "nik"=>$request->nik,
+        "email"=>$request->email,
+        "telp"=>$request->email,
+        "alamat"=>$request->alamat
+      ])
+      ->post();
+
+      return $newCustomer;
+    }
+
 }
