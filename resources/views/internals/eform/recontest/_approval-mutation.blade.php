@@ -3,7 +3,7 @@
         <h4 class="panel-title">Mutasi</h4>
     </div>
 </div>
-@if( isset($detail['recontest']['mutations']) )
+@if( $detail['recontest']['mutations']['tables']['note'] !== NULL )
 @foreach($detail['recontest']['mutations'] as $mutation)
 <div id="mutations" class="mutations">
     <div class="panel-body" style="border-style:solid;border-width:0.5px;border-color:#f3f3f3">
