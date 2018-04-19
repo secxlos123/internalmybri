@@ -1,5 +1,5 @@
 <div class="left side-menu">
-  <div class="sidebar-inner slimscrollleft">
+  <div class="sidebar-inner slimscrollleft" style="overflow: hidden;">
     <div id="sidebar-menu">
       <ul>
         <li class="menu-title">Navigasi Utama</li>
