@@ -132,6 +132,43 @@
       leads($(this).val());
     });
 
+    $('.addCpp').on('click', function(){
+      console.log('tes');
+      $('.createNewCustomer').toggleClass('hidden');
+    });
+
+    $('#submitNewCustomer').on('click', function(){
+      var nama = $('#nama').val();
+      var nik = $('#nik').val();
+      var email = $('#email').val();
+      var telp = $('#telp').val();
+      var alamat = $('#alamat').val();
+      console.log(nama);
+
+      $.ajax({
+        type: 'POST',
+        url: '{{ url("leads_new_customer") }}',
+        data: {
+          nama : nama,
+          nik : nik,
+          email : email,
+          telp : telp,
+          alamat : alamat
+        },
+        headers: {
+          "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+      }).done(function(response){
+        console.log(response);
+        $('#newCustomer').reset();
+        cpp();
+      }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+      });
+    });
+
 
   });
 </script>
