@@ -1,4 +1,4 @@
-@section('title','MyBRI - List Approval Pengajuan Properti Baru')
+@section('title','MyBRI - Leads Marketing')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -15,6 +15,9 @@
   }
   .select2-selection__clear {
     display: none;
+  }
+  .input-group {
+    width: 100%;
   }
 </style>
 <div class="content-page">
@@ -131,6 +134,57 @@
                                                 <div class="col-md-12">
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
+                                                          <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md m-b-20 addCpp">Tambah CPP</a>
+                                                            <div class="row">
+                                                              <div class="createNewCustomer col-md-6 form-horizontal hidden" style="margin-bottom:60px;">
+                                                                <form id="newCustomer">
+                                                                  <div class="form-group">
+                                                                    <label class="col-md-4 control-label">Nama :</label>
+                                                                    <div class="col-md-8">
+                                                                      <div class="input-group">
+                                                                        <input class="form-control" placeholder="" id="nama" required="" name="nama" type="text" value="" aria-required="true">
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label class="col-md-4 control-label">NIK :</label>
+                                                                    <div class="col-md-8">
+                                                                      <div class="input-group">
+                                                                        <input class="form-control numericOnly" placeholder="" id="nik" required="" name="nik" type="text" value="" aria-required="true">
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label class="col-md-4 control-label">Email :</label>
+                                                                    <div class="col-md-8">
+                                                                      <div class="input-group">
+                                                                        <input class="form-control" placeholder="" id="email" required="" name="email" type="email" value="" aria-required="true">
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label class="col-md-4 control-label">Telp :</label>
+                                                                    <div class="col-md-8">
+                                                                      <div class="input-group">
+                                                                        <input class="form-control numericOnly" placeholder="" id="telp" required="" name="telp" type="text" value="" aria-required="true">
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="form-group">
+                                                                    <label class="col-md-4 control-label">Alamat :</label>
+                                                                    <div class="col-md-8">
+                                                                      <div class="input-group">
+                                                                        <textarea class="form-control" placeholder="" id="alamat" required="" name="alamat" type="text" value="" aria-required="true"></textarea>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="pull-right">
+                                                                    <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" name="button" id="submitNewCustomer">Kirim</button>
+                                                                  </div>
+                                                                </form>
+                                                              </div>
+                                                              <div class="col-md-6"></div>
+                                                            </div>
                                                             <div class="row">
                                                               <div id="cpps"></div>
                                                             </div>
