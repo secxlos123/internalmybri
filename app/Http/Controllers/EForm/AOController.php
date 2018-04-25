@@ -501,6 +501,7 @@ class AOController extends Controller
                 'is_screening' => $form['is_screening'],
                 'delay_prescreening' => $form['delay_prescreening'],
                 'vip_sent' => $form['vip_sent'],
+                'use_reason_name' => $form['visit_report']['use_reason_name'],
                 'vip' => route('resendVIP', $form['id']),
             ])->render();
             $eforms['contents']['data'][$key] = $form;
