@@ -14,13 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {
-        $host = $request->getSchemeAndHttpHost();
-        $cek = substr($host, 0,8);
-        \Log::info($cek);
-        if( $cek == 'https://' ){
-            \Log::info("HTTPS");
-            \URL::forceScheme('https');
-        }
+        \URL::forceScheme('https');
     }
 
     /**
