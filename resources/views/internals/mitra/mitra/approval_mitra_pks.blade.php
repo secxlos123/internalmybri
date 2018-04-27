@@ -3,125 +3,272 @@
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
   
-  <!-- Modal -->
-				
-<style>
-#load{
-    width:100%;
-    height:100%;
-    position:fixed;
-    z-index:9999;
-    background:url("http://localhost:9000/assets/images/loading-image.gif") no-repeat center center rgba(0,0,0,0.25)
-}
-</style>		
-		
     <div class="content-page">
-
         <div class="content">
-	
-		<form action="ApprovalStore?i=<?php echo $_GET['i'];?>" method="post" enctype="multipart/form-data">
 		
-	<div class="title content">
-    <h3></h3>
-    <section id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
-		<div class="row">
-			<div class="panel panel-color panel-primary">
-				<div class="col-md-12">
-					<div class="panel-heading">
-						<h3 class="panel-title">Data Mitra Kerjasama</h3>
-					</div>
-						<div class="col-md-4">
-							<label>Fasilitas Jasa Perbankan Bank BRI</label>
-						</div>
-						<div class="col-md-8">
-							<select id="fasilitas_jasa" name="fasilitas_jasa"><option value="simpanan">SIMPANAN</option><option value="fasilitas">FASILITAS</option></select>
-						</div>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-4">
-						<label>Daftar Ijin Prinsip</label>
-					</div>
-					<div class="col-md-8">
-						<select id="daftar_ijin" name="daftar_ijin"></select>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	</div>
+		<form action="PerjanjianStore" method="post" enctype="multipart/form-data">
+		{{ csrf_field() }}
+		
+			
+			<div class="row">
+                    <div class="col-md-12">
+                            @if (\Session::has('error'))
+                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                            @endif
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Data Perjanjian Mitra Kerjasama</h3>
+                                </div>
+								<?php echo $view;?>
+							</div>
+                    </div>
 
-			{{ csrf_field() }}
-		<div role="application" class="wizard clearfix" id="steps-uid-0">
-			<div class="steps clearfix">
-				<ul role="tablist">
-					<li role="tab" id="li-step-0" class="first current" aria-disabled="true">
-						<a id="steps-uid-0-t-0" aria-controls="false">
-							<span class="current-info audible">current step: </span>
-							<span class="number">1.</span> SIMPANAN
-						</a>
-					</li>
-					<li role="tab" id="li-step-1" class="disabled" aria-disabled="true">
-						<a id="steps-uid-0-t-1" aria-controls="false">
-							<span class="number">2.</span> FASILITAS
-						</a>
-					</li>
-					</ul>
-					</div>
-					<div class="content clearfix" id="step0">
-                        <h3 id="steps-uid-0-h-0" tabindex="-1" class="title current">SIMPANAN</h3>
-                            <section id="steps-uid-0-p-0" role="tabpanel" aria-labelledby="steps-uid-0-h-0" class="body current" aria-hidden="false">
-								<div class="row">
-									<div class="col-md-12">
-											@if (\Session::has('error'))
-											<div class="alert alert-danger">{{ \Session::get('error') }}</div>
-											@endif
-											<div class="panel panel-color panel-primary">
-												<div class="panel-heading">
-													<h3 class="panel-title">SIMPANAN</h3>
-												</div> 
-												<?php echo $view;?>
-												<div class="col-md-12">
-													<div class="col-md-10">
-													</div>
-													<div class="col-md-2">
-														<button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" name="submit" id="submit"data-toggle="modal"><i class="mdi mdi-content-save"></i>Simpan</button>
-													</div>
-												</div>
-											</div>
-									</div>
-								</div>
-							</section>
-					</div>
-					<div class="content clearfix" id="step1">
-                        <h3 id="steps-uid-0-h-1" tabindex="-2" class="title current">PINJAMAN</h3>
-                            <section id="steps-uid-0-p-1" role="tabpanel" aria-labelledby="steps-uid-0-h-1" class="body current" aria-hidden="true">
+			</div>
+			
+			
+			<div class="row">
+                    <div class="col-md-12">
+                            @if (\Session::has('error'))
+                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                            @endif
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Unggah Perjanjian Mitra Kerjasama</h3>
+                                </div>
+								<?php echo $view2;?>
+							</div>
+                    </div>
+
+			</div>
+			
+			
+			
+			<div class="row">
+                    <div class="col-md-12">
+                            @if (\Session::has('error'))
+                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                            @endif
+                            <div class="panel panel-color panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Pemeriksa / Pemutus</h3>
+                                </div>
+			                        <div class="panel-body">
+									
+										
 									<div class="row">
-										<div class="col-md-12">
-												@if (\Session::has('error'))
-												<div class="alert alert-danger">{{ \Session::get('error') }}</div>
-												@endif
-												<div class="panel panel-color panel-primary">
-													<div class="panel-heading">
-														<h3 class="panel-title">Data Mitra Kerjasama</h3>
-													</div>
-													<?php echo $view2;?>
-													<div class="col-md-12">
-														<div class="col-md-10">
-														</div>
-														<div class="col-md-2">
-															<button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" name="submit" id="submit"data-toggle="modal"><i class="mdi mdi-content-save"></i>Simpan</button>
-														</div>
-													</div>
-												</div>
+										
+                                        <div class="col-md-12">
+                                            <div class="form-horizontal">
+                                                <div class="form-group tgl_register">
+                                                    <label class="col-md-3 control-label">Tanggal Registrasi :</label>
+                                                    <div class="col-md-8">
+														<input type="text" id="tgl_register" name="tgl_register" class="form-control" value=""/>
+                                                    </div>
+                                                </div>
+											</div>
 										</div>
-
 									</div>
-							</section>
+									
+									<div class="row">
+										
+                                        <div class="col-md-12">
+                                            <div class="form-horizontal">
+                                                <div class="form-group tgl_register">
+                                                    <div class="col-md-8">
+														 <input type="radio" id="penilaian_mitra_register_radio"
+															   name="penilaian_mitra_register_radio" value="register_mitra">
+														<label for="penilaian_mitra_register_radio">Register Mitra Kerjasama</label>
+													   <input type="radio" id="penilaian_mitra_kelayakan_radio"
+															   name="penilaian_mitra_kelayakan_radio" value="penilaian_kelayakan">
+														<label for="penilaian_mitra_kelayakan_radio">Penilaian Kelayakan</label>
+													   <input type="radio" id="penilaian_mitra_rks_radio" onclick="penilaian_mitra_rks()"
+															   name="penilaian_mitra_rks_radio" value="softcopy_rks">
+														<label for="penilaian_mitra_rks_radio">Softcopy RKS</label>
+													  
+                                                    </div>
+                                                </div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="row">
+										
+                                        <div class="col-md-5">
+                                            <div class="form-horizontal">
+                                                <div class="form-group" id="div_pemutus">
+                                                </div>
+											</div>
+										</div>
+										<div class="col-md-1">
+                                            <div class="form-horizontal" >
+                                                <div class="form-group button">
+                                                    <div class="col-md-1">
+													</div>
+                                                </div>
+											</div>
+										</div>
+										<div class="col-md-6">
+                                            <div class="form-horizontal" >
+                                                <div class="form-group" id="div_jabatan">
+                                                </div>
+                                             </div>
+										</div>
+									</div>
+	
+									<div class="row">
+										
+                                        <div class="col-md-5">
+                                            <div class="form-horizontal">
+                                                <div class="form-group pemutus_name">
+                                                    <label class="col-md-3 control-label">Pemutus (PN/Nama) :</label>
+                                                    <div class="col-md-8">
+													<select class="form-control" name="pemutus_name_perjanjian" id="pemutus_name_perjanjian">' +
+														   <option value="Signer1" >Signer1</option>
+														   <option value="Signer2">Signer2</option>
+														   <option value="Signer3">Signer3</option>
+														   <option value="Signer4">Signer4</option>
+												   </select>
+                                                        <!--<input type="text" class="form-control" name="pemutus_name" id="pemutus_name" value="{{ old('pemutus_name') }}" >-->
+														<input type="hidden" class="form-control" name="countpemutus" id="countpemutus" value="1">
+                                                    </div>
+                                                </div>
+											</div>
+										</div>
+										<div class="col-md-1">
+                                            <!--<div class="form-horizontal" >
+                                                <div class="form-group button">
+                                                    <div class="col-md-1">
+														<button type="button" onclick="addinput()" class="btn btn-orange waves-light waves-effect w-md m-b-10" data-toggle="modal" id="btn-tambah"><i class="mdi mdi-plus"></i> </button>
+													</div>
+                                                </div>
+											</div>-->
+										</div>
+										<div class="col-md-6">
+                                            <div class="form-horizontal">
+                                                <div class="form-group jabatan">
+                                                    <label class="col-md-5 control-label">Jabatan Pemutus :</label>
+                                                    <div class="col-md-7">
+													<select class="form-control" name="jabatan_perjanjian" id="jabatan_perjanjian">' +
+														   <option value="Dikeksi" >Dikeksi</option>
+														   <option value="Kabag">Kabag</option>
+														   <option value="Kadiv">Kadiv</option>
+														   <option value="Wakadiv">Wakadiv</option>
+												   </select>
+                                                        <!--<input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ old('jabatan') }}">-->
+                                                    </div>
+                                                </div>
+                                             </div>
+										</div>
+									</div>
+	
+									<div class="row">
+										
+                                        <div class="col-md-5">
+                                            <div class="form-horizontal">
+                                                <div class="form-group pemeriksa">
+                                                    <label class="col-md-3 control-label">Pemeriksa (PN/Nama) :</label>
+                                                    <div class="col-md-8">
+													<select class="form-control" name="pemeriksa_perjanjian" id="pemeriksa_perjanjian">' +
+														   <option value="checker1" >checker1</option>
+														   <option value="checker2">checker2</option>
+														   <option value="checker3">checker3</option>
+														   <option value="checker4">checker4</option>
+												   </select>
+                                                        <!--<input type="text" class="form-control" name="pemutus_name" id="pemutus_name" value="{{ old('pemutus_name') }}" >-->
+												    </div>
+                                                </div>
+											</div>
+										</div>
+										<div class="col-md-1">
+                                            <!--<div class="form-horizontal" >
+                                                <div class="form-group button">
+                                                    <div class="col-md-1">
+														<button type="button" onclick="addinput()" class="btn btn-orange waves-light waves-effect w-md m-b-10" data-toggle="modal" id="btn-tambah"><i class="mdi mdi-plus"></i> </button>
+													</div>
+                                                </div>
+											</div>-->
+										</div>
+										<div class="col-md-6">
+                                            <div class="form-horizontal">
+                                                <div class="form-group jabatan_pemeriksa">
+                                                    <label class="col-md-5 control-label">Jabatan Pemeriksa :</label>
+                                                    <div class="col-md-7">
+													
+													<select class="form-control" name="jabatan_pemeriksa_perjanjian" id="jabatan_pemeriksa_perjanjian">' +
+														   <option value="Dikeksi" >Dikeksi</option>
+														   <option value="Kabag">Kabag</option>
+														   <option value="Kadiv">Kadiv</option>
+														   <option value="Wakadiv">Wakadiv</option>
+												   </select>
+                                                        <!--<input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ old('jabatan') }}">-->
+                                                    </div>
+                                                </div>
+                                             </div>
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group submit3">
+                                                <label class="col-md-6 control-label">
+												</label>
+                                            </div>
+										</div>
+										
+										<div class="col-lg-6">
+											<div class="form-group submit3">
+													<!--<div class="col-md-2">                               
+														<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-download" name="btn-download"><i class="mdi mdi-download"></i>Unduh </button>
+													</div>
+													<div class="col-md-2">                               
+														<button type="button" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-print" name="btn-print"><i class="mdi mdi-printer"></i>Print </button>
+													</div>-->
+													<div class="col-md-2">                               
+														<button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save" name="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
+													</div>
+                                            </div>
+										</div>
+										
+									</div>
+									
+									<div class="row">
+									<div class="col-lg-6">
+											<div class="form-group submit3">
+                                                <label class="col-md-6 control-label">
+												Catatan :
+												</label>
+                                            </div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group submit3">
+												<label class="col-md-6 control-label">
+												Input pemeriksa terakhir sebagai Pemutus/Signer
+												</label>
+                                            </div>
+										</div>
+										
+									</div>
+									
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group submit3">
+												<label class="col-md-6 control-label">
+												Hanya pekerja yang berstatus sebagai pekerja tetap saja yang boleh dijadikan pemeriksa/pemutus
+												</label>
+                                            </div>
+										</div>
+										
+									</div>
+									</div>
+							</div>
 					</div>
 			</div>
-		</form>
+		
+			</form>
+		</div>
 	</div>
-</div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-@include('internals.mitra.script.mitra.approval_mitra_pks')
+@include('internals.mitra.script.mitra.approval_mitra_pks') 
