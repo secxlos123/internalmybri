@@ -409,7 +409,6 @@
         eformId = $("#eform_id").val();
         catatan_adk = $("#catat_adk").val();
         pinca_posisi = $("#pinca_posisi").val();
-        // alert(eformId);
         HoldOn.open(options);
         $.ajax({
             dataType: 'json',
@@ -441,14 +440,92 @@
         });
     })
 
+    $('#btn-kembali').on('click', function(){
+        id = $("#id_aplikasi").val();
+        uid = $("#uid").val();
+        pinca = $("#pinca").val();
+        eformId = $("#eform_id").val();
+        catatan_adk = $("#catat_adk").val();
+        pinca_posisi = $("#pinca_posisi").val();
+        HoldOn.open(options);
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("post_adk") }}',
+            data: {
+                uid  : uid,
+                pinca_name  : pinca,
+                id_aplikasi : id,
+                eform_id  : eformId,
+                type      : 'kembali',
+                catat_adk : catatan_adk,
+                pinca_position  : pinca_posisi
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+        }).done(function(data){
+            alert(data.message);
+            HoldOn.close();
+            if (data.code == 200) {
+                location.reload();
+            } else {
+                $("#catat_adk").focus();
+            }
+        }).fail(function(errors) {
+            alert("Gagal Terhubung ke Server");
+            HoldOn.close();
+        });
+    })
+
     $('#btn-verifikasi').on('click', function(){
-        // alert('tes verifikasi');
         $('#verifikasi').val('1');
+        var form = $('#form-verifikasi')[0];
+        var data = new FormData(form);
+        HoldOn.open(options);
+        $.ajax({
+            type: "POST",
+            url: '{{ route("verifikasi") }}',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            },
+            error: function (e) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            }
+        });
     })
 
     $('#btn-tunda').on('click', function(){
-        // alert('tes tunda');
         $('#verifikasi').val('0');
+        var form = $('#form-verifikasi')[0];
+        var data = new FormData(form);
+        HoldOn.open(options);
+        $.ajax({
+            type: "POST",
+            url: '{{ route("verifikasi") }}',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                alert(data.message);
+                HoldOn.close();
+                location.reload();
+            },
+            error: function (e) {
+                alert("Gagal Terhubung ke Server");
+                HoldOn.close();
+            }
+        });
     })
 
     $('#namafoto').on('change', function() {
@@ -699,7 +776,6 @@
 
     $('#btn-update-ktp').on('click', function(){
         var type = $("#ktp").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             ktp = $("#val_ktp").val();
@@ -718,11 +794,12 @@
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 }
             }).done(function(data){
-                // console.log(data);
+                // console.log(data.response.contents);
+                $('#lab-ktp').html(data.response.contents[0]['catatan_ktp']);
                 $('#result-modal-ktp').modal('hide');
                 alert(data.message);
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -730,7 +807,6 @@
         } else {
             var form = $('#form_ktp')[0];
             var data = new FormData(form);
-            console.log(data);
             HoldOn.open(options);
             $.ajax({
                 type: "POST",
@@ -757,7 +833,6 @@
 
     $('#btn-update-npwp').on('click', function(){
         var type = $("#npwp").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_npwp = $("#catatan_npwp").val();
@@ -776,11 +851,12 @@
                     "X-CSRF-TOKEN": "{{ csrf_token() }}"
                 }
             }).done(function(data){
-                // console.log(data);
+                // console.log(data.response.contents);
+                $('#lab-npwp').html(data.response.contents[0]['catatan_npwp']);
                 $('#result-modal-npwp').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -798,9 +874,9 @@
                 contentType: false,
                 cache: false,
                 timeout: 600000,
-                success: function (result) {
+                success: function (data) {
                     $('#result-modal-npwp').modal('hide');
-                    alert(result.message);
+                    alert(data.message);
                     HoldOn.close();
                     location.reload();
                 },
@@ -814,7 +890,6 @@
 
     $('#btn-update-gaji').on('click', function(){
         var type = $("#gaji").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_gaji = $("#catatan_gaji").val();
@@ -834,10 +909,11 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-gaji').html(data.response.contents[0]['catatan_gaji']);
                 $('#result-modal-gaji').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -870,7 +946,6 @@
 
     $('#btn-update-kk').on('click', function(){
         var type = $("#kk").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_kk = $("#catatan_kk").val();
@@ -890,10 +965,11 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-kk').html(data.response.contents[0]['catatan_kk']);
                 $('#result-modal-kk').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -926,7 +1002,6 @@
 
     $('#btn-update-sk_awal').on('click', function(){
         var type = $("#sk_awal").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_sk_awal = $("#catatan_sk_awal").val();
@@ -946,10 +1021,11 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-sk-awal').html(data.response.contents[0]['catatan_sk_awal']);
                 $('#result-modal-sk_awal').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -982,7 +1058,6 @@
 
     $('#btn-update-sk_akhir').on('click', function(){
         var type = $("#sk_akhir").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_sk_akhir = $("#catatan_sk_akhir").val();
@@ -1002,10 +1077,11 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-sk-akhir').html(data.response.contents[0]['catatan_sk_akhir']);
                 $('#result-modal-sk_akhir').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -1038,7 +1114,6 @@
 
     $('#btn-update-rekomendasi').on('click', function(){
         var type = $("#rekomendasi").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_rekomendasi = $("#catatan_rekomendasi").val();
@@ -1058,10 +1133,11 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-rekomendasi').html(data.response.contents[0]['catatan_rekomendasi']);
                 $('#result-modal-rekomendasi').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
@@ -1094,7 +1170,6 @@
 
     $('#btn-update-skpu').on('click', function(){
         var type = $("#skpu").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_skpu = $("#catatan_skpu").val();
@@ -1114,17 +1189,17 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-skpu').html(data.response.contents[0]['catatan_skpu']);
                 $('#result-modal-skpu').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();
             });
         } else {
             var form1 = $('#form_skpu')[0];
-            // var form1 = $('form').serialize();
             var data = new FormData(form1);
             HoldOn.open(options);
             $.ajax({
@@ -1152,7 +1227,6 @@
 
     $('#btn-update-couple_ktp').on('click', function(){
         var type = $("#couple_ktp").val();
-        // alert(type);
         if (type == 'nomulti') {
             eformId = $("#eform_id").val();
             catat_couple_ktp = $("#catatan_couple_ktp").val();
@@ -1172,10 +1246,11 @@
                 }
             }).done(function(data){
                 // console.log(data);
+                $('#lab-couple-ktp').html(data.response.contents[0]['catatan_couple_ktp']);
                 $('#result-modal-couple_ktp').modal('hide');
                 alert(data.message);            
                 HoldOn.close();
-                location.reload();
+                // location.reload();
             }).fail(function(errors) {
                 alert("Gagal Terhubung ke Server");
                 HoldOn.close();

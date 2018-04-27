@@ -230,6 +230,8 @@ class RecontestController extends Controller
         } catch (\Exception $e) {
 
         }
+        \Log::info("=================DETAIL RECONTEST====================");
+        \Log::info($detail);
 
         $recontest = 0;
 
