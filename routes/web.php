@@ -337,6 +337,9 @@
                 Route::post('leads_referral', 'CRM\LeadsController@referrals');
                 Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
 
+                /* CRM Activity */
+                Route::get('activity', 'CRM\activityController@index');
+
 
         Route::resource('mitra', 'Mitra\MitraController');
         Route::resource('gimmick', 'Mitra\GimmickController');
