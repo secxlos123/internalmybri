@@ -80,7 +80,11 @@
                                     'data-placeholder' => 'Pilih Nama Penilai'
                                 ]) !!}
                             </div>
-                            <input type="hidden" name="eight[independent_appraiser_name]" value="{{ $collateral['ots_eight']['independent_appraiser_name'] ? $collateral['ots_eight']['independent_appraiser_name'] : old(eight.independent_appraiser_name) }}" id="independent_appraiser_name">
+                            @if($collateral['ots_eight']['independent_appraiser'])
+                            <input type="hidden" name="eight[independent_appraiser_name]" value="{{ $collateral['ots_eight']['independent_appraiser_name'] ? $collateral['ots_eight']['independent_appraiser_name'] : null }}" id="independent_appraiser_name">
+                            @else
+                            <input type="hidden" name="eight[independent_appraiser_name]" value="" id="independent_appraiser_name">
+                            @endif
                         </div>
                     </div>
                 </div>
