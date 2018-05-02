@@ -621,11 +621,22 @@
                                                         <!-- Preview Image -->
                                                         <div class="col-md-12">
                                                             <label class="col-md-12 control-label">Foto Situasi Lapangan :</label>
+                                                            @if(isset($collateral['ots_other']['images']))
+                                                            <?php $i = 1; ?>
+                                                            @foreach($collateral['ots_other']['images'] as $image => $value)
+                                                            <div class="form-group">
+                                                                    <div class="img-previews">
+                                                                        <img id="preview-<?php echo $i++ ?>" src="{{$value['image_data']}}" width="40%" class="col-md-3">
+                                                                    </div>
+                                                            </div>
+                                                            @endforeach
+                                                            @else
                                                             <div class="form-group">
                                                                     <div class="img-previews">
                                                                         <img id="preview-0" src="#" width="40%" class="col-md-3">
                                                                     </div>
-                                                                </div>
+                                                            </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

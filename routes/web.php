@@ -371,7 +371,7 @@
         Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
-        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:prescreening,ao'], function() {
             Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
         });
 

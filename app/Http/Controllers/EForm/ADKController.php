@@ -612,6 +612,7 @@ class ADKController extends Controller
     public function postVerifikasi(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
+        // print_r($response);exit();
         $kk           = 0;
         $ktp          = 0;
         $ktp_pasangan = 0;
@@ -697,33 +698,78 @@ class ADKController extends Controller
         // dd($update_briguna);
         if ($update_briguna['code'] == '200') {
             if ($response['is_verified'] == 1) {
-                \Session::flash('success', 'Pengajuan berhasil diverifikasi, dokumen sudah lengkap');
-                return redirect()->route('adk.index');
+                return response()->json([
+                    'code'     => 200,
+                    'message'  => 'Pengajuan berhasil diverifikasi, dokumen sudah lengkap'
+                ]);
             } else {
-                \Session::flash('error', 'Pengajuan ditunda, karena dokumen verifikasi belum lengkap');
-                return redirect()->route('adk.index');
+                return response()->json([
+                    'code'     => 400,
+                    'message'  => 'Pengajuan ditunda, karena dokumen verifikasi belum lengkap'
+                ]);
             }
         } else {
-            \Session::flash('error', 'Pengajuan gagal diverifikasi');
-            return redirect()->route('adk.index');
+            return response()->json([
+                'code'     => 400,
+                'message'  => 'Pengajuan gagal diverifikasi'
+            ]);
         }
     }
 
     public function postApprove(Request $request) {
         $data = $this->getUser();
         $response = $request->all();
-        // verifikasi adk dibatalkan kirim ke brinet
-        if (strtolower($response['type']) == 'batal') {
-            $conten_putusan = [
-                'eform_id'    => $response['eform_id'],
-                "id_aplikasi" => $response['id_aplikasi'],
-                "uid"         => $response['uid'],
-                "flag_putusan"=> '2',
-                "catatan"     => $response['catat_adk'],
-                "pinca_name"    => $response['pinca_name'],
-                "pinca_position"=> $response['pinca_position']
-            ];
-            // print_r($conten_putusan);exit();
+        // print_r($response);exit();
+        // verifikasi adk dibatalkan kirim ke brinet atau kembali ke ao
+        if (strtolower($response['type']) == 'batal' || strtolower($response['type']) == 'kembali') {
+            if ($response['type'] == 'batal') {
+                $conten_putusan = [
+                    "eform_id"    => $response['eform_id'],
+                    "id_aplikasi" => $response['id_aplikasi'],
+                    "uid"         => $response['uid'],
+                    "flag_putusan"=> '2',
+                    "catatan"     => $response['catat_adk'],
+                    "is_send"     => 4,
+                    "tgl_pencairan" => date('Y-m-d H:i:s'),
+                    "catatan_adk" => $response['catat_adk'],
+                    "pinca_name"    => $response['pinca_name'],
+                    "pinca_position"=> $response['pinca_position']
+                ];
+
+                $update_data = [
+                    "eform_id"    => $response['eform_id'],
+                    "is_send"     => 4,
+                    "tgl_pencairan" => date('Y-m-d H:i:s'),
+                    "catatan_adk" => $response['catat_adk']
+                ];
+
+                $message = 'Pengajuan berhasil dibatalkan';
+                $message2= 'Pengajuan gagal dibatalkan';
+            } else {
+                $conten_putusan = [
+                    "eform_id"    => $response['eform_id'],
+                    "id_aplikasi" => $response['id_aplikasi'],
+                    "uid"         => $response['uid'],
+                    "flag_putusan"=> '5',
+                    "catatan"     => $response['catat_adk'],
+                    "is_send"     => 21,
+                    "tgl_pencairan" => date('Y-m-d H:i:s'),
+                    "catatan_adk" => $response['catat_adk'],
+                    "pinca_name"    => $response['pinca_name'],
+                    "pinca_position"=> $response['pinca_position']
+                ];
+
+                $update_data = [
+                    "eform_id"    => $response['eform_id'],
+                    "is_send"     => 21,
+                    "tgl_pencairan" => date('Y-m-d H:i:s'),
+                    "catatan_adk" => $response['catat_adk']
+                ];
+
+                $message = 'Pengajuan berhasil dikembalikan ke ao';
+                $message2= 'Pengajuan gagal dikembalikan ke ao';
+            }
+
             $putusan = Client::setEndpoint('api_las/index')
                     ->setHeaders(
                         [ 'Authorization' => $data['token'],
@@ -735,12 +781,6 @@ class ADKController extends Controller
                     ])
                     ->post('form_params');
 
-            $update_data = [
-                "eform_id"    => $response['eform_id'],
-                "is_send"     => 4,
-                "tgl_pencairan" => date('Y-m-d H:i:s'),
-                "catatan_adk" => $response['catat_adk']
-            ];
             if ($response['catat_adk'] == '') {
                 return response()->json([
                     'code'     => 400,
@@ -748,7 +788,7 @@ class ADKController extends Controller
                     'response' => ''
                 ]);
             }
-            // print_r($update_data);exit();
+
             $update_briguna = Client::setEndpoint('api_las/update')
                 ->setHeaders(
                     [ 'Authorization' => $data['token'],
@@ -761,14 +801,12 @@ class ADKController extends Controller
             if ($update_briguna['code'] == '200') {
                 return response()->json([
                     'code'     => 200,
-                    'message'  => 'Pengajuan berhasil dibatalkan',
-                    'response' => $update_briguna
+                    'message'  => $message
                 ]);
             } else {
                 return response()->json([
                     'code'     => 400,
-                    'message'  => 'Pengajuan gagal dibatalkan',
-                    'response' => $update_briguna
+                    'message'  => $message2
                 ]);
             }
         } else {
@@ -1391,7 +1429,6 @@ class ADKController extends Controller
     }
 
     function dataRequest($request) {
-        // print_r($request);exit();
         if (isset($request['data']['action']) == 'edit') {
             $imgReq  = $request['data'];
 

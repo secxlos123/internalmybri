@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12" align="center">
         <div class="card-box">
-            <form class="form-horizontal" role="form" action="{{route('verifikasi')}}" method="POST">
+            <form class="form-horizontal" role="form" method="POST" id="form-verifikasi">
                 {{ csrf_field() }}
                 <input type="hidden" id="pinca" value="{{$detail['pinca_name']}}">
                 <input type="hidden" id="pinca_posisi" value="{{$detail['pinca_position']}}">
@@ -53,7 +53,7 @@
                                         <input type="checkbox" name="ktp" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_ktp']?></td>
+                                <td><p id="lab-ktp"><?php echo $detail['catatan_ktp']?></p></td>
                                 <td align="center"><a href="javascript:void(0);" id="btn-ktp" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -84,7 +84,7 @@
                                         <input type="checkbox" name="npwp" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_npwp']?></td>
+                                <td><p id="lab-npwp"><?php echo $detail['catatan_npwp']?></p></td>
                                 <td align="center"><a href="#" id="btn-npwp" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -115,7 +115,7 @@
                                         <input type="checkbox" name="slip_gaji" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_gaji']?></td>
+                                <td><p id="lab-gaji"><?php echo $detail['catatan_gaji']?></p></td>
                                 <td align="center"><a href="#" id="btn-gaji" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -146,7 +146,7 @@
                                         <input type="checkbox" name="kk" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_kk']?></td>
+                                <td><p id="lab-kk"><?php echo $detail['catatan_kk']?></p></td>
                                 <td align="center"><a href="#" id="btn-kk" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -160,7 +160,7 @@
                                     <a href="<?php echo $detail['SK_AWAL']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['SK_AWAL']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } elseif(empty($detail['SK_AWAL'] || $detail['SK_AWAL'] == '' || $detail['SK_AWAL'] == 'null')) {?>
+                                    <?php } elseif(empty($detail['SK_AWAL']) || $detail['SK_AWAL'] == '' || $detail['SK_AWAL'] == 'null') {?>
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
@@ -177,7 +177,7 @@
                                         <input type="checkbox" name="sk_awal" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_sk_awal']?></td>
+                                <td><p id="lab-sk-awal"><?php echo $detail['catatan_sk_awal']?></p></td>
                                 <td align="center"><a href="#" id="btn-sk_awal" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -208,7 +208,7 @@
                                         <input type="checkbox" name="sk_akhir" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_sk_akhir']?></td>
+                                <td><p id="lab-sk-akhir"><?php echo $detail['catatan_sk_akhir']?></p></td>
                                 <td align="center"><a href="#" id="btn-sk_akhir" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -239,7 +239,7 @@
                                         <input type="checkbox" name="surat_rekomendasi" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_rekomendasi']?></td>
+                                <td><p id="lab-rekomendasi"><?php echo $detail['catatan_rekomendasi']?></p></td>
                                 <td align="center"><a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -273,7 +273,7 @@
                                         <input type="checkbox" name="skpu" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_skpu']?></td>
+                                <td><p id="lab-skpu"><?php echo $detail['catatan_skpu']?></p></td>
                                 <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -307,7 +307,7 @@
                                         <input type="checkbox" name="ktp_pasangan" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                                <td><p id="lab-couple-ktp"><?php echo $detail['catatan_couple_ktp']?></p></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -343,7 +343,7 @@
                                         <input type="checkbox" name="ktp_pasangan" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                                <td><p id="lab-couple-ktp"><?php echo $detail['catatan_couple_ktp']?></p></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -378,10 +378,8 @@
                                 <a href="#" class="thumbnail">
                                     <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
-                                <?php } ?>
-                            </td>
-                            <td>
-                                <?php
+                                <?php 
+                                    } 
                                     if (!empty($detail['lainnya3']) || $detail['lainnya3'] != '') {
                                         $lainnya3 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']);
                                         echo str_replace('-', ' ', $lainnya3['filename']);
@@ -393,8 +391,10 @@
                                 <a href="#" class="thumbnail">
                                     <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
-                                <?php 
-                                    }
+                                <?php } ?>
+                            </td>
+                            <td>
+                                <?php
                                     if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
                                         $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
                                         echo str_replace('-', ' ', $lainnya4['filename']);
@@ -406,10 +406,8 @@
                                 <a href="#" class="thumbnail">
                                     <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
-                                <?php } ?>
-                            </td>
-                            <td>
-                                <?php
+                                <?php 
+                                    }
                                     if (!empty($detail['lainnya5']) || $detail['lainnya5'] != '') {
                                         $lainnya5 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']);
                                         echo str_replace('-', ' ', $lainnya5['filename']);
@@ -423,6 +421,7 @@
                                 </a>
                                 <?php } ?>
                             </td>
+                            <td></td>
                             <td align="center">
                                 <?php 
                                     if (empty($detail['lainnya1']) || $detail['lainnya1'] == '') {
@@ -442,12 +441,13 @@
                                 <td>
                                     <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
                                 </td>
-                                <td>
-                                    <a href="#" class="btn btn-danger" id="btn-batal">Batal</a>
+                                <td align="center">
+                                    <a href="#" class="btn btn-danger" id="btn-batal">Batal</a><br><br>
+                                    <a href="#" class="btn btn-danger" id="btn-kembali">Kembali ke AO</a>
                                 </td>
                                 <td align="center">
-                                    <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
-                                    <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
+                                    <a href="#" class="btn btn-primary" id="btn-tunda">Tunda</a><br><br>
+                                    <a href="#" class="btn btn-primary" id="btn-verifikasi">Dokumen Lengkap</a>
                                 </td>
                             </tr>
                         @endif
