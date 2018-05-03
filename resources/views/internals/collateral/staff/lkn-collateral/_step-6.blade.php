@@ -74,6 +74,10 @@
                                 <a href="javascript:void(0)" class="btn btn-info" title="Tambah Foto" id="add_photo">+ Tambah Foto</a> 
                         </div>
                         @if(isset($collateral['ots_other']['images']))
+                        <i style="font-size: 11px; color: red;"><b>*Perhatian: Jika unggah Foto baru, maka Foto <!--Situasi Lapangan--> sebelumnya yang ada dibawah ini akan terhapus.</b> </i>
+                        <hr>
+                        <label class="col-md-12 pull-left">Foto Situasi Lapangan Sebelumnya :</label>
+                        <br>
                             <?php $i = 1; ?>
                             @foreach($collateral['ots_other']['images'] as $image => $value)
                                 <div class="col-md-4">
