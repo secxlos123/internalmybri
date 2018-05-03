@@ -622,7 +622,7 @@
                                                         <div class="col-md-12">
                                                             <label class="col-md-12 control-label">Foto Situasi Lapangan :</label>
                                                             @if(isset($collateral['ots_other']['images']))
-                                                            <?php $i = 1; ?>
+                                                            <?php $i = 0; ?>
                                                             @foreach($collateral['ots_other']['images'] as $image => $value)
                                                             <div class="form-group">
                                                                     <div class="img-previews">
