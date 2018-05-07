@@ -72,9 +72,9 @@ if($form['ref_number']!=null || $form['ref_number']!=''){
         $form['request_amount'] = 'Rp ' . number_format($form['nominal'], 2, ",", ".");
 
         $form['aging'] = '<b>'.$form['aging']['waktu_aging'].'</b>';
-        // if(empty($form['aging']['aging'])){
-        //     $form['list_aging'] = '-';
-        // }else{
+        if(empty($form['aging']['aging'])){
+            $form['list_aging'] = '-';
+        }else{
             $list_aging = array();
             $x=0;
             if(count($form['aging']['aging']>0)){
@@ -84,20 +84,20 @@ if($form['ref_number']!=null || $form['ref_number']!=''){
             }
             $form['list_aging'] = $list_aging;
             }
-        // }
+        }
         $form['catatan_analis'] = $form['catatan_analis'];
         $form['catatan_reviewer'] = $form['catatan_reviewer'];
         $form['penilaian_agunan'] = $form['penilaian_agunan'];
         $form['catatan_tolak'] = $form['catatan_tolak'];
-        $disbushr = array();
-        $y=0;
-        if(count($form['disbushr']>0)){
-            foreach ($form['disbushr'] as $key => $value) {
-                $disbushr = $form['disbushr'][$y];
-                $y++;
-        }
-        $form['list_disbushr'] = $disbushr;
-    }
+    //     $disbushr = array();
+    //     $y=0;
+    //     if(count($form['disbushr']>0)){
+    //         foreach ($form['disbushr'] as $key => $value) {
+    //             $disbushr = $form['disbushr'][$y];
+    //             $y++;
+    //     }
+    //     $form['list_disbushr'] = $disbushr;
+    // }
         // $form['prescreening_status'] = strtoupper($form['prescreening_status']); //sdhasjd asdjask asdjkas asjkdb k
         $form['ref_number'] = '<b>'.strtoupper($form['ref_number']).'</b>';
 

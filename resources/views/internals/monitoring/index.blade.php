@@ -307,7 +307,7 @@ $(document).ready(function(){
             {   data: 'recomendation', name: 'recomendation', bSortable: false  },
             {   data: 'catatan_reviewer', name: 'catatan_reviewer', bSortable: false  },
             {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
-            {   data: 'list_disbushr', name: 'list_disbushr', bSortable: false },
+            {   data: 'catatan_reviewer', name: 'catatan_reviewer', bSortable: false },
 ],
 });
             $('#datatable tbody').on('click', 'td.details2-control', function () {
