@@ -14,7 +14,7 @@ class MonitoringController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. //sfsdjfg fsdfu sdfjsdf fu
      *
      * @return \Illuminate\Http\Response
      */

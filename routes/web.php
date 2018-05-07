@@ -539,7 +539,7 @@
         //ini routing untuk monitoring
         Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
         
-
+//dfjsjdfsdj sdfjds
         /* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
