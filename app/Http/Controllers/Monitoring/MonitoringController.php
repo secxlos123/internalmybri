@@ -98,7 +98,7 @@ if($form['ref_number']!=null || $form['ref_number']!=''){
     //             $disbushr = $form['disbushr'][$y];
     //             $y++;
     //     }
-    //     $form['list_disbushr'] = $disbushr;
+        $form['list_disbushr'] = "-";
     // }
         // $form['prescreening_status'] = strtoupper($form['prescreening_status']); //sdhasjd asdjask asdjkas asjkdb k
         $form['ref_number'] = '<b>'.strtoupper($form['ref_number']).'</b>';

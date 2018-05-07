@@ -24,6 +24,13 @@ td.details2-control {
 tr.showclass{
     display:table-row;
 }
+td.details4-control {
+    cursor: pointer;
+    color: #17A589;
+    font-weight: bold;
+}
+tr.shown td.details4-control {
+}
 tr.shown td.details2-control {
 }
 
@@ -83,7 +90,7 @@ tr.shown td.details3-control {
                             <div class="input-group">
                                <select class="select2">
                                <option>- Pilih Developer -</option>
-                               <option>Rumah 123</option>
+                               <option>Rumah.com</option>
                                </select>
                             </div>
                         </div>
@@ -260,6 +267,21 @@ $(document).ready(function(){
             return n;
         }
 
+        function detail_analis(d){
+            var n = '';
+            n = '<table width="1000px" cellpadding="2" cellspacing="0" border="0" style="padding-left:50px;">'+
+            '<tr>'+
+            '<td width="50%">List Aging</td>'+
+            '<td width="50%">:  '+d.list_aging+'</td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td width="50%">Total Aging</td>'+
+            '<td width="50%">:  '+d.aging+'</td>'+
+            '</tr>'+
+            '</table>';
+            return n;
+        }
+
         function reloadData1(from, to, status)
         {
             table1 = $('#datatable').DataTable({
@@ -307,9 +329,14 @@ $(document).ready(function(){
             {   data: 'prescreening_status', name: 'prescreening_status', className: 'tebal',  bSortable: false  },
             {   data: 'status_sekarang', name: 'status_sekarang', bSortable: false  },
             {   data: 'recomendation', name: 'recomendation', bSortable: false  },
-            {   data: 'catatan_reviewer', name: 'catatan_reviewer', bSortable: false  },
-            {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
-            {   data: 'catatan_reviewer', name: 'catatan_reviewer', bSortable: false },
+            {   
+                "className":      'details4-control',
+                "orderable":      false,
+                "data":           'catatan_reviewer',
+                "defaultContent": ''  
+            },
+            {   data: 'plafond_usulan', name: 'plafond_usulan', bSortable: false },
+            {   data: 'list_disbushr', name: 'list_disbushr', bSortable: false },
 ],
 });
             $('#datatable tbody').on('click', 'td.details2-control', function () {
@@ -321,6 +348,9 @@ $(document).ready(function(){
             
             if(row.child().hasClass("showclass2")){
                 row.child().removeClass("showclass2");
+                row.child(detail(row.data()),"showclass1").show();
+            }else if(row.child().hasClass("showclass3")){
+                row.child().removeClass("showclass3");
                 row.child(detail(row.data()),"showclass1").show();
             }
             else{
@@ -345,6 +375,9 @@ $(document).ready(function(){
             if(row.child().hasClass("showclass1")){
                 row.child().removeClass("showclass1");
                 row.child(detail2(row.data()),"showclass2").show();
+            }else if(row.child().hasClass("showclass3")){
+                row.child().removeClass("showclass3");
+                row.child(detail2(row.data()),"showclass2").show();
             }
             else{
                 row.child(detail2(row.data())).hide();
@@ -356,6 +389,32 @@ $(document).ready(function(){
             //$(".showclass1").removeClass("showclass1");
             //$(".showclass2").removeClass("showclass2");
             row.child(detail2(row.data()),"showclass2").show();
+        }
+    } );
+            $('#datatable tbody').on('click', 'td.details4-control', function () {
+                var tr = $(this).parents('tr');
+                var row = table1.row(tr);
+                var data = table1.row().data();
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+           
+            if(row.child().hasClass("showclass1")){
+                row.child().removeClass("showclass1");
+                row.child(detail_analis(row.data()),"showclass3").show();
+            }else if(row.child().hasClass("showclass2")){
+                row.child().removeClass("showclass2");
+                row.child(detail_analis(row.data()),"showclass3").show();
+            }
+            else{
+                row.child(detail_analis(row.data())).hide();
+                row.child().removeClass("showclass3");
+            }
+        }
+        else {
+            //$(".showclass1,showclass2").hide();
+            //$(".showclass1").removeClass("showclass1");
+            //$(".showclass2").removeClass("showclass2");
+            row.child(detail_analis(row.data()),"showclass3").show();
         }
     } );
         }
