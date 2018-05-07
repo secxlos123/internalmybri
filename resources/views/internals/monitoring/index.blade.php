@@ -125,6 +125,7 @@ tr.shown td.details3-control {
                                         <th width="50px;">Tanggal Pengajuan</th>
                                         <th width="30px;">Aging</th>
                                         <th width="70px;">Status prescreening</th>
+                                        <th>Status</th>
                                         <th>Prakarsa</th>
                                         <th>Analisa</th>
                                         <th>Putusan</th>
@@ -304,6 +305,7 @@ $(document).ready(function(){
                 "defaultContent": ''
             },
             {   data: 'prescreening_status', name: 'prescreening_status', className: 'tebal',  bSortable: false  },
+            {   data: 'status_sekarang', name: 'status_sekarang', bSortable: false  },
             {   data: 'recomendation', name: 'recomendation', bSortable: false  },
             {   data: 'catatan_reviewer', name: 'catatan_reviewer', bSortable: false  },
             {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
