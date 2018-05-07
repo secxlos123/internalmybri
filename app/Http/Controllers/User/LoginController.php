@@ -33,7 +33,6 @@ class LoginController extends Controller
             'pn' => $request->pn,
             'password' => $request->password
         ];
-
         $client = Client::setEndpoint('auth/login')
             ->setHeaders([
                 'pn' => $request->pn
@@ -43,7 +42,7 @@ class LoginController extends Controller
             ])
             ->setBody($data)
             ->post();
-
+// print_r($client);die();
         if(env('APP_ENV') == 'local'){
             if($request->pn == '66777'){
                 $role = ['role' => 'ao'];

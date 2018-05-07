@@ -8,7 +8,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Jenis Surat Tanah * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('letter[type]', array("" => "", 
+                                {!! Form::select('letter[type]', array($collateral['ots_letter']['type'] ? $collateral['ots_letter']['type'] : "" => $collateral['ots_letter']['type'] ? $collateral['ots_letter']['type'] : "", 
                                     "Sertifikat" => "Sertifikat", 
                                     "SKPT" => "SKPT", 
                                     "Model A" => "Model A",
@@ -23,7 +23,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Hak Atas Tanah * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('letter[authorization_land]', array("" => "", 
+                                {!! Form::select('letter[authorization_land]', array($collateral['ots_letter']['authorization_land'] ? $collateral['ots_letter']['authorization_land'] : "" => $collateral['ots_letter']['authorization_land'] ? $collateral['ots_letter']['authorization_land'] : "", 
                                     "Sertifikat Hak Milik" => "Sertifikat Hak Milik", 
                                     "Sertifikat Hak Guna Bangunan" => "Sertifikat Hak Guna Bangunan", 
                                     "Sertifikat Hak Guna Usaha" => "Sertifikat Hak Guna Usaha",
@@ -37,7 +37,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Kecocokan Data Dengan Kantor Anggaran/BPN * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('letter[match_bpn]', array("" => "", 
+                                {!! Form::select('letter[match_bpn]', array($collateral['ots_letter']['match_bpn'] ? $collateral['ots_letter']['match_bpn'] : "" => $collateral['ots_letter']['match_bpn'] ? $collateral['ots_letter']['match_bpn'] : "", 
                                     "Cocok" => "Cocok", 
                                     "Tidak" => "Tidak"), 
                                     old('letter.match_bpn'), [
@@ -49,7 +49,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Kecocokan Pemeriksaan Lokasi Tanah Dilapangan * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('letter[match_area]', array("" => "", 
+                                {!! Form::select('letter[match_area]', array($collateral['ots_letter']['match_bpn'] ? $collateral['ots_letter']['match_area'] : "" => $collateral['ots_letter']['match_bpn'] ? $collateral['ots_letter']['match_area'] : "", 
                                     "Cocok" => "Cocok", 
                                     "Tidak" => "Tidak"), 
                                     old('letter.match_area'), [
@@ -61,7 +61,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Kecocokan Batas Tanah Dilapangan * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('letter[match_limit_in_area]', array("" => "", 
+                                {!! Form::select('letter[match_limit_in_area]', array($collateral['ots_letter']['match_bpn'] ? $collateral['ots_letter']['match_limit_in_area'] : "" => $collateral['ots_letter']['match_bpn'] ? $collateral['ots_letter']['match_limit_in_area'] : "", 
                                     "Cocok" => "Cocok", 
                                     "Tidak" => "Tidak"), 
                                     old('letter.match_limit_in_area'), [
@@ -74,7 +74,7 @@
                             <label class="col-md-4 control-label">Luas Tanah Berdasarkan Surat Tanah * :</label>
                             <div class="col-md-8">
                                 <div class="input-group" style="width: 100%;">
-                                    <input type="text" class="form-control numericOnly" name="letter[surface_area_by_letter]" maxlength="5" value="{{old('letter.surface_area_by_letter')}}" id="surface_area_by_letter">
+                                    <input type="text" class="form-control numericOnly" name="letter[surface_area_by_letter]" maxlength="5" value="{{ $collateral['ots_letter']['surface_area_by_letter'] ? substr($collateral['ots_letter']['surface_area_by_letter'], 0, -3) : old('letter.surface_area_by_letter')}}" id="surface_area_by_letter">
                                     <span class="input-group-addon has-ket-input">M<sup>2</sup></span>
                                 </div>
                             </div>
@@ -86,14 +86,14 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">No Surat Tanah * :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[number]" maxlength="25" value="{{old('letter.number')}}" id="letter_number">
+                            <input type="text" class="form-control" name="letter[number]" maxlength="25" value="{{ $collateral['ots_letter']['number'] ? $collateral['ots_letter']['number'] : old('letter.number')}}" id="letter_number">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Tanggal Surat Tanah * :</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" class="form-control datepicker-autoclose" name="letter[date]" value="{{old('letter.date')}}" id="letter_date">
+                                <input type="text" class="form-control datepicker-autoclose" name="letter[date]" value="{{$collateral['ots_letter']['date'] ? $collateral['ots_letter']['date'] : old('letter.date')}}" id="letter_date">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -101,14 +101,14 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Atas Nama * :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[on_behalf_of]" maxlength="25" value="{{old('letter.on_behalf_of')}}" id="letter_on_behalf_on">
+                            <input type="text" class="form-control" name="letter[on_behalf_of]" maxlength="25" value="{{$collateral['ots_letter']['on_behalf_of'] ? $collateral['ots_letter']['on_behalf_of']: old('letter.on_behalf_of')}}" id="letter_on_behalf_on">
                         </div>
                     </div>
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Masa Hak tanah * :</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" name="letter[duration_land_authorization]" class="form-control datepicker-autoclose" value="{{old('letter.duration_land_authorization')}}" id="letter_duration">
+                                <input type="text" name="letter[duration_land_authorization]" class="form-control datepicker-autoclose" value="{{$collateral['ots_letter']['duration_land_authorization'] ? $collateral['ots_letter']['duration_land_authorization'] :old('letter.duration_land_authorization')}}" id="letter_duration">
                                 <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Nama Kantor Anggaran/BPN * :</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="letter[bpn_name]" maxlength="50" value="{{old('letter.bpn_name')}}" id="letter_bpn_name">
+                            <input type="text" class="form-control" name="letter[bpn_name]" maxlength="50" value="{{$collateral['ots_letter']['bpn_name'] ? $collateral['ots_letter']['bpn_name'] : old('letter.bpn_name')}}" id="letter_bpn_name">
                         </div>
                     </div>
                 </div>

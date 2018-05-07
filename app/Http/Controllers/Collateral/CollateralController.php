@@ -316,6 +316,7 @@ class CollateralController extends Controller
             $type = '';
             $collateral = $this->getDetail($dev_id, $prop_id, $data);
         }
+        // dd($collateral);
         return view('internals.collateral.manager.approval-collateral', compact('data', 'collateral', 'type', 'detail', 'customer'));
     }
 

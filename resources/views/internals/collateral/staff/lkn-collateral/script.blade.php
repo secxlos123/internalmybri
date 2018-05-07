@@ -181,6 +181,9 @@
             var districts = $('#districts').val();
 
             //step8
+            // console.log("================STEP 8=================");
+            // console.log("LIQUIDATION REALIZATION : "+$('#liquidation_realization').val());
+            // console.log("APPRAISAL BY : "+$('.appraisal_by').find("option:selected").text() ? $('.appraisal_by').find("option:selected").text() : null);
             var liquidation_realization = $('#liquidation_realization').val();
             var fair_market = $('#fair_market').val();
             var liquidation = $('#liquidation').val();
@@ -343,16 +346,20 @@
             $("#detail-collateral-modal #fair_market_projection").html(fair_market_projection);
             $("#detail-collateral-modal #liquidation_projection").html(liquidation_projection);
             $("#detail-collateral-modal #njop").html(njop);
-            $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
-            if(appraisal_by != "Bank"){
-                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
+            
+            $("#detail-collateral-modal #date_assessment").html(date_assessment); //ada
+            $("#detail-collateral-modal #type_binding").html(type_binding); //ada
+            $("#detail-collateral-modal #binding_number").html(binding_number); //ada
+            $("#detail-collateral-modal #binding_value").html(binding_value); //ada
+            if(appraisal_by !== "Lembaga Penilai"){
+                  $("#detail-collateral-modal .independent_appraiser").hide();
+                  $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
+                  // console.log("MASUK LOGIC APPRAISAL BY :"+ appraisal_by);
             }else{
-                  $("#detail-collateral-modal .independent_appraiser").parent().parent().hide();
+                  $("#detail-collateral-modal #independent_appraiser").html(independent_appraiser);
+                  $("#detail-collateral-modal #appraisal_by").html(appraisal_by);
+                  // console.log("TIDAK MASUK LOGIC APPRAISAL BY :"+ appraisal_by);
             }
-            $("#detail-collateral-modal #date_assessment").html(date_assessment);
-            $("#detail-collateral-modal #type_binding").html(type_binding);
-            $("#detail-collateral-modal #binding_number").html(binding_number);
-            $("#detail-collateral-modal #binding_value").html(binding_value);
 
             //step9
            $("#detail-collateral-modal #certificate_status").html(certificate_status);

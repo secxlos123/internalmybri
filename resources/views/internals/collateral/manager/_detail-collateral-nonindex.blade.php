@@ -412,7 +412,7 @@
                             @include('internals.eform.approval._lkn-mutation')
                         </div>
                         @endif
-                        @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
+                        @if($collateral['status_property'] == "1" && $collateral['developer_name'] == "Non Kerja Sama" || $collateral['status_property'] == "2" && $collateral['developer_name'] == "Non Kerja Sama"  )
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-investigate')
                         </div>
