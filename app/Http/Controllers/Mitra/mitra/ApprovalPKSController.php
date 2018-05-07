@@ -36,13 +36,23 @@ class ApprovalPKSController extends Controller
 					'id_header' => $id_header
 				])
 				->post();
+		$dataperjanjian = Client::setEndpoint('getregistrasi_perjanjian')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'id_header' => $id_header
+				])
+				->post();
+		$data = $this->getUser();
 		$view = Client::setEndpoint('GetView')
 				->setHeaders([
 					'Authorization' => $data['token'],
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'form' => 'approval_simpanan'
+					'form' => 'registrasi_perjanjian'
 				])
 				->post();
 		$view = $view['contents'];
@@ -52,11 +62,11 @@ class ApprovalPKSController extends Controller
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'form' => 'approval_pinjaman'
+					'form' => 'registrasi_perjanjian2'
 				])
-				->post();		
+				->post();
 		$view2 = $view2['contents'];
-		return view('internals.mitra.mitra.approval_mitra_pks',  compact('data','view','view2','mitra_list'));
+		return view('internals.mitra.mitra.approval_mitra_pks',  compact('data','view','view2','mitra_list','dataperjanjian'));
 		}
     }
 	
@@ -107,7 +117,7 @@ class ApprovalPKSController extends Controller
 					'approval' => $BaseRequest
 				])
 				->post();
-		header("Location: ".env('APP_URL')."/calon_mitra?i=".base64_encode($client['message'])."&k=".base64_encode($client['contents']));
+		header("Location: ".env('APP_URL')."/approval_mitra_pks?i=".base64_encode($client['message'])."&k=".base64_encode($client['contents']));
 			die();
 		
 		}

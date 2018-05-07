@@ -114,11 +114,51 @@ class AuditRailController extends Controller
 
     public function getDataArray($dataArray)
     {
+        // \Log::info($dataArray);
         $form = '';
         if (!empty($dataArray)) {
             foreach ($dataArray as $key => $value) {
                 if (!empty($key) && !empty($value)) {
-                    if (is_array($value)) {
+                    if ($key == 'status_property' && $value == '1'){
+                        $form .= $key . ' : ' . 'Baru <br/>';
+                    } else if ($key == 'status_property' && $value == '2'){
+                        $form .= $key . ' : ' . 'Secondary <br/>';
+                    } else if ($key == 'status_property' && $value == '3'){
+                        $form .= $key . ' : ' . 'Refinancing <br/>';
+                    } else if ($key == 'status_property' && $value == '4'){
+                        $form .= $key . ' : ' . 'Renovasi <br/>';
+                    } else if ($key == 'status_property' && $value == '5'){
+                        $form .= $key . ' : ' . 'Top Up <br/>';
+                    } else if ($key == 'status_property' && $value == '6'){
+                        $form .= $key . ' : ' . 'Take Over <br/>';
+                    } else if ($key == 'status_property' && $value == '7'){
+                        $form .= $key . ' : ' . 'Take Over Top Up <br/>';
+                    } else if ($key == 'status_property' && $value == '8'){
+                        $form .= $key . ' : ' . 'Take Over Account In House (Cash Bertahap) <br/>';
+                    } else if ($key == 'status' && $value == '1'){
+                        $form .= $key . ' : ' . 'Belum Menikah <br/>';
+                    } else if ($key == 'status' && $value == '2'){
+                        $form .= $key . ' : ' . 'Menikah <br/>';
+                    } else if ($key == 'status' && $value == '3'){
+                        $form .= $key . ' : ' . 'Janda/ Duda <br/>';
+                    } else if ($key == 'bound_project' && $value == '1'){
+                        $form .= ucwords($key).'_Name' . ' : ' . 'Terikat Proyek <br/>';
+                    } else if ($key == 'bound_project' && $value == '2'){
+                        $form .= $key . ' : ' . 'Tidak Terikat Proyek <br/>';
+                    } else if ($key == 'prescreening_status' && $value == 2){
+                        $form .= 'Prescreening Warna' . ' : ' . 'Kuning <br/>';
+                    } else if ($key == 'prescreening_status' && $value == 1){
+                        $form .= 'Prescreening Warna' . ' : ' . 'Hijau <br/>';
+                    } else if ($key == 'prescreening_status' && $value == 3){
+                        $form .= 'Prescreening Warna' . ' : ' . 'Merah <br/>';
+                    } else if ($key == 'is_screening' && $value == 1){
+                        $form .= 'Keterangan Prescreening Status' . ' : ' . 'Sudah Prescreening <br/>';
+                    } else if ($key == 'is_available' && $value == true){
+                        $form .= 'Ketersediaan Unit' . ' : ' . 'Tersedia <br/>';
+                    } else if ($key == 'is_available' && $value == false){
+                        $form .= 'Ketersediaan Unit' . ' : ' . 'Tidak Tersedia <br/>';
+                    }
+                    else if (is_array($value)) {
                         $value = json_encode($value, JSON_PRETTY_PRINT);
                     }
                     $data = ucwords($key) . ' : ' . ucwords($value);
@@ -321,7 +361,7 @@ class AuditRailController extends Controller
             $form['modul_name'] = ucwords($form['modul_name']);
             $form['old_values'] = $this->getDataArray($form['old_values']);
             $form['new_values'] = $this->getDataArray($form['new_values']);
-            $form['action_location'] = $this->getDataArray(json_decode($form['action_location']));
+
             //get address location
             $client = new \GuzzleHttp\Client();
             try {
@@ -338,6 +378,7 @@ class AuditRailController extends Controller
                 }
 
             } catch (\Exception $e) {
+                $form['action_location'] = $this->getDataArray(json_decode($form['action_location']));
             }
 
             $audits['contents']['data'][$key] = $form;

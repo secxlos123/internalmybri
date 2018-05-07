@@ -13,6 +13,33 @@
         .fc-time{
           display : none !important;
         }
+        .fc-corner-right{
+            background-color:/*#4682B4*/#1E90FF;
+        }
+        .fc-corner-left{
+            background-color:/*#4682B4*/#1E90FF;
+        }
+        .fc-icon-right-single-arrow{
+            color: white;
+        }
+        .fc-icon-left-single-arrow{
+            color: white;
+        }
+        .fc-corner-right:hover{
+            background-color: orange;
+            color: white;
+        }
+        .fc-corner-left:hover{
+            background-color: orange;
+            color: white;
+        }
+        .fc-content:hover{
+            background-color: orange;
+            color: white;
+        }
+        .fc-today-button{
+            color: white;
+        }
     </style>
     <script type="text/javascript">
       var aoUserID = '{{ $data['pn'] }}'

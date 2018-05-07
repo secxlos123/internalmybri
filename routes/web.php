@@ -281,6 +281,7 @@
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
+        Route::resource('monitoring', 'Monitoring\MonitoringController');
 
 		/* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
@@ -368,7 +369,7 @@
         Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
-        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:prescreening,ao'], function() {
             Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
         });
 
@@ -535,6 +536,8 @@
         Route::get('screening', 'Screening\ScreeningController@datatables');
 
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
+        Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
+        
 
         /* DirRpc */
 
@@ -546,7 +549,6 @@
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
-
         /*Auditrail*/
             Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //
