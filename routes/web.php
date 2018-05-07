@@ -536,6 +536,7 @@
         Route::get('screening', 'Screening\ScreeningController@datatables');
 
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
+        //ini routing untuk monitoring
         Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
         
 
