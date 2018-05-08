@@ -271,12 +271,16 @@ $(document).ready(function(){
             var n = '';
             n = '<table width="1000px" cellpadding="2" cellspacing="0" border="0" style="padding-left:50px;">'+
             '<tr>'+
-            '<td width="50%">List Aging</td>'+
-            '<td width="50%">:  '+d.list_aging+'</td>'+
+            '<td width="50%">Cacatan Analis</td>'+
+            '<td width="50%">:  '+d.catatan_analis+'</td>'+
             '</tr>'+
             '<tr>'+
-            '<td width="50%">Total Aging</td>'+
-            '<td width="50%">:  '+d.aging+'</td>'+
+            '<td width="50%">Catatan Reviewer</td>'+
+            '<td width="50%">:  '+d.catatan_reviewer+'</td>'+
+            '</tr>'+
+            '<tr>'+
+            '<td width="50%">Penilaian Agunan</td>'+
+            '<td width="50%">:  '+d.penilaian_agunan+'</td>'+
             '</tr>'+
             '</table>';
             return n;
@@ -332,7 +336,7 @@ $(document).ready(function(){
             {   
                 "className":      'details4-control',
                 "orderable":      false,
-                "data":           'catatan_reviewer',
+                "data":           'detail',
                 "defaultContent": ''  
             },
             {   data: 'plafond_usulan', name: 'plafond_usulan', bSortable: false },

@@ -86,6 +86,7 @@ if($form['ref_number']!=null || $form['ref_number']!=''){
             }
         }
         $form['catatan_analis'] = $form['catatan_analis'];
+        $form['detail'] = $form['catatan_analis'].'<br>'." lihat ";
         $form['catatan_reviewer'] = $form['catatan_reviewer'];
         $form['penilaian_agunan'] = $form['penilaian_agunan'];
         $form['catatan_tolak'] = $form['catatan_tolak'];
