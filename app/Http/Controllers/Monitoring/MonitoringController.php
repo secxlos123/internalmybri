@@ -72,19 +72,21 @@ if($form['ref_number']!=null || $form['ref_number']!=''){
         $form['request_amount'] = 'Rp ' . number_format($form['nominal'], 2, ",", ".");
 
         $form['aging'] = '<b>'.$form['aging']['waktu_aging'].'</b>';
-        if(empty($form['aging']['aging'])){
-            $form['list_aging'] = '-';
-        }else{
-            $list_aging = array();
+        // if(empty($form['aging']['aging'])){
+        //     $form['list_aging'] = '-';
+        // }else{
+            // $list_aging = array();
             $x=0;
             if(count($form['aging']['aging']>0)){
             foreach ($form['aging']['aging'] as $key => $value) {
-                $list_aging = $form['aging']['aging']['x'.$x]['data_action'];
+                $form['list_aging'] = $form['aging']['aging']['x'.$x]['data_action'];
                 $x++;
             }
-            $form['list_aging'] = $list_aging;
+            // $form['list_aging'] = $list_aging;
+            }else{
+                $form['list_aging'] = '-';
             }
-        }
+        // }
         $form['catatan_analis'] = $form['catatan_analis'];
         $form['catatan_reviewer'] = $form['catatan_reviewer'];
         $form['penilaian_agunan'] = $form['penilaian_agunan'];
