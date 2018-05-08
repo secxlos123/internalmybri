@@ -9,7 +9,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
-                                {!! Form::select('nine[certificate_status]', array("" => "", 
+                                {!! Form::select('nine[certificate_status]', array($collateral['ots_nine']['certificate_status'] ? $collateral['ots_nine']['certificate_status'] :"" => $collateral['ots_nine']['certificate_status'] ? $collateral['ots_nine']['certificate_status'] :"", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
                                     "Belum Diberikan" => "Belum Diberikan"), 
                                     old('nine.certificate_status'), [
@@ -23,7 +23,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date]" value="{{old('nine.receipt_date')}}" id="receipt_date">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date]" value="{{$collateral['ots_nine']['receipt_date'] ? $collateral['ots_nine']['receipt_date'] : old('nine.receipt_date')}}" id="receipt_date">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -31,14 +31,14 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information]" id="information">{{old('nine.information')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information]" id="information">{{$collateral['ots_nine']['information'] ? $collateral['ots_nine']['information'] : old('nine.information')}}</textarea>
                             </div>
                         </div>
                         <h5>Dokumen Notaris Developer :</h5>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
-                                {!! Form::select('nine[notary_status]', array("" => "", 
+                                {!! Form::select('nine[notary_status]', array($collateral['ots_nine']['notary_status'] ? $collateral['ots_nine']['notary_status'] : "" => $collateral['ots_nine']['notary_status'] ? $collateral['ots_nine']['notary_status'] : "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
                                     "Belum Diberikan" => "Belum Diberikan"), 
                                     old('nine.notary_status'), [
@@ -52,7 +52,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_notary]" value="{{old('nine.receipt_date_notary')}}" id="receipt_date_notary">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_notary]" value="{{$collateral['ots_nine']['receipt_date_notary'] ? $collateral['ots_nine']['receipt_date_notary'] : old('nine.receipt_date_notary')}}" id="receipt_date_notary">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information_notary]" id="information_notary">{{old('nine.information_notary')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information_notary]" id="information_notary">{{ $collateral['ots_nine']['information_notary'] ? $collateral['ots_nine']['information_notary'] : old('nine.information_notary')}}</textarea>
                             </div>
                         </div>
                         <h5>Dokumen Take Over :</h5>
@@ -68,7 +68,7 @@
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
                                 
-                                {!! Form::select('nine[takeover_status]', array("" => "", 
+                                {!! Form::select('nine[takeover_status]', array($collateral['ots_nine']['takeover_status'] ? $collateral['ots_nine']['takeover_status'] : "" => $collateral['ots_nine']['takeover_status'] ? $collateral['ots_nine']['takeover_status'] : "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
                                     "Belum Diberikan" => "Belum Diberikan"), 
                                     old('nine.takeover_status'), [
@@ -82,7 +82,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_takeover]" value="{{old('nine.receipt_date_takeover')}}" id="receipt_date_takeover">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_takeover]" value="{{$collateral['ots_nine']['receipt_date_takeover'] ? $collateral['ots_nine']['receipt_date_takeover'] : old('nine.receipt_date_takeover')}}" id="receipt_date_takeover">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information_takeover]" id="information_takeover">{{old('nine.information_takeover')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information_takeover]" id="information_takeover">{{$collateral['ots_nine']['information_takeover'] ? $collateral['ots_nine']['information_takeover'] : old('nine.information_takeover')}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
-                                {!! Form::select('nine[credit_status]', array("" => "", 
+                                {!! Form::select('nine[credit_status]', array($collateral['ots_nine']['credit_status'] ? $collateral['ots_nine']['credit_status'] : "" => $collateral['ots_nine']['credit_status'] ? $collateral['ots_nine']['credit_status'] : "", 
                                         "Sudah Diberikan" => "Sudah Diberikan", 
                                         "Belum Diberikan" => "Belum Diberikan"), 
                                         old('nine.credit_status'), [
@@ -115,7 +115,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_credit]" value="{{old('nine.receipt_date_credit')}}" id="receipt_date_credit">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_credit]" value="{{$collateral['ots_nine']['receipt_date_credit'] ? $collateral['ots_nine']['receipt_date_credit'] : old('nine.receipt_date_credit')}}" id="receipt_date_credit">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -123,14 +123,14 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information_credit]" id="information_credit">{{old('nine.information_credit')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information_credit]" id="information_credit">{{$collateral['ots_nine']['information_credit'] ? $collateral['ots_nine']['information_credit'] : old('nine.information_credit')}}</textarea>
                             </div>
                         </div>
                         <h5>SKMHT</h5>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
-                                {!! Form::select('nine[skmht_status]', array("" => "", 
+                                {!! Form::select('nine[skmht_status]', array($collateral['ots_nine']['skmht_status'] ? $collateral['ots_nine']['skmht_status'] : "" => $collateral['ots_nine']['skmht_status'] ? $collateral['ots_nine']['skmht_status'] : "", 
                                         "Sudah Diberikan" => "Sudah Diberikan", 
                                         "Belum Diberikan" => "Belum Diberikan"), 
                                         old('nine.skmht_status'), [
@@ -144,7 +144,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_skmht]" value="{{old('nine.receipt_date_skmht')}}" id="receipt_date_skmht">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_skmht]" value="{{$collateral['ots_nine']['receipt_date_skmht'] ? $collateral['ots_nine']['receipt_date_skmht'] : old('nine.receipt_date_skmht')}}" id="receipt_date_skmht">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -152,14 +152,14 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information_skmht]" id="information_skmht">{{old('nine.information_skmht')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information_skmht]" id="information_skmht">{{ $collateral['ots_nine']['information_skmht'] ? $collateral['ots_nine']['information_skmht'] : old('nine.information_skmht')}}</textarea>
                             </div>
                         </div>
                         <h5>IMB</h5>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
-                                {!! Form::select('nine[imb_status]', array("" => "", 
+                                {!! Form::select('nine[imb_status]', array($collateral['ots_nine']['imb_status'] ? $collateral['ots_nine']['imb_status'] : "" => $collateral['ots_nine']['imb_status'] ? $collateral['ots_nine']['imb_status'] : "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
                                     "Belum Diberikan" => "Belum Diberikan"), 
                                     old('nine.imb_status'), [
@@ -173,7 +173,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_imb]" value="{{old('nine.receipt_date_imb')}}" id="receipt_date_imb">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_imb]" value="{{ $collateral['ots_nine']['receipt_date_imb'] ? $collateral['ots_nine']['receipt_date_imb'] : old('nine.receipt_date_imb')}}" id="receipt_date_imb">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -181,14 +181,14 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information_imb]" id="information_imb">{{old('nine.information_imb')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information_imb]" id="information_imb">{{$collateral['ots_nine']['information_imb'] ? $collateral['ots_nine']['information_imb'] : old('nine.information_imb')}}</textarea>
                             </div>
                         </div>
                         <h5>SHGB</h5>
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Status :</label>
                             <div class="col-md-8">
-                                {!! Form::select('nine[shgb_status]', array("" => "", 
+                                {!! Form::select('nine[shgb_status]', array($collateral['ots_nine']['shgb_status'] ? $collateral['ots_nine']['certificate_status'] : "" => $collateral['ots_nine']['certificate_status'] ? $collateral['ots_nine']['certificate_status'] : "", 
                                     "Sudah Diberikan" => "Sudah Diberikan", 
                                     "Belum Diberikan" => "Belum Diberikan"), 
                                     old('nine.shgb_status'), [
@@ -202,7 +202,7 @@
                             <label class="col-md-4 control-label">Tanggal Penelitian :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
-                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_shgb]" value="{{old('nine.receipt_date_shgb')}}" id="receipt_date_shgb">
+                                    <input type="text" class="form-control datepicker-maxdate" name="nine[receipt_date_shgb]" value="{{$collateral['ots_nine']['receipt_date_shgb'] ? $collateral['ots_nine']['receipt_date_shgb'] : old('nine.receipt_date_shgb')}}" id="receipt_date_shgb">
                                     <span class="input-group-addon b-0"><i class="mdi mdi-calendar"></i></span>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Keterangan :</label>
                             <div class="col-md-8">
-                                <textarea class="form-control" rows="4" name="nine[information_shgb]" id="information_shgb">{{old('nine.information_shgb')}}</textarea>
+                                <textarea class="form-control" rows="4" name="nine[information_shgb]" id="information_shgb">{{$collateral['ots_nine']['information_shgb'] ? $collateral['ots_nine']['information_shgb'] : old('nine.information_shgb')}}</textarea>
                             </div>
                         </div>
                     </div>

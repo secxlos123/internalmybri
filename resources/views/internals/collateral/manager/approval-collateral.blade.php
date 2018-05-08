@@ -58,7 +58,8 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Catatan Rekomendasi Collateral * :</label>
-                                                    <textarea class="form-control" name="remark" placeholder="Tulis Rekomendasi Disini">{{ old('remark') }}</textarea>
+                                                    <textarea class="form-control" name="remark" placeholder="Tulis Rekomendasi Disini" id="remark">{{ old('remark') }}</textarea>
+                                                    <p hidden="" id="validasi_remark" class="text-danger">Kolom Catatan Rekomendasi Harus diisi!</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,19 +131,33 @@
     });
     
     $(document).on('click', "#btn-approve", function(){
-        $('#is_approved').attr('value', true);
-        $('#form1').submit();
-        HoldOn.open(options);
+        var remark = $("#remark").val();
+        // console.log(remark);
+        if(remark !== ""){
+            // console.log("AYAAN");
+            $('#is_approved').attr('value', true);
+            $('#form1').submit();
+            HoldOn.open(options);
+        }else{
+            $("#validasi_remark").show();
+        }
     })
 
     $(document).on('click', "#btn-reject", function(){
+        console.log("MODAL SHOW PENOLAKAN");
         $('#reject-modal').modal('show');
     })
 
     $(document).on('click', "#btn-submit", function(){
-        $('#is_approved').attr('value', false);
-        $('#remark').val($('#reject-modal #reason').val());
-        $('#form1').submit();
-        HoldOn.open(options);
+        var reason = $('#reject-modal #reason').val();
+        if(reason !== ""){
+            $('#is_approved').attr('value', false);
+            $('#remark').val(reason);
+            $('#form1').submit();
+            HoldOn.open(options);
+        }else{
+            $("#reject-modal #validasi_penolakan").show();
+        }
+            
     })
 </script>
