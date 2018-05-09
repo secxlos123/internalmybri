@@ -237,13 +237,13 @@
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
         /* Schedule */
-        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin,fo'], function() {
             Route::resource('schedule', 'Schedule\ScheduleController', [
                 'only' => ['index']
             ]);
         });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin,pinca'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin,pinca,fo'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
@@ -337,6 +337,12 @@
                 Route::post('leads_cpp', 'CRM\LeadsController@cpps');
                 Route::post('leads_referral', 'CRM\LeadsController@referrals');
                 Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
+
+                /* CRM Activity */
+                Route::get('activity', 'CRM\activityController@index');
+                Route::get('activity/data', 'CRM\activityController@data');
+                Route::get('activity/pemasar', 'CRM\activityController@pemasar');
+                Route::get('activity/marketing', 'CRM\activityController@marketing');
 
 
         Route::resource('mitra', 'Mitra\MitraController');

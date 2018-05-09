@@ -1,4 +1,4 @@
-@section('title','MyBRI - List Approval Pengajuan Properti Baru')
+@section('title','MyBRI - Marketing')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
