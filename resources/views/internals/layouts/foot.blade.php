@@ -70,6 +70,7 @@
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 
 <script src="{{asset('assets/js/jquery.viewbox.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.elevatezoom.js')}}"></script>
 <script type="text/javascript">
         $('tr[data-href]').on("click", function() {
             document.location = $(this).data('href');
@@ -116,6 +117,12 @@
     });
 
 </script>
+
+<!-- Image Zoom -->
+<script type="text/javascript">
+    $('.imageZoom').elevateZoom({zoomWindowPosition: 1});     
+</script>
+<!-- End Image Zoom -->
 
 <script>
     $(document).ready(function() {
