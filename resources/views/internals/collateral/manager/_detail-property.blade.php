@@ -31,7 +31,7 @@
                         <label class="col-md-5 control-label">Foto :</label>
                         <div class="col-md-7">
                             @if (count($collateral['property']['photos']) > 0)
-                            <img id="preview" @if(isset($collateral['property']['photos'])) src="{{$collateral['property']['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="300">
+                            <img id="preview" @if(isset($collateral['property']['photos'])) src="{{$collateral['property']['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="300" class="imageZoom">
                             @endif
                         </div>
                     </div>
