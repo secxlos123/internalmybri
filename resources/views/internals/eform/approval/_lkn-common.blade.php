@@ -10,7 +10,7 @@
                 <p>Foto NPWP Kosong</p>
                 <img class="img-responsive" id="zoom">
                 @else
-                <img src="{{$detail['visit_report']['npwp']}}" class="img-responsive" id="zoom">
+                <img src="{{$detail['visit_report']['npwp']}}" class="img-responsive imageZoom-up" id="zoom">
                 <p>Foto NPWP</p>
                 @endif
             @else
@@ -26,7 +26,7 @@
                 @if(strpos($detail['visit_report']['salary_slip'], 'noimage.jpg'))
                 <p>Slip Gaji Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['salary_slip'])){{$detail['visit_report']['salary_slip']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['salary_slip'])){{$detail['visit_report']['salary_slip']}}@endif" class="img-responsive imageZoom-up">
                 <p>Slip Gaji</p>
                 @endif
             @else
@@ -43,7 +43,7 @@
                 @if(strpos($detail['visit_report']['work_letter'], 'noimage.jpg'))
                 <p>Surat Keterangan Kerja Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['work_letter'])){{$detail['visit_report']['work_letter']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['work_letter'])){{$detail['visit_report']['work_letter']}}@endif" class="img-responsive imageZoom-up">
                 <p>Surat Keterangan Kerja</p>
                 @endif
             @else
@@ -61,7 +61,7 @@
                 @if(strpos($detail['visit_report']['legal_bussiness_document'], 'noimage.jpg'))
                 <p>Dokumen Legal Usaha Kosong</p>
                 @else
-                <img src="{{$detail['visit_report']['legal_bussiness_document']}}" class="img-responsive">
+                <img src="{{$detail['visit_report']['legal_bussiness_document']}}" class="img-responsive imageZoom-up">
                 <p>Klik Untuk Lihat Dokumen Legal Usaha</p>
                 @endif
             @else
@@ -78,7 +78,7 @@
                 @if(strpos($detail['visit_report']['family_card'], 'noimage.jpg'))
                 <p>Kartu Keluarga Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['family_card'])){{$detail['visit_report']['family_card']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['family_card'])){{$detail['visit_report']['family_card']}}@endif" class="img-responsive imageZoom-up">
                 <p>Kartu Keluarga</p>
                 @endif
             @else
@@ -94,7 +94,7 @@
                 @if(strpos($detail['visit_report']['marrital_certificate'], 'noimage.jpg'))
                 <p>Akta Nikah/Cerai Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['marrital_certificate'])){{$detail['visit_report']['marrital_certificate']}}@endif" class="img-responsive imageZoom-up">
                 <p>Akta Nikah/Cerai</p>
                 @endif
             @else
@@ -111,7 +111,7 @@
                 @if(strpos($detail['visit_report']['divorce_certificate'], 'noimage.jpg'))
                 <p>Akta Pisah Harta Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['divorce_certificate'])){{$detail['visit_report']['divorce_certificate']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['divorce_certificate'])){{$detail['visit_report']['divorce_certificate']}}@endif" class="img-responsive imageZoom-up">
                 <p>Akta Pisah Harta</p>
                 @endif
             @else
@@ -124,7 +124,7 @@
 
     <div class="col-md-6" align="center">
         <div class="card-box">
-            <img src="@if(!empty($detail['visit_report']['photo_with_customer'])){{$detail['visit_report']['photo_with_customer']}}@endif" class="img-responsive">
+            <img src="@if(!empty($detail['visit_report']['photo_with_customer'])){{$detail['visit_report']['photo_with_customer']}}@endif" class="img-responsive imageZoom-up">
             <p>Foto Debitur</p>
         </div>
     </div>
@@ -135,7 +135,7 @@
                  @if(strpos($detail['visit_report']['offering_letter'], 'noimage.jpg'))
                 <p>Surat Penawaran Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['offering_letter'])){{$detail['visit_report']['offering_letter']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['offering_letter'])){{$detail['visit_report']['offering_letter']}}@endif" class="img-responsive imageZoom-up">
                 <p>Surat Penawaran</p>
                 @endif
             @else
@@ -151,7 +151,7 @@
                 @if(strpos($detail['visit_report']['down_payment'], 'noimage.jpg'))
                 <p>Bukti DP Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['down_payment'])){{$detail['visit_report']['down_payment']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['down_payment'])){{$detail['visit_report']['down_payment']}}@endif" class="img-responsive imageZoom-up">
                 <p>Bukti DP</p>
                 @endif
             @else
@@ -168,7 +168,7 @@
                 @if(strpos($detail['visit_report']['proprietary'], 'noimage.jpg'))
                 <p>Surat Hak Milik Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['proprietary'])){{$detail['visit_report']['proprietary']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['proprietary'])){{$detail['visit_report']['proprietary']}}@endif" class="img-responsive imageZoom-up">
                 <p>Surat Hak Milik</p>
                 @endif
             @else
@@ -184,7 +184,7 @@
                 @if(strpos($detail['visit_report']['building_permit'], 'noimage.jpg'))
                 <p>Izin Mendirikan Bangunan Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['building_permit'])){{$detail['visit_report']['building_permit']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['building_permit'])){{$detail['visit_report']['building_permit']}}@endif" class="img-responsive imageZoom-up">
                 <p>Izin Mendirikan Bangunan</p>
                 @endif
             @else
@@ -201,7 +201,7 @@
                 @if(strpos($detail['visit_report']['building_tax'], 'noimage.jpg'))
                 <p>PBB Terakhir Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['building_tax'])){{$detail['visit_report']['building_tax']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['building_tax'])){{$detail['visit_report']['building_tax']}}@endif" class="img-responsive imageZoom-up">
                 <p>PBB Terakhir</p>
                 @endif
             @else
@@ -217,7 +217,7 @@
                 @if(strpos($detail['visit_report']['other_document'], 'noimage.jpg'))
                 <p>Dokumen Lainnya Kosong</p>
                 @else
-                <img src="@if(!empty($detail['visit_report']['other_document'])){{$detail['visit_report']['other_document']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['visit_report']['other_document'])){{$detail['visit_report']['other_document']}}@endif" class="img-responsive imageZoom-up">
                 <p>Dokumen Lainnya</p>
                 @endif
             @else

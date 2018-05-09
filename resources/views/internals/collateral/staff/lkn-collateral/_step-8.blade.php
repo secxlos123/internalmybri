@@ -72,7 +72,11 @@
                                 ]) !!}
                             </div>
                         </div>
+                        @if(isset($collateral['ots_eight']['appraisal_by']))
+                        <div class="form-group clearfix" id="independent" @if($collateral['ots_eight']['appraisal_by'] == "independent")  @else hidden="" @endif>
+                        @else
                         <div class="form-group clearfix" id="independent" hidden="">
+                        @endif
                             <label class="col-md-4 control-label">Penilai Independent * :</label>
                             <div class="col-md-8">
                                 {!! Form::select('eight[independent_appraiser]', [$collateral['ots_eight']['independent_appraiser'] ? $collateral['ots_eight']['independent_appraiser'] : '' => $collateral['ots_eight']['independent_appraiser_name'] ? $collateral['ots_eight']['independent_appraiser_name'] : ''], old('eight.independent_appraiser'), [

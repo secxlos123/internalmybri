@@ -75,6 +75,9 @@
       <li>
         <a href="{{route('tracking.index')}}" class="waves-effect"><i class="mdi mdi-call-split"></i> <span> Tracking </span> </a>
       </li>
+      <li>
+        <a href="{{route('monitoring.index')}}" class="waves-effect"><i class="mdi mdi-monitor-multiple"></i> <span> Monitoring </span> </a>
+      </li>
       @endif
       <li class="treeview">
         <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Kalkulator </span> </a>

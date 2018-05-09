@@ -281,6 +281,7 @@
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
+        Route::resource('monitoring', 'Monitoring\MonitoringController');
 
 		/* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
@@ -541,7 +542,10 @@
         Route::get('screening', 'Screening\ScreeningController@datatables');
 
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
-
+        //ini routing untuk monitoring
+        Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
+        
+//dfjsjdfsdj sdfjds
         /* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
@@ -552,7 +556,6 @@
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
-
         /*Auditrail*/
             Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //

@@ -18,7 +18,11 @@
                                 ]) !!}
                             </div>
                         </div>
+                        @if(isset($collateral['ots_ten']['paripasu']))
+                        <div class="form-group clearfix" id="bank_paripasu" @if($collateral['ots_ten']['paripasu'] == "Ya") @else hidden="" @endif>
+                        @else
                         <div class="form-group clearfix" id="bank_paripasu" hidden="">
+                        @endif
                             <label class="col-md-4 control-label">Nilai Paripasu Agunan Bank * :</label>
                             <div class="col-md-8">
                                 <div class="input-group">
@@ -43,7 +47,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                @if(isset($collateral['ots_ten']['insurance']))
+                    <div class="form-group clearfix" id="company_insurance" @if($collateral['ots_ten']['insurance'] == "Ya")  @else hidden="" @endif>
+                @else
                     <div class="form-group clearfix" id="company_insurance" hidden="">
+                @endif
                         <label class="col-md-4 control-label">Nama Perusahaan Asuransi * :</label>
                         <div class="col-md-8">
                             {!! Form::select('ten[insurance_company]', [$collateral['ots_ten']['insurance_company'] ? $collateral['ots_ten']['insurance_company'] :'' => $collateral['ots_ten']['insurance_company_name'] ? $collateral['ots_ten']['insurance_company_name'] :''], old('ten.insurance_company'), [
@@ -53,7 +61,11 @@
                         </div>
                         <input type="hidden" name="ten[insurance_company_name]" value="$collateral['ots_ten']['insurance_company'] ? $collateral['ots_ten']['insurance_company_name'] :" id="insurance_company_name">
                     </div>
+                @if(isset($collateral['ots_ten']['insurance']))
+                    <div class="form-group clearfix" id="value_insurance" @if($collateral['ots_ten']['insurance'] == "Ya")  @else hidden="" @endif>
+                @else
                     <div class="form-group clearfix" id="value_insurance" hidden="">
+                @endif
                         <label class="col-md-4 control-label">Nilai Asuransi * :</label>
                         <div class="col-md-8">
                             <div class="input-group">

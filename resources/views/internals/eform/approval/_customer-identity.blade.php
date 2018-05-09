@@ -5,7 +5,7 @@
                 @if(strpos($detail['customer']['other']['identity'], 'noimage.jpg'))
                 <p>Foto KTP Kosong</p>
                 @else
-                <img src="@if(!empty($detail['customer']['other']['identity'])){{$detail['customer']['other']['identity']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['customer']['other']['identity'])){{$detail['customer']['other']['identity']}}@endif" class="img-responsive imageZoom-up">
                 <p>Foto KTP</p>
                 @endif
             @else
@@ -21,7 +21,7 @@
                 @if(strpos($detail['customer']['personal']['couple_identity'], 'noimage.jpg'))
                 <p>Foto KTP Pasangan Kosong</p>
                 @else
-                <img src="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" class="img-responsive">
+                <img src="@if(!empty($detail['customer']['personal']['couple_identity'])){{$detail['customer']['personal']['couple_identity']}}@endif" class="img-responsive imageZoom-up">
                 <p>Foto KTP Pasangan</p>
                 @endif
             @else

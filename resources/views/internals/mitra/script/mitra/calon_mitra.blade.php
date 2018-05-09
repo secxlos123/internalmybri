@@ -1,5 +1,24 @@
 <script type="text/javascript">
 
+
+$(document).ready(function() {
+$("#wilayah_search").select2({
+			  ajax: {
+				url: "ListKanwil",
+				delay: 250,
+				type: 'GET',
+			  }
+			}).change(function () {
+			});
+			
+$("#kantor_cabang_search").select2({
+			  ajax: {
+				url: "ListCabang",
+				delay: 250,
+				type: 'GET',
+			  }
+			}).change(function () {
+			});
   var table2 = $('#datatable').DataTable({
             searching: false,
             order : [[3, 'asc']],
@@ -7,6 +26,7 @@
                 "emptyTable": "No data available in table"
             }
         });
+});
 $('#datatable').on('click', '#btn-penilaian', function (e) {
 		var data = table2.row($(this).parents('tr')).data();
 		var kode = data['noid'];
@@ -61,7 +81,8 @@ function table_mitra2(mitra,kantor_wilayah,kantor_cabang)
                         api.page.info().pages
                     );
                     d.NAMA_INSTANSI = mitra;
-                    d.UNIT_KERJA = kantor_wilayah;
+                    d.KANWIL = kantor_wilayah;
+                    d.UNIT_KERJA = kantor_cabang;
                    // d.anak_perusahaan_kabupaten = kantor_cabang;
                 }
             },
@@ -86,7 +107,6 @@ function table_mitra2(mitra,kantor_wilayah,kantor_cabang)
             ],
       });
     }
-
 
  $(document).on('click', "#btn-search", function(){
         table2.destroy();
