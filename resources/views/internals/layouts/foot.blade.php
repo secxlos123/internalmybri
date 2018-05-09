@@ -121,7 +121,7 @@
 <!-- Image Zoom -->
 <script type="text/javascript">
     $('.imageZoom').elevateZoom({zoomWindowPosition: 1});
-
+    $('.imageZoom-up').elevateZoom({zoomWindowPosition: 14});
     $('.imageZoom_Type').elevateZoom({zoomWindowPosition: 10});     
 </script>
 <!-- End Image Zoom -->
