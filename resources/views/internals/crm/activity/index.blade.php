@@ -55,7 +55,7 @@
                         </p>
                         <div class="row">
                             <div class="col-md-12">
-                                <div id="calendar"></div>
+                                <div id="calendar-activity"></div>
                             </div>
                         </div>
                     </div>
@@ -104,6 +104,7 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
+@include('internals.crm.activity.script-calendar')
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 <script src="{{ asset('assets/js/custom/schedule.js')  }}"></script>
@@ -113,6 +114,6 @@
         lat: "{{ env('DEF_LAT', '-6.21670') }}",
         long: "{{ env('DEF_LONG', '106.81350') }}",
     };
-      // alert(JSON.stringify(Schedule.prototype.store()));
     // $('#calendar').fullCalendar({});
+    // console.log(userRole);
 </script>

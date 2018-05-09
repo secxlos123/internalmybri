@@ -48,6 +48,7 @@ Schedule.prototype.get = function () {
   return new Promise(function(resolve, reject) {
       $.get(_self.url)
         .done(function (response) {
+          console.log(response);
           _self.render(response.contents.data)
           resolve({status: true})
         })

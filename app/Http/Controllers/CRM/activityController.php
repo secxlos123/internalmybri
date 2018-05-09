@@ -53,66 +53,26 @@ class activityController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function add()
+    public function data(Request $request)
     {
       $data = $this->getUser();
-      $crmIndex = Client::setEndpoint('crm')
+      $requestMonth = \Carbon\Carbon::createFromFormat('Y-m-d', request()->get('start'));
+      $activity = Client::setEndpoint('crm/activity')
       ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
         'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
+        'pn' => $data['pn'],
+        'branch' => $data['branch']
       ])
       ->get();
-      $getPemasar = Client::setEndpoint('crm/pemasar')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->post();
-      $product = $crmIndex['contents']['product_type'];
-      $pemasar = $getPemasar['contents'];
-
-      return view('internals.crm.referal.add', compact('data', 'product', 'pemasar'));
-    }
-
-    public function store(Request $request)
-    {
-      $data = $this->getUser();
-
-      $body = [
-        'nik' => $request->input('nik'),
-        'name' => $request->input('name'),
-        'phone' => $request->input('phone'),
-        'address' => $request->input('address'),
-        'product_type' => $request->input('product_type'),
-        'officer_ref' => $request->input('officer_ref'),
-        'note' => $request->input('note'),
-        'status' => 'ref'
-      ];
-
-      // dd($data);
-      $storeReferal = Client::setEndpoint('crm/account/store_referral')
-          ->setHeaders([
-            'pn' => $data['pn'],
-            'branch' => $data['branch'],
-            'name' => $data['name'],
-            'Authorization' => $data['token'],
-            'Content-Type' => 'application/json'
-          ])
-          ->setBody($body)
-          ->post();
-
-      if($storeReferal['code'] == 201){
-        \Session::flash('success', $storeReferal['descriptions']);
-        return redirect()->route('referral.index');
-      }else{
-        $error = reset($storeReferal['contents']);
-        \Session::flash('error', $storeReferal['descriptions'].' '.$error);
-        return redirect()->back()->withInput($request->input());
+      $activities = [];
+      foreach ($activity['contents'] as $key => $value) {
+        $startDate = \Carbon\Carbon::createFromFormat('Y-m-d', $value['start_date']);
+        if ($startDate->month == $requestMonth->month && $startDate->year == $requestMonth->year) {
+          $activities[] = $value;
+        }
       }
+      // dd($activities);
+      return $activities;
     }
 
     public function update(Request $request)
@@ -149,6 +109,41 @@ class activityController extends Controller
         \Session::flash('error', $updateReferal['descriptions'].' '.$error);
         return redirect()->back()->withInput($request->input());
       }
+    }
+
+    public function pemasar(Request $request)
+    {
+      $user = $this->getUser();
+      $pemasar = Client::setEndpoint('crm/pemasar')
+      ->setHeaders([
+        'pn' => $user['pn'],
+        'branch' => $user['branch'],
+        'Authorization' => $user['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->post();
+
+      return $pemasar['contents'];
+    }
+
+    public function marketing(Request $request)
+    {
+      $user = $this->getUser();
+
+      $marketings = Client::setEndpoint('crm/marketing')
+      ->setHeaders([
+        'pn' => $user['pn'],
+        'branch' => $user['branch'],
+        'Authorization' => $user['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->get();
+      $marketing = $marketings['contents'];
+      $m = array_filter($marketing, function ($var) use($request){
+        return ($var['status'] != 'Done' && $var['status'] != 'done' && $var['status'] != 'Batal' && $var['status'] != 'batal');
+      });
+
+      return $m;
     }
 
     public function nikCek(Request $request)
