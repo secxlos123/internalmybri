@@ -42,10 +42,7 @@ class LoginController extends Controller
             ])
             ->setBody($data)
             ->post();
-<<<<<<< HEAD
-=======
-// print_r($client);die();
->>>>>>> f53114c1639f8ba419694009404fdba1955d9b5b
+
         if(env('APP_ENV') == 'local'){
             if($request->pn == '66777'){
                 $role = ['role' => 'ao'];
