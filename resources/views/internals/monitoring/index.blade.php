@@ -339,7 +339,7 @@ $(document).ready(function(){
                 "data":           'detail',
                 "defaultContent": ''  
             },
-            {   data: 'plafond_usulan', name: 'plafond_usulan', bSortable: false },
+            {   data: 'catatan_pemutus', name: 'catatan_pemutus', bSortable: false },
             {   data: 'list_disbushr', name: 'list_disbushr', bSortable: false },
 ],
 });
