@@ -76,7 +76,7 @@ tr.shown td.details3-control {
                         <label class="col-sm-4 control-label">Produk :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                               <select class="select2 changekpr" name="product">
+                               <select class="select2 changekpr" name="product_type">
                                <option>-Pilih Produk-</option>
                                <option value="kpr">KPR</option>
                                <option value="briguna">BRIGUNA</option>
@@ -85,6 +85,23 @@ tr.shown td.details3-control {
                         </div>
                     </div>
                     <div class="form-group kpr box">
+                        <label class="col-sm-4 control-label">Source :</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                               <select class="select2 changesource" name="source">
+                               <option>-Pilih Source-</option>
+                               <option value="dev">Developer</option>
+                               <option value="1">Non Developer</option>
+                               <option value="0">rumah.com</option>
+                               </select>
+                            </div>
+                               <!-- <select class="select2">
+                               <option>- Pilih Developer -</option>
+                               <option>Rumah.com</option>
+                               </select> -->
+                        </div>
+                    </div>
+                    <div class="form-group dev box">
                         <label class="col-sm-4 control-label">Developer :</label>
                         <div class="col-sm-8">
                             {!! Form::select('developer', ['' => ''], old('name'), [
@@ -128,6 +145,7 @@ tr.shown td.details3-control {
     </div>
 </div>
 </div>
+                        
                         <div class="tab-scroll">
                             <table id="datatable" class="table table-bordered">
                                 <thead class="bg-primary">
@@ -156,21 +174,37 @@ tr.shown td.details3-control {
     @include('internals.monitoring.select2-script')
 
     <script type="text/javascript">
-$(document).ready(function(){
-    $(".changekpr").change(function(){
-        $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-            if(optionValue){
-                $(".box").not("." + optionValue).hide();
-                $("." + optionValue).show();
-            } else{
-                $(".box").hide();
-            }
-        });
-    }).change();
-});
-</script>
+    $(document).ready(function(){
+        $(".changekpr").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue){
+                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                } else{
+                    $(".box").hide();
+                }
+            });
+        }).change();
+    });
+    </script>
 
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".changesource").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue=='dev'){
+//                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                } else{
+                    $(".dev").hide();
+                }
+            });
+        }).change();
+    });
+    </script>
+    
     <script type="text/javascript">
         $(document).ready(function(){
 

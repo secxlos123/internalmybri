@@ -265,6 +265,7 @@
                 cache: true
             },
         });
+        
         $('.action_developer').on('select2:select', function(){
                 $('#developer_id').val($(this).val());
         });
