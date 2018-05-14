@@ -77,7 +77,7 @@
         <div class="col-md-6" align="center">
         <div class="card-box">
             @if((pathinfo(strtolower($mutation['file']), PATHINFO_EXTENSION) == 'jpg') || (pathinfo(strtolower($mutation['file']), PATHINFO_EXTENSION) == 'png') || (pathinfo((strtolower($mutation['file'])), PATHINFO_EXTENSION) == 'jpeg'))
-                <img src="@if(!empty($mutation['file'])){{$mutation['file']}}@endif" class="img-responsive">
+                <img src="@if(!empty($mutation['file'])){{$mutation['file']}}@endif" class="img-responsive imageZoom-up">
                 <p>File Mutasi</p>
             @else
                 <a href="@if(!empty($mutation['file'])){{$mutation['file']}}@endif" target="_blank"><img src="{{asset('assets/images/download-logo.png')}}" class="img-responsive"></a>
