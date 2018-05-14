@@ -27,6 +27,7 @@ class MonitoringController extends Controller
         'status',
         'waktu_aging',
     ];
+    
     public function getUser(){
 
       /* GET UserLogin Data */
@@ -39,10 +40,9 @@ class MonitoringController extends Controller
 
     public function index()
     {
-      $data = $this->getUser();
+        $data = $this->getUser();
 
-		return view('internals.monitoring.index',compact('data'));
-		
+	   return view('internals.monitoring.index',compact('data'));
     }
 
    //datatable
@@ -65,6 +65,7 @@ public function datatables(Request $request)
               'page'      => (int) $request->input('page') + 1,
               'is_screening' => $request->input('is_screening'),
             ])->get();
+
 // print_r($eforms);die();
     foreach ($eforms['contents']['data'] as $key => $form) {
 if($form['ref_number']!=null || $form['ref_number']!=''){
@@ -72,27 +73,23 @@ if($form['ref_number']!=null || $form['ref_number']!=''){
         $form['request_amount'] = 'Rp ' . number_format($form['nominal'], 2, ",", ".");
 
         $form['aging'] = '<b>'.$form['aging']['waktu_aging'].'</b>';
-        if(empty($form['aging']['aging'])){
+        // if ($form['ref_number']=="TES17121") 
+        // { 
+        //     $form['list_aging'] = $form['aging']['aging']['x0']['data_action'];
+        // }else{
             $form['list_aging'] = '-';
-        }else{
-            $list_aging = array();
-            $x=0;
-            if(count($form['aging']['aging']>0)){
-            foreach ($form['aging']['aging'] as $key => $value) {
-                $list_aging = $form['aging']['aging']['x'.$x]['data_action'];
-                $x++;
-            }
-            $form['list_aging'] = $list_aging;
-            }
-        }
+        // }
+        // else{
+        //     $form['list_aging'] = '-';
+        // }
         $form['catatan_analis'] = $form['catatan_analis'];
-        $form['catatan_pemutus'] = $form['catatan_pemutus'];
         $form['detail'] = $form['catatan_analis'].'<br>'." lihat ";
         $form['catatan_reviewer'] = $form['catatan_reviewer'];
         $form['penilaian_agunan'] = $form['penilaian_agunan'];
         $form['catatan_tolak'] = $form['catatan_tolak'];
         $form['plafond_usulan'] = $form['plafond_usulan'];
         $form['status_sekarang'] = $form['status'];
+       
     //     $disbushr = array();
     //     $y=0;
     //     if(count($form['disbushr']>0)){

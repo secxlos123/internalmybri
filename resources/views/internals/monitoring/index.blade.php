@@ -76,10 +76,10 @@ tr.shown td.details3-control {
                         <label class="col-sm-4 control-label">Produk :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                               <select class="select2 changekpr">
+                               <select class="select2 changekpr" name="product">
                                <option>-Pilih Produk-</option>
                                <option value="kpr">KPR</option>
-                               <option value="">BRIGUNA</option>
+                               <option value="briguna">BRIGUNA</option>
                                </select>
                             </div>
                         </div>
@@ -87,14 +87,18 @@ tr.shown td.details3-control {
                     <div class="form-group kpr box">
                         <label class="col-sm-4 control-label">Developer :</label>
                         <div class="col-sm-8">
-                            <div class="input-group">
-                               <select class="select2">
+                            {!! Form::select('developer', ['' => ''], old('name'), [
+                                'class' => 'select2 action_developer',
+                                'data-placeholder' => 'Pilih Developer',
+                            ]) !!}
+                               <!-- <select class="select2">
                                <option>- Pilih Developer -</option>
                                <option>Rumah.com</option>
-                               </select>
-                            </div>
+                               </select> -->
                         </div>
+                        <input type="hidden" class="form-control" name="dev_id" id="dev_id">
                     </div>
+
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
@@ -103,7 +107,7 @@ tr.shown td.details3-control {
                                 'data-placeholder' => 'Pilih Kantor Wilayah',
                             ]) !!}
                         </div>
-                        <input type="hidden" class="form-control" name="branch_id" id="branch_id">
+                        <input type="hidden" class="form-control" name="kanwil_id" id="kanwil_id">
                     </div>
 
                     <div class="form-group">
@@ -114,6 +118,7 @@ tr.shown td.details3-control {
                                 'data-placeholder' => 'Pilih Kantor Cabang',
                             ]) !!}
                         </div>
+                        <input type="hidden" class="form-control" name="branch_id" id="branch_id">
                     </div>
             </form>
             <div class="text-right">
@@ -339,7 +344,7 @@ $(document).ready(function(){
                 "data":           'detail',
                 "defaultContent": ''  
             },
-            {   data: 'catatan_pemutus', name: 'catatan_pemutus', bSortable: false },
+            {   data: 'plafond_usulan', name: 'plafond_usulan', bSortable: false },
             {   data: 'list_disbushr', name: 'list_disbushr', bSortable: false },
 ],
 });
