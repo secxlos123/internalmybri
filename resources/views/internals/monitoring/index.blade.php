@@ -77,7 +77,7 @@ tr.shown td.details3-control {
                         <div class="col-sm-8">
                             <div class="input-group">
                                <select class="select2 changekpr" id="product_type" name="product_type">
-                               <option>-Pilih Produk-</option>
+                               <option value="-">-Pilih Produk-</option>
                                <option value="kpr">KPR</option>
                                <option value="briguna">BRIGUNA</option>
                                </select>
@@ -89,7 +89,7 @@ tr.shown td.details3-control {
                         <div class="col-sm-8">
                             <div class="input-group">
                                <select class="select2 changesource" id="source" name="source">
-                               <option>-Pilih Source-</option>
+                               <option value="-">-Pilih Source-</option>
                                <option value="dev">Developer</option>
                                <option value="1">Non Developer</option>
                                <option value="0">rumah.com</option>
@@ -215,7 +215,7 @@ tr.shown td.details3-control {
 
         $(document).on('click', "#btn-filter", function(){
             table1.destroy();
-//            alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val())
+//            alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val() + " source " + $('#source').val() + " dev_id " + $('#dev_id').val())
             reloadData1();
         })
 
@@ -321,9 +321,9 @@ tr.shown td.details3-control {
                 "url" : '/datatables/monitoring',
                 "data" : {
                     product_type: $('#product_type').val(),
-                    branch_id: $('#branch_id').val(),
-                    dev_id: $('#dev_id').val(),
-                    source: $('#source').val()
+//                    dev_id: $('#dev_id').val(),
+//                    source: $('#source').val(),
+                    branch_id: $('#branch_id').val()
                 }
             },
             aoColumns : [

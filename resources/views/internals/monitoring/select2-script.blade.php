@@ -267,7 +267,7 @@
         });
         
         $('.action_developer').on('select2:select', function(){
-                $('#developer_id').val($(this).val());
+                $('#dev_id').val($(this).val());
         });
 
         $('.action_kanwil2').select2({
