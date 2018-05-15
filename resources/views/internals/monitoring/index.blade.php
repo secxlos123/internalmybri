@@ -76,7 +76,7 @@ tr.shown td.details3-control {
                         <label class="col-sm-4 control-label">Produk :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                               <select class="select2 changekpr" name="product_type">
+                               <select class="select2 changekpr" id="product_type" name="product_type">
                                <option>-Pilih Produk-</option>
                                <option value="kpr">KPR</option>
                                <option value="briguna">BRIGUNA</option>
@@ -88,7 +88,7 @@ tr.shown td.details3-control {
                         <label class="col-sm-4 control-label">Source :</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                               <select class="select2 changesource" name="source">
+                               <select class="select2 changesource" id="source" name="source">
                                <option>-Pilih Source-</option>
                                <option value="dev">Developer</option>
                                <option value="1">Non Developer</option>
@@ -206,28 +206,6 @@ tr.shown td.details3-control {
     </script>
     
     <script type="text/javascript">
-        $(document).ready(function(){
-
-            $("#from").datepicker({
-                todayBtn:  1,
-                autoclose: true,
-                todayHighlight: true,
-                format: 'yyyy-mm-dd',
-            }).on('changeDate', function (selected) {
-                var minDate = new Date(selected.date.valueOf());
-                $('#to').datepicker('setStartDate', minDate);
-            });
-
-            $("#to").datepicker({
-                autoclose: true,
-                format: 'yyyy-mm-dd',
-            }).on('changeDate', function (selected) {
-                var maxDate = new Date(selected.date.valueOf());
-                $('#from').datepicker('setEndDate', maxDate);
-            });
-
-        });
-
         var table1 = $('#datatable').DataTable({
             searching: true,
             "language": {
@@ -237,7 +215,8 @@ tr.shown td.details3-control {
 
         $(document).on('click', "#btn-filter", function(){
             table1.destroy();
-            reloadData1($('#from').val(), $('#to').val(), $('#status').val());
+//            alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val())
+            reloadData1();
         })
 
         function detail(d){
@@ -325,36 +304,29 @@ tr.shown td.details3-control {
             return n;
         }
 
-        function reloadData1(from, to, status)
+        function reloadData1()
         {
             table1 = $('#datatable').DataTable({
-             processing : true,
-             serverSide : true,
-             lengthMenu: [
+             "processing" : true,
+             "serverSide" : true,
+             "paginate"  : true,
+             "lengthMenu": [
              [ 10, 25, 50, -1 ],
              [ '10', '25', '50', 'All' ]
              ],
-             language : {
+             "language" : {
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
-            ajax : {
-                url : '/datatables/monitoring',
-                data : function(d, settings){
-                    var api = new $.fn.dataTable.Api(settings);
-
-                    d.page = Math.min(
-                        Math.max(0, Math.round(d.start / api.page.len())),
-                        api.page.info().pages
-                        );
-
-                    d.start_date = $('#from').val();
-                    d.end_date = $('#to').val();
-                    d.status = $('#status').val();
-                    d.is_screening = $('#is_screening').val();
+            "ajax" : {
+                "url" : '/datatables/monitoring',
+                "data" : {
+                    product_type: $('#product_type').val(),
+                    branch_id: $('#branch_id').val(),
+                    dev_id: $('#dev_id').val(),
+                    source: $('#source').val()
                 }
             },
             aoColumns : [
-
             {
                 "className":      'details2-control',
                 "orderable":      false,
@@ -380,8 +352,8 @@ tr.shown td.details3-control {
             },
             {   data: 'plafond_usulan', name: 'plafond_usulan', bSortable: false },
             {   data: 'list_disbushr', name: 'list_disbushr', bSortable: false },
-],
-});
+            ],
+            });
             $('#datatable tbody').on('click', 'td.details2-control', function () {
                 var tr = $(this).parents('tr');
                 var row = table1.row(tr);

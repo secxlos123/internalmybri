@@ -54,7 +54,7 @@ public function datatables(Request $request)
     
     if($request->has('dev_id')) $dev = $request->input('dev_id');
     else $dev = $request->input('source');
-    
+        
     $eforms = Client::setEndpoint('monitoring')
             ->setHeaders([
               'Authorization' => $data['token']
@@ -76,11 +76,6 @@ public function datatables(Request $request)
     
 //    dd($eforms);die();
 // print_r($eforms);die();
-    $eforms['contents']['request']['product'] = $request->input('product');
-    $eforms['contents']['request']['source'] = $request->input('source');
-    $eforms['contents']['request']['dev_id'] = $request->input('dev_id');
-    $eforms['contents']['request']['kanwil_id'] = $request->input('kanwil_id');
-    $eforms['contents']['request']['branch_id'] = $request->input('branch_id');
         
     foreach ($eforms['contents']['data'] as $key => $form) {
         if($form['ref_number']!=null || $form['ref_number']!=''){
