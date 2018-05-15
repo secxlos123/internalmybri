@@ -215,7 +215,7 @@ tr.shown td.details3-control {
 
         $(document).on('click', "#btn-filter", function(){
             table1.destroy();
-//            alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val())
+            alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val() + " source " + $('#source').val() + " dev_id " + $('#dev_id').val())
             reloadData1();
         })
 
@@ -321,9 +321,9 @@ tr.shown td.details3-control {
                 "url" : '/datatables/monitoring',
                 "data" : {
                     product_type: $('#product_type').val(),
-                    branch_id: $('#branch_id').val(),
-                    dev_id: $('#dev_id').val(),
-                    source: $('#source').val()
+//                    dev_id: $('#dev_id').val(),
+//                    source: $('#source').val(),
+                    branch_id: $('#branch_id').val()
                 }
             },
             aoColumns : [
