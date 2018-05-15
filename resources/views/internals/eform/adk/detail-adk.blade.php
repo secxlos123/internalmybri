@@ -235,7 +235,7 @@
                                                 }
                                                 echo "Tanggal Analisa : ".$tanggal."<br>";
                                             ?>
-                                            Catatan ADK : {{$detail['catatan_analisa']}}
+                                            Catatan Analisa : {{$detail['catatan_analisa']}}
                                         </div>
                                     </form>
                                 </div>
