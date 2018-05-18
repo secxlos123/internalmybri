@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="col-md-12">
                     @if (\Session::has('error'))
-                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                     <div class="alert alert-danger">{{ \Session::get('error') }} untuk Lihat Tracking Pengajuan Klik link berikut -> <a href="{{ url('/tracking') }}"> Lihat Tracking</a></div>
                     @endif
 
                     @if (\Session::has('success'))
@@ -64,6 +64,10 @@
                                     <p class="text-muted m-b-30 font-13">
                                         Cari NIK Calon Debitur atau tambah Calon Debitur baru
                                     </p>
+                                  <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="nik_check">
+                                        <label class="form-check-label" for="exampleCheck1">Cari Semua Nik yang sudah pengajuan maupun yang belum pengajuan</label>
+                                  </div>
                                 <div id="divForm"></div>
                                     <div class="row">
                                         <div class="col-md-6">

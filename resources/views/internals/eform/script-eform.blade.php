@@ -59,6 +59,22 @@
             }
         });
 
+        var _doc = $(document);
+        var _nik = $('#nik_check');
+        condition = false;
+        _doc.on('change', '#nik_check', function(){
+            check_nik = $(this).prop("checked");
+            if(check_nik){
+                console.log("===dicek nik===");
+                condition = true;
+                console.log("BOOLEAN: "+condition);
+            }else{
+                console.log("===TEU dicek nik===");
+                condition = false;
+                console.log("BOOLEAN: "+condition);
+            }
+        });
+
         //select2 customer
         $('.nikSelect').select2({
             maximumInputLength : 16,
@@ -72,7 +88,7 @@
                     return {
                         nik: params.term,
                         page: params.page || 1,
-                        eform: false
+                        eform: condition
                     };
                 },
                 processResults: function (data, params) {
