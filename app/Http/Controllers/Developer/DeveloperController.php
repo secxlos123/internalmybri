@@ -322,6 +322,7 @@ class DeveloperController extends Controller
             $developers['contents']['data'][$key] = $dev;
         }
 
+        // dd($developers);
         return response()->json(['developers' => $developers['contents']]);
     }
 

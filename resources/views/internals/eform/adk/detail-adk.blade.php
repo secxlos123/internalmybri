@@ -213,6 +213,44 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <?php
+                                                if (!empty($detail['tgl_disposisi'])) {
+                                                    $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_disposisi']));
+                                                } else {
+                                                    $tanggal = '-';
+                                                }
+                                                echo "Tanggal Disposisi : ".$tanggal."<br>";
+                                            ?>
+                                            Catatan Disposisi : {{$detail['pinca_note']}}
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <?php
+                                                if (!empty($detail['tgl_analisa'])) {
+                                                    $tanggal  = substr($detail['tgl_analisa'], 0, 2).'-'.substr($detail['tgl_analisa'], 2, 2).'-'.substr($detail['tgl_analisa'], 4, 4).' '.substr($detail['tgl_analisa'], 9,8);
+                                                } else {
+                                                    $tanggal = '-';
+                                                }
+                                                echo "Tanggal Analisa : ".$tanggal."<br>";
+                                            ?>
+                                            Catatan Analisa : {{$detail['catatan_analisa']}}
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <?php
                                                 if (!empty($detail['tgl_putusan'])) {
                                                     $tanggal  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4).' '.substr($detail['tgl_putusan'], 9,8);
                                                 } else {
@@ -244,32 +282,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <?php
-                                                if (!empty($detail['tgl_disposisi'])) {
-                                                    $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_disposisi']));
-                                                } else {
-                                                    $tanggal = '-';
-                                                }
-                                                echo "Tanggal Disposisi : ".$tanggal."<br>";
-                                            ?>
-                                            Catatan Disposisi : {{$detail['pinca_note']}}
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- rekomendasi approval -->
-            @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')                    
+            @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')
                 <div class="text-center">
                     <div class="row">
                         <div class="col-md-6">
