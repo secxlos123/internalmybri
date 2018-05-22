@@ -334,13 +334,13 @@
 								Route::get('leads', 'CRM\leadsController@index');
 								Route::get('leads_detail', 'CRM\leadsController@detail');
                 });
-                Route::post('leads_kelolaan', 'CRM\LeadsController@kelolaan');
-                Route::post('leads_leads', 'CRM\LeadsController@leads');
-                Route::post('leads_customer', 'CRM\LeadsController@customers');
-                Route::post('leads_cpp', 'CRM\LeadsController@cpps');
-                Route::post('leads_referral', 'CRM\LeadsController@referrals');
-                Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
-            Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
+                Route::post('leads_kelolaan', 'CRM\leadsController@kelolaan');
+                Route::post('leads_leads', 'CRM\leadsController@leads');
+                Route::post('leads_customer', 'CRM\leadsController@customers');
+                Route::post('leads_cpp', 'CRM\leadsController@cpps');
+                Route::post('leads_referral', 'CRM\leadsController@referrals');
+                Route::post('leads_new_customer', 'CRM\leadsController@newCustomer');
+            Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() {
                 /* CRM Activity */
                 Route::get('activity', 'CRM\activityController@index');
                 Route::get('activity/data', 'CRM\activityController@data');
@@ -548,7 +548,7 @@
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
         //ini routing untuk monitoring
         Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
-        
+
 //dfjsjdfsdj sdfjds
         /* DirRpc */
 
