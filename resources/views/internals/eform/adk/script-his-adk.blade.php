@@ -13,6 +13,7 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
+                // url : '/datatables/adk-his-list', <USE THIS IF ON PRODUCTION>
                 url : '/internal/datatables/adk-his-list',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);

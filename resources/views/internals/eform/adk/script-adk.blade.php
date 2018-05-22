@@ -49,6 +49,7 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
+                // url : '/datatables/adk-list', <USE THIS IF ON PRODUCTION>
                 url : '/internal/datatables/adk-list',
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
