@@ -59,7 +59,7 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="form-control-static"> - </p>
+                                <p class="form-control-static">@if($bank['note'] == NULL) - @else $bank['type'] ? $bank['type'] : '-' @endif </p>
                             </td>
                             <td>
                                 <p class="form-control-static">{{$bank['note'] ? $bank['note'] : '-' }}</p>
