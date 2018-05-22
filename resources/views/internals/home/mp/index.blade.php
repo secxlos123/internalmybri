@@ -1,3 +1,9 @@
+<style type="text/css">
+ .table-condensed .focused{
+   color: red;
+   font-weight: bold;
+  } 
+</style>
 <div class="row">
   <div class="col-md-12">
     <div class="card-box m-t-30">
@@ -77,8 +83,6 @@
                     <th>Nama Nasabah</th>
                     <th>Nominal</th>
                     <th>Tanggal Pertemuan</th>
-                    <!-- <th>Jenis Produk</th> -->
-                    <!-- <th>KC BRI Terdekat</th> -->
                     <th>Status Prescreening</th>
                     <th>AO</th>
                     <th>Status</th>

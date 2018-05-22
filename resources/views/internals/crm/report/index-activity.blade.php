@@ -2,6 +2,15 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
+<style>
+  .select2-selection__clear {
+    display: none;
+  }
+  #datatable th{
+    vertical-align: middle;
+    text-align: center;
+  }
+</style>
 <div class="content-page">
   <div class="content">
     <div class="container">
@@ -31,7 +40,6 @@
             <fieldset hidden>
               <div class="add-button">
                 <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a>
-                <!--  <a href="{{route('customers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Profil Customer</a> -->
                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-sync"></i> Sinkronisasi Profil Customer</a>
                 <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a>
               </div>
@@ -41,11 +49,24 @@
                 <div class="col-md-8">
                   <div class="card-box">
                     <form class="form-horizontal" role="form">
+
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Tanggal :</label>
+                        <div class="col-sm-4">
+                          <input type="text" placeholder="Awal" class="form-control" id="start" name="start_date">
+                        </div>
+                        <div class="col-sm-4">
+                          <input type="text" placeholder="Akhir" class="form-control" id="end" name="end_date">
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Wilayah :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="kanwil" name="kanwil">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="kanwil" name="kanwil" {{($regionList == "disable") ? "disabled" : ""}}>
+                            @foreach($kanwil['data'] as $kw)
+                            <option value="{{$kw['region_id']}}" {{($kw['region_id'] == $region) ? "selected" : ""}}> {{$kw['region_name']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
@@ -53,100 +74,85 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Kantor Cabang :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="kacab" name="kacab">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="kanca" name="kacab" {{($branchList == "disable") ? "disabled" : ""}}>
+                            <option value="">Semua</option>
+                            @foreach($kanca as $k)
+                            <option value="{{$k['mainbr']}}" {{($k['mainbr'] == $branch) ? "selected" : ""}}>{{$k['mbdesc']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="col-sm-4 control-label">Unit Kerja :</label>
                         <div class="col-sm-8">
                           <select class="form-control" id="uker" name="uker">
                             <option selected="" value="All"> Semua</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
-                        <label class="col-sm-4 control-label">Finding Officer :</label>
+                        <label class="col-sm-4 control-label">Pemasar :</label>
                         <div class="col-sm-8">
-                          <select class="form-control" id="status">
-                            <option selected="" value="All"> Semua</option>
+                          <select class="form-control select2" id="pemasar">
+                            <option selected="" value=""> Semua</option>
+                            @foreach($fo as $f)
+                            <option value="{{$f['PERNR']}}">{{$f['SNAME']}}</option>
+                            @endforeach
                           </select>
                         </div>
                       </div>
 
                     </form>
                     <div class="text-right">
+                      <a href="javascript:void(0);" class="btn btn-primary waves-light waves-effect w-md" id="btn-export-excel">Export Excel</a>
                       <a href="javascript:void(0);" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Cari</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="tab-scroll table-responsive">
+            <div class="tab-scroll table-responsive" id="table-activity">
               <table id="datatable" class="table table-bordered">
                 <thead class="bg-primary text-center">
                   <tr>
                     <th>No</th>
                     <th>Wilayah</th>
                     <th>Cabang</th>
-                    <th>Unit Kerja</th>
                     <th>Nama FO</th>
                     <th>Activity</th>
                     <th>Tujuan</th>
                     <th>Tanggal</th>
-                    <th>Durasi</th>
                     <th>Alamat</th>
                     <th>Jenis Marketing</th>
                     <th>Nama Nasabah</th>
-                    <th>Catatan</th>
-                    <th>Status</th>
+                    <th>Deskripsi</th>
                     <th>Hasil Activity</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <?php $i = 1; ?>
+                  @foreach($reports as $report)
                   <tr>
-                    <td>1</td>
-                    <td>DKI</td>
-                    <td>Sudirman</td>
-                    <td>KC. Sudirman</td>
-                    <td>Oktifial Pangestuti</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>On Progress</td>
-                    <td>success</td>
+                    <td>{{$i}}</td>
+                    <td>{{$report['wilayah']}}</td>
+                    <td>{{$report['cabang']}}</td>
+                    <td>{{$report['fo_name']}}</td>
+                    <td>{{$report['activity']}}</td>
+                    <td>{{$report['tujuan']}}</td>
+                    <td>{{$report['tanggal']}}</td>
+                    <td>{{$report['alamat']}}</td>
+                    <td>{{$report['marketing_type']}}</td>
+                    <td>{{$report['nama']}}</td>
+                    <td>{{$report['desc']}}</td>
+                    <td>{{$report['result']}}</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>DKI</td>
-                    <td>Sudirman</td>
-                    <td>KC. Sudirman</td>
-                    <td>Oktifial Pangestuti</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>On Progress</td>
-                    <td>success</td>
-                  </tr>
+                  <?php $i++ ?>
+                  @endforeach
                 </tbody>
               </table>
             </div>
-            <!-- <div class="text-right">
-            <a href="{{url('/add_Report')}}" class="btn btn-orange waves-light waves-effect w-md" id="btn-filter">Buat Report</a>
-          </div> -->
         </div>
       </div>
     </div>
@@ -154,7 +160,7 @@
 </div>
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(document).ready(function(){
 
     $("#from").datepicker({
@@ -228,7 +234,6 @@
       {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
       {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
       {   data: 'created_at', name: 'created_at' },
-      // {   data: 'product_type', name: 'product_type' },
       {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
       {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
       {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
@@ -239,4 +244,183 @@
       ],
     });
   }
+</script> -->
+<script type="text/javascript">
+  $('#datatable').dataTable();
+  $("#start").datepicker({
+    todayBtn:  1,
+    autoclose: true,
+    todayHighlight: true,
+    format: 'yyyy-mm-dd',
+  }).on('changeDate', function (selected) {
+    var minDate = new Date(selected.date.valueOf());
+    $('#to').datepicker('setStartDate', minDate);
+  });
+
+  $("#end").datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+  }).on('changeDate', function (selected) {
+    var maxDate = new Date(selected.date.valueOf());
+    $('#from').datepicker('setEndDate', maxDate);
+  });
+
+  $('#kanwil').on('change', function(){
+    HoldOn.open(options);
+    $('#kanca').html('');
+    $('#pemasar').html('');
+    var region = $('#kanwil').val();
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-kanca") }}',
+        data: {
+            region : region
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['mainbr'] + '">' + data[x]['mbdesc'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#kanca').html("<option value=''>Semua</option>"+options);
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-fo") }}',
+        data: {
+            region : region
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['PERNR'] + '">' + data[x]['SNAME'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#pemasar').html("<option value=''>Semua</option>"+options);
+      HoldOn.close();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#kanca').on('change', function(){
+    HoldOn.open(options);
+    var branch = $('#kanca').val();
+    $('#pemasar').html('');
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: '{{ url("report/list-fo-kanca") }}',
+        data: {
+            branch : branch
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      var options = '';
+      for (var x = 0; x < data.length; x++) {
+        options += '<option value="' + data[x]['PERNR'] + '">' + data[x]['SNAME'] + '</option>';
+      }
+      // console.log("<option value=''>Semua</option>"+options);
+      $('#pemasar').html("<option value=''>Semua</option>"+options);
+      HoldOn.close();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  $('#btn-filter').on('click', function() {
+    HoldOn.open(options);
+    var kanwil = $('#kanwil').val();
+    var kanca = $('#kanca').val();
+    var pemasar = $('#pemasar').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    // console.log(kanwil);
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("report/list-report-activity") }}',
+        data: {
+            region : kanwil,
+            branch : kanca,
+            pn : pemasar,
+            start: start,
+            end: end
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(data){
+      console.log(data);
+      $('#table-activity').html(data);
+      $('#datatable').dataTable();
+      HoldOn.close();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
+
+  // export excel
+
+  $('#btn-export-excel').on('click', function() {
+    HoldOn.open(options);
+    var kanwil = $('#kanwil').val();
+    var kanca = $('#kanca').val();
+    var pemasar = $('#pemasar').val();
+    var start = $('#start').val();
+    var end = $('#end').val();
+    // var a = document.createElement("a");
+    // a.href = '{{ url("report/marketing/export") }}'+'?region='+kanwil+'&branch='+kanca+'&pn='+pemasar+'&start='+start+'&end='+end;
+    console.log(start);
+    $.ajax({
+        type: 'POST',
+        url: '{{ url("report/activity/export") }}',
+        data: {
+            region : kanwil,
+            branch : kanca,
+            pn : pemasar,
+            start: start,
+            end: end,
+            tipe: "pdf"
+        },
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        }
+
+    }).done(function(response){
+      console.log(response);
+      var a = document.createElement("a");
+      a.href = response.file;
+      a.download = response.name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      HoldOn.close();
+    }).fail(function(errors){
+        alert("Gagal Terhubung ke Server");
+        HoldOn.close();
+    });
+  });
 </script>

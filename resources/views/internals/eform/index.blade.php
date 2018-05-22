@@ -129,7 +129,7 @@
                                             <th>No. Ref Aplikasi</th>
                                             <th>Nama Nasabah</th>
                                             <th>Nominal</th>
-                                            <th>Tanggal Pertemuan</th>
+                                            <th>Tanggal Pengajuan</th>
                                             <th>KC BRI Terdekat</th>
                                             <th>Status Prescreening</th>
                                             <th>id</th>
@@ -162,7 +162,7 @@
                                             <th>No. Ref Aplikasi</th>
                                             <th>Nama Nasabah</th>
                                             <th>Nominal</th>
-                                            <th>Tanggal Pertemuan</th>
+                                            <th>Tanggal Pengajuan</th>
                                             <th>KC BRI Terdekat</th>
                                             <th>Status Prescreening</th>
                                             <th>id</th>
@@ -213,7 +213,20 @@
             order : [[3, 'asc']],
             "language": {
                 "emptyTable": "No data available in table"
-            }
+            },
+            aoColumns : [
+                {   data: 'ref_number', name: 'ref_number',  bSortable: false },
+                {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
+                {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
+                {   data: 'created_at', name: 'created_at' },
+                {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
+                {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
+                {   data: 'ao_name', name: 'ao_name', bSortable: false },
+                {   data: 'status', name: 'status', bSortable: false },
+                {   data: 'aging', name: 'aging' },
+                {   data: 'action', name: 'action', bSortable: false },
+            ]
         });
 
     $(document).on('click', "#btn-filter", function(){
@@ -260,7 +273,6 @@
                 {   data: 'customer_name', name: 'customer_name',  bSortable: false  },
                 {   data: 'request_amount', name: 'request_amount',  bSortable: false  },
                 {   data: 'created_at', name: 'created_at' },
-                // {   data: 'product_type', name: 'product_type' },
                 {   data: 'branch_id', name: 'branch_id', bSortable: false, className: 'hidden' },
                 {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
                 {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
@@ -429,13 +441,11 @@
                 data: function (params) {
                     return {
                         name: params.term,
-                     //   aoId: $('#fake-aoid').val(),
                         page: params.page || 1
                     };
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -447,8 +457,5 @@
             },
         });
 
-        // $('.name').on('select2:select', function(){
-        //     $('#fake-aoid').val($(this).val());
-        // });
     });
 </script>

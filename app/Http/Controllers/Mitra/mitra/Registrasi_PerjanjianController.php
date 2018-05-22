@@ -25,6 +25,19 @@ class Registrasi_PerjanjianController extends Controller
     public function index()
     {
 		$data = $this->getUser();
+		if(isset($_GET['i'])){
+		$id_header = base64_decode($_GET['i']);
+		$mitra_list = Client::setEndpoint('mitraall')
+				->setHeaders([
+					'Authorization' => $data['token'],
+					'pn' => $data['pn']
+				])
+				->setBody([
+					'id_header' => $id_header
+				])
+				->post();
+		
+		$data = $this->getUser();
 		$view = Client::setEndpoint('GetView')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -45,7 +58,8 @@ class Registrasi_PerjanjianController extends Controller
 				])
 				->post();
 		$view2 = $view2['contents'];
-		return view('internals.mitra.mitra.registrasi_perjanjian',  compact('data','view','view2'));
+		return view('internals.mitra.mitra.registrasi_perjanjian',  compact('data','view','view2','mitra_list'));
+		}
     }
 	
 	public function hapus(Request $request){

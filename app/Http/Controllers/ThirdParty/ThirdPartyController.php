@@ -32,7 +32,6 @@ class ThirdPartyController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        // dd($user);
         return view('internals.third-party.index', compact('data'));
     }
 
@@ -79,19 +78,16 @@ class ThirdPartyController extends Controller
         $email = strtolower($request->email);
         $request->merge(['email'=>$email]);
         $newOther = $this->otherRequest($request, $data);
-        // dd($newOther);
 
         $client = Client::setEndpoint('thirdparty')
            ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
            ->setBody($newOther)
            ->post('multipart');
-           // dd($client);
 
         if($client['code'] == 200){
             \Session::flash('success', $client['descriptions']);
@@ -129,7 +125,6 @@ class ThirdPartyController extends Controller
                         // , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                     ])
                     ->get();
-        // dd($userData);
 
         $datas = $userData['contents'];
 
@@ -176,7 +171,6 @@ class ThirdPartyController extends Controller
            ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
@@ -204,13 +198,11 @@ class ThirdPartyController extends Controller
     public function actived(Request $request, $id)
     {
         $data = $this->getUser();
-        // echo json_encode($request->all());die();
 
         $thirdpartys = Client::setEndpoint("thirdparty/{$id}/actived")
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])
@@ -235,7 +227,6 @@ class ThirdPartyController extends Controller
                 ->setHeaders([
                     'Authorization' => $data['token']
                     , 'pn' => $data['pn']
-                    // , 'auditaction' => 'action name'
                     , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                     , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
                 ])->setQuery([
@@ -250,7 +241,6 @@ class ThirdPartyController extends Controller
             $third['action'] = view('internals.layouts.actions', [
                 'edit' => route('third-party.edit', $third['user_id']),
                 'show' => route('third-party.show', $third['user_id']),
-                // 'delete' => route('third-party.delete', $third['id']),
             ])->render();
             $third_party['contents']['data'][$key] = $third;
         }

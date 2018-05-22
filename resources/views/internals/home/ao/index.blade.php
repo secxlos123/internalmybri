@@ -1,3 +1,9 @@
+<style type="text/css">
+ .table-condensed .focused{
+   color: red;
+   font-weight: bold;
+  } 
+</style>
 <div class="row">
   <div class="col-md-12">
     <div class="card-box m-t-30">
@@ -82,7 +88,6 @@
                     <th>Status</th>
                     <th>Aging (hari)</th>
                     <th>Status Data Nasabah</th>
-                    {{-- <th>Catatan Disposisi</th> --}}
                     <th style="width: 100px">Aksi</th>
                   </tr>
                 </thead>

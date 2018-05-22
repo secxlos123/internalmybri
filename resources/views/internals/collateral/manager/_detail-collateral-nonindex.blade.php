@@ -60,12 +60,6 @@
                             <p class="form-control-static">{{$collateral['building_area']}} M <sup>2</sup></p>
                         </div>
                     </div>
-                   <!--  <div class="form-group">
-                        <label class="col-md-5 control-label">Foto :</label>
-                        <div class="col-md-7">
-                            <img id="preview" src="{{asset('assets/images/no-image.jpg')}}" width="300">
-                        </div>
-                    </div> -->
                 </form>
             </div>
         </div>
@@ -80,7 +74,7 @@
                             @if(strpos($collateral['proprietary'], 'noimage.jpg'))
                             <p>Surat Hak Milik Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['proprietary'])){{$collateral['proprietary']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['proprietary'])){{$collateral['proprietary']}}@endif" class="img-responsive imageZoom-up">
                             <p>Surat Hak Milik</p>
                             @endif
                         @else
@@ -96,7 +90,7 @@
                             @if(strpos($collateral['building_permit'], 'noimage.jpg'))
                             <p>Izin Mendirikan Bangunan Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['building_permit'])){{$collateral['building_permit']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['building_permit'])){{$collateral['building_permit']}}@endif" class="img-responsive imageZoom-up">
                             <p>Izin Mendirikan Bangunan</p>
                             @endif
                         @else
@@ -112,7 +106,7 @@
                             @if(strpos($collateral['building_tax'], 'noimage.jpg'))
                             <p>PBB Terakhir Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['building_tax'])){{$collateral['building_tax']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['building_tax'])){{$collateral['building_tax']}}@endif" class="img-responsive imageZoom-up">
                             <p>PBB Terakhir</p>
                             @endif
                         @else
@@ -136,7 +130,7 @@
                             @if(strpos($collateral['ots_doc']['collateral_binding_doc'], 'noimage.jpg'))
                             <p>Dokumen Pengikatan Agunan Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['collateral_binding_doc'])){{$collateral['ots_doc']['collateral_binding_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['collateral_binding_doc'])){{$collateral['ots_doc']['collateral_binding_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Dokumen Pengikatan Agunan</p>
                             @endif
                         @else
@@ -152,7 +146,7 @@
                             @if(strpos($collateral['ots_doc']['collateral_insurance_doc'], 'noimage.jpg'))
                             <p>Dokumen Polis Asuransi Agunan Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['collateral_insurance_doc'])){{$collateral['ots_doc']['collateral_insurance_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['collateral_insurance_doc'])){{$collateral['ots_doc']['collateral_insurance_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Dokumen Polis Asuransi Agunan</p>
                             @endif
                         @else
@@ -168,7 +162,7 @@
                             @if(strpos($collateral['ots_doc']['life_insurance_doc'], 'noimage.jpg'))
                             <p>Dokumen Polis Asuransi Jiwa  Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['life_insurance_doc'])){{$collateral['ots_doc']['life_insurance_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['life_insurance_doc'])){{$collateral['ots_doc']['life_insurance_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Dokumen Polis Asuransi Jiwa </p>
                             @endif
                         @else
@@ -184,7 +178,7 @@
                             @if(strpos($collateral['ots_doc']['ownership_doc'], 'noimage.jpg'))
                             <p>Surat SHM / SHGB / SHMRS Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['ownership_doc'])){{$collateral['ots_doc']['ownership_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['ownership_doc'])){{$collateral['ots_doc']['ownership_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Surat SHM / SHGB / SHMRS</p>
                             @endif
                         @else
@@ -200,7 +194,7 @@
                             @if(strpos($collateral['ots_doc']['building_permit_doc'], 'noimage.jpg'))
                             <p>Izin Mendirikan Bangunan Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['building_permit_doc'])){{$collateral['ots_doc']['building_permit_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['building_permit_doc'])){{$collateral['ots_doc']['building_permit_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Izin Mendirikan Bangunan</p>
                             @endif
                         @else
@@ -216,7 +210,7 @@
                             @if(strpos($collateral['ots_doc']['building_permit_doc'], 'noimage.jpg'))
                             <p>AJB / PPJB Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['sales_law_doc'])){{$collateral['ots_doc']['sales_law_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['sales_law_doc'])){{$collateral['ots_doc']['sales_law_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>AJB / PPJB</p>
                             @endif
                         @else
@@ -232,7 +226,7 @@
                             @if(strpos($collateral['ots_doc']['property_tax_doc'], 'noimage.jpg'))
                             <p>PBB Terakhir Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['property_tax_doc'])){{$collateral['ots_doc']['property_tax_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['property_tax_doc'])){{$collateral['ots_doc']['property_tax_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>PBB Terakhir</p>
                             @endif
                         @else
@@ -248,7 +242,7 @@
                             @if(strpos($collateral['ots_doc']['sale_value_doc'], 'noimage.jpg'))
                             <p>NJOP Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['sale_value_doc'])){{$collateral['ots_doc']['sale_value_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['sale_value_doc'])){{$collateral['ots_doc']['sale_value_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>NJOP</p>
                             @endif
                         @else
@@ -264,7 +258,7 @@
                             @if(strpos($collateral['ots_doc']['progress_one_doc'], 'noimage.jpg'))
                             <p>Progress 1 Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['progress_one_doc'])){{$collateral['ots_doc']['progress_one_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['progress_one_doc'])){{$collateral['ots_doc']['progress_one_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Progress 1</p>
                             @endif
                         @else
@@ -280,7 +274,7 @@
                             @if(strpos($collateral['ots_doc']['progress_two_doc'], 'noimage.jpg'))
                             <p>Progress 2 Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['progress_two_doc'])){{$collateral['ots_doc']['progress_two_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Progress 2</p>
                             @endif
                         @else
@@ -296,7 +290,7 @@
                             @if(strpos($collateral['ots_doc']['progress_three_doc'], 'noimage.jpg'))
                             <p>Progress 3 Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['progress_three_doc'])){{$collateral['ots_doc']['progress_three_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Progress 3</p>
                             @endif
                         @else
@@ -312,7 +306,7 @@
                             @if(strpos($collateral['ots_doc']['progress_four_doc'], 'noimage.jpg'))
                             <p>Progress 4 Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['progress_four_doc'])){{$collateral['ots_doc']['progress_four_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Progress 4</p>
                             @endif
                         @else
@@ -328,7 +322,7 @@
                             @if(strpos($collateral['ots_doc']['progress_five_doc'], 'noimage.jpg'))
                             <p>Progress 5 Kosong</p>
                             @else
-                            <img src="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" class="img-responsive">
+                            <img src="@if(!empty($collateral['ots_doc']['progress_five_doc'])){{$collateral['ots_doc']['progress_five_doc']}}@endif" class="img-responsive imageZoom-up">
                             <p>Progress 5</p>
                             @endif
                         @else
@@ -418,7 +412,7 @@
                             @include('internals.eform.approval._lkn-mutation')
                         </div>
                         @endif
-                        @if(($detail['visit_report']['use_reason'] == 2)||($detail['visit_report']['use_reason'] == 18))
+                        @if($collateral['status_property'] == "1" && $collateral['developer_name'] == "Non Kerja Sama" || $collateral['status_property'] == "2" && $collateral['developer_name'] == "Non Kerja Sama"  )
                         <div class="panel-body">
                             @include('internals.eform.approval._lkn-investigate')
                         </div>

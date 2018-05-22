@@ -2,7 +2,6 @@
     <div class="row">
         <div class="col-md-9">
             <div class="form-horizontal" role="form">
-                <!-- <input type="hidden" name="use_reason_id" id="use_reason_id" value=""> -->
                 <input type="hidden" name="id_prescreening" id="id_prescreening" value="12">
                 <div class="form-group {!! $errors->has('kpp_type') ? 'has-error' : '' !!}" id="kpp_type">
                     <label class="col-md-4 control-label">KPP *:</label>

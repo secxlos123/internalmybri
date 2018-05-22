@@ -8,7 +8,35 @@
                 <br>
                 <br>
                 <br>
-            <img src="{{ url('assets/images/logo/Logo-Website.png') }}" align="center">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            <img src="{{ url('assets/images/logo/Logo-Website.png') }}" align="center" class="img-responsive">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
 
   </div>

@@ -8,7 +8,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Peruntukan Tanah * :</label>
                             <div class="col-md-8">
-                                {!! Form::select('environment[designated_land]', array("" => "", 
+                                {!! Form::select('environment[designated_land]', array($collateral['ots_environment']['designated_land'] ? $collateral['ots_environment']['designated_land'] : "" => $collateral['ots_environment']['designated_land'] ? $collateral['ots_environment']['designated_land'] : "", 
                                     "Bangunan Industri" => "Bangunan Industri", 
                                     "Bangunan Perdagangan" => "Bangunan Perdagangan", 
                                     "Bangunan Perkantoran" => "Bangunan Perkantoran",
@@ -24,25 +24,25 @@
                             <label class="col-md-4 control-label">Fasilitas Umum Yang Ada * :</label>
                             <div class="col-md-8">
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_pln]" @if (old('environment.designated_pln'))
+                                    <input type="checkbox" value="1" name="environment[designated_pln]" @if ( $collateral['ots_environment']['designated_pln'] ? $collateral['ots_environment']['designated_pln'] : old('environment.designated_pln'))
                                         checked
                                     @endif>
                                     <label for="pln"> PLN </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_phone]" @if (old('environment.designated_phone'))
+                                    <input type="checkbox" value="1" name="environment[designated_phone]" @if ( $collateral['ots_environment']['designated_phone'] ? $collateral['ots_environment']['designated_phone'] : old('environment.designated_phone'))
                                         checked
                                     @endif>
                                     <label for="telepon"> Telepon </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_pam]" @if (old('environment.designated_pam'))
+                                    <input type="checkbox" value="1" name="environment[designated_pam]" @if ($collateral['ots_environment']['designated_pam'] ? $collateral['ots_environment']['designated_pam'] : old('environment.designated_pam'))
                                         checked
                                     @endif>
                                     <label for="pam"> PAM </label>
                                 </div>
                                 <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" value="1" name="environment[designated_telex]" @if (old('environment.designated_telex'))
+                                    <input type="checkbox" value="1" name="environment[designated_telex]" @if ( $collateral['ots_environment']['designated_telex'] ? $collateral['ots_environment']['designated_telex'] : old('environment.designated_telex'))
                                         checked
                                     @endif>
                                     <label for="telex"> Telex </label>
@@ -55,7 +55,7 @@
                         <div class="form-group clearfix">
                             <label class="col-md-4 control-label">Fasilitas Umum Lain * :</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="environment[other_designated]" maxlength="50" value="{{old('environment.other_designated')}}" id="other_designated">
+                                <input type="text" class="form-control" name="environment[other_designated]" maxlength="50" value="{{ $collateral['ots_environment']['other_designated'] ? $collateral['ots_environment']['other_designated'] : old('environment.other_designated')}}" id="other_designated">
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Lingkungan Terdekat Dari Lokasi Sebagian Besar * :</label>
                         <div class="col-md-8">
-                            {!! Form::select('environment[nearest_location]', array("" => "", 
+                            {!! Form::select('environment[nearest_location]', array($collateral['ots_environment']['nearest_location'] ? $collateral['ots_environment']['nearest_location'] : "" => $collateral['ots_environment']['nearest_location'] ? $collateral['ots_environment']['nearest_location'] : "", 
                                 "Bangunan Industri" => "Bangunan Industri", 
                                 "Bangunan Perdagangan" => "Bangunan Perdagangan", 
                                 "Bangunan Perkantoran" => "Bangunan Perkantoran",
@@ -79,7 +79,7 @@
                     <div class="form-group clearfix">
                         <label class="col-md-4 control-label">Petunjuk Lain * :</label>
                         <div class="col-md-8">
-                            <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250" id="other_guide">{{old('environment.other_guide')}}</textarea>
+                            <textarea class="form-control" rows="3" name="environment[other_guide]" maxlength="250" id="other_guide">{{ $collateral['ots_environment']['other_guide'] ? $collateral['ots_environment']['other_guide'] : old('environment.other_guide')}}</textarea>
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@
                         <label class="col-md-4 control-label">Sarana Transportasi * :</label>
                         <div class="col-md-8">
                             <div class="input-group" style="width:100%">
-                                <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{old('environment.transportation')}}" id="transportation">
+                                <input type="text" class="form-control" name="environment[transportation]" maxlength="30" value="{{ $collateral['ots_environment']['transportation'] ? $collateral['ots_environment']['transportation'] : old('environment.transportation')}}" id="transportation">
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <label class="col-md-4 control-label">Jarak Dari Lokasi * :</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                            <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{old('environment.distance_from_transportation')}}" id="distance_from_transportation">
+                            <input type="text" class="form-control numericOnly" name="environment[distance_from_transportation]" maxlength="4" value="{{ $collateral['ots_environment']['distance_from_transportation'] ? substr($collateral['ots_environment']['distance_from_transportation'], 0, -3) : old('environment.distance_from_transportation')}}" id="distance_from_transportation">
                             <span class="input-group-addon has-ket-input">Meter</span>
                             </div>
                         </div>

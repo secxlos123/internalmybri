@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row">
-            @if(($data['role']=='staff') || ($data['role']=='admin'))
+            @if( ($data['role']=='admin'))
                 @include('internals.home.admin.index')
             @elseif(($data['role']=='ao'))
                 @include('internals.home.ao.index')
@@ -71,8 +71,6 @@
 
 <script src="{{asset('assets/js/morris.min.js')}}"></script>
 <script src="{{asset('assets/js/raphael-min.js')}}"></script>
-<!-- <script src="{{asset('assets/js/jquery.morris.init.js')}}"></script> -->
-<!-- <script src="{{asset('assets/js/jquery.morris2.init.js')}}"></script> -->
 @if(($data['role']=='staff') || ($data['role']=='admin'))
     @include('internals.home.admin.script')
 @elseif(($data['role']=='ao'))

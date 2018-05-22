@@ -13,6 +13,33 @@
         .fc-time{
           display : none !important;
         }
+        .fc-corner-right{
+            background-color:/*#4682B4*/#1E90FF;
+        }
+        .fc-corner-left{
+            background-color:/*#4682B4*/#1E90FF;
+        }
+        .fc-icon-right-single-arrow{
+            color: white;
+        }
+        .fc-icon-left-single-arrow{
+            color: white;
+        }
+        .fc-corner-right:hover{
+            background-color: orange;
+            color: white;
+        }
+        .fc-corner-left:hover{
+            background-color: orange;
+            color: white;
+        }
+        .fc-content:hover{
+            background-color: orange;
+            color: white;
+        }
+        .fc-today-button{
+            color: white;
+        }
     </style>
     <script type="text/javascript">
       var aoUserID = '{{ $data['pn'] }}'
@@ -45,8 +72,13 @@
                     <div class="card-box">
                         <h4 class="m-t-0 header-title"><b>Modul Penjadwalan</b></h4>
                         <p class="text-muted m-b-30">
+                        @if($data['role'] != 'ao' )
+                            Klik pada label jadwal yang telah ada
+                            untuk melihat detail jadwal.
+                        @else
                             Klik pada tanggal untuk menambahkan jadwal baru atau klik pada label jadwal yg telah ada
                             untuk merubah.
+                        @endif
                         </p>
                         <div class="row">
                             <div class="col-md-12">
@@ -108,4 +140,5 @@
         lat: "{{ env('DEF_LAT', '-6.21670') }}",
         long: "{{ env('DEF_LONG', '106.81350') }}",
     };
+    $('#calendar').fullcalendar({});
 </script>

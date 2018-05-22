@@ -33,9 +33,6 @@
 <script src="{{asset('assets/js/dataTables.bootstrap.js')}}"></script>
 <script src="{{asset('assets/js/jquery.datatables.init.js')}}"></script>
 <script src="{{asset('assets/js/dataTables.responsive.min.js')}}"></script>
-<!-- <script src="{{asset('assets/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('assets/js/dataTables.editor.min.js')}}"></script>
-<script src="{{asset('assets/js/dataTables.select.min.js')}}"></script> -->
 
 <script src="{{asset('assets/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
@@ -48,10 +45,10 @@
 
 <!-- Calendar -->
 <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/locale/id.js') }}"></script>
 <script src="{{asset('assets/js/jquery.fullcalendar.js')}}"></script>
 
 <!-- Init js -->
-<!-- <script src="{{asset('assets/js/jquery.form-pickers.init.js')}}"></script> -->
 
 <!-- App js -->
 <script src="{{asset('assets/js/jquery.core.js')}}"></script>
@@ -62,10 +59,8 @@
 <script type="text/javascript" src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap-timepicker.js')}}"></script>
 
-<!-- <script src="{{asset('assets/js/jquery.wizard-init.js')}}" type="text/javascript"></script> -->
 <script src="{{asset('assets/js/jquery.date-pickers.init.js')}}"></script>
 <script src="{{asset('assets/js/jquery.time-pickers.init.js')}}"></script>
-<!-- <script src="{{asset('assets/js/jquery.gmaps.js')}}"></script> -->
 
 <script src="{{asset('js/jquery.inputmask.bundle.min.js')}}"></script>
 <script src="{{asset('js/inputmask.numeric.extensions.js')}}"></script>
@@ -74,11 +69,8 @@
 
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
 <script src="{{asset('assets/js/jquery.viewbox.min.js')}}"></script>
-<!-- <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script> -->
+<script src="{{asset('assets/js/jquery.elevatezoom.js')}}"></script>
 <script type="text/javascript">
         $('tr[data-href]').on("click", function() {
             document.location = $(this).data('href');
@@ -92,7 +84,6 @@
 
         } else {
             alert("Geolocation is not supported by this browser.");
-            console.log("Geolocation is not supported by this browser.");
 
         }
     })
@@ -102,12 +93,10 @@
         $('input[name="hidden-long"]').val(position.coords.longitude);
         $('input[name="hidden-lat"]').val(position.coords.latitude);
 
-        console.log("Success generate longitude" + position.coords.longitude + " - latitude : " + position.coords.latitude + ".");
     }
 
     // Fail get longitude - latitude
     function getError() {
-        console.log("Default longitude - latitude set.");
     }
 
     $.ajaxSetup({
@@ -129,23 +118,17 @@
 
 </script>
 
+<!-- Image Zoom -->
+<script type="text/javascript">
+    $('.imageZoom').elevateZoom({zoomWindowPosition: 1});
+    $('.imageZoom-up').elevateZoom({zoomWindowPosition: 14});
+    $('.imageZoom_Type').elevateZoom({zoomWindowPosition: 10});     
+</script>
+<!-- End Image Zoom -->
+
 <script>
     $(document).ready(function() {
-        $('#logout').on('click', function(e) {
-            $('#out').attr('action', '{{url("logout")}}');
-            $('#sign-out').modal('show');
-            e.preventDefault();
-        });
-    });
-
-    var options = {
-        theme:"sk-bounce",
-        message:'Mohon tunggu sebentar.',
-        textColor:"white"
-    };
-
-    $(document).ready(function() {
-        $('#signout').on('click', function(e) {
+        $('#logout,#signout').on('click', function(e) {
             $('#out').attr('action', '{{url("logout")}}');
             $('#sign-out').modal('show');
             e.preventDefault();
@@ -161,18 +144,19 @@
             }
         });
     });
+    var options = {
+        theme:"sk-bounce",
+        message:'Mohon tunggu sebentar.',
+        textColor:"white"
+    };
 
     $(document).ready(function() {
         Inputmask.extendAliases({
             rupiah: {
-                // prefix: "Rp ",
                 radixPoint: ".",
                 groupSeparator: ".",
                 alias: "numeric",
-                // placeholder: "0",
                 autoGroup: !0,
-                // digits: 2,
-                // digitsOptional: !1,
                 clearMaskOnLostFocus: !1,
                 rightAlign: false
             }
@@ -184,12 +168,6 @@
     });
 
     $(document).on('keydown', ".numericOnly", function (e) {
-        // curVal = $(this).val();
-        // if ( e.keyCode == 190 ) {
-        //     if ( $(this).hasClass('nonSeparator') || ( curVal[curVal.length -1] == "." ) ) {
-        //         e.preventDefault();
-        //     }
-        // }
 
         // Allow: backspace, delete, tab, escape, enter
         if ( $.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
@@ -215,7 +193,6 @@
     });
 
     $(document).on('keypress', ".alphaOnly", function (e) {
-        // var regex = new RegExp("^[a-zA-Z ]+$");
         var regex = new RegExp("^[a-zA-Z \b\0 ]+$");
         var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
         if (regex.test(str)) {

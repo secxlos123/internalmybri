@@ -22,7 +22,6 @@ class CalculatorController extends Controller
     public function index()
     {
         $data = $this->getUser();
-        // dd($user);
         return view('internals.calculator.index', compact('data'));
     }
 
@@ -32,7 +31,6 @@ class CalculatorController extends Controller
      */
 
     public function postCalculate(Request $request){
-        // dd($request->all());
       $data = $this->getUser();
       $calculate = $request->except('_token');
       $interest_rate_type = $calculate['interest_rate_type'];
@@ -92,7 +90,6 @@ class CalculatorController extends Controller
           );
       }
       $response = Client::setBase('common')->setEndpoint('calculator')->setBody($calculateSend)->post(); 
-     // dd($response);
       $rincian_pinjaman =  $response['contents']['rincian_pinjaman'];
       $detail_angsuran =   $response['contents']['detail_angsuran']; 
       return view('internals.calculator.detail', compact('rincian_pinjaman','detail_angsuran','interest_rate_type', 'data'));

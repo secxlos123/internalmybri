@@ -28,7 +28,6 @@
                 <div class="col-sm-12">
                     <div class="card-box table-responsive">
                         <div class="add-button">
-                            <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                             <a href="{{route('developers.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Tambah Mitra Kerjasama</a>
                         </div>
                         <div id="filter" class="m-b-15">
@@ -53,7 +52,7 @@
                                                         <option value="0|49"> < 50 </option>
                                                         <option value="50|100"> 50 - 100 </option>
                                                         <option value="100|200"> 100 - 200 </option>
-                                                        <option value="200|400"> > 200 </option>
+                                                        <option value="200|10000000"> > 200 </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -70,7 +69,6 @@
                             <table id="datatable" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <!-- <th>Nama Mitra Kerjasama</th> -->
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Nomor Telepon</th>
@@ -148,7 +146,6 @@
                     }
                 },
                 aoColumns : [
-                // { data: 'company_name', name: 'company_name' },
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
                 { data: 'phone_number', name: 'phone_number' },
@@ -177,58 +174,6 @@
                 witdh : '100%',
                 allowClear: true,
             });
-        // var baseurl = window.location.origin;
-
-        // var table = $('#datatable').dataTable({
-        //     processing : true,
-        //     serverSide : true,
-        //     lengthMenu: [
-        //         [ 10, 25, 50, -1 ],
-        //         [ '10', '25', '50', 'All' ]
-        //     ],
-        //     language : {
-        //         infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
-        //     },
-        //     ajax : {
-        //         url : baseurl+'/datatables/developers',
-        //         data : function(d, settings){
-        //             var api = new $.fn.dataTable.Api(settings);
-
-        //             d.page = Math.min(
-        //                 Math.max(0, Math.round(d.start / api.page.len())),
-        //                 api.page.info().pages
-        //             );
-
-        //             d.city_id = $('.cities').val();
-        //             d.project = $('.projects').val();
-        //         }
-        //     },
-        //     aoColumns : [
-        //         // { data: 'company_name', name: 'company_name' },
-        //         { data: 'name', name: 'name' },
-        //         { data: 'email', name: 'email' },
-        //         { data: 'phone_number', name: 'phone_number' },
-        //         { data: 'city_name', name: 'city_name' },
-        //         { data: 'project', name: 'project' },
-        //         {
-        //            data: 'is_actived',
-        //            name: 'is_actived',
-        //            bSortable: false,
-        //            mRender: function (data, type, full) {
-        //                 var checked = full.is_actived ? 'checked' : '';
-        //                 return `<input type="checkbox" data-developer="${full.name}" id="${full.dev_id}" class="status" switch="success" ${checked}><label for="${full.dev_id}" data-on-label="Aktif" data-off-label="Inaktif"></label>`;
-        //            },
-        //            createdCell:  function (td, cellData, rowData, row, col) {
-        //                 $(td).attr('class', 'status');
-        //            }
-        //         },
-        //         { data: 'action', name: 'action', bSortable: false },
-        //     ],
-        // });
-
-        // $('#btn-filter').on('click', function () {
-        //     table.fnDraw();
-        // });
 
         $(document).on('click', '.status input[type=checkbox]', function(e){
             e.preventDefault();
@@ -253,7 +198,6 @@
                 }
             })
             .done(function (response) {
-                //reloadData1($('.cities').val(), $('.projects').val());
                 $('#confirm').modal('hide');
                 $("#btn-filter").click();
             });

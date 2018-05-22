@@ -51,6 +51,7 @@ class ReferralController extends Controller
       ])
       ->get();
       $referral = $referrals['contents'];
+      // dd($referral);
       return view('internals.crm.referal.index', compact('data', 'referral'));
     }
 

@@ -23,9 +23,12 @@
             Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
             Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
             Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            Route::post('/ApprovalStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
+            Route::post('/ApprovalPKSStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalPKSController@store']);
+            Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
             //Route::post('/FasilitasStore', ['as'=>'FasilitasStore', 'uses'=>'Mitra\mitra\RegistrasiController@fasilitas_store']);
             Route::get('/DirRpcStoreEdit', ['as'=>'DirRpcStoreEdit', 'uses'=>'Mitra\dirrpc\EditDircontroller@store']);
-            Route::get('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
+            Route::post('/KelayakanStore', ['as'=>'KelayakanStore', 'uses'=>'Mitra\mitra\PenilaianKelayakanController@store']);
             Route::get('/InputKolektifStore', ['as'=>'InputKolektifStore', 'uses'=>'Mitra\mitra\eksternal\InputKolektifController@store']);
             Route::get('/HasilScoringStore', ['as'=>'HasilScoringStore', 'uses'=>'Mitra\mitra\HasilScoringController@store']);
             Route::get('/DirRpcHapus', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\DirRpcController@hapus']);
@@ -234,13 +237,13 @@
         Route::resource('third-party', 'ThirdParty\ThirdPartyController');
 
         /* Schedule */
-        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin,fo'], function() {
             Route::resource('schedule', 'Schedule\ScheduleController', [
                 'only' => ['index']
             ]);
         });
 
-        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin'], function($router) {
+        Route::group(['prefix' => 'schedule', 'namespace' => 'Schedule', 'middleware'=>'checkrole:ao,superadmin,pinca,fo'], function($router) {
             $router->get('/ao', 'ScheduleController@schedule');
             $router->post('/ao', 'ScheduleController@postSchedule');
             $router->get('/e-form', 'ScheduleController@eFormList');
@@ -253,6 +256,13 @@
 
         /* Calculator */
         Route::resource('calculator', 'Calculator\CalculatorController');
+
+
+				/* Calculator DPLK */
+        Route::resource('calculatordplk', 'CalculatorDPLK\CalculatorDPLKController');
+
+        /* Calculator */
+        Route::resource('debitur', 'Debitur\DebiturController');
 
         /* Debitur */
         Route::group(['middleware' => 'checkrole:ao,mp,pinca,superadmin'], function() {
@@ -271,8 +281,9 @@
 
         /* Scoring*/
         Route::resource('scoring', 'Screening\ScoringController');
+        Route::resource('monitoring', 'Monitoring\MonitoringController');
 
-        /* Fasilitas*/
+		/* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
@@ -285,7 +296,9 @@
         /* CRM Dashboard */
                 Route::get('crm_dashboard', 'CRM\DashboardController@index');
                 Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
-                Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
+								Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
+								Route::post('detail_marketing', 'CRM\DashboardController@detailMarketing');
+                Route::post('detail_branch', 'CRM\DashboardController@detailBranch');
 
         /* CRM referral */
                 Route::resource('referral', 'CRM\ReferralController');
@@ -294,12 +307,46 @@
                 Route::post('store_referral', 'CRM\ReferralController@store');
                 Route::post('update_referral', 'CRM\ReferralController@update');
 
-        /* Disposisi Referral */
-                Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
+								/* CRM Disposisi Referral */
+								Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
-        /* CRM report */
-                Route::get('report/marketing', 'CRM\ReportController@marketing');
-                Route::get('report/activity', 'CRM\ReportController@activity');
+				        /* CRM report */
+								Route::get('report/marketing', 'CRM\ReportController@marketing');
+								Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
+								Route::post('report/list-fo', 'CRM\ReportController@listFo');
+								Route::post('report/list-fo-kanca', 'CRM\ReportController@listFoKanca');
+								Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
+								Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
+								Route::get('report/activity', 'CRM\ReportController@activity');
+								Route::post('report/marketing/export', 'CRM\ReportController@exportMarketing');
+								Route::post('report/activity/export', 'CRM\ReportController@exportActivity');
+                Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function(){
+								/* CRM marketing */
+								Route::get('marketing', 'CRM\marketingController@index');
+								Route::get('marketing_detail', 'CRM\marketingController@detail');
+								Route::get('marketing/create', 'CRM\marketingController@create');
+                });
+								Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
+								Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
+
+								/* CRM Leads */
+                Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() {
+								Route::get('leads', 'CRM\leadsController@index');
+								Route::get('leads_detail', 'CRM\leadsController@detail');
+                });
+                Route::post('leads_kelolaan', 'CRM\LeadsController@kelolaan');
+                Route::post('leads_leads', 'CRM\LeadsController@leads');
+                Route::post('leads_customer', 'CRM\LeadsController@customers');
+                Route::post('leads_cpp', 'CRM\LeadsController@cpps');
+                Route::post('leads_referral', 'CRM\LeadsController@referrals');
+                Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
+            Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
+                /* CRM Activity */
+                Route::get('activity', 'CRM\activityController@index');
+                Route::get('activity/data', 'CRM\activityController@data');
+                Route::get('activity/pemasar', 'CRM\activityController@pemasar');
+                Route::get('activity/marketing', 'CRM\activityController@marketing');
+            });
 
 
         Route::resource('mitra', 'Mitra\MitraController');
@@ -308,13 +355,17 @@
         Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
         Route::resource('testing', 'Mitra\testingController');
         Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+        Route::resource('settinguser', 'Management\ManagementUserController');
         Route::resource('mitra_list', 'Mitra\mitra\MitraController');
         Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
         Route::resource('list_pekerja_eksternal', 'Mitra\mitra\eksternal\ListMitraController');
         Route::resource('input_data_kolektif', 'Mitra\mitra\eksternal\InputKolektifController');
         Route::resource('input_individu_eksternal', 'Mitra\mitra\eksternal\InputIndividuController');
         Route::resource('calon_mitra', 'Mitra\mitra\CalonMitraController');
+        Route::resource('calon_mitra_approval', 'Mitra\mitra\CalonMitraApprovalController');
         Route::resource('penilaian_kelayakan', 'Mitra\mitra\PenilaianKelayakanController');
+        Route::resource('approval_mitra', 'Mitra\mitra\ApprovalController');
+        Route::resource('approval_mitra_pks', 'Mitra\mitra\ApprovalPKSController');
         Route::resource('hasil_scoring', 'Mitra\mitra\HasilScoringController');
         Route::resource('scoringproses', 'Mitra\mitra\ScoringProsesController');
         Route::resource('registrasi_perjanjian', 'Mitra\mitra\Registrasi_PerjanjianController');
@@ -328,7 +379,7 @@
         Route::resource('scoring_proses', 'Mitra\scoring\ScoringProsescontroller');
 
         Route::resource('mitrakerjasama', 'Mitra\MitraController@mitrakerjasama');
-        Route::group(['middleware' => 'checkrole:prescreening,superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:prescreening,ao'], function() {
             Route::get('/screening/getscrore/{id}', ['as'=>'getscore', 'uses'=>'Screening\AOController@getScore']);
         });
 
@@ -495,16 +546,20 @@
         Route::get('screening', 'Screening\ScreeningController@datatables');
 
         Route::get('screening-ao', ['as'=>'screening-ao', 'uses'=>'Screening\AOController@datatables']);
-
+        //ini routing untuk monitoring
+        Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
+        
+//dfjsjdfsdj sdfjds
         /* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
         Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
+        Route::get('calon_mitra_list', 'Mitra\mitra\CalonMitraController@datatables');
+        Route::get('mitra_approval_list', 'Mitra\mitra\CalonMitraApprovalController@datatables');
         Route::get('list_pekerja', 'Mitra\mitra\eksternal\ListMitraController@datatables');
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
-
         /*Auditrail*/
             Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //

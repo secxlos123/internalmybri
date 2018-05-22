@@ -12,7 +12,6 @@
                             <th>Luas Bangunan (m<sup>2</sup>)</th>
                             <th>Luas Tanah (m<sup>2</sup>)</th>
                             <th>Sertifikat</th>
-                            <!-- <th>Stok</th> -->
                             <th>Foto</th>
                         </tr>
                     </thead>
@@ -32,12 +31,12 @@
                             <td>
                                 <p class="form-control-static">{{$propType['certificate']}}</p>
                             </td>
-                           <!--  <td>
-                                <p class="form-control-static">{{$propType['name']}}</p>
-                            </td> -->
                             <td>
                                 @if ( count($propType['photos'])>0 )
-                                <img id="preview" @if(isset($propType['photos'][0])) src="{{$propType['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200">
+                                <!-- <img id="preview" @if(isset($propType['photos'][0])) src="{{$propType['photos'][0]['image']}}" @else src="{{asset('assets/images/no-image.jpg')}}" @endif width="200"> -->
+                                    @foreach($propType['photos'] as $photoType)
+                                    <img src="{{ $photoType['image'] }}" id="preview" width="200" class="imageZoom_Type">
+                                    @endforeach
                                 @else
                                      <img id="preview" src="{{asset('assets/images/no-image.jpg')}}" width="200">
                                 @endif

@@ -12,6 +12,7 @@
     };
 
     var ajaxConfig = {
+        dropdownParent: $('#event-modal'),
         minimumInputLength: 1,
         placeholder: "Search Ref",
         ajax: {
@@ -75,7 +76,7 @@
         var form = $("<form></form>");
         form.append("<div class='row'></div>");
         form.find(".row")
-            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tanggal</label><input class='form-control appointment_date' readonly type='text' name='date' /></div></div>")
+            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tanggal</label><input class='form-control appointment_date'  type='text' name='date' /></div></div>")
             .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>No. Referensi</label><select class='form-control select2' " + disabled + " name='eform-id'></select></div></div>")
             .find("select[name='eform-id']");
         form.find(".select2").append("<option value='" + calEvent.eform_id + "' selected='selected'>" + calEvent.ref_number +"</option>");
@@ -185,7 +186,7 @@
             var form = $("<form></form>");
             form.append("<div class='row'></div>");
             form.find(".row")
-                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tanggal</label><input class='form-control appointment_date' readonly type='text' name='date' /></div></div>")
+                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tanggal</label><input class='form-control appointment_date'  type='text' name='date' /></div></div>")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>No. Referensi</label><select class='form-control select2' name='eform-id'></select></div></div>")
                 .find("select[name='eform-id']")
                 .append("<option value=''>-- Pilih --</option>")
@@ -329,6 +330,7 @@
                 center: 'title',
                 right: 'month'
             },
+            lang: 'id',
             eventSources: [{
               events: function (start, end, timezone, callback) {
                 if ( parseInt(start.format('D')) > 1 ) {

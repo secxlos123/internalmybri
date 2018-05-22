@@ -34,10 +34,6 @@
                     <div class="card-box">
                         <div class="row">
                             <h5 class="m-t-0 header-title"><b>Form Approval Collateral Appraisal</b></h5>
-                            <!-- <div class="col-md-12"> -->
-                               <!--  <p class="text-muted m-b-30 font-13">
-                                    No. Contact Agen / Sales : 
-                                </p> -->
                                 @if($type != 'nonindex')
                                 <!-- detail properti -->
                                 @include('internals.collateral.manager._detail-property')
@@ -62,7 +58,8 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Catatan Rekomendasi Collateral * :</label>
-                                                    <textarea class="form-control" name="remark" placeholder="Tulis Rekomendasi Disini">{{ old('remark') }}</textarea>
+                                                    <textarea class="form-control" name="remark" placeholder="Tulis Rekomendasi Disini" id="remark">{{ old('remark') }}</textarea>
+                                                    <p hidden="" id="validasi_remark" class="text-danger">Kolom Catatan Rekomendasi Harus diisi!</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +118,6 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    // console.log(data);
                     return {
                         results: data.officers.data,
                         pagination: {
@@ -135,20 +131,33 @@
     });
     
     $(document).on('click', "#btn-approve", function(){
-        $('#is_approved').attr('value', true);
-        console.log($('#is_approved').val());
-        $('#form1').submit();
-        HoldOn.open(options);
+        var remark = $("#remark").val();
+        // console.log(remark);
+        if(remark !== ""){
+            // console.log("AYAAN");
+            $('#is_approved').attr('value', true);
+            $('#form1').submit();
+            HoldOn.open(options);
+        }else{
+            $("#validasi_remark").show();
+        }
     })
 
     $(document).on('click', "#btn-reject", function(){
+        console.log("MODAL SHOW PENOLAKAN");
         $('#reject-modal').modal('show');
     })
 
     $(document).on('click', "#btn-submit", function(){
-        $('#is_approved').attr('value', false);
-        $('#remark').val($('#reject-modal #reason').val());
-        $('#form1').submit();
-        HoldOn.open(options);
+        var reason = $('#reject-modal #reason').val();
+        if(reason !== ""){
+            $('#is_approved').attr('value', false);
+            $('#remark').val(reason);
+            $('#form1').submit();
+            HoldOn.open(options);
+        }else{
+            $("#reject-modal #validasi_penolakan").show();
+        }
+            
     })
 </script>

@@ -21,13 +21,11 @@ class OfficeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // dd($request->all());
         $data = $this->getUser();
         $offices = \Client::setEndpoint('offices')
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])->setQuery([
@@ -37,7 +35,6 @@ class OfficeController extends Controller
                 'page' => $request->input('page'),
                 'name' => $request->input('name'),
             ])->get();
-            // dd(json_encode($offices));
 
         foreach ($offices['contents']['data'] as $key => $office) {
             $office['text'] = $office['unit'];
@@ -61,7 +58,6 @@ class OfficeController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])
@@ -95,7 +91,6 @@ class OfficeController extends Controller
             ->setHeaders([
                 'Authorization' => $data['token']
                 , 'pn' => $data['pn']
-                // , 'auditaction' => 'action name'
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
             ])

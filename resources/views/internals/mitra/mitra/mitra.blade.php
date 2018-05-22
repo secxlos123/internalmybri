@@ -5,25 +5,33 @@
   
     <div class="content-page">
         <div class="content">
+	<?php if($message!=''){ if($key=='Gagal'){?>
+			<style>
+				.alert {
+					padding: 20px;
+					background-color: #f44336;
+					color: white;
+				}
+			</style>
+			<div class="alert">
+			  <strong>ERROR !!</strong> <?php echo $message;?>.
+				<br/> <a href="<? echo env('APP_URL').'/registrasi_mitra';?>">Klik disini untuk mengisi ulang data </a>
+			</div>
+		<?php }elseif($key=='Sukses'){ ?>
+			<style>
+				.alert {
+					padding: 20px;
+					background-color: #32CD32;
+					color: white;
+				}
+			</style>
+			<div class="alert">
+			  <strong>SUKSES, </strong> <?php echo $message;?>.
+			</div>
+		<?php }} ?>
 		{{ csrf_field() }}
 		<form>
-		
-					<div class="row">
-                    <div class="col-md-12">
-                            @if (\Session::has('error'))
-                            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
-                            @endif
-                            <div class="panel panel-color panel-primary">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Mitra Kerjasama</h3>
-                                </div>
-			                        <div class="panel-body">
-									</div>
-							</div>
-					</div>
-			</div>
-
-
+		<!--
 					<div class="row">
                     <div class="col-md-12">
                             @if (\Session::has('error'))
@@ -116,8 +124,10 @@
 							</div>
 					</div>
 			</div>
-
-			<div class="row">
+		
+		
+		!-->
+			<div class="row" id="table1">
                     <div class="col-md-12">
                             @if (\Session::has('error'))
                             <div class="alert alert-danger">{{ \Session::get('error') }}</div>

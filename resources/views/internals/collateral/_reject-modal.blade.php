@@ -15,6 +15,7 @@
 		                	<label class="col-md-4 control-label"> Alasan Penolakan *</label> 
 		            		<div class="col-md-8">
 		            			<textarea name="reason" placeholder="Alasan Penolakan" class="form-control" rows="3" id="reason">{{old('reason')}}</textarea>
+                                <p class="text-danger" id="validasi_penolakan" hidden="">Kolom Alasan Penolakan wajib diisi!</p>
 		            		</div>
 		            	</div>
 		            </div>

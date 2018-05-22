@@ -233,7 +233,6 @@
         {   data: 'prop_city_name', name: 'prop_city_name',  bSortable: false  },
         {   data: 'prop_types', name: 'prop_types',  bSortable: false  },
         {   data: 'prop_items', name: 'prop_items', bSortable: true },
-                // {   data: 'product_type', name: 'product_type' },
                 {   data: 'prop_pic_name', name: 'prop_pic_name', bSortable: false },
                 {   data: 'prop_pic_phone', name: 'prop_pic_phone', bSortable: false },
                 {   data: 'staff_name', name: 'staff_name', bSortable: false },
@@ -278,7 +277,6 @@
             {   data: 'first_name', name: 'first_name', bSortable: false  },
             {   data: 'home_location', name: 'home_location',  bSortable: false  },
             {   data: 'mobile_phone', name: 'mobile_phone',  bSortable: false  },
-            // {   data: 'product_type', name: 'product_type' },
             {   data: 'staff_name', name: 'staff_name', bSortable: false },
             {   data: 'status', name: 'status', bSortable: false },
             {   data: 'action', name: 'action', orderable: false, searchable: false}

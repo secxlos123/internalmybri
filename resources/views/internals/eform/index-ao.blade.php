@@ -34,9 +34,7 @@
                     </div>
                     <div class="card-box">
                         <div class="add-button">
-                            <!-- <a href="#filter" class="btn btn-primary waves-light waves-effect w-md m-b-15" data-toggle="collapse"><i class="mdi mdi-filter"></i> Filter</a> -->
                             <a href="{{route('eform.create')}}" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-plus-circle-outline"></i> Pengajuan Kredit</a>
-                            <!-- <a href="#" class="btn btn-primary waves-light waves-effect w-md m-b-15"><i class="mdi mdi-export"></i> Ekspor ke Excel</a> -->
                         </div>
                         <div id="filter" class="m-b-15">
                             <div class="row">
@@ -211,7 +209,21 @@
             order : [[3, 'asc']],
             "language": {
                 "emptyTable": "No data available in table"
-            }
+            },
+          aoColumns : [
+                {   data: 'ref_number', name: 'ref_number', bSortable: false },
+                {   data: 'customer_name', name: 'customer_name', bSortable: false  },
+                {   data: 'request_amount', name: 'request_amount', bSortable: false  },
+                {   data: 'created_at', name: 'created_at', className: 'hidden' },
+                {   data: 'mobile_phone', name: 'mobile_phone', bSortable: false  },
+                {   data: 'prescreening_status', name: 'prescreening_status', bSortable: false },
+                {   data: 'id', name: 'eforms.id', bSortable: false, className: 'hidden' },
+                {   data: 'status', name: 'created_at', bSortable: false },
+                {   data: 'aging', name: 'aging' },
+                {   data: 'appointment_date', name: 'appointment_date', bSortable: false},
+                {   data: 'response_status', name: 'response_status', bSortable: false},
+                {   data: 'action', name: 'action', bSortable: false }
+            ]
         });
 
     $(document).on('click', "#btn-filter", function(){
@@ -477,7 +489,6 @@
                         return text;
                     }
                 },
-                //{   data: 'aging', name: 'aging' },
                 {   data: 'action', name: 'action', bSortable: false }
             ],
       });
@@ -493,7 +504,6 @@
      //post Delete
     $(document).on('click', "#btn-delete-this", function(){
         eformId = $('#delete-modal #id').val();
-        // console.log(eformId);
         HoldOn.open();
 
         $.ajax({
@@ -510,7 +520,6 @@
         }).done(function(data){
             $('#delete-modal').modal('hide');
             $('#btn-filter').click();
-            // alert(data.response.descriptions);
             HoldOn.close();
             var body = $("html, body");
                 body.stop().animate({scrollTop:0}, 100, 'swing', function() {
@@ -518,7 +527,6 @@
                 });
 
         }).fail(function(errors) {
-            // alert("Gagal Terhubung ke Server");
             HoldOn.close();
             var body = $("html, body");
                 body.stop().animate({scrollTop:0}, 100, 'swing', function() {

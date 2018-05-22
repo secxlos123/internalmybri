@@ -160,7 +160,7 @@
                                                 <div class="form-group couple_nik {!! $errors->has('couple_nik') ? 'has-error' : '' !!}">
                                                     <label class="col-md-3 control-label">NIK * :</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control numericOnly" name="couple_nik" id="nik" value="{{ old('couple_nik') }}" maxlength="16">
+                                                        <input type="text" class="form-control numericOnly" name="couple_nik" id="couple_nik" value="{{ old('couple_nik') }}" maxlength="16">
                                                         @if ($errors->has('couple_nik')) <p class="help-block">{{ $errors->first('couple_nik') }}</p> @endif
                                                     </div>
                                                 </div>
@@ -216,7 +216,6 @@
                         <div class="col-md-12">
                             <div class="pull-right">
                                 <a href="#" data-dismiss="modal" class="btn btn-default waves-light waves-effect w-md m-b-20">Batal</a>
-                                <!-- <a href="#" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i> Simpan</a> -->
                                 <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" data-toggle="modal" id="btn-save"><i class="mdi mdi-content-save"></i>Simpan </button>
                             </div>
                         </div>

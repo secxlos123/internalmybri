@@ -51,7 +51,7 @@
                                                 <div class="form-group address {!! $errors->has('address') ? 'has-error' : '' !!}">
                                                     <label class="col-md-4 control-label">Alamat Kantor *:</label>
                                                     <div class="col-md-8">
-                                                        <textarea class="form-control" rows="3" name="address" maxlength="255">@if(!empty($dataDev['company_name'])) {{$dataDev['company_name']}} @else {{old('company_name')}} @endif</textarea>
+                                                        <textarea class="form-control" rows="3" name="address" maxlength="255">@if(!empty($dataDev['address'])) {{$dataDev['address']}} @else {{old('address')}} @endif</textarea>
                                                     @if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
                                                     </div>
                                                 </div>

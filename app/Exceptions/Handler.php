@@ -54,16 +54,19 @@ class Handler extends ExceptionHandler
         //         $message->to("rachmat.ramadhan@wgs.co.id");
         //     });
         // }
-
-        // 404 page when a page not found
-        if ($exception instanceof CustomException) {
-            return response()->view('errors.404', [], 404);
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+           return response()->view('internals.auth.login');
         }
 
-        // 500 page when a page not found
-        if ($exception instanceof \ErrorException) {
-            return response()->view('errors.500', [], 500);
-        }
+        // // 404 page when a page not found
+        // if ($exception instanceof CustomException) {
+        //     return response()->view('errors.404', [], 404);
+        // }
+        //
+        // // 500 page when a page not found
+        // if ($exception instanceof \ErrorException) {
+        //     return response()->view('errors.500', [], 500);
+        // }
 
         return parent::render($request, $exception);
     }

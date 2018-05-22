@@ -233,13 +233,13 @@ function addURL(element)
 	</a>
 @endif
 
-@if ( isset($vip_sent) )
+<!-- @if ( isset($vip_sent) )
 	@if ( $vip_sent == false )
-		<a href="{!! $vip !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Resend Verification" title="Resend VIP">
+		<a href="{!! $vip !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Resend VIP" title="Resend VIP">
 		    <i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
 	    </a>
 	@endif
-@endif
+@endif -->
 
 @if(isset($auditrail_detail_collateral))
 	<a href="{!! $auditrail_detail_collateral !!}" class="btn btn-icon waves-effect waves-light btn-danger bottom-margin" data-original-title="Detail Informasi" title="Detail Informasi">
@@ -247,3 +247,14 @@ function addURL(element)
 	</a>
 @endif
 
+@if ( isset($use_reason_name) )
+	@if( $use_reason_name == "VIP" )
+	
+		@if($vip_sent == NULL || $vip_sent == false)
+			<a href="{!! $vip !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title="Resend VIP" title="Resend VIP">
+		    		<i class="fa fa-reply" aria-hidden="true" style="color: white;"></i>
+	    	</a>
+		@endif
+
+	@endif
+@endif

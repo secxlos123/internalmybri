@@ -85,6 +85,7 @@
                                                 </select>
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                         <!--<div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Kategori * :</label>
                                             <div class="col-md-9">
@@ -129,6 +130,8 @@
                                                 </select>
                                             </div>
                                         </div> -->
+=======
+>>>>>>> a08d193f03f040ddd02fe49a9a058fa73ea458be
                                         <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Note * :</label>
                                             <div class="col-md-9">
@@ -137,12 +140,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- <div class="modal-body p-20">
-                                          <div class="form"></div>
-                                          <input type="text" name="" id="searchInput" class="form-control">
-                                          <div class='map' id='map' style='width: 100%; height: 200px;'></div>
-                                        </div> -->
 
                                     </div>
                                 </div>

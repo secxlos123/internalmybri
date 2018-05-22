@@ -90,7 +90,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">Gaji Tetap Perbulan (Briguna Umum) :</label>
+                <label class="col-md-6 control-label">Pendapatan Profesi Pensiun (Briguna Umum) :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($detail['Pendapatan_profesi_pensiun'], 2, ",", ".")}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Gaji Pensiun (Briguna Umum) :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. {{ number_format($detail['gaji_pensiun'], 2, ",", ".") }}</p>
                 </div>
@@ -211,7 +217,13 @@
             </div>
             @if($detail['jenis_pinjaman_id'] == '2')
             <div class="form-group">
-                <label class="col-md-6 control-label">Gaji Bersih Perbulan (Briguna Umum) :</label>
+                <label class="col-md-6 control-label">Potongan Perbulan Pensiun(Briguna Umum) :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($detail['Potongan_per_bulan_pensiun'], 2, ",", ".")}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">Gaji Bersih Pensiun (Briguna Umum) :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">Rp. 
                     {{number_format($detail['gaji_bersih_pensiun'], 2, ",", ".")}}</p>
@@ -236,6 +248,14 @@
                     <p class="form-control-static">Rp. {{ number_format($detail['Plafond_usulan'], 2, ",", ".") }}</p>
                 </div>
             </div>
+            @if($detail['jenis_pinjaman_id'] == '2')
+            <div class="form-group">
+                <label class="col-md-6 control-label">Maksimum Plafond Yang Diberikan :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">Rp. {{ number_format($detail['Maksimum_plafond_diberikan'], 2, ",", ".") }}</p>
+                </div>
+            </div>
+            @endif
         </form>
     </div>
 </div>
@@ -306,12 +326,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-6 control-label">NPL Unit Kerja :</label>
-                <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
-                </div>
-            </div>
-            <div class="form-group">
                 <label class="col-md-6 control-label">Target Plafond :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">-</p>
@@ -327,6 +341,12 @@
                 <label class="col-md-6 control-label">Baki Debet :</label>
                 <div class="col-md-6">
                     <p class="form-control-static">-</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label">NPL Unit Kerja :</label>
+                <div class="col-md-6">
+                    <p class="form-control-static">{{$detail['npl_unitkerja']}}</p>
                 </div>
             </div>
         </form>

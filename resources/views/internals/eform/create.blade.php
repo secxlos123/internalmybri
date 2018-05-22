@@ -2,7 +2,6 @@
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
-{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"> --}}
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 <style type="text/css">
     #wizard-validation-form label.error{
@@ -16,13 +15,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        @if(($data['role']=='staff'))
+                        @if(($data['role']=='staff') || ($data['role']=='superadmin'))
                         <h4 class="page-title">Tambah Referral</h4>
                         @else
                         <h4 class="page-title">Pengajuan Pinjaman</h4>
                         @endif
                         <ol class="breadcrumb p-0 m-0">
-                            @if(($data['role']=='staff'))
+                            @if(($data['role']=='staff') || ($data['role']=='superadmin'))
                             <li>
                                 <a href="{{route('dashboard')}}">Home MyBRI</a>
                             </li>
@@ -46,7 +45,7 @@
             <div class="row">
                 <div class="col-md-12">
                     @if (\Session::has('error'))
-                     <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+                     <div class="alert alert-danger">{{ \Session::get('error') }} untuk Lihat Tracking Pengajuan Klik link berikut -> <a href="{{ url('/tracking') }}"> Lihat Tracking</a></div>
                     @endif
 
                     @if (\Session::has('success'))
@@ -65,6 +64,10 @@
                                     <p class="text-muted m-b-30 font-13">
                                         Cari NIK Calon Debitur atau tambah Calon Debitur baru
                                     </p>
+                                  <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="nik_check">
+                                        <label class="form-check-label" for="exampleCheck1">Cari Semua Nik yang sudah pengajuan maupun yang belum pengajuan</label>
+                                  </div>
                                 <div id="divForm"></div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -84,7 +87,6 @@
                                                     </div>
                                                             @if ($errors->has('nik')) <p class="help-block">{{ $errors->first('nik') }}</p> @endif
                                                 </div>
-                                                <!-- <input type="hidden" name="nik" id="nik_customer"> -->
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -100,14 +102,6 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
                                             <div class="" id="detail">
-                                                <!-- <h4 class="m-t-0 header-title"><b>Data Nasabah</b></h4> -->
-                                                <!-- ============================================== -->
-                                                <!-- Space untuk Detail Nasabah -->
-                                               <!--  <p class="text-muted font-13 m-t-20" >
-                                                    <code>Space ini nantinya berisi detail Nasabah (seperti yang ada di dalam modul Nasabah / detail), dan akan terisi jika NIK yang diisikan pada field Cari NIK di atas ditemukan.</code>
-                                                </p> -->
-                                                <!-- End Detail Nasabah -->
-                                                <!-- ============================================== -->
 
                                             </div>
                                         </div>
@@ -147,15 +141,7 @@
                                                             @if ($errors->has('appointment_date')) <p class="help-block">{{ $errors->first('appointment_date') }}</p> @endif
                                                     </div>
                                                 </div>
-                                                <!-- <div class="form-group">
-                                                    <label class="control-label col-md-4">Pukul :</label>
-                                                    <div class="col-md-8">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" id="timepicker2" name="time" value="{{old('time')}}">
-                                                            <span class="input-group-addon b-0"><i class="mdi mdi-clock"></i></span>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -170,14 +156,12 @@
                                             <div class="form-group m-t-20 location {!! $errors->has('location') ? 'has-error' : '' !!}">
                                                 <div class="col-md-6">
                                                     <label class="control-label">Lokasi</label>
-                                                    <textarea name="address" id="location" class="form-control" readonly="" rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
+                                                    <textarea name="address" id="location" class="form-control"  rows="3">@if(!empty($office)) {{$office['address']}} @endif</textarea>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <!-- <label class="control-label">Latitude</label> -->
                                                     <input type="hidden" name="latitude" id="lat" class="form-control" readonly="" @if(!empty($office)) value="{{$office['lat']}}" @endif>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <!-- <label class="control-label">Longitude</label> -->
                                                     <input type="hidden" name="longitude" id="lng" class="form-control" readonly="" @if(!empty($office)) value="{{$office['long']}}" @endif>
                                                 </div>
                                                 @if ($errors->has('location')) <p class="help-block">{{ $errors->first('location') }}</p> @endif
@@ -227,7 +211,6 @@
                                 </section>
                             @endif
                             </div>
-                            <!-- <input type="submit" name="" value="Done"> -->
                         </form>
                     </div>
                 </div>

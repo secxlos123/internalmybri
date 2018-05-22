@@ -1,8 +1,12 @@
 <div class="row">
     <div class="col-md-12" align="center">
         <div class="card-box">
-            <form class="form-horizontal" role="form" action="{{route('verifikasi')}}" method="POST">
+            <form class="form-horizontal" role="form" method="POST" id="form-verifikasi">
                 {{ csrf_field() }}
+                <input type="hidden" id="pinca" value="{{$detail['pinca_name']}}">
+                <input type="hidden" id="pinca_posisi" value="{{$detail['pinca_position']}}">
+                <input type="hidden" id="id_aplikasi" value="{{$detail['id_aplikasi']}}">
+                <input type="hidden" id="uid" value="{{$detail['uid']}}">
                 <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}" id="eform_id">
                 <input type="hidden" name="is_verified" id="verifikasi">
                 <div class="table-responsive">
@@ -32,6 +36,10 @@
                                     <a href="<?php echo $detail['customer']['personal']['identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                     </a>
+                                    <?php } elseif(empty($detail['customer']['personal']['identity']) || $detail['customer']['personal']['identity'] == '' || $detail['customer']['personal']['identity'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
@@ -45,7 +53,7 @@
                                         <input type="checkbox" name="ktp" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_ktp']?></td>
+                                <td><p id="lab-ktp"><?php echo $detail['catatan_ktp']?></p></td>
                                 <td align="center"><a href="javascript:void(0);" id="btn-ktp" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -58,6 +66,10 @@
                                     ?>
                                     <a href="<?php echo $detail['NPWP_nasabah']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['NPWP_nasabah']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['NPWP_nasabah']) || $detail['NPWP_nasabah'] == 'null' || $detail['NPWP_nasabah'] == '') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" class="thumbnail">
@@ -72,7 +84,7 @@
                                         <input type="checkbox" name="npwp" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_npwp']?></td>
+                                <td><p id="lab-npwp"><?php echo $detail['catatan_npwp']?></p></td>
                                 <td align="center"><a href="#" id="btn-npwp" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -85,6 +97,10 @@
                                     ?>
                                     <a href="<?php echo $detail['SLIP_GAJI']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['SLIP_GAJI']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['SLIP_GAJI']) || $detail['SLIP_GAJI'] == '' || $detail['SLIP_GAJI'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" class="thumbnail">
@@ -99,7 +115,7 @@
                                         <input type="checkbox" name="slip_gaji" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_gaji']?></td>
+                                <td><p id="lab-gaji"><?php echo $detail['catatan_gaji']?></p></td>
                                 <td align="center"><a href="#" id="btn-gaji" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -112,6 +128,10 @@
                                     ?>
                                     <a href="<?php echo $detail['KK']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['KK']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['KK']) || $detail['KK'] == '' || $detail['KK'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" class="thumbnail">
@@ -126,7 +146,7 @@
                                         <input type="checkbox" name="kk" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_kk']?></td>
+                                <td><p id="lab-kk"><?php echo $detail['catatan_kk']?></p></td>
                                 <td align="center"><a href="#" id="btn-kk" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -139,6 +159,10 @@
                                     ?>
                                     <a href="<?php echo $detail['SK_AWAL']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['SK_AWAL']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['SK_AWAL']) || $detail['SK_AWAL'] == '' || $detail['SK_AWAL'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" class="thumbnail">
@@ -153,7 +177,7 @@
                                         <input type="checkbox" name="sk_awal" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_sk_awal']?></td>
+                                <td><p id="lab-sk-awal"><?php echo $detail['catatan_sk_awal']?></p></td>
                                 <td align="center"><a href="#" id="btn-sk_awal" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -166,6 +190,10 @@
                                     ?>
                                     <a href="<?php echo $detail['SK_AKHIR']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['SK_AKHIR']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['SK_AKHIR']) || $detail['SK_AKHIR'] == '' || $detail['SK_AKHIR'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" class="thumbnail">
@@ -180,7 +208,7 @@
                                         <input type="checkbox" name="sk_akhir" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_sk_akhir']?></td>
+                                <td><p id="lab-sk-akhir"><?php echo $detail['catatan_sk_akhir']?></p></td>
                                 <td align="center"><a href="#" id="btn-sk_akhir" class="btn btn-success">Update</a></td>
                             </tr>
                             <tr>
@@ -193,6 +221,10 @@
                                     ?>
                                     <a href="<?php echo $detail['REKOMENDASI']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['REKOMENDASI']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['REKOMENDASI']) || $detail['REKOMENDASI'] == '' || $detail['REKOMENDASI'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" class="thumbnail">
@@ -207,7 +239,7 @@
                                         <input type="checkbox" name="surat_rekomendasi" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_rekomendasi']?></td>
+                                <td><p id="lab-rekomendasi"><?php echo $detail['catatan_rekomendasi']?></p></td>
                                 <td align="center"><a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -224,6 +256,10 @@
                                     <a href="<?php echo $detail['SKPG']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['SKPG']; ?>" width="100" height="100">
                                     </a>
+                                    <?php } elseif(empty($detail['SKPG']) || $detail['SKPG'] == '' || $detail['SK_AWAL'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
@@ -237,7 +273,7 @@
                                         <input type="checkbox" name="skpu" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_skpu']?></td>
+                                <td><p id="lab-skpu"><?php echo $detail['catatan_skpu']?></p></td>
                                 <td align="center"><a href="#" id="btn-skpu" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -254,6 +290,10 @@
                                     <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
+                                    <?php } elseif(empty($detail['customer']['personal']['couple_identity']) || $detail['customer']['personal']['couple_identity'] == '' || $detail['customer']['personal']['couple_identity'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
@@ -267,7 +307,7 @@
                                         <input type="checkbox" name="ktp_pasangan" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                                <td><p id="lab-couple-ktp"><?php echo $detail['catatan_couple_ktp']?></p></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -286,6 +326,10 @@
                                     <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
+                                    <?php } elseif(empty($detail['customer']['personal']['couple_identity']) || $detail['customer']['personal']['couple_identity'] == '' || $detail['customer']['personal']['couple_identity'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
                                     <?php } else {?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
@@ -299,7 +343,7 @@
                                         <input type="checkbox" name="ktp_pasangan" class="form-control">
                                     <?php } ?>
                                 </td>
-                                <td><?php echo $detail['catatan_couple_ktp']?></td>
+                                <td><p id="lab-couple-ktp"><?php echo $detail['catatan_couple_ktp']?></p></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
                         <?php
@@ -313,88 +357,71 @@
                                     if (!empty($detail['lainnya1']) || $detail['lainnya1'] != '') {
                                         $lainnya1 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']);
                                         echo str_replace('-', ' ', $lainnya1['filename']);
-                                    }
-                                    $image = substr($detail['lainnya1'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya1']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya1']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
                                 <?php 
                                     }
                                     if (!empty($detail['lainnya2']) || $detail['lainnya2'] != '') {
                                         $lainnya2 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']);
                                         echo str_replace('-', ' ', $lainnya2['filename']);
-                                    }
-                                    $image = substr($detail['lainnya2'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya2']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya2']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
-                            </td>
-                            <td>
-                                <?php
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php 
+                                    } 
                                     if (!empty($detail['lainnya3']) || $detail['lainnya3'] != '') {
                                         $lainnya3 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']);
                                         echo str_replace('-', ' ', $lainnya3['filename']);
-                                    }
-                                    $image = substr($detail['lainnya3'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya3']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya3']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']; ?>" width="100" height="100">
                                 </a>
-                                <?php 
-                                    }
-                                    if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
-                                        $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
-                                        echo str_replace('-', ' ', $lainnya4['filename']);
-                                    }
-                                    $image = substr($detail['lainnya4'], 0,4);
-                                    if ($image == 'http') {
-                                ?>
-                                <a href="<?php echo $detail['lainnya4']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya4']; ?>" width="100" height="100">
-                                </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" width="100" height="100">
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
                             <td>
                                 <?php
+                                    if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
+                                        $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
+                                        echo str_replace('-', ' ', $lainnya4['filename']);
+                                ?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php 
+                                    }
                                     if (!empty($detail['lainnya5']) || $detail['lainnya5'] != '') {
                                         $lainnya5 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']);
                                         echo str_replace('-', ' ', $lainnya5['filename']);
-                                    }
-
-                                    $image = substr($detail['lainnya5'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya5']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya5']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']; ?>" width="100" height="100">
                                 </a>
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
                                 <?php } ?>
                             </td>
+                            <td></td>
                             <td align="center">
                                 <?php 
                                     if (empty($detail['lainnya1']) || $detail['lainnya1'] == '') {
@@ -414,12 +441,13 @@
                                 <td>
                                     <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
                                 </td>
-                                <td>
-                                    <a href="#" class="btn btn-danger" id="btn-batal">Batal</a>
+                                <td align="center">
+                                    <a href="#" class="btn btn-danger" id="btn-batal">Batal</a><br><br>
+                                    <a href="#" class="btn btn-danger" id="btn-kembali">Kembali ke AO</a>
                                 </td>
                                 <td align="center">
-                                    <input type="submit" value="Tunda" class="btn btn-primary" id="btn-tunda">
-                                    <input type="submit" value="Dokumen Lengkap" class="btn btn-primary" id="btn-verifikasi">
+                                    <a href="#" class="btn btn-primary" id="btn-tunda">Tunda</a><br><br>
+                                    <a href="#" class="btn btn-primary" id="btn-verifikasi">Dokumen Lengkap</a>
                                 </td>
                             </tr>
                         @endif

@@ -454,12 +454,6 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <form class="form-horizontal" role="form">
-                                                            <!-- <div class="form-group">
-                                                                <label class="col-md-6 control-label">No. Referensi Pengajuan :</label>
-                                                                <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['emergency_name'])){{$dataCustomer['kpr']['emergency_name']}}@else - @endif</p>
-                                                                </div>
-                                                            </div> -->
                                                             <div class="form-group">
                                                                 <label class="col-md-6 control-label">Jumlah Permohonan :</label>
                                                                 <div class="col-md-6">
@@ -498,27 +492,6 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <form class="form-horizontal" role="form">
-                                                            <!-- <div class="form-group">
-                                                                <label class="col-md-6 control-label">Nama Pengaju :</label>
-                                                                <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['emergency_relation'])){{$dataCustomer['kpr']['emergency_relation']}}@else - @endif
-                                                                    </p>
-                                                                </div>
-                                                            </div> -->
-                                                            <!-- <div class="form-group">
-                                                                <label class="col-md-6 control-label">Kantor Cabang :</label>
-                                                                <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['emergency_relation'])){{$dataCustomer['kpr']['emergency_relation']}}@else - @endif
-                                                                    </p>
-                                                                </div>
-                                                            </div> -->
-                                                            <!-- <div class="form-group">
-                                                                <label class="col-md-6 control-label">Tanggal Pertemuan :</label>
-                                                                <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['emergency_relation'])){{$dataCustomer['kpr']['emergency_relation']}}@else - @endif
-                                                                    </p>
-                                                                </div>
-                                                            </div> -->
                                                             <div class="form-group">
                                                                 <label class="col-md-6 control-label">Harga Rumah :</label>
                                                                 <div class="col-md-6">
@@ -561,13 +534,6 @@
                                                                     </p>
                                                                 </div>
                                                             </div>
-                                                            <!-- <div class="form-group">
-                                                                <label class="col-md-6 control-label">Jumlah Permohonan :</label>
-                                                                <div class="col-md-6">
-                                                                    <p class="form-control-static">@if(!empty($dataCustomer['kpr']['emergency_relation'])){{$dataCustomer['kpr']['emergency_relation']}}@else - @endif
-                                                                    </p>
-                                                                </div>
-                                                            </div> -->
                                                         </form>
                                                     </div>
                                                 </div>

@@ -25,16 +25,17 @@ class PenilaianKelayakanController extends Controller
     public function index()
     {
 		$data = $this->getUser();
+		if(isset($_GET['i'])){
+		$id_header = base64_decode($_GET['i']);
 		$mitra_list = Client::setEndpoint('mitraall')
 				->setHeaders([
 					'Authorization' => $data['token'],
 					'pn' => $data['pn']
 				])
 				->setBody([
-					'id_header' => $_GET['id_header']
+					'id_header' => $id_header
 				])
 				->post();
-
 		$view = Client::setEndpoint('GetView')
 				->setHeaders([
 					'Authorization' => $data['token'],
@@ -46,6 +47,7 @@ class PenilaianKelayakanController extends Controller
 				->post();
 		$view = $view['contents'];
 		return view('internals.mitra.mitra.penilaian_kelayakan',  compact('data','view','mitra_list'));
+		}
     }
 	
 	public function hapus(Request $request){
@@ -93,6 +95,9 @@ class PenilaianKelayakanController extends Controller
 					'penilaian_kelayakan' => $request->all()
 				])
 				->post();
-		return response()->json(['response' => $client]); 
+		header("Location: ".env('APP_URL')."/calon_mitra?i=".base64_encode($client['message'])."&k=".base64_encode($client['contents']));
+			die();
+		
+		//return response()->json(['response' => $client]); 
 		}
 }
