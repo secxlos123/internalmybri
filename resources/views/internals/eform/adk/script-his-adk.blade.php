@@ -1,5 +1,13 @@
 <script type="text/javascript">
+
 	$(document).ready(function(){
+		var host = <?php echo env('APP_URL');?>;
+		var url = '';
+		if(host=='internalmybri.bri.co.id){
+			url =  '/datatables/adk-his-list';
+		}else{
+			url =  '/internal/datatables/adk-his-list';
+		}
 		$('#datatable-histori').DataTable({
             searching : true,
             processing : true,
@@ -13,7 +21,7 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
-                url : '/internal/datatables/adk-his-list',
+                url : url,
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 
