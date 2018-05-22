@@ -3,7 +3,7 @@
 	$(document).ready(function(){
 		var host = <?php echo env('APP_URL');?>;
 		var url = '';
-		if(host=='internalmybri.bri.co.id){
+		if(host ='https://internalmybri.bri.co.id/){
 			url =  '/datatables/adk-his-list';
 		}else{
 			url =  '/internal/datatables/adk-his-list';
