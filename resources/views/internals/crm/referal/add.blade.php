@@ -85,6 +85,53 @@
                                                 </select>
                                             </div>
                                         </div>
+<<<<<<< HEAD
+                                        <!--<div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Kategori * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="product_type">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($product as $pr)
+                                                    <option>{{$pr['product_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Waktu Kontak * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="product_type">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($product as $pr)
+                                                    <option>{{$pr['product_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Tujuan * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="product_type">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($product as $pr)
+                                                    <option>{{$pr['product_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="form-group gender {!! $errors->has('pemasar') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Pemasar * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="officer_ref">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($pemasar as $pm)
+                                                    <option value="{{$pm['PERNR']}}">{{$pm['SNAME']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div> -->
+=======
+>>>>>>> a08d193f03f040ddd02fe49a9a058fa73ea458be
                                         <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Note * :</label>
                                             <div class="col-md-9">

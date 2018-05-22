@@ -320,7 +320,7 @@
 								Route::get('report/activity', 'CRM\ReportController@activity');
 								Route::post('report/marketing/export', 'CRM\ReportController@exportMarketing');
 								Route::post('report/activity/export', 'CRM\ReportController@exportActivity');
-                Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function()
+                Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function(){
 								/* CRM marketing */
 								Route::get('marketing', 'CRM\marketingController@index');
 								Route::get('marketing_detail', 'CRM\marketingController@detail');
@@ -340,7 +340,7 @@
                 Route::post('leads_cpp', 'CRM\LeadsController@cpps');
                 Route::post('leads_referral', 'CRM\LeadsController@referrals');
                 Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
-            Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function()
+            Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
                 /* CRM Activity */
                 Route::get('activity', 'CRM\activityController@index');
                 Route::get('activity/data', 'CRM\activityController@data');
