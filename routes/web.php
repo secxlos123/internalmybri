@@ -308,8 +308,9 @@
                 Route::post('update_referral', 'CRM\ReferralController@update');
 
 								/* CRM Disposisi Referral */
+    Route::group(['middleware' => 'checkrole:pinca,mp,amp,pincapem,pincasus,superadmin'], function(){
 								Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
-
+    });
 				        /* CRM report */
 								Route::get('report/marketing', 'CRM\ReportController@marketing');
 								Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
@@ -549,11 +550,12 @@
         //ini routing untuk monitoring
         Route::get('monitoring', ['as'=>'monitoring', 'uses'=>'Monitoring\MonitoringController@datatables']);
         
-//dfjsjdfsdj sdfjds
         /* DirRpc */
 
         Route::get('dirrpc', 'Mitra\dirrpc\DirRpcController@datatables');
+    Route::group(['middleware' => 'checkrole:ao,admin-bri,superadmin'], function() {
         Route::get('mitra_list', 'Mitra\mitra\MitraController@datatables');
+    });
         Route::get('calon_mitra_list', 'Mitra\mitra\CalonMitraController@datatables');
         Route::get('mitra_approval_list', 'Mitra\mitra\CalonMitraApprovalController@datatables');
         Route::get('list_pekerja', 'Mitra\mitra\eksternal\ListMitraController@datatables');
