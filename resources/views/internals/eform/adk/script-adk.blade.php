@@ -36,13 +36,6 @@
 
     function reloadData1()
     {
-			var host = <?php echo env('APP_URL');?>;
-		var url = '';
-		if(host ='https://internalmybri.bri.co.id/){
-			url =  '/datatables/adk-list';
-		}else{
-			url =  '/internal/datatables/adk-list';
-		}
         table1 = $('#datatable').DataTable({
             searching : true,
             processing : true,
@@ -56,7 +49,7 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
-                url : url,
+                url : '/internal/datatables/adk-list';,
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
                     // console.log(settings.json.data);
