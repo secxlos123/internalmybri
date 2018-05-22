@@ -85,6 +85,39 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <!--<div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Kategori * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="product_type">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($product as $pr)
+                                                    <option>{{$pr['product_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Waktu Kontak * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="product_type">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($product as $pr)
+                                                    <option>{{$pr['product_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
+                                            <label class="col-md-3 control-label">Tujuan * :</label>
+                                            <div class="col-md-9">
+                                                <select required class="form-control select2" name="product_type">
+                                                    <option disabled="" selected="">-- Pilih --</option>
+                                                    @foreach($product as $pr)
+                                                    <option>{{$pr['product_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div> -->
                                         <!-- <div class="form-group gender {!! $errors->has('pemasar') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Pemasar * :</label>
                                             <div class="col-md-9">
