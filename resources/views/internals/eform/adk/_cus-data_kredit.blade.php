@@ -594,7 +594,7 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Perusahaan Asuransi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Perusahaan_asuransi']}}</p>
+                    <p class="form-control-static">{{$detail['nama_perusahaan_asuransi']}}</p>
                 </div>
             </div>
             <div class="form-group">
