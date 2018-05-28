@@ -23,7 +23,7 @@
             color: white;
         }
         .fc-icon-left-single-arrow{
-            color: white;
+            color: red;
         }
         .fc-corner-right:hover{
             background-color: orange;

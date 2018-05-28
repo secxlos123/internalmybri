@@ -294,24 +294,31 @@
         Route::resource('screening', 'Screening\ScreeningController',['except'=>'index']);
 
         /* CRM Dashboard */
+        /**
                 Route::get('crm_dashboard', 'CRM\DashboardController@index');
                 Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
 								Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
 								Route::post('detail_marketing', 'CRM\DashboardController@detailMarketing');
                 Route::post('detail_branch', 'CRM\DashboardController@detailBranch');
+        */
 
         /* CRM referral */
+        /**
                 Route::resource('referral', 'CRM\ReferralController');
                 Route::get('add_referral', 'CRM\ReferralController@add');
                 Route::post('cek_nik', 'CRM\ReferralController@nikCek');
                 Route::post('store_referral', 'CRM\ReferralController@store');
                 Route::post('update_referral', 'CRM\ReferralController@update');
+        */
 
 								/* CRM Disposisi Referral */
+        /**
     Route::group(['middleware' => 'checkrole:pinca,mp,amp,pincapem,pincasus,superadmin'], function(){
 								Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
     });
+    */
 				        /* CRM report */
+        /**
 								Route::get('report/marketing', 'CRM\ReportController@marketing');
 								Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
 								Route::post('report/list-fo', 'CRM\ReportController@listFo');
@@ -322,15 +329,19 @@
 								Route::post('report/marketing/export', 'CRM\ReportController@exportMarketing');
 								Route::post('report/activity/export', 'CRM\ReportController@exportActivity');
                 Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function(){
+        */
 								/* CRM marketing */
+        /**
 								Route::get('marketing', 'CRM\marketingController@index');
 								Route::get('marketing_detail', 'CRM\marketingController@detail');
 								Route::get('marketing/create', 'CRM\marketingController@create');
                 });
 								Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
 								Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
+        */
 
 								/* CRM Leads */
+        /**
                 Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() {
 								Route::get('leads', 'CRM\leadsController@index');
 								Route::get('leads_detail', 'CRM\leadsController@detail');
@@ -342,12 +353,15 @@
                 Route::post('leads_referral', 'CRM\LeadsController@referrals');
                 Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
             Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
+        */
                 /* CRM Activity */
+        /**
                 Route::get('activity', 'CRM\activityController@index');
                 Route::get('activity/data', 'CRM\activityController@data');
                 Route::get('activity/pemasar', 'CRM\activityController@pemasar');
                 Route::get('activity/marketing', 'CRM\activityController@marketing');
             });
+        */
 
 
         Route::resource('mitra', 'Mitra\MitraController');

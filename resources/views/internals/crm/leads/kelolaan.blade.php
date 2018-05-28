@@ -1,4 +1,3 @@
-
 <table id="tableKelolaan" class="table table-bordered">
   <thead class="bg-primary">
     <tr>
