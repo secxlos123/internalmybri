@@ -445,6 +445,8 @@
 
     Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
 
+    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
+
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 
     Route::get('action-detail/appointment', 'AuditRail\ActionDetailController@appointment');
@@ -563,11 +565,13 @@
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
         /*Auditrail*/
-            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //
             Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
             Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+            Route::get('auditrail-kredit', 'AuditRail\AuditRailController@datatablesBriguna');
 
             Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
