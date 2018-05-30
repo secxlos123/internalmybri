@@ -9,29 +9,60 @@ use Client;
 class ActionDetailController extends Controller
 {
     public function getUser()
-	{
-		/* GET UserLogin Data */
-		$users = session()->get('user');
+    {
+        /* GET UserLogin Data */
+        $users = session()->get('user');
 
-		foreach ($users as $user) {
-			$data = $user;
-		}
+        foreach ($users as $user) {
+            $data = $user;
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	// Pengajuan Kredit
+    // Pengajuan Kredit Briguna
+    public function pengajuan_kredit_briguna(Request $request)
+    {
+        $data = $this->getUser();
+
+        $pengajuan_kredit = Client::setEndpoint('auditrail/list-mnpengajuan_briguna')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
+            ])
+            ->setQuery([
+                'search' => $request->input('name'),
+                'page'   => $request->input('page')
+            ])
+            ->get();
+
+        $contents = array();
+        if (count($pengajuan_kredit['contents'])>0) {
+            foreach ($pengajuan_kredit['contents']['data'] as $key => $detail) {
+                $detail['text'] = $detail['status_name'];
+                $detail['id'] = $detail['status_name'];
+                $pengajuan_kredit['contents']['data'][$key] = $detail;
+            }
+            $contents = $pengajuan_kredit['contents'];
+        }
+
+        return response()->json(['pengajuan_kredit_briguna' => $contents ]);
+    }
+
+    // Pengajuan Kredit
     public function pengajuan_kredit(Request $request)
     {
         $data = $this->getUser();
 
         $pengajuan_kredit = Client::setEndpoint('auditrail/list-mnpengajuan')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')
@@ -56,12 +87,12 @@ class ActionDetailController extends Controller
         $data = $this->getUser();
 
         $admindev = Client::setEndpoint('auditrail/list-mnadmindev')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')
@@ -86,12 +117,12 @@ class ActionDetailController extends Controller
         $data = $this->getUser();
 
         $appointment = Client::setEndpoint('auditrail/list-mnappointment')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')
@@ -116,12 +147,12 @@ class ActionDetailController extends Controller
         $data = $this->getUser();
 
         $collateral = Client::setEndpoint('auditrail/list-mncollateral')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')
@@ -146,12 +177,12 @@ class ActionDetailController extends Controller
         $data = $this->getUser();
 
         $agendev = Client::setEndpoint('auditrail/list-mnagendev')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')
@@ -176,12 +207,12 @@ class ActionDetailController extends Controller
         $data = $this->getUser();
 
         $property = Client::setEndpoint('auditrail/list-mnproperty')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')
@@ -206,12 +237,12 @@ class ActionDetailController extends Controller
         $data = $this->getUser();
 
         $document = Client::setEndpoint('auditrail/getnik')
-        	->setHeaders([
-	        	'Authorization' => $data['token']
-	        	, 'pn' => $data['pn']
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
                 , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
                 , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5)
-        	])
+            ])
             ->setQuery([
                 'search' => $request->input('name'),
                 'page'   => $request->input('page')

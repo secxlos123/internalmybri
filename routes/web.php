@@ -258,7 +258,7 @@
         Route::resource('calculator', 'Calculator\CalculatorController');
 
 
-				/* Calculator DPLK */
+                /* Calculator DPLK */
         Route::resource('calculatordplk', 'CalculatorDPLK\CalculatorDPLKController');
 
         /* Calculator */
@@ -283,7 +283,7 @@
         Route::resource('scoring', 'Screening\ScoringController');
         Route::resource('monitoring', 'Monitoring\MonitoringController');
 
-		/* Fasilitas*/
+        /* Fasilitas*/
         Route::resource('fasilitas', 'Mitra\mitra\FasilitasController');
 
         /* Screening*/
@@ -296,8 +296,8 @@
         /* CRM Dashboard */
                 Route::get('crm_dashboard', 'CRM\DashboardController@index');
                 Route::post('chartMarketing', 'CRM\DashboardController@chartMarketing');
-								Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
-								Route::post('detail_marketing', 'CRM\DashboardController@detailMarketing');
+                                Route::post('chartTotal', 'CRM\DashboardController@chartTotal');
+                                Route::post('detail_marketing', 'CRM\DashboardController@detailMarketing');
                 Route::post('detail_branch', 'CRM\DashboardController@detailBranch');
 
         /* CRM referral */
@@ -307,30 +307,30 @@
                 Route::post('store_referral', 'CRM\ReferralController@store');
                 Route::post('update_referral', 'CRM\ReferralController@update');
 
-								/* CRM Disposisi Referral */
-								Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
+                                /* CRM Disposisi Referral */
+                                Route::get('disposisi-referral', 'CRM\ReferralController@disposisiReferral');
 
-				        /* CRM report */
-								Route::get('report/marketing', 'CRM\ReportController@marketing');
-								Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
-								Route::post('report/list-fo', 'CRM\ReportController@listFo');
-								Route::post('report/list-fo-kanca', 'CRM\ReportController@listFoKanca');
-								Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
-								Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
-								Route::get('report/activity', 'CRM\ReportController@activity');
-								Route::post('report/marketing/export', 'CRM\ReportController@exportMarketing');
-								Route::post('report/activity/export', 'CRM\ReportController@exportActivity');
+                        /* CRM report */
+                                Route::get('report/marketing', 'CRM\ReportController@marketing');
+                                Route::post('report/list-kanca', 'CRM\ReportController@listKanca');
+                                Route::post('report/list-fo', 'CRM\ReportController@listFo');
+                                Route::post('report/list-fo-kanca', 'CRM\ReportController@listFoKanca');
+                                Route::post('report/list-report-marketing', 'CRM\ReportController@listReportMarketing');
+                                Route::post('report/list-report-activity', 'CRM\ReportController@listReportActivity');
+                                Route::get('report/activity', 'CRM\ReportController@activity');
+                                Route::post('report/marketing/export', 'CRM\ReportController@exportMarketing');
+                                Route::post('report/activity/export', 'CRM\ReportController@exportActivity');
 
-								/* CRM marketing */
-								Route::get('marketing', 'CRM\marketingController@index');
-								Route::get('marketing_detail', 'CRM\marketingController@detail');
-								Route::get('marketing/create', 'CRM\marketingController@create');
-								Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
-								Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
+                                /* CRM marketing */
+                                Route::get('marketing', 'CRM\marketingController@index');
+                                Route::get('marketing_detail', 'CRM\marketingController@detail');
+                                Route::get('marketing/create', 'CRM\marketingController@create');
+                                Route::post('marketing/store', 'CRM\marketingController@storeMarketing');
+                                Route::post('marketing/store_note', 'CRM\marketingController@storeNote');
 
-								/* CRM Leads */
-								Route::get('leads', 'CRM\leadsController@index');
-								Route::get('leads_detail', 'CRM\leadsController@detail');
+                                /* CRM Leads */
+                                Route::get('leads', 'CRM\leadsController@index');
+                                Route::get('leads_detail', 'CRM\leadsController@detail');
                 Route::post('leads_kelolaan', 'CRM\LeadsController@kelolaan');
                 Route::post('leads_leads', 'CRM\LeadsController@leads');
                 Route::post('leads_customer', 'CRM\LeadsController@customers');
@@ -439,6 +439,8 @@
     Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
     Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+
+    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 
@@ -556,12 +558,15 @@
 
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
+
         /*Auditrail*/
-            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //
             Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
             Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+            Route::get('auditrail-kredit', 'AuditRail\AuditRailController@datatablesBriguna');
 
             Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
