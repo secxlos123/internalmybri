@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {
-        // \URL::forceScheme('https');
+        if(env('APP_URL')=='http://internalmybri.bri.co.id/'){ \URL::forceScheme('https');};
     }
 
     /**

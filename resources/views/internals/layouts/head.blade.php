@@ -19,8 +19,11 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.steps.css')}}" />
 
         <!--date range picker -->
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+        <!--
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datepicker.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-timepicker.min.css')}}">
+        -->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-colorpicker.min.css')}}">
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
@@ -39,5 +42,6 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/viewbox.css')}}">
 
         <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap-datetimepicker2.min.js')}}"></script>
 
     </head>

@@ -36,6 +36,16 @@
 
     function reloadData1()
     {
+        var http = window.location.protocol; 
+        var domain = window.location.host;
+        var url = http+'//'+domain;
+        var action_url = '';
+        if (url == 'https://internalmybri.bri.co.id' || url == 'http://internalmybridev.bri.co.id') {
+            action_url = '/datatables/adk-list';
+        } else {
+            action_url = '/internal/datatables/adk-list';
+        }
+
         table1 = $('#datatable').DataTable({
             searching : true,
             processing : true,
@@ -49,7 +59,9 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
-                url : '/internal/datatables/adk-list',
+                // url : '/datatables/adk-list', <USE THIS IF ON PRODUCTION>
+                // url : '/internal/datatables/adk-list',
+                url : action_url,
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
                     // console.log(settings.json.data);

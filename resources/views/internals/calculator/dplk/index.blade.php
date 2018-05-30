@@ -55,7 +55,9 @@
                                           <h4>IDENTITAS</h4>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Nama :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Nama</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('nama', '', ['class' => 'form-control','placeholder' => '','id'=>'nama','required'=>'']) !!}
@@ -63,7 +65,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label col-md-4">Tanggal Lahir :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Tanggal Lahir</label>
+                                            </div>
                                             <div class="col-md-8">
                                               <div class="input-group">
                                                 <input type="text" placeholder="" class="form-control" id="tanggalLahir" name="tanggal_lahir">
@@ -72,7 +76,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Usia Pensiun :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Usia Pensiun</label>
+                                            </div>
                                             <div class="col-md-8">
                                               <div class="input-group">
                                                 {!! Form::text('usia_pensiun', '', ['class' => 'form-control numericOnly','placeholder' => '','id'=>'usia_pensiun','maxlength'=>'3','step'=>'1']) !!}
@@ -249,7 +255,7 @@
                                 <div class="col-md-6">
                                   <div class="form-horizontal" role="form">
                                       <div class="text-center">
-                                        <h4>PEOYEKSI MANFAAT</h4>
+                                        <h4>PROYEKSI MANFAAT</h4>
                                       </div>
                                       <div class="form-group" id="interest_rate_div">
                                           <label class="control-label col-md-4">Akumulasi Iuran :</label>

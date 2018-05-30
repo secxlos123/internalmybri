@@ -240,6 +240,36 @@
             },
         });
 
+        $('.action_developer').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '{{route("getDeveloper")}}',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.developers.data,
+                        pagination: {
+                            more: (params.page * data.developers.per_page) < data.developers.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+        
+        $('.action_developer').on('select2:select', function(){
+                $('#dev_id').val($(this).val());
+        });
+
         $('.action_kanwil2').select2({
             witdh : '100%',
             allowClear: true,
@@ -266,7 +296,7 @@
             },
         });
         $('.action_kanwil2').on('select2:select', function(){
-                $('#branch_id').val($(this).val());
+                $('#kanwil_id').val($(this).val());
         });
 
         $('.branch').select2({
@@ -295,6 +325,9 @@
                 },
                 cache: true
             },
+        });
+        $('.branch').on('select2:select', function(){
+                $('#branch_id').val($(this).val());
         });
     });
 </script>

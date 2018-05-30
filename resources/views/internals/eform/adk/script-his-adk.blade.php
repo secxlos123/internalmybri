@@ -1,5 +1,15 @@
 <script type="text/javascript">
 	$(document).ready(function(){
+        var http = window.location.protocol; 
+        var domain = window.location.host;
+        var url = http+'//'+domain;
+        var action_url = '';
+        if (url == 'https://internalmybri.bri.co.id' || url == 'http://internalmybridev.bri.co.id') {
+            action_url = '/datatables/adk-his-list';
+        } else {
+            action_url = '/internal/datatables/adk-his-list';
+        }
+
 		$('#datatable-histori').DataTable({
             searching : true,
             processing : true,
@@ -13,7 +23,9 @@
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
-                url : '/internal/datatables/adk-his-list',
+                // url : '/datatables/adk-his-list', <USE THIS IF ON PRODUCTION>
+                // url : '/internal/datatables/adk-his-list',
+                url : action_url,
                 data : function(d, settings){
                     var api = new $.fn.dataTable.Api(settings);
 
