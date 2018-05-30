@@ -4,8 +4,7 @@
       <ul>
         <li class="menu-title">Navigasi Utama</li>
         <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a></li>
-        @if(($data['role_user']=='ao') || ($data['role_user']=='fo') || ($data['role_user']=='mp') || ($data['role_user']=='amp') || ($data['role_user']=='pinca') || ($data['role_user']=='pincasus') || ($data['role_user']=='pinwil') || ($data['role']=='pinwil') )
-        <!--
+        <!--@if(($data['role_user']=='ao') || ($data['role_user']=='fo') || ($data['role_user']=='mp') || ($data['role_user']=='amp') || ($data['role_user']=='pinca') || ($data['role_user']=='pincasus') || ($data['role_user']=='pinwil') || ($data['role']=='pinwil') )
         <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a></li>
         @endif
         @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
@@ -152,6 +151,7 @@
   <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
 </li>
 @endif
+<!--
 @if($data['role_user'] == 'pinca' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'mp' || $data['role_user'] == 'amp' || $data['uker'] == 'KW' || $data['uker'] == 'KP')
 <li class="treeview">
   <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
@@ -172,6 +172,7 @@
   <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
 </li>
 @endif
+-->
 
 
 <hr>

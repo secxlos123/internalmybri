@@ -44,7 +44,7 @@ class LoginController extends Controller
             ->setBody($data)
             ->post();
 
-        /*if(env('APP_ENV') == 'local'){
+        if(env('APP_ENV') == 'local'){
             if($request->pn == '66777' || $request->pn == '9595'){
                 $role = ['role' => 'ao'];
                 $uker = ['uker' => 'KC'];
@@ -71,15 +71,15 @@ class LoginController extends Controller
                 $uker = ['uker' => 'other'];
             }
             $user =array_merge($client['contents'], $uker, $role);
-        }*/
+        }
         $codeResponse = $client['code'];
         $codeDescription = $client['descriptions'];
 
         if($codeResponse == 200){
             session()->put('user', $client);
-            /*if(env('APP_ENV') == 'local'){
+            if(env('APP_ENV') == 'local'){
                 session()->put('user.contents', $user);
-            }*/
+            }
             return response()->json(['url' => route('dashboard'), 'message' => $codeDescription, 'code' => $codeResponse]);
         }elseif($codeResponse == 422){
             return response()->json(['message' => $codeDescription, 'code' => $codeResponse]);

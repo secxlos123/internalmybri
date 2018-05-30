@@ -38,7 +38,7 @@
                 {!! Form::open(['route' => 'postCalculate','class' => 'callus top201', 'id' => 'form-calculator', ]) !!}
                    <div class="card-box">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="border-right: 3px solid #eeeeee;">
                                     <div class="form-horizontal" role="form">
                                         <!-- <div class="form-group">
                                             <label class="col-md-4 control-label">KPR Aktif :</label>
@@ -51,8 +51,11 @@
                                                 </select>
                                             </div>
                                         </div> -->
-                                        <div class="text-center">
-                                          <h4>IDENTITAS</h4>
+                                        <div class="form-group">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-8">
+                                                <h4>IDENTITAS</h4>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-md-4">
@@ -88,12 +91,17 @@
                                             </div>
                                         </div>
 
-                                        <div class="text-center">
-                                          <h4>PILIHAN INVESTASI</h4>
+                                        <div class="form-group">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-8">
+                                                <h4>PILIHAN INVESTASI</h4>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Setoran Awal :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Setoran Awal</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -102,7 +110,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Iuran Bulanan :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Iuran Bulanan</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -111,7 +121,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Kenaikan Iuran per Tahun :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Kenaikan Iuran per Tahun</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('kenaikan_pertahun', '', ['class' => 'form-control numericOnly','placeholder' => '','id'=>'kenaikan_pertahun']) !!}
@@ -120,7 +132,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="time_period_div">
-                                            <label class="control-label col-md-4">Jenis Investasi :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Jenis Investasi</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                   <select class="form-control" id="jenis_investasi" name="kanwil">
@@ -137,7 +151,9 @@
                                         <input type="hidden" id="return_dplk" name="" value="">
                                         <div id="view_kombinasi" class="hide">
                                           <div class="form-group">
-                                              <label class="col-md-4 control-label">Pasar Uang :</label>
+                                              <div class="col-md-4">
+                                                <label class="control-label">Pasar Uang</label>
+                                              </div>
                                               <div class="col-md-8">
                                                   <div class="input-group">
                                                       {!! Form::text('pasar_uang', '', ['class' => 'form-control numericOnly currency-rp','placeholder' => '','id'=>'pasar_uang']) !!}
@@ -146,7 +162,9 @@
                                               </div>
                                           </div>
                                           <div class="form-group">
-                                              <label class="col-md-4 control-label">Pendapatan Tetap :</label>
+                                              <div class="col-md-4">
+                                                <label class="control-label">Pendapatan Tetap</label>
+                                              </div> 
                                               <div class="col-md-8">
                                                   <div class="input-group">
                                                       {!! Form::text('pendapatan_tetap', '', ['class' => 'form-control numericOnly currency-rp','placeholder' => '','id'=>'pendapatan_tetap']) !!}
@@ -155,7 +173,9 @@
                                               </div>
                                           </div>
                                           <div class="form-group">
-                                              <label class="col-md-4 control-label">Saham :</label>
+                                              <div class="col-md-4">
+                                                <label class="control-label">Saham</label>
+                                              </div>
                                               <div class="col-md-8">
                                                   <div class="input-group">
                                                       {!! Form::text('saham', '', ['class' => 'form-control numericOnly currency-rp','placeholder' => '','id'=>'saham']) !!}
@@ -165,13 +185,18 @@
                                           </div>
                                         </div>
 
-                                        <div class="text-center">
-                                          <h4>ASUMSI</h4>
+                                        <div class="form-group">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-8">
+                                                <h4>ASUMSI</h4>
+                                            </div>
                                         </div>
 
                                         <h4>Return DPLK/tahun</h4>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Pasar Uang :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Pasar Uang</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('asusmsi_pasar_uang', '6.98', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'asusmsi_pasar_uang']) !!}
@@ -180,7 +205,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Pendapat Tetap :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Pendapatan Tetap</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('asusmsi_pendapatan_tetap', '9.48', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'asusmsi_pendapatan_tetap']) !!}
@@ -189,7 +216,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Saham :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Saham</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('asusmsi_saham', '15.09', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'asusmsi_saham']) !!}
@@ -198,7 +227,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">PSU Syariah :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">PSU Syariah</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('asusmsi_psu_syariah', '9.48', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'asusmsi_psu_syariah']) !!}
@@ -207,7 +238,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Berimbang Syariah :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Berimbang Syariah</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('asusmsi_berimbang_syariah', '15.09', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'asusmsi_berimbang_syariah']) !!}
@@ -216,7 +249,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Bunga Tabungan :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Bunga Tabungan</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('bunga_tabungan', '3', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'bunga_tabungan']) !!}
@@ -225,7 +260,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Pajak Bunga :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Pajak Bunga</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('pajak_bunga', '20', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'pajak_bunga']) !!}
@@ -234,7 +271,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Inflasi :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Inflasi</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     {!! Form::text('inflasi', '3.61', ['class' => 'form-control numericOnly','placeholder' => '0','id'=>'inflasi']) !!}
@@ -254,11 +293,16 @@
 
                                 <div class="col-md-6">
                                   <div class="form-horizontal" role="form">
-                                      <div class="text-center">
-                                        <h4>PROYEKSI MANFAAT</h4>
+                                      <div class="form-group">
+                                          <div class="col-md-4"></div>
+                                          <div class="col-md-8">
+                                              <h4>PROYEKSI MANFAAT</h4>
+                                          </div>
                                       </div>
                                       <div class="form-group" id="interest_rate_div">
-                                          <label class="control-label col-md-4">Akumulasi Iuran :</label>
+                                          <div class="col-md-4">
+                                            <label class="control-label">Akumulasi Iuran</label>
+                                          </div>
                                           <div class="col-md-8">
                                               <div class="input-group">
                                                   <span class="input-group-addon">Rp</span>
@@ -267,7 +311,9 @@
                                           </div>
                                       </div>
                                       <div class="form-group" id="interest_rate_div">
-                                          <label class="control-label col-md-4">Manfaat Sebelum Pajak :</label>
+                                          <div class="col-md-4">
+                                            <label class="control-label">Manfaat Sebelum Pajak</label>
+                                          </div>
                                           <div class="col-md-8">
                                               <div class="input-group">
                                                   <span class="input-group-addon">Rp</span>
@@ -276,7 +322,9 @@
                                           </div>
                                       </div>
                                       <div class="form-group" id="interest_rate_div">
-                                          <label class="control-label col-md-4">Pajak Pensiun :</label>
+                                          <div class="col-md-4">
+                                            <label class="control-label">Pajak Pensiun</label>
+                                          </div>
                                           <div class="col-md-8">
                                               <div class="input-group">
                                                   <span class="input-group-addon">Rp</span>
@@ -285,7 +333,9 @@
                                           </div>
                                       </div>
                                       <div class="form-group" id="interest_rate_div">
-                                          <label class="control-label col-md-4">Manfaat Setelah Pajak :</label>
+                                          <div class="col-md-4">
+                                            <label class="control-label">Manfaat Setelah Pajak</label>
+                                          </div>
                                           <div class="col-md-8">
                                               <div class="input-group">
                                                   <span class="input-group-addon">Rp</span>
@@ -294,7 +344,9 @@
                                           </div>
                                       </div>
                                       <div class="form-group" id="interest_rate_div">
-                                          <label class="control-label col-md-4">Maksimal Penarikan :</label>
+                                          <div class="col-md-4">
+                                            <label class="control-label">Maksimal Penarikan</label>
+                                          </div>
                                           <div class="col-md-8">
                                               <div class="input-group">
                                                   <span class="input-group-addon">Rp</span>
@@ -305,12 +357,17 @@
 
 
                                       <div id="pembayaran_manfaat_pensiun" class="hide">
-                                        <div class="text-center">
-                                          <h4>PEMBAYARAN MANFAAT PENSIUN</h4>
-                                        </div>
+                                      <div class="form-group">
+                                          <div class="col-md-4"></div>
+                                          <div class="col-md-8">
+                                              <h4>PEMBAYARAN MANFAAT PENSIUN</h4>
+                                          </div>
+                                      </div>
 
                                         <div class="form-group" id="time_period_div">
-                                            <label class="control-label col-md-4">Porsentasi Penarikan Tunai:</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Porsentasi Penarikan Tunai</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                   <select class="form-control" id="posentasi_penarikan" name="porsentasi_penarikan">
@@ -321,7 +378,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Manfaat Pensiun Tunai :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Manfaat Pensiun Tunai</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -330,7 +389,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="time_period_div">
-                                            <label class="control-label col-md-4">Jenis Anuitas :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Jenis Anuitas</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                   <select class="form-control" id="porsentasi_penarikan" name="porsentasi_penarikan">
@@ -342,7 +403,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="time_period_div">
-                                            <label class="control-label col-md-4">Manfaat Janda / Duda + Anak :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Manfaat Janda / Duda + Anak</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                   <select class="form-control" id="manfaat_janda_duda_anak" name="manfaat_janda_duda_anak">
@@ -353,7 +416,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Manfaat Anuitas Bulanan :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Manfaat Anuitas Bulanan</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -362,7 +427,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Manfaat Anuitas Janda / Duda :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Manfaat Anuitas Janda / Duda</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -371,7 +438,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Manfaat Anuitas Yatim / Piatu :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Manfaat Anuitas Yatim / Piatu</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -380,7 +449,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Akumulasi Anuitas :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Akumulasi Anuitas</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
@@ -389,7 +460,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" id="interest_rate_div">
-                                            <label class="control-label col-md-4">Cash Refund :</label>
+                                            <div class="col-md-4">
+                                              <label class="control-label">Cash Refund</label>
+                                            </div>
                                             <div class="col-md-8">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">Rp</span>
