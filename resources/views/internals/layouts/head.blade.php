@@ -7,6 +7,7 @@
         <meta name="author" content="Reza">
         <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}" />
         <title>@yield("title")</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.dataTables.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/buttons.dataTables.min.css')}}"/>
@@ -42,6 +43,5 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/viewbox.css')}}">
 
         <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
-        <script src="{{asset('assets/js/bootstrap-datetimepicker2.min.js')}}"></script>
 
     </head>
