@@ -219,7 +219,7 @@
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Waktu Berakhir</label><input class='form-control appointment_date'  type='text' name='enddate' /></div></div>")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tujuan Aktivitas</label><select class='form-control select2 tujuan' name='tujuan'></select></div></div>")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tenaga Pemasar Pendamping</label><select class='form-control select2 pemasar' name='pemasar'></select></div></div>")
-                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Rencana Marekting</label><select class='form-control select2 marketing' name='marketing'></select></div></div>")
+                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Rencana Marketing</label><select class='form-control select2 marketing' name='marketing'></select></div></div>")
                 .find("select[name='eform-id']")
                 .append("<option value=''>-- Pilih --</option>")
                 .append("<option value=''>54321</option>")

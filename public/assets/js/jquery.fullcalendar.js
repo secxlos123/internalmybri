@@ -334,7 +334,7 @@
             eventSources: [{
               events: function (start, end, timezone, callback) {
                 if ( parseInt(start.format('D')) > 1 ) {
-                  start.add(7, 'days').format('YYYY-MM-DD');
+                  start.add(7, 'days').format('YYYY');
                 }
                 $.ajax({
                   url: '/schedule/ao',
