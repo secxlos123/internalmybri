@@ -55,6 +55,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-md-5 control-label">Jangka Waktu :</label>
+                <div class="col-md-7">
+                    <p class="form-control-static">{{$detail['Jangka_waktu']}} bulan</p>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-5 control-label">Jenis Pinjaman :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
