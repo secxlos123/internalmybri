@@ -8,7 +8,8 @@
             z-index: 1051 !important;
         }
         #searchInput {
-          top: 10px !important;
+          margin-left: 0px !important;
+          width: 100% !important;
         }
         .fc-time{
           display : none !important;
@@ -56,9 +57,9 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-box" id="ActivityMar">
+            <div class="row" id="ActivityMar">
+                <div class="col-md-8">
+                    <div class="card-box">
                         <h4 class="m-t-0 header-title"><b>Marketing Activity</b></h4>
                         <p class="text-muted m-b-30">
                         @if($data['role'] != 'ao' || $data['role'] != 'fo' )
@@ -82,7 +83,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-box" id="ActivityDet" style="display: none">
+                </div>
+                <div class="col-md-4">
+                    <div class="modal fade none-border" id="event-modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title">Jadwal</h4>
+                                </div>
+                                <div class="modal-body p-20">
+                                  <div class="form"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                        Batal
+                                    </button>
+                                    @if ($data['role'] == 'ao' || $data['role'] == 'fo')
+                                    <button type="button" class="btn btn-orange save-event waves-effect waves-light">
+                                        Simpan Jadwal
+                                    </button>
+                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light"
+                                            data-dismiss="modal">Hapus Jadwal Ini
+                                    </button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="ActivityDet" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-box">
                         <h4 class="m-t-0 header-title"><b>Detail Activity</b></h4>
                         <div class="row">
                             <div class="col-md-12">
@@ -97,13 +132,24 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input class='form-control' type="datetime-local" name='startdate' id="startdate" placeholder="Waktu Mulai"/>
+                                  <div class='input-group date' id='datetimepicker1'>
+                                     <input name='startdate' id="startdate" type='text' class="form-control" placeholder="Waktu Mulai" />
+                                     <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                  </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class='form-control' type="datetime-local" name='enddate' id='enddate' placeholder="Waktu Berakhir"/>
+                                  <div class='input-group date' id='datetimepicker2'>
+                                     <input type='text' name='enddate' id="enddate" class="form-control" placeholder="Waktu Berakhir" />
+                                     <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                  </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class='form-control' type='text' name='alamat' id='alamat' placeholder="Alamat"/>
+                                    <input class='form-control' type="text" name="alamat" id="searchInput" placeholder="Alamat"/>
+                                    <div class='map' id='map' style='width: 100%; height: 300px;'></div>
                                 </div>
                                 <div class="form-group has-feedback has-search">
                                     <select class="select2 form-control" name="marketing" id="marketing">
@@ -134,38 +180,7 @@
                     </div>
 
                     <!-- BEGIN MODAL-->
-                    <div class="modal fade none-border" id="event-modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title">Jadwal</h4>
-                                </div>
-                                <div class="modal-body p-20">
-                                  <div class="form"></div>
-                                  @if ($data['role'] == 'ao' || $data['role'] == 'fo')
-                                  <input type="text" name="" id="searchInput" class="form-control">
-                                  @endif
-                                  <div class='map' id='map' style='width: 100%; height: 200px;'></div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
-                                        Batal
-                                    </button>
-                                    @if ($data['role'] == 'ao' || $data['role'] == 'fo')
-                                    <button type="button" class="btn btn-orange save-event waves-effect waves-light">
-                                        Simpan Jadwal
-                                    </button>
-                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light"
-                                            data-dismiss="modal">Hapus Jadwal Ini
-                                    </button>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                    
                 </div>
             </div>
@@ -182,8 +197,13 @@
 <script src="{{asset('assets/js/toastr.min.js')}}"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIijm1ewAfeBNX3Np3mlTDZnsCl1u9dtE&libraries=places"></script>
 <script src="{{ asset('assets/js/custom/schedule.js')  }}"></script>
+<script src="{{ asset('assets/js/moment.min.js')  }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datetimepickers.min.js')  }}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('#datetimepicker1').datetimepicker();
+        $('#datetimepicker2').datetimepicker();
 
         $('#tujuan').select2({
             ajax: {
@@ -311,7 +331,7 @@
         var y = document.getElementById("ActivityDet");
         document.getElementById("startdate").value="";
         document.getElementById("enddate").value="";
-        document.getElementById("alamat").value="";
+        document.getElementsByName("alamat").value="";
         document.getElementById("marketing").value="";
         document.getElementById("pemasar").value="";
         document.getElementById("description").value="";
