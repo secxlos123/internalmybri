@@ -204,7 +204,7 @@
         //     return false;
         // });
     },
-    /* Create New */
+    /* Create New 
     CalendarApp.prototype.onSelect = function (start, end, allDay) {
       if ( userRole == 'ao' || userRole == 'fo' ) {
         $("#event-modal input, #event-modal textarea").prop('disabled', false);
@@ -297,7 +297,7 @@
             });
             $this.$calendarObj.fullCalendar('unselect');
       }
-    },
+    },*/
     CalendarApp.prototype.enableDrag = function() {
         //init events
         $(this.$event).each(function () {
@@ -399,7 +399,7 @@
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
             drop: function(date) { $this.onDrop($(this), date); },
-            select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
+            /**select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },*/
             eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); },
             eventDrop: function(calEvent, delta, revertFunc) { $this.onEventDrop(calEvent, delta, revertFunc); }
         }).on('click', '.fc-agendaWeek-button,.fc-agendaDay-button', function() {

@@ -108,10 +108,6 @@ tr.shown td.details3-control {
                                 'class' => 'select2 action_developer',
                                 'data-placeholder' => 'Pilih Developer',
                             ]) !!}
-                               <!-- <select class="select2">
-                               <option>- Pilih Developer -</option>
-                               <option>Rumah.com</option>
-                               </select> -->
                         </div>
                         <input type="hidden" class="form-control" name="dev_id" id="dev_id">
                     </div>
