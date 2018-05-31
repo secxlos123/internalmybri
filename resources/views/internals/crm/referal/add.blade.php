@@ -85,7 +85,7 @@
                                                 </select>
                                             </div>
                                         </div>
-<<<<<<< HEAD
+
                                         <!--<div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Kategori * :</label>
                                             <div class="col-md-9">
@@ -96,29 +96,29 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Waktu Kontak * :</label>
                                             <div class="col-md-9">
-                                                <select required class="form-control select2" name="product_type">
+                                                <select required class="form-control select2" name="contact_time">
                                                     <option disabled="" selected="">-- Pilih --</option>
-                                                    @foreach($product as $pr)
-                                                    <option>{{$pr['product_name']}}</option>
-                                                    @endforeach
+                                                    <option value="1">Pagi (08-00 s.d 11.00)</option>
+                                                    <option value="2">Siang (12.00 s.d 15.00)</option>
+                                                    <option value="3">Sore (15.00 s.d 18.00)</option>
+                                                    <option value="4">Malam (18.00 s.d 21.00)</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group gender {!! $errors->has('gender') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Tujuan * :</label>
                                             <div class="col-md-9">
-                                                <select required class="form-control select2" name="product_type">
+                                                <select required class="form-control select2" name="intention">
                                                     <option disabled="" selected="">-- Pilih --</option>
-                                                    @foreach($product as $pr)
-                                                    <option>{{$pr['product_name']}}</option>
-                                                    @endforeach
+                                                    <option value="0">Sendiri</option>
+                                                    <option value="1">Keluarga/Other</option>
                                                 </select>
                                             </div>
-                                        </div> -->
+                                        </div>
                                         <!-- <div class="form-group gender {!! $errors->has('pemasar') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Pemasar * :</label>
                                             <div class="col-md-9">
@@ -130,8 +130,7 @@
                                                 </select>
                                             </div>
                                         </div> -->
-=======
->>>>>>> a08d193f03f040ddd02fe49a9a058fa73ea458be
+
                                         <div class="form-group birth_date {!! $errors->has('birth_date') ? 'has-error' : '' !!}">
                                             <label class="col-md-3 control-label">Note * :</label>
                                             <div class="col-md-9">
