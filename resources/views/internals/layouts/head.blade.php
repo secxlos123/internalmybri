@@ -20,7 +20,6 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.steps.css')}}" />
 
         <!--date range picker -->
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
         <!--
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datepicker.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-timepicker.min.css')}}">

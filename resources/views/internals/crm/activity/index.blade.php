@@ -124,21 +124,27 @@
                     </div>
                 </div>
             </div>
-            <div class="row" id="ActivityDet" style="display: none">
+            <div class="row" id="ActivityTam" style="display: none">
                 <div class="col-md-12">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>Detail Activity</b></h4>
+                        <h4 class="m-t-0 header-title"><b>Tambah Activity</b></h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <select class="select2 form-control" name="tujuan" id="tujuan">
-                                            <option value="">Tujuan Aktivitas</option>
-                                    </select>
+                                  <select id="tujuan" class="select2 form-control" name="tujuan">
+                                    <option value="">Tujuan Aktivitas</option>
+                                    @foreach($activity as $act)
+                                    <option>{{$act['activity_name']}}</option>
+                                    @endforeach
+                                  </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="select2 form-control" name="event" id="event">
-                                            <option value="">Telp / Kunjungan / Event / Email / Report</option>
-                                    </select>
+                                  <select id="event" class="select2 form-control" name="event">
+                                    <option value="">Telp / Kunjungan / Event / Email / Report</option>
+                                    @foreach($event as $eve)
+                                    <option>{{$eve['name']}}</option>
+                                    @endforeach
+                                  </select>
                                 </div>
                                 <div class="form-group">
                                   <div class='input-group date' id='datetimepicker1'>
@@ -193,6 +199,57 @@
                    
                 </div>
             </div>
+            <div class="row" id="ActivityDet" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>Detail Activity</b></h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input name='tujuan' id="tujuan" type='text' class="form-control" placeholder="tujuan" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <input name='event' id="event" type='text' class="form-control" placeholder="event" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <input name='startdate' id="startdate" type='text' class="form-control" placeholder="Waktu Mulai" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <input name='enddate' id="enddate" type='text' class="form-control" placeholder="Waktu Berakhir" disabled/>      
+                                </div>
+                                <div class="form-group">
+                                    <input name='alamat' id="alamat" type='text' class="form-control" placeholder="Alamat" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <input name='marketing' id="marketing" type='text' class="form-control" placeholder="Search Rencana Marketing" disabled/>
+                                    </select>  
+                                </div>
+                                <div class="form-group">
+                                    <input name='pemasar' id="pemasar" type='text' class="form-control" placeholder="Search Tenaga Pemasar Pendamping" disabled/>
+                                </div>
+                                <div class="form-group">
+                                    <input name='description' id="description" type='text' class="form-control" placeholder="Deskripsi" disabled/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">RESCHEDULE</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-orange waves-effect" id="btn1" onclick="showActivityDet()">
+                                    TINDAKLANJUT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BEGIN MODAL-->
+                    
+                   
+                </div>
+            </div>
 
         </div>
     </div>
@@ -213,66 +270,6 @@
 
         $('#datetimepicker1').datetimepicker();
         $('#datetimepicker2').datetimepicker();
-
-        $('#tujuan').select2({
-            ajax: {
-            url: '/activity/tujuan',
-            dataType: 'json',
-            type: "GET",
-            quietMillis: 50,
-            processResults: function (data, params) {
-              console.log(data);
-                var select2Data = $.map(data, function (obj) {
-                    return {
-                        id: obj.id,
-                        text: '<span>' + obj.nama + ", " + obj.activity_type + ', ' + obj.product_type + ' [' + obj.status + '] [Rp. ' + obj.target + ']' + '</span>' + '<span class="none">' + obj.name + '</span><span class="none">' + obj.id + '</span>'
-                    }
-                });
-                // select2Data = select2Data.filter(function(data) {
-                //     return data.text.indexOf(params.term) !== -1
-                // });
-                return {
-                    results: select2Data
-                };
-            },
-            escapeMarkup: function(markup) {
-                return markup;
-            },
-        },
-        escapeMarkup: function(markup) {
-            return markup;
-        },
-        });
-
-        $('#event').select2({
-            ajax: {
-            url: '/activity/event',
-            dataType: 'json',
-            type: "GET",
-            quietMillis: 50,
-            processResults: function (data, params) {
-              console.log(data);
-                var select2Data = $.map(data, function (obj) {
-                    return {
-                        id: obj.id,
-                        text: '<span>' + obj.nama + ", " + obj.activity_type + ', ' + obj.product_type + ' [' + obj.status + '] [Rp. ' + obj.target + ']' + '</span>' + '<span class="none">' + obj.name + '</span><span class="none">' + obj.id + '</span>'
-                    }
-                });
-                // select2Data = select2Data.filter(function(data) {
-                //     return data.text.indexOf(params.term) !== -1
-                // });
-                return {
-                    results: select2Data
-                };
-            },
-            escapeMarkup: function(markup) {
-                return markup;
-            },
-        },
-        escapeMarkup: function(markup) {
-            return markup;
-        },
-        });
         
         $('#marketing').select2({
             ajax: {
@@ -337,7 +334,7 @@
    
     function showActivityDet() {
         var x = document.getElementById("ActivityMar");
-        var y = document.getElementById("ActivityDet");
+        var y = document.getElementById("ActivityTam");
         document.getElementById("startdate").value="";
         document.getElementById("enddate").value="";
         document.getElementsByName("alamat").value="";

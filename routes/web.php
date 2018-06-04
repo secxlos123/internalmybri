@@ -344,6 +344,7 @@
             Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
                 /* CRM Activity */
                 Route::get('activity', 'CRM\activityController@index');
+                Route::get('activity/tujuan', 'CRM\activityController@tujuan');
                 Route::get('activity/data', 'CRM\activityController@data');
                 Route::get('activity/pemasar', 'CRM\activityController@pemasar');
                 Route::get('activity/marketing', 'CRM\activityController@marketing');
