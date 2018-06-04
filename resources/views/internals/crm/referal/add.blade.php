@@ -102,10 +102,10 @@
                                             <div class="col-md-9">
                                                 <select required class="form-control select2" name="contact_time">
                                                     <option disabled="" selected="">-- Pilih --</option>
-                                                    <option value="1">Pagi (08-00 s.d 11.00)</option>
-                                                    <option value="2">Siang (12.00 s.d 15.00)</option>
-                                                    <option value="3">Sore (15.00 s.d 18.00)</option>
-                                                    <option value="4">Malam (18.00 s.d 21.00)</option>
+                                                    <option value="1">Pagi (08-00 - 11.00)</option>
+                                                    <option value="2">Siang (12.00 - 15.00)</option>
+                                                    <option value="3">Sore (15.00 - 18.00)</option>
+                                                    <option value="4">Malam (18.00 - 21.00)</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                                 <select required class="form-control select2" name="intention">
                                                     <option disabled="" selected="">-- Pilih --</option>
                                                     <option value="0">Sendiri</option>
-                                                    <option value="1">Keluarga/Other</option>
+                                                    <option value="1">Keluarga/Lainnya</option>
                                                 </select>
                                             </div>
                                         </div>

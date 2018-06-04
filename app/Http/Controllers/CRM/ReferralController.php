@@ -86,8 +86,7 @@ class ReferralController extends Controller
                               ->post();
 
 
-      //$category = 
-      //$contact_time = 
+      
       $product = $crmIndex['contents']['product_type'];
       $pemasar = $getPemasar['contents'];
 
