@@ -204,7 +204,7 @@
         //     return false;
         // });
     },
-    /* Create New */
+    /* Create New 
     CalendarApp.prototype.onSelect = function (start, end, allDay) {
       if ( userRole == 'ao' || userRole == 'fo' ) {
         $("#event-modal input, #event-modal textarea").prop('disabled', false);
@@ -219,7 +219,7 @@
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Waktu Berakhir</label><input class='form-control appointment_date'  type='text' name='enddate' /></div></div>")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tujuan Aktivitas</label><select class='form-control select2 tujuan' name='tujuan'></select></div></div>")
                 .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Tenaga Pemasar Pendamping</label><select class='form-control select2 pemasar' name='pemasar'></select></div></div>")
-                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Rencana Marekting</label><select class='form-control select2 marketing' name='marketing'></select></div></div>")
+                .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Rencana Marketing</label><select class='form-control select2 marketing' name='marketing'></select></div></div>")
                 .find("select[name='eform-id']")
                 .append("<option value=''>-- Pilih --</option>")
                 .append("<option value=''>54321</option>")
@@ -297,7 +297,7 @@
             });
             $this.$calendarObj.fullCalendar('unselect');
       }
-    },
+    },*/
     CalendarApp.prototype.enableDrag = function() {
         //init events
         $(this.$event).each(function () {
@@ -399,7 +399,7 @@
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
             drop: function(date) { $this.onDrop($(this), date); },
-            select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
+            /**select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },*/
             eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); },
             eventDrop: function(calEvent, delta, revertFunc) { $this.onEventDrop(calEvent, delta, revertFunc); }
         }).on('click', '.fc-agendaWeek-button,.fc-agendaDay-button', function() {

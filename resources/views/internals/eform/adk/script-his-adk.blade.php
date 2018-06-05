@@ -4,7 +4,7 @@
         var domain = window.location.host;
         var url = http+'//'+domain;
         var action_url = '';
-        if (url == 'https://internalmybri.bri.co.id' || url == 'http://internalmybridev.bri.co.id') {
+        if (url == 'https://internalmybri.bri.co.id' || url == 'http://internalmybridev.bri.co.id' || url=='http://localhost:96') {
             action_url = '/datatables/adk-his-list';
         } else {
             action_url = '/internal/datatables/adk-his-list';
@@ -52,6 +52,7 @@
                 {data: 'STATUS', name: 'STATUS', bSortable: true },
                 {data: 'status_screening', name: 'status_screening', bSortable: true },
                 {data: 'eform_id', name: 'eform_id', bSortable: false, className: 'hidden' },
+                {data: 'keterangan', name: 'keterangan', bSortable: true },
                 {data: 'action', name: 'action', orderable: false, searchable: false}
             ]
         });

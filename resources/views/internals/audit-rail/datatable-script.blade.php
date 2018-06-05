@@ -59,6 +59,73 @@ function reloadDataPengajuan(from, type){
     });
 }
 
+// trigger pengajuan kredit briguna
+var table_pengajuan_kredit_briguna = $('#datatable-pengajuan_kredit_briguna').DataTable({
+    searching : false,
+    // order : [[1, 'asc']],
+    "language": {
+        "emptyTable": "No data available in table"
+    }
+});
+
+$(document).on('click', "#filter-eform-briguna", function() {
+    table_pengajuan_kredit_briguna.destroy();
+    var date = $('#action_date_eform_briguna').val();
+    reloadDataPengajuanBriguna(date);
+});
+
+function reloadDataPengajuanBriguna(from){
+    table_pengajuan_kredit_briguna = $('#datatable-pengajuan_kredit_briguna').DataTable({
+        searching : false,
+        processing : true,
+        serverSide : true,
+        // order : [[1, 'asc']],
+        lengthMenu: [
+        [ 10, 25, 50, -1 ],
+        [ '10', '25', '50', 'All' ]
+        ],
+        language : {
+            infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
+        },
+        ajax : {
+            url : '/datatables/auditrail-kredit/',
+            data : function(d, settings){
+                var api = new $.fn.dataTable.Api(settings);
+
+                d.page = Math.min(
+                    Math.max(0, Math.round(d.start / api.page.len())),
+                    api.page.info().pages
+                    );
+
+                d.action_date = from;
+                d.ref_number  = $('#no_ref').val();
+                d.username    = $('#ao_name').val();
+                d.status_name = $('#status_name').val();
+                d.region_id = $('#branch_id').val();
+                d.branch_id = $('#branch').val();
+                d.branch_name = $('#branch_name').val();
+            }
+        },
+        aoColumns : [
+        {   data: 'tgl_pengajuan', name: 'tgl_pengajuan',  bSortable: false },
+        {   data: 'cif', name: 'cif',  bSortable: false },
+        {   data: 'id_aplikasi', name: 'id_aplikasi',  bSortable: false },
+        {   data: 'ref_number', name: 'ref_number' },
+        {   data: 'product', name: 'product',  bSortable: false },
+        {   data: 'username', name: 'username',  bSortable: false  },
+        {   data: 'tgl_analisa', name: 'tgl_analisa', bSortable: false },
+        {   data: 'pinca_name', name: 'pinca_name', bSortable: false },
+        {   data: 'tgl_putusan', name: 'tgl_putusan', bSortable: false },
+        {   data: 'nama_debitur', name: 'nama_debitur', bSortable: false },
+        {   data: 'tgl_pencairan', name: 'tgl_pencairan', bSortable: false },
+        {   data: 'no_rekening', name: 'no_rekening', bSortable: false },
+        {   data: 'Plafond_usulan', name: 'Plafond_usulan',  bSortable: false },
+        {   data: 'status_putusan', name: 'status_putusan',  bSortable: false },
+        {   data: 'status_prescreening', name: 'status_prescreening',  bSortable: false },
+        ],
+    });
+}
+
 // trigger admin dev
 var table_admin_dev = $('#datatable-admindev').DataTable({
     searching : false,

@@ -41,10 +41,18 @@ class activityController extends Controller
     public function index()
     {
       $data = $this->getUser();
-      // dd(env('APP_ENV'));
-
-      // dd($referral);
-      return view('internals.crm.activity.index', compact('data'));
+      // dd($data);
+      $crmIndex = Client::setEndpoint('crm')
+      ->setHeaders([
+        'pn' => $data['pn'],
+        'branch' => $data['branch'],
+        'Authorization' => $data['token'],
+        'Content-Type' => 'application/json'
+      ])
+      ->get();
+      $activity = $crmIndex['contents']['activity_type'];
+      $event = $crmIndex['contents']['action_activity'];
+      return view('internals.crm.activity.index', compact('data','activity','event'));
     }
 
     /**

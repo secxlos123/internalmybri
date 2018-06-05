@@ -48,6 +48,7 @@
                                         <td align="center">Status</td>
                                         <td align="center">Status Prescreening</td>
                                         <td align="center">Eform</td>
+                                        <td align="center">Keterangan</td>
                                         <td align="center">Aksi</td>
                                     </tr>
                                 </thead>
