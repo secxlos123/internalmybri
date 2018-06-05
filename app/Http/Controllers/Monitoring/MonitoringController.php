@@ -51,10 +51,7 @@ public function datatables(Request $request)
 {
     $sort = $request->input('order.0');
     $data = $this->getUser();
-    
-    if($request->has('dev_id')) $dev = $request->input('dev_id');
-    else $dev = $request->input('source');
-        
+            
     $eforms = Client::setEndpoint('monitoring')
             ->setHeaders([
               'Authorization' => $data['token']
@@ -65,7 +62,8 @@ public function datatables(Request $request)
             ->setQuery([
               'limit'     => $request->input('length'),
               'product_type'     => $request->input('product_type'),
-              'dev_id'     => $dev,
+              'source'     => $request->input('source'),
+              'dev_id'     => $request->input('dev_id'),
               'kanwil_id'     => $request->input('kanwil_id'),
               'branch_id'     => $request->input('branch_id'),
               'sort'      => $this->columns[$sort['column']] .'|'. $sort['dir'],

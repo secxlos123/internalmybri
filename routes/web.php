@@ -344,6 +344,7 @@
             Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
                 /* CRM Activity */
                 Route::get('activity', 'CRM\activityController@index');
+                Route::get('activity/tujuan', 'CRM\activityController@tujuan');
                 Route::get('activity/data', 'CRM\activityController@data');
                 Route::get('activity/pemasar', 'CRM\activityController@pemasar');
                 Route::get('activity/marketing', 'CRM\activityController@marketing');
@@ -444,6 +445,8 @@
     Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
     Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+
+    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 
@@ -563,11 +566,13 @@
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
         /*Auditrail*/
-            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //
             Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
             Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+            Route::get('auditrail-kredit', 'AuditRail\AuditRailController@datatablesBriguna');
 
             Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 

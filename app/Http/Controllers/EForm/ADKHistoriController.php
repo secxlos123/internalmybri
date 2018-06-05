@@ -160,6 +160,7 @@ class ADKHistoriController extends Controller
                     $history['status_screening'] = $prescreening;
                     $history['pinca_name']    = $result['pinca_name'];
                     $history['ao_name']       = $result['ao_name'];
+                    $history['keterangan']    = $result['keterangan'];
                     $history['namadeb']       =$result['first_name'].' '.$result['last_name'];
                     $history['action']= view('internals.layouts.actions',[
                         'detail_adk'       => $result['eform_id'],

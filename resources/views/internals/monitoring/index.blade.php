@@ -91,8 +91,8 @@ tr.shown td.details3-control {
                                <select class="select2 changesource" id="source" name="source">
                                <option value="-">-Pilih Source-</option>
                                <option value="dev">Developer</option>
-                               <option value="1">Non Developer</option>
-                               <option value="0">rumah.com</option>
+                               <option value="nondev">Non Developer</option>
+                               <option value="rumah.com">rumah.com</option>
                                </select>
                             </div>
                                <!-- <select class="select2">
@@ -108,10 +108,6 @@ tr.shown td.details3-control {
                                 'class' => 'select2 action_developer',
                                 'data-placeholder' => 'Pilih Developer',
                             ]) !!}
-                               <!-- <select class="select2">
-                               <option>- Pilih Developer -</option>
-                               <option>Rumah.com</option>
-                               </select> -->
                         </div>
                         <input type="hidden" class="form-control" name="dev_id" id="dev_id">
                     </div>
@@ -321,8 +317,8 @@ tr.shown td.details3-control {
                 "url" : '/datatables/monitoring',
                 "data" : {
                     product_type: $('#product_type').val(),
-//                    dev_id: $('#dev_id').val(),
-//                    source: $('#source').val(),
+                    dev_id: $('#dev_id').val(),
+                    source: $('#source').val(),
                     branch_id: $('#branch_id').val()
                 }
             },
