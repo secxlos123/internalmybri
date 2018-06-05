@@ -106,7 +106,7 @@
       <a href="{{route('staff-collateral.index')}}" class="waves-effect"><i class="mdi mdi-city"></i><span> Penilaian Agunan </span> </a>
     </li>
     @endif
- @if(($data['role']=='ao') || ($data['role']=='admin-bri'))
+ @if(($data['role']=='superadmin') || ($data['role']=='admin-bri'))
 	<li class="treeview">
 		<a href="#" class="waves-effect"><i class="mdi mdi-briefcase"></i> <span > Mitra </span> </a>
 			<ul class="treeview-menu">
