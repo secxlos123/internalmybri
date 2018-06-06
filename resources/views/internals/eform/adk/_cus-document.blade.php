@@ -23,11 +23,23 @@
                                 <a href="<?php echo $detail['customer']['personal']['identity']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['customer']['personal']['identity']) || $detail['customer']['personal']['identity'] == '' || $detail['customer']['personal']['identity'] == 'null') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['customer']['personal']['identity'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF Kartu Tanda Penduduk
+                                    <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } } ?>
                             </td>
                             <td><?php echo $detail['catatan_ktp']?></td>
                         </tr>
@@ -42,11 +54,23 @@
                                 <a href="<?php echo $detail['NPWP_nasabah']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['NPWP_nasabah']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['NPWP_nasabah']) || $detail['NPWP_nasabah'] == 'null' || $detail['NPWP_nasabah'] == '') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['NPWP_nasabah'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF Nomor Pokok Wajib Pajak
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } } ?>
                             </td>
                             <td><?php echo $detail['catatan_npwp']?></td>
                         </tr>
@@ -61,11 +85,23 @@
                                 <a href="<?php echo $detail['SLIP_GAJI']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['SLIP_GAJI']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['SLIP_GAJI']) || $detail['SLIP_GAJI'] == '' || $detail['SLIP_GAJI'] == 'null') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['SLIP_GAJI'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF Slip Gaji
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } } ?>
                             </td>
                             <td><?php echo $detail['catatan_gaji']?></td>
                         </tr>
@@ -80,11 +116,23 @@
                                 <a href="<?php echo $detail['KK']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['KK']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['KK']) || $detail['KK'] == '' || $detail['KK'] == 'null') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['KK'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF Kartu Keluarga
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } }?>
                             </td>
                             <td><?php echo $detail['catatan_kk']?></td>
                         </tr>
@@ -99,11 +147,23 @@
                                 <a href="<?php echo $detail['SK_AWAL']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['SK_AWAL']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['SK_AWAL']) || $detail['SK_AWAL'] == '' || $detail['SK_AWAL'] == 'null') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['SK_AWAL'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF SK Pertama
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } } ?>
                             </td>
                             <td><?php echo $detail['catatan_sk_awal']?></td>
                         </tr>
@@ -118,11 +178,23 @@
                                 <a href="<?php echo $detail['SK_AKHIR']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['SK_AKHIR']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['SK_AKHIR']) || $detail['SK_AKHIR'] == '' || $detail['SK_AKHIR'] == 'null') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['SK_AKHIR'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF SK Terakhir
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } } ?>
                             </td>
                             <td><?php echo $detail['catatan_sk_akhir']?></td>
                         </tr>
@@ -137,11 +209,23 @@
                                 <a href="<?php echo $detail['REKOMENDASI']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['REKOMENDASI']; ?>" width="100" height="100">
                                 </a>
-                                <?php } else {?>
+                                <?php } elseif(empty($detail['REKOMENDASI']) || $detail['REKOMENDASI'] == '' || $detail['REKOMENDASI'] == 'null') {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php } else {
+                                    $pdf = substr($detail['REKOMENDASI'], -4);
+                                    if ($pdf == '.pdf') {
+                                ?>
+                                    Data PDF Surat Rekomendasi
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                <?php
+                                    } else {
+                                ?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
+                                <?php } } ?>
                             </td>
                             <td><?php echo $detail['catatan_rekomendasi']?></td>
                         </tr>
@@ -156,14 +240,26 @@
                                         $image = substr($detail['SKPG'], 0,4);
                                         if ($image == 'http') {
                                     ?>
-                                    <a href="<?php echo $detail['SKPG']; ?>" class="thumbnail" width="100" height="100">
+                                    <a href="<?php echo $detail['SKPG']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['SKPG']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } elseif(empty($detail['SKPG']) || $detail['SKPG'] == '' || $detail['SK_AWAL'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
+                                    <?php } else {
+                                        $pdf = substr($detail['SKPG'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF SKPU
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td><?php echo $detail['catatan_skpu']?></td>
                             </tr>
@@ -181,11 +277,23 @@
                                     <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } elseif(empty($detail['customer']['personal']['couple_identity']) || $detail['customer']['personal']['couple_identity'] == '' || $detail['customer']['personal']['couple_identity'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['couple_identity'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF KTP Pasangan
+                                        <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } }?>
                                 </td>
                                 <td><?php echo $detail['catatan_couple_ktp']?></td>
                             </tr>
@@ -205,11 +313,23 @@
                                     <a href="<?php echo $detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } elseif(empty($detail['customer']['personal']['couple_identity']) || $detail['customer']['personal']['couple_identity'] == '' || $detail['customer']['personal']['couple_identity'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['couple_identity'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF KTP Pasangan
+                                        <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } }?>
                                 </td>
                                 <td><?php echo $detail['catatan_couple_ktp']?></td>
                             </tr>
@@ -224,87 +344,71 @@
                                     if (!empty($detail['lainnya1']) || $detail['lainnya1'] != '') {
                                         $lainnya1 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']);
                                         echo str_replace('-', ' ', $lainnya1['filename']);
-                                    }
-                                    $image = substr($detail['lainnya1'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya1']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya1']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya1']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
                                 <?php 
                                     }
                                     if (!empty($detail['lainnya2']) || $detail['lainnya2'] != '') {
                                         $lainnya2 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']);
                                         echo str_replace('-', ' ', $lainnya2['filename']);
-                                    }
-                                    $image = substr($detail['lainnya2'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya2']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya2']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya2']; ?>" width="100" height="100">
                                 </a>
-                                <?php } ?>
-                            </td>
-                            <td>
-                                <?php
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php 
+                                    } 
                                     if (!empty($detail['lainnya3']) || $detail['lainnya3'] != '') {
                                         $lainnya3 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']);
                                         echo str_replace('-', ' ', $lainnya3['filename']);
-                                    }
-                                    $image = substr($detail['lainnya3'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya3']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya3']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya3']; ?>" width="100" height="100">
                                 </a>
-                                <?php 
-                                    }
-                                    if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
-                                        $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
-                                        echo str_replace('-', ' ', $lainnya4['filename']);
-                                    }
-                                    $image = substr($detail['lainnya4'], 0,4);
-                                    if ($image == 'http') {
-                                ?>
-                                <a href="<?php echo $detail['lainnya4']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya4']; ?>" width="100" height="100">
-                                </a>
                                 <?php } else {?>
-                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" width="100" height="100">
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                 </a>
                                 <?php } ?>
                             </td>
                             <td>
                                 <?php
+                                    if (!empty($detail['lainnya4']) || $detail['lainnya4'] != '') {
+                                        $lainnya4 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']);
+                                        echo str_replace('-', ' ', $lainnya4['filename']);
+                                ?>
+                                <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" class="thumbnail">
+                                    <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya4']; ?>" width="100" height="100">
+                                </a>
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
+                                <?php 
+                                    }
                                     if (!empty($detail['lainnya5']) || $detail['lainnya5'] != '') {
                                         $lainnya5 = pathinfo($detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']);
                                         echo str_replace('-', ' ', $lainnya5['filename']);
-                                    }
-
-                                    $image = substr($detail['lainnya5'], 0,4);
-                                    if ($image == 'http') {
                                 ?>
-                                <a href="<?php echo $detail['lainnya5']; ?>" class="thumbnail">
-                                    <img src="<?php echo $detail['lainnya5']; ?>" width="100" height="100">
-                                </a>
-                                <?php } else {?>
                                 <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']; ?>" class="thumbnail">
                                     <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['lainnya5']; ?>" width="100" height="100">
                                 </a>
+                                <?php } else {?>
+                                <a href="#" class="thumbnail">
+                                    <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                </a>
                                 <?php } ?>
+                            </td>
+                            <td>
                             </td>
                         </tr>
                     </tbody>

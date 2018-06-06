@@ -40,11 +40,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['identity'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Kartu Tanda Penduduk
+                                        <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_ktp'] == 1){ ?>
@@ -71,11 +79,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['NPWP_nasabah'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Nomor Pokok Wajib Pajak
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['NPWP_nasabah']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_npwp'] == 1){ ?>
@@ -102,11 +118,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['SLIP_GAJI'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Slip Gaji
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SLIP_GAJI']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_slip_gaji'] == 1){ ?>
@@ -133,11 +157,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['KK'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Kartu Keluarga
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['KK']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } }?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_kk'] == 1){ ?>
@@ -164,11 +196,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['SK_AWAL'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF SK Pertama
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AWAL']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_sk_awal'] == 1){ ?>
@@ -195,11 +235,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['SK_AKHIR'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF SK Terakhir
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SK_AKHIR']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_sk_akhir'] == 1){ ?>
@@ -226,11 +274,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['REKOMENDASI'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Surat Rekomendasi
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['REKOMENDASI']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_rekomendasi'] == 1){ ?>
@@ -260,11 +316,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['SKPG'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF SKPU
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['SKPG']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_skpu'] == 1){ ?>
@@ -294,11 +358,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['couple_identity'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF KTP Pasangan
+                                        <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } }?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_couple_ktp'] == 1){ ?>
@@ -330,11 +402,19 @@
                                     <a href="#" class="thumbnail">
                                         <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
                                     </a>
-                                    <?php } else {?>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['couple_identity'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF KTP Pasangan
+                                        <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
                                     <a href="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" class="thumbnail">
                                         <img src="<?php echo $detail['Url'].$detail['nik'].'/'.$detail['customer']['personal']['couple_identity']; ?>" width="100" height="100">
                                     </a>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </td>
                                 <td align="center">
                                     <?php if($detail['flag_couple_ktp'] == 1){ ?>
