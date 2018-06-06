@@ -27,9 +27,12 @@ class ReferralController extends Controller
     public function getUser(){
      /* GET UserLogin Data */
         $users = session()->get('user');
-            foreach ($users as $user) {
-                $data = $user;
-            }
+            
+        foreach ($users as $user) 
+        {
+          $data = $user;
+        }
+        
         return $data;
     }
 
@@ -65,21 +68,25 @@ class ReferralController extends Controller
     {
       $data = $this->getUser();
       $crmIndex = Client::setEndpoint('crm')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->get();
+                            ->setHeaders([
+                                            'pn' => $data['pn'],
+                                            'branch' => $data['branch'],
+                                            'Authorization' => $data['token'],
+                                            'Content-Type' => 'application/json'
+                                         ])
+                            ->get();
+      
       $getPemasar = Client::setEndpoint('crm/pemasar')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->post();
+                              ->setHeaders([
+                                              'pn' => $data['pn'],
+                                              'branch' => $data['branch'],
+                                              'Authorization' => $data['token'],
+                                              'Content-Type' => 'application/json'
+                                           ])
+                              ->post();
+
+
+      
       $product = $crmIndex['contents']['product_type'];
       $pemasar = $getPemasar['contents'];
 
@@ -91,32 +98,37 @@ class ReferralController extends Controller
       $data = $this->getUser();
 
       $body = [
-        'nik' => $request->input('nik'),
-        'name' => $request->input('name'),
-        'phone' => $request->input('phone'),
-        'address' => $request->input('address'),
-        'product_type' => $request->input('product_type'),
-        'officer_ref' => $request->input('officer_ref'),
-        'note' => $request->input('note'),
-        'status' => 'ref'
-      ];
+                 'nik' => $request->input('nik'),
+                 'name' => $request->input('name'),
+                 'phone' => $request->input('phone'),
+                 'address' => $request->input('address'),
+                 'product_type' => $request->input('product_type'),
+                 'contact_time' => $request->input('contact_time'),
+                 'intention' => $request->input('intention'),
+                 'officer_ref' => $request->input('officer_ref'),
+                 'note' => $request->input('note'),
+                 'status' => 'ref'
+              ];
 
       // dd($data);
       $storeReferal = Client::setEndpoint('crm/account/store_referral')
-          ->setHeaders([
-            'pn' => $data['pn'],
-            'branch' => $data['branch'],
-            'name' => $data['name'],
-            'Authorization' => $data['token'],
-            'Content-Type' => 'application/json'
-          ])
-          ->setBody($body)
-          ->post();
+                                ->setHeaders([
+                                                'pn' => $data['pn'],
+                                                'branch' => $data['branch'],
+                                                'name' => $data['name'],
+                                                'Authorization' => $data['token'],
+                                                'Content-Type' => 'application/json'
+                                             ])
+                                ->setBody($body)
+                                ->post();
 
-      if($storeReferal['code'] == 201){
+      if($storeReferal['code'] == 201)
+      {
         \Session::flash('success', $storeReferal['descriptions']);
         return redirect()->route('referral.index');
-      }else{
+      }
+      else
+      {
         $error = reset($storeReferal['contents']);
         \Session::flash('error', $storeReferal['descriptions'].' '.$error);
         return redirect()->back()->withInput($request->input());

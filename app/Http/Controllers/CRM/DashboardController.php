@@ -166,59 +166,69 @@ class DashboardController extends Controller
     /* GET UserLogin Data */
     $data = $this->getUser();
     // dd($data);
-    if ($data['role'] == "pinwil" || $data['role_user'] == "pinwil") {
+    if ($data['role'] == "pinwil" || $data['role_user'] == "pinwil"){
+
       $regionList = Client::setEndpoint('crm/branch/list_uker_kanca')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->setBody([
-        "branch_code"=>$data['branch']
-      ])
-      ->post();
+                              ->setHeaders([
+                                              'pn' => $data['pn'],
+                                              'branch' => $data['branch'],
+                                              'Authorization' => $data['token'],
+                                              'Content-Type' => 'application/json'
+                                           ])
+                              ->setBody([
+                                            "branch_code"=>$data['branch']
+                                        ])
+                              ->post();
+
       $regions = array_column($regionList['contents']['responseData'], 'region');
       $region = $regions[0];
       // dd($region);
+
       $listKanca = Client::setEndpoint('crm/branch/list_kanca_kanwil')
-      ->setHeaders([
-        'pn' => $data['pn'],
-        'branch' => $data['branch'],
-        'Authorization' => $data['token'],
-        'Content-Type' => 'application/json'
-      ])
-      ->setBody([
-        'region' => $region
-      ])
-      ->post();
+                              ->setHeaders([
+                                              'pn' => $data['pn'],
+                                              'branch' => $data['branch'],
+                                              'Authorization' => $data['token'],
+                                              'Content-Type' => 'application/json'
+                                           ])
+                              ->setBody([
+                                            'region' => $region
+                                        ])
+                              ->post();
+
       $kanca = $listKanca['contents']['responseData'];
       // dd($kanca);
       $marketingByKanwil = [];
       $i = 0;
+
       foreach ($kanca as $k) {
         $marketingByBranch = Client::setEndpoint('crm/marketing/by_branch')
-        ->setHeaders([
-          'pn' => $data['pn'],
-          'branch' => $data['branch'],
-          'Authorization' => $data['token'],
-          'Content-Type' => 'application/json'
-        ])
-        ->setBody([
-          'branch' => substr("00000".$k['mainbr'], -5)
-        ])
-        ->post();
+                                        ->setHeaders([
+                                                        'pn' => $data['pn'],
+                                                        'branch' => $data['branch'],
+                                                        'Authorization' => $data['token'],
+                                                        'Content-Type' => 'application/json'
+                                                     ])
+                                        ->setBody([
+                                                      'branch' => substr("00000".$k['mainbr'], -5)
+                                                  ])
+                                        ->post();
         $zeroStatus = [
-          "On Progress" => 0,
-          "Batal" => 0,
-          "Prospek" => 0,
-          "Done" => 0
-        ];
-        if (count($marketingByBranch['contents']) > 0) {
+                          "On Progress" => 0,
+                          "Batal" => 0,
+                          "Prospek" => 0,
+                          "Done" => 0
+                      ];
+
+        if (count($marketingByBranch['contents']) > 0)
+        {
           $statusBefore = array_count_values(array_column($marketingByBranch['contents'], 'status'));
-        } else {
+        } 
+        else
+        {
           $statusBefore = [];
         }
+
         $status = array_merge($zeroStatus, $statusBefore);
         // dd($status);
         $marketingByKanwil[$i] = $status;
@@ -243,21 +253,20 @@ class DashboardController extends Controller
     }
 
     // return $product;
-
     $chartData = Client::setEndpoint('crm/marketing_summary')
-    ->setQuery(['role' => $data['role']])
-    ->setHeaders([
-      'Authorization' => $data['token'],
-      'pn' => $data['pn'],
-      'branch' => $data['branch']
-    ])
-    ->setBody([
-      "product_type"=>$product, //filter pruduk
-      "month"=>$bulan,//filter bulan
-      "pn"=>$pn //filter officer
-    ])
-    ->post();
-    // dd($chartData);
+                            ->setQuery(['role' => $data['role']])
+                            ->setHeaders([
+                                            'Authorization' => $data['token'],
+                                            'pn' => $data['pn'],
+                                            'branch' => $data['branch']
+                                         ])
+                            ->setBody([
+                                          "product_type"=>$product, //filter pruduk
+                                          "month"=>$bulan,//filter bulan
+                                          "pn"=>$pn //filter officer
+                                      ])
+                            ->post();
+    
 
     return $chartData['contents'];
   }
@@ -272,18 +281,19 @@ class DashboardController extends Controller
     // return $product;
 
     $chartData = Client::setEndpoint('crm/marketing_summary')
-    ->setQuery(['role' => $data['role']])
-    ->setHeaders([
-      'Authorization' => $data['token'],
-      'pn' => $data['pn'],
-      'branch' => $data['branch']
-    ])
-    ->setBody([
-      "product_type"=>"", //filter pruduk
-      "month"=>$bulan,//filter bulan
-      "pn"=>"" //filter officer
-    ])
-    ->post();
+                            ->setQuery(['role' => $data['role']])
+                            ->setHeaders([
+                                            'Authorization' => $data['token'],
+                                            'pn' => $data['pn'],
+                                            'branch' => $data['branch']
+                                         ])
+                            ->setBody([
+                                          "product_type"=>"", //filter pruduk
+                                          "month"=>$bulan,//filter bulan
+                                          "pn"=>"" //filter officer
+                                      ])
+                            ->post();
+    
 
     $totalData = array();
 
@@ -297,8 +307,9 @@ class DashboardController extends Controller
     //   unset($subArray['Nama']);
     //   unset($subArray['Pemasar']);
     // }
+    //print_r($chartData);
 
-    return $totalData;
+    return $totalData['contents'];
   }
 
   public function pieChart(Request $request)
