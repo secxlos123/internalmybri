@@ -78,7 +78,7 @@ public function datatables(Request $request)
     foreach ($eforms['contents']['data'] as $key => $form) {
         if($form['ref_number']!=null || $form['ref_number']!=''){
             $form['product_type'] = strtoupper($form['product_type']);
-            $form['request_amount'] = 'Rp ' . number_format($form['nominal'], 2, ",", ".");
+            $form['request_amount'] = 'Rp ' . number_format($form['request_amount'], 2, ",", ".");
             $form['aging'] = '<b>'.$form['aging']['waktu_aging'].'</b>';
             // if ($form['ref_number']=="TES17121") 
             // { 
@@ -94,9 +94,15 @@ public function datatables(Request $request)
             $form['catatan_reviewer'] = $form['catatan_reviewer'];
             $form['penilaian_agunan'] = $form['penilaian_agunan'];
             $form['catatan_tolak'] = $form['catatan_tolak'];
-            $form['plafond_usulan'] = $form['plafond_usulan'];
+            
+            if(gettype($form['plafond_usulan'])!='string'){
+                $form['plafond_usulan'] = $form['plafond_usulan'][0];
+                // $form['plafond_usulan'] = gettype($form['plafond_usulan']);
+                $form['plafond_usulan'] = 'Rp. '.number_format($form['plafond_usulan'], 2, ",", ".");
+            }
             $form['status_sekarang'] = $form['status'];
 
+            $form['ao'] = $form['ao_id'].'<br>'.$form['ao_name'];
             //     $disbushr = array();
             //     $y=0;
             //     if(count($form['disbushr']>0)){
@@ -148,7 +154,7 @@ public function datatables(Request $request)
                 'prescreening_result' => $form['prescreening_status'],
             ])->render();
 
-            $form['branchs'] = '';
+            // $form['branchs'] = '';
 
             $verify = $form['customer']['is_verified'];
             $visit = $form['is_visited'];

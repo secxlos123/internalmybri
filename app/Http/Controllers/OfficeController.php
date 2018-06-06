@@ -67,7 +67,6 @@ class OfficeController extends Controller
             ])
             ->get();
 
-
         foreach ($kanwil['contents']['data'] as $key => $region) {
             if ($region['id'] = $region['region_id']) {
                 $region['text'] = $region['region_name'];
@@ -99,7 +98,6 @@ class OfficeController extends Controller
                 'page' => $request->input('page')
             ])
             ->get();
-
 
         foreach ($kanwil['contents']['data'] as $key => $region) {
             if ($region['id'] = $region['branch_id']) {
