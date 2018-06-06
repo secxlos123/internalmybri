@@ -458,7 +458,7 @@ class AOController extends Controller
                 'prescreening' => $request->input('prescreening'),
                 'product' => $request->input('product'),
             ])->get();
-
+            // \Log::info($eforms['contents']['data'][0]['status']);
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref_number'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
@@ -503,6 +503,9 @@ class AOController extends Controller
                 'vip_sent' => $form['vip_sent'],
                 'use_reason_name' => $form['visit_report']['use_reason_name'],
                 'vip' => route('resendVIP', $form['id']),
+                'status_efrm' => $form['status'],
+                'refnumber' => $form['ref_number'], 
+                'delete_efrm' => route('delete_eform')
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }

@@ -137,6 +137,8 @@
                 ['as' => 'resend_verifyData', 'uses' => 'EForm\AOController@resendVerification']);
             Route::post('/eform/delete',
             ['as'=>'delete-eform', 'uses'=>'EForm\EFormController@delete']);
+            Route::post('/eform/delete_eform',
+            ['as'=>'delete_eform', 'uses'=>'EForm\EFormController@delete_eform']);
         });
 
         Route::get('/eform/verification/{eform_id}/completeData/{customer_id}', ['as'=>'completeData', 'uses'=>'EForm\AOController@completeData']);
