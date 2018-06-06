@@ -684,6 +684,7 @@ class AuditRailController extends Controller
             ->get();
 
         $contents = array();
+
         if (count($branch['contents']) > 0) {
             foreach ($branch['contents']['data'] as $key => $detail) {
                 $detail['text'] = $detail['branch'];
