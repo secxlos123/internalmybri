@@ -51,7 +51,7 @@
                                 <div class="">
                                     <ul class="nav nav-tabs">
                                         <li class="active">
-                                            <a href="#kelolaan" data-toggle="tab" aria-expanded="true">
+                                            <a href="#kelolaan" data-toggle="tab" aria-expanded="true" id="kelolaansBtn">
                                                 <span class="visible-xs"><i class="fa fa-users"></i></span>
                                                 <span class="hidden-xs">Kelolaan</span>
                                             </a>
