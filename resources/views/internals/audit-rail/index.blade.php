@@ -58,6 +58,9 @@
                         <div id="pengajuan" class="tab-pane fade in active">
                             @include('internals.audit-rail._eform')
                         </div>
+                        <div id="pengajuanbriguna" class="tab-pane fade ">
+                            @include('internals.audit-rail._eform_briguna')
+                        </div>
                         <div id="developerAdmin" class="tab-pane fade ">
                             @include('internals.audit-rail._developerAdmin')
                         </div>

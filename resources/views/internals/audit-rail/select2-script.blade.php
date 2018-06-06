@@ -6,6 +6,32 @@
             allowClear: true,
         });
 
+        $('.action_pengajuan_kredit_briguna').select2({
+            witdh : '100%',
+            allowClear: true,
+            ajax: {
+                url: '/action-detail/pengajuan_kredit_briguna',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        name: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    params.page = params.page || 1;
+                    return {
+                        results: data.pengajuan_kredit_briguna.data,
+                        pagination: {
+                            more: (params.page * data.pengajuan_kredit_briguna.per_page) < data.pengajuan_kredit_briguna.total
+                        }
+                    };
+                },
+                cache: true
+            },
+        });
+
         $('.action_pengajuan_kredit').select2({
             witdh : '100%',
             allowClear: true,
@@ -266,7 +292,7 @@
             },
         });
         $('.action_kanwil2').on('select2:select', function(){
-                $('#branch_id').val($(this).val());
+            $('#branch_id').val($(this).val());
         });
 
         $('.branch').select2({
@@ -295,6 +321,13 @@
                 },
                 cache: true
             },
+        });
+
+        $('.branch').on('select2:select', function(){
+            var text = $(this).find("option:selected").text();
+            // alert(text);
+            $('#branch').val($(this).val());
+            $('#branch_name').val(text);
         });
     });
 </script>

@@ -594,7 +594,12 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Nama Perusahaan Asuransi :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['Perusahaan_asuransi']}}</p>
+                    <p class="form-control-static">
+								@if(empty($detail['nama_perusahaan_asuransi'])) 
+									{{$detail['Perusahaan_asuransi']}}
+								@else 
+									{{$detail['nama_perusahaan_asuransi']}}
+								@endif </p>
                 </div>
             </div>
             <div class="form-group">

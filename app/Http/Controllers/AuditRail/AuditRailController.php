@@ -112,6 +112,72 @@ class AuditRailController extends Controller
         return response()->json($audits['contents']);
     }
 
+    /**
+     * Get Datatables Data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function datatablesBriguna(Request $request) {
+        // print_r($request->all());exit();
+        $userAO = $request->input('username');
+        $sort = $request->input('order.0');
+        $data = $this->getUser();
+        $audits = Client::setEndpoint('auditrail/pengajuan_kredit_briguna')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+            ])
+            ->setQuery([
+                'limit'       => $request->input('length'),
+                'sort'        => $this->columns[$sort['column']] . '|' . $sort['dir'],
+                'search'      => $request->input('search.value'),
+                'page'        => (int) $request->input('page') + 1,
+                'created_at'  => $request->input('action_date'),
+                'username'    => $userAO,
+                'status_name' => $request->input('status_name'),
+                'ref_number'  => $request->input('ref_number'),
+                'region_id'   => $request->input('region_id'),
+                'branch_id'   => $request->input('branch_id'),
+                'branch_name'   => $request->input('branch_name'),
+            ])->get();
+        // print_r($audits);exit();
+        foreach ($audits['contents']['data'] as $key => $form) {
+            $prescreening = $this->getStatusScreening($form['prescreening_status']);
+            $tgl_putusan  = substr($form['tgl_putusan'], 0, 2).'-'.substr($form['tgl_putusan'], 2, 2).'-'.substr($form['tgl_putusan'], 4, 4);
+            $jam_putusan  = substr($form['tgl_putusan'], 9,8);
+            $tgl_analisa  = substr($form['tgl_analisa'], 0, 2).'-'.substr($form['tgl_analisa'], 2, 2).'-'.substr($form['tgl_analisa'], 4, 4);
+            $jam_analisa  = substr($form['tgl_analisa'], 9,8);
+
+            $form['tgl_pencairan'] = !isset($form['tgl_pencairan']) ? '' : date('d-m-Y H:i:s',strtotime($form['tgl_pencairan']));
+            $form['tgl_pengajuan'] = !isset($form['created_at']) ? '' : date('d-m-Y H:i:s',strtotime($form['created_at']));
+            $form['tgl_analisa'] = !isset($form['tgl_analisa']) ? '' : $tgl_analisa.' '.$jam_analisa;
+            $form['tgl_putusan'] = !isset($form['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;
+            $form['status_prescreening'] = $prescreening;
+            $form['Plafond_usulan']= 'Rp '.number_format($form['Plafond_usulan'],0,",",".");
+            $audits['contents']['data'][$key] = $form;
+        }
+
+        $audits['contents']['draw'] = $request->input('draw');
+        $audits['contents']['recordsTotal'] = $audits['contents']['total'];
+        $audits['contents']['recordsFiltered'] = $audits['contents']['total'];
+        return response()->json($audits['contents']);
+    }
+
+    function getStatusScreening($value) {
+        if ($value == 1) {
+            return '<a class="btn btn-success form-control-static">Hijau</a>';
+        } elseif ($value == 2) {
+            return '<a class="btn btn-warning form-control-static">Kuning</a>';
+        } elseif ($value == 3) {
+            return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
+    }
+
     public function getDataArray($dataArray)
     {
         // \Log::info($dataArray);
@@ -618,6 +684,7 @@ class AuditRailController extends Controller
             ->get();
 
         $contents = array();
+
         if (count($branch['contents']) > 0) {
             foreach ($branch['contents']['data'] as $key => $detail) {
                 $detail['text'] = $detail['branch'];

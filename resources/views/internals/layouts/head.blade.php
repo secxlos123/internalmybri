@@ -7,6 +7,7 @@
         <meta name="author" content="Reza">
         <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}" />
         <title>@yield("title")</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.dataTables.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap.min.css')}}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/buttons.dataTables.min.css')}}"/>
@@ -19,8 +20,10 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery.steps.css')}}" />
 
         <!--date range picker -->
+        <!--
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datepicker.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-timepicker.min.css')}}">
+        -->
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-colorpicker.min.css')}}">
 
         <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">

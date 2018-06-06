@@ -91,8 +91,8 @@ tr.shown td.details3-control {
                                <select class="select2 changesource" id="source" name="source">
                                <option value="-">-Pilih Source-</option>
                                <option value="dev">Developer</option>
-                               <option value="1">Non Developer</option>
-                               <option value="0">rumah.com</option>
+                               <option value="nondev">Non Developer</option>
+                               <option value="rumah.com">rumah.com</option>
                                </select>
                             </div>
                                <!-- <select class="select2">
@@ -108,10 +108,6 @@ tr.shown td.details3-control {
                                 'class' => 'select2 action_developer',
                                 'data-placeholder' => 'Pilih Developer',
                             ]) !!}
-                               <!-- <select class="select2">
-                               <option>- Pilih Developer -</option>
-                               <option>Rumah.com</option>
-                               </select> -->
                         </div>
                         <input type="hidden" class="form-control" name="dev_id" id="dev_id">
                     </div>
@@ -151,14 +147,16 @@ tr.shown td.details3-control {
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="50px;">No. Ref</th>
-                                        <th>Nominal</th>
+                                        <th>AO</th>
+                                        <th>Cabang</th>
+                                        <th width="120px;">Nominal Pengajuan</th>
                                         <th width="50px;">Tanggal Pengajuan</th>
                                         <th width="30px;">Aging</th>
-                                        <th width="70px;">Status prescreening</th>
+                                        <th width="60px;">Status prescreening</th>
                                         <th>Status</th>
                                         <th>Prakarsa</th>
                                         <th>Analisa</th>
-                                        <th>Putusan</th>
+                                        <th width="120px;">Putusan</th>
                                         <th>Disburstment</th>
                                     </tr>
                                 </thead>
@@ -321,8 +319,8 @@ tr.shown td.details3-control {
                 "url" : '/datatables/monitoring',
                 "data" : {
                     product_type: $('#product_type').val(),
-//                    dev_id: $('#dev_id').val(),
-//                    source: $('#source').val(),
+                    dev_id: $('#dev_id').val(),
+                    source: $('#source').val(),
                     branch_id: $('#branch_id').val()
                 }
             },
@@ -333,6 +331,8 @@ tr.shown td.details3-control {
                 "data":           'ref_number',
                 "defaultContent": ''
             },
+            {   data: 'ao', name: 'ao', bSortable: false  },
+            {   data: 'branch', name: 'branch', bSortable: false  },
             {   data: 'request_amount', name: 'request_amount', bSortable: false  },
             {   data: 'created_at', name: 'created_at', bSortable: false  },
             {

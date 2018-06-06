@@ -16,6 +16,7 @@
             Route::get('/ListUkerKanwil', ['as'=>'ListUkerKanwil', 'uses'=>'Mitra\ListUkerController@list_uker_tester']);
             Route::get('/ListMitra', ['as'=>'ListMitra', 'uses'=>'Mitra\ListMitraController@list_mitra']);
             Route::get('/ListFasilitas', ['as'=>'ListFasilitas', 'uses'=>'Mitra\ListController@list_fasilitas']);
+            Route::get('/ListView', ['as'=>'ListView', 'uses'=>'Menu\MenuController@list_view']);
             Route::get('/ListBank', ['as'=>'ListBank', 'uses'=>'Mitra\ListController@list_bank']);
             Route::get('/ListMitraIndukBadanUsaha', ['as'=>'ListMitraIndukBadanUsaha', 'uses'=>'Mitra\ListMitraController@list_induk_badan_usaha']);
             Route::get('/ListMitraIndukKanwil', ['as'=>'ListMitraIndukKanwil', 'uses'=>'Mitra\ListMitraController@list_kanwil_mitra']);
@@ -346,6 +347,7 @@
             Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
                 /* CRM Activity */
                 Route::get('activity', 'CRM\activityController@index');
+                Route::get('activity/tujuan', 'CRM\activityController@tujuan');
                 Route::get('activity/data', 'CRM\activityController@data');
                 Route::get('activity/pemasar', 'CRM\activityController@pemasar');
                 Route::get('activity/marketing', 'CRM\activityController@marketing');
@@ -358,6 +360,7 @@
         Route::resource('dir_rpc', 'Mitra\dirrpc\DirRpcController');
         Route::resource('testing', 'Mitra\testingController');
         Route::resource('registrasi_mitra', 'Mitra\mitra\RegistrasiController');
+        Route::resource('menu', 'Menu\MenuController');
         Route::resource('settinguser', 'Management\ManagementUserController');
         Route::resource('mitra_list', 'Mitra\mitra\MitraController');
         Route::resource('mitra_eksternal', 'Mitra\mitra\eksternal\MitraController');
@@ -446,6 +449,8 @@
     Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
     Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+
+    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 
@@ -565,11 +570,13 @@
 
         Route::get('gimmick_list', 'Mitra\GimmickController@datatables');
         /*Auditrail*/
-            Route::group(['middleware' => 'checkrole:superadmin'], function() {
+        Route::group(['middleware' => 'checkrole:superadmin'], function() {
                 //
             Route::get('auditrail/{type}', 'AuditRail\AuditRailController@datatables');
 
             Route::get('auditrail-appointment', 'AuditRail\AuditRailController@datatableSchedule');
+
+            Route::get('auditrail-kredit', 'AuditRail\AuditRailController@datatablesBriguna');
 
             Route::get('auditrail-document', 'AuditRail\AuditRailController@datatableDocument');
 
