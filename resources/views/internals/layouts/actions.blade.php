@@ -217,6 +217,12 @@
 	</a>
 @endif
 
+@if (isset($status_efrm) && $status_efrm == 'Proses CLS') 
+	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
+	    <i class="mdi mdi-delete"></i>
+	</a>
+@endif
+
 <script type="text/javascript">
 var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'&hidden-lat='+$('input[name="hidden-lat"]').val()+'&auditaction=klik icon rekontest';
 function addURL(element)

@@ -1,4 +1,150 @@
 <script type="text/javascript">
+
+$(document).ready(function(){
+
+    $('#datetimepicker1').datetimepicker();
+    $('#datetimepicker2').datetimepicker();
+    $('#datetimepicker3').datetimepicker();
+    $('#datetimepicker4').datetimepicker();
+    $('#datetimepicker5').datetimepicker();
+    
+    $('#marketing').select2({
+        ajax: {
+        url: '/activity/marketing',
+        dataType: 'json',
+        type: "GET",
+        quietMillis: 50,
+        processResults: function (data, params) {
+          console.log(data);
+            var select2Data = $.map(data, function (obj) {
+                return {
+                    id: obj.id,
+                    text: '<span>' + obj.nama + ", " + obj.activity_type + ', ' + obj.product_type + ' [' + obj.status + '] [Rp. ' + obj.target + ']' + '</span>' + '<span class="none">' + obj.name + '</span><span class="none">' + obj.id + '</span>'
+                }
+            });
+            // select2Data = select2Data.filter(function(data) {
+            //     return data.text.indexOf(params.term) !== -1
+            // });
+            return {
+                results: select2Data
+            };
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
+    },
+    escapeMarkup: function(markup) {
+        return markup;
+    },
+    });
+    
+    $('#pemasar').select2({
+        ajax: {
+        url: '/activity/pemasar',
+        dataType: 'json',
+        type: "GET",
+        quietMillis: 50,
+        processResults: function (data, params) {
+          console.log(data);
+            var select2Data = $.map(data, function (obj) {
+                return {
+                    id: obj.PERNR,
+                    text: '<span>' + obj.SNAME + '</span>' + '<span class="none">' + obj.PERNR + '</span><span class="none">' + obj.PERNR + '</span>'
+                }
+            });
+            // select2Data = select2Data.filter(function(data) {
+            //     return data.text.indexOf(params.term) !== -1
+            // });
+            return {
+                results: select2Data
+            };
+        },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
+    },
+    escapeMarkup: function(markup) {
+        return markup;
+    },
+    });  
+});
+
+function showActivityTam() {
+    var x = document.getElementById("ActivityMar");
+    var y = document.getElementById("ActivityDet");
+    var a = document.getElementById("btnTam");
+    var b = document.getElementById("btnDet");
+    document.getElementById("startdate").value="";
+    document.getElementById("enddate").value="";
+    document.getElementsByName("alamat").value="";
+    document.getElementById("marketing").value="";
+    document.getElementById("pemasar").value="";
+    document.getElementById("description").value="";
+    a.style.display = "block";
+    b.style.display = "none";
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+    } else {
+        x.style.display = "none";
+        y.style.display = "block";
+    }
+}
+
+function showActivityDet() {
+    var w = document.getElementById("ActivityTin");
+    var x = document.getElementById("ActivityMar");
+    var y = document.getElementById("ActivityDet");
+    var z = document.getElementById("ActivityRes");
+    var a = document.getElementById("btnTam");
+    var b = document.getElementById("btnDet");
+    document.getElementById("startdate").value="";
+    document.getElementById("enddate").value="";
+    document.getElementsByName("alamat").value="";
+    document.getElementById("marketing").value="";
+    document.getElementById("pemasar").value="";
+    document.getElementById("description").value="";
+    w.style.display = "none";
+    z.style.display = "none";
+    a.style.display = "none";
+    b.style.display = "block";
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+    } else {
+        x.style.display = "none";
+        y.style.display = "block";
+    }
+}
+
+function showReschedule() {
+    var x = document.getElementById("ActivityMar");
+    var y = document.getElementById("ActivityDet");
+    var z = document.getElementById("ActivityRes");
+    var w = document.getElementById("ActivityTin");
+    w.style.display = "none";
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+}
+
+function showTindak() {
+    var x = document.getElementById("ActivityMar");
+    var y = document.getElementById("ActivityDet");
+    var z = document.getElementById("ActivityRes");
+    var w = document.getElementById("ActivityTin");
+    w.style.display = "block";
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "none";
+}
+
+var address = {
+    address: 'undefined',
+    lat: "{{ env('DEF_LAT', '-6.21670') }}",
+    long: "{{ env('DEF_LONG', '106.81350') }}",
+};
+
 !function($) {
     "use strict";
     var CalendarApp = function() {
@@ -102,20 +248,13 @@
             backdrop: 'static'
         });
         var form = $("<form></form>");
-        form.append("<div class='row'></div>");
+        form.append("<div class='row' style='border:1px solid black;'></div>");
         form.find(".row")
-            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Waktu Mulai</label><input class='form-control appointment_date'  type='text' name='date' /></div></div>")
-            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Waktu Berakhir</label><input class='form-control appointment_date'  type='text' name='date' /></div></div>")
-            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>No. Referensi</label><select class='form-control select2' " + disabled + " name='eform-id'></select></div></div>")
-            .find("select[name='eform-id']");
-        form.find(".select2").append("<option value='" + calEvent.eform_id + "' selected='selected'>" + calEvent.ref_number +"</option>");
-        form.find(".select2").trigger('change');
-        form.find(".select2").select2(ajaxConfig);
-        form.find(".row")
-            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Title</label><input class='form-control' type='text' name='title' /></div></div>")
-            .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Guest</label><input class='form-control' type='text' name='guest' readonly='' value='John Doe' /></div></div>")
-        form.find(".row")
-            .append("<div class='col-md-12'><div class='form-group'><label class='control-label'>Deskripsi</label><textarea name='description' class='form-control' rows='3'></textarea></div></div>")
+            .append("<div class='col-md-4'><div class='form-group'><input class='form-control appointment_date startdate' type='text' name='startdate2' style='border:none; background-color:#fff;' readonly/></div></div>")
+            .append("<div class='col-md-8'><div class='form-group'><input class='form-control' type='text' name='title'  style='border:none; background-color:#fff;'' readonly/></div>")
+            /**
+            .append("<div class='form-group'><input class='form-control select2 event' type='text' name='event2' style='border:none; background-color:#fff;' readonly/></div><div class='form-group'><input class='form-control select2 tujuan' type='text' name='tujuan2' style='border:none; background-color:#fff;' readonly/></div><div class='form-group'><input class='form-control alamat' type='text' name='alamat2' style='border:none; background-color:#fff;' readonly></div><div class='form-group'><input class='form-control marketing' type='text' name='marketing2'  style='border:none; background-color:#fff;' readonly/></div><div class='form-group'><input class='form-control pemasar' type='text' name=pemasar2' style='border:none; background-color:#fff;' readonly/></div><div class='form-group'><input class='form-control description' type='text' name=description2' style='border:none; background-color:#fff;' readonly/></div></div>")
+            */
         $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').find('.form').empty().prepend(form);
         $this.$modal.find('.save-event').unbind('click').click(function () {
             form.submit();
@@ -138,7 +277,7 @@
         $("#event-modal input, #event-modal textarea").prop('disabled', ( userRole == 'ao' || userRole == 'fo' ? false : true ));
         initializeDatePicker($('.appointment_date'), calEvent.start.format('YYYY-MM-DD'));
         initializeMapPosition(calEvent);
-        $this.$modal.find(".save-event").html("Update Jadwal").attr('type', 'submit');
+        /**$this.$modal.find(".save-event").html("Update Jadwal").attr('type', 'submit');*/
         $this.$modal.find('form').on('submit', function () {
           var title = form.find("input[name='title']").val();
           var beginning = form.find("input[name='beginning']").val();

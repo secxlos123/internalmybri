@@ -641,6 +641,35 @@ class EFormController extends Controller
     }
 
     /**
+     * This Delete Eform on Mybri and CLAS function
+     *
+     * @param  \App\Http\Requests\API\v1\VisitReportRequest  $request
+     * @param integer $eform
+     * @return \Illuminate\Http\Response
+     * @author rangga darmajati (rangga.darmajati@wgs.co.id)
+     **/
+    public function delete_eform(Request $request)
+    {
+        $data = $this->getUser();
+        $newForm = [
+            'fid_aplikasi' => $request->fid_aplikasi,
+            'status' => 0
+        ];
+        $client = Client::setEndpoint('eforms_delete')
+            ->setHeaders([
+                'Authorization' => $data['token']
+                , 'pn' => $data['pn']
+                , 'auditaction' => 'Delete Eform Mybri and CLAS'
+                , 'long' => number_format($request->get('long', env('DEF_LONG', '106.81350')), 5)
+                , 'lat' => number_format($request->get('lat', env('DEF_LAT', '-6.21670')), 5),
+            ])
+            ->setBody($newForm)
+            ->post();
+
+        return response()->json(['response' => $client]);
+    }
+
+    /**
      * [indexAdmin description]
      * @param  Request $request [description]
      * @return [type]           [description]

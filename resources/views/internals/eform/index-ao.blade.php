@@ -180,6 +180,7 @@
 
 @include('internals.eform._result-modal')
 @include('internals.eform._delete-modal')
+@include('internals.eform._delete-modal-clas')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
@@ -493,6 +494,48 @@
             ],
       });
     }
+
+    //show modal Delete Eform CLAS
+    $(document).on('click', ".btn-delete-clas", function(){
+        refNumber = $(this).data('id');
+        $('#delete-modal-eform-clas').modal('show');
+        $('#delete-modal-eform-clas #fid_aplikasi').val(refNumber);
+    });
+
+     //post Delete Eform CLAS
+    $(document).on('click', "#btn-delete-this-clas", function(){
+        refNumber = $('#delete-modal-eform-clas #fid_aplikasi').val();
+        HoldOn.open();
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("delete_eform") }}',
+            data: {
+                fid_aplikasi : refNumber
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+
+        }).done(function(data){
+            $('#delete-modal-eform-clas').modal('hide');
+            $('#btn-filter').click();
+            HoldOn.close();
+            var body = $("html, body");
+                body.stop().animate({scrollTop:0}, 100, 'swing', function() {
+                $('#alert-delete').html('<div class="alert alert-success">'+data.response.descriptions+'</div')
+                });
+
+        }).fail(function(errors) {
+            HoldOn.close();
+            var body = $("html, body");
+                body.stop().animate({scrollTop:0}, 100, 'swing', function() {
+                $('#alert-delete').html('<div class="alert alert-danger">Gagal Terhubung ke Server</div')
+                });
+
+        });
+    });
 
     //show modal Delete
     $(document).on('click', ".btn-delete", function(){
