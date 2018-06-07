@@ -106,7 +106,7 @@ tr.shown td.details3-control {
                         <div class="col-sm-8">
                             {!! Form::select('developer', ['' => ''], old('name'), [
                                 'class' => 'select2 action_developer',
-                                'data-placeholder' => 'Pilih Developer',
+                                'data-placeholder' => 'Pilih Developer'
                             ]) !!}
                         </div>
                         <input type="hidden" class="form-control" name="dev_id" id="dev_id">
@@ -118,6 +118,7 @@ tr.shown td.details3-control {
                             {!! Form::select('kanwil', ['' => ''], old('name'), [
                                 'class' => 'select2 action_kanwil2',
                                 'data-placeholder' => 'Pilih Kantor Wilayah',
+                                'disabled' => 'disabled'
                             ]) !!}
                         </div>
                         <input type="hidden" class="form-control" name="kanwil_id" id="kanwil_id">
@@ -143,21 +144,21 @@ tr.shown td.details3-control {
 </div>
                         
                         <div class="tab-scroll">
-                            <table id="datatable" class="table table-bordered">
+                            <table id="datatable" class="table table-bordered" style="width:100%; word-break: break-word;">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th width="50px;">No. Ref</th>
-                                        <th>AO</th>
-                                        <th>Cabang</th>
-                                        <th width="120px;">Nominal Pengajuan</th>
-                                        <th width="50px;">Tanggal Pengajuan</th>
-                                        <th width="30px;">Aging</th>
-                                        <th width="60px;">Status prescreening</th>
-                                        <th>Status</th>
-                                        <th>Prakarsa</th>
-                                        <th>Analisa</th>
-                                        <th width="120px;">Putusan</th>
-                                        <th>Disburstment</th>
+                                        <th width="8%">No. Ref</th>
+                                        <th width="8%">Nama RM</th>
+                                        <th width="8%">Cabang</th>
+                                        <th width="10%">Nominal Pengajuan</th>
+                                        <th width="8%">Tanggal Pengajuan</th>
+                                        <th width="6%">Aging</th>
+                                        <th width="9%">Status prescreening</th>
+                                        <th width="7%">Status</th>
+                                        <th width="8%">Prakarsa</th>
+                                        <th width="8%">Analisa</th>
+                                        <th width="10%">Putusan</th>
+                                        <th width="10%">Disburstment</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -308,6 +309,7 @@ tr.shown td.details3-control {
              "processing" : true,
              "serverSide" : true,
              "paginate"  : true,
+             "autoWidth" : false,
              "lengthMenu": [
              [ 10, 25, 50, -1 ],
              [ '10', '25', '50', 'All' ]
@@ -328,10 +330,10 @@ tr.shown td.details3-control {
             {
                 "className":      'details2-control',
                 "orderable":      false,
-                "data":           'ref_number',
+                "data":           'ref_click',
                 "defaultContent": ''
             },
-            {   data: 'ao', name: 'ao', bSortable: false  },
+            {   data: 'ao', name: 'ao', bSortable: false},
             {   data: 'branch', name: 'branch', bSortable: false  },
             {   data: 'request_amount', name: 'request_amount', bSortable: false  },
             {   data: 'created_at', name: 'created_at', bSortable: false  },

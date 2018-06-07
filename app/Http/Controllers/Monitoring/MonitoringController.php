@@ -89,17 +89,21 @@ public function datatables(Request $request)
             // else{
             //     $form['list_aging'] = '-';
             // }
-            $form['catatan_analis'] = $form['catatan_analis'];
+            if(!empty($form['catatan_analis'])){
+                $sizeCatatanAnalis = count($form['catatan_analis']);
+                $form['catatan_analis'] = $form['catatan_analis'][$sizeCatatanAnalis-1];
+            }
             $form['detail'] = $form['catatan_analis'].'<br>'." lihat ";
             $form['catatan_reviewer'] = $form['catatan_reviewer'];
             $form['penilaian_agunan'] = $form['penilaian_agunan'];
             $form['catatan_tolak'] = $form['catatan_tolak'];
             
+            $usulan = "";
             if(gettype($form['plafond_usulan'])!='string'){
-                $form['plafond_usulan'] = $form['plafond_usulan'][0];
-                // $form['plafond_usulan'] = gettype($form['plafond_usulan']);
-                $form['plafond_usulan'] = 'Rp. '.number_format($form['plafond_usulan'], 2, ",", ".");
+                $sizePlafond = count($form['plafond_usulan']);
+                $usulan = $usulan.'Rp. '.number_format($form['plafond_usulan'][$sizePlafond-1], 2, ",", ".");
             }
+            $form['plafond_usulan'] = $usulan;
             $form['status_sekarang'] = $form['status'];
 
             $form['ao'] = $form['ao_id'].'<br>'.$form['ao_name'];
@@ -113,6 +117,7 @@ public function datatables(Request $request)
             $form['list_disbushr'] = "-";
             // }
                 // $form['prescreening_status'] = strtoupper($form['prescreening_status']); //sdhasjd asdjask asdjkas asjkdb k
+            $form['ref_click'] = $form['ref_number'].'<br>'.$form['customer']['personal']['name'];
             $form['ref_number'] = '<b>'.strtoupper($form['ref_number']).'</b>';
 
             $form['customer_name'] = $form['customer']['personal']['name'];
@@ -142,11 +147,25 @@ public function datatables(Request $request)
                 $form['sales'] = $form['sales_dev_id'];
             }
             
-            if(empty($form['recontestdata'])){
-                $form['recomendation'] = '<b>AO Recomendation :</b> '.'-'.' <br> <b>Pinca Recomendation : </b>'.'-';
+            $ao_recommendation = "";
+            $pinca_recommendtaion = "";
+
+            if(!empty($form['recontestdata'])){
+                // dd($form['recontestdata']);
+                $sizeRecontest = count($form['recontestdata']);
+                $form['recomendation'] = '<b>AO Recommendation :</b> '.$form['recontestdata'][$sizeRecontest-1]['ao_recommendation'].' <br> <b>Pinca Recommendation : </b> '.$form['recontestdata'][$sizeRecontest-1]['pinca_recommendation'];
+            }else if(!empty($form['visit_report'])){
+                $form['recomendation'] = '<b>AO Recommendation :</b> '.$form['visit_report']['recommended'].' <br> <b>Pinca Recommendation : </b> '.$form['recommendation'];
             }else{
-                $form['recomendation'] = '<b>AO Recomendation :</b> '.$form['recontestdata']['ao-recomendation'].' <br> <b>Pinca Recomendation : </b> '.$form['recontestdata']['pinca-recomendation'];
-                // $form['catatan-pinca'] = $form['recontestdata']['pinca-recomendation'];
+                $form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
+                // if($form['recommended']==false){$form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
+                // }else if($form['recommended']==true){
+                //     $form['recomendation'] = $form['recommendation'];
+                // }else if($form['recomendation']=='yes'){
+                //     $form['recomendation'] = $form['recommended'];
+                // }else{
+
+                // }
             }
 
             $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
