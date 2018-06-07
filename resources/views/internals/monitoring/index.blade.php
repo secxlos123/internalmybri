@@ -148,7 +148,7 @@ tr.shown td.details3-control {
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="8%">No. Ref</th>
-                                        <th width="8%">AO</th>
+                                        <th width="8%">Nama RM</th>
                                         <th width="8%">Cabang</th>
                                         <th width="10%">Nominal Pengajuan</th>
                                         <th width="8%">Tanggal Pengajuan</th>

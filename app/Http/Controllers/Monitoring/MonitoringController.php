@@ -154,15 +154,18 @@ public function datatables(Request $request)
                 // dd($form['recontestdata']);
                 $sizeRecontest = count($form['recontestdata']);
                 $form['recomendation'] = '<b>AO Recommendation :</b> '.$form['recontestdata'][$sizeRecontest-1]['ao_recommendation'].' <br> <b>Pinca Recommendation : </b> '.$form['recontestdata'][$sizeRecontest-1]['pinca_recommendation'];
+            }else if(!empty($form['visit_report'])){
+                $form['recomendation'] = '<b>AO Recommendation :</b> '.$form['visit_report']['recommended'].' <br> <b>Pinca Recommendation : </b> '.$form['recommendation'];
             }else{
-                if($form['recommended']==false){$form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
-                }else if($form['recommended']==true){
-                    $form['recomendation'] = $form['recommendation'];
-                }else if($form['recomendation']=='yes'){
-                    $form['recomendation'] = $form['recommended'];
-                }else{
+                $form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
+                // if($form['recommended']==false){$form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
+                // }else if($form['recommended']==true){
+                //     $form['recomendation'] = $form['recommendation'];
+                // }else if($form['recomendation']=='yes'){
+                //     $form['recomendation'] = $form['recommended'];
+                // }else{
 
-                }
+                // }
             }
 
             $form['created_at'] = date_format(date_create($form['created_at']),"Y-m-d");
