@@ -174,7 +174,7 @@
 @endif
 
 @if ((isset($assignment_collateral)) && ($status == "Sedang Di Proses" || $status == "Ditolak"))
-	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakan
+	<a href="{!! $assignment_collateral !!}" class="btn btn-icon waves-effect waves-light btn-orange bottom-margin" data-original-title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakankred
     Penugasan"@else "Lakukan Kembali OTS / Penolakan
         Penugasan" @endif title=@if ($status == "Sedang Di Proses")"Lakukan OTS / Penolakan
     Penugasan"@else "Lakukan Kembali OTS / Penolakan
@@ -217,10 +217,23 @@
 	</a>
 @endif
 
-@if (isset($status_efrm) && $status_efrm == 'Proses CLS') 
+<!-- @if (isset($status_efrm) && $status_efrm == 'Proses CLS') 
 	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
 	    <i class="mdi mdi-delete"></i>
 	</a>
+@endif -->
+
+@if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
+	@if(!empty($status))
+		@if($status == 'Rejected')
+			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
+			    Kredit Ditolak
+			</a>
+			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
+	    	<i class="mdi mdi-delete"></i>
+			</a>
+		@endif
+	@endif
 @endif
 
 <script type="text/javascript">
