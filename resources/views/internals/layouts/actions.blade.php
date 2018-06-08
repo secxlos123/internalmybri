@@ -3,6 +3,15 @@
 		margin-bottom:3px;
 	}
 </style>
+@if (isset($approval) && $approval == false)
+	@if($status == 'Rejected')
+			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
+			    Kredit Ditolak
+			</a>
+	@else
+			
+	@endif
+@endif
 @if (isset($edit))
 	<a href="{!! $edit !!}" class="btn btn-icon waves-effect waves-light btn-teal bottom-margin" data-toggle="tooltip" data-placement="top" title="Edit" data-original-title="Edit">
 		<i class="mdi mdi-pencil"></i>
@@ -216,9 +225,9 @@
 			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
 	    	<i class="mdi mdi-delete"></i>
 			</a>
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
+		<!-- 	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
 			    Kredit Ditolak
-			</a>
+			</a> -->
 	@else
 
 	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete bottom-margin" data-id="{{$eform_id}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
@@ -227,25 +236,6 @@
 	
 	@endif
 @endif
-
-<!-- @if (isset($status_efrm) && $status_efrm == 'Proses CLS') 
-	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
-	    <i class="mdi mdi-delete"></i>
-	</a>
-@endif -->
-
-<!-- @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
-	@if(!empty($status))
-		@if($status == 'Rejected')
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
-			    Kredit Ditolak
-			</a>
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
-	    	<i class="mdi mdi-delete"></i>
-			</a>
-		@endif
-	@endif
-@endif -->
 
 <script type="text/javascript">
 var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'&hidden-lat='+$('input[name="hidden-lat"]').val()+'&auditaction=klik icon rekontest';
