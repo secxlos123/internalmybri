@@ -505,7 +505,8 @@ class AOController extends Controller
                 'vip' => route('resendVIP', $form['id']),
                 'status_efrm' => $form['status'],
                 'refnumber' => $form['ref_number'], 
-                'delete_efrm' => route('delete_eform')
+                'delete_efrm' => route('delete_eform'),
+                'status' => $form['status_eform']
             ])->render();
             $eforms['contents']['data'][$key] = $form;
         }
