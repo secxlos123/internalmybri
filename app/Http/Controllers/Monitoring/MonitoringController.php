@@ -42,7 +42,7 @@ class MonitoringController extends Controller
     {
         $data = $this->getUser();
 
-	   return view('internals.monitoring.index',compact('data'));
+	   return view('internals.monitoring.index2',compact('data'));
     }
 
    //datatable
@@ -153,11 +153,11 @@ public function datatables(Request $request)
             if(!empty($form['recontestdata'])){
                 // dd($form['recontestdata']);
                 $sizeRecontest = count($form['recontestdata']);
-                $form['recomendation'] = '<b>AO Recommendation :</b> '.$form['recontestdata'][$sizeRecontest-1]['ao_recommendation'].' <br> <b>Pinca Recommendation : </b> '.$form['recontestdata'][$sizeRecontest-1]['pinca_recommendation'];
+                $form['recomendation'] = '<b>Rekomendasi RM :</b> '.$form['recontestdata'][$sizeRecontest-1]['ao_recommendation'].' <br> <b>Rekomendasi Pinca : </b> '.$form['recontestdata'][$sizeRecontest-1]['pinca_recommendation'];
             }else if(!empty($form['visit_report'])){
-                $form['recomendation'] = '<b>AO Recommendation :</b> '.$form['visit_report']['recommended'].' <br> <b>Pinca Recommendation : </b> '.$form['recommendation'];
+                $form['recomendation'] = '<b>Rekomendasi RM :</b> '.$form['visit_report']['recommended'].' <br> <b>Rekomendasi Pinca : </b> '.$form['recommendation'];
             }else{
-                $form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
+                $form['recomendation'] = '<b>Rekomendasi RM :</b> - <br> <b>Rekomendasi Pinca : </b> -';
                 // if($form['recommended']==false){$form['recomendation'] = '<b>AO Recomendation :</b> - <br> <b>Pinca Recomendation : </b> -';
                 // }else if($form['recommended']==true){
                 //     $form['recomendation'] = $form['recommendation'];
