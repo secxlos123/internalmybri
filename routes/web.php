@@ -449,9 +449,9 @@
 
     Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
-    Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+    Route::get('pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit')->name('pengajuan_kredit');
 
-    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
+    Route::get('pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna')->name('pengajuan_kredit_briguna');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 
