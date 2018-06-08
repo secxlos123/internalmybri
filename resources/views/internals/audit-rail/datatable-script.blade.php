@@ -75,6 +75,16 @@ $(document).on('click', "#filter-eform-briguna", function() {
 });
 
 function reloadDataPengajuanBriguna(from){
+    var http = window.location.protocol; 
+    var domain = window.location.host;
+    var url = http+'//'+domain;
+    var action_url = '';
+    if (url == 'https://internalmybri.bri.co.id' || url == 'http://internalmybridev.bri.co.id' || url=='http://localhost:96') {
+        action_url = '/datatables/auditrail-kredit/';
+    } else {
+        action_url = '/internal/datatables/auditrail-kredit/';
+    }
+
     table_pengajuan_kredit_briguna = $('#datatable-pengajuan_kredit_briguna').DataTable({
         searching : false,
         processing : true,
@@ -88,7 +98,8 @@ function reloadDataPengajuanBriguna(from){
             infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
         },
         ajax : {
-            url : '/datatables/auditrail-kredit/',
+            // url : '/datatables/auditrail-kredit/',
+            url : action_url,
             data : function(d, settings){
                 var api = new $.fn.dataTable.Api(settings);
 
