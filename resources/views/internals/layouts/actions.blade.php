@@ -213,11 +213,11 @@
 
 @if (isset($approval) && $approval == false)
 	@if($status == 'Rejected')
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
-			    Kredit Ditolak
-			</a>
 			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
 	    	<i class="mdi mdi-delete"></i>
+			</a>
+			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
+			    Kredit Ditolak
 			</a>
 	@else
 
