@@ -1,5 +1,5 @@
 <div id="filter" class="m-b-15">
-    <a data-toggle="tab" class="btn btn-primary" href="#pengajuan">KPR</a>
+    <a data-toggle="tab" class="btn btn-primary" href="#pengajuan"><u>KPR</u></a>
     <a data-toggle="tab" class="btn btn-primary" href="#pengajuanbriguna">BRIGUNA</a>
     <div class="row">
         <div class="col-md-8">
