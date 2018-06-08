@@ -458,7 +458,7 @@ class AOController extends Controller
                 'prescreening' => $request->input('prescreening'),
                 'product' => $request->input('product'),
             ])->get();
-            // \Log::info($eforms['contents']['data'][0]['status']);
+            // \Log::info($eforms['contents']['data'][0]['visited']);
         foreach ($eforms['contents']['data'] as $key => $form) {
             $form['ref_number'] = strtoupper($form['ref_number']);
             $form['customer_name'] = strtoupper($form['customer_name']);
