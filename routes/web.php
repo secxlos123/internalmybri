@@ -227,6 +227,7 @@
         Route::resource('adk-histori', 'EForm\ADKHistoriController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
         Route::get('/adk-histori/view/{id}', ['as'=>'getDetailADK', 'uses'=>'EForm\ADKHistoriController@getDetail']);
+        Route::get('/audit/view/{id}', ['as'=>'getDetailBriguna', 'uses'=>'Auditrail\AuditrailController@getDetailBriguna']);
         Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
         Route::post('verifikasi', ['as'=>'verifikasi', 'uses'=>'EForm\ADKController@postVerifikasi']);
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
@@ -448,9 +449,9 @@
 
     Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
-    Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+    Route::get('pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit')->name('pengajuan_kredit');
 
-    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
+    Route::get('pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna')->name('pengajuan_kredit_briguna');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 

@@ -10,7 +10,8 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: '/action-detail/pengajuan_kredit_briguna',
+                // url: '/action-detail/pengajuan_kredit_briguna',
+                url : '{{route("pengajuan_kredit_briguna")}}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {
@@ -36,7 +37,8 @@
             witdh : '100%',
             allowClear: true,
             ajax: {
-                url: '/action-detail/pengajuan_kredit',
+                // url: '/action-detail/pengajuan_kredit',
+                url : '{{route("pengajuan_kredit")}}',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {

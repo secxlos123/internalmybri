@@ -86,6 +86,12 @@
 	</a>
 @endif
 
+@if (!empty($audit_adk))
+	<a href="{{route('getDetailBriguna', $audit_adk)}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-Audit-ADK">
+	    <i class="mdi mdi-eye"></i>
+	</a>
+@endif
+
 @if (!empty($submited) && $submited == true && empty($recontest) && (!isset($status) || isset($status) &&  $status == 'approved'))
 	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Proses CLF
