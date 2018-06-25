@@ -48,6 +48,9 @@
         .modal-content{
             border-color: #fff !important;
         }
+        #act:hover{
+          cursor: pointer;
+        }
     </style>
     <script type="text/javascript">
       var aoUserID = '{{ $data['pn'] }}'
@@ -174,12 +177,12 @@
                                     <div class='map' id='map' style='width: 100%; height: 300px;'></div>
                                 </div>
                                 <div class="form-group has-feedback has-search">
-                                    <select class="select2 form-control" name="marketing" id="marketing">
+                                    <select class="select2 form-control" name="marketing" id="marketing" data-live-search="true">
                                             <option value="">Search Rencana Marketing</option>
                                     </select>  
                                 </div>
                                 <div class="form-group has-feedback has-search">
-                                    <select class="select2 form-control" name="pemasar" id="pemasar">
+                                    <select class="select2 form-control" name="pemasar" id="pemasar" data-live-search="true">
                                             <option value="">Search Tenaga Pemasar Pendamping</option>
                                     </select>
                                 </div>
@@ -233,7 +236,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1" checked>
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1" checked>
                                       <label class="form-check-label" for="exampleRadios1">
                                         Nasabah berhalangan
                                       </label>
@@ -241,7 +244,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1">
                                       <label class="form-check-label" for="exampleRadios1">
                                         Nasabah meminta pertemuan lanjutan
                                       </label>
@@ -249,7 +252,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1">
                                       <label class="form-check-label" for="exampleRadios1">
                                         Nasabah belum mengumpulkan dokumen
                                       </label>
@@ -257,7 +260,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1">
                                       <label class="form-check-label" for="exampleRadios1">
                                         Lainnya
                                       </label>
@@ -318,25 +321,25 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1" checked>
+                                      <input class="form-check-input" type="radio" id="act" name="ActTL" value="TL1" checked>
                                       <label class="form-check-label" for="exampleRadios1">
-                                        Nasabah setuju, bersedia komitmen (done)
+                                        Nasabah setuju, bersedia komitmen
                                       </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1">
+                                      <input class="form-check-input" type="radio" id="act" name="ActTL" value="TL2">
                                       <label class="form-check-label" for="exampleRadios1">
-                                        Nasabah meminta pertemuan lanjutan (negosiasi)
+                                        Nasabah meminta pertemuan lanjutan
                                       </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" value="option1">
+                                      <input class="form-check-input" type="radio" id="act" name="ActTL" value="TL3">
                                       <label class="form-check-label" for="exampleRadios1">
-                                        Nasabah Tidak Setuju (batal)
+                                        Nasabah Tidak Setuju
                                       </label>
                                     </div>
                                 </div>
