@@ -144,9 +144,9 @@
 </li>
 @endif
 
-@if($data['role_user'] =='cs')
+@if(($data['role_user'] =='cs') || ($data['role_user']=='fo') || ($data['role_user']=='ao'))
 <li>
-  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
+  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referral </span> </a>
 </li>
 @endif
 @if($data['role_user'] == 'pinca' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'mp' || $data['role_user'] == 'amp' || $data['uker'] == 'KW' || $data['uker'] == 'KP')
@@ -166,7 +166,7 @@
 
 @if($data['role_user'] == 'amp' || $data['role_user'] == 'mp' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'pinca')
 <li>
-  <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
+  <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referral </span> </a>
 </li>
 @endif
 
