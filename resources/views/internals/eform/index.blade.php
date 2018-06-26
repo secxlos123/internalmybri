@@ -332,13 +332,26 @@
                     }
 
                     pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
-                    if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
-                        pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
-
-                    } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
+                    if(contents.eform.pefindo_color == "Hijau"){
+                        console.log("pefindo_color: Hijau");
                         pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
 
+                    } else if(contents.eform.pefindo_color == "Kuning"){
+                        console.log("pefindo_color: Kuning");
+                        pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+                    } else if(contents.eform.pefindo_color == "Merah"){
+                        console.log("pefindo_color: Merah");
+                        pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
                     }
+
+                    // pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+                    // if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
+                    //     pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                    // } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
+                    //     pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                    // }
 
                     $("#result-modal .modal-body #prescreening-id").html(contents.eform.id);
                     $("#result-modal .modal-body #prescreening-nik").html(contents.eform.nik);
