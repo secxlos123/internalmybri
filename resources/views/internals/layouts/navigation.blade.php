@@ -10,13 +10,13 @@
         @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
         <li><a href="{{('./leads')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Leads </span> </a></li>
         @endif
+        @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
+        <li><a href="{{('./marketing')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Marketing </span> </a></li>
+        @endif
         @if($data['role_user'] =='ao' || $data['role_user'] =='fo')
         <li>
           <a href="{{('./activity')}}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Activity </span> </a>
         </li>
-        @endif
-        @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
-        <li><a href="{{('./marketing')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Marketing </span> </a></li>
         @endif
         </li>
         @if(($data['role']=='ao') || ($data['role']=='admin-bri') || ($data['role']=='mp')|| ($data['role']=='pinca')||($data['role']=='other') || ($data['role']=='superadmin'))
@@ -144,7 +144,7 @@
 </li>
 @endif
 
-@if(($data['role_user'] =='cs') || ($data['role_user']=='fo') || ($data['role_user']=='ao'))
+@if(($data['role_user'] =='cs') || ($data['role_user']=='fo') || ($data['role_user']=='ao') || ($data['role_user']=='teller'))
 <li>
   <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referral </span> </a>
 </li>
