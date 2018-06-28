@@ -3,23 +3,22 @@
     <div id="sidebar-menu">
       <ul>
         <li class="menu-title">Navigasi Utama</li>
-        <li><a href="{{('/')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a></li>
-        <!--@if(($data['role_user']=='ao') || ($data['role_user']=='fo') || ($data['role_user']=='mp') || ($data['role_user']=='amp') || ($data['role_user']=='pinca') || ($data['role_user']=='pincasus') || ($data['role_user']=='pinwil') || ($data['role']=='pinwil') )
-        <li><a href="{{('/crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a></li>
+        <li><a href="{{('./')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Home MyBRI </span> </a></li>
+        @if(($data['role_user']=='ao') || ($data['role_user']=='fo') || ($data['role_user']=='mp') || ($data['role_user']=='amp') || ($data['role_user']=='pinca') || ($data['role_user']=='pincasus') || ($data['role_user']=='pinwil') || ($data['role']=='pinwil') )
+        <li><a href="{{('./crm_dashboard')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> CRM Dashboard </span> </a></li>
         @endif
         @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
-        <li><a href="{{('/leads')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Leads </span> </a></li>
+        <li><a href="{{('./leads')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Leads </span> </a></li>
+        @endif
+        @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
+        <li><a href="{{('./marketing')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Marketing </span> </a></li>
         @endif
         @if($data['role_user'] =='ao' || $data['role_user'] =='fo')
         <li>
-          <a href="{{('/activity')}}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Activity </span> </a>
+          <a href="{{('./activity')}}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Activity </span> </a>
         </li>
         @endif
-        @if(($data['role_user']=='ao') || ($data['role_user']=='fo'))
-        <li><a href="{{('/marketing')}}" class="waves-effect" ><i class="mdi mdi-home"></i> <span> Marketing </span> </a></li>
-        @endif
         </li>
-        -->
         @if(($data['role']=='ao') || ($data['role']=='admin-bri') || ($data['role']=='mp')|| ($data['role']=='pinca')||($data['role']=='other') || ($data['role']=='superadmin'))
         <li>
           <a href="{{route('customers.index')}}" class="waves-effect"><i class="mdi mdi-account-star"></i> <span> Profil Calon Debitur </span> </a>
@@ -87,10 +86,9 @@
             <a href="{{route('calculator.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kal. Kredit</span> </a>
           </li>
 
-          <!--<li>
+          <li>
             <a href="{{route('calculatordplk.index')}}" class="waves-effect"><i class="mdi mdi-calculator"></i> <span> Kal. DPLK</span> </a>
           </li>
-          -->
         </ul>
       </li>
 
@@ -146,12 +144,11 @@
 </li>
 @endif
 
-@if($data['role_user'] =='cs')
+@if(($data['role_user'] =='cs') || ($data['role_user']=='fo') || ($data['role_user']=='ao') || ($data['role_user']=='teller'))
 <li>
-  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referal </span> </a>
+  <a href="{{ route('referral.index') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Referral </span> </a>
 </li>
 @endif
-<!--
 @if($data['role_user'] == 'pinca' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'mp' || $data['role_user'] == 'amp' || $data['uker'] == 'KW' || $data['uker'] == 'KP')
 <li class="treeview">
   <a href="#" class="waves-effect"><i class="mdi mdi-file-document-box"></i> <span > Report </span> </a>
@@ -169,10 +166,9 @@
 
 @if($data['role_user'] == 'amp' || $data['role_user'] == 'mp' || $data['role_user'] == 'pincapem' || $data['role_user'] == 'pinca')
 <li>
-  <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referal </span> </a>
+  <a href="{{ url('disposisi-referral') }}" class="waves-effect"><i class="mdi mdi-account-switch"></i> <span> Disposisi Referral </span> </a>
 </li>
 @endif
--->
 
 
 <hr>

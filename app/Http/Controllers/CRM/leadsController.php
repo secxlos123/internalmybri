@@ -76,7 +76,7 @@ class leadsController extends Controller
         // dd($marketingsFiltered);
         // dd($info['tipe_nasabah']);
         if ($info['tipe_nasabah'] == "I") {
-          return view('internals.crm.leads.detail', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
+          return view('internals.crm.leads.detail', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities','cif', 'nik'));
         } else {
           return view('internals.crm.leads.detail_non_i', compact('data', 'portfolio', 'info', 'marketingsFiltered', 'activities'));
         }

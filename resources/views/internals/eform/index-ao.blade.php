@@ -180,6 +180,7 @@
 
 @include('internals.eform._result-modal')
 @include('internals.eform._delete-modal')
+@include('internals.eform._delete-modal-clas')
 @include('internals.layouts.footer')
 @include('internals.layouts.foot')
 <script type="text/javascript">
@@ -294,13 +295,26 @@
                 }
 
                 pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
-                if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
-                    pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
+                if(contents.eform.pefindo_color == "Hijau"){
+                    console.log("pefindo_color: Hijau");
+                        pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
 
-                } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
-                    pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
-
+                } else if(contents.eform.pefindo_color == "Kuning"){
+                    console.log("pefindo_color: Kuning");
+                        pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+                } else if(contents.eform.pefindo_color == "Merah"){
+                    console.log("pefindo_color: Merah");
+                        pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
                 }
+
+                // pefindo_warna = '<p class="text-warning form-control-static">Kuning</p>';
+                // if (contents.eform.pefindo_score >= 250 && contents.eform.pefindo_score <= 573) {
+                //     pefindo_warna = '<p class="text-danger form-control-static">Merah</p>';
+
+                // } else if (contents.eform.pefindo_score >= 677 && contents.eform.pefindo_score <= 900 ) {
+                //     pefindo_warna = '<p class="text-success form-control-static">Hijau</p>';
+
+                // }
 
                 $("#result-modal .modal-body #prescreening-id").html(contents.eform.id);
                 $("#result-modal .modal-body #prescreening-nik").html(contents.eform.nik);
@@ -493,6 +507,48 @@
             ],
       });
     }
+
+    //show modal Delete Eform CLAS
+    $(document).on('click', ".btn-delete-clas", function(){
+        refNumber = $(this).data('id');
+        $('#delete-modal-eform-clas').modal('show');
+        $('#delete-modal-eform-clas #fid_aplikasi').val(refNumber);
+    });
+
+     //post Delete Eform CLAS
+    $(document).on('click', "#btn-delete-this-clas", function(){
+        refNumber = $('#delete-modal-eform-clas #fid_aplikasi').val();
+        HoldOn.open();
+
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '{{ route("delete_eform") }}',
+            data: {
+                fid_aplikasi : refNumber
+            },
+            headers: {
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            }
+
+        }).done(function(data){
+            $('#delete-modal-eform-clas').modal('hide');
+            $('#btn-filter').click();
+            HoldOn.close();
+            var body = $("html, body");
+                body.stop().animate({scrollTop:0}, 100, 'swing', function() {
+                $('#alert-delete').html('<div class="alert alert-success">'+data.response.descriptions+'</div')
+                });
+
+        }).fail(function(errors) {
+            HoldOn.close();
+            var body = $("html, body");
+                body.stop().animate({scrollTop:0}, 100, 'swing', function() {
+                $('#alert-delete').html('<div class="alert alert-danger">Gagal Terhubung ke Server</div')
+                });
+
+        });
+    });
 
     //show modal Delete
     $(document).on('click', ".btn-delete", function(){

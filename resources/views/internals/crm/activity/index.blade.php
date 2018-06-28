@@ -18,6 +18,13 @@
             padding: 5% !important;
             width: 90% !important;
         }
+        #submitNewActivity{
+            padding: 5% !important;
+            width: 90% !important;
+        }
+        #idForm hover{
+             cursor: pointer; 
+        }
         .fc-event{
             background-color: #00529C !important;
         }
@@ -44,6 +51,9 @@
         }
         .modal-content{
             border-color: #fff !important;
+        }
+        #act:hover{
+          cursor: pointer;
         }
     </style>
     <script type="text/javascript">
@@ -93,7 +103,7 @@
                         <div class="row">
                             <div class="col-md-10"></div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">Tambah
+                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityTam()">Tambah
                                 </button>
                             </div>
                         </div>
@@ -105,12 +115,15 @@
                                 <h4 class="modal-title">Jadwal</h4>
                             </div>
                             <div class="modal-body p-20">
-                              <div class="form"></div>
+                                <a href="#" onclick="showActivityDet()">
+                                    <div class="form" id="idForm"></div>
+                                </a>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
                                     Batal
                                 </button>
+                                <!--
                                 @if ($data['role'] == 'ao' || $data['role'] == 'fo')
                                 <button type="button" class="btn btn-orange save-event waves-effect waves-light">
                                     Simpan Jadwal
@@ -119,15 +132,16 @@
                                         data-dismiss="modal">Hapus Jadwal Ini
                                 </button>
                                 @endif
+                                -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row" id="ActivityTam" style="display: none">
+            <div class="row" id="ActivityDet" style="display: none">
                 <div class="col-md-12">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>Tambah Activity</b></h4>
+                        <h4 class="m-t-0 header-title"><b>Detail Activity</b></h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -167,21 +181,120 @@
                                     <div class='map' id='map' style='width: 100%; height: 300px;'></div>
                                 </div>
                                 <div class="form-group has-feedback has-search">
-                                    <select class="select2 form-control" name="marketing" id="marketing">
+                                    <select class="select2 form-control" name="marketing" id="marketing" data-live-search="true">
                                             <option value="">Search Rencana Marketing</option>
                                     </select>  
                                 </div>
                                 <div class="form-group has-feedback has-search">
-                                    <select class="select2 form-control" name="pemasar" id="pemasar">
+                                    <select class="select2 form-control" name="pemasar" id="pemasar" data-live-search="true">
                                             <option value="">Search Tenaga Pemasar Pendamping</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <input class='form-control appointment_date'  type='text' name='description' id='description' placeholder="Deskripsi"/>
+                                    <input class='form-control'  type='text' name='description' id='description' placeholder="Deskripsi"/>
                                 </div>
                             </div>
                         </div>
+                        <div class="row" id="btnTam">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">Batal</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-orange save-event waves-effect waves-light" id="submitNewActivity">
+                                    Simpan
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" id="btnDet">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">Batal</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showReschedule()">RESCHEDULE</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-default save-event waves-effect waves-light" id="btn1" onclick="showTindak()">
+                                    TINDAKLANJUT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BEGIN MODAL-->
+                    
+                   
+                </div>
+            </div>
+            <div class="row" id="ActivityRes" style="display: none">
+                <div class="col-md-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>Tindak Lanjut</b></h4>
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                  <textarea class="form-control" placeholder="Sebab Reschedule (600 character)">
+                                      
+                                  </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1" checked>
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Nasabah berhalangan
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1">
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Nasabah meminta pertemuan lanjutan
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1">
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Nasabah belum mengumpulkan dokumen
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActR" value="option1">
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Lainnya
+                                      </label>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                  <label class="control-label">
+                                    Jadwal Selanjutnya
+                                  </label>
+                                </div>
+                                <div class="form-group">
+                                  <div class='input-group date' id='datetimepicker4'>
+                                     <input type='text' class="form-control" placeholder="Waktu Mulai" />
+                                     <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class='input-group date' id='datetimepicker5'>
+                                     <input type='text' class="form-control" placeholder="Waktu Berakhir" />
+                                     <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="btnTam">
                             <div class="col-md-8"></div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">Batal</button>
@@ -199,47 +312,65 @@
                    
                 </div>
             </div>
-            <div class="row" id="ActivityDet" style="display: none">
+            <div class="row" id="ActivityTin" style="display: none">
                 <div class="col-md-12">
                     <div class="card-box">
-                        <h4 class="m-t-0 header-title"><b>Detail Activity</b></h4>
+                        <h4 class="m-t-0 header-title"><b>Tindak Lanjut</b></h4>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input name='tujuan' id="tujuan" type='text' class="form-control" placeholder="tujuan" disabled/>
+                                  <textarea class="form-control" placeholder="Tindaklanjut (600 character)">
+                                      
+                                  </textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input name='event' id="event" type='text' class="form-control" placeholder="event" disabled/>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActTL" value="TL1" checked>
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Nasabah setuju, bersedia komitmen
+                                      </label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input name='startdate' id="startdate" type='text' class="form-control" placeholder="Waktu Mulai" disabled/>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActTL" value="TL2">
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Nasabah meminta pertemuan lanjutan
+                                      </label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input name='enddate' id="enddate" type='text' class="form-control" placeholder="Waktu Berakhir" disabled/>      
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="radio" id="act" name="ActTL" value="TL3">
+                                      <label class="form-check-label" for="exampleRadios1">
+                                        Nasabah Tidak Setuju
+                                      </label>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input name='alamat' id="alamat" type='text' class="form-control" placeholder="Alamat" disabled/>
+                                    <input class='form-control'  type='text' placeholder="Realisasi Nomor Rekening"/>
                                 </div>
                                 <div class="form-group">
-                                    <input name='marketing' id="marketing" type='text' class="form-control" placeholder="Search Rencana Marketing" disabled/>
-                                    </select>  
+                                    <input class='form-control'  type='text' placeholder="Realisasi Nomor Rekening"/>
                                 </div>
                                 <div class="form-group">
-                                    <input name='pemasar' id="pemasar" type='text' class="form-control" placeholder="Search Tenaga Pemasar Pendamping" disabled/>
-                                </div>
-                                <div class="form-group">
-                                    <input name='description' id="description" type='text' class="form-control" placeholder="Deskripsi" disabled/>
+                                  <div class='input-group date' id='datetimepicker3'>
+                                     <input type='text' class="form-control" placeholder="Target Komitmen" />
+                                     <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                  </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="btnTam">
                             <div class="col-md-8"></div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">RESCHEDULE</button>
+                                <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">Batal</button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-orange waves-effect" id="btn1" onclick="showActivityDet()">
-                                    TINDAKLANJUT
+                                <button type="button" class="btn btn-orange save-event waves-effect waves-light" id="btn1">
+                                    Simpan
                                 </button>
                             </div>
                         </div>
@@ -265,96 +396,7 @@
 <script src="{{ asset('assets/js/custom/schedule.js')  }}"></script>
 <script src="{{ asset('assets/js/moment.min.js')  }}"></script>
 <script src="{{ asset('assets/js/bootstrap-datetimepickers.min.js')  }}"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-
-        $('#datetimepicker1').datetimepicker();
-        $('#datetimepicker2').datetimepicker();
-        
-        $('#marketing').select2({
-            ajax: {
-            url: '/activity/marketing',
-            dataType: 'json',
-            type: "GET",
-            quietMillis: 50,
-            processResults: function (data, params) {
-              console.log(data);
-                var select2Data = $.map(data, function (obj) {
-                    return {
-                        id: obj.id,
-                        text: '<span>' + obj.nama + ", " + obj.activity_type + ', ' + obj.product_type + ' [' + obj.status + '] [Rp. ' + obj.target + ']' + '</span>' + '<span class="none">' + obj.name + '</span><span class="none">' + obj.id + '</span>'
-                    }
-                });
-                // select2Data = select2Data.filter(function(data) {
-                //     return data.text.indexOf(params.term) !== -1
-                // });
-                return {
-                    results: select2Data
-                };
-            },
-            escapeMarkup: function(markup) {
-                return markup;
-            },
-        },
-        escapeMarkup: function(markup) {
-            return markup;
-        },
-        });
-        
-        $('#pemasar').select2({
-            ajax: {
-            url: '/activity/pemasar',
-            dataType: 'json',
-            type: "GET",
-            quietMillis: 50,
-            processResults: function (data, params) {
-              console.log(data);
-                var select2Data = $.map(data, function (obj) {
-                    return {
-                        id: obj.PERNR,
-                        text: '<span>' + obj.SNAME + '</span>' + '<span class="none">' + obj.PERNR + '</span><span class="none">' + obj.PERNR + '</span>'
-                    }
-                });
-                // select2Data = select2Data.filter(function(data) {
-                //     return data.text.indexOf(params.term) !== -1
-                // });
-                return {
-                    results: select2Data
-                };
-            },
-            escapeMarkup: function(markup) {
-                return markup;
-            },
-        },
-        escapeMarkup: function(markup) {
-            return markup;
-        },
-        });  
-    });
-   
-    function showActivityDet() {
-        var x = document.getElementById("ActivityMar");
-        var y = document.getElementById("ActivityTam");
-        document.getElementById("startdate").value="";
-        document.getElementById("enddate").value="";
-        document.getElementsByName("alamat").value="";
-        document.getElementById("marketing").value="";
-        document.getElementById("pemasar").value="";
-        document.getElementById("description").value="";
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            y.style.display = "none";
-        } else {
-            x.style.display = "none";
-            y.style.display = "block";
-        }
-    }
-    var address = {
-        address: 'undefined',
-        lat: "{{ env('DEF_LAT', '-6.21670') }}",
-        long: "{{ env('DEF_LONG', '106.81350') }}",
-    };
-   
+<script type="text/javascript">   
     // $('#calendar').fullCalendar({});
     // console.log(userRole);
 </script>

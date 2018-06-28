@@ -157,6 +157,12 @@ class AuditRailController extends Controller
             $form['tgl_putusan'] = !isset($form['tgl_putusan']) ? '' : $tgl_putusan.' '.$jam_putusan;
             $form['status_prescreening'] = $prescreening;
             $form['Plafond_usulan']= 'Rp '.number_format($form['Plafond_usulan'],0,",",".");
+            $form['action']= view('internals.layouts.actions',[
+                'audit_adk'       => $form['eform_id'],
+                'is_screening'     => $form['is_screening'],
+                'is_verified'      => $form['is_verified'],
+                'screening_result' => 'view'
+            ])->render();
             $audits['contents']['data'][$key] = $form;
         }
 
@@ -166,6 +172,40 @@ class AuditRailController extends Controller
         return response()->json($audits['contents']);
     }
 
+    public function getDetailBriguna($id) {
+        $data = $this->getUser();
+        // GET DETAIL CUST with Form Data and briguna
+        $formDetail = Client::setEndpoint('eforms/'.$id)
+            ->setHeaders(
+                [ 'Authorization' => $data['token'],
+                  'pn' => $data['pn']
+                ])
+            ->get();
+        $detail = $formDetail['contents'];
+        // dd($detail);
+
+        $asuransi = [
+            'premi_as_jiwa' => '',
+            'premi_beban_bri' => '',
+            'premi_beban_debitur' => ''
+        ];
+
+        if (!empty($detail)) {
+            $status = $this->getStatusIsSend($detail['is_send']);
+            $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
+            $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
+
+            $asuransi = [
+                'premi_as_jiwa'   => $premi_as_jiwa,
+                'premi_beban_bri' => $premi_beban_bri,
+                'premi_beban_debitur' => $premi_beban_debitur
+            ];           
+        }
+        
+        return view('internals.audit-rail.view-detail-audit', compact('data','detail','id','asuransi','status'));
+    }
+
     function getStatusScreening($value) {
         if ($value == 1) {
             return '<a class="btn btn-success form-control-static">Hijau</a>';
@@ -173,6 +213,56 @@ class AuditRailController extends Controller
             return '<a class="btn btn-warning form-control-static">Kuning</a>';
         } elseif ($value == 3) {
             return '<a class="btn btn-danger form-control-static">Merah</a>';
+        }
+
+        return '-';
+    }
+
+    function getStatusIsSend($value) {
+        if ($value == '1') {
+            return 'APPROVED';
+        } else if ($value == '2') {
+            return 'UNAPPROVED';
+        } else if ($value == '3') {
+            return 'DITOLAK';
+        } else if ($value == '4') {
+            return 'VOID ADK';
+        } else if ($value == '5') {
+            return 'APPROVED PENCAIRAN';
+        } else if ($value == '6') {
+            return 'DISBURSED';
+        } else if ($value == '7') {
+            return 'SENT TO BRINETS';
+        } else if ($value == '8') {
+            return 'AGREE BY MP';
+        } else if ($value == '9') {
+            return 'DITOLAK';
+        } else if ($value == '10') {
+            return 'AGREE BY AMP';
+        } else if ($value == '11') {
+            return 'AGREE BY PINCAPEM';
+        } else if ($value == '12') {
+            return 'AGREE BY PINCA';
+        } else if ($value == '13') {
+            return 'AGREE BY WAPINWIL';
+        } else if ($value == '14') {
+            return 'AGREE BY WAPINCASUS';
+        } else if ($value == '15') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY AMP';
+        } else if ($value == '16') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY MP';
+        } else if ($value == '17') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY PINCAPEM';
+        } else if ($value == '18') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY PINCA';
+        } else if ($value == '19') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY WAPINWIL';
+        } else if ($value == '20') {
+            return 'NAIK KETINGKAT LEBIH TINGGI BY WAPINCASUS';
+        } else if ($value == '21') {
+            return 'MENGEMBALIKAN DATA KE AO';
+        } else if ($value == '0'){
+            return 'APPROVAL';
         }
 
         return '-';
@@ -684,6 +774,7 @@ class AuditRailController extends Controller
             ->get();
 
         $contents = array();
+
         if (count($branch['contents']) > 0) {
             foreach ($branch['contents']['data'] as $key => $detail) {
                 $detail['text'] = $detail['branch'];

@@ -196,12 +196,29 @@ tr.shown td.details3-control {
                 }
             });
         }).change();
+        $("#from").datepicker({
+            todayBtn:  1,
+            autoclose: true,
+            todayHighlight: true,
+            format: 'yyyy-mm-dd',
+        }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#to').datepicker('setStartDate', minDate);
+        });
+
+        $("#to").datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+        }).on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#from').datepicker('setEndDate', maxDate);
+            });
     });
     </script>
     
     <script type="text/javascript">
         var table1 = $('#datatable').DataTable({
-            searching: true,
+            searching: false,
             "language": {
                 "emptyTable": "No data available in table"
             }
@@ -209,8 +226,8 @@ tr.shown td.details3-control {
 
         $(document).on('click', "#btn-filter", function(){
             table1.destroy();
-//            alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val() + " source " + $('#source').val() + " dev_id " + $('#dev_id').val())
-            reloadData1();
+            // alert("product " + $('#product_type').val() + " branch " + $('#branch_id').val() + " source " + $('#source').val() + " dev_id " + $('#dev_id').val())
+            reloadData1($('#from').val(), $('#to').val(), $('#status').val());
         })
 
         function detail(d){
@@ -298,27 +315,37 @@ tr.shown td.details3-control {
             return n;
         }
 
-        function reloadData1()
+        function reloadData1(from, to, status)
         {
             table1 = $('#datatable').DataTable({
-             "processing" : true,
-             "serverSide" : true,
-             "paginate"  : true,
-             "autoWidth" : false,
-             "lengthMenu": [
+            searching : false,
+            processing : true,
+            serverSide : true,
+             lengthMenu: [
              [ 10, 25, 50, -1 ],
              [ '10', '25', '50', 'All' ]
              ],
-             "language" : {
+             language : {
                 infoFiltered : '(disaring dari _MAX_ data keseluruhan)'
             },
             ajax : {
                 url : '/datatables/monitoring',
-                data : {
-                    product_type: $('#product_type').val(),
-                    dev_id: $('#dev_id').val(),
-                    source: $('#source').val(),
-                    branch_id: $('#branch_id').val()
+                data : function(d, settings){
+                    var api = new $.fn.dataTable.Api(settings);
+
+                    d.page = Math.min(
+                        Math.max(0, Math.round(d.start / api.page.len())),
+                        api.page.info().pages
+                    );
+
+                    d.start_date = $('#from').val();
+                    d.end_date = $('#to').val();
+                    d.status = $('#status').val();
+
+                    d.product_type = $('#product_type').val()
+                    d.dev_id = $('#dev_id').val();
+                    d.source = $('#source').val();
+                    d.branch_id = $('#branch_id').val();
                 }
             },
             aoColumns : [

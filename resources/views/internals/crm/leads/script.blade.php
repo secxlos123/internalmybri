@@ -103,6 +103,12 @@
       });
     }
 
+    $('#kelolaansBtn').on('click', function(){
+      if ($('#kelolaans').text().length <= 0) {
+        kelolaan();
+      }
+    });
+
 
     $('#leadsBtn').on('click', function(){
       if ($('#leads').text().length <= 0) {

@@ -26,13 +26,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Marketing</h4>
+                        <h4 class="page-title">Leads</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
-                                Marketing
+                                Leads
                             </li>
                         </ol>
                         <div class="clearfix"></div>
@@ -51,7 +51,7 @@
                                 <div class="">
                                     <ul class="nav nav-tabs">
                                         <li class="active">
-                                            <a href="#kelolaan" data-toggle="tab" aria-expanded="true">
+                                            <a href="#kelolaan" data-toggle="tab" aria-expanded="true" id="kelolaansBtn">
                                                 <span class="visible-xs"><i class="fa fa-users"></i></span>
                                                 <span class="hidden-xs">Kelolaan</span>
                                             </a>
