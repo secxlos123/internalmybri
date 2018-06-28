@@ -201,7 +201,7 @@
                                 <button type="button" class="btn btn-default waves-effect" id="btn1" onclick="showActivityDet()">Batal</button>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-orange save-event waves-effect waves-light" id="submitNewActivity"
+                                <button type="button" class="btn btn-orange save-event waves-effect waves-light" id="submitNewActivity">
                                     Simpan
                                 </button>
                             </div>
