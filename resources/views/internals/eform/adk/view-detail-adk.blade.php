@@ -141,6 +141,69 @@
                             </div>
                         </div>
                     </div>
+                    @if(!empty($data_cif))
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data CIF</h3>
+                                    </div>
+                                    <!-- data pribadi -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._cif')
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data CIF</h3>
+                                    </div>
+                                    <!-- data pribadi -->
+                                    <div class="panel-body">
+                                        <h3 class="panel-title">Data CIF Kosong</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if(!empty($data_kemendagri))
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Kemendagri</h3>
+                                    </div>
+                                    <!-- data pribadi -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._kemendagri')
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Kemendagri</h3>
+                                    </div>
+                                    <!-- data pribadi -->
+                                    <div class="panel-body">
+                                        <h3 class="panel-title">Data Kemendagri Kosong</h3>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
                 <div id="pekerjaan" class="tab-pane">
                     <div class="row">

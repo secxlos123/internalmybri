@@ -36,6 +36,7 @@ class ADKController extends Controller
 
     public function getApprove($id) {
         $data = $this->getUser();
+        // print_r($data); die();
         if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             // GET DETAIL CUST with Form Data and briguna
             $formDetail = Client::setEndpoint('eforms/'.$id)
@@ -44,7 +45,9 @@ class ADKController extends Controller
                       'pn' => $data['pn']
                     ])
                 ->get();
+            // print_r($formDetail); die();
             $detail = $formDetail['contents'];
+            // print_r($detail); die();
             $asuransi = [
                 'premi_as_jiwa' => '',
                 'premi_beban_debitur' => '',
@@ -1163,7 +1166,7 @@ class ADKController extends Controller
                 'jabatan'       => $detail['customer']['work']['position'],
                 'gaji'          => $detail['Gaji_bersih_per_bulan'],
                 'jenis_pinjaman'=> $detail['tp_produk'],
-                'instansi'      => $detail['mitra']['NAMA_INSTANSI'],
+                'instansi'      => isset($detail['mitra']['NAMA_INSTANSI']) ? $detail['mitra']['NAMA_INSTANSI'] : '',
                 'nip'           => $detail['NIP'],
                 'status_kerja'  => $detail['Status_Pekerjaan'],
                 'nama_atasan'   => $detail['Nama_atasan_Langsung'],
