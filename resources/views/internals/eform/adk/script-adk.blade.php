@@ -42,7 +42,11 @@
         var action_url = '';
         if (url == 'https://internalmybri.bri.co.id' || url == 'http://internalmybridev.bri.co.id') {
             action_url = '/datatables/adk-list';
-        } else {
+        } 
+        else if(url == 'http://localhost:96') {
+            action_url = '/datatables/adk-list';
+        }
+        else {
             action_url = '/internal/datatables/adk-list';
         }
 

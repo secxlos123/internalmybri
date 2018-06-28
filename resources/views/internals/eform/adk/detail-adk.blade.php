@@ -150,7 +150,7 @@
                                         </div>
                                         <!-- data pribadi -->
                                         <div class="panel-body">
-                                            @include('internals.eform.adk._cus-personal')
+                                            @include('internals.eform.adk._cif')
                                             <hr>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                         </div>
                                         <!-- data pribadi -->
                                         <div class="panel-body">
-                                            @include('internals.eform.adk._cus-personal')
+                                            @include('internals.eform.adk._kemendagri')
                                             <hr>
                                         </div>
                                     </div>

@@ -298,11 +298,64 @@
                                 <td><p id="lab-rekomendasi"><?php echo $detail['catatan_rekomendasi']?></p></td>
                                 <td align="center"><a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a></td>
                             </tr>
+
+
+
+                            <tr>
+                                <td align="center">8</td>
+                                <td>Pas Foto / Selfie</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['identity_selfie'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['identity_selfie']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['identity_selfie']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['customer']['personal']['identity_selfie']) || $detail['customer']['personal']['identity_selfie'] == '' || $detail['customer']['personal']['identity_selfie'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['identity_selfie'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Foto Selfie
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['identity_selfie']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['identity_selfie']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['identity_selfie']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } } ?>
+                                </td>
+                                <td align="center">
+                                    <!-- <?php if($detail['flag_rekomendasi'] == 1){ ?>
+                                        <input type="checkbox" name="surat_rekomendasi" class="form-control" value="1" checked="true">
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="surat_rekomendasi" class="form-control">
+                                    <?php } ?> -->
+                                </td>
+                                <td>
+                                    <!-- <p id="lab-rekomendasi"><?php echo $detail['catatan_rekomendasi']?></p> -->
+                                </td>
+                                <td align="center">
+                                    <!-- <a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a> -->
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
                         <?php
                         if($detail['Payroll'] == '2') {
                         ?>
                             <tr>
-                                <td align="center">8</td>
+                                <td align="center">9</td>
                                 <td>SKPU</td>
                                 <td>
                                     <?php
@@ -344,7 +397,7 @@
                             if ($detail['customer']['personal']['status'] == '2') {
                         ?>
                             <tr>
-                                <td align="center">9</td>
+                                <td align="center">10</td>
                                 <td>KTP Pasangan</td>
                                 <td>
                                     <?php
@@ -382,13 +435,57 @@
                                 <td><p id="lab-couple-ktp"><?php echo $detail['catatan_couple_ktp']?></p></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
+
+                            <tr>
+                                <td align="center">11</td>
+                                <td>Pas Foto / Selfie Pasangan</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['couple_identity_selfie'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['couple_identity_selfie']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['couple_identity_selfie']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['customer']['personal']['couple_identity_selfie']) || $detail['customer']['personal']['couple_identity_selfie'] == '' || $detail['customer']['personal']['couple_identity_selfie'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['couple_identity_selfie'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Foto Selfie
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['couple_identity_selfie']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['couple_identity_selfie']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['couple_identity_selfie']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } } ?>
+                                </td>
+                                <td align="center">
+                                    <!-- <?php if($detail['flag_rekomendasi'] == 1){ ?>
+                                        <input type="checkbox" name="surat_rekomendasi" class="form-control" value="1" checked="true">
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="surat_rekomendasi" class="form-control">
+                                    <?php } ?> -->
+                                </td>
+                                <td>
+                                    <!-- <p id="lab-rekomendasi"><?php echo $detail['catatan_rekomendasi']?></p> -->
+                                </td>
+                                <td align="center">
+                                    <!-- <a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a> -->
+                                </td>
+                            </tr>
                         <?php
                             }
                         } else {
                             if ($detail['customer']['personal']['status'] == '2') {
                         ?>
                             <tr>
-                                <td align="center">8</td>
+                                <td align="center">9</td>
                                 <td>KTP Pasangan</td>
                                 <td>
                                     <?php
@@ -426,6 +523,51 @@
                                 <td><p id="lab-couple-ktp"><?php echo $detail['catatan_couple_ktp']?></p></td>
                                 <td align="center"><a href="#" id="btn-couple_ktp" class="btn btn-success">Update</a></td>
                             </tr>
+
+                            <tr>
+                                <td align="center">10</td>
+                                <td>Pas Foto / Selfie Pasangan</td>
+                                <td>
+                                    <?php
+                                        $image = substr($detail['customer']['personal']['couple_identity_selfie'], 0,4);
+                                        if ($image == 'http') {
+                                    ?>
+                                    <a href="<?php echo $detail['customer']['personal']['couple_identity_selfie']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['customer']['personal']['couple_identity_selfie']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } elseif(empty($detail['customer']['personal']['couple_identity_selfie']) || $detail['customer']['personal']['couple_identity_selfie'] == '' || $detail['customer']['personal']['couple_identity_selfie'] == 'null') {?>
+                                    <a href="#" class="thumbnail">
+                                        <img src="{{asset('assets/images/no-image.jpg')}}" width="100" height="100">
+                                    </a>
+                                    <?php } else {
+                                        $pdf = substr($detail['customer']['personal']['couple_identity_selfie'], -4);
+                                        if ($pdf == '.pdf') {
+                                    ?>
+                                        Data PDF Foto Selfie
+                                        <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['couple_identity_selfie']; ?>" target="_blank"><img src="{{ asset('assets/images/download.png') }}" width="50" class="img-responsive"></a>
+                                    <?php
+                                        } else {
+                                    ?>
+                                    <a href="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['couple_identity_selfie']; ?>" class="thumbnail">
+                                        <img src="<?php echo $detail['Url'].$detail['id_foto'].'/'.$detail['customer']['personal']['couple_identity_selfie']; ?>" width="100" height="100">
+                                    </a>
+                                    <?php } } ?>
+                                </td>
+                                <td align="center">
+                                    <!-- <?php if($detail['flag_rekomendasi'] == 1){ ?>
+                                        <input type="checkbox" name="surat_rekomendasi" class="form-control" value="1" checked="true">
+                                    <?php } else { ?>
+                                        <input type="checkbox" name="surat_rekomendasi" class="form-control">
+                                    <?php } ?> -->
+                                </td>
+                                <td>
+                                    <!-- <p id="lab-rekomendasi"><?php echo $detail['catatan_rekomendasi']?></p> -->
+                                </td>
+                                <td align="center">
+                                    <!-- <a href="#" id="btn-rekomendasi" class="btn btn-success">Update</a> -->
+                                </td>
+                            </tr>
+
                         <?php
                             }
                         }

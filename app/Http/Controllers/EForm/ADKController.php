@@ -36,6 +36,7 @@ class ADKController extends Controller
 
     public function getApprove($id) {
         $data = $this->getUser();
+        // print_r($data); die();
         if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
             // GET DETAIL CUST with Form Data and briguna
             $formDetail = Client::setEndpoint('eforms/'.$id)
@@ -44,7 +45,9 @@ class ADKController extends Controller
                       'pn' => $data['pn']
                     ])
                 ->get();
+            // print_r($formDetail); die();
             $detail = $formDetail['contents'];
+            // print_r($detail); die();
             $asuransi = [
                 'premi_as_jiwa' => '',
                 'premi_beban_debitur' => '',
