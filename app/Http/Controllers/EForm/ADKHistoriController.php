@@ -56,7 +56,6 @@ class ADKHistoriController extends Controller
             $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
-
             $asuransi = [
                 'premi_as_jiwa'   => $premi_as_jiwa,
                 'premi_beban_bri' => $premi_beban_bri,
