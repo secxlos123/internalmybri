@@ -24,6 +24,7 @@
             Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
             Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
             Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            Route::get('/MenuNew', ['as'=>'MenuNew', 'uses'=>'Menu\MenuController@createNew']);
             Route::post('/ApprovalStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
             Route::post('/ApprovalPKSStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalPKSController@store']);
             Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
