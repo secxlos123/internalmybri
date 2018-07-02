@@ -117,6 +117,10 @@ class FasilitasController extends Controller
               'name'     => 'tgl_perjanjian_backdate',
               'contents' => $request->tgl_perjanjian_backdate,
             ],
+            [
+              'name'     => 'id_header',
+              'contents' => '0',
+            ],
           );
 		  
         $imgReq = $request->ijin_prinsip;
