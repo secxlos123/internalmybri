@@ -24,375 +24,444 @@
                     </div>
                 </div>
             </div>
+            @if(!empty($detail) && $detail != "")
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills m-b-30">
+                            <li class="active">
+                                <a href="#exsummary" data-toggle="tab" aria-expanded="true">Data Eksumary</a>
+                            </li>
+                            <li>
+                                <a href="#prescoring" data-toggle="tab" aria-expanded="true">Data Prescoring</a>
+                            </li>
+                            <li>
+                                <a href="#debitur" data-toggle="tab" aria-expanded="true">Data Debitur</a>
+                            </li>
+                            <li>
+                                <a href="#kredit" data-toggle="tab" aria-expanded="true">Data Kredit</a>
+                            </li>
+                            <li>
+                                <a href="#pribadi" data-toggle="tab" aria-expanded="true">Data Pribadi</a>
+                            </li>
+                            <li>
+                                <a href="#pekerjaan" data-toggle="tab" aria-expanded="true">Data Pekerjaan</a>
+                            </li>
+                            <li>
+                                <a href="#finansial" data-toggle="tab" aria-expanded="true">Data Finansial</a>
+                            </li>
+                            <li>
+                                <a href="#keluarga" data-toggle="tab" aria-expanded="true">Data Keluarga</a>
+                            </li>
+                            <li>
+                                <a href="#dokumen" data-toggle="tab" aria-expanded="true">Data Dokumen</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-pills m-b-30">
-                        <li class="active">
-                            <a href="#exsummary" data-toggle="tab" aria-expanded="true">Data Eksumary</a>
-                        </li>
-                        <li>
-                            <a href="#prescoring" data-toggle="tab" aria-expanded="true">Data Prescoring</a>
-                        </li>
-                        <li>
-                            <a href="#debitur" data-toggle="tab" aria-expanded="true">Data Debitur</a>
-                        </li>
-                        <li>
-                            <a href="#kredit" data-toggle="tab" aria-expanded="true">Data Kredit</a>
-                        </li>
-                        <li>
-                            <a href="#pribadi" data-toggle="tab" aria-expanded="true">Data Pribadi</a>
-                        </li>
-                        <li>
-                            <a href="#pekerjaan" data-toggle="tab" aria-expanded="true">Data Pekerjaan</a>
-                        </li>
-                        <li>
-                            <a href="#finansial" data-toggle="tab" aria-expanded="true">Data Finansial</a>
-                        </li>
-                        <li>
-                            <a href="#keluarga" data-toggle="tab" aria-expanded="true">Data Keluarga</a>
-                        </li>
-                        <li>
-                            <a href="#dokumen" data-toggle="tab" aria-expanded="true">Data Dokumen</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                <div class="tab-content br-n pn">
+                    <div id="exsummary" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Eksumary</h3>
+                                    </div>
+                                    <!-- data exsummary -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._cus-exsummary')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="prescoring" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Prescoring</h3>
+                                    </div>
+                                    <!-- data prescoring -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._cus-prescoring')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="debitur" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Debitur</h3>
+                                    </div>
+                                    <!-- data debitur -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._cus-debitur')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="kredit" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Kredit</h3>
+                                    </div>
+                                    <!-- data kredit -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._cus-data_kredit')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="pribadi" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Pribadi</h3>
+                                    </div>
+                                    <!-- data pribadi -->
+                                    <div class="panel-body">
+                                        @include('internals.eform.adk._cus-personal')
+                                        <hr>
 
-            <div class="tab-content br-n pn">
-                <div id="exsummary" class="tab-pane active">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Eksumary</h3>
-                                </div>
-                                <!-- data exsummary -->
-                                <div class="panel-body">
-                                    @include('internals.eform.adk._cus-exsummary')
+                                        @if($detail['customer']['personal']['status'] == 2)
+                                        <!--pasangan-->
+                                        @include('internals.eform.adk._cus-couple')
+                                        <hr>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div id="prescoring" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Prescoring</h3>
-                                </div>
-                                <!-- data prescoring -->
-                                <div class="panel-body">
-                                    @include('internals.eform.adk._cus-prescoring')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="debitur" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Debitur</h3>
-                                </div>
-                                <!-- data debitur -->
-                                <div class="panel-body">
-                                    @include('internals.eform.adk._cus-debitur')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="kredit" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Kredit</h3>
-                                </div>
-                                <!-- data kredit -->
-                                <div class="panel-body">
-                                    @include('internals.eform.adk._cus-data_kredit')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="pribadi" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Pribadi</h3>
-                                </div>
-                                <!-- data pribadi -->
-                                <div class="panel-body">
-                                    @include('internals.eform.adk._cus-personal')
-                                    <hr>
-
-                                    @if($detail['customer']['personal']['status'] == 2)
-                                    <!--pasangan-->
-                                    @include('internals.eform.adk._cus-couple')
-                                    <hr>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="pekerjaan" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Pekerjaan</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <!--pekerjaan-->
-                                    @include('internals.eform.adk._cus-work')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="finansial" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Finansial</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <!-- finansial -->
-                                    @include('internals.eform.adk._cus-financial')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="keluarga" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Data Keluarga</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <!-- family -->
-                                    @include('internals.eform.adk._cus-family')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="dokumen" class="tab-pane">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Briguna Dokumen</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <!-- identity -->
-                                    @include('internals.eform.adk._cus-identity')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                        @if(!empty($data_cif))
                             <div class="row">
-                                <div class="col-md-6">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <?php
-                                                if (!empty($detail['tgl_disposisi'])) {
-                                                    $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_disposisi']));
-                                                } else {
-                                                    $tanggal = '-';
-                                                }
-                                                echo "Tanggal Disposisi : ".$tanggal."<br>";
-                                            ?>
-                                            Catatan Disposisi : {{$detail['pinca_note']}}
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Data CIF</h3>
                                         </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-6">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <?php
-                                                if (!empty($detail['tgl_analisa'])) {
-                                                    $tanggal  = substr($detail['tgl_analisa'], 0, 2).'-'.substr($detail['tgl_analisa'], 2, 2).'-'.substr($detail['tgl_analisa'], 4, 4).' '.substr($detail['tgl_analisa'], 9,8);
-                                                } else {
-                                                    $tanggal = '-';
-                                                }
-                                                echo "Tanggal Analisa : ".$tanggal."<br>";
-                                            ?>
-                                            Catatan Analisa : {{$detail['catatan_analisa']}}
+                                        <!-- data pribadi -->
+                                        <div class="panel-body">
+                                            @include('internals.eform.adk._cif')
+                                            <hr>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
+                        @else
                             <div class="row">
-                                <div class="col-md-6">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <?php
-                                                if (!empty($detail['tgl_putusan'])) {
-                                                    $tanggal  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4).' '.substr($detail['tgl_putusan'], 9,8);
-                                                } else {
-                                                    $tanggal = '-';
-                                                }
-                                                
-                                                echo "Tanggal Putusan : ".$tanggal."<br>";
-                                            ?>
-                                            Catatan Pemutus : {{$detail['catatan_pemutus']}}
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Data CIF</h3>
                                         </div>
-                                    </form>
+                                        <!-- data pribadi -->
+                                        <div class="panel-body">
+                                            <h3 class="panel-title">Data CIF Kosong</h3>
+                                            <hr>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <?php
-                                                if (!empty($detail['tgl_pencairan'])) {
-                                                    $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_pencairan']));
-                                                } else {
-                                                    $tanggal = '-';
-                                                }
-                                                echo "Tanggal Pencairan : ".$tanggal."<br>";
-                                            ?>
-                                            Catatan ADK : {{$detail['catatan_adk']}}
+                            </div>
+                        @endif
+
+                        @if(!empty($data_kemendagri))
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Data Kemendagri</h3>
                                         </div>
-                                    </form>
+                                        <!-- data pribadi -->
+                                        <div class="panel-body">
+                                            @include('internals.eform.adk._kemendagri')
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Data Kemendagri</h3>
+                                        </div>
+                                        <!-- data pribadi -->
+                                        <div class="panel-body">
+                                            <h3 class="panel-title">Data Kemendagri Kosong</h3>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                    <div id="pekerjaan" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Pekerjaan</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--pekerjaan-->
+                                        @include('internals.eform.adk._cus-work')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finansial" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Finansial</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!-- finansial -->
+                                        @include('internals.eform.adk._cus-financial')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="keluarga" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Data Keluarga</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!-- family -->
+                                        @include('internals.eform.adk._cus-family')
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dokumen" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Briguna Dokumen</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <!-- identity -->
+                                        @include('internals.eform.adk._cus-identity')
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- rekomendasi approval -->
-            @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')
-                <div class="text-center">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data SPH :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak SPH</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <?php
+                                                    if (!empty($detail['tgl_disposisi'])) {
+                                                        $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_disposisi']));
+                                                    } else {
+                                                        $tanggal = '-';
+                                                    }
+                                                    echo "Tanggal Disposisi : ".$tanggal."<br>";
+                                                ?>
+                                                Catatan Disposisi : {{$detail['pinca_note']}}
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak Form Pengajuan</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <?php
+                                                    if (!empty($detail['tgl_analisa'])) {
+                                                        $tanggal  = substr($detail['tgl_analisa'], 0, 2).'-'.substr($detail['tgl_analisa'], 2, 2).'-'.substr($detail['tgl_analisa'], 4, 4).' '.substr($detail['tgl_analisa'], 9,8);
+                                                    } else {
+                                                        $tanggal = '-';
+                                                    }
+                                                    echo "Tanggal Analisa : ".$tanggal."<br>";
+                                                ?>
+                                                Catatan Analisa : {{$detail['catatan_analisa']}}
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data PTK/IPK :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak PTK/IPK</a>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <?php
+                                                    if (!empty($detail['tgl_putusan'])) {
+                                                        $tanggal  = substr($detail['tgl_putusan'], 0, 2).'-'.substr($detail['tgl_putusan'], 2, 2).'-'.substr($detail['tgl_putusan'], 4, 4).' '.substr($detail['tgl_putusan'], 9,8);
+                                                    } else {
+                                                        $tanggal = '-';
+                                                    }
+                                                    
+                                                    echo "Tanggal Putusan : ".$tanggal."<br>";
+                                                ?>
+                                                Catatan Pemutus : {{$detail['catatan_pemutus']}}
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <?php
+                                                    if (!empty($detail['tgl_pencairan'])) {
+                                                        $tanggal = date('d-m-Y H:i:s', strtotime($detail['tgl_pencairan']));
+                                                    } else {
+                                                        $tanggal = '-';
+                                                    }
+                                                    echo "Tanggal Pencairan : ".$tanggal."<br>";
+                                                ?>
+                                                Catatan ADK : {{$detail['catatan_adk']}}
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <!-- @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1') -->
-            @elseif($detail['is_send'] == '1' && $detail['is_verified'] == '1')
-                <div class="text-center">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data SPH :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak SPH</a>
+                <!-- rekomendasi approval -->
+                @if($detail['is_send'] == '1' && $detail['is_verified'] == '0')
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Cetak Data SPH :</label>
+                                                        <div class="col-md-5">
+                                                            <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak SPH</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak Form Pengajuan</a>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
+                                                        <div class="col-md-5">
+                                                            <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak Form Pengajuan</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="col-md-5 control-label">Cetak Data PTK/IPK :</label>
-                                                    <div class="col-md-5">
-                                                        <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak PTK/IPK</a>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Cetak Data PTK/IPK :</label>
+                                                        <div class="col-md-5">
+                                                            <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak PTK/IPK</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
-                    {{ csrf_field() }}
-                        <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">
-                        <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
-                        <input type="hidden" name="type" value="kirim">
-                        <input type="hidden" name="uid" value="{{$detail['uid']}}">
-                        <h3 class="panel-title">catatan :</h3>
-                        <hr> 
-                        <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
-                        <hr>
+                <!-- @elseif($detail['is_send'] == '6' && $detail['is_verified'] == '1') -->
+                @elseif($detail['is_send'] == '1' && $detail['is_verified'] == '1')
+                    <div class="text-center">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Cetak Data SPH :</label>
+                                                        <div class="col-md-5">
+                                                            <a href="{{route('post_sph',['id'=>'sph','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak SPH</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Cetak Form Pengajuan :</label>
+                                                        <div class="col-md-5">
+                                                            <a href="{{route('post_debitur',['id'=>'debitur','eform_id'=> $detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak Form Pengajuan</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-md-5 control-label">Cetak Data PTK/IPK :</label>
+                                                        <div class="col-md-5">
+                                                            <a href="{{route('post_pdf',['id'=>'ptk','eform_id'=>$detail['eform_id']])}}" class="btn btn-primary waves-light waves-effect w-md m-b-20">Cetak PTK/IPK</a>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form class="form-horizontal" role="form" action="{{route('post_adk')}}" method="POST" id="form1">
+                        {{ csrf_field() }}
+                            <input type="hidden" name="id_aplikasi" value="{{$detail['id_aplikasi']}}">
+                            <input type="hidden" name="eform_id" value="{{$detail['eform_id']}}">
+                            <input type="hidden" name="type" value="kirim">
+                            <input type="hidden" name="uid" value="{{$detail['uid']}}">
+                            <h3 class="panel-title">catatan :</h3>
+                            <hr> 
+                            <input type="text" name="catat_adk" class="form-control" id="catat_adk" value="<?php echo $detail['catatan_adk']?>">
+                            <hr>
+                            <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                            <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
+                        </form>
+                    </div>
+                @else
+                    <div class="text-center">
                         <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
-                        <button type="submit" class="btn btn-orange waves-light waves-effect w-md m-b-20" id="btn-approve">Kirim Ke Brinets</button>
-                    </form>
-                </div>
+                    </div>
+                @endif
             @else
+                <h4 class="page-title">Data Detail Verifikasi ADK tidak ditemukan</h4>
                 <div class="text-center">
                     <a href="{{route('adk.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
                 </div>

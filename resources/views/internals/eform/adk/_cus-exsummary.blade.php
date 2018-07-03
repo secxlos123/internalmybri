@@ -35,8 +35,11 @@
                 <label class="col-md-5 control-label">Scoring Mitra :</label>
                 <div class="col-md-7">
                     <p class="form-control-static">
-                        {{$detail['mitra']['Scoring']}}
-                        @if($detail['mitra']['KET_Scoring'] != "" || !empty($detail['mitra']['KET_Scoring']) || $detail['mitra']['KET_Scoring'] != "null") 
+                        @if(isset($detail['mitra']['Scoring'])) 
+                            ({{$detail['mitra']['Scoring']}})
+                        @endif
+
+                        @if(isset($detail['mitra']['KET_Scoring'])) 
                             ({{$detail['mitra']['KET_Scoring']}})
                         @endif
                     </p>
@@ -85,7 +88,11 @@
             <div class="form-group">
                 <label class="col-md-5 control-label">Mitra Kerjasama :</label>
                 <div class="col-md-7">
-                    <p class="form-control-static">{{$detail['mitra']['NAMA_INSTANSI']}}</p>
+                    <p class="form-control-static">
+                        @if(isset($detail['mitra']['NAMA_INSTANSI'])) 
+                            ({{$detail['mitra']['NAMA_INSTANSI']}})
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

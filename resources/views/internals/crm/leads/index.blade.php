@@ -26,13 +26,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Marketing</h4>
+                        <h4 class="page-title">Leads</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li>
                                 <a href="{{url('/')}}">Home MyBRI</a>
                             </li>
                             <li class="active">
-                                Marketing
+                                Leads
                             </li>
                         </ol>
                         <div class="clearfix"></div>

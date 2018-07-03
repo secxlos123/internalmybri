@@ -44,6 +44,7 @@ class ADKHistoriController extends Controller
             ->get();
         $detail = $formDetail['contents'];
         // dd($detail);
+        // print_r($detail); die();
 
         $asuransi = [
             'premi_as_jiwa' => '',
@@ -52,17 +53,29 @@ class ADKHistoriController extends Controller
         ];
 
         if (!empty($detail)) {
+            $data_tambahan = Client::setEndpoint('eforms/'.$id.'/verification/show')
+                    ->setHeaders(
+                        [ 'Authorization' => $data['token'],
+                          'pn' => $data['pn']
+                        ])
+                    ->post();
+            // print_r($data_tambahan); die();
+
+            $data_cif        = empty($data_tambahan['contents']['cif'])?"": $data_tambahan['contents']['cif'];
+            $data_kemendagri = empty($data_tambahan['contents']['kemendagri'])?"": $data_tambahan['contents']['kemendagri'];
+
             $status = $this->getStatusIsSend($detail['is_send']);
             $premi_as_jiwa   = ($detail['Premi_asuransi_jiwa'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_bri = ($detail['Premi_beban_bri'] * $detail['Plafond_usulan']) / 100;
             $premi_beban_debitur = ($detail['Premi_beban_debitur'] * $detail['Plafond_usulan']) / 100;
-
             $asuransi = [
                 'premi_as_jiwa'   => $premi_as_jiwa,
                 'premi_beban_bri' => $premi_beban_bri,
                 'premi_beban_debitur' => $premi_beban_debitur
             ];
             
+            
+
             // update data for no_rekening briguna
             if (empty($detail['no_rekening']) || $detail['no_rekening'] == '') {
                 $getBrinets = Client::setEndpoint('api_las/index')
@@ -75,7 +88,7 @@ class ADKHistoriController extends Controller
                                     'requestData'   => $detail['id_aplikasi']
                                 ])
                                 ->post('form_params');
-                // print_r($getBrinets);
+                //print_r($getBrinets);
                 if ($getBrinets['statusCode'] == '01') {
                     $update_data = [
                         'eform_id'    => $id,
@@ -97,7 +110,7 @@ class ADKHistoriController extends Controller
         }
         
         if ($data['role'] == 'adk' || $data['role'] == 'spvadk') {
-            return view('internals.eform.adk.view-detail-adk', compact('data','detail','id','asuransi','status'));
+            return view('internals.eform.adk.view-detail-adk', compact('data','detail','id','asuransi','status','data_cif','data_kemendagri'));
         } else {
             return view('errors.404');
         }

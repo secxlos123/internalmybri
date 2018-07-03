@@ -9,6 +9,13 @@ function testbutton(){
 }
 $(document).ready(function() {
 	//------------------all hidden---------------------------------
+	$("#lembaga_pemeringkat").select2({
+			  ajax: {
+				url: "ListFasilitas",
+				delay: 250,
+				type: 'GET',
+			  }
+			});
 	$('#tgl_pembayaran').datepicker({
                 format : "yyyy-mm-dd",
                 autoclose: true,
@@ -36,7 +43,7 @@ $(document).ready(function() {
 		$("#div_induk_mitra_select").show();
 		$("#div_anak_perusahaan_wilayah_select").show();
 		$("#div_anak_perusahaan_kabupaten_select").show();
-		
+			
 		$("#bank_payroll").select2({
 			  ajax: {
 				url: "ListBank",

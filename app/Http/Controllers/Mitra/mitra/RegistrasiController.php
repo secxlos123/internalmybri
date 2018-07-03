@@ -110,7 +110,7 @@ class RegistrasiController extends Controller
 					'rating_instansi'=>'',
 					'lembaga_pemeringkat'=>'',
 					'go_public'=>'',
-					'no_ijin_prinsip'=>!( $mitra['alamat_mitra'] ) ? '' : $mitra['ijin_perinsip']['ijin_perinsip'],
+					'no_ijin_prinsip'=>!( $mitra['alamat_mitra'] ) ? '' : $mitra['ijin_perinsip'],
 					'date_updated'=>date("Y/m/d"),
 					'updated_by'=>$users['pn'],
 					'acc_type'=>'',
@@ -207,6 +207,36 @@ class RegistrasiController extends Controller
 		return $datamitra;
 
 	}
+	function mitra_las($mitra_las,$users){
+			$file = array();
+
+			$data[] = [
+						'lo_mitra' => 'mitra_las',
+						'id' => 0,
+						'nama_instansi' =>!( $mitra_las['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra_las['anak_perusahaan_kabupaten_text'],
+						'branchcode'=>$users['branch'],
+						//kode_instansi get digit belakang gimana
+						'kode_instansi' => $users['branch'].$mitra_las['id_mitra'],
+						'jenis_bidang_usaha'=>!( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
+						'alamat_instansi'=>!( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['alamat_mitra'],
+						'alamat_instansi2'=>'',
+						'alamat_instansi3'=>'',
+						'telepon_instansi'=>!( $mitra_las['no_telp_mitra'] ) ? '' : $mitra_las['no_telp_mitra'],
+						'rating'=>'4',
+						'tanggal_pemeringkat'=>'04062018',
+						'lembaga_pemeringkat'=>'',
+						'npl'=>'1',
+						'go_public'=>'1',
+						'no_ijin_prinsip'=>!( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['ijin_perinsip'],
+						'updated_by'=>$users['pn'],
+						'jumlah_karyawan'=>!( $mitra_las['jml_pegawai'] ) ? '' : $mitra_las['jml_pegawai'],
+						'jenis_instansi'=>!( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
+						'acc_type'=>'SA',
+						];
+			$datamitra = $this->dataRequest($data,$file);
+			return $datamitra;
+		}
+	
 	
 	  public function dataRequest($request,$file)
     {
@@ -281,6 +311,9 @@ class RegistrasiController extends Controller
 		
 		$mitra[5]['name'] = 'mitra_pemutus';
 		$mitra[5]['contents'] = $this->mitra_pemutus($baseRequest);
+		
+		$mitra[6]['name'] = 'mitra_las';
+		$mitra[6]['contents'] = $this->mitra_las($baseRequest,$users);
 		//$mitra[]['mitra_pemutus'] = $this->mitra_pemutus($baseRequest);
 		/* $client = Client::setEndpoint('register_mitra')
 				->setHeaders([

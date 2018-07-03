@@ -478,9 +478,10 @@ class AOController extends Controller
             if (!empty($form['recontest'])) {
                 $now = Carbon::now();
                 $end = Carbon::parse($form['recontest']['expired_date']);
-
-                if ($now->diffInDays($end) <= 30 && $form['status_eform'] != 'Approval2' && !isset($form['recontest']['ao_recommended'])) {
+		//if ($now->diffInDays($end) <= 30 && $form['status_eform'] != 'Approval2' && !isset($form['recontest']['ao_recommended'])) {
+                if ($now->diffInDays($end) <= 30 && $form['status'] == 'Rekontes Kredit' && !isset($form['recontest']['ao_recommended'])) {
                     $recontest = route('getRecontest', $form['id']);
+//\Log::info("===STATUS EFORM : ".$form['status_eform']." ===STATUS : ".$form['status']);
                 }
 
             }
