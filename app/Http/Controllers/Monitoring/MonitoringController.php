@@ -114,7 +114,8 @@ public function datatables(Request $request)
             //             $disbushr = $form['disbushr'][$y];
             //             $y++;
             //     }
-            $form['list_disbushr'] = "-";
+            if($form['status']=='Pencairan') $form['list_disbushr'] = "YES";
+            else $form['list_disbushr'] = "-";
             // }
                 // $form['prescreening_status'] = strtoupper($form['prescreening_status']); //sdhasjd asdjask asdjkas asjkdb k
             $form['ref_click'] = $form['ref_number'].'<br>'.$form['customer']['personal']['name'];
@@ -133,7 +134,7 @@ public function datatables(Request $request)
             }else{
                 $form['developer'] = $form['kpr']['developer_name'];
             }
-            $form['sales'] = $form['sales_dev_id'];
+            // $form['sales'] = $form['sales_dev_id'];
             $form['kanwils'] = $form['kanwils'];
             if ($form['kpr']['kpr_type_property_name']==null || $form['kpr']['kpr_type_property_name']=='') {
                 $form['jenis_kpr'] = '-';
@@ -144,7 +145,7 @@ public function datatables(Request $request)
             if ($form['sales_dev_id']==null) {
                 $form['sales'] = '-';
             }else{
-                $form['sales'] = $form['sales_dev_id'];
+                $form['sales'] = $form['sales_name'];
             }
             
             $ao_recommendation = "";

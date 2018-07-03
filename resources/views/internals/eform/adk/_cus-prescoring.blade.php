@@ -304,13 +304,21 @@
             <div class="form-group">
                 <label class="col-md-6 control-label">Skor Mitra Kerjasama :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['mitra']['Scoring']}} ({{$detail['mitra']['KET_Scoring']}})</p>
+                    <p class="form-control-static">
+                        @if(isset($detail['mitra']['Scoring']) || isset($detail['mitra']['KET_Scoring'])) 
+                            {{$detail['mitra']['Scoring']}} ({{$detail['mitra']['KET_Scoring']}})
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-6 control-label">Jumlah Pekerja :</label>
                 <div class="col-md-6">
-                    <p class="form-control-static">{{$detail['mitra']['Jumlah_pegawai']}}</p>
+                    <p class="form-control-static">
+                        @if(isset($detail['mitra']['Jumlah_pegawai'])) 
+                            ({{$detail['mitra']['Jumlah_pegawai']}})
+                        @endif
+                    </p>
                 </div>
             </div>
             <div class="form-group">

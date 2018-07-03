@@ -86,6 +86,12 @@
 	</a>
 @endif
 
+@if (!empty($audit_adk))
+	<a href="{{route('getDetailBriguna', $audit_adk)}}" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="View" title="View-Detail-Audit-ADK">
+	    <i class="mdi mdi-eye"></i>
+	</a>
+@endif
+
 @if (!empty($submited) && $submited == true && empty($recontest) && (!isset($status) || isset($status) &&  $status == 'approved'))
 	<span class="btn btn-icon waves-effect waves-light btn-orange">
 	    Proses CLF
@@ -227,25 +233,6 @@
 	
 	@endif
 @endif
-
-<!-- @if (isset($status_efrm) && $status_efrm == 'Proses CLS') 
-	<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
-	    <i class="mdi mdi-delete"></i>
-	</a>
-@endif -->
-
-<!-- @if (isset($approve) && (!empty($visited)) && ($visited == true) && ($submited == false))
-	@if(!empty($status))
-		@if($status == 'Rejected')
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-info bottom-margin " data-original-title="Approval" title="Approval" style="pointer-events: none;cursor: default;background-color: red !important;border-color: red !important;">
-			    Kredit Ditolak
-			</a>
-			<a href="javascript:void(0);" class="btn btn-icon waves-effect waves-light btn-danger btn-delete-clas bottom-margin" data-id="{{$refnumber}}" data-original-title="Hapus Pengajuan" title="Hapus Pengajuan">
-	    	<i class="mdi mdi-delete"></i>
-			</a>
-		@endif
-	@endif
-@endif -->
 
 <script type="text/javascript">
 var LongLat ='?hidden-long='+ $('input[name="hidden-long"]').val()+'&hidden-lat='+$('input[name="hidden-lat"]').val()+'&auditaction=klik icon rekontest';

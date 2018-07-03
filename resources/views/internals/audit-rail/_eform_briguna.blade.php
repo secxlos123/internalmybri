@@ -1,6 +1,6 @@
 <div id="filter" class="m-b-15">
     <a data-toggle="tab" class="btn btn-primary" href="#pengajuan">KPR</a>
-    <a data-toggle="tab" class="btn btn-primary" href="#pengajuanbriguna">BRIGUNA</a>
+    <a data-toggle="tab" class="btn btn-primary" href="#pengajuanbriguna"><u>BRIGUNA</u></a>
     <div class="row">
         <div class="col-md-8">
             <div class="card-box">
@@ -90,8 +90,11 @@
                     <th>Plafond</th>
                     <th>Status Pengajuan</th>
                     <th>Status Prescreening</th>
+                    <th>Eform</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
         </table>
     </div>
 </div>
+@include('internals.eform._result-modal')

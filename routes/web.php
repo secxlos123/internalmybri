@@ -24,6 +24,7 @@
             Route::get('/ScoringMitraStore', ['as'=>'ScoringMitraStore', 'uses'=>'Mitra\mitra\ScoringProsesController@store']);
             Route::get('/DirRpcStore', ['as'=>'DirRpcStore', 'uses'=>'Mitra\dirrpc\AddDirRpcontroller@store']);
             Route::post('/MitraStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\RegistrasiController@store']);
+            Route::get('/MenuNew', ['as'=>'MenuNew', 'uses'=>'Menu\MenuController@createNew']);
             Route::post('/ApprovalStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
             Route::post('/ApprovalPKSStore', ['as'=>'MitraStore', 'uses'=>'Mitra\mitra\ApprovalPKSController@store']);
             Route::post('/PerjanjianStore', ['as'=>'PerjanjianStore', 'uses'=>'Mitra\mitra\ApprovalController@store']);
@@ -227,6 +228,7 @@
         Route::resource('adk-histori', 'EForm\ADKHistoriController');
         Route::get('/adk/view/{id}', ['as'=>'getApprove', 'uses'=>'EForm\ADKController@getApprove']);
         Route::get('/adk-histori/view/{id}', ['as'=>'getDetailADK', 'uses'=>'EForm\ADKHistoriController@getDetail']);
+        Route::get('/audit/view/{id}', ['as'=>'getDetailBriguna', 'uses'=>'Auditrail\AuditrailController@getDetailBriguna']);
         Route::post('post_adk', ['as'=>'post_adk', 'uses'=>'EForm\ADKController@postApprove']);
         Route::post('verifikasi', ['as'=>'verifikasi', 'uses'=>'EForm\ADKController@postVerifikasi']);
         Route::post('keterangan', ['as'=>'keterangan', 'uses'=>'EForm\ADKController@postKeterangan']);
@@ -338,12 +340,12 @@
 								Route::get('leads', 'CRM\leadsController@index');
 								Route::get('leads_detail', 'CRM\leadsController@detail');
                 });
-                Route::post('leads_kelolaan', 'CRM\LeadsController@kelolaan');
-                Route::post('leads_leads', 'CRM\LeadsController@leads');
-                Route::post('leads_customer', 'CRM\LeadsController@customers');
-                Route::post('leads_cpp', 'CRM\LeadsController@cpps');
-                Route::post('leads_referral', 'CRM\LeadsController@referrals');
-                Route::post('leads_new_customer', 'CRM\LeadsController@newCustomer');
+                Route::post('leads_kelolaan', 'CRM\leadsController@kelolaan');
+                Route::post('leads_leads', 'CRM\leadsController@leads');
+                Route::post('leads_customer', 'CRM\leadsController@customers');
+                Route::post('leads_cpp', 'CRM\leadsController@cpps');
+                Route::post('leads_referral', 'CRM\leadsController@referrals');
+                Route::post('leads_new_customer', 'CRM\leadsController@newCustomer');
             Route::group(['middleware' => 'checkrole:fo,ao,pinca,mp,amp,pincapem,mantri,pincasus,superadmin'], function() { 
                 /* CRM Activity */
                 Route::get('activity', 'CRM\activityController@index');
@@ -448,9 +450,9 @@
 
     Route::get('generatePDF/{type}', 'DropdownController@generatePDF')->name('generatePDF');
 
-    Route::get('action-detail/pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit');
+    Route::get('pengajuan_kredit', 'AuditRail\ActionDetailController@pengajuan_kredit')->name('pengajuan_kredit');
 
-    Route::get('action-detail/pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna');
+    Route::get('pengajuan_kredit_briguna', 'AuditRail\ActionDetailController@pengajuan_kredit_briguna')->name('pengajuan_kredit_briguna');
 
     Route::get('action-detail/admindev', 'AuditRail\ActionDetailController@admindev');
 

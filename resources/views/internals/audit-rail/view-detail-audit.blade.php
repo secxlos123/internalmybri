@@ -1,4 +1,4 @@
-@section('title','MyBRI - Detail Riwayat Paket Kredit')
+@section('title','MyBRI - Detail Riwayat Pengajuan Kredit')
 @include('internals.layouts.head')
 @include('internals.layouts.header')
 @include('internals.layouts.navigation')
@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">Detail Riwayat Paket Kredit</h4>
+                        <h4 class="page-title">Detail Riwayat Pengajuan Kredit</h4>
                         <ol class="breadcrumb p-0 m-0">
                             <li><a href="{{url('/')}}">Dashboard</a></li>
                             <li><a href="{{route('eform.index')}}">Pengajuan Kredit</a></li>
-                            <li class="active">Pengajuan</li>
+                            <li class="active">Detail Pengajuan</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -141,69 +141,6 @@
                             </div>
                         </div>
                     </div>
-                    @if(!empty($data_cif))
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Data CIF</h3>
-                                    </div>
-                                    <!-- data pribadi -->
-                                    <div class="panel-body">
-                                        @include('internals.eform.adk._cif')
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Data CIF</h3>
-                                    </div>
-                                    <!-- data pribadi -->
-                                    <div class="panel-body">
-                                        <h3 class="panel-title">Data CIF Kosong</h3>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if(!empty($data_kemendagri))
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Data Kemendagri</h3>
-                                    </div>
-                                    <!-- data pribadi -->
-                                    <div class="panel-body">
-                                        @include('internals.eform.adk._kemendagri')
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @else
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Data Kemendagri</h3>
-                                    </div>
-                                    <!-- data pribadi -->
-                                    <div class="panel-body">
-                                        <h3 class="panel-title">Data Kemendagri Kosong</h3>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </div>
                 <div id="pekerjaan" class="tab-pane">
                     <div class="row">
@@ -346,7 +283,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="{{route('adk-histori.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
+                <a href="{{route('auditrail.index')}}" class="btn btn-default waves-light waves-effect w-md m-b-20">Kembali</a>
             </div>
         </div>
     </div>
