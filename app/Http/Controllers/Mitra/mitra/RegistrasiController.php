@@ -217,7 +217,7 @@ class RegistrasiController extends Controller
 						'nama_instansi' =>!isset( $mitra_las['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra_las['anak_perusahaan_kabupaten_text'],
 						'branchcode'=>$users['branch'],
 						//kode_instansi get digit belakang gimana
-						'kode_instansi' => $users['branch'].$mitra_las['id_mitra'],
+						'kode_instansi' => '',
 						'jenis_bidang_usaha'=>!isset( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
 						'alamat_instansi'=>!isset( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['alamat_mitra'],
 						'alamat_instansi2'=>'',
