@@ -93,24 +93,24 @@ class RegistrasiController extends Controller
 		$data[] = [
 					'lo_mitra' => 'mitra',
 					'idMitrakerja' => $mitra['id_mitra'],
-					'NAMA_INSTANSI' =>!( $mitra['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra['anak_perusahaan_kabupaten_text'],
+					'NAMA_INSTANSI' =>isset( $mitra['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra['anak_perusahaan_kabupaten_text'],
 					'kode' => '',
 					'NPL'=>'0',
 					'BRANCH_CODE'=>$users['branch'],
-					'Jumlah_pegawai'=>!( $mitra['jml_pegawai'] ) ? '' : $mitra['jml_pegawai'],
-					'JENIS_INSTANSI'=>!( $mitra['golongan_mitra_text'] ) ? '' : $mitra['golongan_mitra_text'],
+					'Jumlah_pegawai'=>isset( $mitra['jml_pegawai'] ) ? '' : $mitra['jml_pegawai'],
+					'JENIS_INSTANSI'=>isset( $mitra['golongan_mitra_text'] ) ? '' : $mitra['golongan_mitra_text'],
 					'UNIT_KERJA'=>$users['uker'],
 					'Scoring'=>'70',
 					'KET_Scoring'=>'Diterima',
 					'jenis_bidang_usaha'=>'',
-					'alamat_instansi'=>!( $mitra['alamat_mitra'] ) ? '' : $mitra['alamat_mitra'],
-					'alamat_instansi2'=>!( $mitra['alamat_mitra'] ) ? '' : $mitra['alamat_mitra'],
-					'alamat_instansi3'=>!( $mitra['alamat_mitra'] ) ? '' : $mitra['alamat_mitra'],
-					'telephone_instansi'=>!( $mitra['no_telp_mitra'] ) ? '' : $mitra['no_telp_mitra'],
+					'alamat_instansi'=>isset( $mitra['alamat_mitra'] ) ? '' : $mitra['alamat_mitra'],
+					'alamat_instansi2'=>isset( $mitra['alamat_mitra'] ) ? '' : $mitra['alamat_mitra'],
+					'alamat_instansi3'=>isset( $mitra['alamat_mitra'] ) ? '' : $mitra['alamat_mitra'],
+					'telephone_instansi'=>isset( $mitra['no_telp_mitra'] ) ? '' : $mitra['no_telp_mitra'],
 					'rating_instansi'=>'',
 					'lembaga_pemeringkat'=>'',
 					'go_public'=>'',
-					'no_ijin_prinsip'=>!( $mitra['alamat_mitra'] ) ? '' : $mitra['ijin_perinsip'],
+					'no_ijin_prinsip'=>isset( $mitra['alamat_mitra'] ) ? '' : $mitra['ijin_perinsip'],
 					'date_updated'=>date("Y/m/d"),
 					'updated_by'=>$users['pn'],
 					'acc_type'=>'',
@@ -123,15 +123,15 @@ class RegistrasiController extends Controller
 		$data[] = [
 					'lo_mitra' => 'mitra_detail_dasar',
 					'status' => 'pengajuan',
-					'jenis_mitra' => $mitra_detail_dasar['jenis_mitra'],
-					'golongan_mitra' => $mitra_detail_dasar['golongan_mitra_text'],
-					'induk_mitra' => $mitra_detail_dasar['induk_mitra_text'],
-					'anak_perusahaan_wilayah' => $mitra_detail_dasar['anak_perusahaan_wilayah_text'],
-					'anak_perusahaan_kabupaten' => $mitra_detail_dasar['anak_perusahaan_kabupaten_text'],
-					'alamat_mitra' => $mitra_detail_dasar['alamat_mitra'],
-					'no_telp_mitra' => $mitra_detail_dasar['no_telp_mitra'],
-					'id_mitra' => $mitra_detail_dasar['id_mitra'],
-					'id_header' => $mitra_detail_dasar['id_mitra']
+					'jenis_mitra' => isset( $mitra_detail_dasar['jenis_mitra'] ) ? '' : $mitra_detail_dasar['jenis_mitra'],
+					'golongan_mitra' => isset( $mitra_detail_dasar['golongan_mitra_text'] ) ? '' : $mitra_detail_dasar['golongan_mitra_text'],
+					'induk_mitra' => isset( $mitra_detail_dasar['induk_mitra_text'] ) ? '' : $mitra_detail_dasar['induk_mitra_text'],
+					'anak_perusahaan_wilayah' => isset( $mitra_detail_dasar['anak_perusahaan_wilayah_text'] ) ? '' : $mitra_detail_dasar['anak_perusahaan_wilayah_text'],
+					'anak_perusahaan_kabupaten' => isset( $mitra_detail_dasar['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra_detail_dasar['anak_perusahaan_kabupaten_text'],
+					'alamat_mitra' => isset( $mitra_detail_dasar['alamat_mitra'] ) ? '' : $mitra_detail_dasar['alamat_mitra'] ),
+					'no_telp_mitra' => isset( $mitra_detail_dasar['no_telp_mitra'] ) ? '' : $mitra_detail_dasar['no_telp_mitra'],
+					'id_mitra' => isset( $mitra_detail_dasar['id_mitra'] ) ? '' :  $mitra_detail_dasar['id_mitra'] ,
+					'id_header' => isset( $mitra_detail_dasar['id_mitra'] ? '' : $mitra_detail_dasar['id_mitra']
 				];		
 		$datamitra = $this->dataRequest($data,$file);
 		return $datamitra;
@@ -139,19 +139,20 @@ class RegistrasiController extends Controller
 	function mitra_detail_data($mitra_detail_data){
 		$file = array();
 		$data[] = [
-					'lo_mitra' => 'mitra_detail_data',
-					'deskripsi_mitra' => !( $mitra_detail_data['deskripsi_mitra'] ) ? '' : $mitra_detail_data['deskripsi_mitra'],
-					'hp_mitra' => !( $mitra_detail_data['hp_mitra'] ) ? '' : $mitra_detail_data['alamat_mitra'],
-					'bendaharawan_mitra' => !( $mitra_detail_data['bendaharawan_mitra'] ) ? '' : $mitra_detail_data['bendaharawan_mitra'],
-					'telp_bendaharawan_mitra' => !( $mitra_detail_data['telp_bendaharawan_mitra'] ) ? '' : $mitra_detail_data['telp_bendaharawan_mitra'],
-					'hp_bendaharawan_mitra' => !( $mitra_detail_data['hp_bendaharawan_mitra'] ) ? '' : $mitra_detail_data['hp_bendaharawan_mitra'],
-					'email' => !( $mitra_detail_data['email'] ) ? '' : $mitra_detail_data['email'],
-					'jml_pegawai' => !( $mitra_detail_data['jml_pegawai'] ) ? '' : $mitra_detail_data['jml_pegawai'],
-					'thn_pegawai' => !( $mitra_detail_data['thn_pegawai'] ) ? '' : $mitra_detail_data['thn_pegawai'],
-					'tgl_pendirian' => !( $mitra_detail_data['tgl_pendirian'] ) ? '' : $mitra_detail_data['tgl_pendirian'],
-					'akta_pendirian' => !( $mitra_detail_data['akta_perubahan'] ) ? '' : $mitra_detail_data['akta_perubahan'],
-					'npwp_usaha' => !( $mitra_detail_data['npwp_usaha'] ) ? '' : $mitra_detail_data['npwp_usaha'],	
-					'id_header' => !( $mitra_detail_data['id_mitra'] ) ? '' : $mitra_detail_data['id_mitra']
+					'lo_mitra' => 'mitra_detail_data', 
+					'deskripsi_mitra' => isset( $mitra_detail_data['deskripsi_mitra'] ) ? '' : $mitra_detail_data['deskripsi_mitra'],
+					'hp_mitra' => isset( $mitra_detail_data['hp_mitra'] ) ? '' : $mitra_detail_data['alamat_mitra'],
+					'bendaharawan_mitra' => isset( $mitra_detail_data['bendaharawan_mitra'] ) ? '' : $mitra_detail_data['bendaharawan_mitra'],
+					'telp_bendaharawan_mitra' => isset( $mitra_detail_data['telp_bendaharawan_mitra'] ) ? '' : $mitra_detail_data['telp_bendaharawan_mitra'],
+					'hp_bendaharawan_mitra' => isset( $mitra_detail_data['hp_bendaharawan_mitra'] ) ? '' : $mitra_detail_data['hp_bendaharawan_mitra'],
+					'email' => isset( $mitra_detail_data['email'] ) ? '' : $mitra_detail_data['email'],
+					'jml_pegawai' => isset( $mitra_detail_data['jml_pegawai'] ) ? '' : $mitra_detail_data['jml_pegawai'],
+					'thn_pegawai' => isset( $mitra_detail_data['thn_pegawai'] ) ? '' : $mitra_detail_data['thn_pegawai'],
+					'tgl_pendirian' => isset( $mitra_detail_data['tgl_pendirian'] ) ? '' : $mitra_detail_data['tgl_pendirian'],
+					'akta_pendirian' => isset( $mitra_detail_data['akta_pendirian'] ) ? '' : $mitra_detail_data['akta_pendirian'],
+					'akta_perubahan' => isset( $mitra_detail_data['akta_perubahan'] ) ? '' : $mitra_detail_data['akta_perubahan'],
+					'npwp_usaha' => isset( $mitra_detail_data['npwp_usaha'] ) ? '' : $mitra_detail_data['npwp_usaha'],	
+					'id_header' => isset( $mitra_detail_data['id_mitra'] ) ? '' : $mitra_detail_data['id_mitra']
 				];		
 		$file[] = [
 					'laporan_keuangan' => $mitra_detail_data['laporan_keuangan'],
@@ -165,11 +166,11 @@ class RegistrasiController extends Controller
 		$file = array();
 		$data[] = [
 					'lo_mitra' => 'mitra_detail_fasilitas',
-					'jenis_pengajuan' => !($mitra_detail_fasilitas['jenis_pengajuan'] ) ? '' : $mitra_detail_fasilitas['jenis_pengajuan'],
-					'fasilitas_bank' => !($mitra_detail_fasilitas['fasilitas_bank'] ) ? '' : $mitra_detail_fasilitas['fasilitas_bank'],
-					'ijin_perinsip' => !($mitra_detail_fasilitas['ijin_perinsip'] ) ? '' : $mitra_detail_fasilitas['ijin_perinsip'],
-					'daftar_ijin' => !($mitra_detail_fasilitas['daftar_ijin'] ) ? '' : $mitra_detail_fasilitas['daftar_ijin'],
-					'id_header' => !($mitra_detail_fasilitas['id_mitra'] ) ? '' : $mitra_detail_fasilitas['id_mitra']
+					'jenis_pengajuan' => isset($mitra_detail_fasilitas['jenis_pengajuan'] ) ? '' : $mitra_detail_fasilitas['jenis_pengajuan'],
+					'fasilitas_bank' => isset($mitra_detail_fasilitas['fasilitas_bank'] ) ? '' : $mitra_detail_fasilitas['fasilitas_bank'],
+					'ijin_perinsip' => isset($mitra_detail_fasilitas['ijin_perinsip'] ) ? '' : $mitra_detail_fasilitas['ijin_perinsip'],
+					'daftar_ijin' => isset($mitra_detail_fasilitas['daftar_ijin'] ) ? '' : $mitra_detail_fasilitas['daftar_ijin'],
+					'id_header' => isset($mitra_detail_fasilitas['id_mitra'] ) ? '' : $mitra_detail_fasilitas['id_mitra']
 				];		
 		$file[] = [
 					'upload_fasilitas_bank' => $mitra_detail_fasilitas['upload_fasilitas_bank'],
@@ -182,13 +183,13 @@ class RegistrasiController extends Controller
 		$file = array();
 		$data[] = [
 					'lo_mitra' => 'mitra_detail_payroll',
-					'payroll' => !($mitra_detail_payroll['payroll'] ) ? '' : $mitra_detail_payroll['payroll'],
-					'no_rek_mitra1' => !($mitra_detail_payroll['no_rek_mitra1'] ) ? '' : $mitra_detail_payroll['no_rek_mitra1'],
-					'no_cif_mitra' => !($mitra_detail_payroll['no_cif_mitra'] ) ? '' : $mitra_detail_payroll['no_cif_mitra'],
-					'tipe_account1' => !($mitra_detail_payroll['tipe_account1'] ) ? '' : $mitra_detail_payroll['tipe_account1'],
-					'tgl_pembayaran' => !($mitra_detail_payroll['tgl_pembayaran'] ) ? '' : $mitra_detail_payroll['tgl_pembayaran'],
-					'tgl_gajian1' => !($mitra_detail_payroll['tgl_gajian1'] ) ? '' : $mitra_detail_payroll['tgl_gajian1'],
-					'id_header' => !($mitra_detail_payroll['id_mitra'] ) ? '' : $mitra_detail_payroll['id_mitra']
+					'payroll' => isset($mitra_detail_payroll['payroll'] ) ? '' : $mitra_detail_payroll['payroll'],
+					'no_rek_mitra1' => isset($mitra_detail_payroll['no_rek_mitra1'] ) ? '' : $mitra_detail_payroll['no_rek_mitra1'],
+					'no_cif_mitra' => isset($mitra_detail_payroll['no_cif_mitra'] ) ? '' : $mitra_detail_payroll['no_cif_mitra'],
+					'tipe_account1' => isset($mitra_detail_payroll['tipe_account1'] ) ? '' : $mitra_detail_payroll['tipe_account1'],
+					'tgl_pembayaran' => isset($mitra_detail_payroll['tgl_pembayaran'] ) ? '' : $mitra_detail_payroll['tgl_pembayaran'],
+					'tgl_gajian1' => isset($mitra_detail_payroll['tgl_gajian1'] ) ? '' : $mitra_detail_payroll['tgl_gajian1'],
+					'id_header' => isset($mitra_detail_payroll['id_mitra'] ) ? '' : $mitra_detail_payroll['id_mitra']
 				];		
 		$datamitra = $this->dataRequest($data,$file);
 		return $datamitra;
@@ -197,11 +198,11 @@ class RegistrasiController extends Controller
 		$file = array();
 		$data[] = [
 					'lo_mitra' => 'mitra_pemutus',
-					'pemutus_name' => !($mitra_pemutus['pemutus_name'] ) ? '' : $mitra_pemutus['pemutus_name'],
-					'pemeriksa' => !($mitra_pemutus['pemeriksa'] ) ? '' : $mitra_pemutus['pemeriksa'],
-					'jabatan' => !($mitra_pemutus['jabatan'] ) ? '' : $mitra_pemutus['jabatan'],
-					'jabatan_pemeriksa' => !($mitra_pemutus['jabatan_pemeriksa'] ) ? '' : $mitra_pemutus['jabatan_pemeriksa'],
-					'id_header' => !($mitra_pemutus['id_mitra'] ) ? '' : $mitra_pemutus['id_mitra']
+					'pemutus_name' => isset($mitra_pemutus['pemutus_name'] ) ? '' : $mitra_pemutus['pemutus_name'],
+					'pemeriksa' => isset($mitra_pemutus['pemeriksa'] ) ? '' : $mitra_pemutus['pemeriksa'],
+					'jabatan' => isset($mitra_pemutus['jabatan'] ) ? '' : $mitra_pemutus['jabatan'],
+					'jabatan_pemeriksa' => isset($mitra_pemutus['jabatan_pemeriksa'] ) ? '' : $mitra_pemutus['jabatan_pemeriksa'],
+					'id_header' => isset($mitra_pemutus['id_mitra'] ) ? '' : $mitra_pemutus['id_mitra']
 				];		
 		$datamitra = $this->dataRequest($data,$file);
 		return $datamitra;
@@ -213,24 +214,24 @@ class RegistrasiController extends Controller
 			$data[] = [
 						'lo_mitra' => 'mitra_las',
 						'id' => 0,
-						'nama_instansi' =>!( $mitra_las['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra_las['anak_perusahaan_kabupaten_text'],
+						'nama_instansi' =>isset( $mitra_las['anak_perusahaan_kabupaten_text'] ) ? '' : $mitra_las['anak_perusahaan_kabupaten_text'],
 						'branchcode'=>$users['branch'],
 						//kode_instansi get digit belakang gimana
 						'kode_instansi' => $users['branch'].$mitra_las['id_mitra'],
-						'jenis_bidang_usaha'=>!( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
-						'alamat_instansi'=>!( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['alamat_mitra'],
+						'jenis_bidang_usaha'=>isset( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
+						'alamat_instansi'=>isset( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['alamat_mitra'],
 						'alamat_instansi2'=>'',
 						'alamat_instansi3'=>'',
-						'telepon_instansi'=>!( $mitra_las['no_telp_mitra'] ) ? '' : $mitra_las['no_telp_mitra'],
+						'telepon_instansi'=>isset( $mitra_las['no_telp_mitra'] ) ? '' : $mitra_las['no_telp_mitra'],
 						'rating'=>'4',
 						'tanggal_pemeringkat'=>'04062018',
 						'lembaga_pemeringkat'=>'',
 						'npl'=>'1',
 						'go_public'=>'1',
-						'no_ijin_prinsip'=>!( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['ijin_perinsip'],
+						'no_ijin_prinsip'=>isset( $mitra_las['alamat_mitra'] ) ? '' : $mitra_las['ijin_perinsip'],
 						'updated_by'=>$users['pn'],
-						'jumlah_karyawan'=>!( $mitra_las['jml_pegawai'] ) ? '' : $mitra_las['jml_pegawai'],
-						'jenis_instansi'=>!( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
+						'jumlah_karyawan'=>isset( $mitra_las['jml_pegawai'] ) ? '' : $mitra_las['jml_pegawai'],
+						'jenis_instansi'=>isset( $mitra_las['golongan_mitra'] ) ? '' : $mitra_las['golongan_mitra'],
 						'acc_type'=>'SA',
 						];
 			$datamitra = $this->dataRequest($data,$file);
